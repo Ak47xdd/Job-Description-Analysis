@@ -1,0 +1,315 @@
+id,role,type,job_desc,year,qualification,experience,tech_skills,soft_skills
+1,AI Engineer,Internship,"Final year students / recent graduates in CS, AI, Data Science, or related fields
+Strong Python programming skills
+Understanding of Machine Learning / Deep Learning fundamentals
+Exposure to LangChain, Hugging Face, OpenAI APIs, or similar tools
+Curiosity, ownership mindset, and willingness to learn fast
+Strong problem-solving skills",2026,Bachelors,0,"Python, ML, LangChain, Hugging Face, OpenAI API","Communication, Problem Solving"
+2,AI Engineer,Internship,"Proficiency in Python and comfort working with APIs (REST, JSON, authentication).
+Working understanding of Large Language Models (LLMs) and prompt engineering - gained through coursework, online learning, personal projects, hackathons, or open-source contributions.
+Familiarity with at least one agent or LLM framework (e.g., LangChain, LlamaIndex, LangGraph, CrewAI, AutoGen, the Anthropic /OpenAI SDKs, or the Model Context Protocol).
+Strong problem-solving skills and the ability to break ambiguous business problems into structured, automatable steps.
+Excellent communication skills and ability to work collaboratively with others.
+Experience with vector databases and Retrieval-Augmented Generation (RAG), Exposure to tool use / function calling, multi-agent orchestration, or workflow automation tools (e.g., n8n, Zapier), SQL and PowerBI, Awareness of evaluation, guardrails, or safety practices for LLM applications are good to have. B Tech / B.E. in Computer Science, Information Technology, or a similar field. Candidates from other engineering or science backgrounds with demonstrated hands-on experience building with LLMs or AI agents are also encouraged to apply.",2026,Bachelors,0,"Python, APIs, LLMs, Prompt Engineering, LangChain, LangGraph, CrewAI, AutoGen, MCP, VectorDB, n8n, RAG","Communication, Problem Solving"
+3,AI Engineer,Internship,"Strong interest in AI and a willingness to learn and explore GenAI tools and frameworks.
+Programming skills in languages such as Python, JavaScript (React, Angular, Express.js, Node.js, NextJS), or similar.
+Front-end and Back-end engineers are welcome; Full-Stack developers are preferred.
+Excellent problem-solving skills and ability to work in a collaborative environment.
+Strong communication skills, both written and verbal.
+Frontend: Ability to use asynchronous API calls in React via fetch or axios to make HTTP requests to an LLM API endpoint.
+Frontend: Ability to consider user interactions when interacting with a model and guide users accordingly
+Backend - Understanding of machine learning concepts and frameworks (e.g., TensorFlow, PyTorch).
+Backend/Frontend - API integration - Familiarity with REST, GraphQL, or gRPC.
+Data Scientist = Familiarity with data pipelines: Ingestion, Cleaning/preprocessing, Transformation/Feature Engineering, Model Training/Evaluation, Model Deploying/Serving and Monitoring/Maintenance",2026,Bachelors,0,"Python, Javascript, React, Full Stack, APIs, ML, TesnorFlow/Pytorch, Ingestion, Data Cleaning, Feature Engineering, Model Training, Model Evaluation, Model Deploying, Model Maintenance, GenAI","Communication, Problem Solving"
+4,AI Engineer,Senior,"6+ years full-stack software engineering experience building scalable web applications, services, and APIs
+Proficiency in JavaScript/TypeScript and/or Python, and comfort working across the stack including frontend development (React or similar frameworks)
+Experience building backend systems, working with various datastores such as (Postgres/pgvector, Pinecone, Redis) and designing APIs.
+Demonstrated curiosity and hands-on experience with AI tools and applications - using modern AI models, agentic IDEs, or building AI-enabled workflows or prototypes.
+Experience building or experimenting with custom developed agentic systems, workflow orchestration tools (n8n), or Agentic browser automation
+A high degree of ownership and initiative, with the ability to operate independently in ambiguous problem spaces
+Excellent communication skills, with the ability to explain complex technical concepts to both technical and non-technical audiences
+Experience collaborating cross-functionally and building trust with stakeholders at all levels of the organization
+Direct experience integrating automated AI Evaluation/Testing/Observability suites to continuously test model effectiveness leveraging platforms such as DeepEval, Langfuse/LangSmith or similar 
+",2026,None,5-10,"Python, Javascript, React, Full Stack, SQL, APIs, ML, TesnorFlow/PyTorch, n8n","Communication, Problem Solving"
+5,AI Engineer,Junior,"AI/ML models, Python, Core ML concepts, ML framework (Scikit‑learn/TensorFlow/PyTorch), MLOps, SQL/NoSQL, Messaging/queue systems 
+0–1 year of experience as an AI/ML Engineer, Data Scientist, or similar role, or strong academic/personal projects in AI/ML.
+Bachelor’s degree in Computer Science, Engineering, Data Science, Mathematics, or equivalent practical experience.
+Solid Python skills for data processing and model development.
+Understanding of core ML concepts: supervised/unsupervised learning, evaluation metrics, overfitting, etc.
+Experience with at least one ML framework (e.g., scikit‑learn, TensorFlow, or PyTorch).
+Ability to work with databases (SQL/NoSQL) and basic messaging/queue systems to move data in and out of models.
+Strong problem‑solving mindset, eagerness to learn, and comfort working in a fast‑moving environment.
+Good communication skills and willingness to collaborate in a team and with non‑technical stakeholders.",2026,Bachelors,0-1,"Python, ML, TensorFlow/PyTorch, Scikit-Learn, MLOps, Model Training, Feature Engineering","Communication, Problem Solving"
+6,AI Engineer,Junior,"4–5 years of proven development experience in AI/ML for embedded device
+Strong expertise in deep learning frameworks (TensorFlow, PyTorch, ONNX, TensorRT).
+Expert proficiency with open-source infrastructure tools like llama.cpp, vLLM, Ollama, and NVIDIA Triton Inference Server for local model serving, high-throughput inference, and quantization.
+Hands-on experience building complex, stateful workflows and tracking applications using LangChain, LangGraph, and Langfuse.
+Expertise in selecting, benchmarking, and adapting state-of-the-art open-source architectures (such as Llama 3, gemma, Qwen, and Kimi) for enterprise tasks
+Practical experience with edge/embedded AI (NVIDIA Jetson, Qualcomm, ARM).
+Proficiency in NLP / Conversational AI / Speech interfaces ( ASR, TTS )
+Solid programming skills in Python and C++/Java for optimization and integration.
+Solid understanding of application development in embedded Linux / Android
+Familiarity with automotive standards, protocols such as CAN
+Familiarity with cloud ML services like AWS SageMaker or Azure ML
+Good communication skills and great team spirit.
+Experience working with embedded Linux, Automotive Android
+Knowledge of vehicle data interfaces (CAN, OBD-II, sensors).
+Exposure to LLMOps & MLOps pipelines and cloud platforms (AWS/GCP/Azure).
+",2026,Bachelors,5-10,"Python, C++, Java, TensorFlow/PyTorch, vLLM, Ollama, LangChain, LangGraph, NLP, AWS/Azure, MLOps","Communication, Problem Solving"
+7,AI Engineer,Senior,"5-10 years overall experience
+3+ years of hands-on Power BI enterprise delivery
+2+ years of SAP BusinessObjects migration experience (or equivalent BI migration)
+SAP BusinessObjects: Universes (UNV/UNX), WebI, contexts, prompts, joins, aggregate awareness
+Power BI / Fabric: Data modeling, DAX, calculation groups, Tabular Editor, Power BI Service governance
+AI & Automation: Azure OpenAI / LLMs, prompt engineering, metadata and document parsing
+Strong SQL and data engineering fundamentals.",2026,None,5-10,"Python, SQL, PowerBI, SAP, LLMs, Prompt Engineering, Data Engineering","Communication, Problem Solving"
+8,AI Engineer,Junior,"Proficiency in C/C++ and python programming
+Hands-on experience in deploying AI models on embedded platforms.
+Experience working with MCU, bare-metal, RTOS and Edge AI/ML applications
+Experience working with multi-core, multi-threaded applications, IPC and task scheduling
+Strong knowledge in board bring-up and interfaces such as OSPI, GPIO, UART, SRAM, SDRAM etc.
+Good debugging and problem-solving skills.
+Experience in various profiling tools, and proficiency in identifying deviations from expected behaviour and finding their root causes
+Ability to use Hardware test equipment: Joulescope, oscilloscope, logic analyzer and JTAG
+Understanding of system constraints like memory, compute, and power on edge devices.
+Good communication skills for clearly communicating ideas and concepts to team/customer",2026,Bachelors,0-1,"Python, C, C++, Sytem Design, Model Evaluation","Communication, Problem Solving"
+9,AI Engineer,Internship,"Python
+Machine Learning Fundamentals
+Large Language Models (LLMs)
+Prompt Engineering
+APIs & Integrations
+OpenAI APIs
+LangChain
+RAG Systems
+Vector Databases
+Hugging Face
+TensorFlow
+PyTorch",2026,Bachelors,0,"Python, ML, LLMs, Prompt Engineering, APIs, LangChain, RAG, VectorDB, Hugging Face, TensorFlow/PyTorch","Communication, Problem Solving"
+10,AI Engineer,Internship,"Solid understanding of LLMs, tokenization, transformers.
+Python programming (Pandas, NumPy, Hugging Face, LangChain, etc.).
+Exposure to AWS services like EC2, Lambda, S3, or SageMaker.
+Eagerness to explore real-world AI use cases (agents, copilots, RAG).
+Basic ML knowledge and hands-on project experience.
+Experience with serverless deployments on AWS.
+Familiarity with monitoring and logging (e.g., CloudWatch, OpenTelemetry).
+Contributions to open-source AI tools or model",2026,Bachelors,0,"Python, Pandas, NumPyHugging Face, LangChain, AWS, Agents, RAG","Communication, Problem Solving"
+11,AI Engineer,Senior,"4–6 years of experience in Data Science / Machine Learning / AI Engineering
+Strong programming skills in Python
+Hands-on experience with ML libraries such as Scikit-learn, Pandas, NumPy
+Experience in building ML models (classification, regression, NLP, etc.)
+Practical exposure to Generative AI / LLMs
+Prompt engineering
+RAG (Retrieval-Augmented Generation)
+Chatbot or document-based AI solutions
+Familiarity with frameworks like LangChain, LlamaIndex, or similar
+Experience in building and consuming APIs
+Strong problem-solving and analytical skills
+Experience with cloud platforms (AWS / Azure / GCP)
+Exposure to model deployment tools (Docker, MLflow, etc.)
+Understanding of vector databases (FAISS, Pinecone, etc.)
+Experience working in agile development environments",2026,None,5-10,"Python, Scikit-Learn, Pandas, NumPy, ML, LLMs, Prompt Engineering, RAG, LangChain, APIs, AWS/Azure, Docker, MLflow, VectorDB","Communication, Problem Solving"
+12,AI Engineer,Senior,"Bachelor's or Master's degree in Computer Science, Information Technology, Artificial Intelligence, Data Science, or related fields.
+2–5 years of hands-on experience in AI/ML or Generative AI development.
+Experience building and deploying production-grade AI solutions.
+Strong programming skills in Python.
+Understanding of Artificial Intelligence and Machine Learning concepts.
+Familiarity with APIs and software development fundamentals.
+Strong analytical and problem-solving abilities.
+Excellent communication and collaboration skills.
+Experience with Generative AI platforms such as OpenAI, Gemini, Claude, or Hugging Face.
+Knowledge of LangChain, LangGraph, CrewAI, AutoGen, or AI Agent frameworks.
+Understanding of RAG architectures and Vector Databases (FAISS, ChromaDB, Pinecone, Weaviate, etc.).
+Knowledge of SQL and database management.
+Familiarity with cloud platforms such as AWS, Azure, or GCP.
+Experience with Git, Docker, and CI/CD pipelines.
+",2026,Bachelors/Masters,1-5,"Python, ML, APIs, GenAI, LangChain, LangGraph, CrewAI, AutoGen, RAG, VectorDB, SQL, Docker, Git, CI/CD, AWS/Azure","Communication, Problem Solving, Analytical Skills"
+13,AI Developer,Internship,"Basic to intermediate Python programming skills.
+Understanding of AI/ML, Generative AI, and Prompt Engineering.
+Familiarity with APIs, databases, and version control (Git).
+Strong analytical, problem-solving, and communication skills.
+Exposure to LangChain, RAG, Vector Databases, AI Chatbots, or related projects.
+Knowledge of AWS, Azure, or Google Cloud is a plus\",2026,Bachelors,0,"Python, ML, GenAI, APIs, Git, Prompt Engineering, LangChain, RAG, VectorDB, AWS/Azure","Communication, Problem Solving, Analytical Skills"
+14,AI Engineer,Junior,"Basic understanding of AI, Machine Learning, or Automation concepts
+Familiarity with Python / APIs / No-code & Low-code tools (preferred but not mandatory
+Good problem-solving and logical thinking skills
+Willingness to learn and adapt quickly
+Good communication skills",2026,Bachelors,0-1,"Python, ML, APIs","Communication, Problem Solving"
+15,AI Engineer,Senior,"4–6 years of experience in Data Science / Machine Learning / AI Engineering
+Strong programming skills in Python
+Hands-on experience with ML libraries such as Scikit-learn, Pandas, NumPy
+Experience in building ML models (classification, regression, NLP, etc.)
+Practical exposure to Generative AI / LLMs
+Prompt engineering
+RAG (Retrieval-Augmented Generation)
+Chatbot or document-based AI solutions
+Familiarity with frameworks like LangChain, LlamaIndex, or similar
+Experience in building and consuming APIs
+Strong problem-solving and analytical skills
+Experience with cloud platforms (AWS / Azure / GCP)
+Exposure to model deployment tools (Docker, MLflow, etc.)
+Understanding of vector databases (FAISS, Pinecone, etc.)
+Experience working in agile development environments
+",2026,None,5-10,"Python, ML, Pandas, NumPy, Scikit-Learn, GenAI, LLMs, Prompt Engineering, RAG,  LangChain, APIs, AWS/Azure, Docker, MLflow, VectorDB","Communication, Problem Solving"
+16,AI Engineer,Junior,"Docker / Containerization
+AWS / Azure / GCP exposure
+AI Agent workflow understanding
+ML fundamentals
+Enterprise AI integration experience",2026,Bachelors,0-1,"Python, ML, Docker, AWS/Azure, ","Communication, Problem Solving"
+17,AI Engineer,Junior,"1+ years of experience in AI, LLMs, automation, or related systems
+Strong Python programming skills with experience in APIs and backend integration
+Hands-on experience in prompt engineering, LLM orchestration, and evaluation
+Familiarity with LangChain, embeddings, vector databases, and RAG systems
+Strong problem-solving skills with ability to build and ship MVPs quickly
+Passion for AI, automation, and real-world product development
+Strong ownership mindset
+Ability to work in fast-paced startup environments
+Good understanding of AI product thinking and user experience
+Strong communication and collaboration skills
+",2026,Bachelors,1-5,"Python, APIs, LLMs, Prompt Engineering, LangChain, LlamaIndex, LangGraph, CrewAI, AutoGen,  Anthropic /OpenAI SDKs, MCP, VectorDB, n8n, RAG, Agents","Communication, Problem Solving, Ownership"
+18,AI Developer,Junior,"Strong Python programming
+Experience with FastAPI, Flask, or similar backend frameworks
+Understanding of REST APIs
+Familiarity with cloud platforms (AWS) - Exposure to services like S3, EC2, Lambda, or API Gateway is a plus
+Experience working with AI/LLM APIs
+Knowledge of data processing (CSV, JSON, Pandas)
+Familiarity with Git and version control
+Basic understanding of Docker and cloud deployment
+Experience with RAG pipelines
+Experience with vector databases (Pinecone, Weaviate, FAISS, etc.)
+Experience parsing PDF documents
+Knowledge of LangChain or LlamaIndex
+Basic frontend knowledge (React / simple JS)
+",2026,Bachelors,0-1,"Python, React, Javascript, APIs, AWS/Azure, LLMs, Git, Docker, RAG, VectorDB, LangChain","Communication, Problem Solving"
+19,AI Engineer,Junior,"Degree in Computer Science, AI, or a related field (or equivalent practical experience).Strong command of Python, JavaScript, or other common programming languages.Hands-on experience with prompt engineering, LLMs, and AI-assisted coding tools.Familiarity with cloud-based IDEs, version control (e.g., Git), and API integrations.Excellent communication skills for client-facing interactions (live and written).Comfortable working independently in a remote, fast-paced environment.",2026,Bachelors,0-1,"Python, Javascript,  LLMs, Prompt Engineering, APIs","Communication, Problem Solving"
+20,AI Engineer,Senior,"Proven track record with at least 5 years of experience in a technical role focused on AI/ML.
+Expertise in AI/ML frameworks, NLP, and Transformer technologies.
+Strong experience with AWS cloud services, particularly for data processing and machine learning.
+Proficiency in MLOps practices and familiarity with LLMOps.
+Experience with FastAPI or similar frameworks for API development.
+Knowledge of container orchestration with AWS EKS and Bedrock.
+Team handling experience and architecture design experience.
+Proficiency in creating and delivering Powerpoint presentations.
+Knowledge of Responsible AI practices and Nvidia MLOps platform.
+Experience with fine-tuning open-source AI/ML models.
+Familiarity with DevOps practices, including continuous integration, deployment, and monitoring of AI models",2026,None,1-5,"Python, ML, NLP, MLOps, Feature Engineering, AWS/Azure, APIs","Communication, Problem Solving"
+21,AI Engineer,Senior,"5+ years overall experience in software development, data science, or machine learning.
+1+ year of hands-on experience developing AI applications with LLMs and systems such as retrieval-based methods, fine-tuning, or agent-based architectures.
+Strong programming skills in Python and basics in SQL.
+Expertise with LLM/SLM APIs, embeddings, and RAG systems.
+Experience deploying on Google Cloud Platform (GCP) with Vertex AI, and IBM WatsonX.
+Familiarity with agentic AI protocols and exposure to Agent Development Kits (ADKs).
+Experience implementing Model Context Protocol (MCP) for agent coordination.
+Prior exposure to LangGraph, AutoGen, or related orchestration frameworks.
+1+ year of experience with frameworks like LangChain, LlamaIndex, OpenAI, or similar tools.
+Good communication, stakeholder management and good aptitude, attitude to be flexible.
+Experience in the functional side of Identity and Access management especially on identity governance, access management, privileged access, non-human identities, and worked on any IAM tools like SailPoint, Saviynt, CyberArk and SIEM/SOAR tools like Splunk etc.
+Experience in strategy and roadmap work for Identity and Access management, especially in identifying use cases for automation, agentic AI workflows and roadmap for agentic AI lifecycle
+2 or more years’ experience with developing Robotic Process Automation and/or automation efforts
+2 or more years using Azure OR AWS cloud services
+2 or more years skilled at data visualization (Tableau, PowerBI, etc.)
+2 or more years with modern data engineering with APIs
+2 or more years applying agile SDLC
+Experience in enterprise-scale deployments of AI-driven platforms.
+Contributions to open-source AI/ML projects are a plus.
+",2026,None,5-10,"Python, APIs, LLMs, Prompt Engineering, LangChain, LlamaIndex, LangGraph, CrewAI, AutoGen,  Anthropic /OpenAI SDKs, MCP, VectorDB, n8n, RAG, Agents, AWS/Azure, PowerBI","Communication, Problem Solving"
+22,AI Engineer,Junior,"Strong programming skills in Python.
+Experience with LLM architectures, prompt engineering, and RAG systems.
+Familiarity with deep learning frameworks such as PyTorch or TensorFlow.
+Experience with vector databases like Pinecone, Weaviate, or Milvus.
+Azure expertise as must have, while AWS & GCP",2026,Bachelors,0-1,"Python, LLMs, Prompt Engineering, RAG, TensorFlow/PyTorch, VectorDB, AWS/Azure","Communication, Problem Solving"
+24,AI Developer,Senior,"Core Software Engineering (Required)
+Strong hands-on development in Python / C# / TypeScript/JavaScript (or similar).
+Experience building API-driven services and integrating distributed systems. 
+Strong understanding of non-functional requirements: reliability, availability, scalability, performance, and cost.
+Azure & Platform Engineering
+Hands on experience with Azure AI Foundry for delivering enterprise GenAI solutions in an enterprise context.
+Experience building serverless and asynchronous workloads using Azure Functions (including Durable Functions or equivalent).
+Experience using queues and event driven messaging for decoupled, reliable workflows.
+Experience working with ADLS for data ingestion, storage, and processing.
+Experience using Azure Cognitive Services / Azure AI Services as part of AI solutions.
+Azure Functions + Queues/Eventing (Required)
+Experience with Azure Functions (including Durable Functions or equivalent orchestration patterns).
+Experience implementing asynchronous patterns with queues/eventing for scale and reliability.
+Vector Databases (Required)
+Hands-on experience with vector databases / vector search, including enterprise deployment patterns
+LLM-as-a-Judge Evaluation (Required)
+Experience implementing evaluation approaches that include LLM-as-a-Judge (or equivalent automated evaluation patterns) for quality monitoring and continuous improvement.
+Agent 365 (A365) + Governance Alignment (Required)
+Familiarity/experience working in environments using Agent 365 (A365)-style lifecycle management concepts (e.g., agent registry, governance, monitoring/observability, and access controls)
+Runtime Security / Runtime Protection (Required)
+Experience delivering solutions with runtime protection expectations (runtime security controls, access controls, and monitoring alignment as defined by enterprise governance).
+Experience integrating AI services into enterprise automation platforms (e.g., Power Platform, ServiceNow).
+Familiarity with Azure AI services and data platforms.
+",2026,None,5-10,"Python, Javascript, AWS/Azure, VectorDB, LLMs, Agent 365","Communication, Problem Solving"
+25,AI Engineer,Senior,"15+ years of overall IT experience
+Strong experience in AI Architecture
+Hands-on experience in Agentic AI
+Strong experience in AI Automation
+Strong programming skills in Python
+Good experience in REST APIs
+Strong knowledge of Azure DevOps
+Hands-on experience in CI/CD
+Experience with GitHub
+Strong solution design and stakeholder management skills
+Experience in enterprise AI transformation initiatives
+Exposure to cloud-based AI services
+Experience in API integration architecture
+Understanding of secure AI solution deployment
+Experience mentoring teams and driving architecture governance
+",2026,None,15+,"Python, ML, APIs, AWS/Azure, CI/CD, Github, Git, ","Communication, Problem Solving"
+26,AI Engineer,Junior,"Strong hands-on experience in Python programming
+Ability to code independently without relying on AI coding tools
+Basic understanding of AI/ML concepts and frameworks
+Knowledge of APIs, data structures, and problem-solving techniques
+Good communication and collaboration skills
+Self-motivated with a strong learning attitude
+Familiarity with Generative AI, LLMs, or automation tools
+Understanding of libraries such as Pandas, NumPy, Scikit-learn, or FastAPI
+Exposure to Git/GitHub and cloud platforms is a plus
+Bachelor’s degree in Computer Science, IT, or related field
+Candidates with internship/project experience in AI/ML are encouraged to apply 
+",2026,Bachelors,0-1,"Python, APIs, GenAI, LLMs, Pandas, NumPy, Scikit-Learn, Git, Github","Communication, Problem Solving"
+27,AI Engineer,Internship,"Python Skills: You should be very comfortable with Python and async programming.
+LLM Experience: You have used APIs from OpenAI, Anthropic, or Gemini to build more than just a simple chatbot.
+Agent Knowledge: You understand how to give an AI tools (functions) to call so it can perform real tasks.
+Vector Databases: Basic experience with Pinecone, FAISS, or similar tools for searching through product data.
+You have used LangGraph, CrewAI, or AutoGen before.
+You understand RAG (Retrieval-Augmented Generation).
+You can build simple frontends in React or Next.js to show off your AI tools. 
+",2026,Bachelors,0,"Python, Javascript, React, LLMs, VectorDB, LangGraph, CrewAI, AutoGen, RAG","Communication, Problem Solving"
+28,AI Engineer,Internship,"Exposure to Full-Stack Development (frontend and backend technologies).
+Experience working with or building projects using AI technologies and Large Language Models (LLMs).
+Familiarity with modern web development frameworks and APIs.
+Understanding of software development best practices.
+Experience with Git and collaborative development workflows
+Strong interest in AI and emerging technologies.
+Positive attitude and a proactive, can-do mindset.
+Strong problem-solving and analytical skills.
+Ability to work independently in a remote environment.
+Excellent communication and collaboration skills.
+Eagerness to learn, experiment, and take ownership of projects.
+Experience with OpenAI, Anthropic, or other LLM platforms.
+Knowledge of vector databases, RAG systems, or AI agents.
+Experience deploying applications to cloud platforms.
+Previous internship, academic, or personal projects involving AI products. ",2026,Bachelors,0,"Python, Git, Github, Full Stack, LLMs, APIs, GenAI, VectorDB, RAG, AWS/Azure","Communication, Problem Solving, Analytical Skills"
+29,AI Engineer,Internship,"Python, TensorFlow, PyTorch, Scikit-learn, NumPy, pandas, Git, C#, .NET, R, Deep Learning, LLMs ",2026,Bachelors,0,"Python, TensorFlow/PyTorch, Scikit-Learn, NumPy, Pandas, Git, C#, .NET, R, ML, LLMs ","Communication, Problem Solving"
+30,AI Engineer,Internship,"Recently completed a degree in Computer Science, AI, ML, Data Science, or related fields
+Strong understanding of Generative AI and LLM fundamentals
+Proficiency in Python
+Experience or familiarity with:
+RAG architectures
+Prompt engineering
+Vector databases (FAISS, Pinecone, Chroma, etc.)
+Good problem-solving and analytical skills
+Tools & Technologies (Exposure to Any Is a Plus)
+LangGraph for agent workflows
+Strands or similar agent frameworks
+A2A (Agent-to-Agent) protocols
+LLM frameworks such as LangChain
+OpenAI / open-source LLMs
+REST APIs and JSON-based integrations
+Experience building AI agents or copilots
+Knowledge of NLP, embeddings, and semantic search
+Familiarity with cloud platforms or deployment workflows
+Prior hands-on projects in Generative AI or agent-based systems
+",2026,Bachelors,0,"Python, GenAI, LLMs, RAG, Prompt Engineering, VectorDB, LangChain, LangGraph, APIs, NLP","Communication, Problem Solving, Analytical Skills"

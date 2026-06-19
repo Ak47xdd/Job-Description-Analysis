@@ -1,0 +1,93 @@
+id,role,type,job_desc,year,qualification,experience,tech_skills,soft_skills
+1,AI Engineer,Internship,"Final year students / recent graduates in CS, AI, Data Science, or related fields
+Strong Python programming skills
+Understanding of Machine Learning / Deep Learning fundamentals
+Exposure to LangChain, Hugging Face, OpenAI APIs, or similar tools
+Curiosity, ownership mindset, and willingness to learn fast
+Strong problem-solving skills",2026,Bachelors,0,"Python, ML, LangChain, Hugging Face, OpenAI API","Communication, Problem Solving"
+2,AI Engineer,Internship,"Proficiency in Python and comfort working with APIs (REST, JSON, authentication).
+Working understanding of Large Language Models (LLMs) and prompt engineering - gained through coursework, online learning, personal projects, hackathons, or open-source contributions.
+Familiarity with at least one agent or LLM framework (e.g., LangChain, LlamaIndex, LangGraph, CrewAI, AutoGen, the Anthropic /OpenAI SDKs, or the Model Context Protocol).
+Strong problem-solving skills and the ability to break ambiguous business problems into structured, automatable steps.
+Excellent communication skills and ability to work collaboratively with others.
+Experience with vector databases and Retrieval-Augmented Generation (RAG), Exposure to tool use / function calling, multi-agent orchestration, or workflow automation tools (e.g., n8n, Zapier), SQL and PowerBI, Awareness of evaluation, guardrails, or safety practices for LLM applications are good to have. B Tech / B.E. in Computer Science, Information Technology, or a similar field. Candidates from other engineering or science backgrounds with demonstrated hands-on experience building with LLMs or AI agents are also encouraged to apply.",2026,Bachelors,0,"Python, APIs, LLMs, Prompt Engineering, LangChain, LangGraph, CrewAI, AutoGen, MCP, VectorDB, n8n, RAG","Communication, Problem Solving"
+3,AI Engineer,Internship,"Strong interest in AI and a willingness to learn and explore GenAI tools and frameworks.
+Programming skills in languages such as Python, JavaScript (React, Angular, Express.js, Node.js, NextJS), or similar.
+Front-end and Back-end engineers are welcome; Full-Stack developers are preferred.
+Excellent problem-solving skills and ability to work in a collaborative environment.
+Strong communication skills, both written and verbal.
+Frontend: Ability to use asynchronous API calls in React via fetch or axios to make HTTP requests to an LLM API endpoint.
+Frontend: Ability to consider user interactions when interacting with a model and guide users accordingly
+Backend - Understanding of machine learning concepts and frameworks (e.g., TensorFlow, PyTorch).
+Backend/Frontend - API integration - Familiarity with REST, GraphQL, or gRPC.
+Data Scientist = Familiarity with data pipelines: Ingestion, Cleaning/preprocessing, Transformation/Feature Engineering, Model Training/Evaluation, Model Deploying/Serving and Monitoring/Maintenance",2026,Bachelors,0,"Python, Javascript, React, Full Stack, APIs, ML, TesnorFlow/Pytorch, Ingestion, Data Cleaning, Feature Engineering, Model Training, Model Evaluation, Model Deploying, Model Maintenance, GenAI","Communication, Problem Solving"
+9,AI Engineer,Internship,"Python
+Machine Learning Fundamentals
+Large Language Models (LLMs)
+Prompt Engineering
+APIs & Integrations
+OpenAI APIs
+LangChain
+RAG Systems
+Vector Databases
+Hugging Face
+TensorFlow
+PyTorch",2026,Bachelors,0,"Python, ML, LLMs, Prompt Engineering, APIs, LangChain, RAG, VectorDB, Hugging Face, TensorFlow/PyTorch","Communication, Problem Solving"
+10,AI Engineer,Internship,"Solid understanding of LLMs, tokenization, transformers.
+Python programming (Pandas, NumPy, Hugging Face, LangChain, etc.).
+Exposure to AWS services like EC2, Lambda, S3, or SageMaker.
+Eagerness to explore real-world AI use cases (agents, copilots, RAG).
+Basic ML knowledge and hands-on project experience.
+Experience with serverless deployments on AWS.
+Familiarity with monitoring and logging (e.g., CloudWatch, OpenTelemetry).
+Contributions to open-source AI tools or model",2026,Bachelors,0,"Python, Pandas, NumPyHugging Face, LangChain, AWS, Agents, RAG","Communication, Problem Solving"
+13,AI Developer,Internship,"Basic to intermediate Python programming skills.
+Understanding of AI/ML, Generative AI, and Prompt Engineering.
+Familiarity with APIs, databases, and version control (Git).
+Strong analytical, problem-solving, and communication skills.
+Exposure to LangChain, RAG, Vector Databases, AI Chatbots, or related projects.
+Knowledge of AWS, Azure, or Google Cloud is a plus\",2026,Bachelors,0,"Python, ML, GenAI, APIs, Git, Prompt Engineering, LangChain, RAG, VectorDB, AWS/Azure","Communication, Problem Solving, Analytical Skills"
+27,AI Engineer,Internship,"Python Skills: You should be very comfortable with Python and async programming.
+LLM Experience: You have used APIs from OpenAI, Anthropic, or Gemini to build more than just a simple chatbot.
+Agent Knowledge: You understand how to give an AI tools (functions) to call so it can perform real tasks.
+Vector Databases: Basic experience with Pinecone, FAISS, or similar tools for searching through product data.
+You have used LangGraph, CrewAI, or AutoGen before.
+You understand RAG (Retrieval-Augmented Generation).
+You can build simple frontends in React or Next.js to show off your AI tools. 
+",2026,Bachelors,0,"Python, Javascript, React, LLMs, VectorDB, LangGraph, CrewAI, AutoGen, RAG","Communication, Problem Solving"
+28,AI Engineer,Internship,"Exposure to Full-Stack Development (frontend and backend technologies).
+Experience working with or building projects using AI technologies and Large Language Models (LLMs).
+Familiarity with modern web development frameworks and APIs.
+Understanding of software development best practices.
+Experience with Git and collaborative development workflows
+Strong interest in AI and emerging technologies.
+Positive attitude and a proactive, can-do mindset.
+Strong problem-solving and analytical skills.
+Ability to work independently in a remote environment.
+Excellent communication and collaboration skills.
+Eagerness to learn, experiment, and take ownership of projects.
+Experience with OpenAI, Anthropic, or other LLM platforms.
+Knowledge of vector databases, RAG systems, or AI agents.
+Experience deploying applications to cloud platforms.
+Previous internship, academic, or personal projects involving AI products. ",2026,Bachelors,0,"Python, Git, Github, Full Stack, LLMs, APIs, GenAI, VectorDB, RAG, AWS/Azure","Communication, Problem Solving, Analytical Skills"
+29,AI Engineer,Internship,"Python, TensorFlow, PyTorch, Scikit-learn, NumPy, pandas, Git, C#, .NET, R, Deep Learning, LLMs ",2026,Bachelors,0,"Python, TensorFlow/PyTorch, Scikit-Learn, NumPy, Pandas, Git, C#, .NET, R, ML, LLMs ","Communication, Problem Solving"
+30,AI Engineer,Internship,"Recently completed a degree in Computer Science, AI, ML, Data Science, or related fields
+Strong understanding of Generative AI and LLM fundamentals
+Proficiency in Python
+Experience or familiarity with:
+RAG architectures
+Prompt engineering
+Vector databases (FAISS, Pinecone, Chroma, etc.)
+Good problem-solving and analytical skills
+Tools & Technologies (Exposure to Any Is a Plus)
+LangGraph for agent workflows
+Strands or similar agent frameworks
+A2A (Agent-to-Agent) protocols
+LLM frameworks such as LangChain
+OpenAI / open-source LLMs
+REST APIs and JSON-based integrations
+Experience building AI agents or copilots
+Knowledge of NLP, embeddings, and semantic search
+Familiarity with cloud platforms or deployment workflows
+Prior hands-on projects in Generative AI or agent-based systems
+",2026,Bachelors,0,"Python, GenAI, LLMs, RAG, Prompt Engineering, VectorDB, LangChain, LangGraph, APIs, NLP","Communication, Problem Solving, Analytical Skills"

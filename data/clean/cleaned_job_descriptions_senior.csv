@@ -1,0 +1,135 @@
+id,role,type,job_desc,year,qualification,experience,tech_skills,soft_skills
+4,AI Engineer,Senior,"6+ years full-stack software engineering experience building scalable web applications, services, and APIs
+Proficiency in JavaScript/TypeScript and/or Python, and comfort working across the stack including frontend development (React or similar frameworks)
+Experience building backend systems, working with various datastores such as (Postgres/pgvector, Pinecone, Redis) and designing APIs.
+Demonstrated curiosity and hands-on experience with AI tools and applications - using modern AI models, agentic IDEs, or building AI-enabled workflows or prototypes.
+Experience building or experimenting with custom developed agentic systems, workflow orchestration tools (n8n), or Agentic browser automation
+A high degree of ownership and initiative, with the ability to operate independently in ambiguous problem spaces
+Excellent communication skills, with the ability to explain complex technical concepts to both technical and non-technical audiences
+Experience collaborating cross-functionally and building trust with stakeholders at all levels of the organization
+Direct experience integrating automated AI Evaluation/Testing/Observability suites to continuously test model effectiveness leveraging platforms such as DeepEval, Langfuse/LangSmith or similar 
+",2026,Not Specified,5-10,"Python, Javascript, React, Full Stack, SQL, APIs, ML, TesnorFlow/PyTorch, n8n","Communication, Problem Solving"
+7,AI Engineer,Senior,"5-10 years overall experience
+3+ years of hands-on Power BI enterprise delivery
+2+ years of SAP BusinessObjects migration experience (or equivalent BI migration)
+SAP BusinessObjects: Universes (UNV/UNX), WebI, contexts, prompts, joins, aggregate awareness
+Power BI / Fabric: Data modeling, DAX, calculation groups, Tabular Editor, Power BI Service governance
+AI & Automation: Azure OpenAI / LLMs, prompt engineering, metadata and document parsing
+Strong SQL and data engineering fundamentals.",2026,Not Specified,5-10,"Python, SQL, PowerBI, SAP, LLMs, Prompt Engineering, Data Engineering","Communication, Problem Solving"
+11,AI Engineer,Senior,"4–6 years of experience in Data Science / Machine Learning / AI Engineering
+Strong programming skills in Python
+Hands-on experience with ML libraries such as Scikit-learn, Pandas, NumPy
+Experience in building ML models (classification, regression, NLP, etc.)
+Practical exposure to Generative AI / LLMs
+Prompt engineering
+RAG (Retrieval-Augmented Generation)
+Chatbot or document-based AI solutions
+Familiarity with frameworks like LangChain, LlamaIndex, or similar
+Experience in building and consuming APIs
+Strong problem-solving and analytical skills
+Experience with cloud platforms (AWS / Azure / GCP)
+Exposure to model deployment tools (Docker, MLflow, etc.)
+Understanding of vector databases (FAISS, Pinecone, etc.)
+Experience working in agile development environments",2026,Not Specified,5-10,"Python, Scikit-Learn, Pandas, NumPy, ML, LLMs, Prompt Engineering, RAG, LangChain, APIs, AWS/Azure, Docker, MLflow, VectorDB","Communication, Problem Solving"
+12,AI Engineer,Senior,"Bachelor's or Master's degree in Computer Science, Information Technology, Artificial Intelligence, Data Science, or related fields.
+2–5 years of hands-on experience in AI/ML or Generative AI development.
+Experience building and deploying production-grade AI solutions.
+Strong programming skills in Python.
+Understanding of Artificial Intelligence and Machine Learning concepts.
+Familiarity with APIs and software development fundamentals.
+Strong analytical and problem-solving abilities.
+Excellent communication and collaboration skills.
+Experience with Generative AI platforms such as OpenAI, Gemini, Claude, or Hugging Face.
+Knowledge of LangChain, LangGraph, CrewAI, AutoGen, or AI Agent frameworks.
+Understanding of RAG architectures and Vector Databases (FAISS, ChromaDB, Pinecone, Weaviate, etc.).
+Knowledge of SQL and database management.
+Familiarity with cloud platforms such as AWS, Azure, or GCP.
+Experience with Git, Docker, and CI/CD pipelines.
+",2026,Bachelors/Masters,1-5,"Python, ML, APIs, GenAI, LangChain, LangGraph, CrewAI, AutoGen, RAG, VectorDB, SQL, Docker, Git, CI/CD, AWS/Azure","Communication, Problem Solving, Analytical Skills"
+15,AI Engineer,Senior,"4–6 years of experience in Data Science / Machine Learning / AI Engineering
+Strong programming skills in Python
+Hands-on experience with ML libraries such as Scikit-learn, Pandas, NumPy
+Experience in building ML models (classification, regression, NLP, etc.)
+Practical exposure to Generative AI / LLMs
+Prompt engineering
+RAG (Retrieval-Augmented Generation)
+Chatbot or document-based AI solutions
+Familiarity with frameworks like LangChain, LlamaIndex, or similar
+Experience in building and consuming APIs
+Strong problem-solving and analytical skills
+Experience with cloud platforms (AWS / Azure / GCP)
+Exposure to model deployment tools (Docker, MLflow, etc.)
+Understanding of vector databases (FAISS, Pinecone, etc.)
+Experience working in agile development environments
+",2026,Not Specified,5-10,"Python, ML, Pandas, NumPy, Scikit-Learn, GenAI, LLMs, Prompt Engineering, RAG,  LangChain, APIs, AWS/Azure, Docker, MLflow, VectorDB","Communication, Problem Solving"
+20,AI Engineer,Senior,"Proven track record with at least 5 years of experience in a technical role focused on AI/ML.
+Expertise in AI/ML frameworks, NLP, and Transformer technologies.
+Strong experience with AWS cloud services, particularly for data processing and machine learning.
+Proficiency in MLOps practices and familiarity with LLMOps.
+Experience with FastAPI or similar frameworks for API development.
+Knowledge of container orchestration with AWS EKS and Bedrock.
+Team handling experience and architecture design experience.
+Proficiency in creating and delivering Powerpoint presentations.
+Knowledge of Responsible AI practices and Nvidia MLOps platform.
+Experience with fine-tuning open-source AI/ML models.
+Familiarity with DevOps practices, including continuous integration, deployment, and monitoring of AI models",2026,Not Specified,1-5,"Python, ML, NLP, MLOps, Feature Engineering, AWS/Azure, APIs","Communication, Problem Solving"
+21,AI Engineer,Senior,"5+ years overall experience in software development, data science, or machine learning.
+1+ year of hands-on experience developing AI applications with LLMs and systems such as retrieval-based methods, fine-tuning, or agent-based architectures.
+Strong programming skills in Python and basics in SQL.
+Expertise with LLM/SLM APIs, embeddings, and RAG systems.
+Experience deploying on Google Cloud Platform (GCP) with Vertex AI, and IBM WatsonX.
+Familiarity with agentic AI protocols and exposure to Agent Development Kits (ADKs).
+Experience implementing Model Context Protocol (MCP) for agent coordination.
+Prior exposure to LangGraph, AutoGen, or related orchestration frameworks.
+1+ year of experience with frameworks like LangChain, LlamaIndex, OpenAI, or similar tools.
+Good communication, stakeholder management and good aptitude, attitude to be flexible.
+Experience in the functional side of Identity and Access management especially on identity governance, access management, privileged access, non-human identities, and worked on any IAM tools like SailPoint, Saviynt, CyberArk and SIEM/SOAR tools like Splunk etc.
+Experience in strategy and roadmap work for Identity and Access management, especially in identifying use cases for automation, agentic AI workflows and roadmap for agentic AI lifecycle
+2 or more years’ experience with developing Robotic Process Automation and/or automation efforts
+2 or more years using Azure OR AWS cloud services
+2 or more years skilled at data visualization (Tableau, PowerBI, etc.)
+2 or more years with modern data engineering with APIs
+2 or more years applying agile SDLC
+Experience in enterprise-scale deployments of AI-driven platforms.
+Contributions to open-source AI/ML projects are a plus.
+",2026,Not Specified,5-10,"Python, APIs, LLMs, Prompt Engineering, LangChain, LlamaIndex, LangGraph, CrewAI, AutoGen,  Anthropic /OpenAI SDKs, MCP, VectorDB, n8n, RAG, Agents, AWS/Azure, PowerBI","Communication, Problem Solving"
+24,AI Developer,Senior,"Core Software Engineering (Required)
+Strong hands-on development in Python / C# / TypeScript/JavaScript (or similar).
+Experience building API-driven services and integrating distributed systems. 
+Strong understanding of non-functional requirements: reliability, availability, scalability, performance, and cost.
+Azure & Platform Engineering
+Hands on experience with Azure AI Foundry for delivering enterprise GenAI solutions in an enterprise context.
+Experience building serverless and asynchronous workloads using Azure Functions (including Durable Functions or equivalent).
+Experience using queues and event driven messaging for decoupled, reliable workflows.
+Experience working with ADLS for data ingestion, storage, and processing.
+Experience using Azure Cognitive Services / Azure AI Services as part of AI solutions.
+Azure Functions + Queues/Eventing (Required)
+Experience with Azure Functions (including Durable Functions or equivalent orchestration patterns).
+Experience implementing asynchronous patterns with queues/eventing for scale and reliability.
+Vector Databases (Required)
+Hands-on experience with vector databases / vector search, including enterprise deployment patterns
+LLM-as-a-Judge Evaluation (Required)
+Experience implementing evaluation approaches that include LLM-as-a-Judge (or equivalent automated evaluation patterns) for quality monitoring and continuous improvement.
+Agent 365 (A365) + Governance Alignment (Required)
+Familiarity/experience working in environments using Agent 365 (A365)-style lifecycle management concepts (e.g., agent registry, governance, monitoring/observability, and access controls)
+Runtime Security / Runtime Protection (Required)
+Experience delivering solutions with runtime protection expectations (runtime security controls, access controls, and monitoring alignment as defined by enterprise governance).
+Experience integrating AI services into enterprise automation platforms (e.g., Power Platform, ServiceNow).
+Familiarity with Azure AI services and data platforms.
+",2026,Not Specified,5-10,"Python, Javascript, AWS/Azure, VectorDB, LLMs, Agent 365","Communication, Problem Solving"
+25,AI Engineer,Senior,"15+ years of overall IT experience
+Strong experience in AI Architecture
+Hands-on experience in Agentic AI
+Strong experience in AI Automation
+Strong programming skills in Python
+Good experience in REST APIs
+Strong knowledge of Azure DevOps
+Hands-on experience in CI/CD
+Experience with GitHub
+Strong solution design and stakeholder management skills
+Experience in enterprise AI transformation initiatives
+Exposure to cloud-based AI services
+Experience in API integration architecture
+Understanding of secure AI solution deployment
+Experience mentoring teams and driving architecture governance
+",2026,Not Specified,15+,"Python, ML, APIs, AWS/Azure, CI/CD, Github, Git, ","Communication, Problem Solving"

@@ -1,0 +1,89 @@
+id,role,type,job_desc,year,qualification,experience,tech_skills,soft_skills
+5,AI Engineer,Junior,"AI/ML models, Python, Core ML concepts, ML framework (Scikit‑learn/TensorFlow/PyTorch), MLOps, SQL/NoSQL, Messaging/queue systems 
+0–1 year of experience as an AI/ML Engineer, Data Scientist, or similar role, or strong academic/personal projects in AI/ML.
+Bachelor’s degree in Computer Science, Engineering, Data Science, Mathematics, or equivalent practical experience.
+Solid Python skills for data processing and model development.
+Understanding of core ML concepts: supervised/unsupervised learning, evaluation metrics, overfitting, etc.
+Experience with at least one ML framework (e.g., scikit‑learn, TensorFlow, or PyTorch).
+Ability to work with databases (SQL/NoSQL) and basic messaging/queue systems to move data in and out of models.
+Strong problem‑solving mindset, eagerness to learn, and comfort working in a fast‑moving environment.
+Good communication skills and willingness to collaborate in a team and with non‑technical stakeholders.",2026,Bachelors,0-1,"Python, ML, TensorFlow/PyTorch, Scikit-Learn, MLOps, Model Training, Feature Engineering","Communication, Problem Solving"
+6,AI Engineer,Junior,"4–5 years of proven development experience in AI/ML for embedded device
+Strong expertise in deep learning frameworks (TensorFlow, PyTorch, ONNX, TensorRT).
+Expert proficiency with open-source infrastructure tools like llama.cpp, vLLM, Ollama, and NVIDIA Triton Inference Server for local model serving, high-throughput inference, and quantization.
+Hands-on experience building complex, stateful workflows and tracking applications using LangChain, LangGraph, and Langfuse.
+Expertise in selecting, benchmarking, and adapting state-of-the-art open-source architectures (such as Llama 3, gemma, Qwen, and Kimi) for enterprise tasks
+Practical experience with edge/embedded AI (NVIDIA Jetson, Qualcomm, ARM).
+Proficiency in NLP / Conversational AI / Speech interfaces ( ASR, TTS )
+Solid programming skills in Python and C++/Java for optimization and integration.
+Solid understanding of application development in embedded Linux / Android
+Familiarity with automotive standards, protocols such as CAN
+Familiarity with cloud ML services like AWS SageMaker or Azure ML
+Good communication skills and great team spirit.
+Experience working with embedded Linux, Automotive Android
+Knowledge of vehicle data interfaces (CAN, OBD-II, sensors).
+Exposure to LLMOps & MLOps pipelines and cloud platforms (AWS/GCP/Azure).
+",2026,Bachelors,5-10,"Python, C++, Java, TensorFlow/PyTorch, vLLM, Ollama, LangChain, LangGraph, NLP, AWS/Azure, MLOps","Communication, Problem Solving"
+8,AI Engineer,Junior,"Proficiency in C/C++ and python programming
+Hands-on experience in deploying AI models on embedded platforms.
+Experience working with MCU, bare-metal, RTOS and Edge AI/ML applications
+Experience working with multi-core, multi-threaded applications, IPC and task scheduling
+Strong knowledge in board bring-up and interfaces such as OSPI, GPIO, UART, SRAM, SDRAM etc.
+Good debugging and problem-solving skills.
+Experience in various profiling tools, and proficiency in identifying deviations from expected behaviour and finding their root causes
+Ability to use Hardware test equipment: Joulescope, oscilloscope, logic analyzer and JTAG
+Understanding of system constraints like memory, compute, and power on edge devices.
+Good communication skills for clearly communicating ideas and concepts to team/customer",2026,Bachelors,0-1,"Python, C, C++, Sytem Design, Model Evaluation","Communication, Problem Solving"
+14,AI Engineer,Junior,"Basic understanding of AI, Machine Learning, or Automation concepts
+Familiarity with Python / APIs / No-code & Low-code tools (preferred but not mandatory
+Good problem-solving and logical thinking skills
+Willingness to learn and adapt quickly
+Good communication skills",2026,Bachelors,0-1,"Python, ML, APIs","Communication, Problem Solving"
+16,AI Engineer,Junior,"Docker / Containerization
+AWS / Azure / GCP exposure
+AI Agent workflow understanding
+ML fundamentals
+Enterprise AI integration experience",2026,Bachelors,0-1,"Python, ML, Docker, AWS/Azure, ","Communication, Problem Solving"
+17,AI Engineer,Junior,"1+ years of experience in AI, LLMs, automation, or related systems
+Strong Python programming skills with experience in APIs and backend integration
+Hands-on experience in prompt engineering, LLM orchestration, and evaluation
+Familiarity with LangChain, embeddings, vector databases, and RAG systems
+Strong problem-solving skills with ability to build and ship MVPs quickly
+Passion for AI, automation, and real-world product development
+Strong ownership mindset
+Ability to work in fast-paced startup environments
+Good understanding of AI product thinking and user experience
+Strong communication and collaboration skills
+",2026,Bachelors,1-5,"Python, APIs, LLMs, Prompt Engineering, LangChain, LlamaIndex, LangGraph, CrewAI, AutoGen,  Anthropic /OpenAI SDKs, MCP, VectorDB, n8n, RAG, Agents","Communication, Problem Solving, Ownership"
+18,AI Developer,Junior,"Strong Python programming
+Experience with FastAPI, Flask, or similar backend frameworks
+Understanding of REST APIs
+Familiarity with cloud platforms (AWS) - Exposure to services like S3, EC2, Lambda, or API Gateway is a plus
+Experience working with AI/LLM APIs
+Knowledge of data processing (CSV, JSON, Pandas)
+Familiarity with Git and version control
+Basic understanding of Docker and cloud deployment
+Experience with RAG pipelines
+Experience with vector databases (Pinecone, Weaviate, FAISS, etc.)
+Experience parsing PDF documents
+Knowledge of LangChain or LlamaIndex
+Basic frontend knowledge (React / simple JS)
+",2026,Bachelors,0-1,"Python, React, Javascript, APIs, AWS/Azure, LLMs, Git, Docker, RAG, VectorDB, LangChain","Communication, Problem Solving"
+19,AI Engineer,Junior,"Degree in Computer Science, AI, or a related field (or equivalent practical experience).Strong command of Python, JavaScript, or other common programming languages.Hands-on experience with prompt engineering, LLMs, and AI-assisted coding tools.Familiarity with cloud-based IDEs, version control (e.g., Git), and API integrations.Excellent communication skills for client-facing interactions (live and written).Comfortable working independently in a remote, fast-paced environment.",2026,Bachelors,0-1,"Python, Javascript,  LLMs, Prompt Engineering, APIs","Communication, Problem Solving"
+22,AI Engineer,Junior,"Strong programming skills in Python.
+Experience with LLM architectures, prompt engineering, and RAG systems.
+Familiarity with deep learning frameworks such as PyTorch or TensorFlow.
+Experience with vector databases like Pinecone, Weaviate, or Milvus.
+Azure expertise as must have, while AWS & GCP",2026,Bachelors,0-1,"Python, LLMs, Prompt Engineering, RAG, TensorFlow/PyTorch, VectorDB, AWS/Azure","Communication, Problem Solving"
+26,AI Engineer,Junior,"Strong hands-on experience in Python programming
+Ability to code independently without relying on AI coding tools
+Basic understanding of AI/ML concepts and frameworks
+Knowledge of APIs, data structures, and problem-solving techniques
+Good communication and collaboration skills
+Self-motivated with a strong learning attitude
+Familiarity with Generative AI, LLMs, or automation tools
+Understanding of libraries such as Pandas, NumPy, Scikit-learn, or FastAPI
+Exposure to Git/GitHub and cloud platforms is a plus
+Bachelor’s degree in Computer Science, IT, or related field
+Candidates with internship/project experience in AI/ML are encouraged to apply 
+",2026,Bachelors,0-1,"Python, APIs, GenAI, LLMs, Pandas, NumPy, Scikit-Learn, Git, Github","Communication, Problem Solving"
