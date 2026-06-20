@@ -133,3 +133,32 @@ Experience in API integration architecture
 Understanding of secure AI solution deployment
 Experience mentoring teams and driving architecture governance
 ",2026,Not Specified,15+,"Python, ML, APIs, AWS/Azure, CI/CD, Github, Git, ","Communication, Problem Solving"
+31,AI Developer,Senior,"trong hands-on experience in Python backend development.- Proven expertise with Agentic AI frameworks such as :i. LangGraphii. CrewAIiii. AutoGeniv. LangChain- Experience working with Model Context Protocol (MCP) tools and integrations.- Strong proficiency in FastAPI and modern API development.- Experience with cloud platforms :i. AWS (Bedrock preferred)ii. Microsoft Azure (AI Foundry preferred)- Hands-on experience with :i. Dockerii. Kubernetesiii. CI/CD pipelinesiv. Cloud security and governancePreferred Skills :- Experience with Retrieval-Augmented Generation (RAG) architectures.- Knowledge of vector databases and semantic search solutions.- Familiarity with observability, monitoring, and AI model evaluation frameworks.- Understanding of enterprise AI governance, security, and compliance requirements.Education :- Bachelor's degree in Computer Science, Information Technology, Engineering, or a related field.- Any Graduate with relevant experience is welcome to apply. ",2026,Bachelors,5-10,"Python, LangChain, LangGraph, CrewAI, AutoGen, MCP, APIs, AWS/Azure, Docker, Kubernetes, CI/CD, RAG, VectorDB","Communication, Problem Solving"
+32,AI Developer,Senior,"To qualify for the role you must have B.E/ B.Tech/ MCA/ MS /M.Tech or equivalent degree in Computer Science discipline. Minimum 4 – 8 years of experience in IT industry with at least 2+ years of experience in AI. Proven track record of working in AI projects from inception to successful deployment. Strong programming skills, preferably in Python, and experience with machine learning frameworks. Exposure / Experience in cloud services like Azure for deploying machine learning models and leveraging cloud-based machine learning services. Familiarity with relational databases like SQL Server / My SQL / PostgreSQL. Familiarity with Docker, Kubernetes, or similar tools for containerization and orchestration of machine learning applications. Knowledge / Experience in AI frameworks and technologies, such as GANs, transformers, and reinforcement learning. Hands-on experience in developing Generative AI solutions using Large Language models preferably Azure OpenAI. Excellent problem-solving skills and the ability to work in a fast-paced, dynamic environment. Strong communication skills to effectively collaborate with team members and stakeholders. ",2026,Masters,5-10,"Python,  ML, AWS/Azure, SQL, Docker, Kubernetes, LLMs","Communication, Problem Solving"
+33,AI Developer,Senior,"• 3–6 years of software development experience, with solid hands-on experience in AI/ML or LLM application development.
+• Strong proficiency in Python.
+• Practical experience building APIs and backend services using FastAPI or a similar backend framework.
+• Experience working with PostgreSQLor similar SQL/relational databases.
+• Hands-on experience integrating LLMs into real applications.
+• Goodunderstanding of prompt engineering, structured outputs, and retrieval-based workflows.
+• Understanding of core AI/MLand data science concepts, including training data, model evaluation, embeddings, classification, and basic fine-tuning concepts.
+• Exposure to model training or training support workflows, including data preparation and evaluation.
+• Familiarity with backend integration patterns involving APIs, databases, async processing, and service-to-service communication.
+• Ability to debug issues across prompts, model behavior, application logic, and data flow.
+• Strong problem-solving skills and ability to work independently on implementation tasks.
+• Experience with production use of OpenAI or comparable LLM platforms.
+• Familiarity with embeddings, vector search, semantic retrieval, and RAG workflows.
+• Experience with agent-style workflows, orchestration patterns, multi-step pipelines, or tool-calling systems.
+• Awareness of recentAI ecosystem developments such as MCP, tools/skills patterns, and evolving agent integration approaches.
+• Experience with batch jobs, background workers, schedulers, or queue-based processing.
+• Familiarity with Docker and containerized deployments.
+• Exposure to AWSor similar cloud platforms.
+• Understanding ofAI observability, token usage, and cost-aware implementation.
+• Experience contributing to technical design and solution planning ",2026,Not Specified,5-10,"Python, APIs, SQL, LLMs, Prompt Engineering, RAG,  MCP, VectorDB, Docker,  AWS/Azure","Communication, Problem Solving"
+34,AI Engineer,Senior,"- Experience in publishing research or contributing to open source AI initiatives
+- Designing AI systems for regulated or enterprise environments
+- Understanding of AI governance, responsible AI practices, and compliance frameworks
+- Experience mentoring technical teams or leading research initiatives
+
+In addition to your technical skills and qualifications, you are expected to demonstrate baseline proficiency in enterprise-approved AI tools as part of your day-to-day responsibilities. This includes consistent use of AI tools such as GitHub Copilot, Microsoft 365 Copilot, and other GenAI platforms approved by the enterprise, leveraging AI tools to enhance coding, documentation, data analysis, and decision-making workflows, and staying current with evolving AI capabilities and features to improve delivery quality and velocity. 
+",2026,Masters,5-10,"Python, GenAI, LLMs","Communication, Problem Solving"
