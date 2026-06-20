@@ -87,3 +87,38 @@ Exposure to Git/GitHub and cloud platforms is a plus
 Bachelor’s degree in Computer Science, IT, or related field
 Candidates with internship/project experience in AI/ML are encouraged to apply 
 ",2026,Bachelors,0-1,"Python, APIs, GenAI, LLMs, Pandas, NumPy, Scikit-Learn, Git, Github","Communication, Problem Solving"
+35,AI Developer,Junior,"Strong foundation in Java, React, NodeJS, Python, SQL, and Excel Basic understanding of data structures, databases, and algorithms Exposure to pandas, NumPy, PySpark, scikit-learn, GenAI, Agentic AI or TensorFlow is a plus Familiarity with BI tools (e.g., Power BI, Tableau) or cloud platforms (e.g., AWS, GCP) is desirable Knowledge of version control (Git) is an advantage Soft Skills Curiosity and a passion for data-driven problem solving Strong analytical and logical thinking Good communication and collaboration skills Willingness to learn in a fast-paced environment Ability to break down complex problems and document clearly Preferred (Good to Have, Not Mandatory) Internship or academic project in data analytics, machine learning, or database systems Participation in hackathons, coding contests, or Kaggle competitions Exposure to Agile or collaborative tools like JIRA, Confluence ",2026,Bachelors,0-1,"Java, React, NodeJS, Python, SQL, Excel,  Pandas, NumPy, Scikit-Learn, GenAI, TensorFlow/PyTorch, Git, Github, AWS/Azure","Problem Solving, Strong analytical, logical thinking, Communication "
+36,AI Engineer,Junior,"Bachelor's or Master's degree in Data Science, Statistics, Mathematics, Computer Science, or a related field.
+Experience: 0 to 1 yr / 2025 Passouts / upcoming 2026 passouts Preferred Proficiency in Python programming with a strong grasp of core concepts.
+Basic Data Structures and Algorithms: Familiarity with common data structures (lists, dictionaries, tuples) and basic algorithms (sorting, searching) is advantageous.
+Problem-Solving Skills: Ability to analyse and solve programming problems using Python.
+Understanding of Object-Oriented Programming (OOP): Basic understanding of OOP principles like classes, objects, inheritance, and encapsulation
+Basic knowledge in Data Science including but not limited to ETL, EDA, Data Processing, Visualization etc.
+Familiarity with machine learning and deep learning models (e.g., TensorFlow, Keras, PyTorch).
+Experience working with SQL DMBS like PostgreSQL is a plus.
+Basic understanding of Natural Language Processing (NLP) concepts
+Knowledge of Python frameworks like Django
+Familiarity with Jira and Agile methodology will be an added advantage.
+Certification or experience in data analysis, data mining, and statistical modelling is an added advantage
+Strong knowledge of statistical concepts and techniques.
+Knowledge in data visualization tools (Tableau, Power BI, etc.) and SQL.
+Excellent problem-solving and analytical skills.
+Strong communication and presentation skills.
+Certification in Data Science is an added advantage. 
+",2026,Bachelors,0-1,"Python, TensorFlow/PyTorch,  SQL, NLP, PowerBI","Communication, Problem Solving"
+37,AI Engineer,Junior,"• 0–1 year of experience as an AI/ML Engineer, Data Scientist, or similar role, or strong academic/personal projects in AI/ML.
+• Bachelor’s degree in Computer Science, Engineering, Data Science, Mathematics, or equivalent practical experience.
+• Solid Python skills for data processing and model development.
+• Understanding of core ML concepts: supervised/unsupervised learning, evaluation metrics, overfitting, etc.
+• Experience with at least one ML framework (e.g., scikit‑learn, TensorFlow, or PyTorch).
+• Ability to work with databases (SQL/NoSQL) and basic messaging/queue systems to move data in and out of models.
+• Strong problem‑solving mindset, eagerness to learn, and comfort working in a fast‑moving environment.
+• Good communication skills and willingness to collaborate in a team and with non‑technical stakeholders.
+• Experience running or fine‑tuning local LLMs (e.g., via Ollama) or other open‑source models.
+• Exposure to workflow automation, or operations-heavy domains.
+• Familiarity with basic MLOps tools (MLflow, DVC, Weights & Biases) and containerization (Docker).
+• Basic knowledge of any cloud platform (AWS, Azure, GCP) for deploying services.
+• Experience integrating ML models into web backends (REST APIs, microservices, Node.js/Next.js).
+• Understanding of vector databases or simple retrieval/RAG systems for LLM-based solutions.
+• Awareness of ethical AI, bias, and privacy considerations. 
+",2026,Bachelors,0-1,"Python, ML, TensorFlow/PyTorch, Scikit-Learn, MLOps, Model Training, Feature Engineering, RAG, AWS/Azure, LLMs","Communication, Problem Solving"
