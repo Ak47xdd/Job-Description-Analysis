@@ -313,3 +313,102 @@ Knowledge of NLP, embeddings, and semantic search
 Familiarity with cloud platforms or deployment workflows
 Prior hands-on projects in Generative AI or agent-based systems
 ",2026,Bachelors,0,"Python, GenAI, LLMs, RAG, Prompt Engineering, VectorDB, LangChain, LangGraph, APIs, NLP","Communication, Problem Solving, Analytical Skills"
+31,AI Developer,Senior,"trong hands-on experience in Python backend development.- Proven expertise with Agentic AI frameworks such as :i. LangGraphii. CrewAIiii. AutoGeniv. LangChain- Experience working with Model Context Protocol (MCP) tools and integrations.- Strong proficiency in FastAPI and modern API development.- Experience with cloud platforms :i. AWS (Bedrock preferred)ii. Microsoft Azure (AI Foundry preferred)- Hands-on experience with :i. Dockerii. Kubernetesiii. CI/CD pipelinesiv. Cloud security and governancePreferred Skills :- Experience with Retrieval-Augmented Generation (RAG) architectures.- Knowledge of vector databases and semantic search solutions.- Familiarity with observability, monitoring, and AI model evaluation frameworks.- Understanding of enterprise AI governance, security, and compliance requirements.Education :- Bachelor's degree in Computer Science, Information Technology, Engineering, or a related field.- Any Graduate with relevant experience is welcome to apply. ",2026,Bachelors,5-10,"Python, LangChain, LangGraph, CrewAI, AutoGen, MCP, APIs, AWS/Azure, Docker, Kubernetes, CI/CD, RAG, VectorDB","Communication, Problem Solving"
+32,AI Developer,Senior,"To qualify for the role you must have B.E/ B.Tech/ MCA/ MS /M.Tech or equivalent degree in Computer Science discipline. Minimum 4 – 8 years of experience in IT industry with at least 2+ years of experience in AI. Proven track record of working in AI projects from inception to successful deployment. Strong programming skills, preferably in Python, and experience with machine learning frameworks. Exposure / Experience in cloud services like Azure for deploying machine learning models and leveraging cloud-based machine learning services. Familiarity with relational databases like SQL Server / My SQL / PostgreSQL. Familiarity with Docker, Kubernetes, or similar tools for containerization and orchestration of machine learning applications. Knowledge / Experience in AI frameworks and technologies, such as GANs, transformers, and reinforcement learning. Hands-on experience in developing Generative AI solutions using Large Language models preferably Azure OpenAI. Excellent problem-solving skills and the ability to work in a fast-paced, dynamic environment. Strong communication skills to effectively collaborate with team members and stakeholders. ",2026,Masters,5-10,"Python,  ML, AWS/Azure, SQL, Docker, Kubernetes, LLMs","Communication, Problem Solving"
+33,AI Developer,Senior,"• 3–6 years of software development experience, with solid hands-on experience in AI/ML or LLM application development.
+• Strong proficiency in Python.
+• Practical experience building APIs and backend services using FastAPI or a similar backend framework.
+• Experience working with PostgreSQLor similar SQL/relational databases.
+• Hands-on experience integrating LLMs into real applications.
+• Goodunderstanding of prompt engineering, structured outputs, and retrieval-based workflows.
+• Understanding of core AI/MLand data science concepts, including training data, model evaluation, embeddings, classification, and basic fine-tuning concepts.
+• Exposure to model training or training support workflows, including data preparation and evaluation.
+• Familiarity with backend integration patterns involving APIs, databases, async processing, and service-to-service communication.
+• Ability to debug issues across prompts, model behavior, application logic, and data flow.
+• Strong problem-solving skills and ability to work independently on implementation tasks.
+• Experience with production use of OpenAI or comparable LLM platforms.
+• Familiarity with embeddings, vector search, semantic retrieval, and RAG workflows.
+• Experience with agent-style workflows, orchestration patterns, multi-step pipelines, or tool-calling systems.
+• Awareness of recentAI ecosystem developments such as MCP, tools/skills patterns, and evolving agent integration approaches.
+• Experience with batch jobs, background workers, schedulers, or queue-based processing.
+• Familiarity with Docker and containerized deployments.
+• Exposure to AWSor similar cloud platforms.
+• Understanding ofAI observability, token usage, and cost-aware implementation.
+• Experience contributing to technical design and solution planning ",2026,Not Specified,5-10,"Python, APIs, SQL, LLMs, Prompt Engineering, RAG,  MCP, VectorDB, Docker,  AWS/Azure","Communication, Problem Solving"
+34,AI Engineer,Senior,"- Experience in publishing research or contributing to open source AI initiatives
+- Designing AI systems for regulated or enterprise environments
+- Understanding of AI governance, responsible AI practices, and compliance frameworks
+- Experience mentoring technical teams or leading research initiatives
+
+In addition to your technical skills and qualifications, you are expected to demonstrate baseline proficiency in enterprise-approved AI tools as part of your day-to-day responsibilities. This includes consistent use of AI tools such as GitHub Copilot, Microsoft 365 Copilot, and other GenAI platforms approved by the enterprise, leveraging AI tools to enhance coding, documentation, data analysis, and decision-making workflows, and staying current with evolving AI capabilities and features to improve delivery quality and velocity. 
+",2026,Masters,5-10,"Python, GenAI, LLMs","Communication, Problem Solving"
+35,AI Developer,Junior,"Strong foundation in Java, React, NodeJS, Python, SQL, and Excel Basic understanding of data structures, databases, and algorithms Exposure to pandas, NumPy, PySpark, scikit-learn, GenAI, Agentic AI or TensorFlow is a plus Familiarity with BI tools (e.g., Power BI, Tableau) or cloud platforms (e.g., AWS, GCP) is desirable Knowledge of version control (Git) is an advantage Soft Skills Curiosity and a passion for data-driven problem solving Strong analytical and logical thinking Good communication and collaboration skills Willingness to learn in a fast-paced environment Ability to break down complex problems and document clearly Preferred (Good to Have, Not Mandatory) Internship or academic project in data analytics, machine learning, or database systems Participation in hackathons, coding contests, or Kaggle competitions Exposure to Agile or collaborative tools like JIRA, Confluence ",2026,Bachelors,0-1,"Java, React, NodeJS, Python, SQL, Excel,  Pandas, NumPy, Scikit-Learn, GenAI, TensorFlow/PyTorch, Git, Github, AWS/Azure","Problem Solving, Strong analytical, logical thinking, Communication "
+36,AI Engineer,Junior,"Bachelor's or Master's degree in Data Science, Statistics, Mathematics, Computer Science, or a related field.
+Experience: 0 to 1 yr / 2025 Passouts / upcoming 2026 passouts Preferred Proficiency in Python programming with a strong grasp of core concepts.
+Basic Data Structures and Algorithms: Familiarity with common data structures (lists, dictionaries, tuples) and basic algorithms (sorting, searching) is advantageous.
+Problem-Solving Skills: Ability to analyse and solve programming problems using Python.
+Understanding of Object-Oriented Programming (OOP): Basic understanding of OOP principles like classes, objects, inheritance, and encapsulation
+Basic knowledge in Data Science including but not limited to ETL, EDA, Data Processing, Visualization etc.
+Familiarity with machine learning and deep learning models (e.g., TensorFlow, Keras, PyTorch).
+Experience working with SQL DMBS like PostgreSQL is a plus.
+Basic understanding of Natural Language Processing (NLP) concepts
+Knowledge of Python frameworks like Django
+Familiarity with Jira and Agile methodology will be an added advantage.
+Certification or experience in data analysis, data mining, and statistical modelling is an added advantage
+Strong knowledge of statistical concepts and techniques.
+Knowledge in data visualization tools (Tableau, Power BI, etc.) and SQL.
+Excellent problem-solving and analytical skills.
+Strong communication and presentation skills.
+Certification in Data Science is an added advantage. 
+",2026,Bachelors,0-1,"Python, TensorFlow/PyTorch,  SQL, NLP, PowerBI","Communication, Problem Solving"
+37,AI Engineer,Junior,"• 0–1 year of experience as an AI/ML Engineer, Data Scientist, or similar role, or strong academic/personal projects in AI/ML.
+• Bachelor’s degree in Computer Science, Engineering, Data Science, Mathematics, or equivalent practical experience.
+• Solid Python skills for data processing and model development.
+• Understanding of core ML concepts: supervised/unsupervised learning, evaluation metrics, overfitting, etc.
+• Experience with at least one ML framework (e.g., scikit‑learn, TensorFlow, or PyTorch).
+• Ability to work with databases (SQL/NoSQL) and basic messaging/queue systems to move data in and out of models.
+• Strong problem‑solving mindset, eagerness to learn, and comfort working in a fast‑moving environment.
+• Good communication skills and willingness to collaborate in a team and with non‑technical stakeholders.
+• Experience running or fine‑tuning local LLMs (e.g., via Ollama) or other open‑source models.
+• Exposure to workflow automation, or operations-heavy domains.
+• Familiarity with basic MLOps tools (MLflow, DVC, Weights & Biases) and containerization (Docker).
+• Basic knowledge of any cloud platform (AWS, Azure, GCP) for deploying services.
+• Experience integrating ML models into web backends (REST APIs, microservices, Node.js/Next.js).
+• Understanding of vector databases or simple retrieval/RAG systems for LLM-based solutions.
+• Awareness of ethical AI, bias, and privacy considerations. 
+",2026,Bachelors,0-1,"Python, ML, TensorFlow/PyTorch, Scikit-Learn, MLOps, Model Training, Feature Engineering, RAG, AWS/Azure, LLMs","Communication, Problem Solving"
+38,AI Engineer,Internship,"Currently pursuing or recently completed a Bachelor's or Master's degree in Computer Science, Data Science, AI, Machine Learning, or a related field
+Foundational knowledge of machine learning concepts, statistical modeling, and data structures
+Proficiency in Python and familiarity with ML libraries such as PyTorch or TensorFlow
+Experience with data preprocessing and dataset management
+Strong analytical and problem-solving skills
+Clear written and verbal communication skills in English
+Ability to work independently in a remote environment while meeting deadlines
+Prior experience contributing to AI/ML research projects or open-source repositories
+Familiarity with hybrid AI approaches, generative models, or symbolic AI
+Experience with version control (Git) and collaborative development workflows ",2026,Bachelors,0,"Python, ML, TensorFlow/Pytorch, GenAI, Git, Github","Communication, Problem Solving"
+39,AI Engineer,Internship,"• B.Tech, MCA, MSc, BSc, BCA, M.Tech students or graduates
+• Basic knowledge of Python preferred
+• Strong interest in AI and Data Science
+• Willingness to work on real-world projects 
+• Advanced Python
+• Machine Learning Practical Knowledge
+• Data Analysis Project Knowledge
+• Basic Knowledge of AI Concepts including Gen AI/LLM Cloud Deployment 
+",2026,Bachelors,0,"Python, ML, GenAI, LLMs","Communication, Problem Solving"
+40,AI Engineer,Internship,"• Final year students / recent graduates in CS, AI, Data Science, or related fields
+• Strong Python programming skills
+• Understanding of Machine Learning / Deep Learning fundamentals
+• Exposure to LangChain, Hugging Face, OpenAI APIs, or similar tools
+• Curiosity, ownership mindset, and willingness to learn fast
+• Strong problem-solving skills 
+",2026,Bachelors,0,"Python, ML, LangChain, Hugging Face, APIs","Communication, Problem Solving"
+41,AI Engineer,Internship,"Solid understanding of LLMs, tokenization, transformers.
+Python programming (Pandas, NumPy, Hugging Face, LangChain, etc.).
+Exposure to AWS services like EC2, Lambda, S3, or SageMaker.
+Eagerness to explore real-world AI use cases (agents, copilots, RAG).
+Basic ML knowledge and hands-on project experience.
+Experience with serverless deployments on AWS.
+Familiarity with monitoring and logging (e.g., CloudWatch, OpenTelemetry).
+Contributions to open-source AI tools or models 
+",2026,Bachelors,0,"Python, Pandas, NumPy, Hugging Face, LangChain, AWS/Azure, RAG, ML ","Communication, Problem Solving"
