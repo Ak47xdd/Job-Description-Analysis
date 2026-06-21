@@ -162,3 +162,18 @@ Experience mentoring teams and driving architecture governance
 
 In addition to your technical skills and qualifications, you are expected to demonstrate baseline proficiency in enterprise-approved AI tools as part of your day-to-day responsibilities. This includes consistent use of AI tools such as GitHub Copilot, Microsoft 365 Copilot, and other GenAI platforms approved by the enterprise, leveraging AI tools to enhance coding, documentation, data analysis, and decision-making workflows, and staying current with evolving AI capabilities and features to improve delivery quality and velocity. 
 ",2026,Masters,5-10,"Python, GenAI, LLMs","Communication, Problem Solving"
+42,AI Engineer,Senior,"Python · JS/TS · Neo4j/Cypher · MongoDB · PostgreSQL · FastAPI · LLM APIs · Vector databases · LoRA/PEFT · Docker · Linux CLI
+What we value Side projects nobody asked you to build. Open-source contributions. Intellectual curiosity and ownership over any specific framework pedigree. 
+AWS or GCP working knowledge
+Annotation pipeline or ML dataset preparation experience",2026,Not Specified,1-5,"Python, Javascript, SQL, LLMs, APIs, VectorDB, ML, AWS/Azure","Communication, Problem Solving"
+44,AI Engineer,Senior,"You will focus on creating reusable agent architectures, integrating enterprise APIs, and implementing observability for production AI systems. This is a leadership-focused role that requires deep expertise in Python and modern LLM orchestration techniques. Must have: 5+ years of experience; Deep experience with LangGraph, CrewAI, or AutoGen; Advanced prompt engineering and function calling; Expert-level Python; Experience designing stateful, scalable AI systems; Ability to lead AI initiatives from zero to production. Required tools: langgraph, crewai, autogen, python, llm, prompt engineering, mops. ",2026,Not Specified,5-10,"Python, ML, APIs, LLMs, LangChain, LangGraph, CrewAI, AutoGen, Prompt Engineering, MLOps","Communication, Problem Solving"
+45,AI Engineer,Senior," Strong experience in Artificial Intelligence, Machine Learning (ML), and Generative AI (GenAI)
+• Hands-on with LLMs, RAG pipelines, NLP
+• Experience with LangGraph / AI workflow orchestration
+• Proficiency in Python, FastAPI, API development
+• Strong knowledge of SQL and NoSQL databases
+• Experience in system design and scalable architecture
+• Experience with vector databases (Pinecone, FAISS, Weaviate)
+• Knowledge of cloud platforms (AWS, Azure, GCP)
+• Exposure to MLOps and AI deployment pipelines
+Bachelor’s degree in Computer Science, Engineering, or related field (Any Graduate with relevant experience is welcome)",2026,Bachelors,5-10,"Python, ML, GenAI, LLMs, RAG, NLP, LangChain, LangGraph, APIs, SQL, System Design, VectorDB, MLOps, CI/CD, AWS/Azure","Communication, Problem Solving"
