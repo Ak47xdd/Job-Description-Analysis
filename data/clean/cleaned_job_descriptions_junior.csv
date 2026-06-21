@@ -122,3 +122,43 @@ Certification in Data Science is an added advantage.
 • Understanding of vector databases or simple retrieval/RAG systems for LLM-based solutions.
 • Awareness of ethical AI, bias, and privacy considerations. 
 ",2026,Bachelors,0-1,"Python, ML, TensorFlow/PyTorch, Scikit-Learn, MLOps, Model Training, Feature Engineering, RAG, AWS/Azure, LLMs","Communication, Problem Solving"
+43,AI Engineer,Junior,"• Strong programming skills in Python.
+• Understanding of Data Structures and Algorithms.
+• Knowledge of Machine Learning fundamentals.
+• Understanding of Natural Language Processing (NLP) concepts:
+• Tokenization
+• Embeddings
+• Text Classification
+• Named Entity Recognition (NER)
+• Semantic Search
+• Transformer Models
+• Understanding of Generative AI concepts:
+• Large Language Models (LLMs)
+• Prompt Engineering
+• RAG (Retrieval-Augmented Generation)
+• Fine-tuning concepts
+• AI Agent fundamentals
+• Familiarity with AI/ML frameworks:
+• PyTorch or TensorFlow
+• Hugging Face Transformers
+• LangChain, LlamaIndex, or similar frameworks
+• Understanding of model deployment and serving concepts.
+• Familiarity with:
+• Docker
+• Git/GitHub
+• CI/CD concepts
+• Kubernetes (basic understanding)
+• ML experiment tracking tools (MLflow, Weights & Biases, etc.)
+• Basic knowledge of SQL databases.
+• Familiarity with vector databases such as Pinecone, Weaviate, Qdrant, or ChromaDB.
+• Understanding of REST APIs and FastAPI.
+• Bachelor's or Master's degree in Computer Science, Artificial Intelligence, Machine Learning, Data Science, or a related field.
+• Hands-on academic projects, internships, or personal projects in AI/ML.
+• Experience building chatbots, AI assistants, or NLP applications.
+• Contributions to open-source AI projects are a plus.
+• Familiarity with cloud platforms such as AWS, GCP, or Azure.
+• Strong problem-solving and analytical skills.
+• Passion for AI, Machine Learning, and emerging technologies.
+• Curiosity to learn and experiment with new AI frameworks and tools.
+• Good communication and teamwork skills.
+• Ability to work in a fast-paced, collaborative environment",2026,Bachelors,0-1,"Python, ML, NLP, MLOPS, Docker, GenAI, RAG, VectorDB, Agents, Prompt Engineering, TensorFlow/PyTorch, LangChain, LangGraph, Hugging Face, CI/CD, Git, Github, Kubernetes, MLflow, APIs, AWS/Azure","Communication, Problem Solving, Analytical Skills"
