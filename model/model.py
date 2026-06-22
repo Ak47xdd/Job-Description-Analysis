@@ -36,8 +36,8 @@ class SkillData(Dataset):
 train_ds = SkillData(X_train, y_train)
 test_ds = SkillData(X_test, y_test)
 
-train_loader = DataLoader(train_ds, batch_size=8, shuffle=True)
-test_loader = DataLoader(test_ds, batch_size=8, shuffle=False)
+train_loader = DataLoader(train_ds, batch_size=64, shuffle=True)
+test_loader = DataLoader(test_ds, batch_size=64, shuffle=False)
 
 class SkillClassifier(nn.Module):
     def __init__(self, input_dim, num_labels, hidden_dim=32, dropout=0.3) -> None:
@@ -57,7 +57,7 @@ model = SkillClassifier(DIM, NUM_LABELS)
 criterion = nn.BCEWithLogitsLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-4)
 
-EPOCHS = 50
+EPOCHS = 830
 history = {'train_loss' : [], 'test_loss' : []}
 
 for epoch in range(1, EPOCHS + 1):
