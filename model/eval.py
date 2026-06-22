@@ -1,10 +1,11 @@
 import json
 import numpy as np
 import torch
-from sklearn.metrics import precision_recall_fscore_support, f1_score
+from sklearn.metrics import precision_recall_fscore_support, f1_score, accuracy_score
 from importlib import import_module
 import sys
 from pathlib import Path
+
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -14,8 +15,10 @@ sys.path.insert(0, '.')
 
 data = np.load('prep/prepared_data.npz')
 
-X_train, y_train = data['X_train'], data['y_train']
-X_test, y_test = data['X_test'], data['y_test']
+X_train = data['X_train']
+y_train = data['y_train']
+X_test = data['X_test']
+y_test = data['y_test']
 
 with open('prep/label_vocab.json') as f:
     VOCAB = json.load(f)
@@ -30,10 +33,13 @@ with torch.no_grad():
     probs = torch.sigmoid(logits).numpy()
     
 THRESHOLD = 0.5
-preds =(probs >= THRESHOLD).astype(int)
+preds = (probs >= THRESHOLD).astype(int)
 
 precision, recall, f1, support = precision_recall_fscore_support(
-    y_test, preds, average=None, zero_division=0
+    y_test,
+    preds,
+    average=None,
+    zero_division=0
 )
 micro_f1 = f1_score(y_test, preds, average='micro', zero_division=0)
 macro_f1 = f1_score(y_test, preds, average='macro', zero_division=0)
@@ -46,7 +52,31 @@ for lbl, p, r, f, s in zip(VOCAB, precision, recall, f1, support):
         
 print(f"\nMicro-F1: {micro_f1:.3f} | Macro-F1: {macro_f1:.3f}")
 
-train_freq = y_train.mean(axis=0)  
+print("\n=== PER-LABEL ACCURACY ===")
+print(f"{'label':25s}{'accuracy%':12s}{'support':10s}{'trap?':6s}")
+
+IsRight = 0
+IsWrong = 0
+
+for i, lbl in enumerate(VOCAB):
+    label_acc = accuracy_score(y_test[:, i], preds[:, i])
+    s = int(support[i])
+    
+    always_zero_acc = 1.0 - (y_test[:, i].sum() / len(y_test))
+    is_trap = always_zero_acc >= label_acc - 0.01
+    
+    trap_flag = "Wrong" if is_trap else "Right"
+    print(f"{lbl:25s}{label_acc*100:<12.1f}{s:<10d}{trap_flag}")
+
+    if trap_flag == 'Right':
+        IsRight += 1
+    else:
+        IsWrong += 1
+
+print("Right : \n", IsRight)
+print("Wrong : \n", IsWrong)
+
+train_freq = y_train.mean(axis=0)
 baseline_preds = np.tile((train_freq >= 0.5).astype(int), (len(y_test), 1))
 
 baseline_micro_f1 = f1_score(y_test, baseline_preds, average='micro', zero_division=0)
@@ -62,6 +92,3 @@ if micro_f1 > baseline_micro_f1 + 0.05:
     print("Model meaningfully beats the naive baseline.")
 else:
     print("Model is roughly tied with (or worse than) just guessing the most")
-    print("common labels every time -- with only 23 training rows, this is")
-    print("the expected outcome. The pipeline works; the dataset is too small")
-    print("for the model to learn real text->skill patterns yet.")
