@@ -6,7 +6,6 @@ from importlib import import_module
 import sys
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parent.parent
 
 from model import SkillClassifier
@@ -55,8 +54,8 @@ print(f"\nMicro-F1: {micro_f1:.3f} | Macro-F1: {macro_f1:.3f}")
 print("\n=== PER-LABEL ACCURACY ===")
 print(f"{'label':25s}{'accuracy%':12s}{'support':10s}{'trap?':6s}")
 
-IsRight = 0
-IsWrong = 0
+is_right = 0
+is_wrong = 0
 
 for i, lbl in enumerate(VOCAB):
     label_acc = accuracy_score(y_test[:, i], preds[:, i])
@@ -69,12 +68,16 @@ for i, lbl in enumerate(VOCAB):
     print(f"{lbl:25s}{label_acc*100:<12.1f}{s:<10d}{trap_flag}")
 
     if trap_flag == 'Right':
-        IsRight += 1
+        is_right += 1
     else:
-        IsWrong += 1
+        is_wrong += 1
+        
+total_labels = is_right + is_wrong
 
-print("Right : \n", IsRight)
-print("Wrong : \n", IsWrong)
+print("Right : \n", is_right)
+print("Wrong : \n", is_wrong)
+
+print("Total Labels : \n", total_labels)
 
 train_freq = y_train.mean(axis=0)
 baseline_preds = np.tile((train_freq >= 0.5).astype(int), (len(y_test), 1))
