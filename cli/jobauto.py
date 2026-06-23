@@ -1,0 +1,65 @@
+import os
+import subprocess
+import sys
+from pathlib import Path
+from rich import print
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from model.pred import predict
+
+def clear_console() -> None:
+    if os.name == 'nt':
+        subprocess.run('cls', shell=True)
+    else:
+        subprocess.run(['clear'])
+
+def query(message) -> None:
+    print("[yellow][JobAuto]")
+    print(f"[yellow] >> {message} : ")
+    print("[You]")
+
+def cli() -> None:
+    jd = """
+    We're looking for someone comfortable with Python and building
+    chatbots powered by large language models. Experience with LangChain
+    or similar agent frameworks is a plus. You should know how to work
+    with vector databases for retrieval-augmented generation and be
+    comfortable calling REST APIs and Docker, Knowledge in Agents is a must.
+    """
+    role = "AI Engineer"
+    type = "Junior"
+    
+    clear_console()
+    
+    print("[yellow][JobAuto] ")
+    print("[yellow]>> Welcome to JobAuto! \n\n")
+    
+    query("Enter Job Description")
+    jd = input(" >> ")
+    
+    query("Enter Role")
+    role = input(" >> ")
+    
+    query("Enter Type")
+    type = input(" >> ")
+    
+    results = predict(jd, role=role, job_type=type)
+    
+    clear_console()
+    
+    print("\n [yellow]Job Description Provided : \n", jd.strip())
+    print("\n [yellow]Job Role : \n", role)
+    print("\n [yellow]Type : \n", type)
+    
+    print()
+    
+    print("\n [yellow]TOP Skills \n")
+    for label, prob in results:
+        bar = '█' * int(prob * 30)
+        print(f" {label:25s} {prob:.2f}  {bar}\n")
+
+if __name__ == "__main__":
+    cli()
