@@ -1,0 +1,12 @@
+Job Description :
+    We're looking for someone comfortable with Python and building
+    chatbots powered by large language models. Experience with LangChain
+    or similar agent frameworks is a plus. You should know how to work
+    with vector databases for retrieval-augmented generation and be
+    comfortable calling REST APIs and Docker, Knowledge in Agents is a must.
+    
+Role : 
+    AI Engineer
+
+Type : 
+    Internship
