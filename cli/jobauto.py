@@ -3,6 +3,7 @@ import subprocess
 import sys
 from pathlib import Path
 from rich import print
+from pyfiglet import Figlet
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
@@ -15,6 +16,13 @@ def clear_console() -> None:
         subprocess.run('cls', shell=True)
     else:
         subprocess.run(['clear'])
+        
+def title() -> None:
+    f = Figlet(font='slant')
+    print("——————————————————————————————————————————————————————————————————————")
+    print(f.renderText('JobAuto CLI'))
+    print("Copyright Akshay Babu, All rights reserved")
+    print("——————————————————————————————————————————————————————————————————————")
 
 def query(message) -> None:
     print("[yellow][JobAuto]")
@@ -22,20 +30,12 @@ def query(message) -> None:
     print("[You]")
 
 def cli() -> None:
-    jd = """
-    We're looking for someone comfortable with Python and building
-    chatbots powered by large language models. Experience with LangChain
-    or similar agent frameworks is a plus. You should know how to work
-    with vector databases for retrieval-augmented generation and be
-    comfortable calling REST APIs and Docker, Knowledge in Agents is a must.
-    """
-    role = "AI Engineer"
-    type = "Junior"
-    
     clear_console()
     
+    title()
+    
     print("[yellow][JobAuto] ")
-    print("[yellow]>> Welcome to JobAuto! \n\n")
+    print("[yellow]>> Welcome to JobAuto! \n")
     
     query("Enter Job Description")
     jd = input(" >> ")
@@ -49,6 +49,8 @@ def cli() -> None:
     results = predict(jd, role=role, job_type=type)
     
     clear_console()
+    
+    title()
     
     print("\n [yellow]Job Description Provided : \n", jd.strip())
     print("\n [yellow]Job Role : \n", role)
