@@ -79,6 +79,10 @@ print("Wrong : \n", is_wrong)
 
 print("Total Labels : \n", total_labels)
 
+key_acc = (is_right / total_labels) * 100
+
+print(f"Keyword Accuracy : {round(key_acc, 2)}%\n")
+
 train_freq = y_train.mean(axis=0)
 baseline_preds = np.tile((train_freq >= 0.5).astype(int), (len(y_test), 1))
 
