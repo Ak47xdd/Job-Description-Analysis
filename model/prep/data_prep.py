@@ -66,3 +66,5 @@ with open('label_vocab.json', 'w') as f:
     
 with open('vectorizer.pkl', 'wb') as f:
     pickle.dump(vectorizer, f)
+    
+print("Successfully Vectorized and Pickled Data")
