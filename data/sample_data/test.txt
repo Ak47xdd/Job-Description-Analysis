@@ -1,12 +1,37 @@
 Job Description :
-    We're looking for someone comfortable with Python and building
-    chatbots powered by large language models. Experience with LangChain
-    or similar agent frameworks is a plus. You should know how to work
-    with vector databases for retrieval-augmented generation and be
-    comfortable calling REST APIs and Docker, Knowledge in Agents is a must.
+    Python as primary language. Microsoft Azure required as the primary cloud platform. 
+    Hands-on experience building with Azure AI Foundry. 
+    Claude Code experience and expertise required, including hands-on development of skills and plugins on the platform. 
+    This is non-negotiable for the role. LangGraph experience required. 
+    Demonstrated ability to design state graphs, conditional edges, and multi-agent compositions. 
+    Model Context Protocol experience required. 
+    Comfortable designing tool calls and building protocol wrappers. 
+    Agentic pair programming with generative AI as the primary working mode. 
+    Prior experience is required. 
+    Pydantic for data validation and structured outputs across agent systems and APIs. 
+    SQL proficiency and PostgreSQL experience. Vector database experience (pgvector, Azure AI Search, or similar). 
+    Familiarity with modern data platforms such as Snowflake and Databricks. 
+    Multi-step agent systems with proper evaluation and validation. 
+    Strong fluency across modern frontier language models such as the GPT, Claude, and Gemini model families. 
+    Model selection is driven by the requirements of each task and the practical considerations of cost. 
+    The discipline to choose mature, proven frameworks for AI engineering work. 
+    Technical decisions are grounded in clear engineering justification and supported by data. 
+    Docker and containerization for development and deployment workflows. 
+    FastAPI or equivalent web frameworks for building APIs and backend services. 
+    Working knowledge of GitHub workflows, code review discipline, and infrastructure-as-code patterns
     
 Role : 
     AI Engineer
 
 Type : 
-    Internship
+    Junior
+
+Keys to be predicted (16):
+    Python, LLMs, NLP, LangGraph, MCP, GenAI, VectorDB, SQL, APIs, Docker, Agents, Github, CI/CD, Git, AWS/Azure, Prompt Engineering
+
+Keys with less score (< 0.3):
+    Agents, CI/CD, MCP, Docker, Github, Git, NLP, Prompt Engineering, GenAI
+    (9/15)
+
+Accuracy :
+    (7/15) * 100 = 46.67%
