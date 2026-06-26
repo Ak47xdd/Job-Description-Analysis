@@ -84,13 +84,13 @@ key_acc = (is_right / total_labels) * 100
 print(f"Keyword Accuracy : {round(key_acc, 2)}%\n")
 
 train_freq = y_train.mean(axis=0)
-baseline_preds = np.tile((train_freq >= 0.5).astype(int), (len(y_test), 1))
+baseline_preds = np.tile((train_freq >= 0.3).astype(int), (len(y_test), 1))
 
 baseline_micro_f1 = f1_score(y_test, baseline_preds, average='micro', zero_division=0)
 baseline_macro_f1 = f1_score(y_test, baseline_preds, average='macro', zero_division=0)
 
 print(f"\nBASELINE: \n")
-baseline_labels = [lbl for lbl, f in zip(VOCAB, train_freq) if f >= 0.5]
+baseline_labels = [lbl for lbl, f in zip(VOCAB, train_freq) if f >= 0.3]
 print(f"Baseline always predicts: {baseline_labels}")
 print(f"Baseline Micro-F1: {baseline_micro_f1:.3f} | Macro-F1: {baseline_macro_f1:.3f}")
 
