@@ -1,6 +1,8 @@
 import os
 import subprocess
 import sys
+# import time
+# import keyboard
 from pathlib import Path
 from rich import print
 from pyfiglet import Figlet
@@ -25,7 +27,7 @@ def title() -> None:
     print("——————————————————————————————————————————————————————————————————————")
 
 def query(message) -> None:
-    print("[yellow][JobAuto]")
+    print("\n[yellow][JobAuto]")
     print(f"[yellow] >> {message} : ")
     print("[You]")
 
@@ -35,7 +37,7 @@ def cli() -> None:
     title()
     
     print("[yellow][JobAuto] ")
-    print("[yellow]>> Welcome to JobAuto! \n")
+    print("[yellow]>> Welcome to JobAuto!")
     
     query("Enter Job Description")
     jd = input(" >> ")
@@ -51,7 +53,7 @@ def cli() -> None:
     clear_console()
     
     title()
-    
+
     print("\n [yellow]Job Description Provided : \n", jd.strip())
     print("\n [yellow]Job Role : \n", role)
     print("\n [yellow]Type : \n", type)
