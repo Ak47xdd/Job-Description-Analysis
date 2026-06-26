@@ -1,4 +1,4 @@
-# Job Description Skill Classifier (Multi-Label)
+# Job Description Skill Classifier [JobAuto v0.10] (Multi-Label)
 
 This project builds a lightweight text classification pipeline that predicts **multiple technical skills** from a job posting. Given a job description (optionally augmented with role and job type), the model outputs a ranked list of likely skills.
 
