@@ -102,7 +102,7 @@ It uses:
 │  └─ 02_Data_Engineering.ipynb               # Data engineering / cleaning notes
 │
 ├─ pipeline.py                                # Executes notebooks + training/eval steps in order
-
+├─ pyproject.toml                             # Installs as a cli tool
 ├─ requirements.txt
 └─ README.md
 ```
@@ -174,6 +174,11 @@ python model/pred.py
 
 ```bash
 python cli/jobauto.py
+
+or
+
+pip install .
+jobauto
 ```
 
 The CLI prompts for job description, role, and job type, then prints the top skills with probabilities.
