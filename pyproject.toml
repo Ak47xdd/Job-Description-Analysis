@@ -1,0 +1,20 @@
+[project]
+name = "JobAuto"
+version = "0.10"
+dependencies = [
+  "rich==15.0.0",
+  "pyfiglet==1.0.4"
+]
+
+# CLI entrypoint
+[project.scripts]
+jobauto = "cli.jobauto:cli"
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["cli*", "model*"]
+exclude = ["data*", "model_out*", "notebooks*", "test*"]
+
