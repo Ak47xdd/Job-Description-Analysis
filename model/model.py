@@ -57,7 +57,7 @@ model = SkillClassifier(DIM, NUM_LABELS)
 criterion = nn.BCEWithLogitsLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-4)
 
-EPOCHS = 980
+EPOCHS = 670
 history = {'train_loss' : [], 'test_loss' : []}
 
 for epoch in range(1, EPOCHS + 1):
