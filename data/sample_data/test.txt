@@ -26,12 +26,12 @@ Role :
 Type : 
     Junior
 
-Keys to be predicted (16):
-    Python, LLMs, NLP, LangGraph, MCP, GenAI, VectorDB, SQL, APIs, Docker, Agents, Github, CI/CD, Git, AWS/Azure, Prompt Engineering
+Keys to be predicted (15):
+    Python, LLMs, LangGraph, MCP, GenAI, VectorDB, SQL, APIs, Docker, Agents, Github, CI/CD, Git, AWS/Azure, Prompt Engineering
 
 Keys with less score (< 0.3):
-    Agents, CI/CD, MCP, Docker, Github, Git, NLP, Prompt Engineering, GenAI
-    (9/15)
+    GenAI, Agents, Prompt Engineering, Github, Git, MCP, CI/CD, Docker
+    (8/15)
 
 Accuracy :
     (7/15) * 100 = 46.67%
