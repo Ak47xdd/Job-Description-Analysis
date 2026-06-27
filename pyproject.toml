@@ -1,6 +1,6 @@
 [project]
 name = "JobAuto"
-version = "0.10"
+version = "0.10.1"
 dependencies = [
   "rich==15.0.0",
   "pyfiglet==1.0.4"
@@ -16,5 +16,5 @@ package-dir = {"" = "."}
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["cli*", "model*"]
-exclude = ["data*", "model_out*", "notebooks*", "test*"]
+exclude = ["data*", "notebooks*", "test*"]
 
