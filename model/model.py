@@ -1,3 +1,9 @@
+""" 
+model.py - DO NOT RUN THIS SCRIPT!
+
+Run this script, prep/data_prep.py and the notebooks through pipeline.py
+"""
+
 import json
 import torch
 import numpy as np
@@ -9,15 +15,22 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 
 torch.manual_seed(42)
 
-data = np.load('prep/prepared_data.npz')
+DATA_DIR = Path(__file__).resolve().parent / 'prep'
+
+# Ensure required artifacts exist even when run from different CWDs
+assert (DATA_DIR / 'prepared_data.npz').exists(), f"Missing {DATA_DIR / 'prepared_data.npz'}"
+assert (DATA_DIR / 'label_vocab.json').exists(), f"Missing {DATA_DIR / 'label_vocab.json'}"
+
+data = np.load(DATA_DIR / 'prepared_data.npz')
 
 X_train = data['X_train']
 X_test = data['X_test']
 y_train = data['y_train']
 y_test = data['y_test']
 
-with open('prep/label_vocab.json') as f:
+with open(DATA_DIR / 'label_vocab.json', encoding='utf-8') as f:
     VOCAB = json.load(f)
+
     
 DIM = X_train.shape[1]
 NUM_LABELS = len(VOCAB)
