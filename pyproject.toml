@@ -15,6 +15,9 @@ package-dir = {"" = "."}
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["cli*", "model*"]
+include = ["cli*", "model*", "model_out*"]
 exclude = ["data*", "notebooks*", "test*"]
 
+[tool.setuptools.package-data]
+"model.prep" = ["label_vocab.json", "vectorizer.pkl", "prepared_data.npz"]
+"model_out" = ["skill_classifier.pt", "training_history.json"]
