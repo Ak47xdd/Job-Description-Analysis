@@ -1,8 +1,13 @@
+""" 
+eval.py - RUN after pipeline.py
+
+evaluation metrics for the model
+"""
+
 import json
 import numpy as np
 import torch
 from sklearn.metrics import precision_recall_fscore_support, f1_score, accuracy_score
-from importlib import import_module
 import sys
 from pathlib import Path
 
