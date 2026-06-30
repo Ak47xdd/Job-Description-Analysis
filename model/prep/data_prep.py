@@ -1,5 +1,12 @@
+""" 
+data_prep.py - DO NOT RUN THIS SCRIPT!
+
+Run this script, model/model.py and the notebooks through pipeline.py
+"""
+
 import json
-import re
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 import pickle
@@ -8,6 +15,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 
 from sym_map import SYNONYM_MAP
+
 
 df = pd.read_csv(r'C:\Portfolio-Projects\Job-Description-Analysis\data\clean\cleaned_job_descriptions.csv')
 
@@ -22,7 +30,8 @@ def normalizer(skills) -> list:
     if pd.isna(skills):
         return []
     skill = [s.strip().lower() for s in skills.split(',') if s.strip()]
-    return [SKILLS_FIX.get(s, s) for s in skill]
+    fixed = [SKILLS_FIX.get(s, s) for s in skill]
+    return list(dict.fromkeys(fixed))
 
 df['skill_list'] = df['tech_skills'].apply(normalizer)
 
@@ -64,20 +73,23 @@ print(f"Dataset: {len(df)} rows | Vocab: {len(VOCAB)} labels | "
       f"TF-IDF features: {X.shape[1]}")
 print(f"Train: {len(X_train)} | Test: {len(X_test)}")
 
+# Save artifacts relative to this script location so pipeline.py can be run from repo root
+OUT_DIR = Path(__file__).resolve().parent
+
 np.savez(
-    'prepared_data.npz',
+    OUT_DIR / 'prepared_data.npz',
     X_train=X_train,
     X_test=X_test,
     y_train=y_train,
     y_test=y_test,
     idx_train=idx_train,
-    idx_test=idx_test
+    idx_test=idx_test,
 )
 
-with open('label_vocab.json', 'w') as f:
+with open(OUT_DIR / 'label_vocab.json', 'w') as f:
     json.dump(VOCAB, f, indent=2)
 
-with open('vectorizer.pkl', 'wb') as f:
+with open(OUT_DIR / 'vectorizer.pkl', 'wb') as f:
     pickle.dump(vectorizer, f)
 
 print("Successfully Vectorized and Pickled Data")
