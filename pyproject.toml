@@ -1,6 +1,6 @@
 [project]
 name = "JobAuto"
-version = "0.10.1"
+version = "0.10.2"
 dependencies = [
   "rich==15.0.0",
   "pyfiglet==1.0.4"
