@@ -56,7 +56,7 @@ jd_input = (
 )
 
 vectorizer = TfidfVectorizer(
-    max_features=80,
+    max_features=130,
     stop_words='english',
     ngram_range=(1, 2),
     min_df=2,
