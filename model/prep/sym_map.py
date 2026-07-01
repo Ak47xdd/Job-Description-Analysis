@@ -59,8 +59,7 @@ SYNONYM_MAP = {
     'model registry':           'mlops',
     'ml ops':                   'mlops',
 
-    # kubernetes 
-    'kubernetes':               'kubernetes',   
+    # kubernetes   
     'k8s':                      'kubernetes',
     'helm':                     'kubernetes',
     'eks':                      'kubernetes',
