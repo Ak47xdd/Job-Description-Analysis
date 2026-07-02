@@ -433,3 +433,225 @@ Preferred Qualifications:
 • Exposure to Kubernetes and scalable ML infrastructure.
 Education
 • Bachelor’s or Master’s degree in Computer Science, Artificial Intelligence, Data Science, or related field. ",2026,Bachelors/Masters,0-1,"Python. ML, LLMs, TensorFlow/PyTorch, Scikit-Learn, Pandas, NumPy, APIs, Docker, MLOps, Git, Github, CI/CD, AWS/Azure, GenAI, LangChain, LangGraph, LlamaIndex, Agents, GenAI, Kubernetes, ","Communication, Problem Solving"
+112,AI Engineer,Junior,"• Bachelor's degree in Computer Science, Data Science, AI/ML, or a related field (or final-year student/intern).
+• Strong foundation in Java and Python and familiarity with ML libraries like scikit-learn, TensorFlow, or PyTorch.
+• Basic understanding of LLMs and their applications (e. g., chatbots, text classification, summarization), openAI or claude.
+• Exposure to data analysis tools like Pandas, NumPy, and SQL.
+• Familiarity with Git and version control practices.
+• Willingness to learn and contribute in a fast-paced, collaborative environment.
+• Academic or personal projects involving ML/AI or NLP.
+• Experience with cloud platforms (AWS, GCP, or Azure) or Docker.
+• Exposure to tools like LangChain, Hugging Face Transformers, or vector databases.
+• Participation in AI/ML competitions (e. g., Kaggle) or open-source contributions. ",2026,Bachelors,0-1,"Python, ML, Java, Pandas, NumPy, SQL, Git, Github, NLP, AWS/Azure, Docker, LangChain, LangGraph, Agents, OpenAI, LLMs, TensorFlow/Pytorch, Scikit-Learn","Communication, Problem Solving"
+113,AI Developer,Junior,"1. 1-2 years of software engineering experience, ideally in a product-focused or startup environment. 2. Strong Python skills: You write clean, maintainable code and have experience with modern backend frameworks. 3. Database Fundamentals: Comfortable writing SQL and working with relational databases (especially PostgreSQL). You aren't afraid of complex queries or working with JSON/JSONB data types. 4. AI/ML Basics: Practical experience working with LLM APIs (OpenAI, Anthropic, etc.) and a foundational understanding of text embeddings, tokenization, and semantic search. ",2026,Bachelors,0-1,"Python, SQL, APIs, OpenAI, LLMs","Communication, Problem Solving"
+114,AI Engineer,Junior,"- Minimum bachelors degree in computer science, Mathematics, Engineering, Statistics, or a related field.
+- At least 1 year of experience in Natural Language Processing (NLP), Machine Learning, Generative AI specifically with Large Language Models (LLM).
+- Proficiency in Python and other applicable full-stack software programming languages.
+- Strong knowledge of machine learning, language modeling, data mining, and predictive modeling.
+- Excellent understanding of data science algorithms, processes, tools, and platforms.
+- Strong problem-solving mindset, with the ability to work in ambiguous and fast-paced environments.
+- Knowledge of API integration, containerization (e.g., Docker), cloud platforms (e.g., Azure, AWS, GCP), automated testing frameworks, and CI/CD practices. ",2026,Bachelors,0-1,"Python, NLP, ML, APIs, Docker, AWS/Azure, CI/CD","Communication, Problem Solving"
+115,AI Engineer,Junior,"• Bachelor's degree in Computer Science, Data Science, AI/ML, or a related field (or final-year student/intern).
+• Strong foundation in Java and Python and familiarity with ML libraries like scikit-learn, TensorFlow, or PyTorch.
+• Basic understanding of LLMs and their applications (e. g., chatbots, text classification, summarization), openAI or claude.
+• Exposure to data analysis tools like Pandas, NumPy, and SQL.
+• Familiarity with Git and version control practices.
+• Willingness to learn and contribute in a fast-paced, collaborative environment.
+• Academic or personal projects involving ML/AI or NLP.
+• Experience with cloud platforms (AWS, GCP, or Azure) or Docker.
+• Exposure to tools like LangChain, Hugging Face Transformers, or vector databases.
+• Participation in AI/ML competitions (e. g., Kaggle) or open-source contributions ",2026,Bachelors,0-1,"Python, NLP, SQL, Git, Github, Pandas, NumPy, TensorFlow/PyTorch, Scikit-Learn, LLMs, OpenAI, AWS/Azure, Docker, LangChain, LangGraph, Hugging Face, VectorDB","Communication, Problem Solving"
+117,AI Engineer,Junior,"Solid programming experience in Python / R / C / C++ .
+Robust understanding of:
+Machine Learning algorithms
+Deep Learning architectures
+Model evaluation techniques
+Data preprocessing
+Hands-on experience with:
+TensorFlow
+Keras
+PyTorch
+Experience working with Computer Vision, NLP, and Predictive Analytics projects.
+Solid problem-solving and analytical skills.
+Ability to convert business problems into AI/ML solutions.
+Experience deploying ML models into production environments.
+Knowledge of MLOps, APIs, cloud platforms, or model monitoring is a plus.",2026,Bachelors,0-1,"Python, C, C++, R, ML, TensorFlow/PyTorch, NLP, MLOps, APIs, AWS/Azure","Communication, Problem Solving"
+118,AI Engineer,Junior,"Strong understanding of
+AI agents
+and experience in building agents/skills
+Hands-on experience with
+LLM integration
+and advanced prompt engineering
+Expertise in
+time-series forecasting
+or predictive modeling (preferably in automotive/fleet domains)
+Proficiency in Python ML ecosystem:
+scikit-learn, pandas , and ideally
+PyTorch/TensorFlow
+Solid knowledge of
+RAG (Retrieval-Augmented Generation)
+frameworks
+Experience in
+model evaluation , experimentation, and A/B testing ",2026,Bachelors,0-1,"Python, Agents, LangChain, LangGraph, LlamaIndex, LLMs, ML, Pandas, Scikit-Learn, TensorFlow/PyTorch, RAG","Communication, Problem Solving"
+119,AI Engineer,Junior,"• Strong production-level software engineering skills, with depth in either Python/backend systems or React/TypeScript/frontend systems, and willingness to work across both
+• Ability to take clear product goals, make good technical decisions, and ship reliable software without heavy process
+• Experience using AI coding tools such as Cursor, Claude Code, or similar tools in real development work
+• Genuine interest in AI systems and hardware design
+• Clear written and verbal communication
+• Experience with LLM applications, agents, evals, LangChain, tool use, or prompt engineering
+• Experience building desktop apps, Electron apps, complex frontend state, or developer tools
+• Hardware project experience: robots, drones, embedded systems, PCBs, Formula Student, KiCad/Altium, firmware, or electronics prototyping
+• ECE or CS background, or equivalent demonstrated experience across software and hardware
+• Examples of shipped products, side projects, open-source work, research papers, or technical demos you can walk us through ",2026,Bachelors,0-1,"Python, React, LLMs, Agents, LangChain, LangGraph, LlamaIndex, Prompt Engineering","Communication, Problem Solving"
+121,AI Engineer,Junior,"Generative AI & NLP Expertise: Extensive experience in developing and deploying Generative AI applications and NLP frameworks, with hands-on knowledge of LLM fine-tuning, model customization, and AI-powered automation.
+Hands-On Data Science Experience: 4+ years of experience in data science, with a proven ability to build and operationalize machine learning and NLP models in real-world environments.
+AI Innovation: Deep knowledge of the latest developments in Generative AI and NLP, with a passion for experimenting with cutting-edge research and incorporating it into practical solutions.
+Problem-Solving Mindset: Strong analytical skills and a solution-oriented approach to applying data science techniques to complex business problems.
+Communication Skills: Exceptional ability to translate technical AI concepts into business insights and recommendations for non-technical stakeholders.",2026,Bachelors,0-1,"Python, ML, NLP, GenAI, LLMs","Communication, Problem Solving"
+123,AI Engineer,Junior,"• Minimum 1 year of hands-on experience building AI use cases
+• Proven experience creating multiple AI workflows
+• Experience building or working with AI agents and agentic workflows
+• Strong understanding of Large Language Models and their practical applications
+• Good knowledge of Retrieval-Augmented Generation
+• Strong proficiency in Python
+• Experience connecting AI models with APIs, databases, documents or business systems
+• Ability to take a requirement from idea to working solution
+• Understanding of prompt engineering, structured outputs and function or tool calling
+• Ability to independently take a business requirement and convert it into a working AI solution
+• Strong problem-solving and experimentation skills
+What Matters Most
+We are specifically looking for someone who can demonstrate:
+• Workflows they have personally built
+• AI agents they have worked with or developed
+• How they have used LLMs in practical applications
+• The business problem solved and the final outcome ",2026,Bachelors,0-1,"Python, ML, Agents, LLMs, RAG, LangChain, LangGraph, APIs, SQL, VectorDB","Communication, Problem Solving"
+124,AI Developer,Junior,"• 1+ years of experience in Generative AI or LLM application development.
+• Hands-on experience with LangChain, LangGraph, CrewAI, AutoGen, or similar frameworks.
+• Strong Python programming skills.
+• Good understanding of APIs, JSON, vector databases, and embeddings.
+• Familiarity with prompt engineering and RAG concepts.
+• Passion for building real-world AI products.
+Good to Have
+• Experience with LangSmith.
+• Knowledge of MCP, tool calling, and AI orchestration.
+• Experience with Azure AI, OpenAI, or Anthropic APIs.
+• Knowledge of Docker and cloud deployment.
+• Experience using Cursor, Codex, or Claude Code. ",2026,Bachelors,1-5,"Python, GenAI, LLMs, Agents, LangChain, LangGraph, CrewAI, AutoGen, APIs, VectorDB, RAG, MCP, OpenAI, Docker, AWS/Azure","Communication, Problem Solving"
+125,AI Engineer,Junior,"• Strong experience with React.js, Next.js, Node.js, TypeScript, Python, FastAPI, REST APIs, SQL/NoSQL databases, and Git.
+• Understanding of Machine Learning algorithms, model deployment, and software development best practices.
+• Experience with OpenAI, Gemini, Claude, and similar AI/ML frameworks.
+• Familiarity with LangChain, LangGraph, RAG, Vector Databases, Prompt Engineering, and AI Agents.
+• Experience using GitHub Copilot, Cursor, Claude Code, or similar AI development tools.
+Preferred Skills
+• Experience with AWS/GCP/Azure, MLOps, and cloud deployment.
+• Strong analytical thinking, debugging, and problem-solving skills. ",2026,Bachelors,0-1,"Python, SQL, Javascript, React, APIs, Git, Github, ML, Agents, OpenAI, LangChain, LangGraph, VectorDB, RAG, Prompt Engineering, AWS/Azure, MLOps","Communication, Problem Solving"
+126,AI Engineer,Junior,"Strong experience with machine learning and natural language processing.
+Experience working with large language models (LLMs), prompt engineering, retrieval-augmented systems, or conversational AI.
+Proficiency in Python and modern ML frameworks such as PyTorch or TensorFlow.
+Experience developing mobile or cross-platform applications.
+Understanding of healthcare data privacy, security, and ethical AI principles.
+Ability to work effectively in multidisciplinary clinical and technical teams.
+Preferred Qualifications
+Experience in digital health, health technology, medical devices, or assistive technologies.
+Familiarity with speech-language pathology, aphasia, neuro-oncology, or neurological disorders.
+Experience with user-centered design and accessibility-focused product development.
+Knowledge of clinical research methodologies and healthcare regulations.
+Experience deploying AI systems in real-world healthcare environments. ",2026,Bachelors,0-1,"Python, ML, Prompt Engineering, LLMs, RAG, GenAI, TensorFlow/PyTorch","Communication, Problem Solving"
+128,AI Engineer,Junior,"• Bachelor’s degree in Computer Science, Artificial Intelligence, Data Science, or a related field; or High School Diploma/General Education Degree and 4+ years of relevant as outlined in the essential duties in lieu of Bachelor’s Degree.
+• Professional experience in AI/ML model development.
+• Demonstrated ability working with machine learning frameworks, programming languages like Python, and cloud platforms.
+• Demonstrated ability to learn new technologies.
+• Demonstrated understanding of ethical considerations in AI systems.
+• Strong analytical and problem-solving skills with understanding of AI/ML techniques.
+Preferred Qualifications:
+• Experience deploying Gen AI solutions at scale.
+• Experience fine tuning LLMs, SLMs, teacher-student frameworks and model distillation.
+• Familiarity with human in the loop methods for aligning LLMs with human preferences.
+• Familiarity with agentic framework platforms and concepts. Experience deploying agentic-based solutions is a plus. ",2026,Bachelors,0-1,"Python, ML, GenAI, LLMs","Communication, Problem Solving"
+129,AI Developer,Junior,"Node.js / Express · Claude API (Anthropic) · Supabase · Wati (WhatsApp Business API) · node-cron · Jest · DigitalOcean VPS
+You're right for this if you:
+• Have shipped production Node.js APIs that real users hit
+• Are comfortable with webhooks, async JavaScript, and third-party API integrations
+• Have worked with PostgreSQL or Supabase
+• Can deploy a backend to a VPS without hand-holding
+• Write tests and don't consider them optional
+• (Bonus if you've built with Claude / OpenAI or WhatsApp Business API before) ",2026,Bachelors,0-1,"Python, Javascript, APIs, SQL, OpenAI, GenAI","Communication, Problem Solving"
+130,AI Engineer,Junior,"• 0–4 years of experience in Machine Learning, NLP, Speech AI, or Applied AI.
+• Strong proficiency in Python.
+• Experience with PyTorch, TensorFlow, or similar ML frameworks.
+• Knowledge of NLP frameworks such as Hugging Face, spaCy, or NLTK.
+• Understanding of model training, evaluation, and deployment.
+• Strong analytical and problem-solving skills.
+Good to Have
+• Experience with Whisper, Wav2Vec2, Kaldi, DeepSpeech, or similar speech technologies.
+• Experience with LLMs and Generative AI applications.
+• Familiarity with FastAPI, Docker, and cloud platforms (AWS/GCP/Azure).
+• Exposure to MLOps and production ML systems.
+• Understanding of language assessment, educational testing, or communication evaluation platforms. ",2026,Bachelors,0-1,"Python, ML, NLP, TensorFlow/PyTorch, Huging Face, LLMs, GenAI, APIs, Docker, AWS/Azure, MLOps","Communication, Problem Solving"
+131,AI Engineer,Junior,"Strong understanding of Python
+Basic knowledge of Machine Learning concepts
+Familiarity with libraries like NumPy, Pandas, Scikit-learn
+Understanding of data preprocessing and model evaluation
+Basic knowledge of NLP, Computer Vision, or Generative AI
+Ability to work with APIs and AI tools
+Positive analytical and problem-solving skills
+Valuable to Have
+Knowledge of TensorFlow or PyTorch
+Experience with OpenAI APIs or other LLM tools
+Basic understanding of SQL and databases
+Experience with college projects, internships, or GitHub projects
+Knowledge of automation tools and AI agents
+Eligibility Criteria
+Bachelor’s degree in:
+Computer Science
+BCA / MCA
+B.Tech / M.Tech
+Artificial Intelligence
+Data Science
+Mathematics
+Statistics
+Or related fields ",2026,Bachelors/Masters,0-1,"Python, ML, NumPy, Pandas, Scikit-Learn, NLP, GenAI, APIs, TensorFlow/PyTorch, OpenAI, LLMs, SQL","Communication, Problem Solving"
+133,AI Engineer,Junior,"• Python
+• LangChain
+• OpenAI / Anthropic APIs
+• Prompt Engineering
+• Vector Databases (Basic)
+• FastAPI
+• Git
+• PostgreSQL ",2026,Bachelors,0-1,"Python, LangChain, LangGraph, Agents, OpenAI, Prompt Engineering, VectorDB, APIs, Git, Github, SQL","Communication, Problem Solving"
+135,AI Engineer,Junior,"• * Education: Bachelors degree in Computer Science, Engineering, Mathematics, or a related field (or equivalent experience).
+• * Familiarity with AI/ML Concepts: Basic understanding of artificial intelligence, machine learning, and data science.
+• * Attention to Detail: Strong focus on data accuracy, precision, and consistency.
+• * Technical Skills: Proficiency with spreadsheets (Excel/Google Sheets) and data processing tools.
+• * Communication Skills: Strong written and verbal communication skills to document processes and work with cross-functional teams.
+• * Problem-Solving Abilities: Ability to identify challenges in data and propose efficient solutions.
+• * Tech-Savvy: Willingness to learn and adapt to new tools and technologies relevant to AI/ML projects.
+• Experience:
+• * Entry-level position ideal for recent graduates or individuals with a passion for AI/ML.
+• * Previous experience in data annotation, data entry, or any technical support role is a plus but not mandatory.
+• Working Hours:
+• * Full-time (40 hours per week).
+• * Flexible working hours to accommodate global team collaboration.
+• * Remote work opportunity with potential for occasional team meetings via video calls.
+• Knowledge, Skills, and Abilities:
+• * Knowledge of Data Preparation: Basic understanding of data cleaning, normalization, and preprocessing for machine learning models.
+• * Analytical Skills: Ability to analyze and manipulate datasets to extract meaningful insights.
+• * Familiarity with AI Tools: Exposure to basic AI tools and platforms such as TensorFlow, PyTorch, or similar technologies is beneficial.
+• * Adaptability: Willingness to learn and grow within the dynamic field of AI/ML.
+• * Team Collaboration: Ability to work effectively in a remote, collaborative environment.
+• Benefits:
+• * Competitive Salary: Competitive pay based on experience and skill level.
+• * Learning and Development: Access to training resources, mentorship, and opportunities to grow within the AI/ML field.
+• * Remote Work Flexibility: Work from the comfort of your home with flexible hours.
+• * Health and Wellness Benefits: Comprehensive health insurance and wellness programs.
+• * Career Growth: Opportunity for advancement in a rapidly growing industry.
+• * Team Collaboration: Work alongside highly skilled professionals in a supportive, remote work environment. ",2026,Bachelors,0-1,"Python, ML, TensorFlow/PyTorch, GenAI, LLMs","Communication, Problem Solving"
+142,AI Developer,Junior,"Job DescriptionAre you passionate about Python and curious about AI/ML?Join us to kickstart your career with hands-on experience in real-world machine learning projects!What Youll Work OnPython coding for AI/ML applicationsData preprocessing, model training & deploymentCollaborate with engineers and analysts on end-to-end AI solutionsExplore data and visualize insights using popular Python librariesPreferred SkillsStrong Python fundamentalsBasic ML concepts & libraries (NumPy, Pandas, Scikit-learn)Aptitude for problem-solving & statisticsFamiliarity with tools like Git, Matplotlib, or Seaborn is a plusConsistent academic performance with 70% or equivalent and above throughoutRequirementsAre you passionate about Python and curious about AI/ML? Join us to kickstart your career with hands-on experience in real-world machine learning projects! What youll work on: Python coding for AI/ML applications Data preprocessing, model training & deployment Collaborate with engineers and analysts on end-to-end AI solutions Explore data and visualize insights using popular Python libraries Preferred Skills Strong Python fundamentals Basic ML concepts & libraries (NumPy, Pandas, Scikit-learn) Aptitude for problem-solving & statistics Familiarity with tools like Git, Matplotlib, or Seaborn is a plus Consistent academic performance with 70% or equivalent and above throughout ",2026,Bachelors,0-1,"Python, ML, NumPy, Pandas, Scikit-Learn, APIs, Git, Github","Communication, Problem Solving"
+143,AI Developer,Junior,"• Strong programming skills in Python (FastAPI, Flask) or Node.js.
+• Exposure to NLP, LLMs, AI APIs (ChatGPT, Perplexity.ai, LangChain).
+• Familiarity with RESTful APIs and Graph Databases (Neo4j).
+• Basic understanding of cloud platforms (AWS, Azure, GCP).
+• Passion for AI, NLP, and chatbot development.
+• Bonus: Knowledge of UI frameworks (React, Next.js).
+• Good to have - Pinecone or equivalent vector databases. ",2026,Bachelors,0-1,"Python, ML, APIs, LLMs, NLP, AWS/Azure, VectorDB","Communication, Problem Solving"
+144,AI Developer,Junior,"The ideal candidate will be responsible for developing and debugging responsive web applications for the company. Using Python, Django, JavaScript, this candidate will be able to translate user and business needs into functional products. Must have knowledge in PythonDjangoExperience in Gen-AI APIs, RAGDatabase schema modeling and designingBasics in CSS, Bootstrap, Bulma etcTools like web-pack, npm, yarn etc.Good sense of designVersion controlling and GitHub ",2026,Bachelors,0-1,"Python, APIs, Django, Javascript, GenAI, RAG, SQL, Git, Github","Comunication, Problem Solving"
