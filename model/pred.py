@@ -24,6 +24,8 @@ class SkillClassifier(nn.Module):
 def predict(job_desc, role="", job_type="", top_k=50):
     """
     Predict top-k skills.
+    
+    Current top-k = 48
     """
     prep_dir = ROOT / "model" / "prep"
     if not prep_dir.exists():
