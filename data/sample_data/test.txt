@@ -1,9 +1,9 @@
 Current Dataset Entries :
-    64 Senior, 62 Junior, 62 Internship : 120 AI Engineer, 67 AI Developer
+    65 Senior, 62 Junior, 62 Internship : 120 AI Engineer, 68 AI Developer
     48 Keywords
 
 Goal :
-    1 Senior, 3 junior, 3 internship ai developer entries
+    3 junior, 3 internship ai developer entries
 
 Job Description :
     Python as primary language. Microsoft Azure required as the primary cloud platform. 
