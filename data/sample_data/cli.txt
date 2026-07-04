@@ -1,4 +1,4 @@
-Job Description Provided : 
+ Job Description Provided : 
  Python as primary language. Microsoft Azure required as the primary cloud platform.     Hands-on experience building with Azure AI Foundry.     Claude Code 
 experience and expertise required, including hands-on development of skills and plugins on the platform.     This is non-negotiable for the role. LangGraph 
 experience required.     Demonstrated ability to design state graphs, conditional edges, and multi-agent compositions.     Model Context Protocol experience 
@@ -20,98 +20,98 @@ knowledge of GitHub workflows, code review discipline, and infrastructure-as-cod
 
  TOP Skills 
 
- python                    0.77  ███████████████████████
+ python                    0.83  ████████████████████████
 
- n8n                       0.61  ██████████████████
+ n8n                       0.70  ████████████████████
 
- llms                      0.59  █████████████████
+ llms                      0.69  ████████████████████
 
- agents                    0.57  ████████████████
+ apis                      0.65  ███████████████████
 
- rag                       0.51  ███████████████
+ mcp                       0.60  █████████████████
 
- mcp                       0.50  ███████████████
+ rag                       0.56  ████████████████
 
- langchain                 0.50  ██████████████
+ agents                    0.53  ███████████████
 
- apis                      0.49  ██████████████
+ langgraph                 0.52  ███████████████
 
- langgraph                 0.48  ██████████████
+ sql                       0.50  ███████████████
 
- llamaindex                0.47  ██████████████
+ langchain                 0.46  █████████████
 
- sql                       0.46  █████████████
+ vectordb                  0.45  █████████████
 
- aws/azure                 0.46  █████████████
+ github                    0.40  ████████████
 
- javascript                0.46  █████████████
+ javascript                0.40  ████████████
 
- ml                        0.46  █████████████
+ aws/azure                 0.40  ███████████
 
- genai                     0.42  ████████████
+ ml                        0.39  ███████████
 
- vectordb                  0.42  ████████████
-
- react                     0.41  ████████████
-
- crewai                    0.39  ███████████
+ openai                    0.37  ██████████
 
  prompt engineering        0.36  ██████████
 
- autogen                   0.35  ██████████
+ git                       0.34  ██████████
 
- java                      0.35  ██████████
+ crewai                    0.33  █████████
 
- github                    0.29  ████████
+ genai                     0.33  █████████
 
- full stack                0.28  ████████
+ react                     0.28  ████████
 
- openai                    0.27  ████████
+ autogen                   0.28  ████████
 
- system design             0.26  ███████
+ llamaindex                0.27  ████████
 
- mlops                     0.26  ███████
+ java                      0.23  ██████
 
- nlp                       0.25  ███████
+ docker                    0.23  ██████
 
- git                       0.24  ███████
+ nlp                       0.21  ██████
 
- tensorflow/pytorch        0.21  ██████
+ full stack                0.19  █████
 
- powerbi                   0.20  █████
+ .net                      0.17  █████
 
- ci/cd                     0.15  ████
+ mlops                     0.14  ████
 
- .net                      0.14  ████
+ django                    0.11  ███
 
- anthropic /openai sdks    0.11  ███
+ powerbi                   0.10  ███
 
- c++                       0.10  ██
+ tensorflow/pytorch        0.10  ██
 
- docker                    0.09  ██
+ system design             0.09  ██
 
- scikit-learn              0.08  ██
-
- pandas                    0.06  █
-
- numpy                     0.06  █
+ ci/cd                     0.07  ██
 
  hugging face              0.06  █
 
- django                    0.05  █
+ pandas                    0.05  █
 
  c#                        0.05  █
 
- model evaluation          0.05  █
+ anthropic /openai sdks    0.04  █
 
- kubernetes                0.04  █
+ kubernetes                0.03  
 
- mlflow                    0.04  █
+ numpy                     0.03  
 
- c                         0.03  
+ scikit-learn              0.03  
 
- feature engineering       0.02  
+ c++                       0.02  
 
- model training            0.02  
+ mlflow                    0.02  
 
- r                         0.01  
+ model evaluation          0.02  
+
+ c                         0.01  
+
+ feature engineering       0.01  
+
+ model training            0.01  
+
+ r                         0.00 
