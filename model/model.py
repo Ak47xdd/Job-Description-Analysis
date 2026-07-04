@@ -75,7 +75,7 @@ pos_weight = torch.clamp(pos_weight, max=10.0)
 criterion = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-4)
 
-EPOCHS = 380
+EPOCHS = 300
 history = {'train_loss' : [], 'test_loss' : []}
 
 for epoch in range(1, EPOCHS + 1):
