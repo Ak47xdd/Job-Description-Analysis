@@ -655,3 +655,97 @@ Or related fields ",2026,Bachelors/Masters,0-1,"Python, ML, NumPy, Pandas, Scik
 • Bonus: Knowledge of UI frameworks (React, Next.js).
 • Good to have - Pinecone or equivalent vector databases. ",2026,Bachelors,0-1,"Python, ML, APIs, LLMs, NLP, AWS/Azure, VectorDB","Communication, Problem Solving"
 144,AI Developer,Junior,"The ideal candidate will be responsible for developing and debugging responsive web applications for the company. Using Python, Django, JavaScript, this candidate will be able to translate user and business needs into functional products. Must have knowledge in PythonDjangoExperience in Gen-AI APIs, RAGDatabase schema modeling and designingBasics in CSS, Bootstrap, Bulma etcTools like web-pack, npm, yarn etc.Good sense of designVersion controlling and GitHub ",2026,Bachelors,0-1,"Python, APIs, Django, Javascript, GenAI, RAG, SQL, Git, Github","Comunication, Problem Solving"
+172,AI Developer,Junior,"We are looking for a passionate Junior AI Automation Engineer to build AI-powered automation systems using open-source technologies. You will work on AI agents, browser automation, backend APIs, and workflow automation—not UI/UX development. Strong knowledge of Python, FastAPI, GitHub, Railway, Vercel, Playwright, REST APIs, and PostgreSQL is required. Experience with LLMs (OpenAI/Claude/Gemini), LangChain/LangGraph, n8n, Docker, MCP, or RAG is a plus. You should be comfortable integrating APIs, deploying applications, and solving real-world business problems through automation. We value hands-on builders with working GitHub projects over certifications. Fresh ideas, curiosity, and a willingness to learn are essential. ",2026,Bachelors,0-1,"Python, ML, SQL, APIs, LLMs, n8n, Agents, LangChain, LangGraph, Docker, MCP, RAG, Github, Git","Communication, Problem Solving"
+173,AI Developer,Junior,"• * 1–2 years of hands-on experience in Python AI/ML development.
+• Strong understanding of core Python concepts, data structures, and algorithms.
+• Experience with frameworks such as Django, Flask, or FastAPI.
+• Familiarity with RESTful APIs and microservices architecture.
+• Good understanding of databases (MySQL, PostgreSQL, or NoSQL).
+• Experience with version control systems like Git.
+• Strong debugging and problem-solving skills.
+• Strong communication and collaboration skills.
+• Exposure to AI/ML concepts or AI-assisted development (e.g., prompt engineering, AI coding tools).
+• Experience working on international/global projects.
+• Familiarity with cloud platforms (AWS, Azure, or GCP).
+• Knowledge of containerization tools like Docker.
+• Understanding of CI/CD pipelines and DevOps practices. ",2026,Bachelors,0-1,"Python, ML, APIs, Django, SQL, Git, Github, AWS/Azure, Docker, CI/CD, Prompt Engineering","Communication, Problem Solving"
+174,AI Developer,Junior,"Required Qualifications
+Strong experience with machine learning and natural language processing.
+Experience working with large language models (LLMs), prompt engineering, retrieval-augmented systems, or conversational AI.
+Proficiency in Python and modern ML frameworks such as PyTorch or TensorFlow.
+Experience developing mobile or cross-platform applications.
+Understanding of healthcare data privacy, security, and ethical AI principles.
+Ability to work effectively in multidisciplinary clinical and technical teams.
+Preferred Qualifications
+Experience in digital health, health technology, medical devices, or assistive technologies.
+Familiarity with speech-language pathology, aphasia, neuro-oncology, or neurological disorders.
+Experience with user-centered design and accessibility-focused product development.
+Knowledge of clinical research methodologies and healthcare regulations.
+Experience deploying AI systems in real-world healthcare environments. ",2026,Bachelors,0-1,"Python, GenAI, LLMs, Agents, LangChain, OpenAI, RAG, VectorDB, NLP, Prompt Engineering, TensorFlow/PyTorch, ","Communication, Problem Solving"
+175,AI Developer,Junior,"Required Skills & Qualifications:
+• Strong logical and analytical thinking.
+• Good communication and collaboration skills.
+• Quick learner with a strong willingness to upskill.
+• Strong Python programming skills (loops, OOP, libraries).
+• Basic understanding of Artificial Intelligence and Machine Learning concepts.
+• Familiarity with libraries such as NumPy, Pandas, Matplotlib, scikit-learn, or TensorFlow/PyTorch (basic level).
+• Understanding of APIs and how to integrate them.
+• Knowledge of chatbot development tools or frameworks is a plus (e.g., Rasa, LangChain, OpenAI API).
+• Strong problem-solving and analytical skills.
+• Eagerness to learn new AI technologies and tools.
+Preferred (But Not Mandatory):
+• Knowledge of chatbot frameworks (e.g., Rasa, LangChain, Dialogflow).
+• Experience with AI data visualization tools or dashboard development.
+• Awareness of Natural Language Processing (NLP) concepts. ",2026,Bachelors,0-1,"Python, ML, Pandas, NumPy, Scikit-Learn, TensorFlow/PyTorch, APIs, Agents, LangChain, NLP, OpenAI","Communication, Problem Solving"
+176,AI Developer,Junior,"Design, train, and fine-tune AI/ML models using Python frameworks. Work on LLMs, prompt engineering, data preprocessing, and model evaluation. Develop AI-based applications integrating NLP, computer vision, or generative content systems.
+Required Candidate profile
+Strong understanding of Python, ML, and deep learning concepts. Familiar with Generative AI tools (OpenAI, Hugging Face, LangChain, etc.). Eager to explore LLMs and prompt-based systems. ",2026,Bachelors,0-1,"Python, LLMs, NLP, Prompt Engineering, ML, GenAI, OpenAI, Hugging Face, LangChain","Communication, Problem Solving"
+183,AI Developer,Junior,"1-2 years of software engineering experience, ideally in a product-focused or startup environment. 2. Strong Python skills: You write clean, maintainable code and have experience with modern backend frameworks. 3. Database Fundamentals: Comfortable writing SQL and working with relational databases (especially PostgreSQL). You aren't afraid of complex queries or working with JSON/JSONB data types. 4. AI/ML Basics: Practical experience working with LLM APIs (OpenAI, Anthropic, etc.) and a foundational understanding of text embeddings, tokenization, and semantic search. ",2026,Bachelors,0-1,"Python, ML, SQL. LLMs, APIs, OpenAI","Communication, Problem Solving"
+184,AI Developer,Junior,"Requirements: Backend development experience with Python, including exposure to building or consuming APIs.
+Foundational knowledge of LLMs, AI agents, RAG systems, or ML-driven applications, including hands-on project or coursework experience.
+Familiarity with cloud platforms, preferably Azure.
+Basic understanding of data security, governance, and reliability principles.
+Ability to write clean, maintainable code and collaborate within a team environment.
+Good communication skills and a willingness to learn in a fast-moving technical domain.
+Nice to have: Exposure to financial services, enterprise data, or data-heavy domains is a plus.
+Interest in semantic data modeling or knowledge graphs. Any experience with workflow automation tools or rules engines.
+Awareness of enterprise AI governance and compliance considerations.",2026,Bachelors,0-1,"Python, ML, LLMs, RAG, Agents, LangChain, LangGraph, AWS/Azure, n8n","Communication, Problem Solving"
+191,AI Developer,Junior,"Education:
+Bachelor s degree in Engineering, Computer Science, Data Science, Gen AI or related fields. Final-year students or recent graduates are welcome to apply.
+Technical Skills:
+Strong foundation in Java, React, NodeJS, Python, SQL, and Excel
+Basic understanding of data structures, databases, and algorithms
+Exposure to pandas, NumPy, PySpark, scikit-learn, GenAI, Agentic AI or TensorFlow is a plus
+Familiarity with BI tools (e.g., Power BI, Tableau) or cloud platforms (e.g., AWS, GCP) is desirable
+Knowledge of version control (Git) is an advantage
+Soft Skills
+
+Curiosity and a passion for data-driven problem solving
+Strong analytical and logical thinking
+Good communication and collaboration skills
+Willingness to learn in a fast-paced environment
+Ability to break down complex problems and document clearly
+Preferred (Good to Have, Not Mandatory)
+
+Internship or academic project in data analytics, machine learning, or database systems
+Participation in hackathons, coding contests, or Kaggle competitions
+Exposure to Agile or collaborative tools like JIRA, Confluence",2026,Bachelors,0-1,"Python, Java, React, SQL, NumPy,Scikit-Learn, Javascript, GenAI, Agents, LangChain, LangGraph, Github, Github TensorFlow/PyTorch, AWS/Azure","Communication, Problem Solving"
+192,AI Developer,Junior,"Work on AI applications involving NLP, Computer Vision, and Predictive Analytics.
+Collaborate with senior developers to implement AI-driven solutions.
+Perform data analysis and generate actionable insights.
+Test, debug, and optimize AI/ML models for performance and accuracy.
+Stay updated with the latest advancements in AI, Machine Learning, and Generative AI.
+Required Skills Basic knowledge of Python programming.
+Understanding of Machine Learning algorithms and concepts.
+Familiarity with libraries such as TensorFlow, PyTorch, Scikit-learn, Pandas, and NumPy.
+Basic understanding of Data Structures and Algorithms.
+Knowledge of SQL and database concepts.
+Strong analytical and problem-solving skills.
+Good communication and teamwork abilities. ",2026,Bachelors,0-1,"Python, ML, NLP, GenAI, SQL, TensorFlow/PyTorch, Scikit-Learn, NumPy, Pandas, ","Communication, Problem Solving"
+193,AI Developer,Junior,"Strong programming skills in Python (FastAPI, Flask) or Node.js.
+Exposure to NLP, LLMs, AI APIs (ChatGPT, Perplexity.ai, LangChain).
+Familiarity with RESTful APIs and Graph Databases (Neo4j).
+Basic understanding of cloud platforms (AWS, Azure, GCP).
+Passion for AI, NLP, and chatbot development.
+Bonus: Knowledge of UI frameworks (React, Next.js).
+Good to have - Pinecone or equivalent vector databases.",2026,Bachelors,0-1,"Python, APIs, Javascript, NLP, LLMs, LangCgain, LangGraph, AWS/Azure, React, VectorDB","Communication, Problem Solving"
