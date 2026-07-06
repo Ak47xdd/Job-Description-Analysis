@@ -20,98 +20,98 @@ knowledge of GitHub workflows, code review discipline, and infrastructure-as-cod
 
  TOP Skills 
 
- python                    0.83  ████████████████████████
+ apis                      0.78  ███████████████████████
 
- n8n                       0.70  ████████████████████
+ langgraph                 0.78  ███████████████████████
 
- llms                      0.69  ████████████████████
+ vectordb                  0.76  ██████████████████████
 
- apis                      0.65  ███████████████████
+ mcp                       0.75  ██████████████████████
 
- mcp                       0.60  █████████████████
+ langchain                 0.74  ██████████████████████
 
- rag                       0.56  ████████████████
+ rag                       0.72  █████████████████████
 
- agents                    0.53  ███████████████
+ llms                      0.72  █████████████████████
 
- langgraph                 0.52  ███████████████
+ agents                    0.70  ████████████████████
 
- sql                       0.50  ███████████████
+ crewai                    0.66  ███████████████████
 
- langchain                 0.46  █████████████
+ autogen                   0.64  ███████████████████
 
- vectordb                  0.45  █████████████
+ openai                    0.63  ██████████████████
 
- github                    0.40  ████████████
+ sql                       0.61  ██████████████████
 
- javascript                0.40  ████████████
+ n8n                       0.60  ██████████████████
 
- aws/azure                 0.40  ███████████
+ aws/azure                 0.59  █████████████████
 
- ml                        0.39  ███████████
+ prompt engineering        0.56  ████████████████
 
- openai                    0.37  ██████████
+ llamaindex                0.55  ████████████████
 
- prompt engineering        0.36  ██████████
+ javascript                0.50  ███████████████
 
- git                       0.34  ██████████
+ python                    0.50  ███████████████
 
- crewai                    0.33  █████████
+ docker                    0.48  ██████████████
 
- genai                     0.33  █████████
+ github                    0.48  ██████████████
 
- react                     0.28  ████████
+ git                       0.45  █████████████
 
- autogen                   0.28  ████████
+ genai                     0.41  ████████████
 
- llamaindex                0.27  ████████
+ react                     0.41  ████████████
 
- java                      0.23  ██████
+ ml                        0.32  █████████
 
- docker                    0.23  ██████
+ java                      0.24  ███████
 
- nlp                       0.21  ██████
+ ci/cd                     0.22  ██████
 
- full stack                0.19  █████
+ nlp                       0.16  ████
 
- .net                      0.17  █████
+ django                    0.16  ████
 
- mlops                     0.14  ████
+ mlops                     0.15  ████
 
- django                    0.11  ███
+ system design             0.12  ███
 
- powerbi                   0.10  ███
+ full stack                0.11  ███
 
- tensorflow/pytorch        0.10  ██
+ kubernetes                0.11  ███
 
- system design             0.09  ██
+ .net                      0.10  ███
 
- ci/cd                     0.07  ██
+ anthropic /openai sdks    0.07  ██
 
- hugging face              0.06  █
+ powerbi                   0.07  █
 
- pandas                    0.05  █
+ tensorflow/pytorch        0.06  █
 
  c#                        0.05  █
 
- anthropic /openai sdks    0.04  █
+ hugging face              0.05  █
 
- kubernetes                0.03  
+ mlflow                    0.03  
 
- numpy                     0.03  
+ scikit-learn              0.02  
 
- scikit-learn              0.03  
+ pandas                    0.01  
 
- c++                       0.02  
-
- mlflow                    0.02  
-
- model evaluation          0.02  
-
- c                         0.01  
+ numpy                     0.01  
 
  feature engineering       0.01  
 
- model training            0.01  
+ c++                       0.01  
 
- r                         0.00 
+ model evaluation          0.01  
+
+ model training            0.00  
+
+ c                         0.00  
+
+ r                         0.00  
