@@ -1,9 +1,9 @@
 Current Dataset Entries :
-    70 Senior, 70 Junior, 70 Internship : 120 AI Engineer, 90 AI Developer
-    48 Keywords
+    75 Senior, 75 Junior, 75 Internship : 120 AI Engineer, 105 AI Developer
+    48 Keywords/labels
 
 Goal :
-    5 senior, 5 junior, 5 internship ai developer entries
+    0 senior, 0 junior, 0 internship ai developer entries
 
 Job Description :
     Python as primary language. Microsoft Azure required as the primary cloud platform. 
@@ -37,8 +37,8 @@ Keys to be predicted (15):
     Python, LLMs, LangGraph, MCP, GenAI, VectorDB, SQL, APIs, Docker, Agents, Github, CI/CD, Git, AWS/Azure, Prompt Engineering
 
 Keys with less score (< 0.3):
-    Docker, CI/CD
-    (2/15)
+    CI/CD
+    (1/15)
 
 Accuracy (recall):
-    (13/15) * 100 = 86.67%
+    (14/15) * 100 = 93.34%
