@@ -1,0 +1,10 @@
+.github
+.pytest_cache
+__pycache__
+.venv
+build
+jobauto.egg-info
+test
+feat_to_add.txt
+pytest.ini
+api
