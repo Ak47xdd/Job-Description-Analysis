@@ -11,7 +11,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from model.pred import predict
+from model.pred import JobAnalyze_6k
 
 def clear_console() -> None:
     if os.name == 'nt':
@@ -48,7 +48,7 @@ def cli() -> None:
     query("Enter Type")
     type = input(" >> ")
     
-    results = predict(jd, role=role, job_type=type)
+    results = JobAnalyze_6k(jd, role=role, job_type=type)
     
     clear_console()
     
