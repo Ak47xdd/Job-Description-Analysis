@@ -1,5 +1,6 @@
 import json
 import pickle
+from narwhals import List
 import numpy as np
 import torch
 from pathlib import Path
@@ -21,7 +22,7 @@ class SkillClassifier(nn.Module):
     def forward(self, x):
         return self.net(x)
 
-def predict(job_desc, role="", job_type="", top_k=50):
+def JobAnalyze_6k(job_desc, role="", job_type="", top_k=50)-> List[(str, float)]:
     """
     Predict top-k skills.
     
