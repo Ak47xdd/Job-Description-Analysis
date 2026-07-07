@@ -65,7 +65,13 @@ class SkillClassifier(nn.Module):
     def forward(self, x) -> float:
         return self.net(x)
     
-model = SkillClassifier(DIM, NUM_LABELS)
+jobanalyze_6k = SkillClassifier(DIM, NUM_LABELS)
+
+total_params = sum(p.numel() for p in jobanalyze_6k.parameters())
+trainable_params = sum(p.numel() for p in jobanalyze_6k.parameters() if p.requires_grad)
+
+print(f"Total Parameters: {total_params:,}")
+print(f"Trainable Parameters: {trainable_params:,}")
 
 pos_counts = y_train.sum(axis=0)
 neg_counts = len(y_train) - pos_counts
@@ -73,27 +79,27 @@ pos_weight = torch.tensor(neg_counts / (pos_counts + 1e-6), dtype=torch.float32)
 pos_weight = torch.clamp(pos_weight, max=10.0)
 
 criterion = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
-optimizer = torch.optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-4)
+optimizer = torch.optim.Adam(jobanalyze_6k.parameters(), lr=1e-3, weight_decay=1e-4)
 
 EPOCHS = 300
 history = {'train_loss' : [], 'test_loss' : []}
 
 for epoch in range(1, EPOCHS + 1):
-    model.train()
+    jobanalyze_6k.train()
     train_losses = []
     for xb, yb in train_loader:
         optimizer.zero_grad()
-        logits = model(xb)
+        logits = jobanalyze_6k(xb)
         loss = criterion(logits, yb)
         loss.backward()
         optimizer.step()
         train_losses.append(loss.item())
         
-    model.eval()
+    jobanalyze_6k.eval()
     test_losses = []
     with torch.no_grad():
         for xb, yb in test_loader:
-            logits = model(xb)
+            logits = jobanalyze_6k(xb)
             loss = criterion(logits, yb)
             test_losses.append(loss.item())
             
@@ -108,7 +114,7 @@ for epoch in range(1, EPOCHS + 1):
 out_dir = REPO_ROOT / 'model_out'
 out_dir.mkdir(parents=True, exist_ok=True)
 
-torch.save(model.state_dict(), out_dir / 'skill_classifier.pt')
+torch.save(jobanalyze_6k.state_dict(), out_dir / 'skill_classifier.pt')
 with open(out_dir / 'training_history.json', 'w') as f:
     json.dump(history, f)       
     
