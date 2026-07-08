@@ -39,4 +39,4 @@ def run_scripts(script_path: str, shell_name: str = "python") -> None:
 run_notebook("notebooks/01_EDA.ipynb")
 run_notebook("notebooks/02_Data_Engineering.ipynb")
 run_scripts("model/prep/data_prep.py")
-run_scripts("model/model.py")
+run_scripts("model/Model.py")
