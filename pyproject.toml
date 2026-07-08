@@ -1,14 +1,23 @@
 [project]
-name = "JobAuto"
-version = "0.10.2"
+name = "JobSelect"
+version = "0.10.5"
+authors = [
+  { name="Akshay Babu", email="akshaysureshbabu100@gmail.com" },
+]
+readme = "README.md"
 dependencies = [
   "rich==15.0.0",
-  "pyfiglet==1.0.4"
+  "pyfiglet==1.0.4",
+  "scikit-learn==1.9.0",
+  "uvicorn==0.50.2",
+  "pydantic==2.13.4",
+  "requests==2.34.2",
+  "torch==2.12.1"
 ]
 
 # CLI entrypoint
 [project.scripts]
-jobauto = "cli.jobauto:cli"
+jobselect = "cli.jobselect:cli"
 
 [tool.setuptools]
 package-dir = {"" = "."}
