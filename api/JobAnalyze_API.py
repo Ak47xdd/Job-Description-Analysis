@@ -119,4 +119,4 @@ async def JobAnalyze_Pred(data: ModelRequest, api_client: dict = Depends(verify)
     return {"answer": resp_json}
 
 if __name__ == "__main__":
-    uvicorn.run("JobAnalyze_API:app", port=5000)
+    uvicorn.run("JobAnalyze_API:app",host='0.0.0.0', port=5000)
