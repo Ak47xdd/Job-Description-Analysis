@@ -1,6 +1,11 @@
+"""
+Pred Module
+"""
+
+
 import json
 import pickle
-from narwhals import List
+from typing import List, Tuple
 import numpy as np
 import torch
 from pathlib import Path
@@ -22,7 +27,7 @@ class SkillClassifier(nn.Module):
     def forward(self, x):
         return self.net(x)
 
-def JobAnalyze_6k(job_desc, role="", job_type="", top_k=50)-> List[(str, float)]:
+def JobAnalyze_6k(job_desc: str = "", role: str = "", job_type: str = "", top_k: int = 50) -> List[Tuple[str, float]]:
     """
     Predict top-k skills.
     
