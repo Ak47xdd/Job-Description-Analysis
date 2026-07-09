@@ -1,13 +1,11 @@
 from fastapi import FastAPI, Depends, HTTPException, Security, status
 from fastapi.security import APIKeyHeader
+from pydantic import BaseModel, field_validator
 import hashlib
 import secrets
 import uvicorn
 
 from pred import JobAnalyze_6k
-
-from pydantic import BaseModel, field_validator
-
 from supabase_client import upsert_api_key_db
 
 app = FastAPI(title="Unified JobAuto Model API")
@@ -36,10 +34,8 @@ async def verify(api_key: str = Security(api_key_header)):
 
     hash_income = hash_key(api_key)
 
-    # 1) Try in-memory cache first
     db_record = API_KEY_DB.get(hash_income)
 
-    # 2) If not cached, query Supabase by api_key
     if not db_record:
         try:
             from supabase_client import get_api_key_db
@@ -49,7 +45,6 @@ async def verify(api_key: str = Security(api_key_header)):
         except Exception:
             db_record = None
 
-    # 3) Deny if still not found
     if not db_record:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
@@ -93,20 +88,20 @@ async def cron() -> dict:
     return {"message": "Cron Task Executed"}
 
 @app.post("/API/Generate", status_code=status.HTTP_201_CREATED)
-async def create_api(owner: str) -> dict:
+async def create_api(email: str) -> dict:
 
     raw = generate_api()
     hashed = hash_key(raw)
 
     API_KEY_DB[hashed] = {
-        "owner": owner,
+        "owner": email,
     }
 
-    upsert_api_key_db(user_id=hashed, owner=owner, api_key=raw)
+    upsert_api_key_db(user_id=hashed, owner=email, api_key=raw)
 
 
     return {
-        "owner": owner,
+        "owner": email,
         "api_key": raw,
         "warning": "Copy this key, this is a one time displayed key",
     }

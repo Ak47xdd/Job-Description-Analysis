@@ -19,20 +19,6 @@ SUPA_KEY = os.getenv("SUPA_KEY", "")
 supabase: Client = create_client(SUPA_URL, SUPA_KEY)
 
 def upsert_api_key_db(*, user_id: str, owner: str, api_key: str) -> dict:
-    """Upsert an API key record into api_tok.
-
-    Table schema expectation:
-      - user_id: BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
-      - owner: VARCHAR(50)
-      - api_key: VARCHAR(100)
-
-    Note:
-      The project currently uses `user_id` as the hashed API key.
-      This function inserts/updates using the provided `user_id`.
-    """
-    # user_id column is defined as GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    # so we must not include it in INSERT/UPSERT payload.
-    # We store the hashed key in `api_key` and use it for lookup.
     payload = {"owner": owner, "api_key": api_key}
 
 
@@ -46,12 +32,6 @@ def upsert_api_key_db(*, user_id: str, owner: str, api_key: str) -> dict:
 
 
 def get_api_key_db(*, user_id: str | None = None, api_key: str | None = None) -> dict | None:
-    """Fetch API key record from api_tok.
-
-    Primary lookup is by user_id (identity column). If user_id is not provided,
-    we first find the matching row by api_key (exact match), then return it.
-    """
-
     if user_id is not None:
         resp = (
             supabase.table("api_tok")
@@ -64,8 +44,6 @@ def get_api_key_db(*, user_id: str | None = None, api_key: str | None = None) ->
         return data[0] if data else None
 
     if api_key is not None:
-        # Identity columns are not used for filtering here; we filter by api_key.
-        # This finds the row and returns its user_id/owner/api_key.
         resp = (
             supabase.table("api_tok")
             .select("user_id", "owner", "api_key")
