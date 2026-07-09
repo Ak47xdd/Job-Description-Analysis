@@ -13,8 +13,8 @@ if not _env_path.exists():
     _env_path = PROJECT_ROOT / ".env"
 load_dotenv(dotenv_path=_env_path)
 
-API_URL = os.getenv("JOBAUTO_API_URL", "").rstrip("/")
-API_KEY = os.getenv("JOBAUTO_API_KEY", "")               
+API_URL = os.getenv("JOBSELECT_API_URL", "").rstrip("/")
+API_KEY = os.getenv("JOBSELECT_API_KEY", "")               
 
 from model.pred import JobAnalyze_6k as _local_predict
 
