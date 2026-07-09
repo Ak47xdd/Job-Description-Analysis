@@ -2,7 +2,6 @@
 Pred Module
 """
 
-
 import json
 import pickle
 from typing import List, Tuple
@@ -11,8 +10,6 @@ import torch
 from pathlib import Path
 import warnings
 
-# Silence sklearn "InconsistentVersionWarning" that appears when unpickling vectorizers/models
-# created with a different scikit-learn version.
 warnings.filterwarnings(
     "ignore",
     message="InconsistentVersionWarning: Trying to unpickle estimator*",

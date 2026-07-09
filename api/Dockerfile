@@ -14,4 +14,4 @@ COPY . /Job-Description-Analysis
 
 EXPOSE 8080
 
-CMD ["python", "JobAnalyze_API.py"]
+CMD ["python", "api/JobAnalyze_API.py"]
