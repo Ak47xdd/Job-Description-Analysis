@@ -23,7 +23,7 @@ def _call_api(jd: str, role: str, job_type: str) -> list[tuple[str, float]]:
     headers  = {"JobAnalyze_6k_Key": API_KEY}
     payload  = {"Job_Desc": jd, "Role": role, "Type": job_type}
 
-    response = requests.post(endpoint, json=payload, headers=headers, timeout=10)
+    response = requests.post(endpoint, json=payload, headers=headers, timeout=(10, 120))
     response.raise_for_status()   
 
     data = response.json()
@@ -36,15 +36,23 @@ def predict(jd: str, role: str, job_type: str) -> tuple[list[tuple[str, float]],
         try:
             results = _call_api(jd, role, job_type)
             return results, "API"
-        except requests.exceptions.ConnectionError:
-            pass
-        except requests.exceptions.Timeout:
-            pass 
+        except requests.exceptions.ConnectionError as e:
+            print(f"Connection Error: {e}")
+            raise
+
+        except requests.exceptions.Timeout as e:
+            print(f"Timeout: {e}")
+            raise
+
         except requests.exceptions.HTTPError as e:
-            if e.response is not None and e.response.status_code in (401, 403):
-                print(f"[JobSelect] API key issue ({e.response.status_code}) - running in LOCAL mode")
-        except Exception:
-            pass 
+            print(e.response.status_code)
+            print(e.response.text)
+            raise
+
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
+            raise
 
     results = _local_predict(jd, role=role, job_type=job_type)
     return results, "LOCAL"
