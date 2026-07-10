@@ -4,7 +4,19 @@ version = "0.10.5"
 authors = [
   { name="Akshay Babu", email="akshaysureshbabu100@gmail.com" },
 ]
+description = "A CLI Based AI Skill Classifier for Job Descriptions Build by Akshay Babu"
 readme = "README.md"
+requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/pypa/sampleproject"
+
 dependencies = [
   "rich==15.0.0",
   "pyfiglet==1.0.4",
