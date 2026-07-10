@@ -8,11 +8,8 @@ JobSelect.egg-info
 test
 feat_to_add.txt
 pytest.ini
-cli
 data
 dist
 frontend
-model
-model_out
 notebooks
 
