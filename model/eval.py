@@ -13,7 +13,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
-from model import SkillClassifier
+from Model import SkillClassifier
 
 sys.path.insert(0, '.')
 
