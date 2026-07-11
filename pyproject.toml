@@ -1,6 +1,15 @@
 [project]
 name = "JobSelect"
-version = "0.10.5"
+version = "0.11.2"
+dependencies = [
+  "rich==15.0.0",
+  "pyfiglet==1.0.4",
+  "scikit-learn==1.9.0",
+  "uvicorn==0.50.2",
+  "pydantic==2.13.4",
+  "requests==2.34.2",
+  "torch==2.12.1"
+]
 authors = [
   { name="Akshay Babu", email="akshaysureshbabu100@gmail.com" },
 ]
@@ -15,17 +24,7 @@ license = "MIT"
 license-files = ["LICEN[CS]E*"]
 
 [project.urls]
-Homepage = "https://github.com/pypa/sampleproject"
-
-dependencies = [
-  "rich==15.0.0",
-  "pyfiglet==1.0.4",
-  "scikit-learn==1.9.0",
-  "uvicorn==0.50.2",
-  "pydantic==2.13.4",
-  "requests==2.34.2",
-  "torch==2.12.1"
-]
+Homepage = "https://github.com/Ak47xdd/Job-Description-Analysis"
 
 # CLI entrypoint
 [project.scripts]
