@@ -7,12 +7,14 @@ Handles the API key prompt. Stores the user-entered key in module-level
 No imports from model_select or api_logic — circular import is gone.
 """
 
-from .utils import clear_console, API_title, query
+
 import os
+
+from .utils import clear_console, API_title, query
  
 
 key: str = ""
- 
+
  
 def val_api() -> str:
     clear_console()
