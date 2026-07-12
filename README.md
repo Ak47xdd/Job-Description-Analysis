@@ -8,7 +8,7 @@
 
 This project builds a lightweight text classification pipeline that predicts **multiple technical skills** from a job posting. Given a job description (optionally augmented with role and job type), the model outputs a ranked list of likely skills.
 
-![JobSelect CLI](frontend\repo\title_page_jobselect.png)
+![JobSelect CLI](./frontend/repo/title_page_jobselect.png)
 
 Installation:
 
@@ -207,9 +207,17 @@ The CLI:
 
 ---
 
-#### Option C: Call the FastAPI service (optional)
+#### Option C: Get Predictions through API (recommended)
 
-Run `api/JobAnalyze_API.py` (or use the deployed endpoint). Requests must include:
+Currently, the API service is under development, you could press `Enter` on first screen:
+
+- The CLI will always prompt the user for an API Key, press `Enter` to skip to LOCAL Mode
+
+![JobSelect CLI](./frontend/repo/mode_selection_jobselect.png)
+
+#### Option D: Call the FastAPI service (optional)
+
+Run `api/JobAnalyze_API.py`. Requests must include:
 
 - header `JobAnalyze_6k_Key` with a valid API key
 - JSON body with `Job_Desc`, `Role`, and `Type` (validated via Pydantic)
