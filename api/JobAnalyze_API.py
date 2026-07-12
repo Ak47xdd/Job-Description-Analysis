@@ -1,6 +1,10 @@
 from fastapi import FastAPI, Depends, HTTPException, Security, status
 from fastapi.security import APIKeyHeader
 from pydantic import BaseModel, field_validator
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
+from starlette.requests import Request
 import hashlib
 import secrets
 import uvicorn
@@ -16,6 +20,14 @@ api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
 # Local Cache
 API_KEY_DB = {}
 
+
+def key_func(request: Request) -> str:
+    api_key = request.headers.get(API_KEY_NAME)
+    return api_key if api_key else get_remote_address(request)
+
+limiter = Limiter(key_func=key_func)
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 def generate_api(prefix: str = "ja6k") -> str:
     rand_tok = secrets.token_hex(32)
@@ -89,7 +101,8 @@ async def cron() -> dict:
     return {"message": "Cron Task Executed"}
 
 @app.post("/API/Generate", status_code=status.HTTP_201_CREATED)
-async def create_api(email: str) -> dict:
+@limiter.limit("5/hour")
+async def create_api(request: Request, email: str) -> dict:
 
     raw = generate_api()
     hashed = hash_key(raw)
@@ -108,7 +121,8 @@ async def create_api(email: str) -> dict:
     }
 
 @app.post("/JobAnalyze_6k")
-async def JobAnalyze_Pred(data: ModelRequest, api_client: dict = Depends(verify)) -> dict:
+@limiter.limit("10/minute")
+async def JobAnalyze_Pred(request: Request, data: ModelRequest, api_client: dict = Depends(verify)) -> dict:
     jd = data.Job_Desc
     role = data.Role
     job_type = data.Type
