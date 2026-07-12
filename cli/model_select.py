@@ -1,8 +1,3 @@
-"""
-model_select.py — inference routing (API first, local fallback).
-Never prompts the user. Key is resolved lazily at predict() call time.
-"""
-
 from pathlib import Path
 from dotenv import load_dotenv
 import os
@@ -18,6 +13,7 @@ if not _env_path.exists():
     _env_path = PROJECT_ROOT / ".env"
 load_dotenv(dotenv_path=_env_path)
 
+<<<<<<< HEAD
 API_URL  = os.getenv("JOBSELECT_API_URL", "")
 _ENV_KEY = os.getenv("JOBSELECT_API_KEY", "").strip()
 
@@ -46,33 +42,65 @@ def _local_predict(jd: str, role: str, job_type: str):
 
 
 def _call_api(jd: str, role: str, job_type: str, api_key: str) -> list[tuple[str, float]]:
+=======
+API_URL = os.getenv("JOBSELECT_API_URL", "").rstrip("/")
+API_KEY = os.getenv("JOBSELECT_API_KEY", "")               
+
+from model.pred import JobAnalyze_6k as _local_predict
+
+def _call_api(jd: str, role: str, job_type: str) -> list[tuple[str, float]]:
+>>>>>>> parent of aaf29e0 (CLI)
     endpoint = f"{API_URL}/JobAnalyze_6k"
-    headers  = {"JobAnalyze_6k_Key": api_key}
+    headers  = {"JobAnalyze_6k_Key": API_KEY}
     payload  = {"Job_Desc": jd, "Role": role, "Type": job_type}
+<<<<<<< HEAD
     
     response = requests.post(endpoint, json=payload, headers=headers, timeout=(10, 120))
     response.raise_for_status()
     
+=======
+
+    response = requests.post(endpoint, json=payload, headers=headers, timeout=(10, 120))
+    response.raise_for_status()   
+
+>>>>>>> parent of aaf29e0 (CLI)
     data = response.json()
+    
     return [(skill, float(score)) for skill, score in data["answer"]]
 
 
 def predict(jd: str, role: str, job_type: str) -> tuple[list[tuple[str, float]], str]:
+<<<<<<< HEAD
     api_key = _resolve_key()
     
     if API_URL and api_key:
+=======
+    if API_URL and API_KEY:
+>>>>>>> parent of aaf29e0 (CLI)
         try:
-            results = _call_api(jd, role, job_type, api_key)
+            results = _call_api(jd, role, job_type)
             return results, "API"
         except requests.exceptions.ConnectionError as e:
-            print(f"[JobSelect] Connection error: {e} — falling back to LOCAL")
-        except requests.exceptions.Timeout:
-            print("[JobSelect] Request timed out — falling back to LOCAL")
+            print(f"Connection Error: {e}")
+            raise
+
+        except requests.exceptions.Timeout as e:
+            print(f"Timeout: {e}")
+            raise
+
         except requests.exceptions.HTTPError as e:
-            code = e.response.status_code if e.response is not None else "?"
-            print(f"[JobSelect] API error {code} — falling back to LOCAL")
+            print(e.response.status_code)
+            print(e.response.text)
+            raise
+
         except Exception as e:
+<<<<<<< HEAD
             print(f"[JobSelect] Unexpected error: {e} — falling back to LOCAL")
+=======
+            import traceback
+            traceback.print_exc()
+            raise
+>>>>>>> parent of aaf29e0 (CLI)
 
     results = _local_predict(jd, role=role, job_type=job_type)
     return results, "LOCAL"
