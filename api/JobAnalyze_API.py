@@ -1,8 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException, Security, status
 from fastapi.security import APIKeyHeader
 from pydantic import BaseModel, field_validator
-from pathlib import Path
-import os
 import hashlib
 import secrets
 import uvicorn
@@ -15,6 +13,7 @@ app = FastAPI(title="Unified JobAuto Model API")
 
 API_KEY_NAME = "JobAnalyze_6k_Key"
 api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
+# Local Cache
 API_KEY_DB = {}
 
 
@@ -120,19 +119,6 @@ async def JobAnalyze_Pred(data: ModelRequest, api_client: dict = Depends(verify)
 
     return {"answer": resp_json}
 
-@app.get("/debug/files")
-def debug_files():
-    root = Path(__file__).resolve().parent
-
-    return {
-        "cwd": os.getcwd(),
-        "file": str(__file__),
-        "root": str(root),
-        "files": os.listdir(root),
-        "model": os.path.exists(root / "model"),
-        "prep": os.path.exists(root / "model" / "prep"),
-        "model_out": os.path.exists(root / "model_out"),
-    }
 
 if __name__ == "__main__":
     uvicorn.run("JobAnalyze_API:app",host='0.0.0.0', port=5000)
