@@ -1,4 +1,4 @@
-# Job Description Skill Classifier [JobSelect v0.11.2 & JobAnalyze 6k v1.0] (Multi-Label)
+# Job Description Skill Classifier [JobSelect v0.11.5 & JobAnalyze 6k v1.0] (Multi-Label)
 
 [![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=flat&logo=python)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.12.1-%23EE4C2C?style=flat&logo=pytorch)](https://pytorch.org/)
