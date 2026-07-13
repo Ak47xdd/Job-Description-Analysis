@@ -1,4 +1,4 @@
-# JobAnalyze 6k (≈6000 parameter) Skill Classifier
+# JobAnalyze 6k v1.0 Skill Classifier
 
 A lightweight **multi-label** PyTorch model that predicts a fixed set of **skills/keywords** from a job description plus a provided **role** and **job type**.
 
