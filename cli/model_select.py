@@ -75,10 +75,14 @@ def _call_api(
     return [(skill, float(score)) for skill, score in data["answer"]]
  
  
-def predict(jd: str, role: str, job_type: str) -> tuple[list[tuple[str, float]], str]:
+def predict(jd: str, role: str, job_type: str, force_local: bool = False) -> tuple[list[tuple[str, float]], str]:
+    if force_local:
+        results = _local_predict(jd, role=role, job_type=job_type)
+        return results, "LOCAL"
+
     api_url, env_key = _resolve_config()
     api_key = _resolve_key(env_key)
- 
+
     if api_url and api_key:
         try:
             results = _call_api(jd, role, job_type, api_key, api_url)
