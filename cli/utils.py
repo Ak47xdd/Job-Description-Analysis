@@ -2,6 +2,9 @@ import os
 import subprocess
 from pyfiglet import Figlet
 from rich import print
+from rich.console import Console
+
+console = Console()
 
 def clear_console() -> None:
     if os.name == "nt":
@@ -31,3 +34,4 @@ def query(message: str) -> None:
     print("\n[yellow][JobSelect]")
     print(f"[yellow] >> {message} : ")
     print("[You]")
+    
