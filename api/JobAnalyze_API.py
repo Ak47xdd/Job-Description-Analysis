@@ -1,3 +1,13 @@
+"""
+JobAnalyze_API,py - Main API Script
+Currently Supports:
+    - API Creation Endpoint
+    - API Authenticator
+    - API Encryptor
+    - JobAnalyze 6k model Endpoint
+"""
+
+
 from fastapi import FastAPI, Depends, HTTPException, Security, status
 from fastapi.security import APIKeyHeader
 from pydantic import BaseModel, field_validator
