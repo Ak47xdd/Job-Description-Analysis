@@ -1,3 +1,7 @@
+"""
+pipeline.py - Main training pipeline, run this to retrain the model
+"""
+
 import subprocess as sub
 from pathlib import Path
 
