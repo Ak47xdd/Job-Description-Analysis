@@ -1,5 +1,5 @@
 """
-Pred Module
+pred.py - Powers JobAnalyze 6k model skeleton
 """
 
 import json
