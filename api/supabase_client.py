@@ -1,3 +1,7 @@
+"""
+supabase_client.py - Main client for the supabase integration for queries to postgres
+"""
+
 from pathlib import Path
 from dotenv import load_dotenv
 import sys
