@@ -1,3 +1,7 @@
+"""
+main_screen.py - Main screen utils for jobslect CLI tool
+"""
+
 from rich.console import Console
 from rich import print
 
