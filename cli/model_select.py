@@ -5,16 +5,13 @@ Never prompts the user. Key is resolved lazily at predict() call time.
 
 from pathlib import Path
 from dotenv import load_dotenv
+from rich import print
 import os
 import requests
 import sys
  
  
 def _load_env() -> None:
-    """
-    Load .env from the first location that actually exists.
-    Called lazily inside _resolve_config(), never at module import time.
-    """
     candidates = [
         Path.cwd() / ".env",                                    
         Path.home() / ".jobselect" / ".env",                    
@@ -27,11 +24,6 @@ def _load_env() -> None:
  
  
 def _resolve_config() -> tuple[str, str]:
-    """
-    Return (API_URL, ENV_KEY) by loading .env lazily.
-    Called once per predict() invocation — cheap because
-    load_dotenv() is a no-op if already loaded.
-    """
     _load_env()
     url = os.getenv("JOBSELECT_API_URL", "").strip().rstrip("/")
     key = os.getenv("JOBSELECT_API_KEY", "").strip()
@@ -88,14 +80,14 @@ def predict(jd: str, role: str, job_type: str, force_local: bool = False) -> tup
             results = _call_api(jd, role, job_type, api_key, api_url)
             return results, "API"
         except requests.exceptions.ConnectionError as e:
-            print(f"[JobSelect] Connection error: {e} — falling back to LOCAL")
+            print(f"[red][JobSelect] Connection error: {e} — falling back to LOCAL")
         except requests.exceptions.Timeout:
-            print("[JobSelect] Request timed out — falling back to LOCAL")
+            print("[red][JobSelect] Request timed out/Under Maintainance — falling back to LOCAL")
         except requests.exceptions.HTTPError as e:
             code = e.response.status_code if e.response is not None else "?"
-            print(f"[JobSelect] API error {code} — falling back to LOCAL")
+            print(f"[red][JobSelect] API error {code} — falling back to LOCAL")
         except Exception as e:
-            print(f"[JobSelect] Unexpected error: {e} — falling back to LOCAL")
+            print(f"[red][JobSelect] Unexpected error: {e} — falling back to LOCAL")
  
     results = _local_predict(jd, role=role, job_type=job_type)
     return results, "LOCAL"
