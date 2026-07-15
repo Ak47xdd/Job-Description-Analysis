@@ -1,3 +1,7 @@
+"""
+utils.py - Main Utilities for the CLI Interface
+"""
+
 import os
 import subprocess
 from pyfiglet import Figlet
