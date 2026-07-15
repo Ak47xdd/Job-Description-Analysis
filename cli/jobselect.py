@@ -4,42 +4,14 @@ Uses relative imports so it works both as an installed pip package
 (jobselect command) and during local development (python -m cli.jobselect).
 """
 
-
 from rich import print
-# from rich.console import Console
 
-
-from .api_val import val_api, infer_mode
 from .utils import clear_console, title, query
 from .main_screen import main_screen
-# predict is imported lazily via main_screen() / model_select to reduce circular-import risk.
 
 
 def cli() -> None:
     try:
-        # console = Console()
-
-        # val_api()
-        # infer = infer_mode()
-
-        # clear_console()
-        # title()
-
-        # print(f"[yellow][JobAnalyze : {infer}]")
-        # print("[yellow]>> Welcome to JobSelect!")
-
-        # query("Enter Job Description")
-        # jd = input(" >> ")
-
-        # query("Enter Role  (AI Engineer / AI Developer)")
-        # role = input(" >> ")
-
-        # query("Enter Type  (Internship / Junior / Senior)")
-        # job_type = input(" >> ")
-
-        # with console.status("[bold green]Loading...", spinner="dots2"):
-        #     results, mode = predict(jd, role=role, job_type=job_type)
-
         jd, role, job_type, results, mode = main_screen()
 
         clear_console()
