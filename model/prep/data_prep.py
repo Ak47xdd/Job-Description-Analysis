@@ -6,7 +6,6 @@ Run this script, model/model.py and the notebooks through pipeline.py
 
 import json
 from pathlib import Path
-
 import numpy as np
 import pandas as pd
 import pickle
@@ -15,7 +14,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 
 from sym_map import SYNONYM_MAP
-
 
 df = pd.read_csv(r'C:\Portfolio-Projects\Job-Description-Analysis\data\clean\cleaned_job_descriptions.csv')
 
