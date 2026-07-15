@@ -1,5 +1,5 @@
 """ 
-model.py - DO NOT RUN THIS SCRIPT!
+Model.py - DO NOT RUN THIS SCRIPT!
 
 Run this script, prep/data_prep.py and the notebooks through pipeline.py
 """
@@ -17,7 +17,6 @@ torch.manual_seed(42)
 
 DATA_DIR = Path(__file__).resolve().parent / 'prep'
 
-# Ensure required artifacts exist even when run from different CWDs
 assert (DATA_DIR / 'prepared_data.npz').exists(), f"Missing {DATA_DIR / 'prepared_data.npz'}"
 assert (DATA_DIR / 'label_vocab.json').exists(), f"Missing {DATA_DIR / 'label_vocab.json'}"
 
