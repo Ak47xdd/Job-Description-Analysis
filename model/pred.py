@@ -1,7 +1,6 @@
 """
-Pred Module
+pred.py - predictor for evaluation
 """
-
 
 import json
 import pickle
