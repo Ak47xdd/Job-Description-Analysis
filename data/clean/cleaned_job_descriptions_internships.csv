@@ -622,3 +622,39 @@ Work on PDF/OCR extraction, accounting, and JavaScript tasks.
 Analyze data and create visualizations using JSON and SQL.
 Participate in code reviews and contribute to improving the overall quality of the codebase.
 Stay updated with industry trends and emerging technologies in AI and Pytho",2026,Bachelors,0,"Python, Javascript, SQL, ML","Communication, Problem Solving"
+197,AI Developer,Internship,"Strong knowledge of Python (preferably with frameworks like Flask, FastAPI).
+Familiarity with AI concepts such as Machine Learning, Deep Learning, Natural Language Processing (NLP), etc.
+Knowledge of AI libraries such as TensorFlow, Keras, PyTorch, or Scikit-Learn.
+Experience with SQL or NoSQL databases (e.g., MySQL, MongoDB).
+Basic understanding of RESTful APIs and data serialization formats like JSON and XML.
+Familiarity with version control systems like Git.
+Understanding of OOP (Object-Oriented Programming) concepts.
+Ability to work with cloud platforms (AWS, Google Cloud, etc.) is a plus.",2026,Bachelors,0,"Python, APIs, ML, TensorFlow/PyTorch, Scikit-Learn, NLP, SQL, Git, Github, AWS/Azure","Communication, Problem Solving"
+192,AI Developer,Internship,"Assist in designing, developing, and testing AI/ML models and applications.
+Work on Generative AI, NLP, Chatbots, and automation solutions.
+Support data collection, preprocessing, and analysis activities.
+Collaborate with developers and product teams on AI integrations.
+Research and experiment with the latest AI technologies and frameworks.
+Develop APIs and backend services for AI applications.
+Create technical documentation and project reports.
+Participate in code reviews and debugging sessions.",2026,Bachelors,0,"Python, ML, GenAI, NLP, APIs","Communication, Problem Solving"
+199,AI Developer,Internship,"Develop and implement AI models using Python and other relevant technologies.
+Collaborate with cross-functional teams to design and develop new features.
+Work on PDF/OCR extraction, accounting, and JavaScript tasks.
+Analyze data and create visualizations using JSON and SQL.
+Participate in code reviews and contribute to improving the overall quality of the codebase.
+Stay updated with industry trends and emerging technologies in AI and Python",2026,Bachelors,0,"Python, Javascript, SQL, ML","Communication, Problem Solving"
+200,AI Developer,Internship,"Interest in Generative AI, Large Language Models (LLMs), and AI Agentic Systems is an advantage.
+Basic knowledge of programming languages such as C#, Python, or similar technologies.
+Understanding of Object-Oriented Programming (OOP) concepts.
+Familiarity with databases and SQL queries.
+Basic understanding of web technologies (HTML, CSS, JavaScript).
+Strong analytical, problem-solving, and communication skills.
+Eagerness to learn new technologies and adapt to a fast-paced environment.
+Ability to work from the Hyderabad office throughout the internship period",2026,Bachelors,0,"Python, LLMs, C#, Agents, SQL, Javascript, GenAI","Communication, Problem Solving"
+201,AI Developer,Internship,"What You ll Do (Responsibilities)
+AI-Pair Programming: Use tools like antigravity, GitHub Copilot, Cursor, or Claude Dev to build production-ready features, focusing on architectural logic while the AI handles the syntax.
+Prompt Engineering for Code: Create and maintain a Prompt Library for the team to automate repetitive tasks like unit testing, documentation, and SQL migrations.
+Code Verification: Act as the Human-in-the-loop to audit AI-generated code for security flaws, technical debt, and logical errors.
+RAG & Tooling: Assist in building internal AI tools (using LangChain or LlamaIndex) that help our senior devs navigate our massive internal codebase.
+Performance Benchmarking: Help track Developer Velocity measuring how much faster we ship code with AI assistance vs. traditional methods.",2026,Bachelors,0,"Python, Github, Git, Prompt Engineering, SQL, Agents, LangChain, LangGraph, LlamaIndex, RAG, GenAI ","Communication, Problem Solving"
