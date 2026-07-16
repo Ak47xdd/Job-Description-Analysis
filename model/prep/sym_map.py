@@ -1,3 +1,7 @@
+"""
+sym_map.py - All synonyms for the TF-IDF Vectorizer
+"""
+
 SYNONYM_MAP = {
     # docker 
     'containeriz':              'docker',
