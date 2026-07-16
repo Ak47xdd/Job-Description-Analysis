@@ -749,3 +749,53 @@ Basic understanding of cloud platforms (AWS, Azure, GCP).
 Passion for AI, NLP, and chatbot development.
 Bonus: Knowledge of UI frameworks (React, Next.js).
 Good to have - Pinecone or equivalent vector databases.",2026,Bachelors,0-1,"Python, APIs, Javascript, NLP, LLMs, LangCgain, LangGraph, AWS/Azure, React, VectorDB","Communication, Problem Solving"
+198,AI Developer,Junior,"Design, develop, and implement state-of-the-art generative AI models, including Large Language Models (LLMs), Diffusion Models, GANs, and VAEs, for various applications.
+Research and evaluate new generative AI techniques and frameworks to identify opportunities for innovation and improvement.
+Optimize and fine-tune existing generative models for performance, efficiency, and scalability.
+Integrate generative AI solutions into existing product pipelines and develop new APIs for seamless interaction.
+Collaborate with data scientists, machine learning engineers, and product managers to define requirements, design solutions, and deliver high-quality AI-powered features.
+Develop robust MLOps practices for deploying, monitoring, and maintaining generative AI models in production environments.
+Conduct rigorous testing, validation, and evaluation of models to ensure accuracy, reliability, and ethical compliance.
+Stay abreast of the latest research and developments in generative AI and machine learning, applying relevant insights to ongoing projects.
+Document technical designs, model architectures, and implementation details clearly and comprehensively.
+Participate in code reviews, contributing to a culture of high-quality code and best practices.",2026,Bachelors,0-1,"Python, LLMs, GenAI, MLOps, APIs","Communication, Problem Solving"
+199,AI Developer,Junior,"0 to 1 years of professional experience in AI Agent Developer.
+Proficient in Python and deep learning frameworks like PyTorch and TensorFlow.
+Strong skills in time-series data analysis, feature engineering, and model optimization.
+Familiarity with reinforcement learning algorithms and methodologies.
+Experience with cloud platforms (GCP, AWS, Azure), container technologies (Docker, Kubernetes), and microservices.
+A proven record of deploying ML models and developing autonomous AI agents.
+Knowledge of AI-driven process optimization tools including AI orchestration for enterprise workflows.
+Experience in troubleshooting ML systems
+Adept at proactive problem identification and resolution.
+Certification in MLOps is a plus.",2026,Bachelors,0-1,"Python, Agents, LangChain, LangGraph, TensorFlow/PyTorch, AWS/Azure, ML, MLOps","Communication, Problem Solving"
+190,AI Developer,Junior,"Solid DS & Algo, analytical mindset
+Strong in Python (FastAPI/Flask/Django) or Node.js
+Good knowledge of ReactJS and UI
+Experience with REST APIs and ChatGPT integration
+Strong in database design and queries ",2026,Bachelors/Masters,0-1,"Python, APIs, Django, Javascript, GenAI, SQL","Communication, Problem Solving"
+191,AI Developer,Junior,"Strong analytical and problem-solving skills
+Basic understanding of AI/ML concepts
+Familiarity with Python or JavaScript
+Understanding of APIs and backend systems
+Preferred Qualifications
+Background in Computer Science, Engineering, or Mathematics
+Exposure to AI tools (LangChain, OpenAI APIs)
+Participation in projects, hackathons, or internships",2026,Bachelors,0-1,"Python, ML, Javascript, APIs, Agents, OpenAI, LangChain, LangGraph","Communication, Problem Solving"
+193,AI Developer,Junior,"Bachelor s degree in Computer Science, IT, or related field
+0 3 years of experience (Freshers with strong fundamentals can apply)
+Strong understanding of software testing concepts (SDLC, STLC, defect lifecycle)
+Good analytical and problem-solving skills
+Ability to understand business logic and workflows quickly
+Strong verbal and written communication skills
+Basic understanding of:
+Manual testing techniques
+API testing concepts
+Databases (SQL basics)
+Familiarity with tools like JIRA or similar bug tracking tools
+Good to Have (Not Mandatory)
+Exposure to automation tools (Selenium or similar)
+Basic programming knowledge ( Java / JavaScript / HTML / CSS )
+Experience or understanding of Agile/Scrum
+Awareness of Git/GitHub
+Understanding of non-functional testing (performance, security basic level)",2026,Bachelors,0-1,"Python, APIs, SQL, Java, Javascript, Git, Github","Communication, Problem Solving"
