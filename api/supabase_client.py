@@ -34,29 +34,25 @@ def upsert_api_key_db(*, user_id: str, owner: str, api_key: str) -> dict:
     return data[0] if data else {}
 
 
-def get_api_key_db(*, owner: str) -> dict | None:
+def get_api_key_db(*, owner: str | None = None, api_key: str | None = None) -> dict | None:
+    query = (
+        supabase
+        .table("api_tok")
+        .select("user_id", "owner", "api_key")
+    )
+
     if owner is not None:
-        resp = (
-            supabase.table("api_tok")
-            .select("owner", "api_key")
-            .eq("owner", owner)
-            .limit(1)
-            .execute()
-        )
-        data = getattr(resp, "data", None) or []
-        return data[0] if data else None
+        query = query.eq("owner", owner)
 
-    if api_key is not None:
-        resp = (
-            supabase.table("api_tok")
-            .select("user_id", "owner", "api_key")
-            .eq("api_key", api_key)
-            .limit(1)
-            .execute()
-        )
-        data = getattr(resp, "data", None) or []
-        return data[0] if data else None
+    elif api_key is not None:
+        query = query.eq("api_key", api_key)
 
-    return None
+    else:
+        return None
+
+    resp = query.limit(1).execute()
+
+    data = getattr(resp, "data", None) or []
+    return data[0] if data else None
 
 

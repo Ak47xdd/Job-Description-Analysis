@@ -27,9 +27,14 @@ app = FastAPI(title="Unified JobAuto Model API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_orgins=["https://job-analyzer-view.vercel.app"],
-    allow_methods=["GET", "POST"],
-    allow_headers=["*"]
+    allow_origins=[
+    "https://job-analyzer-view.vercel.app",
+    "http://localhost:5173",
+    "http://localhost:3000",
+    ],
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["*"],
 )
 
 
@@ -47,8 +52,13 @@ limiter = Limiter(key_func=key_func)
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
-class Auth(BaseModel):
+class SignUpRequest(BaseModel):
     name: str
+    email: EmailStr
+    password: str
+
+
+class SignInRequest(BaseModel):
     email: EmailStr
     password: str
 
@@ -124,7 +134,7 @@ async def cron() -> dict:
     return {"message": "Cron Task Executed"}
 
 @app.post("/auth/create_acc", status_code=status.HTTP_201_CREATED)
-async def create_acc(data: Auth) -> dict:
+async def create_acc(data: SignUpRequest) -> dict:
     from supabase_client import supabase
     res = supabase.auth.sign_up({
         "name": data.name,
@@ -141,7 +151,7 @@ async def create_acc(data: Auth) -> dict:
     return {"message": "Account Created", "api_key": raw,}
 
 @app.post("/auth/sign_in")
-async def sign_in(data: Auth) -> dict:
+async def sign_in(data: SignInRequest) -> dict:
     from supabase_client import supabase
     res = supabase.auth.sign_in_with_password({
         "email": data.email,
@@ -151,7 +161,7 @@ async def sign_in(data: Auth) -> dict:
         raise HTTPException(status_code=401, detail="This Account does not exist")
     
     from supabase_client import get_api_key_db
-    record = get_api_key_db(api_key=data.email)
+    record = get_api_key_db(owner=data.email)
     if not record :
         raise HTTPException(status_code=404, detail="API Key does not exist")
     
