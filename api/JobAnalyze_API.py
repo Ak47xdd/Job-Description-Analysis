@@ -1,45 +1,64 @@
 """
 JobAnalyze_API.py - Main API Script
-Currently Supports:
-    - API Creation Endpoint
-    - API Authenticator
-    - API Encryptor
-    - JobAnalyze 6k model Endpoint
-    - Auth: Sign Up / Sign In via Supabase
 """
  
 from fastapi import FastAPI, Depends, HTTPException, Security, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import APIKeyHeader
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel, field_validator, EmailStr
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 from starlette.requests import Request
+from starlette.middleware.base import BaseHTTPMiddleware
 import hashlib
 import secrets
+import traceback
 import uvicorn
  
 from pred import JobAnalyze_6k
 from supabase_client import upsert_api_key_db
  
+ALLOWED_ORIGINS = [
+    "https://job-analyzer-view.vercel.app",
+    "http://localhost:5173",
+    "http://localhost:3000",
+]
+ 
 app = FastAPI(title="Unified JobAuto Model API")
+ 
+class ForceCORSMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        origin = request.headers.get("origin", "")
+        try:
+            response = await call_next(request)
+        except Exception:
+            response = JSONResponse(
+                status_code=500,
+                content={"detail": "Internal server error"},
+            )
+        if origin in ALLOWED_ORIGINS:
+            response.headers["Access-Control-Allow-Origin"]      = origin
+            response.headers["Access-Control-Allow-Credentials"] = "true"
+            response.headers["Access-Control-Allow-Methods"]     = "GET,POST,OPTIONS"
+            response.headers["Access-Control-Allow-Headers"]     = "*"
+        return response
+ 
+app.add_middleware(ForceCORSMiddleware)
  
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://job-analyzer-view.vercel.app",
-        "http://localhost:5173",
-        "http://localhost:3000",
-    ],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
  
+ 
 API_KEY_NAME = "JobAnalyze_6k_Key"
 api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
-API_KEY_DB = {}  # in-memory cache
+API_KEY_DB: dict = {}
  
  
 def key_func(request: Request) -> str:
@@ -50,8 +69,7 @@ limiter = Limiter(key_func=key_func)
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
  
- 
-# ── Auth models ──────────────────────────────────────────────────────────────
+
 class SignUpRequest(BaseModel):
     name: str
     email: EmailStr
@@ -63,7 +81,6 @@ class SignInRequest(BaseModel):
     password: str
  
  
-# ── Key helpers ───────────────────────────────────────────────────────────────
 def generate_api(prefix: str = "ja6k") -> str:
     return f"{prefix}_{secrets.token_hex(32)}"
  
@@ -72,17 +89,14 @@ def hash_key(api_key: str) -> str:
     return hashlib.sha256(api_key.encode("utf-8")).hexdigest()
  
  
-# ── API key verification ──────────────────────────────────────────────────────
 async def verify(api_key: str = Security(api_key_header)):
     if not api_key:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="API Key Missing From Header",
         )
- 
     hash_income = hash_key(api_key)
     db_record = API_KEY_DB.get(hash_income)
- 
     if not db_record:
         try:
             from supabase_client import get_api_key_db
@@ -91,17 +105,14 @@ async def verify(api_key: str = Security(api_key_header)):
                 API_KEY_DB[hash_income] = db_record
         except Exception:
             db_record = None
- 
     if not db_record:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Invalid or Expired API Key, Please get an API Key",
         )
- 
     return db_record
  
  
-# ── Inference model ───────────────────────────────────────────────────────────
 class ModelRequest(BaseModel):
     Job_Desc: str
     Role: str
@@ -128,7 +139,6 @@ class ModelRequest(BaseModel):
         return v
  
  
-# ── Routes ────────────────────────────────────────────────────────────────────
 @app.get("/")
 async def main() -> dict:
     return {"message": "JobAnalyze 6k"}
@@ -153,18 +163,35 @@ async def create_acc(data: SignUpRequest) -> dict:
             "options": {"data": {"name": name}},
         })
     except Exception as e:
-        print(f"Signup error: {repr(e)}")
-        raise HTTPException(status_code=400, detail="Account creation failed")
+        traceback.print_exc()
+        raise HTTPException(status_code=400, detail=f"Signup failed: {str(e)}")
  
     if res.user is None:
-        raise HTTPException(status_code=400, detail="Account not created")
+        raise HTTPException(
+            status_code=400,
+            detail="Signup failed — check that Supabase email provider is enabled",
+        )
  
     raw    = generate_api()
     hashed = hash_key(raw)
  
-    upsert_api_key_db(user_id=hashed, owner=email, api_key=raw)
+    try:
+        upsert_api_key_db(user_id=hashed, owner=email, api_key=raw)
+    except Exception as e:
+        traceback.print_exc()
+        return {
+            "message": "Account Created — API key storage failed, contact support",
+            "api_key": raw,
+            "name": name,
+            "email": email,
+        }
  
-    return {"message": "Account Created", "api_key": raw, "name": name, "email": email}
+    return {
+        "message": "Account Created",
+        "api_key": raw,
+        "name": name,
+        "email": email,
+    }
  
  
 @app.post("/auth/sign_in")
@@ -179,16 +206,15 @@ async def sign_in(data: SignInRequest) -> dict:
             "password": data.password,
         })
     except Exception as e:
-        print(f"Sign-in error: {repr(e)}")
+        traceback.print_exc()
         raise HTTPException(status_code=401, detail="Invalid email or password")
  
     if res.user is None:
         raise HTTPException(status_code=401, detail="Invalid email or password")
  
-    # Pull name from Supabase user_metadata (set during sign_up)
-    name = (res.user.user_metadata or {}).get("name", email.split("@")[0])
- 
+    name   = (res.user.user_metadata or {}).get("name", email.split("@")[0])
     record = get_api_key_db(owner=email)
+ 
     if not record:
         raise HTTPException(status_code=404, detail="API Key does not exist")
  
@@ -200,10 +226,8 @@ async def sign_in(data: SignInRequest) -> dict:
 async def create_api(request: Request, email: str) -> dict:
     raw    = generate_api()
     hashed = hash_key(raw)
- 
     API_KEY_DB[hashed] = {"owner": email}
     upsert_api_key_db(user_id=hashed, owner=email, api_key=raw)
- 
     return {
         "owner": email,
         "api_key": raw,
