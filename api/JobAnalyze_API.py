@@ -29,6 +29,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
     "https://job-analyzer-view.vercel.app",
+    "https://job-analyzer-view.vercel.app/signup",
+    "https://job-analyzer-view.vercel.app/login",
     "http://localhost:5173",
     "http://localhost:3000",
     ],
@@ -133,22 +135,53 @@ async def main() -> dict:
 async def cron() -> dict:
     return {"message": "Cron Task Executed"}
 
-@app.post("/auth/create_acc", status_code=status.HTTP_201_CREATED)
+@app.post(
+    "/auth/create_acc",
+    status_code=status.HTTP_201_CREATED,
+)
 async def create_acc(data: SignUpRequest) -> dict:
     from supabase_client import supabase
-    res = supabase.auth.sign_up({
-        "name": data.name,
-        "email": data.email,
-        "password": data.password
-    })
+
+    email = str(data.email).strip().lower()
+
+    try:
+        res = supabase.auth.sign_up({
+            "email": email,
+            "password": data.password,
+            "options": {
+                "data": {
+                    "name": data.name.strip(),
+                }
+            },
+        })
+
+    except Exception as e:
+        print(f"Signup error: {repr(e)}")
+
+        raise HTTPException(
+            status_code=400,
+            detail="Account creation failed",
+        )
+
     if res.user is None:
-        raise HTTPException(status_code=400, detail="Account not created")
-    
+        raise HTTPException(
+            status_code=400,
+            detail="Account not created",
+        )
+
     raw = generate_api()
     hashed = hash_key(raw)
-    upsert_api_key_db(user_id=hashed, owner=data.email, api_key=raw)
-    
-    return {"message": "Account Created", "api_key": raw,}
+
+    upsert_api_key_db(
+        user_id=hashed,
+        owner=email,
+        api_key=raw,
+    )
+
+    return {
+        "message": "Account Created",
+        "api_key": raw,
+    }
 
 @app.post("/auth/sign_in")
 async def sign_in(data: SignInRequest) -> dict:
