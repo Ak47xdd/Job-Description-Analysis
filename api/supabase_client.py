@@ -25,7 +25,6 @@ supabase: Client = create_client(SUPA_URL, SUPA_KEY)
 def upsert_api_key_db(*, user_id: str, owner: str, api_key: str) -> dict:
     payload = {"owner": owner, "api_key": api_key}
 
-
     resp = (
         supabase.table("api_tok")
         .upsert(payload)
@@ -35,12 +34,12 @@ def upsert_api_key_db(*, user_id: str, owner: str, api_key: str) -> dict:
     return data[0] if data else {}
 
 
-def get_api_key_db(*, user_id: str | None = None, api_key: str | None = None) -> dict | None:
-    if user_id is not None:
+def get_api_key_db(*, owner: str) -> dict | None:
+    if owner is not None:
         resp = (
             supabase.table("api_tok")
-            .select("user_id", "owner", "api_key")
-            .eq("user_id", user_id)
+            .select("owner", "api_key")
+            .eq("owner", owner)
             .limit(1)
             .execute()
         )
