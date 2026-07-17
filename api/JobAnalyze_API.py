@@ -185,20 +185,42 @@ async def create_acc(data: SignUpRequest) -> dict:
 
 @app.post("/auth/sign_in")
 async def sign_in(data: SignInRequest) -> dict:
-    from supabase_client import supabase
-    res = supabase.auth.sign_in_with_password({
-        "email": data.email,
-        "password": data.password
-    })
+    from supabase_client import supabase, get_api_key_db
+
+    email = str(data.email).strip().lower()
+
+    try:
+        res = supabase.auth.sign_in_with_password({
+            "email": email,
+            "password": data.password,
+        })
+
+    except Exception as e:
+        print(f"Sign-in error: {repr(e)}")
+
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid email or password",
+        )
+
     if res.user is None:
-        raise HTTPException(status_code=401, detail="This Account does not exist")
-    
-    from supabase_client import get_api_key_db
-    record = get_api_key_db(owner=data.email)
-    if not record :
-        raise HTTPException(status_code=404, detail="API Key does not exist")
-    
-    return {"email": data.email, "api_key": record["api_key"]}
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid email or password",
+        )
+
+    record = get_api_key_db(owner=email)
+
+    if not record:
+        raise HTTPException(
+            status_code=404,
+            detail="API Key does not exist",
+        )
+
+    return {
+        "email": email,
+        "api_key": record["api_key"],
+    }
 
 @app.post("/API/Generate", status_code=status.HTTP_201_CREATED)
 @limiter.limit("5/hour")
