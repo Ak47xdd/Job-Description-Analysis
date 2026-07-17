@@ -9,8 +9,9 @@ Currently Supports:
 
 
 from fastapi import FastAPI, Depends, HTTPException, Security, status
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import APIKeyHeader
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, field_validator, EmailStr
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
@@ -23,6 +24,13 @@ from pred import JobAnalyze_6k
 from supabase_client import upsert_api_key_db
 
 app = FastAPI(title="Unified JobAuto Model API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_orgins=["https://job-analyzer-view.vercel.app"],
+    allow_methods=["GET", "POST"],
+    allow_headers=["*"]
+)
 
 
 API_KEY_NAME = "JobAnalyze_6k_Key"
@@ -38,6 +46,11 @@ def key_func(request: Request) -> str:
 limiter = Limiter(key_func=key_func)
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+class Auth(BaseModel):
+    name: str
+    email: EmailStr
+    password: str
 
 def generate_api(prefix: str = "ja6k") -> str:
     rand_tok = secrets.token_hex(32)
@@ -109,6 +122,40 @@ async def main() -> dict:
 @app.get("/cron")
 async def cron() -> dict:
     return {"message": "Cron Task Executed"}
+
+@app.post("/auth/create_acc", status_code=status.HTTP_201_CREATED)
+async def create_acc(data: Auth) -> dict:
+    from supabase_client import supabase
+    res = supabase.auth.sign_up({
+        "name": data.name,
+        "email": data.email,
+        "password": data.password
+    })
+    if res.user is None:
+        raise HTTPException(status_code=400, detail="Account not created")
+    
+    raw = generate_api()
+    hashed = hash_key(raw)
+    upsert_api_key_db(user_id=hashed, owner=data.email, api_key=raw)
+    
+    return {"message": "Account Created", "api_key": raw,}
+
+@app.post("/auth/sign_in")
+async def sign_in(data: Auth) -> dict:
+    from supabase_client import supabase
+    res = supabase.auth.sign_in_with_password({
+        "email": data.email,
+        "password": data.password
+    })
+    if res.user is None:
+        raise HTTPException(status_code=401, detail="This Account does not exist")
+    
+    from supabase_client import get_api_key_db
+    record = get_api_key_db(api_key=data.email)
+    if not record :
+        raise HTTPException(status_code=404, detail="API Key does not exist")
+    
+    return {"email": data.email, "api_key": record["api_key"]}
 
 @app.post("/API/Generate", status_code=status.HTTP_201_CREATED)
 @limiter.limit("5/hour")
