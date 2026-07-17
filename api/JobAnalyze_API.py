@@ -12,6 +12,7 @@ from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 from starlette.requests import Request
 from starlette.middleware.base import BaseHTTPMiddleware
+from supabase_auth.errors import AuthApiError
 import hashlib
 import secrets
 import traceback
@@ -46,7 +47,6 @@ class ForceCORSMiddleware(BaseHTTPMiddleware):
         return response
  
 app.add_middleware(ForceCORSMiddleware)
- 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=ALLOWED_ORIGINS,
@@ -55,8 +55,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
  
- 
-API_KEY_NAME = "JobAnalyze_6k_Key"
+API_KEY_NAME   = "JobAnalyze_6k_Key"
 api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
 API_KEY_DB: dict = {}
  
@@ -96,7 +95,7 @@ async def verify(api_key: str = Security(api_key_header)):
             detail="API Key Missing From Header",
         )
     hash_income = hash_key(api_key)
-    db_record = API_KEY_DB.get(hash_income)
+    db_record   = API_KEY_DB.get(hash_income)
     if not db_record:
         try:
             from supabase_client import get_api_key_db
@@ -162,14 +161,32 @@ async def create_acc(data: SignUpRequest) -> dict:
             "password": data.password,
             "options": {"data": {"name": name}},
         })
+ 
+    except AuthApiError as e:
+        msg = str(e).lower()
+        if "already registered" in msg or "already exists" in msg:
+            raise HTTPException(
+                status_code=status.HTTP_409_CONFLICT,
+                detail="An account with this email already exists. Please sign in.",
+            )
+        if "password" in msg:
+            raise HTTPException(
+                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                detail="Password must be at least 6 characters.",
+            )
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
+ 
     except Exception as e:
         traceback.print_exc()
-        raise HTTPException(status_code=400, detail=f"Signup failed: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Unexpected signup error — please try again",
+        )
  
     if res.user is None:
         raise HTTPException(
-            status_code=400,
-            detail="Signup failed — check that Supabase email provider is enabled",
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Signup failed — Supabase email provider may not be enabled",
         )
  
     raw    = generate_api()
@@ -177,7 +194,7 @@ async def create_acc(data: SignUpRequest) -> dict:
  
     try:
         upsert_api_key_db(user_id=hashed, owner=email, api_key=raw)
-    except Exception as e:
+    except Exception:
         traceback.print_exc()
         return {
             "message": "Account Created — API key storage failed, contact support",
@@ -186,12 +203,7 @@ async def create_acc(data: SignUpRequest) -> dict:
             "email": email,
         }
  
-    return {
-        "message": "Account Created",
-        "api_key": raw,
-        "name": name,
-        "email": email,
-    }
+    return {"message": "Account Created", "api_key": raw, "name": name, "email": email}
  
  
 @app.post("/auth/sign_in")
@@ -205,9 +217,16 @@ async def sign_in(data: SignInRequest) -> dict:
             "email": email,
             "password": data.password,
         })
-    except Exception as e:
+ 
+    except AuthApiError as e:
+        msg = str(e).lower()
+        if "invalid" in msg or "credentials" in msg or "password" in msg:
+            raise HTTPException(status_code=401, detail="Invalid email or password")
+        raise HTTPException(status_code=400, detail=str(e))
+ 
+    except Exception:
         traceback.print_exc()
-        raise HTTPException(status_code=401, detail="Invalid email or password")
+        raise HTTPException(status_code=500, detail="Unexpected sign-in error")
  
     if res.user is None:
         raise HTTPException(status_code=401, detail="Invalid email or password")
