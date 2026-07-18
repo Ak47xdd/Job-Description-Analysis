@@ -6,6 +6,7 @@ from fastapi import FastAPI, Depends, HTTPException, Security, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import APIKeyHeader
 from fastapi.responses import JSONResponse
+from fastapi_mcp import FastApiMCP
 from pydantic import BaseModel, field_validator, EmailStr
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
@@ -143,12 +144,12 @@ async def main() -> dict:
     return {"message": "JobAnalyze 6k"}
  
  
-@app.get("/cron")
+@app.get("/cron", operation_id="Cron Job")
 async def cron() -> dict:
     return {"message": "Cron Task Executed"}
  
  
-@app.post("/auth/create_acc", status_code=status.HTTP_201_CREATED)
+@app.post("/auth/create_acc", status_code=status.HTTP_201_CREATED, operation_id="Sign Up")
 async def create_acc(data: SignUpRequest) -> dict:
     from supabase_client import supabase
  
@@ -206,7 +207,7 @@ async def create_acc(data: SignUpRequest) -> dict:
     return {"message": "Account Created", "api_key": raw, "name": name, "email": email}
  
  
-@app.post("/auth/sign_in")
+@app.post("/auth/sign_in", operation_id="Sign In")
 async def sign_in(data: SignInRequest) -> dict:
     from supabase_client import supabase, get_api_key_db
  
@@ -240,7 +241,7 @@ async def sign_in(data: SignInRequest) -> dict:
     return {"email": email, "name": name, "api_key": record["api_key"]}
  
  
-@app.post("/API/Generate", status_code=status.HTTP_201_CREATED)
+@app.post("/API/Generate", status_code=status.HTTP_201_CREATED, operation_id="API Key Creator")
 @limiter.limit("5/hour")
 async def create_api(request: Request, email: str) -> dict:
     raw    = generate_api()
@@ -254,7 +255,7 @@ async def create_api(request: Request, email: str) -> dict:
     }
  
  
-@app.post("/JobAnalyze_6k")
+@app.post("/JobAnalyze_6k", operation_id="JobAnalyze 6k Model : Analyze Job Descriptions")
 @limiter.limit("10/minute")
 async def JobAnalyze_Pred(
     request: Request,
@@ -267,7 +268,14 @@ async def JobAnalyze_Pred(
         job_type=data.Type,
     )
     return {"answer": [(skill, float(score)) for skill, score in resp]}
- 
- 
+
+mcp = FastApiMCP(
+    app,
+    include_operations=["JobAnalyze 6k Model : Analyze Job Descriptions"],
+    name="JobAnalyze 6k",
+    description="Predicts Most Probable Skills",
+    )
+mcp.mount_http()
+
 if __name__ == "__main__":
     uvicorn.run("JobAnalyze_API:app", host="0.0.0.0", port=5000)
