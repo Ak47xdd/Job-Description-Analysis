@@ -23,7 +23,7 @@ from pred import JobAnalyze_6k
 from supabase_client import upsert_api_key_db
  
 ALLOWED_ORIGINS = [
-    "https://job-analyzer-view.vercel.app",
+    "https://jobselect.vercel.app",
     "http://localhost:5173",
     "http://localhost:3000",
 ]
