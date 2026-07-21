@@ -122,7 +122,7 @@ async def main() -> dict:
 async def cron() -> dict:
     return {"message": "Cron Task Executed"}
 
-@app.post("/auth/create_acc", status_code=status.HTTP_201_CREATED, operation_id="Sign Up")
+@app.post("/auth/create_acc", status_code=status.HTTP_201_CREATED, operation_id="sign_up")
 async def create_acc(data: SignUpRequest) -> dict:
     from supabase_client import supabase
 
@@ -177,7 +177,7 @@ async def create_acc(data: SignUpRequest) -> dict:
 
     return {"message": "Account Created", "api_key": raw, "name": name, "email": email}
 
-@app.post("/auth/sign_in", operation_id="Sign In")
+@app.post("/auth/sign_in", operation_id="sign_in")
 async def sign_in(data: SignInRequest) -> dict:
     from supabase_client import supabase, get_api_key_db
 
@@ -208,7 +208,7 @@ async def sign_in(data: SignInRequest) -> dict:
 
     return {"email": email, "name": name, "api_key": record["api_key"]}
 
-@app.post("/API/Generate", status_code=status.HTTP_201_CREATED, operation_id="API Key Creator")
+@app.post("/API/Generate", status_code=status.HTTP_201_CREATED, operation_id="api_create")
 @limiter.limit("5/hour")
 async def create_api(request: Request, email: str) -> dict:
     raw    = generate_api()
@@ -221,7 +221,7 @@ async def create_api(request: Request, email: str) -> dict:
         "warning": "Copy this key, this is a one time displayed key",
     }
 
-@app.post("/JobAnalyze_6k", operation_id="JobAnalyze 6k Model : Analyze Job Descriptions")
+@app.post("/JobAnalyze_6k", operation_id="jobanalyze_6k")
 @limiter.limit("10/minute")
 async def JobAnalyze_Pred(
     request: Request,
@@ -238,8 +238,8 @@ async def JobAnalyze_Pred(
 # Initialize and mount MCP server routes
 mcp = FastApiMCP(
     app,
-    include_operations=["JobAnalyze 6k Model : Analyze Job Descriptions"],
-    name="JobAnalyze 6k",
+    include_operations=["jobanalyze_6k"],
+    name="JobAnalyze",
     description="Predicts Most Probable Skills",
 )
 mcp.mount_http()
