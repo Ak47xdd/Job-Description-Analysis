@@ -5,7 +5,7 @@
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.9.0-F7931E?style=flat&logo=scikit-learn)](https://scikit-learn.org/)
 [![NumPy](https://img.shields.io/badge/NumPy-2.4.6-013243?style=flat&logo=numpy)](https://numpy.org/)
 [![Pandas](https://img.shields.io/badge/Pandas-3.0.3-150458?style=flat&logo=pandas)](https://pandas.pydata.org/)
-[![Website](https://img.shields.io/badge/jobselect-website-8A2BE2?style=flat&logo=globe)](https://jobselect.vercel.app/)
+[![Website](https://img.shields.io/badge/Website-JobSelect-8A2BE2?style=flat&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8%2F9hAAAB10lEQVR4nJWTwW7TQBCGv921ndhOCaQNRVBOoFYceuDGG8Ar8QoIiQMS4gF4BU7AAUTFqZwQRZVKpChRglKaJm7t2PHuItuASiGlHa200oz2%2F%2F%2BZf1ZYay0LoqyI8iwM54wa4qyXP0MuYi7IB1HMOJ5VuYsAaGtL2Y%2B2dnnysQtWo409H4At%2BpKC6SzjZWfMcncHk8ZIKc4JYCumN8OYp94e86Mpr%2FZ1qahQ9l8AYS0G2PzyjvuHn3nmbfB869NCJ%2BRJ6QW7kBIbTbj64jFZv8%2FDzTbbg4j%2BNEYiMAWBtZXFFaH9Q1duLI5OybsdUm0I1zcYHGtqUtDyvX%2FvwYfeAQ1XEXiK993v3L3e4m20xL2bLa6MU4ZRgu8qonRO6DnsjCKmWc6DW6sVwHGW83rvG5d9hyjNOYgT6kqy28vZHh6y1vSJM8MkzbjR8LnTbtKbJNUMMm3ojGOuLdWRQtIO6njKoR3W%2BTqJWWsGrLcu4bsOt5ebrDR85sbSqKly2EIbY%2FfjDN9RRFlO4CqS3FDkVsM6R1lOTQlWAo9RkpX16WxO6CpagVcNca5N2Z9TOAAYKxglGk%2BBMQJXQuhVt7aVdYUiV4m%2FXbho%2FP6NJ1GKpTmNejr3a7F%2BAFr63ZHnCD6RAAAAAElFTkSuQmCC)](https://jobselect.vercel.app/)
 [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97-Hugging%20Face%20Model-FFD21E?style=flat)](https://huggingface.co/JobSelect/JobAnalyze_6k)
 [![PyPI](https://img.shields.io/badge/PyPI-JobSelect-006DAD?style=flat&logo=pypi)](https://pypi.org/project/JobSelect/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Akshay%20Babu-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/in/akshay-babu-827b85370/)
