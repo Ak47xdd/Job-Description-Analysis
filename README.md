@@ -1,12 +1,16 @@
-# Job Description Skill Classifier [JobSelect v0.11.5 & JobAnalyze 6k v1.0] (Multi-Label)
+# Job Description Skill Classifier [JobSelect v0.12.0 & JobAnalyze 6k v1.0] (Multi-Label)
 
 [![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=flat&logo=python)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.12.1-%23EE4C2C?style=flat&logo=pytorch)](https://pytorch.org/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.9.0-F7931E?style=flat&logo=scikit-learn)](https://scikit-learn.org/)
 [![NumPy](https://img.shields.io/badge/NumPy-2.4.6-013243?style=flat&logo=numpy)](https://numpy.org/)
 [![Pandas](https://img.shields.io/badge/Pandas-3.0.3-150458?style=flat&logo=pandas)](https://pandas.pydata.org/)
+[![Website](https://img.shields.io/badge/jobselect-website-8A2BE2?style=flat&logo=globe)](https://jobselect.vercel.app/)
+[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97-Hugging%20Face%20Model-FFD21E?style=flat)](https://huggingface.co/JobSelect/JobAnalyze_6k)
+[![PyPI](https://img.shields.io/badge/PyPI-JobSelect-006DAD?style=flat&logo=pypi)](https://pypi.org/project/JobSelect/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Akshay%20Babu-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/in/akshay-babu-827b85370/)
 
-This project builds a lightweight text classification pipeline that predicts **multiple technical skills** from a job posting. Given a job description (optionally augmented with role and job type), the model outputs a ranked list of likely skills.
+This project builds
 
 ![JobSelect CLI](./frontend/repo/title_page_jobselect.png)
 
@@ -262,6 +266,19 @@ Run `api/JobAnalyze_API.py`. Requests must include:
 - Replace the simple MLP with a stronger baseline (e.g., logistic regression on TF-IDF)
 - Calibrate thresholds per label using validation data
 - Add a CLI or web service endpoint for prediction
+
+---
+
+---
+
+## Author
+
+Developed with ❤️ by **Akshay Babu**
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/in/akshay-babu-827b85370/)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=flat&logo=github)](https://github.com/Ak47xdd)
+
+For questions, feedback, or collaboration opportunities, feel free to reach out!
 
 ---
 
