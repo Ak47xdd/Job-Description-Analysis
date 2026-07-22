@@ -1,6 +1,6 @@
 [project]
 name = "JobSelect"
-version = "0.11.5"
+version = "0.12.0"
 dependencies = [
   "rich==15.0.0",
   "pyfiglet==1.0.4",
