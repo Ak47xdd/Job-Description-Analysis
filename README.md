@@ -222,6 +222,7 @@ The API is hosted and recommended for production and general use — it provides
 To call the hosted API, send a POST request to the hosted endpoint (replace <HOSTED_API_URL> with the actual API base URL) with the header `JOBSELECT_KEY` set to your API key, and a JSON body containing `Job_Desc`, `Role`, and `Type`.
 
 Base URL : https://job-description-analysis.onrender.com
+
 JOBSELECT_KEY : Vist the website (jobselect.vercel.app)
 
 Example (curl):
