@@ -5,7 +5,7 @@
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.9.0-F7931E?style=flat&logo=scikit-learn)](https://scikit-learn.org/)
 [![NumPy](https://img.shields.io/badge/NumPy-2.4.6-013243?style=flat&logo=numpy)](https://numpy.org/)
 [![Pandas](https://img.shields.io/badge/Pandas-3.0.3-150458?style=flat&logo=pandas)](https://pandas.pydata.org/)
-[![Website](https://img.shields.io/badge/Website-JobSelect-8A2BE2?style=flat&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8%2F9hAAAB10lEQVR4nJWTwW7TQBCGv921ndhOCaQNRVBOoFYceuDGG8Ar8QoIiQMS4gF4BU7AAUTFqZwQRZVKpChRglKaJm7t2PHuItuASiGlHa200oz2%2F%2F%2BZf1ZYay0LoqyI8iwM54wa4qyXP0MuYi7IB1HMOJ5VuYsAaGtL2Y%2B2dnnysQtWo409H4At%2BpKC6SzjZWfMcncHk8ZIKc4JYCumN8OYp94e86Mpr%2FZ1qahQ9l8AYS0G2PzyjvuHn3nmbfB869NCJ%2BRJ6QW7kBIbTbj64jFZv8%2FDzTbbg4j%2BNEYiMAWBtZXFFaH9Q1duLI5OybsdUm0I1zcYHGtqUtDyvX%2FvwYfeAQ1XEXiK993v3L3e4m20xL2bLa6MU4ZRgu8qonRO6DnsjCKmWc6DW6sVwHGW83rvG5d9hyjNOYgT6kqy28vZHh6y1vSJM8MkzbjR8LnTbtKbJNUMMm3ojGOuLdWRQtIO6njKoR3W%2BTqJWWsGrLcu4bsOt5ebrDR85sbSqKly2EIbY%2FfjDN9RRFlO4CqS3FDkVsM6R1lOTQlWAo9RkpX16WxO6CpagVcNca5N2Z9TOAAYKxglGk%2BBMQJXQuhVt7aVdYUiV4m%2FXbho%2FP6NJ1GKpTmNejr3a7F%2BAFr63ZHnCD6RAAAAAElFTkSuQmCC)](https://jobselect.vercel.app/)
+[![Website](https://img.shields.io/badge/Website-JobSelect-8A2BE2?style=flat&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8%2F9hAAAB10lEQVR4nJWTwW7TQBCGv921ndhOCaQNRVB[...]
 [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97-Hugging%20Face%20Model-FFD21E?style=flat)](https://huggingface.co/JobSelect/JobAnalyze_6k)
 [![PyPI](https://img.shields.io/badge/PyPI-JobSelect-006DAD?style=flat&logo=pypi)](https://pypi.org/project/JobSelect/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Akshay%20Babu-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/in/akshay-babu-827b85370/)
@@ -183,7 +183,9 @@ Outputs include:
 
 ### 5) Predict skills for a new job description
 
-#### Option A: Use Python function (LOCAL model)
+#### Option A: Python function (LOCAL model) — advanced / offline use only
+
+You can still run predictions locally if you have the prepared artifacts (`model/prep/vectorizer.pkl` and `model_out/skill_classifier.pt`). Local inference is useful for offline experimentation or development, but for most users we recommend using the hosted API (see Option C).
 
 `from api.pred import JobAnalyze_6k`
 
@@ -193,7 +195,9 @@ Outputs include:
 JobAnalyze_6k(job_desc, role="AI Engineer", job_type="Junior", top_k=50)
 ```
 
-#### Option B: Use the interactive CLI (API-first with validation)
+#### Option B: Use the interactive CLI (API-first)
+
+The CLI (`cli/jobselect.py`) is API-first. Provide a valid API key to run the CLI against the hosted service so you always get the up-to-date model and label set. If no API key is provided the CLI can fall back to local inference, but this is not recommended for general usage.
 
 ```bash
 python -m cli.jobselect
@@ -207,24 +211,34 @@ The CLI:
 
 - prompts for **Job Description**, **Role**, and **Type**
 - validates them via the API schema when running in API mode
-- prints the top skills ranked by probability
+- prints the top skills ranked by probability as returned by the hosted API
 
 ---
 
-#### Option C: Get Predictions through API (recommended)
+#### Option C: Get predictions through the hosted API (recommended)
 
-Currently, the API service is under development, you could press `Enter` on first screen:
+The API is hosted and recommended for production and general use — it provides the latest model, label vocabulary, and automatic updates.
 
-- The CLI will always prompt the user for an API Key, press `Enter` to skip to LOCAL Mode
+To call the hosted API, send a POST request to the hosted endpoint (replace <HOSTED_API_URL> with the actual API base URL) with the header `JobAnalyze_6k_Key` set to your API key, and a JSON body containing `Job_Desc`, `Role`, and `Type`.
 
-![JobSelect CLI](./frontend/repo/mode_selection_jobselect.png)
+Example (curl):
 
-#### Option D: Call the FastAPI service (optional)
+```bash
+curl -X POST "https://<HOSTED_API_URL>/predict" \
+  -H "Content-Type: application/json" \
+  -H "JobAnalyze_6k_Key: YOUR_API_KEY_HERE" \
+  -d '{"Job_Desc":"Senior ML engineer with 3+ years experience...","Role":"AI Engineer","Type":"Senior"}'
+```
 
-Run `api/JobAnalyze_API.py`. Requests must include:
+The response will include ranked skills and probabilities (top-k). Contact the repository maintainer or your account admin to obtain an API key and the exact hosted API base URL.
 
-- header `JobAnalyze_6k_Key` with a valid API key
-- JSON body with `Job_Desc`, `Role`, and `Type` (validated via Pydantic)
+---
+
+#### Option D: Run the FastAPI service locally (optional)
+
+If you prefer to host your own instance of the API, you can run the FastAPI server in `api/JobAnalyze_API.py`. Local hosting is useful for private deployments or testing with custom models.
+
+Run the service and send requests with the same header and JSON body as described in Option C (`JobAnalyze_6k_Key`, `Job_Desc`, `Role`, `Type`).
 
 ---
 
