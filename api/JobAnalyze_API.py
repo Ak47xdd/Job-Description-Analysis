@@ -33,7 +33,12 @@ ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
 
-app = FastAPI(title="Unified JobAuto Model API")
+app = FastAPI(
+    title="Unified JobAuto Model API",
+    docs_url=None, 
+    redoc_url=None,      
+    openapi_url=None    
+)
 
 app.add_middleware(
     CORSMiddleware,
