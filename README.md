@@ -219,7 +219,10 @@ The CLI:
 
 The API is hosted and recommended for production and general use — it provides the latest model, label vocabulary, and automatic updates.
 
-To call the hosted API, send a POST request to the hosted endpoint (replace <HOSTED_API_URL> with the actual API base URL) with the header `JobAnalyze_6k_Key` set to your API key, and a JSON body containing `Job_Desc`, `Role`, and `Type`.
+To call the hosted API, send a POST request to the hosted endpoint (replace <HOSTED_API_URL> with the actual API base URL) with the header `JOBSELECT_KEY` set to your API key, and a JSON body containing `Job_Desc`, `Role`, and `Type`.
+
+Base URL : https://job-description-analysis.onrender.com
+JOBSELECT_KEY : Vist the website (jobselect.vercel.app)
 
 Example (curl):
 
