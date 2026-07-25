@@ -799,3 +799,68 @@ Basic programming knowledge ( Java / JavaScript / HTML / CSS )
 Experience or understanding of Agile/Scrum
 Awareness of Git/GitHub
 Understanding of non-functional testing (performance, security basic level)",2026,Bachelors,0-1,"Python, APIs, SQL, Java, Javascript, Git, Github","Communication, Problem Solving"
+202,AI Developer,Junior,"Expertise in AI Frameworks: You have hands-on experience with tools like TensorFlow, PyTorch, and OpenAI to develop AI models that deliver outstanding results. Your knowledge of these frameworks will help you build and fine-tune complex deep learning models.
+Strong Python Skills: You\u2019re an expert in Python, the primary language for AI and machine learning. You\u2019ve worked with Python-based data science tools like NumPy, Pandas, and Scikit-learn to build and deploy models.
+Experience with Deep Learning: You have solid experience using deep learning techniques (such as CNNs, RNNs, transformers) to address tasks like image recognition, natural language processing, or conversational AI.
+Data-Driven Mindset: You understand the importance of working with large datasets and know how to fine-tune models for optimal performance. Your skills in data preprocessing, cleaning, and augmentation are key to building robust AI systems.
+Innovative Problem-Solving: You love tackling complex challenges and thinking creatively to come up with technical solutions.
+Good to have:
+Experience deploying AI models into production environments.
+Familiarity with cloud platforms (AWS, GCP, Azure) and deployment tools.
+Knowledge of reinforcement learning or other advanced AI techniques.",2026,Bachelors,1-5,"Python, ML, TensorFlow/PyTorch, OpenAI, Agents, NumPy, Pandas, Scikit-Learn, AWS/Azure, NLP, GenAI","Communication, Problem Solving"
+203,AI Developer,Junior,"Python: Basic proficiency in scripting, file handling, and data manipulation using libraries such as pandas and openpyxl.
+SQL: Good understanding of SELECT statements, JOINs, filters, aggregations, and data updates.
+Advanced Excel: Strong knowledge of formulas, PivotTables, Power Query, VBA/macros, and report automation.
+Task Automation: Experience in automating repetitive tasks, report generation, and data consolidation.
+Soft Skills: Strong analytical and problem-solving skills, attention to detail, documentation, and effective communication",2026,Bachelors,1-5,"Python, SQL, Pandas","Communication, Problem Solving"
+204,AI Developer,Junior,"Seeking a skilled On-Device ML Engineer strong in Python, NumPy, Pandas, and data visualization
+Must have expertise in PyTorch or TensorFlow for model training and exporting, with a proven track record of converting models to formats like ONNX, TFLite, and Core ML
+Responsibilities include designing and deploying models for vision, NLP, and audio tasks onto mobile platforms (Android, iOS, Flutter), optimizing performance via NDK/C++, and profiling acceleration on various hardware (CPU/GPU/TPU)
+Familiarity with platforms like Google Colab and Amazon SageMaker is essentia",2026,Bachelors,1-5,"Python, NumPy, Pandas, TensorFlow/PyTorch, AWS/Azure, NLP, C, C++","Communication, Problem Solving"
+205,AI Developer,Junior,"Knowledge of Copilot Studio (basic to intermediate understanding of building copilots using low-code interface).
+Familiarity with Copilot in Teams and M365 and their usage scenarios.
+Exposure to Power Platform components (Power Apps, Power Automate, Power BI).
+Understanding of Azure AI/ML services, especially those related to LLMs and document intelligence, is a plus.
+Excellent communication and documentation skills.
+Willingness to learn and grow in a fast-paced AI-driven development environment.
+Preferred Qualifications:
+Microsoft certifications in Power Platform, Azure AI, or Copilot (where available) are a plus.
+Experience working in PreSales, client discussions, or solutioning is a plus.
+Exposure to Copilot use cases in HR, Finance, or IT operations is desirable",2026,Bachelors,0-1,"Python, Javascript, GenAI, AWS/Azure, LLMs","Communication, Problem Solving"
+206,AI Developer,Junior,"Strong understanding of artificial intelligence concepts and principles.
+Proficiency in programming languages such as Python, Java, or C++.
+Experience with deep learning frameworks like TensorFlow or PyTorch.
+Knowledge of database management systems and data modeling.
+Excellent problem-solving skills and attention to detail.
+Ability to work collaboratively in a team environment",2026,Bachelors/Masters,1-5,"Python, Java, C, C++, ML, TensorFlow/PyTorch, SQL","Communication, Problem Solving"
+223,AI Developer,Junior,"Required Skills
+Strong basics in Python
+Basic understanding of React
+Understanding of APIs and how systems connect
+Basic SQL knowledge
+Strong problem-solving mindset
+Good to Have (Optional)
+FastAPI exposure
+React project experience
+Git/GitHub
+Interest in AI tools (ChatGPT, Copilot, etc.)",2026,Bachelors,0-1,"Python, React, APIs, SQL, Git, Github, GenAI, OpenAI","Communication, Problem Solving"
+224,AI Developer,Junior,"Required Skills & Qualifications:
+0 to 2 years of professional experience in Python development
+Strong understanding of AI/ML fundamentals and algorithms
+Hands-on experience with popular AI/ML libraries such as TensorFlow, PyTorch, Scikit-Learn, etc.
+Experience with building APIs and integrating AI models into applications
+Solid understanding of data structures, algorithms, and software design principles
+Familiarity with cloud platforms (AWS, Azure, GCP) is a plus
+Excellent problem-solving and analytical skills
+Strong communication and teamwork abilities
+Preferred (Nice to Have):
+Experience with NLP, Computer Vision, or Generative AI projects
+Knowledge of MLOps and AI model deployment practices
+Exposure to working in Agile environments",2026,Bachelors,0-1,"Python, ML, TensorFlow.PyTorch, APIs, AWS/Azure, System Design, NLP, GenAI, MLOps","Communication, Problem Solving"
+225,AI Developer,Junior,"Develop and deploy AI/ML models for real-world applications
+Work with Python, APIs, and AI frameworks like TensorFlow/PyTorch
+Debug issues and improve model performance
+Collaborate with teams to integrate AI features into products ",2026,Bachelors,0-1,"Python, ML, APIs, TensorFlow. PyTorch","Communication, Problem Solving"
+226,AI Developer,Junior,"Hiring AI Developer (Fresher) Knowledge of MERN Stack, FastAPI, Streamlit, LLMs, LangChain, LangGraph, RAG, MCP, and LangSmith required. Interested in AI apps, API integration, and modern AI frameworks. Freshers are encouraged to apply. ",2026,Bachelors,0-1,"Python, LLMs, LangChain, LangGraph, RAG, MCP, ML","Communication, Problem Solving"
+227,AI Developer,Junior,"Required Candidate profile
+Strong understanding of Python, ML, and deep learning concepts. Familiar with Generative AI tools (OpenAI, Hugging Face, LangChain, etc.). Eager to explore LLMs and prompt-based systems.",2026,Bachelors,0-1,"Python, ML, GenAI, OpenAI, Hugging Face, LangChain, LLMs, Prompt Engineering","Communication, Problem Solving"
