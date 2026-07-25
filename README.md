@@ -13,6 +13,7 @@
 [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97-Hugging%20Face%20Model-FFD21E?style=flat)](https://huggingface.co/JobSelect/JobAnalyze_6k)
 [![PyPI](https://img.shields.io/badge/PyPI-JobSelect-006DAD?style=flat&logo=pypi)](https://pypi.org/project/JobSelect/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-JobSelect%20Labs-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/company/jobselect-labs/)
+[![PyPI Downloads](https://static.pepy.tech/personalized-badge/jobselect?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/jobselect)
 
 JobSelect CLI :
 
