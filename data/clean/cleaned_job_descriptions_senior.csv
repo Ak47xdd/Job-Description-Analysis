@@ -927,3 +927,162 @@ Excellent communication and consulting skills with the ability to translate comp
 Experience working directly with clients and stakeholders to gather requirements, present AI solutions, and influence decision-making.
 Strong analytical, problem-solving, collaboration, and stakeholder management skills.
 Passion for continuous learning and driving AI innovation across engineering teams.",2026,Bachelors,1-5,"Python, ML, GenAI, MLOps, LLMs, Java, .NET, Prompt Engineering, ","Communication, Problem Solving"
+194,AI Developer,Senior,"artificial intelligence
+image processingpythonnatural language processingneural networksnumpymachine learningpandasdeep learningtensorflowrdata sciencepredictive modelingcomputer visionkerasflaskopencvpattern recognition",2026,Bachelors,1-5,"Python, Pandas, NumPy, NLP, ML, TensorFlow/PyTorch","Communication, Problem Solving"
+195,AI Developer,Senior,"Experience
+1 to 4 years of experience in Data Engineering, Data Warehousing, or related roles
+Hands-on experience in data modeling and Data Mart development preferred
+Technical Skills
+Strong expertise in Data Modeling & Data Warehousing concepts
+Programming: Python, SQL, PL/SQL, Shell scripting
+SQL expertise in query optimization and performance tuning
+Data Processing: Apache Spark, ETL/ELT frameworks
+Workflow orchestration: Apache Airflow, DBT
+Cloud Platforms: AWS and Oracle Cloud (OCI)
+Data Platforms: Snowflake, Databricks or similar modern warehouses
+Databases: Oracle, MS SQL, and NoSQL databases
+Streaming Technologies: Kafka / event-driven systems
+API Development: RESTful APIs and integrations
+Containerization: Docker (Kubernetes is a plus)
+Data Architecture: Data Lake, Data Warehouse, Data Mart, Data Vault
+Exposure to AI/ML workflows and GenAI concepts is an added advantage
+Familiarity with DevOps/DataOps (CI/CD, version control, automation)",2026,Bachelors,1-5,"Python, SQL, AWS/Azure, APIs, GenAI, Docker, Kubernetes, CI/CD, Git, Github","Communication, Problem Solving"
+196,AI Developer,Senior,"Degree in CS, AI, ML, or related field.
+Proficient in Python and ML frameworks (TensorFlow, PyTorch).
+Strong in algorithms, data structures, and statistics.
+Experience with data processing and cloud platforms.
+Excellent analytical and communication skills.",2026,Bachelors,1-5,"Python, ML, TensorFlow/PyTorch, AWS/Azure","Communication, Porblem Solving"
+197,AI Developer,Senior,"Junior AI Developer (13 Years)
+12 years of experience in application development or AI-related projects.
+Basic experience with AI models, APIs, or agent frameworks.
+Strong problem-solving skills and eagerness to learn AI systems and deployments.
+Ability to work under guidance and follow defined implementation plans.
+Preferred Skills
+Experience with LLM-based agents or agent orchestration frameworks.
+Knowledge of Python, Node.js, or similar backend technologies.
+Exposure to cloud platforms (AWS, Azure, or GCP).
+Familiarity with Docker, CI/CD pipelines, or scalable deployment models.
+Understanding of security and performance considerations for AI applications.",2026,Bachelors,10-15,"Python, ML, APIs, LLMs, Javascript, AWS/ Azure, CI/CD, Docker","Communication, Problem Solving"
+198,AI Developer,Senior,"Strong proficiency in programming languages such as Python, Java, or C++.
+Experience with AI frameworks like TensorFlow, PyTorch, or Keras.
+Knowledge of ML algorithms and deep learning techniques.
+Familiarity with cloud platforms such as AWS or Google Cloud.
+Excellent problem-solving skills and attention to detail.
+Ability to work collaboratively in a team environment and communicate effectively with stakeholders.",2026,Bachelors,1-5,"Python, Java, C, C++, TensorFlow/PyTorch, ML, AWS/Azure","Communication, Problem Solving"
+207,AI Developer,Senior,"A Masters degree or PhD in an engineering or computer science related discipline or equivalent experience and 2+ years of relevant work or research experience.
+Strong knowledge of C/C++, software design, programming techniques, and AI algorithms.
+Firsthand work experience with parallel programming, ideally CUDA C/C++.
+Strong communication and organization skills, with a logical approach to problem solving, good time management, and task prioritization skills.
+Some travel is required for conferences and for on-site visits with developers",2026,Masters,1-5,"Python, C, C++, System Design, ML","Communication, Problem Solving"
+208,AI Developer,Senior,"Required Qualifications
+3–5 years’ experience in software development, automation, or AI/ML
+Strong Python skills and experience building APIs and automation workflows
+Experience with:
+Process automation (Power Automate, BPM tools, or custom pipelines)
+REST APIs and system integration
+Data processing (Pandas, SQL)
+Ability to translate business workflows into technical logic
+Preferred Qualifications
+Experience with agentic AI / copilots / LLM integration
+Familiarity with process mining or workflow modeling tools
+Exposure to Copilot Studio, Azure AI, or similar platforms
+Understanding of human-in-the-loop automation patterns
+Experience in operations-heavy environments (financial services preferred)
+Key Skills
+Strong logical and structured thinking (if/then, branching, dependencies)
+Ability to mimic human decision-making in code
+Debugging complex workflows and edge cases
+Collaboration with non-technical stakeholder",2026,Bachelors,1-5,"Python, ML, APIs, Pandas, SQL, LLMs, GenAI, AWS/Azure","Communication, Problem Solving"
+209,AI Developer,Senior,"Tech Stack & Skills Required:
+Core: Python, Machine Learning (ML), Deep Learning (DL)
+Gen AI: Hands-on experience with Gen AI, RAG (Retrieval-Augmented Generation), and Agentic AI workflows.
+Frameworks: PyTorch, Keras, TensorFlow
+Cloud & Tools: GCP, GitHub
+Bonus: Excellent communication skills to effectively articulate complex AI concepts and collaborate with cross-functional teams",2026,Bachelors,1-5,"Python, ML, GenAI, RAG, TensorFlow/PyTorch, AWS/Azure, Github, Git, Agents","Communication, Problem Solving"
+210,AI Developer,Senior,"58 years of experience in AI/ML and automation development
+Strong expertise in Python and frameworks (TensorFlow, PyTorch, Keras, Langchain, MLflow)
+Hands-on experience with LLMs (GPT-3/4, BERT, T5) and fine-tuning techniques
+Deep understanding of prompt engineering, RAG architecture, and Knowledge Graphs
+Experience deploying AI models on cloud platforms and integrating with enterprise applications
+Excellent problem-solving and communication skills",2026,Bachelors/Masters,5-10,"Python, ML, TensorFlow/PyTorch, MLflow, Agents, LangChain, LangGraph, LlamaIndex, LLMs, Propmt Engineering, RAG","Communication, Problem Solving"
+211,AI Developer,Senior,"Strong understanding of artificial intelligence concepts and principles.
+Proficiency in programming languages such as Python, Java, or C++.
+Experience with deep learning frameworks like TensorFlow or PyTorch.
+Knowledge of database management systems and data modeling.
+Excellent problem-solving skills and attention to detail.
+Ability to work collaboratively in a team environment.",2026,Bachelors/Masters,1-5,"Python, Java, C, C++, TensorFlow/PyTorch, ML","Communication, Problem Solving"
+217,AI Developer,Senior,"Required Qualifications:
+4-6 years experience of strong Python development background
+Bachelor's in CS/Engineering or equivalent practical experience
+Experience implementing GenAI/LLM solutions in production-like settings
+Excellent debugging and communication skills.
+
+Must-have Skills:
+Python 3.x with strong software engineering and debugging proficiency.
+GenAI/LLM: LangChain, OpenAI API, prompt engineering, tool/function calling, guards.
+NLP utilities and text processing with nltk or similar.
+MongoDB data modeling and query optimization for app/ops flows.
+Vector databases and retrieval (PGVector on Postgres) for RAG-like patterns.
+Observability and log analysis for rapid root-cause and fix-forward.
+LLM orchestration with OpenAI/Gemini, including retries, timeouts, and structured outputs.
+Vector retrieval with PGVector (indexing, chunking, similarity tuning, evals).
+Debugging onboarding/deployment issues across configs, data, and environments
+
+Nice to have skills:
+MLOps fundamentals (model/config/versioning, evals, CI for LLM flows).
+MCP server or tool-agent patterns for internal developer workflows.
+FastAPI/async IO for lightweight services and integrations.
+CI/CD (GitHub Actions) and infra basics (Docker).
+Experience with mortgage/QC/RegTech domains or checklists.
+Python packaging, environments, and testing; REST APIs and JSON.
+Prompt engineering basics; model limits, latency, and cost tradeoffs.
+Data handling with Pandas and text normalization/tokenization
+
+Working Knowledge (Tools):
+GitHub/Git; Issues/Projects; PR reviews.
+JIRA/Confluence for triage and runbooks.
+Postman/cURL for API validation.
+VS Code with Copilot/Cursor; Python tooling (venv/poetry/pytest). ",2026,Bachelors,1-5,"Python, GenAI, LLMs, Agents, LangChain, LangGraph, OpenAI, APIs, Prompt Engineering, NLP, SQL, VectorDB, RAG, MLOps, MCP, CI/CD, Github, Git, Docker, APIs, Pandas","Communication, Problem Solving, Analytical Skills"
+219,AI Developer,Senior,"Mandatory Skills:
+Strong expertise in Generative AI and agentic AI technologies.
+Proven experience in architectural design and implementation.
+Excellent problem-solving and analytical skills.
+Strong communication and interpersonal skills.
+
+Preferred Skills:
+Experience with cloud architecture and services.
+Familiarity with machine learning frameworks and tools.
+Knowledge of software development methodologies.
+Experience in leading architectural projects in a collaborative environment.
+
+Qualifications:
+Bachelors or masters degree in computer science, Information Technology, or a related field.
+6-13 years of relevant experience in architecture with a focus on AI technologies.
+Proven track record of successful project delivery and architectural leadership.",2026,Bachelors/Masters,10-15,"Python, GenAI, AWS/Azure, System Design","Communication, Problem Solving, Analytical Skills"
+220,AI Developer,Senior,"Required Skills:
+Strong experience with Python, machine learning, and GenAI development
+Hands-on experience with LLMs, prompt engineering, RAG, and embeddings
+Proficiency in frameworks such as LangChain, LlamaIndex, TensorFlow, PyTorch, or similar
+Experience with vector databases, model deployment, and API integration
+Strong understanding of ML lifecycle, model evaluation, and MLOps concepts
+Experience working with cloud platforms such as Azure, AWS, or GCP
+Good understanding of Agile methodologies and stakeholder collaboration ",2026,Bachelors,5-10,"Python, GenAI, LLMs, RAG, Prompt Engineering, Agents, LangChain, LangGraph, LlamaIndex, APIs, ML, MLOps, AWS/Azure, VectorDB, TensorFlow/PyTorch","Communication, Problem Solving"
+221,AI Developer,Senior,"1. Strong knowledge of Generative AI concepts including foundation models / LLMs, embeddings, and NLP fundamentals used in GenAI solutions.
+2. Design, implement, and optimize GenAI applications (LLM-powered services) for real business use-cases, with focus on accuracy, efficiency, and scalability.
+3. Hands-on prompt engineering (e.g., zero/few-shot, Chain-of-Thought, Tree-of-Thought, prompt templates) and ability to evaluate and refine prompts based on output quality.
+4. Build Retrieval-Augmented Generation (RAG) solutions, including retrieval strategy integration and prompt + retrieval orchestration patterns.
+5. Experience with agent / app evaluation practicesevaluate model and agent performance for GenAI use-cases (quality, effectiveness, benchmarking).
+6. Cloud-based GenAI platform experience (e.g., AWS / Azure / GCP) for building and deploying scalable GenAI solutions with high availability and performance.
+7. MLOps / LLMOps-aligned practices: CI/CD, monitoring, logging, and version control for deploying and operating GenAI systems in production.
+8. Proficiency in programming languages such as Python, .Net or Java, with experience in relevant libraries and frameworks (e.g., TensorFlow, PyTorch, Keras).",2026,Bachelors,5-10,"Python, LLMs, APIs, Prompt Engineering, GenAI, MLOps, RAG, CI/CD, .NET, Java, NLP, TensorFlow/PyTorch","Communication, Problem Solving"
+222,AI Developer,Senior,"Required Skills Qualifications
+Strong proficiency in Python for AIML application development
+Proven experience with Gen AI and large language models LLMs
+Handson expertise with agentic platforms including Langchain Langgraph LangSmith or comparable frameworks
+Demonstrable experience in prompt engineering for LLMs and generative AI
+Solid background in exploratory data analysis and familiarity with relevant libraries eg Pandas NumPy Matplotlib Seaborn
+Excellent problemsolving and communication skills
+Preferred Qualifications
+Experience deploying AI solutions in production environments
+Familiarity with cloud platforms AWS GCP Azure for AIML workflows
+Contributions to opensource AIML projects",2026,Bachelors,10-15,"Python, ML, GenAI, LLMs, Agents, LangChai, LangGraph, LlamaIndex, Prompt Engineering, AWS/Azure","Communication, Problem Solving"
