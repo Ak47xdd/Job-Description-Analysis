@@ -1,5 +1,9 @@
 # Job Description Skill Classifier [JobSelect v0.12.0 & JobAnalyze 6k v1.0] (Multi-Label)
 
+<p align="center">
+  <img src="./frontend/repo/favicon.png" width="200" height="150">
+</p>
+
 [![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=flat&logo=python)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.12.1-%23EE4C2C?style=flat&logo=pytorch)](https://pytorch.org/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.9.0-F7931E?style=flat&logo=scikit-learn)](https://scikit-learn.org/)
@@ -10,13 +14,13 @@
 [![PyPI](https://img.shields.io/badge/PyPI-JobSelect-006DAD?style=flat&logo=pypi)](https://pypi.org/project/JobSelect/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-JobSelect%20Labs-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/company/jobselect-labs/)
 
-This project builds
+JobSelect CLI :
 
 ![JobSelect CLI](./frontend/repo/title_page_jobselect.png)
 
 Installation:
 
-- `pip install jobselect`
+- `pip install jobselect` (Install python from https://www.python.org for pip)
 
 It uses:
 
