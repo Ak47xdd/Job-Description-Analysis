@@ -191,7 +191,7 @@ async def create_acc(data: SignUpRequest) -> dict:
     hashed = hash_key(raw)
 
     try:
-        upsert_api_key_db(user_id=hashed, owner=email, api_key=raw)
+        upsert_api_key_db(owner=email, api_key=raw)
     except Exception:
         traceback.print_exc()
         return {"message": "Account Created — key storage failed", "api_key": raw, "name": name, "email": email}

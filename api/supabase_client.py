@@ -28,9 +28,9 @@ _HEADERS = {
 }
 
 
-def upsert_api_key_db(*, user_id: str, owner: str, api_key: str) -> dict:
+def upsert_api_key_db(*, owner: str, api_key: str) -> dict:
     """Upsert an API key into the api_tok table via REST (bypasses RLS)."""
-    payload = {"user_id": user_id, "owner": owner, "api_key": api_key}
+    payload = {"owner": owner, "api_key": api_key}
 
     resp = requests.post(
         f"{SUPA_URL}/rest/v1/api_tok?on_conflict=owner",
