@@ -1,12 +1,13 @@
 """
 supabase_client.py - Main client for the supabase integration for queries to postgres
+Uses direct REST API requests to bypass RLS policies.
 """
 
 from pathlib import Path
 from dotenv import load_dotenv
 import sys
 import os
-from supabase import create_client, Client
+import requests
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
@@ -17,42 +18,48 @@ if not _env_path.exists():
     _env_path = PROJECT_ROOT / ".env"
 load_dotenv(dotenv_path=_env_path)
 
-SUPA_URL = os.getenv("SUPA_URL", "")
+SUPA_URL = os.getenv("SUPA_URL", "").rstrip("/")
 SUPA_KEY = os.getenv("SUPA_KEY", "")
 
-supabase: Client = create_client(SUPA_URL, SUPA_KEY)
+_HEADERS = {
+    "apikey": SUPA_KEY,
+    "Accept": "application/json",
+}
+
 
 def upsert_api_key_db(*, user_id: str, owner: str, api_key: str) -> dict:
+    """Upsert an API key into the api_tok table via REST (bypasses RLS)."""
     payload = {"owner": owner, "api_key": api_key}
 
-    resp = (
-        supabase.table("api_tok")
-        .upsert(payload)
-        .execute()
+    resp = requests.post(
+        f"{SUPA_URL}/rest/v1/api_tok?on_conflict=owner",
+        headers={**_HEADERS, "Prefer": "resolution=merge-duplicates,return=representation"},
+        json=payload,
     )
-    data = getattr(resp, "data", None)
+    resp.raise_for_status()
+    data = resp.json()
     return data[0] if data else {}
 
 
 def get_api_key_db(*, owner: str | None = None, api_key: str | None = None) -> dict | None:
-    query = (
-        supabase
-        .table("api_tok")
-        .select("user_id", "owner", "api_key")
-    )
-
-    if owner is not None:
-        query = query.eq("owner", owner)
-
-    elif api_key is not None:
-        query = query.eq("api_key", api_key)
-
-    else:
+    """Retrieve an API key record from the api_tok table via REST (bypasses RLS)."""
+    if owner is None and api_key is None:
         return None
 
-    resp = query.limit(1).execute()
+    params = {"select": "user_id,owner,api_key", "limit": 1}
 
-    data = getattr(resp, "data", None) or []
+    if owner is not None:
+        params["owner"] = f"eq.{owner}"
+    elif api_key is not None:
+        params["api_key"] = f"eq.{api_key}"
+
+    resp = requests.get(
+        f"{SUPA_URL}/rest/v1/api_tok",
+        headers=_HEADERS,
+        params=params,
+    )
+    resp.raise_for_status()
+    data = resp.json()
     return data[0] if data else None
 
 

@@ -18,14 +18,14 @@ from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 from starlette.requests import Request
-from supabase_auth.errors import AuthApiError
 import hashlib
 import secrets
 import traceback
+import requests
 import uvicorn
 
 from pred import JobAnalyze_6k
-from supabase_client import upsert_api_key_db
+from supabase_client import upsert_api_key_db, SUPA_URL, SUPA_KEY
 
 ALLOWED_ORIGINS = [
     "https://jobselect.vercel.app",
@@ -144,35 +144,47 @@ async def cron() -> dict:
 # ------ Auth Endpoints ------
 @app.post("/auth/create_acc", status_code=status.HTTP_201_CREATED, operation_id="sign_up")
 async def create_acc(data: SignUpRequest) -> dict:
-    from supabase_client import supabase
+    from supabase_client import get_api_key_db
 
     email = str(data.email).strip().lower()
     name  = data.name.strip()
 
+    _auth_headers = {
+        "apikey": SUPA_KEY,
+        "Content-Type": "application/json",
+    }
+
     try:
-        res = supabase.auth.sign_up({
-            "email": email,
-            "password": data.password,
-            "options": {"data": {"name": name}},
-        })
-    except AuthApiError as e:
-        msg = str(e).lower()
-        if "already registered" in msg or "already exists" in msg:
-            raise HTTPException(
-                status_code=status.HTTP_409_CONFLICT,
-                detail="An account with this email already exists. Please sign in.",
-            )
-        if "password" in msg:
-            raise HTTPException(
-                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-                detail="Password must be at least 6 characters.",
-            )
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
+        resp = requests.post(
+            f"{SUPA_URL}/auth/v1/signup",
+            headers=_auth_headers,
+            json={
+                "email": email,
+                "password": data.password,
+                "options": {"data": {"name": name}},
+            },
+        )
+        result = resp.json()
     except Exception:
         traceback.print_exc()
         raise HTTPException(status_code=500, detail="Unexpected signup error")
 
-    if res.user is None:
+    if resp.status_code == 422:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail="Password must be at least 6 characters.",
+        )
+    if resp.status_code >= 400:
+        msg = (result.get("msg") or result.get("error_description") or result.get("error") or "").lower()
+        if "already" in msg or "exists" in msg:
+            raise HTTPException(
+                status_code=status.HTTP_409_CONFLICT,
+                detail="An account with this email already exists. Please sign in.",
+            )
+        raise HTTPException(status_code=resp.status_code, detail=result)
+
+    user_obj = result.get("user") or result.get("id")
+    if user_obj is None:
         raise HTTPException(status_code=400, detail="Signup failed")
 
     raw    = generate_api()
@@ -189,28 +201,41 @@ async def create_acc(data: SignUpRequest) -> dict:
 
 @app.post("/auth/sign_in", operation_id="sign_in")
 async def sign_in(data: SignInRequest) -> dict:
-    from supabase_client import supabase, get_api_key_db
+    from supabase_client import get_api_key_db
 
     email = str(data.email).strip().lower()
 
+    _auth_headers = {
+        "apikey": SUPA_KEY,
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+    }
+
     try:
-        res = supabase.auth.sign_in_with_password({
-            "email": email,
-            "password": data.password,
-        })
-    except AuthApiError as e:
-        msg = str(e).lower()
-        if "invalid" in msg or "credentials" in msg or "password" in msg:
-            raise HTTPException(status_code=401, detail="Invalid email or password")
-        raise HTTPException(status_code=400, detail=str(e))
+        resp = requests.post(
+            f"{SUPA_URL}/auth/v1/token?grant_type=password",
+            headers=_auth_headers,
+            json={
+                "email": email,
+                "password": data.password,
+            },
+        )
+        result = resp.json()
     except Exception:
         traceback.print_exc()
         raise HTTPException(status_code=500, detail="Unexpected sign-in error")
 
-    if res.user is None:
+    if resp.status_code >= 400:
+        msg = (result.get("msg") or result.get("error_description") or result.get("error") or "").lower()
+        if "invalid" in msg or "credentials" in msg or "password" in msg:
+            raise HTTPException(status_code=401, detail="Invalid email or password")
+        raise HTTPException(status_code=resp.status_code, detail=result)
+
+    user_obj = result.get("user")
+    if user_obj is None:
         raise HTTPException(status_code=401, detail="Invalid email or password")
 
-    name   = (res.user.user_metadata or {}).get("name", email.split("@")[0])
+    name   = (user_obj.get("user_metadata") or {}).get("name", email.split("@")[0])
     record = get_api_key_db(owner=email)
     if not record:
         raise HTTPException(status_code=404, detail="API Key does not exist")
