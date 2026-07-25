@@ -130,7 +130,7 @@ class ModelRequest(BaseModel):
             raise ValueError(f"Type must be one of {allowed}")
         return v
 
-
+# ------ Basic Endpoints ------
 @app.get("/")
 async def main() -> dict:
     return {"message": "JobAnalyze 6k"}
@@ -141,6 +141,7 @@ async def cron() -> dict:
     return {"message": "Cron Task Executed"}
 
 
+# ------ Auth Endpoints ------
 @app.post("/auth/create_acc", status_code=status.HTTP_201_CREATED, operation_id="sign_up")
 async def create_acc(data: SignUpRequest) -> dict:
     from supabase_client import supabase
@@ -217,8 +218,9 @@ async def sign_in(data: SignInRequest) -> dict:
     return {"email": email, "name": name, "api_key": record["api_key"]}
 
 
+# ------ API Endpoints ------
 @app.post("/API/Generate", status_code=status.HTTP_201_CREATED, operation_id="api_key_creator")
-@limiter.limit("5/hour")
+@limiter.limit("10/second")
 async def create_api(request: Request, email: str) -> dict:
     raw    = generate_api()
     hashed = hash_key(raw)
@@ -231,8 +233,9 @@ async def create_api(request: Request, email: str) -> dict:
     }
 
 
+# ------ Model Endpoint ------
 @app.post("/JobAnalyze_6k", operation_id="analyze_job_description")
-@limiter.limit("10/minute")
+@limiter.limit("10/second")
 async def JobAnalyze_Pred(
     request: Request,
     data: ModelRequest,
@@ -246,13 +249,14 @@ async def JobAnalyze_Pred(
     return {"answer": [(skill, float(score)) for skill, score in resp]}
 
 
+# ------ MCP ------
 mcp = FastApiMCP(
     app,
     name="JobAnalyze 6k",
     description=(
         "Predicts the technical skills required by a job description. "
         "Provide the job description text, the role (AI Engineer or AI Developer), "
-        "and the seniority level (Internship, Junior, or Senior)."
+        "and the type (seniority level) [Internship, Junior, or Senior]."
     ),
     include_operations=["analyze_job_description"],
 )
