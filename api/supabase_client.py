@@ -23,6 +23,7 @@ SUPA_KEY = os.getenv("SUPA_KEY", "")
 
 _HEADERS = {
     "apikey": SUPA_KEY,
+    "Content-Type": "application/json",
     "Accept": "application/json",
 }
 
@@ -33,7 +34,9 @@ def upsert_api_key_db(*, user_id: str, owner: str, api_key: str) -> dict:
 
     resp = requests.post(
         f"{SUPA_URL}/rest/v1/api_tok?on_conflict=owner",
-        headers={**_HEADERS, "Prefer": "resolution=merge-duplicates,return=representation"},
+        headers={
+            **_HEADERS, "Prefer": "resolution=merge-duplicates,return=representation"
+            },
         json=payload,
     )
     resp.raise_for_status()
