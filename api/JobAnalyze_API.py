@@ -62,7 +62,6 @@ app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 
-# ── Auth models ───────────────────────────────────────────────────────────────
 class SignUpRequest(BaseModel):
     name: str
     email: EmailStr
@@ -74,7 +73,6 @@ class SignInRequest(BaseModel):
     password: str
 
 
-# ── Key helpers ───────────────────────────────────────────────────────────────
 def generate_api(prefix: str = "ja6k") -> str:
     return f"{prefix}_{secrets.token_hex(32)}"
 
@@ -83,10 +81,6 @@ def hash_key(api_key: str) -> str:
     return hashlib.sha256(api_key.encode("utf-8")).hexdigest()
 
 
-# ── Verify — used by /JobAnalyze_6k AND /mcp (via Depends) ──────────────────
-# No path-based bypasses. MCP calls must include JobAnalyze_6k_Key header.
-# Configure your MCP client with:
-#   headers: { "JobAnalyze_6k_Key": "ja6k_yourkey" }
 async def verify(api_key: str = Security(api_key_header)):
     if not api_key:
         raise HTTPException(
@@ -111,7 +105,6 @@ async def verify(api_key: str = Security(api_key_header)):
     return db_record
 
 
-# ── Inference model ───────────────────────────────────────────────────────────
 class ModelRequest(BaseModel):
     Job_Desc: str
     Role: str
@@ -138,7 +131,6 @@ class ModelRequest(BaseModel):
         return v
 
 
-# ── Routes ────────────────────────────────────────────────────────────────────
 @app.get("/")
 async def main() -> dict:
     return {"message": "JobAnalyze 6k"}
@@ -239,14 +231,12 @@ async def create_api(request: Request, email: str) -> dict:
     }
 
 
-# operation_id must be a valid identifier (letters, digits, underscores only)
-# include_operations in FastApiMCP must match this exactly
 @app.post("/JobAnalyze_6k", operation_id="analyze_job_description")
 @limiter.limit("10/minute")
 async def JobAnalyze_Pred(
     request: Request,
     data: ModelRequest,
-    api_client: dict = Depends(verify),  # MCP calls must include the key header
+    api_client: dict = Depends(verify),  
 ) -> dict:
     resp = JobAnalyze_6k(
         job_desc=data.Job_Desc,
@@ -256,13 +246,6 @@ async def JobAnalyze_Pred(
     return {"answer": [(skill, float(score)) for skill, score in resp]}
 
 
-# ── MCP Server ────────────────────────────────────────────────────────────────
-# Exposes analyze_job_description as an MCP tool.
-# Auth: same JobAnalyze_6k_Key header as the REST endpoint.
-# Claude/Cursor config:
-#   { "type": "http",
-#     "url": "https://job-description-analysis.onrender.com/mcp",
-#     "headers": { "JobAnalyze_6k_Key": "ja6k_yourkey" } }
 mcp = FastApiMCP(
     app,
     name="JobAnalyze 6k",
