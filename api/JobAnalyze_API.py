@@ -182,11 +182,11 @@ async def create_acc(data: SignUpRequest) -> dict:
                 detail="An account with this email already exists. Please sign in.",
             )
         raise HTTPException(status_code=resp.status_code, detail=result)
-        
+
     user_obj = result.get("user") or result.get("id")
     if user_obj is None:
         raise HTTPException(status_code=400, detail="Signup failed")
-
+        
     raw    = generate_api()
     hashed = hash_key(raw)
 
