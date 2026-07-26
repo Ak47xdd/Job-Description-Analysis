@@ -168,10 +168,10 @@ async def create_acc(data: SignUpRequest) -> dict:
     except Exception:
         traceback.print_exc()
         raise HTTPException(status_code=500, detail="Unexpected signup error")
-
+        
     if resp.status_code == 422:
         raise HTTPException(
-            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
             detail="Password must be at least 6 characters.",
         )
     if resp.status_code >= 400:
