@@ -204,13 +204,13 @@ async def sign_in(data: SignInRequest) -> dict:
     from supabase_client import get_api_key_db
 
     email = str(data.email).strip().lower()
-    
+
     _auth_headers = {
         "apikey": SUPA_KEY,
         "Content-Type": "application/json",
         "Accept": "application/json",
     }
-
+    
     try:
         resp = requests.post(
             f"{SUPA_URL}/auth/v1/token?grant_type=password",
