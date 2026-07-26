@@ -198,13 +198,13 @@ async def create_acc(data: SignUpRequest) -> dict:
 
     return {"message": "Account Created", "api_key": raw, "name": name, "email": email}
 
-    
+
 @app.post("/auth/sign_in", operation_id="sign_in")
 async def sign_in(data: SignInRequest) -> dict:
     from supabase_client import get_api_key_db
 
     email = str(data.email).strip().lower()
-
+    
     _auth_headers = {
         "apikey": SUPA_KEY,
         "Content-Type": "application/json",
