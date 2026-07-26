@@ -202,7 +202,7 @@ async def create_acc(data: SignUpRequest) -> dict:
 @app.post("/auth/sign_in", operation_id="sign_in")
 async def sign_in(data: SignInRequest) -> dict:
     from supabase_client import get_api_key_db
-
+    
     email = str(data.email).strip().lower()
 
     _auth_headers = {
@@ -210,7 +210,7 @@ async def sign_in(data: SignInRequest) -> dict:
         "Content-Type": "application/json",
         "Accept": "application/json",
     }
-    
+
     try:
         resp = requests.post(
             f"{SUPA_URL}/auth/v1/token?grant_type=password",
