@@ -168,7 +168,7 @@ async def create_acc(data: SignUpRequest) -> dict:
     except Exception:
         traceback.print_exc()
         raise HTTPException(status_code=500, detail="Unexpected signup error")
-        
+
     if resp.status_code == 422:
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
@@ -182,7 +182,7 @@ async def create_acc(data: SignUpRequest) -> dict:
                 detail="An account with this email already exists. Please sign in.",
             )
         raise HTTPException(status_code=resp.status_code, detail=result)
-
+        
     user_obj = result.get("user") or result.get("id")
     if user_obj is None:
         raise HTTPException(status_code=400, detail="Signup failed")
