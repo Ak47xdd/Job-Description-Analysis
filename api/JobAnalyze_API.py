@@ -186,10 +186,10 @@ async def create_acc(data: SignUpRequest) -> dict:
     user_obj = result.get("user") or result.get("id")
     if user_obj is None:
         raise HTTPException(status_code=400, detail="Signup failed")
-        
+
     raw    = generate_api()
     hashed = hash_key(raw)
-
+    
     try:
         upsert_api_key_db(owner=email, api_key=raw)
     except Exception:
