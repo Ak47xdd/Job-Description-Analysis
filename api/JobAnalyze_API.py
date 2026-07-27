@@ -24,9 +24,12 @@ import traceback
 import requests
 import uvicorn
 
-from pred import JobAnalyze_6k
+from api.JobAnalyze.v1.pred_v1 import JobAnalyze_6k
+from api.JobAnalyze.v2.pred_v2 import JobAnalyze_6k_v2
 from supabase_client import upsert_api_key_db, SUPA_URL, SUPA_KEY
 
+
+# ------ API ------
 ALLOWED_ORIGINS = [
     "https://jobselect.vercel.app",
     "http://localhost:5173",
@@ -47,6 +50,19 @@ app.add_middleware(
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
+
+# ------ MCP ------
+mcp = FastApiMCP(
+    app,
+    name="JobAnalyze",
+    description=(
+        "Predicts the technical skills required by a job description. "
+        "Provide the job description text, the role (AI Engineer or AI Developer), "
+        "and the type (seniority level) [Internship, Junior, or Senior]."
+    ),
+    include_operations=["analyze_job_description"],
+)
+mcp.mount_http()
 
 API_KEY_NAME   = "JobAnalyze_6k_Key"
 api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
@@ -202,7 +218,7 @@ async def create_acc(data: SignUpRequest) -> dict:
 @app.post("/auth/sign_in", operation_id="sign_in")
 async def sign_in(data: SignInRequest) -> dict:
     from supabase_client import get_api_key_db
-    
+
     email = str(data.email).strip().lower()
 
     _auth_headers = {
@@ -258,7 +274,7 @@ async def create_api(request: Request, email: str) -> dict:
     }
 
 
-# ------ Model Endpoint ------
+# ------ Model Endpoints ------
 @app.post("/JobAnalyze_6k", operation_id="analyze_job_description")
 @limiter.limit("10/second")
 async def JobAnalyze_Pred(
@@ -273,19 +289,19 @@ async def JobAnalyze_Pred(
     )
     return {"answer": [(skill, float(score)) for skill, score in resp]}
 
-
-# ------ MCP ------
-mcp = FastApiMCP(
-    app,
-    name="JobAnalyze 6k",
-    description=(
-        "Predicts the technical skills required by a job description. "
-        "Provide the job description text, the role (AI Engineer or AI Developer), "
-        "and the type (seniority level) [Internship, Junior, or Senior]."
-    ),
-    include_operations=["analyze_job_description"],
-)
-mcp.mount_http()
+@app.post("JobAnalyze_%k_v2", operation_id="analyze_job_description")
+@limiter.limit("10/second")
+async def JobAnalyze_Pred_v2(
+    request: Request,
+    data: ModelRequest,
+    api_client: dict = Depends(verify),
+) -> dict:
+    resp = JobAnalyze_6k_v2(
+        job_desc=data.Job_Desc,
+        role=data.Role,
+        job_type=data.Type,
+    )
+    return {"answer": [(skill, float(score)) for skill, score in resp]}
 
 
 if __name__ == "__main__":
