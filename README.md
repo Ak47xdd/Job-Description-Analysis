@@ -1,4 +1,4 @@
-# Job Description Skill Classifier [JobSelect v0.12.0 & JobAnalyze 6k v1.0] (Multi-Label)
+# Job Description Skill Classifier [JobSelect CLI & JobAnalyze Model] (Multi-Label)
 
 <p align="center">
   <img src="./frontend/repo/favicon.png" width="200" height="150">
