@@ -1,6 +1,6 @@
 [project]
 name = "JobSelect"
-version = "0.12.0"
+version = "0.12.2"
 dependencies = [
   "rich==15.0.0",
   "pyfiglet==1.0.4",
@@ -8,10 +8,8 @@ dependencies = [
   "uvicorn==0.50.2",
   "pydantic==2.13.4",
   "requests==2.34.2",
-  "torch==2.12.1"
-]
-authors = [
-  { name="Akshay Babu", email="akshaysureshbabu100@gmail.com" },
+  "torch==2.12.1",
+  "dotenv==0.9.9"
 ]
 description = "A CLI Based AI Skill Classifier for Job Descriptions Build by Akshay Babu"
 readme = "README.md"
@@ -22,9 +20,16 @@ classifiers = [
 ]
 license = "MIT"
 license-files = ["LICEN[CS]E*"]
+authors = [
+  { name="Akshay Babu", email="akshaysureshbabu100@gmail.com" },
+]
 
 [project.urls]
-Homepage = "https://github.com/Ak47xdd/Job-Description-Analysis"
+Website = "https://jobselect.vercel.app"
+GitHub = "https://github.com/Ak47xdd/Job-Description-Analysis"
+"Huggging Face (Model)" = "https://huggingface.co/JobSelect/JobAnalyze_6k"
+"Hugging Face (Dataset)" = "https://huggingface.co/datasets/JobSelect/Job-Descriptions-JobAnalyze_6k"
+"LinkedIn Company Page" = "https://www.linkedin.com/company/jobselect-labs"
 
 # CLI entrypoint
 [project.scripts]
@@ -35,7 +40,7 @@ package-dir = {"" = "."}
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["cli*", "model*", "model_out*"]
+include = ["cli*", "model*", "model_out*", "frontend*"]
 exclude = ["data*", "notebooks*", "test*"]
 
 [tool.setuptools.package-data]
