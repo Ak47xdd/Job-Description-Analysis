@@ -43,13 +43,13 @@ def _resolve_key(env_key: str) -> str:
         except ImportError:
             pass
     return env_key
- 
+
  
 def _local_predict(jd: str, role: str, job_type: str):
     PROJECT_ROOT = Path(__file__).resolve().parent.parent
     if str(PROJECT_ROOT) not in sys.path:
         sys.path.insert(0, str(PROJECT_ROOT))
-    from model.pred import JobAnalyze_6k as _job_analyze
+    from api.JobAnalyze.v1.pred_v1 import JobAnalyze_6k as _job_analyze
     return _job_analyze(jd, role=role, job_type=job_type)
  
  
