@@ -38,9 +38,9 @@ def JobAnalyze_6k(job_desc: str = "", role: str = "", job_type: str = "", top_k:
         if alt.exists():
             prep_dir = alt
 
-    label_path = prep_dir / "label_vocab.json"
-    vector_path = prep_dir / "vectorizer.pkl"
-    weights_path = ROOT / "model_out" / "skill_classifier.pt"
+    label_path = prep_dir / 'v2' / "label_vocab_v2.json"
+    vector_path = prep_dir / 'v2' / "vectorizer_v2.pkl"
+    weights_path = ROOT / "model_out" / 'v2' / "skill_classifier_v2.pt"
 
     if not label_path.exists():
         raise FileNotFoundError(
