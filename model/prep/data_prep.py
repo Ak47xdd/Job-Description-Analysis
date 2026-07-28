@@ -75,7 +75,7 @@ print(f"Train: {len(X_train)} | Test: {len(X_test)}")
 OUT_DIR = Path(__file__).resolve().parent
 
 np.savez(
-    OUT_DIR / 'prepared_data.npz',
+    OUT_DIR / 'v2' / 'prepared_data_v2.npz',
     X_train=X_train,
     X_test=X_test,
     y_train=y_train,
@@ -84,10 +84,10 @@ np.savez(
     idx_test=idx_test,
 )
 
-with open(OUT_DIR / 'label_vocab.json', 'w') as f:
+with open(OUT_DIR / 'v2' / 'label_vocab_v2.json', 'w') as f:
     json.dump(VOCAB, f, indent=2)
 
-with open(OUT_DIR / 'vectorizer.pkl', 'wb') as f:
+with open(OUT_DIR / 'v2' / 'vectorizer_v2.pkl', 'wb') as f:
     pickle.dump(vectorizer, f)
 
 print("Successfully Vectorized and Pickled Data")
