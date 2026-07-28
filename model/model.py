@@ -17,17 +17,17 @@ torch.manual_seed(42)
 
 DATA_DIR = Path(__file__).resolve().parent / 'prep'
 
-assert (DATA_DIR / 'prepared_data.npz').exists(), f"Missing {DATA_DIR / 'prepared_data.npz'}"
-assert (DATA_DIR / 'label_vocab.json').exists(), f"Missing {DATA_DIR / 'label_vocab.json'}"
+assert (DATA_DIR / 'v2' / 'prepared_data_v2.npz').exists(), f"Missing {DATA_DIR / 'v2' /'prepared_data_v2.npz'}"
+assert (DATA_DIR / 'v2' / 'label_vocab_v2.json').exists(), f"Missing {DATA_DIR / 'v2' / 'label_vocab_v2.json'}"
 
-data = np.load(DATA_DIR / 'prepared_data.npz')
+data = np.load(DATA_DIR / 'v2' / 'prepared_data_v2.npz')
 
 X_train = data['X_train']
 X_test = data['X_test']
 y_train = data['y_train']
 y_test = data['y_test']
 
-with open(DATA_DIR / 'label_vocab.json', encoding='utf-8') as f:
+with open(DATA_DIR / 'v2' / 'label_vocab_v2.json', encoding='utf-8') as f:
     VOCAB = json.load(f)
 
     
@@ -113,8 +113,8 @@ for epoch in range(1, EPOCHS + 1):
 out_dir = REPO_ROOT / 'model_out'
 out_dir.mkdir(parents=True, exist_ok=True)
 
-torch.save(jobanalyze_6k.state_dict(), out_dir / 'skill_classifier.pt')
-with open(out_dir / 'training_history.json', 'w') as f:
+torch.save(jobanalyze_6k.state_dict(), out_dir / 'v2' / 'skill_classifier_v2.pt')
+with open(out_dir / 'v2' / 'training_history_v2.json', 'w') as f:
     json.dump(history, f)       
     
 print("\n Saved Model")
