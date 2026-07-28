@@ -15,7 +15,7 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-JobSelect%20Labs-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/company/jobselect-labs/)
 [![PyPI Downloads](https://static.pepy.tech/personalized-badge/jobselect?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/jobselect)
 
-An open source Job Description Analyzer that can be accessed through API and MCP servers, get your free API keys at www.jobselect.vercel.app
+An open source Job Description Analyzer that can be accessed through API and MCP servers, get your free API keys at jobselect.vercel.app
 
 JobSelect Labs, an AI open source venture by Akshay Babu (Founder and CEO)
 
