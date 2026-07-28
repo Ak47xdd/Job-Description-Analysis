@@ -13,22 +13,22 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
-from Model import SkillClassifier
+from model import SkillClassifier
 
 sys.path.insert(0, '.')
 
-data = np.load('prep/prepared_data.npz')
+data = np.load('prep/v2/prepared_data_v2.npz')
 
 X_train = data['X_train']
 y_train = data['y_train']
 X_test = data['X_test']
 y_test = data['y_test']
 
-with open('prep/label_vocab.json') as f:
+with open('prep/v2/label_vocab_v2.json') as f:
     VOCAB = json.load(f)
     
 model = SkillClassifier(X_train.shape[1], len(VOCAB))
-model.load_state_dict(torch.load(ROOT / 'model_out' / 'skill_classifier.pt', map_location='cpu'))
+model.load_state_dict(torch.load(ROOT / 'model_out' / 'v2' / 'skill_classifier_v2.pt', map_location='cpu'))
 
 model.eval()
 
