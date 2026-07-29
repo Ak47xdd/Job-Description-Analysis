@@ -24,8 +24,8 @@ import traceback
 import requests
 import uvicorn
 
-from api.JobAnalyze.v1.pred_v1 import JobAnalyze_6k
-from api.JobAnalyze.v2.pred_v2 import JobAnalyze_6k_v2
+from JobAnalyze.v1.pred_v1 import JobAnalyze_6k
+from JobAnalyze.v2.pred_v2 import JobAnalyze_6k_v2
 from supabase_client import upsert_api_key_db, SUPA_URL, SUPA_KEY
 
 
