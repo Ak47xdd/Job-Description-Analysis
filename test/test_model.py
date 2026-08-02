@@ -11,22 +11,22 @@ MODEL_PREP_DIR = REPO_ROOT / "model" / "prep"
 MODEL_OUT_DIR = REPO_ROOT / "model_out"
 
 def test_model_weights_exist():
-    weights_path = MODEL_OUT_DIR / "skill_classifier.pt"
+    weights_path = MODEL_OUT_DIR / "v1" / "skill_classifier.pt"
     assert weights_path.exists(), f"Missing model weights, run pipeline.py: {weights_path}"
 
 
 def test_prepared_data_exist():
-    prepared_data_path = MODEL_PREP_DIR / "prepared_data.npz"
+    prepared_data_path = MODEL_PREP_DIR / "v1" / "prepared_data.npz"
     assert prepared_data_path.exists(), f"Missing prepared data, run pipeline.py: {prepared_data_path}"
 
 
 def test_label_vocab_exist():
-    vocab_path = MODEL_PREP_DIR / "label_vocab.json"
+    vocab_path = MODEL_PREP_DIR / "v1" / "label_vocab.json"
     assert vocab_path.exists(), f"Missing label vocab, run pipeline.py: {vocab_path}"
 
 
 def test_vectorizer_exist():
-    vectorizer_path = MODEL_PREP_DIR / "vectorizer.pkl"
+    vectorizer_path = MODEL_PREP_DIR / "v1" / "vectorizer.pkl"
     assert vectorizer_path.exists(), f"Missing vectorizer, run pipeline.py: {vectorizer_path}"
 
 
