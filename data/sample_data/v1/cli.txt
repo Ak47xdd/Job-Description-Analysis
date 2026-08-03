@@ -1,0 +1,117 @@
+ Job Description Provided : 
+ Python as primary language. Microsoft Azure required as the primary cloud platform.     Hands-on experience building with Azure AI Foundry.     Claude Code 
+experience and expertise required, including hands-on development of skills and plugins on the platform.     This is non-negotiable for the role. LangGraph 
+experience required.     Demonstrated ability to design state graphs, conditional edges, and multi-agent compositions.     Model Context Protocol experience 
+required.     Comfortable designing tool calls and building protocol wrappers.     Agentic pair programming with generative AI as the primary working mode.    
+Prior experience is required.     Pydantic for data validation and structured outputs across agent systems and APIs.     SQL proficiency and PostgreSQL 
+experience. Vector database experience (pgvector, Azure AI Search, or similar).     Familiarity with modern data platforms such as Snowflake and Databricks.   
+Multi-step agent systems with proper evaluation and validation.     Strong fluency across modern frontier language models such as the GPT, Claude, and Gemini 
+model families.     Model selection is driven by the requirements of each task and the practical considerations of cost.     The discipline to choose mature, 
+proven frameworks for AI engineering work.     Technical decisions are grounded in clear engineering justification and supported by data.     Docker and 
+containerization for development and deployment workflows.     FastAPI or equivalent web frameworks for building APIs and backend services.     Working 
+knowledge of GitHub workflows, code review discipline, and infrastructure-as-code patterns
+
+ Job Role : 
+ AI Engineer
+
+ Type : 
+ Junior
+
+
+ TOP Skills 
+
+ apis                      0.78  ███████████████████████
+
+ langgraph                 0.78  ███████████████████████
+
+ vectordb                  0.76  ██████████████████████
+
+ mcp                       0.75  ██████████████████████
+
+ langchain                 0.74  ██████████████████████
+
+ rag                       0.72  █████████████████████
+
+ llms                      0.72  █████████████████████
+
+ agents                    0.70  ████████████████████
+
+ crewai                    0.66  ███████████████████
+
+ autogen                   0.64  ███████████████████
+
+ openai                    0.63  ██████████████████
+
+ sql                       0.61  ██████████████████
+
+ n8n                       0.60  ██████████████████
+
+ aws/azure                 0.59  █████████████████
+
+ prompt engineering        0.56  ████████████████
+
+ llamaindex                0.55  ████████████████
+
+ javascript                0.50  ███████████████
+
+ python                    0.50  ███████████████
+
+ docker                    0.48  ██████████████
+
+ github                    0.48  ██████████████
+
+ git                       0.45  █████████████
+
+ genai                     0.41  ████████████
+
+ react                     0.41  ████████████
+
+ ml                        0.32  █████████
+
+ java                      0.24  ███████
+
+ ci/cd                     0.22  ██████
+
+ nlp                       0.16  ████
+
+ django                    0.16  ████
+
+ mlops                     0.15  ████
+
+ system design             0.12  ███
+
+ full stack                0.11  ███
+
+ kubernetes                0.11  ███
+
+ .net                      0.10  ███
+
+ anthropic /openai sdks    0.07  ██
+
+ powerbi                   0.07  █
+
+ tensorflow/pytorch        0.06  █
+
+ c#                        0.05  █
+
+ hugging face              0.05  █
+
+ mlflow                    0.03  
+
+ scikit-learn              0.02  
+
+ pandas                    0.01  
+
+ numpy                     0.01  
+
+ feature engineering       0.01  
+
+ c++                       0.01  
+
+ model evaluation          0.01  
+
+ model training            0.00  
+
+ c                         0.00  
+
+ r                         0.00  
