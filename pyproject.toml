@@ -1,6 +1,6 @@
 [project]
 name = "JobSelect"
-version = "0.12.2"
+version = "0.12.5"
 dependencies = [
   "rich==15.0.0",
   "pyfiglet==1.0.4",
@@ -40,9 +40,30 @@ package-dir = {"" = "."}
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["cli*", "model*", "model_out*", "frontend*"]
-exclude = ["data*", "notebooks*", "test*"]
+include = [
+  "cli*", s
+  "model*", 
+  "model/prep*", 
+  "model/prep/v1*", 
+  "model/prep/v2*", 
+  "model_out*", 
+  "model_out/v1*",
+  "model_out/v2*",
+  "frontend*",
+  "frontend/repo*", 
+  "api*", 
+  "api/JobAnalyze*", 
+  "api/JobAnalyze/v1*", 
+  "api/JobAnalyze/v2*"
+  ]
+exclude = [
+  "data*", 
+  "notebooks*", 
+  "test*"
+  ]
 
 [tool.setuptools.package-data]
-"model.prep" = ["label_vocab.json", "vectorizer.pkl", "prepared_data.npz"]
-"model_out" = ["skill_classifier.pt", "training_history.json"]
+"model.prep.v1" = ["label_vocab.json", "vectorizer.pkl", "prepared_data.npz"]
+"model_out.v1" = ["skill_classifier.pt", "training_history.json"]
+"model.prep.v2" = ["label_vocab_v2.json", "vectorizer_v2.pkl", "prepared_data_v2.npz"]
+"model_out.v2" = ["skill_classifier_v2.pt", "training_history_v2.json"]
