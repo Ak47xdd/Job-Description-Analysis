@@ -41,7 +41,7 @@ package-dir = {"" = "."}
 [tool.setuptools.packages.find]
 where = ["."]
 include = [
-  "cli*", s
+  "cli*",
   "model*", 
   "model/prep*", 
   "model/prep/v1*", 
