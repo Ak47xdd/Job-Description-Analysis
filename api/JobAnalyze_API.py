@@ -459,12 +459,36 @@ async def create_api(request: Request, email: str) -> dict:
 @app.post("/web_analyze", operation_id="web_analyze")
 @limiter.limit("5/minute")
 async def web_analyze(request: Request, data: ModelRequest) -> dict:
-    resp = JobAnalyze_6k(
+    """
+    Public Web Analyzer endpoint.
+
+    No sign-in or API key is required. The model output is converted into the
+    exact strict JSON schema used by the JobSelect /analyzer page.
+    """
+    raw_predictions = JobAnalyze_6k(
         job_desc=data.Job_Desc,
         role=data.Role,
         job_type=data.Type,
     )
-    return _build_analysis(data, resp)
+
+    predicted = [
+        (skill, float(score))
+        for skill, score in raw_predictions
+    ]
+
+    try:
+        return _build_analysis(
+            predicted=predicted,
+            role=data.Role,
+            job_type=data.Type,
+            jd_text=data.Job_Desc,
+        )
+    except Exception:
+        traceback.print_exc()
+        raise HTTPException(
+            status_code=500,
+            detail="Web Analyzer failed while building the analysis response.",
+        )
 
 @app.post("/JobAnalyze_6k", operation_id="analyze_job_description")
 @limiter.limit("10/minute")
