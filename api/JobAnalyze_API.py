@@ -456,6 +456,16 @@ async def create_api(request: Request, email: str) -> dict:
             "warning": "Copy this key, this is a one time displayed key"}
 
 
+@app.post("/web_analyze", operation_id="web_analyze")
+@limiter.limit("5/minute")
+async def web_analyze(request: Request, data: ModelRequest) -> dict:
+    resp = JobAnalyze_6k(
+        job_desc=data.Job_Desc,
+        role=data.Role,
+        job_type=data.Type,
+    )
+    return _build_analysis(data, resp)
+
 @app.post("/JobAnalyze_6k", operation_id="analyze_job_description")
 @limiter.limit("10/minute")
 async def JobAnalyze_Pred(
