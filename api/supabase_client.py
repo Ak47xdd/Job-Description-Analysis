@@ -1,9 +1,8 @@
 """
 supabase_client.py - Main client for the Supabase integration.
 
-Uses the Supabase REST API directly so API-key table operations can be made
-with the backend service-role key without depending on the browser session or
-Supabase client RLS context.
+Uses the Supabase REST API directly for api_tok operations while retaining a
+Supabase client instance for Auth sign-up/sign-in used by JobAnalyze_API.py.
 """
 
 from pathlib import Path
@@ -12,6 +11,7 @@ import sys
 import os
 import secrets
 import requests
+from supabase import create_client, Client
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
@@ -27,6 +27,10 @@ SUPA_KEY = os.getenv("SUPA_KEY", "")
 
 if not SUPA_URL or not SUPA_KEY:
     raise RuntimeError("SUPA_URL and SUPA_KEY must be configured")
+
+# Supabase Auth client. Keep this object because the API auth routes import it:
+#     from supabase_client import supabase
+supabase: Client = create_client(SUPA_URL, SUPA_KEY)
 
 _HEADERS = {
     "apikey": SUPA_KEY,
@@ -59,11 +63,9 @@ def upsert_api_key_db(*, user_id=None, owner: str, api_key: str) -> dict:
     """
     Create or update the API key for an owner.
 
-    The api_tok schema uses user_id as its primary key, while owner is not
-    guaranteed to have a UNIQUE constraint. Therefore using
-    ?on_conflict=owner is not a valid/upsert-safe operation. We first look up
-    the owner, then PATCH the existing row by its actual primary key, or INSERT
-    a new row when none exists.
+    api_tok uses user_id as its primary key and owner is not assumed to be
+    UNIQUE. Therefore we first find the owner's row, PATCH by user_id when it
+    exists, otherwise INSERT a new row.
     """
     existing = get_api_key_db(owner=owner, create_if_missing=False)
 
@@ -89,14 +91,7 @@ def get_api_key_db(
     api_key: str | None = None,
     create_if_missing: bool = False,
 ) -> dict | None:
-    """
-    Retrieve an API-key record.
-
-    When called for an authenticated owner with create_if_missing=True, a key
-    is provisioned for legacy Supabase users who existed before api_tok was
-    populated. This fixes sign-in for those accounts without changing the
-    behavior of API-key verification lookups.
-    """
+    """Retrieve an api_tok record, optionally provisioning a missing owner key."""
     if owner is None and api_key is None:
         return None
 
@@ -119,8 +114,8 @@ def get_api_key_db(
     if data:
         return data[0]
 
-    # Only authenticated-owner lookups can provision a missing key.
-    # api_key lookups must never create anything.
+    # Only owner lookups may create a missing key. API-key verification lookups
+    # must never create records.
     if owner is not None and create_if_missing:
         raw = _generate_api_key()
         return _insert_api_key(owner=owner, api_key=raw)
