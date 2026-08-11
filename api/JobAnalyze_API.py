@@ -188,10 +188,7 @@ def _build_summary(
     Derive a structured summary from predicted skills and inputs.
     Mirrors the schema: overview, responsibilities[], required[], preferred[].
     """
-    # Top required skills for the 'required' list
     top_required = [s.title() for s, _ in required[:5]]
-
-    # Infer a one-sentence overview from complexity and top skills
     top_names  = ", ".join(s.title() for s, _ in required[:3])
     exp_label  = _EXP_META.get(job_type, _EXP_META["Junior"])["level"].lower()
     overview = (
@@ -199,7 +196,6 @@ def _build_summary(
         f"and production-grade implementation across the full ML lifecycle."
     )
 
-    # Generic responsibilities anchored to actual predicted skill categories
     cats_hit = {_SKILL_TO_CAT.get(s) for s, _ in required if _SKILL_TO_CAT.get(s)}
     responsibilities = []
     if "Core Skills" in cats_hit:
@@ -280,29 +276,17 @@ def _build_analysis(
     return {
         "compatibility":      compatibility,
         "compatibilityLabel": compatibility_label,
-
-        # Complexity and counts
         "complexity":          _get_complexity(present),
         "technicalSkillCount": len(present),
         "requiredTechCount":   len(required),
-
-        # Skill breakdown — status is always "found"
         "categories":  _build_categories(present),
         "importance": [
             {"name": s.title(), "value": int(p * 100)}
             for s, p in predicted[:7]
         ],
-
-        # Experience requirement — derived from Type input
         "experienceRequirement": _EXP_META.get(job_type, _EXP_META["Junior"]),
-
-        # Summary — derived from predicted skills and JD
         "summary": _build_summary(required, role, job_type, jd_text),
-
-        # Recommendation — derived from required skill count and seniority
         "recommendation": _build_recommendation(required, job_type),
-
-        # Metadata
         "id":          f"an_{uuid.uuid4().hex[:8]}",
         "createdAt":   datetime.now(timezone.utc).isoformat(),
         "role":        role,
@@ -439,9 +423,13 @@ async def sign_in(data: SignInRequest) -> dict:
     if res.user is None:
         raise HTTPException(status_code=401, detail="Invalid email or password")
     name   = (res.user.user_metadata or {}).get("name", email.split("@")[0])
-    record = get_api_key_db(owner=email)
+
+    # Existing Supabase users may predate the api_tok row. Provision a key on
+    # first successful sign-in instead of returning a misleading 404.
+    record = get_api_key_db(owner=email, create_if_missing=True)
     if not record:
-        raise HTTPException(status_code=404, detail="API Key does not exist")
+        raise HTTPException(status_code=500, detail="Unable to provision API key")
+
     return {"email": email, "name": name, "api_key": record["api_key"]}
 
 
@@ -512,8 +500,8 @@ async def JobAnalyze_Pred(
     )
 
     return {
-        "answer":   predicted,   # unchanged — CLI/MCP backward compatible
-        "analysis": analysis,    # full schema match
+        "answer":   predicted,
+        "analysis": analysis,
     }
 
 
