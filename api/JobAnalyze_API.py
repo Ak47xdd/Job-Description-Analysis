@@ -337,6 +337,29 @@ async def verify(api_key: str = Security(api_key_header)):
                             detail="Invalid or Expired API Key")
     return db_record
 
+# ── Careers admin models ──────────────────────────────────────────────────────
+class JobOpeningCreate(BaseModel):
+    title:        str
+    department:   str
+    type:         str
+    location:     str  = "Remote"
+    description:  str
+    requirements: list[str] = []
+    tags:         list[str] = []
+
+    @field_validator("department")
+    def dept_valid(cls, v):
+        allowed = ["Engineering", "Research", "Design", "Operations"]
+        if v not in allowed:
+            raise ValueError(f"department must be one of {allowed}")
+        return v
+
+    @field_validator("type")
+    def type_valid(cls, v):
+        allowed = ["Full-time", "Part-time", "Contract", "Internship"]
+        if v not in allowed:
+            raise ValueError(f"type must be one of {allowed}")
+        return v
 
 # ── Inference model ───────────────────────────────────────────────────────────
 class ModelRequest(BaseModel):
@@ -504,6 +527,56 @@ async def JobAnalyze_Pred(
         "analysis": analysis,
     }
 
+@app.post("/careers/openings", status_code=201, operation_id="create_job_opening")
+async def create_opening(
+    data: JobOpeningCreate,
+    api_client: dict = Depends(verify),   # requires valid API key
+) -> dict:
+    """Create a new job opening. Immediately visible on the /careers page."""
+    from supabase_client import supabase
+    res = supabase.table("job_openings").insert({
+        "title":        data.title,
+        "department":   data.department,
+        "type":         data.type,
+        "location":     data.location,
+        "description":  data.description,
+        "requirements": data.requirements,
+        "tags":         data.tags,
+        "is_open":      True,
+    }).execute()
+    return res.data[0] if res.data else {}
+
+@app.patch("/careers/openings/{job_id}/close", operation_id="close_job_opening")
+async def close_opening(
+    job_id: str,
+    api_client: dict = Depends(verify),
+) -> dict:
+    """Mark a role as closed. Removes it from the public /careers page."""
+    from supabase_client import supabase
+    res = supabase.table("job_openings").update(
+        {"is_open": False}
+    ).eq("id", job_id).execute()
+    return {"closed": True, "id": job_id}
+
+
+@app.get("/careers/applications", operation_id="list_applications")
+async def list_applications(
+    job_id: str | None = None,
+    status: str | None = None,
+    api_client: dict = Depends(verify),
+) -> dict:
+    """
+    List all applications. Filter by job_id or status.
+    Service-role only — applications are never exposed to anon.
+    """
+    from supabase_client import supabase
+    query = supabase.table("job_applications").select(
+        "id, job_id, job_title, name, email, linkedin_url, status, created_at"
+    )
+    if job_id: query = query.eq("job_id", job_id)
+    if status:  query = query.eq("status", status)
+    res = query.order("created_at", desc=True).execute()
+    return {"applications": res.data or []}
 
 # ── MCP ───────────────────────────────────────────────────────────────────────
 mcp = FastApiMCP(
