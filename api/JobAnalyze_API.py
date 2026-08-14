@@ -294,7 +294,6 @@ def _build_analysis(
     }
 
 
-# ── Auth models ───────────────────────────────────────────────────────────────
 class SignUpRequest(BaseModel):
     name: str
     email: EmailStr
