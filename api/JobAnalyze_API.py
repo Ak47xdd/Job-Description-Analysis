@@ -313,7 +313,6 @@ def hash_key(api_key: str) -> str:
     return hashlib.sha256(api_key.encode("utf-8")).hexdigest()
 
 
-# ── Verify ────────────────────────────────────────────────────────────────────
 async def verify(api_key: str = Security(api_key_header)):
     if not api_key:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
