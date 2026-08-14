@@ -1,6 +1,6 @@
 """
 JobAnalyze_API.py - Main API Script
-v0.12.0 — /JobAnalyze_6k returns both 'answer' (backward compatible)
+/JobAnalyze_6k returns both 'answer' (backward compatible)
 and 'analysis' matching the /analyzer page JSON schema exactly.
 """
 
@@ -56,7 +56,6 @@ app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 
-# ── Skill category map ────────────────────────────────────────────────────────
 SKILL_CATEGORIES: dict[str, list[str]] = {
     "Core Skills":            ["python", "sql", "ml", "nlp", "r",
                                "feature engineering", "model training",
@@ -80,7 +79,7 @@ _SKILL_TO_CAT: dict[str, str] = {
     for skill in skills
 }
 
-# ── Experience requirement tables ─────────────────────────────────────────────
+
 _EXP_META: dict[str, dict] = {
     "Internship": {
         "level": "Internship",
@@ -95,7 +94,7 @@ _EXP_META: dict[str, dict] = {
     },
     "Junior": {
         "level": "Junior",
-        "years": "0–2 years",
+        "years": "0-2 years",
         "education": "Bachelor's degree or equivalent industry experience",
         "responsibilities": [
             {"title": "Build and maintain ML pipelines end to end",        "icon": "database"},
@@ -119,7 +118,6 @@ _EXP_META: dict[str, dict] = {
 }
 
 
-# ── Analyzer helpers ──────────────────────────────────────────────────────────
 def _extract_company(jd_text: str) -> str:
     patterns = [
         r"\bat\s+([A-Z][A-Za-z0-9&\s]{2,30}?)(?:\s*[,.\n])",
