@@ -305,7 +305,6 @@ class SignInRequest(BaseModel):
     password: str
 
 
-# ── Key helpers ───────────────────────────────────────────────────────────────
 def generate_api(prefix: str = "ja6k") -> str:
     return f"{prefix}_{secrets.token_hex(32)}"
 
