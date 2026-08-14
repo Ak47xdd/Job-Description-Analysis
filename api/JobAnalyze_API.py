@@ -332,7 +332,6 @@ async def verify(api_key: str = Security(api_key_header)):
                             detail="Invalid or Expired API Key")
     return db_record
 
-# ── Careers admin models ──────────────────────────────────────────────────────
 class JobOpeningCreate(BaseModel):
     title:        str
     department:   str
@@ -356,7 +355,6 @@ class JobOpeningCreate(BaseModel):
             raise ValueError(f"type must be one of {allowed}")
         return v
 
-# ── Inference model ───────────────────────────────────────────────────────────
 class ModelRequest(BaseModel):
     Job_Desc: str
     Role:     str
@@ -383,7 +381,6 @@ class ModelRequest(BaseModel):
         return v
 
 
-# ── Routes ────────────────────────────────────────────────────────────────────
 @app.get("/")
 async def main() -> dict:
     return {"message": "JobAnalyze 6k"}
@@ -573,7 +570,7 @@ async def list_applications(
     res = query.order("created_at", desc=True).execute()
     return {"applications": res.data or []}
 
-# ── MCP ───────────────────────────────────────────────────────────────────────
+
 mcp = FastApiMCP(
     app,
     name="JobAnalyze 6k",
