@@ -28,8 +28,6 @@ SUPA_KEY = os.getenv("SUPA_KEY", "")
 if not SUPA_URL or not SUPA_KEY:
     raise RuntimeError("SUPA_URL and SUPA_KEY must be configured")
 
-# Supabase Auth client. Keep this object because the API auth routes import it:
-#     from supabase_client import supabase
 supabase: Client = create_client(SUPA_URL, SUPA_KEY)
 
 _HEADERS = {
@@ -114,8 +112,6 @@ def get_api_key_db(
     if data:
         return data[0]
 
-    # Only owner lookups may create a missing key. API-key verification lookups
-    # must never create records.
     if owner is not None and create_if_missing:
         raw = _generate_api_key()
         return _insert_api_key(owner=owner, api_key=raw)
