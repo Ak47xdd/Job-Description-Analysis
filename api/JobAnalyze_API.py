@@ -354,6 +354,33 @@ class JobOpeningCreate(BaseModel):
         if v not in allowed:
             raise ValueError(f"type must be one of {allowed}")
         return v
+    
+class NewsItemCreate(BaseModel):
+    title:        str
+    summary:      str
+    category:     str  = "Update"
+    url:          str | None = None
+    body:         str | None = None
+    is_published: bool = True    # default to published immediately
+
+    @field_validator("title")
+    def title_length(cls, v):
+        if len(v) > 120:
+            raise ValueError("title must be 120 characters or fewer")
+        return v.strip()
+
+    @field_validator("summary")
+    def summary_length(cls, v):
+        if len(v) > 280:
+            raise ValueError("summary must be 280 characters or fewer")
+        return v.strip()
+
+    @field_validator("category")
+    def category_valid(cls, v):
+        allowed = ["Release", "Update", "Research", "Community"]
+        if v not in allowed:
+            raise ValueError(f"category must be one of {allowed}")
+        return v
 
 class ModelRequest(BaseModel):
     Job_Desc: str
@@ -518,6 +545,62 @@ async def JobAnalyze_Pred(
         "answer":   predicted,
         "analysis": analysis,
     }
+
+@app.post("/news", status_code=201, operation_id="create_news_item")
+async def create_news_item(
+    data: NewsItemCreate,
+    api_client: dict = Depends(verify),
+) -> dict:
+    """
+    Publish a new news item. Appears on the homepage newsboard immediately
+    if is_published=True (default). Set is_published=False to save as draft.
+    """
+    from supabase_client import supabase
+    res = supabase.table("news_items").insert({
+        "title":        data.title,
+        "summary":      data.summary,
+        "category":     data.category,
+        "url":          data.url,
+        "body":         data.body,
+        "is_published": data.is_published,
+    }).execute()
+    return res.data[0] if res.data else {}
+
+
+@app.patch("/news/{item_id}/unpublish", operation_id="unpublish_news_item")
+async def unpublish_news_item(
+    item_id: str,
+    api_client: dict = Depends(verify),
+) -> dict:
+    """
+    Unpublish a news item. Removes it from the public homepage feed
+    without deleting the record.
+    """
+    from supabase_client import supabase
+    supabase.table("news_items").update(
+        {"is_published": False}
+    ).eq("id", item_id).execute()
+    return {"unpublished": True, "id": item_id}
+
+
+@app.get("/news", operation_id="list_news_items")
+async def list_news_items(
+    include_drafts: bool = False,
+    api_client: dict = Depends(verify),
+) -> dict:
+    """
+    List all news items. Pass include_drafts=true to see unpublished drafts.
+    The public homepage fetches directly from Supabase (anon key),
+    so this endpoint is for admin review only.
+    """
+    from supabase_client import supabase
+    query = supabase.table("news_items").select("*").order(
+        "published_at", desc=True
+    )
+    if not include_drafts:
+        query = query.eq("is_published", True)
+    res = query.execute()
+    return {"items": res.data or []}
 
 @app.post("/careers/openings", status_code=201, operation_id="create_job_opening")
 async def create_opening(
