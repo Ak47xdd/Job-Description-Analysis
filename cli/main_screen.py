@@ -24,10 +24,10 @@ def main_screen():
     query("Enter Job Description")
     jd = input(" >> ")
 
-    query("Enter Role  (AI Engineer / AI Developer)")
+    query("Enter Job Role")
     role = input(" >> ")
 
-    query("Enter Type  (Internship / Junior / Senior)")
+    query("Enter Job Type  (Internship / Junior / Senior)")
     job_type = input(" >> ")
 
     from .model_select import predict
