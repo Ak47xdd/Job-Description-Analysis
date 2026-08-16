@@ -1,29 +1,36 @@
 """
 JobAnalyze_API.py - Main API Script
 /JobAnalyze_6k returns both 'answer' (backward compatible)
-and 'analysis' matching the /analyzer page JSON schema exactly.
+and 'analysis' matching the /analyzer page JSON schema.
 """
 
-from fastapi import FastAPI, Depends, HTTPException, Security, status
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.security import APIKeyHeader
-from fastapi_mcp import FastApiMCP
-from pydantic import BaseModel, field_validator, EmailStr
+from fastapi import FastAPI, Depends, HTTPException, status
 from slowapi import Limiter, _rate_limit_exceeded_handler
-from slowapi.util import get_remote_address
-from slowapi.errors import RateLimitExceeded
-from starlette.requests import Request
+from fastapi.middleware.cors import CORSMiddleware
 from supabase_auth.errors import AuthApiError
-import hashlib
-import secrets
+from slowapi.errors import RateLimitExceeded
+from slowapi.util import get_remote_address
+from starlette.requests import Request
+from fastapi_mcp import FastApiMCP
 import traceback
-import uuid
-import re
-from datetime import datetime, timezone
 import uvicorn
 
 from JobAnalyze.v1.pred_v1 import JobAnalyze_6k
 from supabase_client import upsert_api_key_db
+from helpers import _build_analysis
+from schemas import (
+    JobOpeningCreate,
+    NewsItemCreate,
+    SignInRequest,
+    SignUpRequest,
+    ModelRequest
+)
+from auth import (
+    generate_api,
+    API_KEY_DB,
+    hash_key,
+    verify,
+)   
 
 ALLOWED_ORIGINS = [
     "https://jobselect.vercel.app",
@@ -32,7 +39,10 @@ ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
 
+limiter = Limiter(key_func=get_remote_address)
 app = FastAPI(title="Unified JobAuto Model API")
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 app.add_middleware(
     CORSMiddleware,
@@ -42,371 +52,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-API_KEY_NAME   = "JobAnalyze_6k_Key"
-api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
-API_KEY_DB: dict = {}
-
-
-def key_func(request: Request) -> str:
-    api_key = request.headers.get(API_KEY_NAME)
-    return api_key if api_key else get_remote_address(request)
-
-limiter = Limiter(key_func=key_func)
-app.state.limiter = limiter
-app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
-
-
-SKILL_CATEGORIES: dict[str, list[str]] = {
-    "Core Skills":            ["python", "sql", "ml", "nlp", "r",
-                               "feature engineering", "model training",
-                               "model evaluation", "statistics"],
-    "Frameworks & Libraries": ["langchain", "langgraph", "tensorflow/pytorch",
-                               "scikit-learn", "pandas", "numpy",
-                               "hugging face", "llamaindex", "crewai",
-                               "autogen", "n8n", "mlflow"],
-    "Infrastructure":         ["docker", "kubernetes", "aws/azure", "ci/cd",
-                               "git", "github", "mlops", "system design"],
-    "AI / GenAI":             ["llms", "rag", "vectordb", "genai", "agents",
-                               "mcp", "prompt engineering",
-                               "anthropic /openai sdks", "openai"],
-    "Web & Full Stack":       ["apis", "react", "javascript", "full stack",
-                               "django", ".net", "c#", "c++", "java"],
-}
-
-_SKILL_TO_CAT: dict[str, str] = {
-    skill: cat
-    for cat, skills in SKILL_CATEGORIES.items()
-    for skill in skills
-}
-
-
-_EXP_META: dict[str, dict] = {
-    "Internship": {
-        "level": "Internship",
-        "years": "0 years",
-        "education": "Bachelor's degree (in progress or completed)",
-        "responsibilities": [
-            {"title": "Support model experimentation and data analysis",   "icon": "chart"},
-            {"title": "Assist in building and testing ML pipelines",       "icon": "database"},
-            {"title": "Document findings and technical learnings",         "icon": "text"},
-            {"title": "Collaborate with senior engineers on live projects", "icon": "users"},
-        ],
-    },
-    "Junior": {
-        "level": "Junior",
-        "years": "0-2 years",
-        "education": "Bachelor's degree or equivalent industry experience",
-        "responsibilities": [
-            {"title": "Build and maintain ML pipelines end to end",        "icon": "database"},
-            {"title": "Deploy and monitor models in production",           "icon": "rocket"},
-            {"title": "Write clean, tested, reviewable code",              "icon": "text"},
-            {"title": "Contribute to architecture and design discussions",  "icon": "users"},
-        ],
-    },
-    "Senior": {
-        "level": "Senior",
-        "years": "5+ years",
-        "education": "Master's degree or equivalent industry experience",
-        "responsibilities": [
-            {"title": "Own the full model lifecycle in production",        "icon": "rocket"},
-            {"title": "Design distributed training and optimise inference","icon": "chart"},
-            {"title": "Maintain large-scale feature pipelines",           "icon": "database"},
-            {"title": "Standardise experiment tracking and registry",      "icon": "text"},
-            {"title": "Mentor engineers and set technical direction",      "icon": "users"},
-        ],
-    },
-}
-
-
-def _extract_company(jd_text: str) -> str:
-    patterns = [
-        r"\bat\s+([A-Z][A-Za-z0-9&\s]{2,30}?)(?:\s*[,.\n])",
-        r"\bjoin\s+([A-Z][A-Za-z0-9&\s]{2,30}?)(?:\s*[,.\n])",
-        r"([A-Z][A-Za-z0-9]+\s+(?:Inc|Labs|AI|Systems|Tech|Group|Corp|Ltd))\b",
-    ]
-    for p in patterns:
-        m = re.search(p, jd_text)
-        if m:
-            return m.group(1).strip()
-    return "Unknown"
-
-
-def _get_complexity(present: list[tuple[str, float]]) -> str:
-    cats_hit = {_SKILL_TO_CAT[s] for s, _ in present if s in _SKILL_TO_CAT}
-    if len(cats_hit) >= 4: return "High"
-    if len(cats_hit) >= 2: return "Medium"
-    return "Low"
-
-
-def _get_compatibility(required: list[tuple[str, float]]) -> tuple[int | None, str | None]:
-    """
-    Option B — model confidence proxy.
-    Average confidence across required skills (prob >= 0.6), scaled 0-100.
-    Measures how confidently the model identified skills in the JD, not
-    how well a specific user matches. Correlates with role clarity and
-    how standard the skill requirements are.
-    """
-    if not required:
-        return None, None
-    avg_conf = sum(p for _, p in required) / len(required)
-    score    = int(avg_conf * 100)
-    if score >= 80:   label = "Excellent Match"
-    elif score >= 65: label = "Good Match"
-    elif score >= 50: label = "Partial Match"
-    else:             label = "Low Match"
-    return score, label
-
-
-def _build_categories(present: list[tuple[str, float]]) -> list[dict]:
-    """Group predicted skills by UI category. status is always 'found'."""
-    buckets: dict[str, list[dict]] = {cat: [] for cat in SKILL_CATEGORIES}
-    for skill, prob in present:
-        cat = _SKILL_TO_CAT.get(skill)
-        if not cat:
-            continue
-        buckets[cat].append({
-            "name":       skill.title(),
-            "status":     "found",           # matches JSON schema exactly
-            "importance": int(prob * 100),
-        })
-    return [
-        {"name": cat, "skills": sorted(skills, key=lambda x: -x["importance"])}
-        for cat, skills in buckets.items()
-        if skills
-    ]
-
-
-def _build_summary(
-    required: list[tuple[str, float]],
-    role: str,
-    job_type: str,
-    jd_text: str,
-) -> dict:
-    """
-    Derive a structured summary from predicted skills and inputs.
-    Mirrors the schema: overview, responsibilities[], required[], preferred[].
-    """
-    top_required = [s.title() for s, _ in required[:5]]
-    top_names  = ", ".join(s.title() for s, _ in required[:3])
-    exp_label  = _EXP_META.get(job_type, _EXP_META["Junior"])["level"].lower()
-    overview = (
-        f"A {exp_label} {role} role with emphasis on {top_names} "
-        f"and production-grade implementation across the full ML lifecycle."
-    )
-
-    cats_hit = {_SKILL_TO_CAT.get(s) for s, _ in required if _SKILL_TO_CAT.get(s)}
-    responsibilities = []
-    if "Core Skills" in cats_hit:
-        responsibilities.append("Build, train, and evaluate machine learning models")
-    if "AI / GenAI" in cats_hit:
-        responsibilities.append("Design and deploy AI/GenAI pipelines")
-    if "Infrastructure" in cats_hit:
-        responsibilities.append("Operate and monitor models in production infrastructure")
-    if "Frameworks & Libraries" in cats_hit:
-        responsibilities.append("Implement solutions using modern ML frameworks and libraries")
-    if "Web & Full Stack" in cats_hit:
-        responsibilities.append("Develop APIs and backend services that serve model outputs")
-
-    preferred = [
-        s.title() for s, p in required
-        if 0.45 <= p < 0.65
-    ][:3]
-
-    return {
-        "overview":        overview,
-        "responsibilities": responsibilities,
-        "required":        top_required,
-        "preferred":       preferred,
-    }
-
-
-def _build_recommendation(
-    required: list[tuple[str, float]],
-    job_type: str,
-) -> dict:
-    """
-    Derive recommendation from skill count and seniority.
-    No user skills needed — based purely on JD complexity signal.
-    """
-    req_count = len(required)
-    if req_count >= 8:
-        verdict = "Competitive Role"
-        detail  = "High number of required skills — strong preparation recommended."
-        points  = [
-            {"type": "warning",  "text": f"{req_count} required skills identified"},
-            {"type": "positive", "text": "Well-defined skill set makes targeted prep easier"},
-        ]
-    elif req_count >= 5:
-        verdict = "Good Match"
-        detail  = "Balanced requirements — achievable with solid fundamentals."
-        points  = [
-            {"type": "positive", "text": f"{req_count} required skills — manageable scope"},
-            {"type": "positive", "text": "Role has clear technical expectations"},
-        ]
-    else:
-        verdict = "Accessible Role"
-        detail  = "Lower required skill count — strong entry point."
-        points  = [
-            {"type": "positive", "text": "Accessible technical bar"},
-            {"type": "positive", "text": "Good opportunity for skill development"},
-        ]
-
-    if job_type == "Senior":
-        points.append({"type": "warning", "text": "Senior seniority bar applies"})
-
-    return {"verdict": verdict, "detail": detail, "points": points}
-
-
-def _build_analysis(
-    predicted: list[tuple[str, float]],
-    role: str,
-    job_type: str,
-    jd_text: str,
-) -> dict:
-    """
-    Build the full analysis object matching the /analyzer JSON schema exactly.
-    """
-    present  = [(s, p) for s, p in predicted if p >= 0.3]
-    required = [(s, p) for s, p in predicted if p >= 0.6]
-
-    compatibility, compatibility_label = _get_compatibility(required)
-
-    return {
-        "compatibility":      compatibility,
-        "compatibilityLabel": compatibility_label,
-        "complexity":          _get_complexity(present),
-        "technicalSkillCount": len(present),
-        "requiredTechCount":   len(required),
-        "categories":  _build_categories(present),
-        "importance": [
-            {"name": s.title(), "value": int(p * 100)}
-            for s, p in predicted[:7]
-        ],
-        "experienceRequirement": _EXP_META.get(job_type, _EXP_META["Junior"]),
-        "summary": _build_summary(required, role, job_type, jd_text),
-        "recommendation": _build_recommendation(required, job_type),
-        "id":          f"an_{uuid.uuid4().hex[:8]}",
-        "createdAt":   datetime.now(timezone.utc).isoformat(),
-        "role":        role,
-        "experience":  job_type,
-        "detectedTitle": role,
-        "company":     _extract_company(jd_text),
-    }
-
-
-class SignUpRequest(BaseModel):
-    name: str
-    email: EmailStr
-    password: str
-
-
-class SignInRequest(BaseModel):
-    email: EmailStr
-    password: str
-
-
-def generate_api(prefix: str = "ja6k") -> str:
-    return f"{prefix}_{secrets.token_hex(32)}"
-
-
-def hash_key(api_key: str) -> str:
-    return hashlib.sha256(api_key.encode("utf-8")).hexdigest()
-
-
-async def verify(api_key: str = Security(api_key_header)):
-    if not api_key:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
-                            detail="API Key Missing From Header")
-    hash_income = hash_key(api_key)
-    db_record   = API_KEY_DB.get(hash_income)
-    if not db_record:
-        try:
-            from supabase_client import get_api_key_db
-            db_record = get_api_key_db(api_key=api_key)
-            if db_record and isinstance(db_record, dict):
-                API_KEY_DB[hash_income] = db_record
-        except Exception:
-            db_record = None
-    if not db_record:
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
-                            detail="Invalid or Expired API Key")
-    return db_record
-
-class JobOpeningCreate(BaseModel):
-    title:        str
-    department:   str
-    type:         str
-    location:     str  = "Remote"
-    description:  str
-    requirements: list[str] = []
-    tags:         list[str] = []
-
-    @field_validator("department")
-    def dept_valid(cls, v):
-        allowed = ["Engineering", "Research", "Design", "Operations"]
-        if v not in allowed:
-            raise ValueError(f"department must be one of {allowed}")
-        return v
-
-    @field_validator("type")
-    def type_valid(cls, v):
-        allowed = ["Full-time", "Part-time", "Contract", "Internship"]
-        if v not in allowed:
-            raise ValueError(f"type must be one of {allowed}")
-        return v
-    
-class NewsItemCreate(BaseModel):
-    title:        str
-    summary:      str
-    category:     str  = "Update"
-    url:          str | None = None
-    body:         str | None = None
-    is_published: bool = True    # default to published immediately
-
-    @field_validator("title")
-    def title_length(cls, v):
-        if len(v) > 120:
-            raise ValueError("title must be 120 characters or fewer")
-        return v.strip()
-
-    @field_validator("summary")
-    def summary_length(cls, v):
-        if len(v) > 280:
-            raise ValueError("summary must be 280 characters or fewer")
-        return v.strip()
-
-    @field_validator("category")
-    def category_valid(cls, v):
-        allowed = ["Release", "Update", "Research", "Community"]
-        if v not in allowed:
-            raise ValueError(f"category must be one of {allowed}")
-        return v
-
-class ModelRequest(BaseModel):
-    Job_Desc: str
-    Role:     str
-    Type:     str
-
-    @field_validator("Job_Desc")
-    def jd_not_empty(cls, v):
-        if not v.strip():
-            raise ValueError("Job_Desc cannot be empty")
-        return v.strip()
-
-    @field_validator("Role")
-    def role_valid(cls, v):
-        allowed = ["AI Engineer", "AI Developer"]
-        if v not in allowed:
-            raise ValueError(f"Role must be one of {allowed}")
-        return v
-
-    @field_validator("Type")
-    def type_valid(cls, v):
-        allowed = ["Internship", "Junior", "Senior"]
-        if v not in allowed:
-            raise ValueError(f"Type must be one of {allowed}")
-        return v
-
+# Cron and Root
 
 @app.get("/")
 async def main() -> dict:
@@ -417,6 +63,7 @@ async def main() -> dict:
 async def cron() -> dict:
     return {"message": "Cron Task Executed"}
 
+# User Routes
 
 @app.post("/auth/create_acc", status_code=status.HTTP_201_CREATED,
           operation_id="sign_up")
@@ -466,8 +113,6 @@ async def sign_in(data: SignInRequest) -> dict:
         raise HTTPException(status_code=401, detail="Invalid email or password")
     name   = (res.user.user_metadata or {}).get("name", email.split("@")[0])
 
-    # Existing Supabase users may predate the api_tok row. Provision a key on
-    # first successful sign-in instead of returning a misleading 404.
     record = get_api_key_db(owner=email, create_if_missing=True)
     if not record:
         raise HTTPException(status_code=500, detail="Unable to provision API key")
@@ -485,6 +130,7 @@ async def create_api(request: Request, email: str) -> dict:
     return {"owner": email, "api_key": raw,
             "warning": "Copy this key, this is a one time displayed key"}
 
+# Analyzer Endpoint Routes
 
 @app.post("/web_analyze", operation_id="web_analyze")
 @limiter.limit("5/minute")
@@ -546,6 +192,8 @@ async def JobAnalyze_Pred(
         "analysis": analysis,
     }
 
+# News Route
+
 @app.post("/news", status_code=201, operation_id="create_news_item")
 async def create_news_item(
     data: NewsItemCreate,
@@ -602,6 +250,8 @@ async def list_news_items(
     res = query.execute()
     return {"items": res.data or []}
 
+# Career Routes
+
 @app.post("/careers/openings", status_code=201, operation_id="create_job_opening")
 async def create_opening(
     data: JobOpeningCreate,
@@ -653,6 +303,7 @@ async def list_applications(
     res = query.order("created_at", desc=True).execute()
     return {"applications": res.data or []}
 
+# MCP
 
 mcp = FastApiMCP(
     app,
@@ -668,6 +319,7 @@ mcp = FastApiMCP(
 )
 mcp.mount_http()
 
+# Uvicorn
 
 if __name__ == "__main__":
     uvicorn.run("JobAnalyze_API:app", host="0.0.0.0", port=5000)
