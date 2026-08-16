@@ -88,5 +88,8 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
         )
         response.headers.setdefault("Cache-Control", "no-store")
         response.headers.setdefault("Vary", "Origin")
-        response.headers.pop("Server", None)
+        # Starlette's MutableHeaders does not implement dict.pop(). Use
+        # MutableHeaders's delete operation instead.
+        if "server" in response.headers:
+            del response.headers["server"]
         return response
