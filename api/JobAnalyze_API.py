@@ -13,7 +13,6 @@ from slowapi.util import get_remote_address
 from starlette.requests import Request
 from fastapi_mcp import FastApiMCP
 import traceback
-import uvicorn
 import os
 import hmac
 
@@ -42,7 +41,7 @@ ALLOWED_ORIGINS = [
 ]
 
 limiter = Limiter(key_func=get_remote_address)
-app = FastAPI(title="Unified JobAuto Model API")
+app = FastAPI(title="Unified JobAuto Model API", docs_url=None, redoc_url=None)
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
