@@ -31,7 +31,8 @@ from auth import (
     API_KEY_DB,
     hash_key,
     verify,
-)   
+    require_admin,
+)
 
 ALLOWED_ORIGINS = [
     "https://jobselect.vercel.app",
@@ -39,6 +40,16 @@ ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:3000",
 ]
+
+ALLOWED_HEADERS = [
+    "Accept",
+    "Content-Type",
+    "Authorization",
+    "JobAnalyze_6k_Key",
+    "X-Admin-Secret",
+]
+
+MAX_JD_LENGTH = 30000
 
 limiter = Limiter(key_func=get_remote_address)
 app = FastAPI(title="Unified JobAuto Model API", docs_url=None, redoc_url=None)
@@ -50,7 +61,7 @@ app.add_middleware(
     allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
-    allow_headers=["*"],
+    allow_headers=ALLOWED_HEADERS,
 )
 
 # Cron and Root
@@ -105,14 +116,14 @@ async def sign_in(data: SignInRequest) -> dict:
     email = str(data.email).strip().lower()
     try:
         res = supabase.auth.sign_in_with_password({"email": email, "password": data.password})
-    except AuthApiError as e:
+    except AuthApiError:
         raise HTTPException(status_code=401, detail="Invalid email or password")
     except Exception:
         traceback.print_exc()
         raise HTTPException(status_code=500, detail="Unexpected sign-in error")
     if res.user is None:
         raise HTTPException(status_code=401, detail="Invalid email or password")
-    name   = (res.user.user_metadata or {}).get("name", email.split("@")[0])
+    name = (res.user.user_metadata or {}).get("name", email.split("@")[0])
 
     record = get_api_key_db(owner=email, create_if_missing=True)
     if not record:
@@ -129,11 +140,7 @@ async def create_api(
     email: str,
     x_admin_secret: str | None = Header(default=None, alias="X-Admin-Secret"),
 ) -> dict:
-    """Generate an API key only for an explicitly authorized administrator.
-
-    ADMIN_SECRET must be configured in the deployment environment. The secret
-    is compared in constant time and is never returned or logged.
-    """
+    """Generate an API key only for an explicitly authorized administrator."""
     configured_secret = os.getenv("ADMIN_SECRET")
     if not configured_secret:
         raise HTTPException(
@@ -141,9 +148,7 @@ async def create_api(
             detail="API key generation is not configured.",
         )
 
-    if not x_admin_secret or not hmac.compare_digest(
-        x_admin_secret, configured_secret
-    ):
+    if not x_admin_secret or not hmac.compare_digest(x_admin_secret, configured_secret):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Administrator authorization required.",
@@ -151,10 +156,7 @@ async def create_api(
 
     email = email.strip().lower()
     if not email or "@" not in email:
-        raise HTTPException(
-            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-            detail="A valid email address is required.",
-        )
+        raise HTTPException(status_code=422, detail="A valid email address is required.")
 
     raw = generate_api()
     API_KEY_DB[hash_key(raw)] = {"owner": email}
@@ -167,22 +169,16 @@ async def create_api(
 @app.post("/web_analyze", operation_id="web_analyze")
 @limiter.limit("5/minute")
 async def web_analyze(request: Request, data: ModelRequest) -> dict:
-    """
-    Public Web Analyzer endpoint.
+    """Public Web Analyzer endpoint; no sign-in or API key is required."""
+    if len(data.Job_Desc) > MAX_JD_LENGTH:
+        raise HTTPException(status_code=413, detail="Job description is too large.")
 
-    No sign-in or API key is required. The model output is converted into the
-    exact strict JSON schema used by the JobSelect /analyzer page.
-    """
     raw_predictions = JobAnalyze_6k(
         job_desc=data.Job_Desc,
         role=data.Role,
         job_type=data.Type,
     )
-
-    predicted = [
-        (skill, float(score))
-        for skill, score in raw_predictions
-    ]
+    predicted = [(skill, float(score)) for skill, score in raw_predictions]
 
     try:
         return _build_analysis(
@@ -193,10 +189,7 @@ async def web_analyze(request: Request, data: ModelRequest) -> dict:
         )
     except Exception:
         traceback.print_exc()
-        raise HTTPException(
-            status_code=500,
-            detail="Web Analyzer failed while building the analysis response.",
-        )
+        raise HTTPException(status_code=500, detail="Web Analyzer failed while building the analysis response.")
 
 @app.post("/JobAnalyze_6k", operation_id="analyze_job_description")
 @limiter.limit("10/minute")
@@ -205,80 +198,41 @@ async def JobAnalyze_Pred(
     data: ModelRequest,
     api_client: dict = Depends(verify),
 ) -> dict:
+    if len(data.Job_Desc) > MAX_JD_LENGTH:
+        raise HTTPException(status_code=413, detail="Job description is too large.")
+
     raw_predictions = JobAnalyze_6k(
         job_desc=data.Job_Desc,
         role=data.Role,
         job_type=data.Type,
     )
     predicted = [(skill, float(score)) for skill, score in raw_predictions]
-
-    analysis = _build_analysis(
-        predicted=predicted,
-        role=data.Role,
-        job_type=data.Type,
-        jd_text=data.Job_Desc,
-    )
-
-    return {
-        "answer":   predicted,
-        "analysis": analysis,
-    }
+    analysis = _build_analysis(predicted=predicted, role=data.Role, job_type=data.Type, jd_text=data.Job_Desc)
+    return {"answer": predicted, "analysis": analysis}
 
 # News Route
 
 @app.post("/news", status_code=201, operation_id="create_news_item")
-async def create_news_item(
-    data: NewsItemCreate,
-    api_client: dict = Depends(verify),
-) -> dict:
-    """
-    Publish a new news item. Appears on the homepage newsboard immediately
-    if is_published=True (default). Set is_published=False to save as draft.
-    """
+async def create_news_item(data: NewsItemCreate, api_client: dict = Depends(require_admin)) -> dict:
     from supabase_client import supabase
     res = supabase.table("news_items").insert({
-        "title":        data.title,
-        "summary":      data.summary,
-        "category":     data.category,
-        "url":           data.url,
-        "body":          data.body,
-        "is_published": data.is_published,
+        "title": data.title, "summary": data.summary, "category": data.category,
+        "url": data.url, "body": data.body, "is_published": data.is_published,
     }).execute()
     return res.data[0] if res.data else {}
 
 
 @app.patch("/news/{item_id}/unpublish", operation_id="unpublish_news_item")
-async def unpublish_news_item(
-    item_id: str,
-    api_client: dict = Depends(verify),
-) -> dict:
-    """
-    Unpublish a news item. Removes it from the public homepage feed
-    without deleting the record.
-    """
+async def unpublish_news_item(item_id: str, api_client: dict = Depends(require_admin)) -> dict:
     from supabase_client import supabase
-    supabase.table("news_items").update(
-        {"is_published": False}
-    ).eq("id", item_id).execute()
+    supabase.table("news_items").update({"is_published": False}).eq("id", item_id).execute()
     return {"unpublished": True, "id": item_id}
 
 
 @app.get("/news", operation_id="list_news_items")
-async def list_news_items(
-    include_drafts: bool = False,
-    api_client: dict = Depends(verify),
-) -> dict:
-    """
-    List all news items. Pass include_drafts=true to see unpublished drafts.
-    The public homepage fetches directly from Supabase (anon key),
-    so this endpoint is for admin review only.
-    """
+async def list_news_items(include_drafts: bool = False, api_client: dict = Depends(require_admin)) -> dict:
     from supabase_client import supabase
-    query = supabase.table("news_items").select(
-        "*"
-    ).order(
-        "published_at", desc=True
-    )
+    query = supabase.table("news_items").select("*").order("published_at", desc=True)
     if not include_drafts:
         query = query.eq("is_published", True)
     res = query.execute()
@@ -287,34 +241,19 @@ async def list_news_items(
 # Career Routes
 
 @app.post("/careers/openings", status_code=201, operation_id="create_job_opening")
-async def create_opening(
-    data: JobOpeningCreate,
-    api_client: dict = Depends(verify),
-) -> dict:
-    """Create a new job opening. Immediately visible on the /careers page."""
+async def create_opening(data: JobOpeningCreate, api_client: dict = Depends(require_admin)) -> dict:
     from supabase_client import supabase
     res = supabase.table("job_openings").insert({
-        "title":        data.title,
-        "department":   data.department,
-        "type":         data.type,
-        "location":     data.location,
-        "description":  data.description,
-        "requirements": data.requirements,
-        "tags":         data.tags,
-        "is_open":      True,
+        "title": data.title, "department": data.department, "type": data.type,
+        "location": data.location, "description": data.description,
+        "requirements": data.requirements, "tags": data.tags, "is_open": True,
     }).execute()
     return res.data[0] if res.data else {}
 
 @app.patch("/careers/openings/{job_id}/close", operation_id="close_job_opening")
-async def close_opening(
-    job_id: str,
-    api_client: dict = Depends(verify),
-) -> dict:
-    """Mark a role as closed. Removes it from the public /careers page."""
+async def close_opening(job_id: str, api_client: dict = Depends(require_admin)) -> dict:
     from supabase_client import supabase
-    res = supabase.table("job_openings").update(
-        {"is_open": False}
-    ).eq("id", job_id).execute()
+    supabase.table("job_openings").update({"is_open": False}).eq("id", job_id).execute()
     return {"closed": True, "id": job_id}
 
 
@@ -322,18 +261,16 @@ async def close_opening(
 async def list_applications(
     job_id: str | None = None,
     status: str | None = None,
-    api_client: dict = Depends(verify),
+    api_client: dict = Depends(require_admin),
 ) -> dict:
-    """
-    List all applications. Filter by job_id or status.
-    Service-role only — applications are never exposed to anon.
-    """
     from supabase_client import supabase
     query = supabase.table("job_applications").select(
         "id, job_id, job_title, name, email, linkedin_url, status, created_at"
     )
-    if job_id: query = query.eq("job_id", job_id)
-    if status:  query = query.eq("status", status)
+    if job_id:
+        query = query.eq("job_id", job_id)
+    if status:
+        query = query.eq("status", status)
     res = query.order("created_at", desc=True).execute()
     return {"applications": res.data or []}
 
@@ -352,4 +289,3 @@ mcp = FastApiMCP(
     include_operations=["analyze_job_description"],
 )
 mcp.mount_http()
-
