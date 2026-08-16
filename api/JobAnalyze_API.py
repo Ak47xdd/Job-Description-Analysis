@@ -319,7 +319,3 @@ mcp = FastApiMCP(
 )
 mcp.mount_http()
 
-# Uvicorn
-
-if __name__ == "__main__":
-    uvicorn.run("JobAnalyze_API:app", host="0.0.0.0", port=5000)
