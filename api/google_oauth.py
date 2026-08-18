@@ -1,10 +1,4 @@
-"""Google OAuth helpers for the JobSelect web application.
-
-The OAuth client secret stays on the FastAPI server.  The callback exchanges a
-short-lived one-time code for the JobSelect frontend instead of putting an API
-key or Supabase token in the browser URL.
-"""
-
+"""Google OAuth helpers for the JobSelect web application."""
 from __future__ import annotations
 
 import base64
@@ -18,13 +12,9 @@ from urllib.parse import urlencode
 
 import requests
 
-
 GOOGLE_AUTHORIZE_URL = "https://accounts.google.com/o/oauth2/v2/auth"
 GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token"
 GOOGLE_SCOPES = "openid email profile"
-
-# Render normally runs a single service instance. These values are deliberately
-# short-lived and are only used to bridge the OAuth callback to the SPA.
 _PENDING_CODES: dict[str, tuple[float, dict]] = {}
 
 
@@ -44,10 +34,7 @@ def _unb64(value: str) -> bytes:
 
 
 def create_state() -> str:
-    payload = {
-        "nonce": secrets.token_urlsafe(24),
-        "iat": int(time.time()),
-    }
+    payload = {"nonce": secrets.token_urlsafe(24), "iat": int(time.time())}
     encoded = _b64(json.dumps(payload, separators=(",", ":")).encode())
     signature = hmac.new(_secret(), encoded.encode(), hashlib.sha256).digest()
     return f"{encoded}.{_b64(signature)}"
@@ -70,18 +57,16 @@ def google_authorize_url() -> str:
     redirect_uri = os.getenv("GOOGLE_REDIRECT_URI")
     if not client_id or not redirect_uri:
         raise RuntimeError("GOOGLE_CLIENT_ID and GOOGLE_REDIRECT_URI must be configured")
-
     state = create_state()
-    params = {
-        "client_id": client_id,
-        "redirect_uri": redirect_uri,
-        "response_type": "code",
-        "scope": GOOGLE_SCOPES,
-        "state": state,
-        "access_type": "offline",
-        "prompt": "select_account",
-    }
-    return f"{GOOGLE_AUTHORIZE_URL}?{urlencode(params)}"
+    return f"{GOOGLE_AUTHORIZE_URL}?{urlencode({
+        'client_id': client_id,
+        'redirect_uri': redirect_uri,
+        'response_type': 'code',
+        'scope': GOOGLE_SCOPES,
+        'state': state,
+        'access_type': 'offline',
+        'prompt': 'select_account',
+    })}"
 
 
 def exchange_google_code(code: str) -> dict:
@@ -89,10 +74,7 @@ def exchange_google_code(code: str) -> dict:
     client_secret = os.getenv("GOOGLE_CLIENT_SECRET")
     redirect_uri = os.getenv("GOOGLE_REDIRECT_URI")
     if not client_id or not client_secret or not redirect_uri:
-        raise RuntimeError(
-            "GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET and GOOGLE_REDIRECT_URI must be configured"
-        )
-
+        raise RuntimeError("GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET and GOOGLE_REDIRECT_URI must be configured")
     response = requests.post(
         GOOGLE_TOKEN_URL,
         data={
@@ -128,6 +110,6 @@ def consume_one_time_result(code: str) -> dict | None:
 
 def _cleanup() -> None:
     now = time.time()
-    expired = [key for key, (expires_at, _) in _PENDING_CODES.items() if expires_at < now]
-    for key in expired:
-        _PENDING_CODES.pop(key, None)
+    for key, (expires_at, _) in list(_PENDING_CODES.items()):
+        if expires_at < now:
+            _PENDING_CODES.pop(key, None)
