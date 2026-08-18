@@ -11,6 +11,7 @@ from google_oauth import google_authorize_url, verify_state, exchange_google_cod
 import traceback
 import os
 import hmac
+
 from JobAnalyze.v1.pred_v1 import JobAnalyze_6k
 from supabase_client import upsert_api_key_db
 from helpers import _build_analysis
