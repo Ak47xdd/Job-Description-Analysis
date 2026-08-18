@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, HTTPException, status, Header
+from fastapi import FastAPI, Depends, HTTPException, status, Header, Body
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
@@ -7,10 +7,14 @@ from slowapi.errors import RateLimitExceeded
 from slowapi.util import get_remote_address
 from starlette.requests import Request
 from fastapi_mcp import FastApiMCP
-from google_oauth import google_authorize_url, verify_state, exchange_google_code, store_one_time_result, consume_one_time_result
+from google_oauth import google_authorize_url, verify_state, exchange_google_code
 import traceback
 import os
 import hmac
+import hashlib
+import base64
+import json
+import time
 
 from JobAnalyze.v1.pred_v1 import JobAnalyze_6k
 from supabase_client import upsert_api_key_db
@@ -37,6 +41,63 @@ async def cron() -> dict:
 
 FRONTEND_URL = os.getenv("FRONTEND_URL", "https://jobselect.vercel.app").rstrip("/")
 
+
+def _oauth_bridge_secret() -> bytes:
+    secret = os.getenv("GOOGLE_OAUTH_STATE_SECRET") or os.getenv("SUPA_KEY")
+    if not secret:
+        raise RuntimeError("GOOGLE_OAUTH_STATE_SECRET or SUPA_KEY must be configured")
+    return secret.encode("utf-8")
+
+
+def _b64url_encode(value: bytes) -> str:
+    return base64.urlsafe_b64encode(value).decode("ascii").rstrip("=")
+
+
+def _b64url_decode(value: str) -> bytes:
+    return base64.urlsafe_b64decode(value + "=" * (-len(value) % 4))
+
+
+def _create_oauth_bridge(*, email: str, name: str) -> str:
+    """Create a stateless, signed OAuth hand-off code.
+
+    The previous implementation stored the hand-off in process-local memory.
+    That can fail on Render when callback and exchange hit different workers.
+    This code contains no API key; the key is looked up server-side.
+    """
+    now = int(time.time())
+    payload = {
+        "email": email,
+        "name": name,
+        "iat": now,
+        "exp": now + 120,
+        "nonce": _b64url_encode(os.urandom(18)),
+    }
+    encoded = _b64url_encode(json.dumps(payload, separators=(",", ":")).encode("utf-8"))
+    signature = hmac.new(_oauth_bridge_secret(), encoded.encode("ascii"), hashlib.sha256).digest()
+    return f"{encoded}.{_b64url_encode(signature)}"
+
+
+def _consume_oauth_bridge(code: str) -> dict | None:
+    try:
+        encoded, signature = code.split(".", 1)
+        expected = hmac.new(_oauth_bridge_secret(), encoded.encode("ascii"), hashlib.sha256).digest()
+        if not hmac.compare_digest(_b64url_decode(signature), expected):
+            return None
+        payload = json.loads(_b64url_decode(encoded).decode("utf-8"))
+        now = int(time.time())
+        if int(payload.get("exp", 0)) < now:
+            return None
+        if now - int(payload.get("iat", now)) > 120:
+            return None
+        email = str(payload.get("email", "")).strip().lower()
+        name = str(payload.get("name", "")).strip()
+        if not email or "@" not in email:
+            return None
+        return {"email": email, "name": name}
+    except (ValueError, TypeError, KeyError, json.JSONDecodeError, UnicodeDecodeError):
+        return None
+
+
 @app.get("/auth/google", include_in_schema=False)
 async def google_login():
     try:
@@ -45,9 +106,10 @@ async def google_login():
         raise HTTPException(status_code=503, detail=str(exc))
 
 @app.get("/auth/google/callback", include_in_schema=False)
-async def google_callback(code: str | None = None, state: str | None = None, error: str | None = None):
+async def google_callback(code: str | None = None, state: str | None = None, error: str | None = None, error_description: str | None = None):
     if error:
-        return RedirectResponse(f"{FRONTEND_URL}/login?oauth_error=google_denied")
+        detail = (error_description or error).replace(" ", "_")
+        return RedirectResponse(f"{FRONTEND_URL}/login?oauth_error=google_denied&detail={detail}")
     if not code or not state or not verify_state(state):
         return RedirectResponse(f"{FRONTEND_URL}/login?oauth_error=invalid_oauth_state")
     try:
@@ -55,30 +117,69 @@ async def google_callback(code: str | None = None, state: str | None = None, err
         google_id_token = token_data.get("id_token")
         if not google_id_token:
             raise RuntimeError("Google did not return an ID token")
+
         from supabase_client import supabase, get_api_key_db
-        # IMPORTANT: supabase-py expects the Google ID token under `token`.
-        auth_result = supabase.auth.sign_in_with_id_token({"provider": "google", "token": google_id_token})
+
+        # Supabase supports native Google ID-token sign-in. The Google provider
+        # must be enabled in Supabase and configured with the same client ID.
+        auth_result = supabase.auth.sign_in_with_id_token({
+            "provider": "google",
+            "token": google_id_token,
+        })
         user = auth_result.user
         if user is None or not user.email:
             raise RuntimeError("Supabase did not return a Google user")
+
         email = str(user.email).strip().lower()
         metadata = user.user_metadata or {}
-        name = metadata.get("name") or metadata.get("full_name") or email.split("@")[0]
+        name = str(metadata.get("name") or metadata.get("full_name") or email.split("@")[0]).strip()
+
+        # Provision the API key before completing the browser hand-off. This
+        # also repairs Google accounts that never received an api_tok row.
         record = get_api_key_db(owner=email, create_if_missing=True)
         if not record or not record.get("api_key"):
-            raise RuntimeError("Unable to provision API key")
-        bridge_code = store_one_time_result({"email": email, "name": name, "api_key": record["api_key"]})
+            raw = generate_api()
+            record = upsert_api_key_db(owner=email, api_key=raw)
+            if not record or not record.get("api_key"):
+                raise RuntimeError("Unable to provision API key")
+
+        bridge_code = _create_oauth_bridge(email=email, name=name)
         return RedirectResponse(f"{FRONTEND_URL}/auth/google/callback?code={bridge_code}", status_code=302)
+    except AuthApiError as exc:
+        traceback.print_exc()
+        detail = str(exc).replace(" ", "_")
+        return RedirectResponse(f"{FRONTEND_URL}/login?oauth_error=supabase_google_failed&detail={detail}")
     except Exception:
         traceback.print_exc()
         return RedirectResponse(f"{FRONTEND_URL}/login?oauth_error=google_failed")
 
 @app.post("/auth/google/exchange", include_in_schema=False)
-async def google_exchange(code: str) -> dict:
-    result = consume_one_time_result(code)
-    if not result:
+async def google_exchange(request: Request, code: str | None = None, body: dict | None = Body(default=None)) -> dict:
+    """Exchange the browser hand-off code for the user's API credentials.
+
+    Accept both ?code=... and JSON {\"code\": \"...\"} so existing
+    frontends using either convention continue to work.
+    """
+    supplied_code = code
+    if not supplied_code and isinstance(body, dict):
+        supplied_code = body.get("code")
+    if not supplied_code:
+        raise HTTPException(status_code=422, detail="OAuth code is required")
+
+    bridge = _consume_oauth_bridge(str(supplied_code))
+    if not bridge:
         raise HTTPException(status_code=401, detail="OAuth code is invalid or expired")
-    return result
+
+    from supabase_client import get_api_key_db
+    record = get_api_key_db(owner=bridge["email"], create_if_missing=True)
+    if not record or not record.get("api_key"):
+        raise HTTPException(status_code=500, detail="Unable to provision API key")
+
+    return {
+        "email": bridge["email"],
+        "name": bridge["name"] or bridge["email"].split("@")[0],
+        "api_key": record["api_key"],
+    }
 
 @app.post("/auth/create_acc", status_code=status.HTTP_201_CREATED, operation_id="sign_up")
 async def create_acc(data: SignUpRequest) -> dict:
