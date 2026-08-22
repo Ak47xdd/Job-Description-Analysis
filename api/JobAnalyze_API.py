@@ -182,6 +182,7 @@ async def google_exchange(request: Request, code: str | None = None, body: dict 
     }
 
 @app.post("/auth/create_acc", status_code=status.HTTP_201_CREATED, operation_id="sign_up")
+@limiter.limit("5/minute")
 async def create_acc(data: SignUpRequest) -> dict:
     from supabase_client import supabase
     email = str(data.email).strip().lower()
@@ -208,6 +209,7 @@ async def create_acc(data: SignUpRequest) -> dict:
     return {"message": "Account Created", "api_key": raw, "name": name, "email": email}
 
 @app.post("/auth/sign_in", operation_id="sign_in")
+@limiter.limit("5/minute")
 async def sign_in(data: SignInRequest) -> dict:
     from supabase_client import supabase, get_api_key_db
     email = str(data.email).strip().lower()
