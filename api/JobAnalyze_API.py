@@ -102,6 +102,63 @@ def _provision_confirmed_user(*, access_token: str) -> dict:
         raise HTTPException(status_code=500, detail="Unable to provision API key")
     return {"email": email, "name": name, "api_key": record["api_key"]}
 
+@app.get("/auth/account", operation_id="account_details")
+@limiter.limit("30/minute")
+async def account_details(request: Request) -> dict:
+    """Return authoritative account data for the authenticated dashboard."""
+    from supabase_client import supabase, get_api_key_db
+
+    access_token = _supabase_access_token(request)
+    try:
+        user_response = supabase.auth.get_user(access_token)
+    except Exception:
+        raise HTTPException(status_code=401, detail="Invalid or expired Supabase session")
+
+    user = user_response.user
+    if user is None or not user.email:
+        raise HTTPException(status_code=401, detail="Unable to identify authenticated user")
+
+    email = str(user.email).strip().lower()
+    metadata = user.user_metadata or {}
+    name = str(metadata.get("name") or metadata.get("full_name") or email.split("@")[0]).strip()
+    app_metadata = user.app_metadata or {}
+    identities = getattr(user, "identities", None) or []
+    identity_provider = None
+    if identities:
+        first_identity = identities[0]
+        if isinstance(first_identity, dict):
+            identity_provider = first_identity.get("provider")
+        else:
+            identity_provider = getattr(first_identity, "provider", None)
+    provider = str(app_metadata.get("provider") or identity_provider or "email")
+    provider_label = "Google" if provider.lower() == "google" else "Email & password" if provider.lower() == "email" else provider
+
+    record = get_api_key_db(owner=email, create_if_missing=False)
+    api_key = record.get("api_key") if record else None
+
+    return {
+        "user": {
+            "id": str(user.id),
+            "name": name,
+            "email": email,
+            "email_verified": bool(getattr(user, "email_confirmed_at", None)),
+            "provider": provider_label,
+            "created_at": getattr(user, "created_at", None),
+            "last_sign_in_at": getattr(user, "last_sign_in_at", None),
+        },
+        "api": {
+            "status": "active" if api_key else "not_provisioned",
+            "api_key": api_key,
+            "created_at": record.get("created_at") if record else None,
+        },
+        "usage": {
+            "tracking_enabled": False,
+            "analysis_count": None,
+            "api_request_count": None,
+            "message": "Usage tracking is not enabled yet.",
+        },
+    }
+
 @app.get("/auth/google", include_in_schema=False)
 async def google_login():
     try: return RedirectResponse(url=google_authorize_url(), status_code=302)
