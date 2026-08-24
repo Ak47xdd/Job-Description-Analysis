@@ -252,6 +252,42 @@ async def sign_in(request: Request, data: SignInRequest) -> dict:
     if res.user is None or res.session is None: raise HTTPException(status_code=401, detail="Invalid email or password")
     return _provision_confirmed_user(access_token=res.session.access_token)
 
+@app.delete("/auth/account", operation_id="delete_account")
+@limiter.limit("3/hour")
+async def delete_account(request: Request) -> dict:
+    from supabase_client import supabase, get_api_key_db
+
+    access_token = _supabase_access_token(request)
+
+    try:
+        user_response = supabase.auth.get_user(access_token)
+    except Exception:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid or expired Supabase session"
+        )
+
+    user = user_response.user
+    if user is None or not user.email:
+        raise HTTPException(
+            status_code=401,
+            detail="Unable to identify authenticated user"
+        )
+
+    user_id = str(user.id)
+    email = str(user.email).strip().lower()
+
+    supabase.table("api_tok").delete().eq(
+        "owner", email
+    ).execute()
+
+    supabase.auth.admin.delete_user(user_id)
+
+    return {
+        "success": True,
+        "message": "Account deleted successfully"
+    }
+
 @app.post("/API/Generate", status_code=status.HTTP_201_CREATED, operation_id="api_key_creator")
 @limiter.limit("5/hour")
 async def create_api(request: Request, email: str, x_admin_secret: str | None = Header(default=None, alias="X-Admin-Secret")) -> dict:
