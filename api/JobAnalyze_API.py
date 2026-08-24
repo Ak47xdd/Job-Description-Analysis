@@ -252,7 +252,7 @@ async def sign_in(request: Request, data: SignInRequest) -> dict:
     if res.user is None or res.session is None: raise HTTPException(status_code=401, detail="Invalid email or password")
     return _provision_confirmed_user(access_token=res.session.access_token)
 
-@app.delete("/auth/account", operation_id="delete_account")
+@app.delete("/auth/delete_account", operation_id="delete_account")
 @limiter.limit("3/hour")
 async def delete_account(request: Request) -> dict:
     from supabase_client import supabase, get_api_key_db
