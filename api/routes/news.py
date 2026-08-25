@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 from fastapi import Depends
 
-from api.schemas import NewsItemCreate
-from api.auth import require_admin
+from schemas import NewsItemCreate
+from auth import require_admin
 
 router = APIRouter(
     prefix="/news",

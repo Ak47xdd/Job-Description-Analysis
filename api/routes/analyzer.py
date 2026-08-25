@@ -3,11 +3,11 @@ from starlette.requests import Request
 from fastapi import APIRouter
 import traceback
 
-from api.JobAnalyze.v1.pred_v1 import JobAnalyze_6k
-from api.JobAnalyze_API import limiter
-from api.helpers import _build_analysis
-from api.schemas import ModelRequest
-from api.auth import verify
+from JobAnalyze.v1.pred_v1 import JobAnalyze_6k
+from JobAnalyze_API import limiter
+from helpers import _build_analysis
+from schemas import ModelRequest
+from auth import verify
 
 
 router = APIRouter(

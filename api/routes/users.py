@@ -6,10 +6,10 @@ from starlette.requests import Request
 from fastapi import APIRouter
 import traceback
 
-from api.schemas import SignInRequest, SignUpRequest
-from api.supabase_client import upsert_api_key_db
-from api.JobAnalyze_API import limiter
-from api.auth_helpers import (
+from schemas import SignInRequest, SignUpRequest
+from supabase_client import upsert_api_key_db
+from JobAnalyze_API import limiter
+from auth_helpers import (
     _supabase_access_token,
     _consume_oauth_bridge,
     _create_oauth_bridge,

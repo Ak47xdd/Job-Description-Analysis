@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 from fastapi import Depends
 
-from api.schemas import JobOpeningCreate
-from api.auth import require_admin
+from schemas import JobOpeningCreate
+from auth import require_admin
 
 
 router = APIRouter(
