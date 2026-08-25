@@ -8,7 +8,7 @@ import hmac
 import os
 
 from auth import generate_api, API_KEY_DB, hash_key
-from routes import users, analyzer, careers, news
+from routes import auth, oauth, account, analyzer, careers, news
 from supabase_client import upsert_api_key_db
 from rate_limit import limiter
 
@@ -44,7 +44,9 @@ app.add_middleware(
     allow_headers=ALLOWED_HEADERS
 )
 
-app.include_router(users.router)
+app.include_router(auth.router)
+app.include_router(oauth.router)
+app.include_router(account.router)
 app.include_router(analyzer.router)
 app.include_router(news.router)
 app.include_router(careers.router)
