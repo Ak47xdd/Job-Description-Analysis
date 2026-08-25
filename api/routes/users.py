@@ -8,7 +8,7 @@ import traceback
 
 from schemas import SignInRequest, SignUpRequest
 from supabase_client import upsert_api_key_db
-from JobAnalyze_API import limiter
+from rate_limit import limiter
 from auth_helpers import (
     _supabase_access_token,
     _consume_oauth_bridge,
@@ -23,27 +23,19 @@ router = APIRouter(
     tags=["items"]
 )
 
-@router.get(
-    "/auth/account", 
-    operation_id="account_details"
-    )
+@router.get("/auth/account", operation_id="account_details")
 @limiter.limit("30/minute")
 async def account_details(request: Request) -> dict:
-    
     """Return authoritative account data for the authenticated dashboard."""
-    
     from supabase_client import supabase, get_api_key_db
-
     access_token = _supabase_access_token(request)
     try:
         user_response = supabase.auth.get_user(access_token)
     except Exception:
         raise HTTPException(status_code=401, detail="Invalid or expired Supabase session")
-
     user = user_response.user
     if user is None or not user.email:
         raise HTTPException(status_code=401, detail="Unable to identify authenticated user")
-
     email = str(user.email).strip().lower()
     metadata = user.user_metadata or {}
     name = str(metadata.get("name") or metadata.get("full_name") or email.split("@")[0]).strip()
@@ -58,52 +50,17 @@ async def account_details(request: Request) -> dict:
             identity_provider = getattr(first_identity, "provider", None)
     provider = str(app_metadata.get("provider") or identity_provider or "email")
     provider_label = "Google" if provider.lower() == "google" else "Email & password" if provider.lower() == "email" else provider
-
     record = get_api_key_db(owner=email, create_if_missing=False)
     api_key = record.get("api_key") if record else None
+    return {"user": {"id": str(user.id), "name": name, "email": email, "email_verified": bool(getattr(user, "email_confirmed_at", None)), "provider": provider_label, "created_at": getattr(user, "created_at", None), "last_sign_in_at": getattr(user, "last_sign_in_at", None)}, "api": {"status": "active" if api_key else "not_provisioned", "api_key": api_key, "created_at": record.get("created_at") if record else None}, "usage": {"tracking_enabled": False, "analysis_count": None, "api_request_count": None, "message": "Usage tracking is not enabled yet."}}
 
-    return {
-        "user": {
-            "id": str(user.id),
-            "name": name,
-            "email": email,
-            "email_verified": bool(getattr(user, "email_confirmed_at", None)),
-            "provider": provider_label,
-            "created_at": getattr(user, "created_at", None),
-            "last_sign_in_at": getattr(user, "last_sign_in_at", None),
-        },
-        "api": {
-            "status": "active" if api_key else "not_provisioned",
-            "api_key": api_key,
-            "created_at": record.get("created_at") if record else None,
-        },
-        "usage": {
-            "tracking_enabled": False,
-            "analysis_count": None,
-            "api_request_count": None,
-            "message": "Usage tracking is not enabled yet.",
-        },
-    }
-
-@router.get(
-    "/auth/google", 
-    include_in_schema=False
-    )
+@router.get("/auth/google", include_in_schema=False)
 async def google_login():
-    
     try: return RedirectResponse(url=google_authorize_url(), status_code=302)
     except RuntimeError as exc: raise HTTPException(status_code=503, detail=str(exc))
 
-@router.get(
-    "/auth/google/callback", 
-    include_in_schema=False
-    )
-async def google_callback(
-    code: str | None = None, 
-    state: str | None = None, 
-    error: str | None = None, 
-    error_description: str | None = None):
-    
+@router.get("/auth/google/callback", include_in_schema=False)
+async def google_callback(code: str | None = None, state: str | None = None, error: str | None = None, error_description: str | None = None):
     if error:
         detail = (error_description or error).replace(" ", "_")
         return RedirectResponse(f"{FRONTEND_URL}/login?oauth_error=google_denied&detail={detail}")
@@ -125,16 +82,8 @@ async def google_callback(
     except Exception:
         traceback.print_exc(); return RedirectResponse(f"{FRONTEND_URL}/login?oauth_error=google_failed")
 
-@router.post(
-    "/auth/google/exchange", 
-    include_in_schema=False
-    )
-async def google_exchange(
-    request: Request, 
-    code: str | None = None, 
-    body: dict | None = Body(default=None)
-    ) -> dict:
-    
+@router.post("/auth/google/exchange", include_in_schema=False)
+async def google_exchange(request: Request, code: str | None = None, body: dict | None = Body(default=None)) -> dict:
     supplied_code = code or (body.get("code") if isinstance(body, dict) else None)
     if not supplied_code: raise HTTPException(status_code=422, detail="OAuth code is required")
     bridge = _consume_oauth_bridge(str(supplied_code))
@@ -144,14 +93,9 @@ async def google_exchange(
     if not record or not record.get("api_key"): raise HTTPException(status_code=500, detail="Unable to provision API key")
     return {"email": bridge["email"], "name": bridge["name"] or bridge["email"].split("@")[0], "api_key": record["api_key"]}
 
-@router.post(
-    "/auth/create_acc", 
-    status_code=status.HTTP_201_CREATED, 
-    operation_id="sign_up"
-    )
+@router.post("/auth/create_acc", status_code=status.HTTP_201_CREATED, operation_id="sign_up")
 @limiter.limit("5/minute")
 async def create_acc(request: Request, data: SignUpRequest) -> dict:
-    
     from supabase_client import supabase
     email = str(data.email).strip().lower(); name = data.name.strip()
     try:
@@ -164,45 +108,30 @@ async def create_acc(request: Request, data: SignUpRequest) -> dict:
     except Exception:
         traceback.print_exc(); raise HTTPException(status_code=500, detail="Unexpected signup error")
     if res.user is None: raise HTTPException(status_code=400, detail="Signup failed")
-    if not getattr(res.user, "email_confirmed_at", None):
-        return {"message": "Confirmation email sent", "requires_confirmation": True, "name": name, "email": email}
+    if not getattr(res.user, "email_confirmed_at", None): return {"message": "Confirmation email sent", "requires_confirmation": True, "name": name, "email": email}
     if not res.session: raise HTTPException(status_code=500, detail="Signup completed but no session was returned")
     return {"message": "Account Created", "requires_confirmation": False, **_provision_confirmed_user(access_token=res.session.access_token)}
 
-@router.post(
-    "/auth/resend_confirmation", 
-    operation_id="resend_confirmation"
-    )
+@router.post("/auth/resend_confirmation", operation_id="resend_confirmation")
 @limiter.limit("3/15 minutes")
 async def resend_confirmation(request: Request, data: dict = Body(...)) -> dict:
-    
     from supabase_client import supabase
     email = str(data.get("email", "")).strip().lower()
     if not email or "@" not in email: raise HTTPException(status_code=422, detail="A valid email address is required.")
-    try:
-        supabase.auth.resend({"type": "signup", "email": email, "options": {"email_redirect_to": f"{FRONTEND_URL}/auth/email-confirmed"}})
-    except AuthApiError:
-        raise HTTPException(status_code=400, detail="Unable to resend confirmation email. Please check the email address and try again.")
+    try: supabase.auth.resend({"type": "signup", "email": email, "options": {"email_redirect_to": f"{FRONTEND_URL}/auth/email-confirmed"}})
+    except AuthApiError: raise HTTPException(status_code=400, detail="Unable to resend confirmation email. Please check the email address and try again.")
     except Exception:
         traceback.print_exc(); raise HTTPException(status_code=500, detail="Unable to resend confirmation email")
     return {"message": "If the account requires confirmation, a new confirmation email has been sent.", "email": email}
 
-@router.post(
-    "/auth/provision", 
-    operation_id="provision_confirmed_account"
-    )
+@router.post("/auth/provision", operation_id="provision_confirmed_account")
 @limiter.limit("10/minute")
 async def provision_confirmed_account(request: Request) -> dict:
-    
     return _provision_confirmed_user(access_token=_supabase_access_token(request))
 
-@router.post(
-    "/auth/sign_in", 
-    operation_id="sign_in"
-    )
+@router.post("/auth/sign_in", operation_id="sign_in")
 @limiter.limit("5/minute")
 async def sign_in(request: Request, data: SignInRequest) -> dict:
-    
     from supabase_client import supabase
     email = str(data.email).strip().lower()
     try: res = supabase.auth.sign_in_with_password({"email": email, "password": data.password})
@@ -215,42 +144,16 @@ async def sign_in(request: Request, data: SignInRequest) -> dict:
     if res.user is None or res.session is None: raise HTTPException(status_code=401, detail="Invalid email or password")
     return _provision_confirmed_user(access_token=res.session.access_token)
 
-@router.delete(
-    "/auth/delete_account", 
-    operation_id="delete_account"
-    )
+@router.delete("/auth/delete_account", operation_id="delete_account")
 @limiter.limit("3/hour")
 async def delete_account(request: Request) -> dict:
-    
-    from supabase_client import supabase, get_api_key_db
-
+    from supabase_client import supabase
     access_token = _supabase_access_token(request)
-
-    try:
-        user_response = supabase.auth.get_user(access_token)
-    except Exception:
-        raise HTTPException(
-            status_code=401,
-            detail="Invalid or expired Supabase session"
-        )
-
+    try: user_response = supabase.auth.get_user(access_token)
+    except Exception: raise HTTPException(status_code=401, detail="Invalid or expired Supabase session")
     user = user_response.user
-    if user is None or not user.email:
-        raise HTTPException(
-            status_code=401,
-            detail="Unable to identify authenticated user"
-        )
-
-    user_id = str(user.id)
-    email = str(user.email).strip().lower()
-
-    supabase.table("api_tok").delete().eq(
-        "owner", email
-    ).execute()
-
+    if user is None or not user.email: raise HTTPException(status_code=401, detail="Unable to identify authenticated user")
+    user_id = str(user.id); email = str(user.email).strip().lower()
+    supabase.table("api_tok").delete().eq("owner", email).execute()
     supabase.auth.admin.delete_user(user_id)
-
-    return {
-        "success": True,
-        "message": "Account deleted successfully"
-    }
+    return {"success": True, "message": "Account deleted successfully"}
