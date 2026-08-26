@@ -1,15 +1,9 @@
-"""Encryption helpers for JobSelect API keys.
-
-API keys are encrypted for authenticated display/retrieval and separately
-hashed for lookup/verification. The encryption key must live only in the
-server environment, never in Supabase or the frontend.
-"""
+"""API-key hashing and authenticated encryption helpers."""
 
 import base64
 import hashlib
 import hmac
 import os
-import warnings
 
 from cryptography.fernet import Fernet, InvalidToken
 
@@ -17,32 +11,22 @@ ENV_NAME = "API_KEY_ENCRYPTION_SECRET"
 
 
 def _fernet() -> Fernet:
+    """Build a stable Fernet key from the server-only encryption secret.
+
+    The environment variable may be any sufficiently random secret. We derive
+    a valid 32-byte Fernet key instead of requiring operators to paste a
+    pre-encoded Fernet key, which avoids configuration-format failures.
+    """
     secret = os.getenv(ENV_NAME, "").strip()
-
-    # Backwards-compatible emergency fallback. This keeps an existing
-    # deployment working if the new environment variable has not been added
-    # yet. SUPA_KEY is already server-side only. Production deployments should
-    # still set API_KEY_ENCRYPTION_SECRET to a dedicated Fernet key.
     if not secret:
-        fallback = os.getenv("SUPA_KEY", "").strip()
-        if not fallback:
-            raise RuntimeError(
-                f"{ENV_NAME} must be configured, or SUPA_KEY must be available"
-            )
-        secret = base64.urlsafe_b64encode(
-            hashlib.sha256(fallback.encode("utf-8")).digest()
-        ).decode("ascii")
-        warnings.warn(
-            f"{ENV_NAME} is not configured; using a compatibility key derived "
-            "from SUPA_KEY. Configure a dedicated encryption secret in production.",
-            RuntimeWarning,
-            stacklevel=2,
-        )
+        # Temporary compatibility path for deployments that have not added the
+        # dedicated secret yet. SUPA_KEY remains server-side only.
+        secret = os.getenv("SUPA_KEY", "").strip()
+    if not secret:
+        raise RuntimeError(f"{ENV_NAME} or SUPA_KEY must be configured")
 
-    try:
-        return Fernet(secret.encode("ascii"))
-    except Exception as exc:
-        raise RuntimeError(f"{ENV_NAME} is not a valid Fernet key") from exc
+    derived = hashlib.sha256(secret.encode("utf-8")).digest()
+    return Fernet(base64.urlsafe_b64encode(derived))
 
 
 def hash_api_key(api_key: str) -> str:
@@ -51,7 +35,7 @@ def hash_api_key(api_key: str) -> str:
 
 
 def encrypt_api_key(api_key: str) -> str:
-    """Encrypt an API key for authenticated, server-side retrieval."""
+    """Encrypt an API key for authenticated server-side retrieval."""
     return _fernet().encrypt(api_key.encode("utf-8")).decode("ascii")
 
 
@@ -68,14 +52,3 @@ def keys_match(candidate: str, stored_hash: str) -> bool:
     if not stored_hash:
         return False
     return hmac.compare_digest(hash_api_key(candidate), stored_hash.lower())
-
-
-def is_encrypted(value: str | None) -> bool:
-    """Best-effort check for a Fernet ciphertext."""
-    if not value:
-        return False
-    try:
-        base64.urlsafe_b64decode(value.encode("ascii"))
-        return value.startswith("gAAAAA")
-    except Exception:
-        return False
