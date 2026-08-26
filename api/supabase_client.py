@@ -1,4 +1,4 @@
-"""Supabase integration and API-key persistence."""
+"""Supabase integration and secure API-key persistence."""
 
 from pathlib import Path
 from dotenv import load_dotenv
@@ -25,19 +25,16 @@ load_dotenv(dotenv_path=_env_path)
 
 SUPA_URL = os.getenv("SUPA_URL", "").rstrip("/")
 SUPA_KEY = os.getenv("SUPA_KEY", "")
-
 if not SUPA_URL or not SUPA_KEY:
     raise RuntimeError("SUPA_URL and SUPA_KEY must be configured")
 
 supabase: Client = create_client(SUPA_URL, SUPA_KEY)
-
 _HEADERS = {
     "apikey": SUPA_KEY,
     "Authorization": f"Bearer {SUPA_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 }
-
 _API_KEY_COLUMNS = "user_id,owner,api_key,api_key_hash,api_key_encrypted"
 
 
@@ -45,19 +42,24 @@ def _generate_api_key() -> str:
     return f"ja6k_{secrets.token_hex(32)}"
 
 
-def _request(params: dict) -> list[dict]:
-    response = requests.get(
+def _request(method: str, *, params: dict | None = None, json: dict | None = None, prefer: str | None = None):
+    headers = dict(_HEADERS)
+    if prefer:
+        headers["Prefer"] = prefer
+    response = requests.request(
+        method,
         f"{SUPA_URL}/rest/v1/api_tok",
-        headers=_HEADERS,
+        headers=headers,
         params=params,
+        json=json,
         timeout=15,
     )
     response.raise_for_status()
-    return response.json()
+    return response.json() if response.content else []
 
 
 def _select_secure_or_legacy(*, owner: str | None = None, api_key: str | None = None) -> list[dict]:
-    """Read secure columns, then cleanly fall back to the original schema."""
+    """Read secure records, with a legacy fallback for pre-migration databases."""
     secure_params = {"select": _API_KEY_COLUMNS, "limit": 1}
     if owner is not None:
         secure_params["owner"] = f"eq.{owner}"
@@ -65,61 +67,47 @@ def _select_secure_or_legacy(*, owner: str | None = None, api_key: str | None = 
         secure_params["api_key_hash"] = f"eq.{hash_api_key(api_key)}"
     else:
         return []
-
     try:
-        return _request(secure_params)
+        return _request("GET", params=secure_params)
     except requests.HTTPError:
-        # The secure columns may not exist yet. Crucially, do not retain the
-        # api_key_hash filter in the legacy query, because that column may also
-        # be absent. Search the actual plaintext column only in this temporary
-        # compatibility path.
         legacy_params = {"select": "user_id,owner,api_key", "limit": 1}
         if owner is not None:
             legacy_params["owner"] = f"eq.{owner}"
         else:
             legacy_params["api_key"] = f"eq.{api_key}"
-        return _request(legacy_params)
+        return _request("GET", params=legacy_params)
 
 
 def _secure_record(row: dict) -> dict:
-    """Normalize a secure or legacy row and lazily migrate legacy keys."""
     encrypted = row.get("api_key_encrypted")
     key_hash = row.get("api_key_hash")
     legacy = row.get("api_key")
-
     if encrypted and key_hash:
         result = dict(row)
         result["api_key"] = decrypt_api_key(encrypted)
         return result
-
     if not legacy:
         return dict(row)
 
     result = dict(row)
     result["api_key"] = legacy
-
-    # Migration is best-effort. A missing migration must never prevent an
-    # existing user from signing in or using their old API key.
     user_pk = row.get("user_id")
     if user_pk is not None:
         try:
-            secure_update = {
-                "api_key_hash": hash_api_key(legacy),
-                "api_key_encrypted": encrypt_api_key(legacy),
-                "api_key": None,
-            }
-            response = requests.patch(
-                f"{SUPA_URL}/rest/v1/api_tok",
+            response = _request(
+                "PATCH",
                 params={"user_id": f"eq.{user_pk}"},
-                headers={**_HEADERS, "Prefer": "return=minimal"},
-                json=secure_update,
-                timeout=15,
+                json={
+                    "api_key_hash": hash_api_key(legacy),
+                    "api_key_encrypted": encrypt_api_key(legacy),
+                    "api_key": None,
+                },
+                prefer="return=minimal",
             )
-            response.raise_for_status()
-            result.update(secure_update)
+            result.update({"api_key_hash": hash_api_key(legacy), "api_key_encrypted": encrypt_api_key(legacy), "api_key": None})
+            result["api_key"] = legacy
         except (requests.RequestException, RuntimeError):
             pass
-
     return result
 
 
@@ -131,33 +119,23 @@ def _insert_api_key(*, owner: str, api_key: str) -> dict:
         "api_key_encrypted": encrypt_api_key(api_key),
     }
     try:
-        response = requests.post(
-            f"{SUPA_URL}/rest/v1/api_tok",
-            headers={**_HEADERS, "Prefer": "return=representation"},
-            json=secure_payload,
-            timeout=15,
-        )
-        response.raise_for_status()
-        data = response.json()
+        data = _request("POST", json=secure_payload, prefer="return=representation")
         row = data[0] if data else dict(secure_payload)
         row["api_key"] = api_key
         return row
-    except requests.HTTPError:
-        legacy_payload = {"owner": owner, "api_key": api_key}
-        response = requests.post(
-            f"{SUPA_URL}/rest/v1/api_tok",
-            headers={**_HEADERS, "Prefer": "return=representation"},
-            json=legacy_payload,
-            timeout=15,
-        )
-        response.raise_for_status()
-        data = response.json()
-        row = data[0] if data else legacy_payload
+    except requests.HTTPError as secure_error:
+        # Compatibility only for databases where the new columns have not yet
+        # been created. Do not hide errors caused by constraints on a migrated DB.
+        status = secure_error.response.status_code if secure_error.response is not None else 0
+        if status not in (400, 404, 406):
+            raise
+        data = _request("POST", json={"owner": owner, "api_key": api_key}, prefer="return=representation")
+        row = data[0] if data else {"owner": owner, "api_key": api_key}
         return _secure_record(row)
 
 
 def upsert_api_key_db(*, user_id=None, owner: str, api_key: str) -> dict:
-    """Create/update an API key while supporting both DB schemas."""
+    """Store a key as hash + encrypted ciphertext, never plaintext on a migrated DB."""
     existing = get_api_key_db(owner=owner, create_if_missing=False)
     secure_update = {
         "owner": owner,
@@ -165,37 +143,31 @@ def upsert_api_key_db(*, user_id=None, owner: str, api_key: str) -> dict:
         "api_key_hash": hash_api_key(api_key),
         "api_key_encrypted": encrypt_api_key(api_key),
     }
-
     if existing and existing.get("user_id") is not None:
         try:
-            response = requests.patch(
-                f"{SUPA_URL}/rest/v1/api_tok",
+            data = _request(
+                "PATCH",
                 params={"user_id": f"eq.{existing['user_id']}"},
-                headers={**_HEADERS, "Prefer": "return=representation"},
                 json=secure_update,
-                timeout=15,
+                prefer="return=representation",
             )
-            response.raise_for_status()
-            data = response.json()
             row = data[0] if data else {**existing, **secure_update}
             row["api_key"] = api_key
             return row
-        except requests.HTTPError:
-            # Secure columns are not available yet. Preserve the old record.
-            if existing.get("api_key"):
-                return existing
-            raise
-
+        except requests.HTTPError as exc:
+            status = exc.response.status_code if exc.response is not None else 0
+            if status not in (400, 404, 406) or not existing.get("api_key"):
+                raise
+            data = _request("PATCH", params={"user_id": f"eq.{existing['user_id']}"}, json={"api_key": api_key}, prefer="return=representation")
+            row = data[0] if data else {**existing, "api_key": api_key}
+            return row
     return _insert_api_key(owner=owner, api_key=api_key)
 
 
 def get_api_key_db(*, owner: str | None = None, api_key: str | None = None, create_if_missing: bool = False) -> dict | None:
-    """Find an API key by owner or candidate key."""
     if owner is None and api_key is None:
         return None
-
     data = _select_secure_or_legacy(owner=owner, api_key=api_key)
-
     if data:
         row = _secure_record(data[0])
         if api_key is not None:
@@ -206,8 +178,6 @@ def get_api_key_db(*, owner: str | None = None, api_key: str | None = None, crea
             elif row.get("api_key") != api_key:
                 return None
         return row
-
     if owner is not None and create_if_missing:
         return _insert_api_key(owner=owner, api_key=_generate_api_key())
-
     return None
