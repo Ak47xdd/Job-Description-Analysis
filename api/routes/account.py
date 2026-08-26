@@ -21,14 +21,36 @@ def _get_authenticated_user(request: Request):
     return supabase, user
 
 
+def _identity_provider(identity) -> str | None:
+    if isinstance(identity, dict):
+        return str(identity.get("provider") or "").strip().lower() or None
+    return str(getattr(identity, "provider", "") or "").strip().lower() or None
+
+
 def _provider(user) -> str:
-    app_metadata = user.app_metadata or {}
+    """Determine the authentication method from all Supabase identity metadata.
+
+    OAuth identity information is authoritative. Some Supabase user responses can
+    expose app_metadata.provider as ``email`` even when an OAuth identity exists,
+    so do not use that value before checking identities.
+    """
     identities = getattr(user, "identities", None) or []
-    identity_provider = None
-    if identities:
-        identity = identities[0]
-        identity_provider = identity.get("provider") if isinstance(identity, dict) else getattr(identity, "provider", None)
-    return str(app_metadata.get("provider") or identity_provider or "email").strip().lower()
+    providers = {_identity_provider(identity) for identity in identities}
+    providers.discard(None)
+    if "google" in providers:
+        return "google"
+
+    app_metadata = user.app_metadata or {}
+    metadata_provider = str(app_metadata.get("provider") or "").strip().lower()
+    if metadata_provider and metadata_provider != "email":
+        return metadata_provider
+
+    user_metadata = user.user_metadata or {}
+    metadata_issuer = str(user_metadata.get("iss") or "").strip().lower()
+    if "accounts.google.com" in metadata_issuer or "googleusercontent.com" in metadata_issuer:
+        return "google"
+
+    return "email"
 
 
 def _delete_user_data(supabase, user) -> dict:
@@ -41,7 +63,6 @@ def _delete_user_data(supabase, user) -> dict:
     try:
         supabase.table("api_tok").delete().eq("owner", email).execute()
     except Exception:
-        # The auth account is already deleted. Do not report a false success for cleanup failures.
         raise HTTPException(status_code=500, detail="Account was deleted, but associated API credentials could not be cleaned up. Please contact support.")
     return {"success": True, "message": "Account deleted successfully"}
 
