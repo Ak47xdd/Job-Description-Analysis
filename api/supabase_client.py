@@ -36,7 +36,6 @@ _HEADERS = {
     "Content-Type": "application/json",
     "Accept": "application/json",
 }
-
 _API_KEY_COLUMNS = "user_id,owner,api_key,api_key_hash,api_key_encrypted"
 
 
@@ -89,78 +88,119 @@ def _select_secure_or_legacy(*, owner: str | None = None, api_key: str | None = 
         return _request("GET", params=legacy_params)
 
 
-def _secure_record(row: dict) -> dict:
-    encrypted = row.get("api_key_encrypted")
-    key_hash = row.get("api_key_hash")
+def _migrate_legacy(row: dict) -> dict:
+    """Convert an old plaintext record to hash + encrypted storage."""
     legacy = row.get("api_key")
-
-    if encrypted and key_hash:
-        result = dict(row)
-        result["api_key"] = decrypt_api_key(encrypted)
-        return result
-
     if not legacy:
-        return dict(row)
+        return row
 
+    key_hash = hash_api_key(legacy)
+    encrypted = encrypt_api_key(legacy)
     result = dict(row)
     result["api_key"] = legacy
-    user_pk = row.get("user_id")
-    if user_pk is None:
-        return result
+    result["api_key_hash"] = key_hash
+    result["api_key_encrypted"] = encrypted
 
     try:
-        encrypted_key = encrypt_api_key(legacy)
-        key_hash_value = hash_api_key(legacy)
         _request(
             "PATCH",
-            params={"user_id": f"eq.{user_pk}"},
-            json={
-                "api_key_hash": key_hash_value,
-                "api_key_encrypted": encrypted_key,
-                "api_key": None,
-            },
+            params={"user_id": f"eq.{row['user_id']}"},
+            json={"api_key_hash": key_hash, "api_key_encrypted": encrypted, "api_key": None},
             prefer="return=minimal",
         )
-        result.update({"api_key_hash": key_hash_value, "api_key_encrypted": encrypted_key})
     except (requests.RequestException, RuntimeError):
-        # Keep the legacy value usable until the DB migration is complete.
-        pass
-
+        # If api_key is still NOT NULL, at least populate the secure columns.
+        # The plaintext column can be cleared after the nullable migration.
+        try:
+            _request(
+                "PATCH",
+                params={"user_id": f"eq.{row['user_id']}"},
+                json={"api_key_hash": key_hash, "api_key_encrypted": encrypted},
+                prefer="return=minimal",
+            )
+        except requests.RequestException:
+            pass
     return result
 
 
-def _insert_secure_api_key(*, owner: str, api_key: str) -> dict:
-    """Insert a new key without sending plaintext to Supabase."""
-    payload = {
-        "owner": owner,
-        "api_key_hash": hash_api_key(api_key),
-        "api_key_encrypted": encrypt_api_key(api_key),
-    }
-    try:
-        data = _request("POST", json=payload, prefer="return=representation")
-    except requests.HTTPError as exc:
-        status = exc.response.status_code if exc.response is not None else 0
-        raise RuntimeError(
-            "Unable to provision a secure API key. Ensure api_key is nullable "
-            "and api_key_hash/api_key_encrypted exist in public.api_tok "
-            f"(Supabase HTTP {status})."
-        ) from exc
+def _normalize_secure(row: dict) -> dict:
+    encrypted = row.get("api_key_encrypted")
+    if not encrypted:
+        return row
+    result = dict(row)
+    result["api_key"] = decrypt_api_key(encrypted)
+    return result
 
-    row = data[0] if data else dict(payload)
-    # Plaintext exists only in server memory for the authenticated response.
-    row["api_key"] = api_key
-    return row
+
+def _find(*, owner: str | None = None, api_key: str | None = None) -> dict | None:
+    try:
+        rows = _select_secure_or_legacy(owner=owner, api_key=api_key)
+    except requests.RequestException:
+        return None
+    if not rows:
+        return None
+
+    row = rows[0]
+    if row.get("api_key_encrypted") or row.get("api_key_hash"):
+        try:
+            row = _normalize_secure(row)
+        except RuntimeError:
+            return None
+        if api_key is not None and not keys_match(api_key, row.get("api_key_hash", "")):
+            return None
+        return row
+    return _migrate_legacy(row)
+
+
+def _insert_secure_api_key(*, owner: str, api_key: str) -> dict:
+    key_hash = hash_api_key(api_key)
+    encrypted = encrypt_api_key(api_key)
+    secure_payload = {
+        "owner": owner,
+        "api_key_hash": key_hash,
+        "api_key_encrypted": encrypted,
+    }
+
+    try:
+        data = _request("POST", json=secure_payload, prefer="return=representation")
+        row = data[0] if data else {"owner": owner, **secure_payload}
+        row["api_key"] = api_key
+        return row
+    except requests.HTTPError as secure_error:
+        # A pre-migration database may still have api_key NOT NULL. Insert the
+        # key through the legacy column once, then immediately populate the two
+        # secure columns. This keeps signup working while the DB constraint is
+        # being migrated; the plaintext value should subsequently be cleared.
+        status = secure_error.response.status_code if secure_error.response is not None else 0
+        if status not in (400, 404, 406):
+            raise
+        data = _request(
+            "POST",
+            json={"owner": owner, "api_key": api_key},
+            prefer="return=representation",
+        )
+        row = data[0] if data else {"owner": owner, "api_key": api_key}
+        user_pk = row.get("user_id")
+        if user_pk is None:
+            raise RuntimeError("API key was inserted but no database user_id was returned")
+        try:
+            _request(
+                "PATCH",
+                params={"user_id": f"eq.{user_pk}"},
+                json={"api_key_hash": key_hash, "api_key_encrypted": encrypted},
+                prefer="return=minimal",
+            )
+            row["api_key_hash"] = key_hash
+            row["api_key_encrypted"] = encrypted
+        except requests.HTTPError as migration_error:
+            raise RuntimeError("API key was created but could not be migrated to secure storage") from migration_error
+        return row
 
 
 def _insert_legacy_api_key(*, owner: str, api_key: str) -> dict:
-    response = _request(
-        "POST",
-        json={"owner": owner, "api_key": api_key},
-        prefer="return=representation",
-    )
-    data = response
+    data = _request("POST", json={"owner": owner, "api_key": api_key}, prefer="return=representation")
     row = data[0] if data else {"owner": owner, "api_key": api_key}
-    return _secure_record(row)
+    return _migrate_legacy(row)
 
 
 def _insert_api_key(*, owner: str, api_key: str) -> dict:
@@ -171,20 +211,27 @@ def _insert_api_key(*, owner: str, api_key: str) -> dict:
 
 def upsert_api_key_db(*, user_id=None, owner: str, api_key: str) -> dict:
     existing = get_api_key_db(owner=owner, create_if_missing=False)
+    key_hash = hash_api_key(api_key)
+    encrypted = encrypt_api_key(api_key)
 
     if existing and existing.get("user_id") is not None:
         if _secure_schema_available():
-            data = _request(
-                "PATCH",
-                params={"user_id": f"eq.{existing['user_id']}"},
-                json={
-                    "api_key_hash": hash_api_key(api_key),
-                    "api_key_encrypted": encrypt_api_key(api_key),
-                    "api_key": None,
-                },
-                prefer="return=representation",
-            )
-            row = data[0] if data else dict(existing)
+            try:
+                data = _request(
+                    "PATCH",
+                    params={"user_id": f"eq.{existing['user_id']}"},
+                    json={"api_key_hash": key_hash, "api_key_encrypted": encrypted, "api_key": None},
+                    prefer="return=representation",
+                )
+            except requests.HTTPError:
+                # Keep compatibility with a NOT NULL legacy api_key column.
+                data = _request(
+                    "PATCH",
+                    params={"user_id": f"eq.{existing['user_id']}"},
+                    json={"api_key_hash": key_hash, "api_key_encrypted": encrypted},
+                    prefer="return=representation",
+                )
+            row = data[0] if data else {**existing, "api_key_hash": key_hash, "api_key_encrypted": encrypted}
             row["api_key"] = api_key
             return row
 
@@ -194,8 +241,7 @@ def upsert_api_key_db(*, user_id=None, owner: str, api_key: str) -> dict:
             json={"api_key": api_key},
             prefer="return=representation",
         )
-        row = data[0] if data else {**existing, "api_key": api_key}
-        return _secure_record(row)
+        return _migrate_legacy(data[0] if data else {**existing, "api_key": api_key})
 
     return _insert_api_key(owner=owner, api_key=api_key)
 
@@ -203,19 +249,9 @@ def upsert_api_key_db(*, user_id=None, owner: str, api_key: str) -> dict:
 def get_api_key_db(*, owner: str | None = None, api_key: str | None = None, create_if_missing: bool = False) -> dict | None:
     if owner is None and api_key is None:
         return None
-
-    data = _select_secure_or_legacy(owner=owner, api_key=api_key)
-    if data:
-        row = _secure_record(data[0])
-        if api_key is not None:
-            stored_hash = row.get("api_key_hash")
-            if stored_hash:
-                if not keys_match(api_key, stored_hash):
-                    return None
-            elif row.get("api_key") != api_key:
-                return None
+    row = _find(owner=owner, api_key=api_key)
+    if row:
         return row
-
     if owner is not None and create_if_missing:
         return _insert_api_key(owner=owner, api_key=_generate_api_key())
     return None
