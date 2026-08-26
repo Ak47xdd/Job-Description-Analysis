@@ -26,8 +26,6 @@ except ImportError:
     from api_key_crypto import encrypt_api_key, decrypt_api_key, hash_api_key, keys_match
 
 SUPA_URL = os.getenv("SUPA_URL", "").rstrip("/")
-# API-key persistence requires server-side privileges because api_tok denies
-# anon access. Keep SUPA_KEY as a backwards-compatible fallback.
 SUPA_KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY") or os.getenv("SUPA_KEY", "")
 if not SUPA_URL or not SUPA_KEY:
     raise RuntimeError("SUPA_URL and SUPABASE_SERVICE_ROLE_KEY (or SUPA_KEY) must be configured")
@@ -53,9 +51,6 @@ if role not in {"service_role", "supabase_admin"}:
         "(server-side only). Do not use the anon or publishable key here."
     )
 
-# The crypto helper reads the environment itself. Mirror the selected key into
-# SUPA_KEY so deployments using only SUPABASE_SERVICE_ROLE_KEY remain compatible
-# with the migration code and do not fail while encrypting a newly generated key.
 os.environ.setdefault("SUPA_KEY", SUPA_KEY)
 
 supabase: Client = create_client(SUPA_URL, SUPA_KEY)
@@ -65,8 +60,7 @@ _HEADERS = {
     "Content-Type": "application/json",
     "Accept": "application/json",
 }
-_SECURE_COLUMNS = "user_id,owner,api_key,api_key_hash,api_key_encrypted"
-_LEGACY_COLUMNS = "user_id,owner,api_key"
+_SECURE_COLUMNS = "user_id,owner,api_key_hash,api_key_encrypted"
 
 
 def _generate_api_key() -> str:
@@ -95,90 +89,34 @@ def _request(
     return response.json() if response.content else []
 
 
-def _secure_schema_available() -> bool:
-    try:
-        _request(
-            "GET",
-            params={"select": "api_key_hash,api_key_encrypted", "limit": 1},
-        )
-        return True
-    except requests.RequestException:
-        return False
-
-
-def _select_secure_or_legacy(
-    *, owner: str | None = None, api_key: str | None = None
-) -> list[dict]:
+def _select_secure(*, owner: str | None = None, api_key: str | None = None) -> list[dict]:
     if owner is None and api_key is None:
         return []
 
-    secure_params = {"select": _SECURE_COLUMNS, "limit": 1}
+    params = {"select": _SECURE_COLUMNS, "limit": 1}
     if owner is not None:
-        secure_params["owner"] = f"eq.{owner}"
+        params["owner"] = f"eq.{owner}"
     else:
-        secure_params["api_key_hash"] = f"eq.{hash_api_key(api_key)}"
+        params["api_key_hash"] = f"eq.{hash_api_key(api_key)}"
 
-    try:
-        return _request("GET", params=secure_params)
-    except requests.HTTPError:
-        legacy_params = {"select": _LEGACY_COLUMNS, "limit": 1}
-        if owner is not None:
-            legacy_params["owner"] = f"eq.{owner}"
-        else:
-            legacy_params["api_key"] = f"eq.{api_key}"
-        return _request("GET", params=legacy_params)
-
-
-def _migrate_legacy(row: dict) -> dict:
-    legacy = row.get("api_key")
-    if not legacy:
-        return row
-
-    key_hash = hash_api_key(legacy)
-    encrypted = encrypt_api_key(legacy)
-    result = dict(row)
-    result["api_key"] = legacy
-    result["api_key_hash"] = key_hash
-    result["api_key_encrypted"] = encrypted
-
-    user_pk = row.get("user_id")
-    if user_pk is not None and _secure_schema_available():
-        try:
-            data = _request(
-                "PATCH",
-                params={"user_id": f"eq.{user_pk}"},
-                json={
-                    "api_key": None,
-                    "api_key_hash": key_hash,
-                    "api_key_encrypted": encrypted,
-                },
-                prefer="return=representation",
-            )
-            if data:
-                result.update(data[0])
-                result["api_key"] = legacy
-        except requests.RequestException:
-            # Keep the plaintext compatibility value in memory. A later
-            # authenticated request can retry the migration.
-            pass
-
-    return result
+    return _request("GET", params=params)
 
 
 def _normalize(row: dict) -> dict:
     encrypted = row.get("api_key_encrypted")
     key_hash = row.get("api_key_hash")
 
-    if encrypted and key_hash:
-        plaintext = decrypt_api_key(encrypted)
-        result = dict(row)
-        result["api_key"] = plaintext
-        return result
+    if not encrypted or not key_hash:
+        raise RuntimeError("API key record is incomplete; encrypted credentials are required")
 
-    if row.get("api_key"):
-        return _migrate_legacy(row)
+    plaintext = decrypt_api_key(encrypted)
+    if not keys_match(plaintext, key_hash):
+        raise RuntimeError("Stored API key integrity check failed")
 
-    return row
+    result = dict(row)
+    # Plaintext exists only in memory for the authenticated response.
+    result["api_key"] = plaintext
+    return result
 
 
 def _insert_secure_api_key(*, owner: str, api_key: str) -> dict:
@@ -189,7 +127,6 @@ def _insert_secure_api_key(*, owner: str, api_key: str) -> dict:
         "POST",
         json={
             "owner": owner,
-            "api_key": None,
             "api_key_hash": key_hash,
             "api_key_encrypted": encrypted,
         },
@@ -198,29 +135,11 @@ def _insert_secure_api_key(*, owner: str, api_key: str) -> dict:
 
     row = data[0] if data else {
         "owner": owner,
-        "api_key": None,
         "api_key_hash": key_hash,
         "api_key_encrypted": encrypted,
     }
-    # Plaintext exists only in memory for the response. It is never persisted.
     row["api_key"] = api_key
     return row
-
-
-def _insert_legacy_api_key(*, owner: str, api_key: str) -> dict:
-    data = _request(
-        "POST",
-        json={"owner": owner, "api_key": api_key},
-        prefer="return=representation",
-    )
-    row = data[0] if data else {"owner": owner, "api_key": api_key}
-    return _migrate_legacy(row)
-
-
-def _insert_api_key(*, owner: str, api_key: str) -> dict:
-    if _secure_schema_available():
-        return _insert_secure_api_key(owner=owner, api_key=api_key)
-    return _insert_legacy_api_key(owner=owner, api_key=api_key)
 
 
 def upsert_api_key_db(*, user_id=None, owner: str, api_key: str) -> dict:
@@ -229,23 +148,20 @@ def upsert_api_key_db(*, user_id=None, owner: str, api_key: str) -> dict:
     encrypted = encrypt_api_key(api_key)
 
     if existing and existing.get("user_id") is not None:
-        if _secure_schema_available():
-            data = _request(
-                "PATCH",
-                params={"user_id": f"eq.{existing['user_id']}"},
-                json={
-                    "api_key": None,
-                    "api_key_hash": key_hash,
-                    "api_key_encrypted": encrypted,
-                },
-                prefer="return=representation",
-            )
-            row = data[0] if data else dict(existing)
-            row["api_key"] = api_key
-            return row
-        return _migrate_legacy({**existing, "api_key": api_key})
+        data = _request(
+            "PATCH",
+            params={"user_id": f"eq.{existing['user_id']}"},
+            json={
+                "api_key_hash": key_hash,
+                "api_key_encrypted": encrypted,
+            },
+            prefer="return=representation",
+        )
+        row = data[0] if data else dict(existing)
+        row["api_key"] = api_key
+        return row
 
-    return _insert_api_key(owner=owner, api_key=api_key)
+    return _insert_secure_api_key(owner=owner, api_key=api_key)
 
 
 def get_api_key_db(
@@ -257,20 +173,15 @@ def get_api_key_db(
     if owner is None and api_key is None:
         return None
 
-    rows = _select_secure_or_legacy(owner=owner, api_key=api_key)
+    rows = _select_secure(owner=owner, api_key=api_key)
     if rows:
         row = _normalize(rows[0])
-        if api_key is not None:
-            stored_hash = row.get("api_key_hash")
-            if stored_hash:
-                if not keys_match(api_key, stored_hash):
-                    return None
-            elif row.get("api_key") != api_key:
-                return None
+        if api_key is not None and not keys_match(api_key, row["api_key_hash"]):
+            return None
         return row
 
     if owner is not None and create_if_missing:
         generated = _generate_api_key()
-        return _insert_api_key(owner=owner, api_key=generated)
+        return _insert_secure_api_key(owner=owner, api_key=generated)
 
     return None
