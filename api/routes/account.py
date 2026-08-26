@@ -28,19 +28,23 @@ def _identity_provider(identity) -> str | None:
 
 
 def _provider(user) -> str:
-    """Determine the authentication method from all Supabase identity metadata.
-
-    OAuth identity information is authoritative. Some Supabase user responses can
-    expose app_metadata.provider as ``email`` even when an OAuth identity exists,
-    so do not use that value before checking identities.
-    """
+    """Determine the provider from every provider field Supabase can return."""
     identities = getattr(user, "identities", None) or []
-    providers = {_identity_provider(identity) for identity in identities}
-    providers.discard(None)
-    if "google" in providers:
+    identity_providers = {_identity_provider(identity) for identity in identities}
+    identity_providers.discard(None)
+    if "google" in identity_providers:
         return "google"
 
     app_metadata = user.app_metadata or {}
+
+    # Supabase can report provider=email while the account also has a Google
+    # identity. `providers` is therefore checked before the singular provider.
+    metadata_providers = app_metadata.get("providers") or []
+    if isinstance(metadata_providers, (list, tuple, set)):
+        normalized_providers = {str(value).strip().lower() for value in metadata_providers if value}
+        if "google" in normalized_providers:
+            return "google"
+
     metadata_provider = str(app_metadata.get("provider") or "").strip().lower()
     if metadata_provider and metadata_provider != "email":
         return metadata_provider
