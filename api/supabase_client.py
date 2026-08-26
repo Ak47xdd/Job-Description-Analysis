@@ -29,12 +29,14 @@ if not SUPA_URL or not SUPA_KEY:
     raise RuntimeError("SUPA_URL and SUPA_KEY must be configured")
 
 supabase: Client = create_client(SUPA_URL, SUPA_KEY)
+
 _HEADERS = {
     "apikey": SUPA_KEY,
     "Authorization": f"Bearer {SUPA_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 }
+
 _API_KEY_COLUMNS = "user_id,owner,api_key,api_key_hash,api_key_encrypted"
 
 
@@ -58,15 +60,24 @@ def _request(method: str, *, params: dict | None = None, json: dict | None = Non
     return response.json() if response.content else []
 
 
+def _secure_schema_available() -> bool:
+    try:
+        _request("GET", params={"select": "api_key_hash,api_key_encrypted", "limit": 1})
+        return True
+    except requests.HTTPError:
+        return False
+
+
 def _select_secure_or_legacy(*, owner: str | None = None, api_key: str | None = None) -> list[dict]:
-    """Read secure records, with a legacy fallback for pre-migration databases."""
+    if owner is None and api_key is None:
+        return []
+
     secure_params = {"select": _API_KEY_COLUMNS, "limit": 1}
     if owner is not None:
         secure_params["owner"] = f"eq.{owner}"
-    elif api_key is not None:
-        secure_params["api_key_hash"] = f"eq.{hash_api_key(api_key)}"
     else:
-        return []
+        secure_params["api_key_hash"] = f"eq.{hash_api_key(api_key)}"
+
     try:
         return _request("GET", params=secure_params)
     except requests.HTTPError:
@@ -82,91 +93,117 @@ def _secure_record(row: dict) -> dict:
     encrypted = row.get("api_key_encrypted")
     key_hash = row.get("api_key_hash")
     legacy = row.get("api_key")
+
     if encrypted and key_hash:
         result = dict(row)
         result["api_key"] = decrypt_api_key(encrypted)
         return result
+
     if not legacy:
         return dict(row)
 
     result = dict(row)
     result["api_key"] = legacy
     user_pk = row.get("user_id")
-    if user_pk is not None:
-        try:
-            response = _request(
-                "PATCH",
-                params={"user_id": f"eq.{user_pk}"},
-                json={
-                    "api_key_hash": hash_api_key(legacy),
-                    "api_key_encrypted": encrypt_api_key(legacy),
-                    "api_key": None,
-                },
-                prefer="return=minimal",
-            )
-            result.update({"api_key_hash": hash_api_key(legacy), "api_key_encrypted": encrypt_api_key(legacy), "api_key": None})
-            result["api_key"] = legacy
-        except (requests.RequestException, RuntimeError):
-            pass
+    if user_pk is None:
+        return result
+
+    try:
+        encrypted_key = encrypt_api_key(legacy)
+        key_hash_value = hash_api_key(legacy)
+        _request(
+            "PATCH",
+            params={"user_id": f"eq.{user_pk}"},
+            json={
+                "api_key_hash": key_hash_value,
+                "api_key_encrypted": encrypted_key,
+                "api_key": None,
+            },
+            prefer="return=minimal",
+        )
+        result.update({"api_key_hash": key_hash_value, "api_key_encrypted": encrypted_key})
+    except (requests.RequestException, RuntimeError):
+        # Keep the legacy value usable until the DB migration is complete.
+        pass
+
     return result
 
 
-def _insert_api_key(*, owner: str, api_key: str) -> dict:
-    secure_payload = {
+def _insert_secure_api_key(*, owner: str, api_key: str) -> dict:
+    """Insert a new key without sending plaintext to Supabase."""
+    payload = {
         "owner": owner,
-        "api_key": None,
         "api_key_hash": hash_api_key(api_key),
         "api_key_encrypted": encrypt_api_key(api_key),
     }
     try:
-        data = _request("POST", json=secure_payload, prefer="return=representation")
-        row = data[0] if data else dict(secure_payload)
-        row["api_key"] = api_key
-        return row
-    except requests.HTTPError as secure_error:
-        # Compatibility only for databases where the new columns have not yet
-        # been created. Do not hide errors caused by constraints on a migrated DB.
-        status = secure_error.response.status_code if secure_error.response is not None else 0
-        if status not in (400, 404, 406):
-            raise
-        data = _request("POST", json={"owner": owner, "api_key": api_key}, prefer="return=representation")
-        row = data[0] if data else {"owner": owner, "api_key": api_key}
-        return _secure_record(row)
+        data = _request("POST", json=payload, prefer="return=representation")
+    except requests.HTTPError as exc:
+        status = exc.response.status_code if exc.response is not None else 0
+        raise RuntimeError(
+            "Unable to provision a secure API key. Ensure api_key is nullable "
+            "and api_key_hash/api_key_encrypted exist in public.api_tok "
+            f"(Supabase HTTP {status})."
+        ) from exc
+
+    row = data[0] if data else dict(payload)
+    # Plaintext exists only in server memory for the authenticated response.
+    row["api_key"] = api_key
+    return row
+
+
+def _insert_legacy_api_key(*, owner: str, api_key: str) -> dict:
+    response = _request(
+        "POST",
+        json={"owner": owner, "api_key": api_key},
+        prefer="return=representation",
+    )
+    data = response
+    row = data[0] if data else {"owner": owner, "api_key": api_key}
+    return _secure_record(row)
+
+
+def _insert_api_key(*, owner: str, api_key: str) -> dict:
+    if _secure_schema_available():
+        return _insert_secure_api_key(owner=owner, api_key=api_key)
+    return _insert_legacy_api_key(owner=owner, api_key=api_key)
 
 
 def upsert_api_key_db(*, user_id=None, owner: str, api_key: str) -> dict:
-    """Store a key as hash + encrypted ciphertext, never plaintext on a migrated DB."""
     existing = get_api_key_db(owner=owner, create_if_missing=False)
-    secure_update = {
-        "owner": owner,
-        "api_key": None,
-        "api_key_hash": hash_api_key(api_key),
-        "api_key_encrypted": encrypt_api_key(api_key),
-    }
+
     if existing and existing.get("user_id") is not None:
-        try:
+        if _secure_schema_available():
             data = _request(
                 "PATCH",
                 params={"user_id": f"eq.{existing['user_id']}"},
-                json=secure_update,
+                json={
+                    "api_key_hash": hash_api_key(api_key),
+                    "api_key_encrypted": encrypt_api_key(api_key),
+                    "api_key": None,
+                },
                 prefer="return=representation",
             )
-            row = data[0] if data else {**existing, **secure_update}
+            row = data[0] if data else dict(existing)
             row["api_key"] = api_key
             return row
-        except requests.HTTPError as exc:
-            status = exc.response.status_code if exc.response is not None else 0
-            if status not in (400, 404, 406) or not existing.get("api_key"):
-                raise
-            data = _request("PATCH", params={"user_id": f"eq.{existing['user_id']}"}, json={"api_key": api_key}, prefer="return=representation")
-            row = data[0] if data else {**existing, "api_key": api_key}
-            return row
+
+        data = _request(
+            "PATCH",
+            params={"user_id": f"eq.{existing['user_id']}"},
+            json={"api_key": api_key},
+            prefer="return=representation",
+        )
+        row = data[0] if data else {**existing, "api_key": api_key}
+        return _secure_record(row)
+
     return _insert_api_key(owner=owner, api_key=api_key)
 
 
 def get_api_key_db(*, owner: str | None = None, api_key: str | None = None, create_if_missing: bool = False) -> dict | None:
     if owner is None and api_key is None:
         return None
+
     data = _select_secure_or_legacy(owner=owner, api_key=api_key)
     if data:
         row = _secure_record(data[0])
@@ -178,6 +215,7 @@ def get_api_key_db(*, owner: str | None = None, api_key: str | None = None, crea
             elif row.get("api_key") != api_key:
                 return None
         return row
+
     if owner is not None and create_if_missing:
         return _insert_api_key(owner=owner, api_key=_generate_api_key())
     return None
