@@ -11,19 +11,23 @@ ENV_NAME = "API_KEY_ENCRYPTION_SECRET"
 
 
 def _fernet() -> Fernet:
-    """Build a stable Fernet key from the server-only encryption secret.
+    """Build a stable Fernet key from a server-only secret.
 
-    The environment variable may be any sufficiently random secret. We derive
-    a valid 32-byte Fernet key instead of requiring operators to paste a
-    pre-encoded Fernet key, which avoids configuration-format failures.
+    Prefer the dedicated encryption secret. The Supabase service-role key is
+    accepted only as a backwards-compatible fallback so existing deployments
+    do not stop provisioning API keys during the migration.
     """
-    secret = os.getenv(ENV_NAME, "").strip()
+    secret = (
+        os.getenv(ENV_NAME)
+        or os.getenv("SUPABASE_SERVICE_ROLE_KEY")
+        or os.getenv("SUPA_KEY")
+        or ""
+    ).strip()
+
     if not secret:
-        # Temporary compatibility path for deployments that have not added the
-        # dedicated secret yet. SUPA_KEY remains server-side only.
-        secret = os.getenv("SUPA_KEY", "").strip()
-    if not secret:
-        raise RuntimeError(f"{ENV_NAME} or SUPA_KEY must be configured")
+        raise RuntimeError(
+            f"{ENV_NAME} or SUPABASE_SERVICE_ROLE_KEY (or SUPA_KEY) must be configured"
+        )
 
     derived = hashlib.sha256(secret.encode("utf-8")).digest()
     return Fernet(base64.urlsafe_b64encode(derived))
