@@ -2,8 +2,6 @@
 
 from pathlib import Path
 from dotenv import load_dotenv
-import base64
-import json
 import sys
 import os
 import secrets
@@ -26,40 +24,30 @@ except ImportError:
     from api_key_crypto import encrypt_api_key, decrypt_api_key, hash_api_key, keys_match
 
 SUPA_URL = os.getenv("SUPA_URL", "").rstrip("/")
-SUPA_KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY") or os.getenv("SUPA_KEY", "")
+# SUPA_KEY is the canonical backend Supabase credential. New sb_secret_ keys
+# are preferred; the legacy service-role variable remains only as a migration
+# fallback for older deployments.
+SUPA_KEY = os.getenv("SUPA_KEY") or os.getenv("SUPABASE_SERVICE_ROLE_KEY", "")
 if not SUPA_URL or not SUPA_KEY:
-    raise RuntimeError("SUPA_URL and SUPABASE_SERVICE_ROLE_KEY (or SUPA_KEY) must be configured")
+    raise RuntimeError("SUPA_URL and SUPA_KEY must be configured")
 
+IS_SECRET_KEY = SUPA_KEY.startswith("sb_secret_")
 
-def _jwt_role(token: str) -> str | None:
-    try:
-        parts = token.split(".")
-        if len(parts) != 3:
-            return None
-        payload = parts[1] + "=" * (-len(parts[1]) % 4)
-        decoded = base64.urlsafe_b64decode(payload).decode("utf-8")
-        return str(json.loads(decoded).get("role") or "").strip().lower() or None
-    except Exception:
-        return None
-
-
-role = _jwt_role(SUPA_KEY)
-if role not in {"service_role", "supabase_admin"}:
-    raise RuntimeError(
-        "The backend Supabase key does not have service-role privileges. "
-        "Set SUPABASE_SERVICE_ROLE_KEY to the Supabase service_role secret "
-        "(server-side only). Do not use the anon or publishable key here."
-    )
-
-os.environ.setdefault("SUPA_KEY", SUPA_KEY)
-
-supabase: Client = create_client(SUPA_URL, SUPA_KEY)
+# Supabase secret keys are opaque API keys, not JWTs. They must be sent in the
+# apikey header and must not be sent as Authorization: Bearer. Legacy
+# service_role keys are JWTs, so they retain the Authorization header.
 _HEADERS = {
     "apikey": SUPA_KEY,
-    "Authorization": f"Bearer {SUPA_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 }
+if not IS_SECRET_KEY:
+    _HEADERS["Authorization"] = f"Bearer {SUPA_KEY}"
+
+# Keep the SDK client available for existing imports. Database operations below
+# use the REST client so the correct header behavior is explicit for sb_secret.
+supabase: Client = create_client(SUPA_URL, SUPA_KEY)
+os.environ.setdefault("SUPA_KEY", SUPA_KEY)
 _SECURE_COLUMNS = "user_id,owner,api_key_hash,api_key_encrypted"
 
 
