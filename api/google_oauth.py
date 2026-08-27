@@ -1,6 +1,7 @@
 """Google OAuth helpers for the JobSelect web application."""
-from urllib.parse import urlencode
 from __future__ import annotations
+
+from urllib.parse import urlencode
 import requests
 import hashlib
 import secrets
