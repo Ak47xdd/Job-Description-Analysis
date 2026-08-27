@@ -92,6 +92,7 @@ def _get_compatibility(required: list[tuple[str, float]]) -> tuple[int | None, s
     how well a specific user matches. Correlates with role clarity and
     how standard the skill requirements are.
     """
+    
     if not required:
         return None, None
     avg_conf = sum(p for _, p in required) / len(required)
@@ -105,6 +106,7 @@ def _get_compatibility(required: list[tuple[str, float]]) -> tuple[int | None, s
 
 def _build_categories(present: list[tuple[str, float]]) -> list[dict]:
     """Group predicted skills by UI category. status is always 'found'."""
+    
     buckets: dict[str, list[dict]] = {cat: [] for cat in SKILL_CATEGORIES}
     for skill, prob in present:
         cat = _SKILL_TO_CAT.get(skill)
@@ -132,6 +134,7 @@ def _build_summary(
     Derive a structured summary from predicted skills and inputs.
     Mirrors the schema: overview, responsibilities[], required[], preferred[].
     """
+    
     top_required = [s.title() for s, _ in required[:5]]
     top_names  = ", ".join(s.title() for s, _ in required[:3])
     exp_label  = _EXP_META.get(job_type, _EXP_META["Junior"])["level"].lower()
@@ -174,6 +177,7 @@ def _build_recommendation(
     Derive recommendation from skill count and seniority.
     No user skills needed — based purely on JD complexity signal.
     """
+    
     req_count = len(required)
     if req_count >= 8:
         verdict = "Competitive Role"
@@ -212,6 +216,7 @@ def _build_analysis(
     """
     Build the full analysis object matching the /analyzer JSON schema exactly.
     """
+    
     present  = [(s, p) for s, p in predicted if p >= 0.3]
     required = [(s, p) for s, p in predicted if p >= 0.6]
 
