@@ -74,6 +74,13 @@ class JobSelectTUI(App[None]):
     def action_start_analysis(self) -> None:
         self.start_analysis()
 
+    def on_key(self, event) -> None:
+        """Capture Ctrl+A before the focused TextArea handles it as Select All."""
+        if event.key == "ctrl+a":
+            event.prevent_default()
+            event.stop()
+            self.start_analysis()
+
     def on_select_changed(self, event: Select.Changed) -> None:
         if event.select.id == "role":
             value = "not selected" if event.value is Select.BLANK else str(event.value)
