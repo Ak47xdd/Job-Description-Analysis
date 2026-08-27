@@ -4,22 +4,34 @@ from supabase_auth.errors import AuthApiError
 from starlette.requests import Request
 import traceback
 
+from auth_helpers import _consume_oauth_bridge, _create_oauth_bridge, FRONTEND_URL
 from google_oauth import google_authorize_url, verify_state, exchange_google_code
 from supabase_client import upsert_api_key_db
 from auth import generate_api
-from auth_helpers import _consume_oauth_bridge, _create_oauth_bridge, FRONTEND_URL
 
 router = APIRouter()
 
-@router.get("/auth/google", include_in_schema=False)
+@router.get(
+    "/auth/google", 
+    include_in_schema=False
+    )
 async def google_login():
+    
     try:
         return RedirectResponse(url=google_authorize_url(), status_code=302)
     except RuntimeError as exc:
         raise HTTPException(status_code=503, detail=str(exc))
 
-@router.get("/auth/google/callback", include_in_schema=False)
-async def google_callback(code: str | None = None, state: str | None = None, error: str | None = None, error_description: str | None = None):
+@router.get(
+    "/auth/google/callback", 
+    include_in_schema=False
+    )
+async def google_callback(
+    code: str | None = None, 
+    state: str | None = None, 
+    error: str | None = None,
+    error_description: str | None = None):
+    
     if error:
         detail = (error_description or error).replace(" ", "_")
         return RedirectResponse(f"{FRONTEND_URL}/login?oauth_error=google_denied&detail={detail}")
@@ -52,8 +64,16 @@ async def google_callback(code: str | None = None, state: str | None = None, err
         traceback.print_exc()
         return RedirectResponse(f"{FRONTEND_URL}/login?oauth_error=google_failed")
 
-@router.post("/auth/google/exchange", include_in_schema=False)
-async def google_exchange(request: Request, code: str | None = None, body: dict | None = Body(default=None)) -> dict:
+@router.post(
+    "/auth/google/exchange", 
+    include_in_schema=False
+    )
+async def google_exchange(
+    request: Request, 
+    code: str | None = None, 
+    body: dict | None = Body(default=None)
+    ) -> dict:
+    
     supplied_code = code or (body.get("code") if isinstance(body, dict) else None)
     if not supplied_code:
         raise HTTPException(status_code=422, detail="OAuth code is required")
