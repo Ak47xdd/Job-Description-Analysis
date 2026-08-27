@@ -3,6 +3,7 @@ name = "JobSelect"
 version = "0.12.5"
 dependencies = [
   "rich==15.0.0",
+  "textual==8.2.8",
   "pyfiglet==1.0.4",
   "scikit-learn==1.9.0",
   "uvicorn==0.50.2",
@@ -47,7 +48,7 @@ include = [
   "model/prep/v1*", 
   "model/prep/v2*", 
   "model_out*", 
-  "model_out/v1*",
+  "model_out/v1*", 
   "model_out/v2*",
   "frontend*",
   "frontend/repo*", 
