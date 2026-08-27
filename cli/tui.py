@@ -24,15 +24,17 @@ class JobSelectTUI(App[None]):
     TextArea { height: 12; margin-bottom: 1; }
     Select { width: 100%; margin-bottom: 1; }
     Button { margin: 1 1 1 0; }
+    #analyze { min-width: 18; }
+    #clear { min-width: 12; }
     #status { height: auto; margin: 1 0; }
     #result-scroll { height: 1fr; border: round $panel; padding: 1 2; }
     """
+
     BINDINGS = [
         ("q", "quit", "Quit"),
         ("escape", "focus_description", "Description"),
         ("ctrl+r", "focus_role", "Role"),
         ("ctrl+t", "focus_job_type", "Type"),
-        ("ctrl+a", "start_analysis", "Analyze"),
     ]
 
     def compose(self) -> ComposeResult:
@@ -46,7 +48,7 @@ class JobSelectTUI(App[None]):
             yield Label("Job Type", classes="label")
             yield Select(JOB_TYPES, prompt="Select job type", id="job-type", allow_blank=True)
             with Horizontal():
-                yield Button("Analyze", variant="success", id="analyze")
+                yield Button("Analyze Job Description", variant="success", id="analyze")
                 yield Button("Clear", id="clear")
             yield Static("", id="status")
             with VerticalScroll(id="result-scroll"):
@@ -55,7 +57,7 @@ class JobSelectTUI(App[None]):
 
     def on_mount(self) -> None:
         self.query_one("#jd", TextArea).focus()
-        self._status("Ready. Fill the fields, then press Ctrl+A to analyze.")
+        self._status("Ready. Fill the fields, then activate Analyze Job Description.")
 
     def _status(self, message: str) -> None:
         self.query_one("#status", Static).update(message)
@@ -71,23 +73,13 @@ class JobSelectTUI(App[None]):
         self.query_one("#job-type", Select).focus()
         self._status("Job type focused. Enter/Space opens it, ↑/↓ chooses, Enter confirms.")
 
-    def action_start_analysis(self) -> None:
-        self.start_analysis()
-
-    def on_key(self, event) -> None:
-        """Capture Ctrl+A before the focused TextArea handles it as Select All."""
-        if event.key == "ctrl+a":
-            event.prevent_default()
-            event.stop()
-            self.start_analysis()
-
     def on_select_changed(self, event: Select.Changed) -> None:
         if event.select.id == "role":
             value = "not selected" if event.value is Select.BLANK else str(event.value)
-            self._status(f"Role: {value}. Press Ctrl+A when ready to analyze.")
+            self._status(f"Role: {value}")
         elif event.select.id == "job-type":
             value = "not selected" if event.value is Select.BLANK else str(event.value)
-            self._status(f"Job type: {value}. Press Ctrl+A when ready to analyze.")
+            self._status(f"Job type: {value}")
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "clear":
@@ -95,15 +87,18 @@ class JobSelectTUI(App[None]):
             self.query_one("#role", Select).value = Select.BLANK
             self.query_one("#job-type", Select).value = Select.BLANK
             self.query_one("#results", Static).update("Results will appear here.")
-            self._status("Form cleared. Fill the fields, then press Ctrl+A to analyze.")
+            self._status("Form cleared. Fill the fields, then activate Analyze Job Description.")
             self.query_one("#jd", TextArea).focus()
-        elif event.button.id == "analyze":
+            return
+
+        if event.button.id == "analyze":
             self.start_analysis()
 
     def start_analysis(self) -> None:
         jd = self.query_one("#jd", TextArea).text.strip()
         role = self.query_one("#role", Select).value
         job_type = self.query_one("#job-type", Select).value
+
         if not jd:
             self._status("Please enter a job description.")
             self.query_one("#jd", TextArea).focus()
@@ -111,6 +106,7 @@ class JobSelectTUI(App[None]):
         if role == Select.BLANK or job_type == Select.BLANK:
             self._status("Please select both a job role and job type.")
             return
+
         self.query_one("#analyze", Button).disabled = True
         self._status("Analyzing job description... Please wait.")
         self.run_worker(
@@ -127,16 +123,23 @@ class JobSelectTUI(App[None]):
     def on_worker_state_changed(self, event: Worker.StateChanged) -> None:
         if event.worker.name != "job-analysis" or event.state == WorkerState.RUNNING:
             return
+
         self.query_one("#analyze", Button).disabled = False
+
         if event.state == WorkerState.SUCCESS:
             results, mode = event.worker.result
-            lines = [f"[bold]Mode:[/bold] {mode}", "", "[bold underline]TOP SKILLS[/bold underline]", ""]
+            lines = [
+                f"[bold]Mode:[/bold] {mode}",
+                "",
+                "[bold underline]TOP SKILLS[/bold underline]",
+                "",
+            ]
             for label, probability in results:
                 percent = probability * 100
                 bar = "█" * max(0, min(30, int(probability * 30)))
                 lines.append(f"{label:25} {percent:6.2f}%  {bar}")
             self.query_one("#results", Static).update("\n".join(lines))
-            self._status("Analysis complete. Press Ctrl+A to analyze another job description.")
+            self._status("Analysis complete. You can analyze another job description.")
         elif event.state == WorkerState.ERROR:
             self._status(f"Analysis failed: {event.worker.error}")
 
