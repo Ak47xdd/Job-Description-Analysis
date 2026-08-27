@@ -1,14 +1,14 @@
 from fastapi import APIRouter, Body, HTTPException
 from starlette.requests import Request
 
-from rate_limit import limiter
 from auth_helpers import _supabase_access_token
+from rate_limit import limiter
 
 router = APIRouter()
 DELETE_CONFIRMATION = "DELETE"
 
-
 def _get_authenticated_user(request: Request):
+    
     from supabase_client import supabase
     access_token = _supabase_access_token(request)
     try:
@@ -22,12 +22,14 @@ def _get_authenticated_user(request: Request):
 
 
 def _identity_provider(identity) -> str | None:
+    
     if isinstance(identity, dict):
         return str(identity.get("provider") or "").strip().lower() or None
     return str(getattr(identity, "provider", "") or "").strip().lower() or None
 
 
 def _provider(user) -> str:
+    
     """Determine the provider from every provider field Supabase can return."""
     identities = getattr(user, "identities", None) or []
     identity_providers = {_identity_provider(identity) for identity in identities}
@@ -37,8 +39,6 @@ def _provider(user) -> str:
 
     app_metadata = user.app_metadata or {}
 
-    # Supabase can report provider=email while the account also has a Google
-    # identity. `providers` is therefore checked before the singular provider.
     metadata_providers = app_metadata.get("providers") or []
     if isinstance(metadata_providers, (list, tuple, set)):
         normalized_providers = {str(value).strip().lower() for value in metadata_providers if value}
@@ -58,6 +58,7 @@ def _provider(user) -> str:
 
 
 def _delete_user_data(supabase, user) -> dict:
+    
     email = str(user.email).strip().lower()
     user_id = str(user.id)
     try:
@@ -71,9 +72,13 @@ def _delete_user_data(supabase, user) -> dict:
     return {"success": True, "message": "Account deleted successfully"}
 
 
-@router.get("/auth/account", operation_id="account_details")
+@router.get(
+    "/auth/account", 
+    operation_id="account_details"
+    )
 @limiter.limit("30/minute")
 async def account_details(request: Request) -> dict:
+    
     from supabase_client import get_api_key_db
     supabase, user = _get_authenticated_user(request)
     email = str(user.email).strip().lower()
@@ -86,9 +91,13 @@ async def account_details(request: Request) -> dict:
     return {"user": {"id": str(user.id), "name": name, "email": email, "email_verified": bool(getattr(user, "email_confirmed_at", None)), "provider": provider_label, "created_at": getattr(user, "created_at", None), "last_sign_in_at": getattr(user, "last_sign_in_at", None)}, "api": {"status": "active" if api_key else "not_provisioned", "api_key": api_key, "created_at": record.get("created_at") if record else None}, "usage": {"tracking_enabled": False, "analysis_count": None, "api_request_count": None, "message": "Usage tracking is not enabled yet."}}
 
 
-@router.delete("/auth/delete_account/email", operation_id="delete_email_account")
+@router.delete(
+    "/auth/delete_account/email",
+    operation_id="delete_email_account"
+    )
 @limiter.limit("3/hour")
 async def delete_email_account(request: Request, data: dict = Body(...)) -> dict:
+    
     from supabase_client import supabase
     access_token = _supabase_access_token(request)
     password = str(data.get("password", ""))
@@ -114,9 +123,13 @@ async def delete_email_account(request: Request, data: dict = Body(...)) -> dict
     return _delete_user_data(supabase, current)
 
 
-@router.delete("/auth/delete_account/oauth", operation_id="delete_oauth_account")
+@router.delete(
+    "/auth/delete_account/oauth", 
+    operation_id="delete_oauth_account"
+    )
 @limiter.limit("3/hour")
 async def delete_oauth_account(request: Request, data: dict = Body(...)) -> dict:
+    
     confirmation = str(data.get("confirmation", ""))
     if confirmation != DELETE_CONFIRMATION:
         raise HTTPException(status_code=422, detail="Type DELETE to confirm account deletion")
