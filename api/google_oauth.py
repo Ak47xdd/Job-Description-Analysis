@@ -1,16 +1,14 @@
 """Google OAuth helpers for the JobSelect web application."""
+from urllib.parse import urlencode
 from __future__ import annotations
-
-import base64
+import requests
 import hashlib
+import secrets
+import base64
 import hmac
 import json
-import os
-import secrets
 import time
-from urllib.parse import urlencode
-
-import requests
+import os
 
 GOOGLE_AUTHORIZE_URL = "https://accounts.google.com/o/oauth2/v2/auth"
 GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token"
