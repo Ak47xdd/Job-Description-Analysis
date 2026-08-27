@@ -6,7 +6,7 @@ Uses relative imports so it works both as an installed pip package
 
 from rich import print
 
-from .utils import clear_console, title, query
+from .utils import clear_console, title
 from .main_screen import main_screen
 
 
