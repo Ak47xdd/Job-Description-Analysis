@@ -47,7 +47,14 @@ app.add_middleware(
 app.include_router(auth.router)
 app.include_router(oauth.router)
 app.include_router(account.router)
-app.include_router(analyzer.router)
+
+# Refactored routes.
+app.include_router(analyzer.router, prefix="/analyzer")
+
+# Backward-compatible routes for the existing frontend, CLI and integrations.
+# They are hidden from generated API documentation to avoid duplicate schemas.
+app.include_router(analyzer.router, include_in_schema=False)
+
 app.include_router(news.router)
 app.include_router(careers.router)
 
