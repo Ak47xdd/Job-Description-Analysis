@@ -56,7 +56,7 @@ class JobSelectTUI(App[None]):
                 ("Junior", "Junior"),
                 ("Senior", "Senior"),
             ], prompt="Select job type", id="job-type")
-            with Horizontal:
+            with Horizontal():
                 yield Button("Analyze", variant="success", id="analyze")
                 yield Button("Clear", id="clear")
             yield Static("", id="status", classes="muted")
@@ -65,7 +65,7 @@ class JobSelectTUI(App[None]):
         yield Footer()
 
     def on_mount(self) -> None:
-        self.query_one("#jd").focus()
+        self.query_one("#jd", TextArea).focus()
         try:
             val_api()
             mode = infer_mode()
