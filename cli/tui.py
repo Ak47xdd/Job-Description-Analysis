@@ -106,7 +106,12 @@ class JobSelectTUI(App[None]):
             return
         self.query_one("#analyze", Button).disabled = True
         self._status("Analyzing job description... Please wait.")
-        self.run_worker(self._run_prediction, jd, str(role), str(job_type), name="job-analysis", exclusive=True, thread=True)
+        self.run_worker(
+            lambda: self._run_prediction(jd, str(role), str(job_type)),
+            name="job-analysis",
+            exclusive=True,
+            thread=True,
+        )
 
     def _run_prediction(self, jd: str, role: str, job_type: str):
         infer = infer_mode()
