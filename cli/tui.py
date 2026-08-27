@@ -15,6 +15,19 @@ from .api_val import infer_mode
 from .model_select import predict
 
 
+ROLES = (
+    ("AI Engineer", "AI Engineer"),
+    ("AI Developer", "AI Developer"),
+    ("Machine Learning Engineer", "Machine Learning Engineer"),
+    ("Other", "Other"),
+)
+JOB_TYPES = (
+    ("Internship", "Internship"),
+    ("Junior", "Junior"),
+    ("Senior", "Senior"),
+)
+
+
 class JobSelectTUI(App[None]):
     """Interactive, keyboard-first JobSelect terminal application."""
 
@@ -42,6 +55,9 @@ class JobSelectTUI(App[None]):
     BINDINGS = [
         ("q", "quit", "Quit"),
         ("escape", "focus_description", "Description"),
+        ("ctrl+r", "focus_role", "Role"),
+        ("ctrl+t", "focus_job_type", "Type"),
+        ("ctrl+a", "focus_analyze", "Analyze"),
     ]
 
     def compose(self) -> ComposeResult:
@@ -59,24 +75,17 @@ class JobSelectTUI(App[None]):
             )
             yield Label("Job Role", classes="label")
             yield Select(
-                [
-                    ("AI Engineer", "AI Engineer"),
-                    ("AI Developer", "AI Developer"),
-                    ("Machine Learning Engineer", "Machine Learning Engineer"),
-                    ("Other", "Other"),
-                ],
+                ROLES,
                 prompt="Select a role",
                 id="role",
+                allow_blank=True,
             )
             yield Label("Job Type", classes="label")
             yield Select(
-                [
-                    ("Internship", "Internship"),
-                    ("Junior", "Junior"),
-                    ("Senior", "Senior"),
-                ],
+                JOB_TYPES,
                 prompt="Select job type",
                 id="job-type",
+                allow_blank=True,
             )
             with Horizontal():
                 yield Button("Analyze", variant="success", id="analyze")
@@ -88,12 +97,34 @@ class JobSelectTUI(App[None]):
 
     def on_mount(self) -> None:
         self.query_one("#jd", TextArea).focus()
+        self._update_status("Keyboard controls enabled")
+
+    def _update_status(self, message: str) -> None:
         self.query_one("#status", Static).update(
-            f"Mode: {infer_mode()} | Keyboard controls only"
+            f"{message} | Ctrl+R: Role | Ctrl+T: Type | Ctrl+A: Analyze"
         )
 
     def action_focus_description(self) -> None:
         self.query_one("#jd", TextArea).focus()
+
+    def action_focus_role(self) -> None:
+        self.query_one("#role", Select).focus()
+        self._update_status("Role selector focused. Press Enter or Space to open it, then use ↑/↓ and Enter.")
+
+    def action_focus_job_type(self) -> None:
+        self.query_one("#job-type", Select).focus()
+        self._update_status("Job type selector focused. Press Enter or Space to open it, then use ↑/↓ and Enter.")
+
+    def action_focus_analyze(self) -> None:
+        self.query_one("#analyze", Button).focus()
+
+    def on_select_changed(self, event: Select.Changed) -> None:
+        if event.select.id == "role":
+            selected = "not selected" if event.value is Select.BLANK else str(event.value)
+            self._update_status(f"Role: {selected}")
+        elif event.select.id == "job-type":
+            selected = "not selected" if event.value is Select.BLANK else str(event.value)
+            self._update_status(f"Job type: {selected}")
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "clear":
@@ -101,9 +132,7 @@ class JobSelectTUI(App[None]):
             self.query_one("#role", Select).value = Select.BLANK
             self.query_one("#job-type", Select).value = Select.BLANK
             self.query_one("#results", Static).update("Results will appear here.")
-            self.query_one("#status", Static).update(
-                f"Mode: {infer_mode()} | Keyboard controls only"
-            )
+            self._update_status("Form cleared")
             self.query_one("#jd", TextArea).focus()
             return
 
