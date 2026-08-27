@@ -10,10 +10,10 @@ from __future__ import annotations
 from textual.app import App, ComposeResult
 from textual.containers import Container, Horizontal, VerticalScroll
 from textual.widgets import Button, Footer, Header, Label, Select, Static, TextArea
+from textual.worker import Worker, WorkerState
 
 from .api_val import infer_mode
 from .model_select import predict
-
 
 ROLES = (
     ("AI Engineer", "AI Engineer"),
@@ -69,24 +69,11 @@ class JobSelectTUI(App[None]):
                 id="welcome",
             )
             yield Label("Job Description", classes="label")
-            yield TextArea(
-                placeholder="Paste the job description here...",
-                id="jd",
-            )
+            yield TextArea(placeholder="Paste the job description here...", id="jd")
             yield Label("Job Role", classes="label")
-            yield Select(
-                ROLES,
-                prompt="Select a role",
-                id="role",
-                allow_blank=True,
-            )
+            yield Select(ROLES, prompt="Select a role", id="role", allow_blank=True)
             yield Label("Job Type", classes="label")
-            yield Select(
-                JOB_TYPES,
-                prompt="Select job type",
-                id="job-type",
-                allow_blank=True,
-            )
+            yield Select(JOB_TYPES, prompt="Select job type", id="job-type", allow_blank=True)
             with Horizontal():
                 yield Button("Analyze", variant="success", id="analyze")
                 yield Button("Clear", id="clear")
@@ -109,11 +96,11 @@ class JobSelectTUI(App[None]):
 
     def action_focus_role(self) -> None:
         self.query_one("#role", Select).focus()
-        self._update_status("Role selector focused. Press Enter or Space to open it, then use ↑/↓ and Enter.")
+        self._update_status("Role selector focused. Enter/Space opens it, ↑/↓ chooses, Enter confirms.")
 
     def action_focus_job_type(self) -> None:
         self.query_one("#job-type", Select).focus()
-        self._update_status("Job type selector focused. Press Enter or Space to open it, then use ↑/↓ and Enter.")
+        self._update_status("Job type selector focused. Enter/Space opens it, ↑/↓ chooses, Enter confirms.")
 
     def action_focus_analyze(self) -> None:
         self.query_one("#analyze", Button).focus()
@@ -135,10 +122,10 @@ class JobSelectTUI(App[None]):
             self._update_status("Form cleared")
             self.query_one("#jd", TextArea).focus()
             return
+        if event.button.id == "analyze":
+            self.start_analysis()
 
-        if event.button.id != "analyze":
-            return
-
+    def start_analysis(self) -> None:
         jd = self.query_one("#jd", TextArea).text.strip()
         role = self.query_one("#role", Select).value
         job_type = self.query_one("#job-type", Select).value
@@ -152,20 +139,33 @@ class JobSelectTUI(App[None]):
             status.update("Please select both a role and job type.")
             return
 
-        try:
-            status.update("Analyzing...")
-            infer = infer_mode()
-            results, mode = predict(
-                jd,
-                role=str(role),
-                job_type=str(job_type),
-                force_local=(infer == "LOCAL"),
-            )
+        self.query_one("#analyze", Button).disabled = True
+        status.update("Analyzing job description... Please wait.")
+        self.run_worker(
+            self._run_prediction,
+            jd,
+            str(role),
+            str(job_type),
+            name="job-analysis",
+            exclusive=True,
+            thread=True,
+        )
 
+    def _run_prediction(self, jd: str, role: str, job_type: str):
+        infer = infer_mode()
+        return predict(jd, role=role, job_type=job_type, force_local=(infer == "LOCAL"))
+
+    def on_worker_state_changed(self, event: Worker.StateChanged) -> None:
+        if event.worker.name != "job-analysis":
+            return
+        if event.state == WorkerState.RUNNING:
+            return
+        self.query_one("#analyze", Button).disabled = False
+
+        if event.state == WorkerState.SUCCESS:
+            results, mode = event.worker.result
             lines = [
                 f"[bold]Mode:[/bold] {mode}",
-                f"[bold]Role:[/bold] {role}",
-                f"[bold]Type:[/bold] {job_type}",
                 "",
                 "[bold underline]TOP SKILLS[/bold underline]",
                 "",
@@ -174,11 +174,10 @@ class JobSelectTUI(App[None]):
                 percent = probability * 100
                 bar = "█" * max(0, min(30, int(probability * 30)))
                 lines.append(f"{label:25} {percent:6.2f}%  {bar}")
-
             self.query_one("#results", Static).update("\n".join(lines))
-            status.update("Analysis complete. Press Q to exit or run another analysis.")
-        except Exception as exc:
-            status.update(f"Analysis failed: {exc}")
+            self._update_status("Analysis complete. You can run another analysis.")
+        elif event.state == WorkerState.ERROR:
+            self._update_status(f"Analysis failed: {event.worker.error}")
 
 
 def run_tui() -> None:
