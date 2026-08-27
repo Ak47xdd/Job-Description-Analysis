@@ -9,10 +9,6 @@ from helpers import _build_analysis
 from schemas import ModelRequest
 from auth import verify
 
-
-# The router itself has no prefix so the application can expose both the
-# refactored /analyzer/* routes and the legacy public API paths. Keeping the
-# legacy paths avoids breaking existing frontend/CLI integrations.
 router = APIRouter(tags=["items"])
 
 MAX_JD_LENGTH = 30000
