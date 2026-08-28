@@ -107,11 +107,7 @@ class AnalysisScreen(Screen[None]):
     def _build_results(self) -> str:
         jd_snippet = self.jd[:120] + ("…" if len(self.jd) > 120 else "")
         mode_markup = "[green]API[/green]" if self.mode == "API" else "[cyan]LOCAL[/cyan]"
-        lines = [
-            "[bold underline]JOB DESCRIPTION PROVIDED[/bold underline]", escape(jd_snippet), "",
-            f"[bold]Role:[/bold]  {escape(self.role)}", f"[bold]Type:[/bold]  {escape(self.job_type)}", f"[bold]Mode:[/bold]  {mode_markup}", "",
-            "[bold underline]TOP SKILLS[/bold underline]", "", "[dim]Skill confidence[/dim]", "",
-        ]
+        lines = ["[bold underline]JOB DESCRIPTION PROVIDED[/bold underline]", escape(jd_snippet), "", f"[bold]Role:[/bold]  {escape(self.role)}", f"[bold]Type:[/bold]  {escape(self.job_type)}", f"[bold]Mode:[/bold]  {mode_markup}", "", "[bold underline]TOP SKILLS[/bold underline]", "", "[dim]Skill confidence[/dim]", ""]
         above_threshold = [(str(label), float(prob)) for label, prob in self.results if float(prob) >= THRESHOLD]
         if not above_threshold:
             lines.append("[dim]No skills predicted above threshold (0.30). Showing the highest-scoring skills instead:[/dim]")
@@ -224,6 +220,15 @@ class JobSelectTUI(App[None]):
         self._status("Form cleared.")
         self.query_one("#jd", TextArea).focus()
 
+    @staticmethod
+    def _is_missing_select(value) -> bool:
+        """Treat every unselected/empty Select representation as missing."""
+        if value is Select.BLANK or value is None or value is False:
+            return True
+        if isinstance(value, str):
+            return not value.strip()
+        return False
+
     def start_analysis(self) -> None:
         jd = self.query_one("#jd", TextArea).text.strip()
         role = self.query_one("#role", Select).value
@@ -231,15 +236,15 @@ class JobSelectTUI(App[None]):
         missing: list[str] = []
         if not jd:
             missing.append("Job Description")
-        if role is Select.BLANK:
+        if self._is_missing_select(role):
             missing.append("Job Role")
-        if job_type is Select.BLANK:
+        if self._is_missing_select(job_type):
             missing.append("Job Type")
         if missing:
             self._status("[bold red]Error:[/bold red] Please fill all three fields: [bold]Job Description, Job Role, and Job Type[/bold].")
             if not jd:
                 self.query_one("#jd", TextArea).focus()
-            elif role is Select.BLANK:
+            elif self._is_missing_select(role):
                 self.query_one("#role", Select).focus()
             else:
                 self.query_one("#job-type", Select).focus()
