@@ -1,0 +1,27 @@
+1 VERSIONINFO
+FILEVERSION     1,0,0,0
+PRODUCTVERSION  1,0,0,0
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904E4" // English (US), Windows Multi-lingual
+        BEGIN
+            VALUE "CompanyName",      "JobSelect Labs"
+            VALUE "FileDescription",  "CLI Installer for JobSelect"
+            VALUE "FileVersion",      "1.0.0.0"
+            VALUE "InternalName",     "js_installer"
+            VALUE "LegalCopyright",   "2026 JobSelect Labs"
+            VALUE "OriginalFilename", "jobselect_installer.exe"
+            VALUE "ProductName",      "JobSelect CLI"
+            VALUE "ProductVersion",   "1.0.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+// Optional: Add an icon to make it look professional
+MAINICON ICON "jobselect_logo.ico"
+
