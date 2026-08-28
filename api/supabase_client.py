@@ -24,18 +24,13 @@ except ImportError:
     from api_key_crypto import encrypt_api_key, decrypt_api_key, hash_api_key, keys_match
 
 SUPA_URL = os.getenv("SUPA_URL", "").rstrip("/")
-# SUPA_KEY is the canonical backend Supabase credential. New sb_secret_ keys
-# are preferred; the legacy service-role variable remains only as a migration
-# fallback for older deployments.
 SUPA_KEY = os.getenv("SUPA_KEY") or os.getenv("SUPABASE_SERVICE_ROLE_KEY", "")
 if not SUPA_URL or not SUPA_KEY:
     raise RuntimeError("SUPA_URL and SUPA_KEY must be configured")
 
 IS_SECRET_KEY = SUPA_KEY.startswith("sb_secret_")
 
-# Supabase secret keys are opaque API keys, not JWTs. They must be sent in the
-# apikey header and must not be sent as Authorization: Bearer. Legacy
-# service_role keys are JWTs, so they retain the Authorization header.
+
 _HEADERS = {
     "apikey": SUPA_KEY,
     "Content-Type": "application/json",
@@ -44,8 +39,7 @@ _HEADERS = {
 if not IS_SECRET_KEY:
     _HEADERS["Authorization"] = f"Bearer {SUPA_KEY}"
 
-# Keep the SDK client available for existing imports. Database operations below
-# use the REST client so the correct header behavior is explicit for sb_secret.
+
 supabase: Client = create_client(SUPA_URL, SUPA_KEY)
 os.environ.setdefault("SUPA_KEY", SUPA_KEY)
 _SECURE_COLUMNS = "user_id,owner,api_key_hash,api_key_encrypted"
