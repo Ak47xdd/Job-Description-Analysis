@@ -27,7 +27,6 @@ ENV_FILE = ENV_DIR / ".env"
 
 class APIKeyScreen(Screen[str]):
     """Collect and persist the API key, or allow local inference."""
-
     CSS = """
     APIKeyScreen { align: center middle; }
     #key-box { width: 80; max-width: 90%; border: round $accent; padding: 2 3; height: auto; }
@@ -39,7 +38,6 @@ class APIKeyScreen(Screen[str]):
     #key-submit { min-width: 20; }
     #key-local { min-width: 16; }
     """
-
     BINDINGS = [("escape", "run_local", "Run Locally")]
 
     def compose(self) -> ComposeResult:
@@ -82,9 +80,7 @@ class APIKeyScreen(Screen[str]):
 
 class AnalysisScreen(Screen[None]):
     """Display completed analysis results on a dedicated, scrollable screen."""
-
     BINDINGS = [("escape", "go_back", "Back")]
-
     CSS = """
     AnalysisScreen { align: center middle; }
     #analysis-scroll { width: 100%; height: 1fr; padding: 1 2; }
@@ -113,35 +109,23 @@ class AnalysisScreen(Screen[None]):
         jd_snippet = self.jd[:120] + ("…" if len(self.jd) > 120 else "")
         mode_markup = "[green]API[/green]" if self.mode == "API" else "[cyan]LOCAL[/cyan]"
         lines = [
-            "[bold underline]JOB DESCRIPTION PROVIDED[/bold underline]",
-            escape(jd_snippet), "",
-            f"[bold]Role:[/bold]  {escape(self.role)}",
-            f"[bold]Type:[/bold]  {escape(self.job_type)}",
-            f"[bold]Mode:[/bold]  {mode_markup}", "",
-            "[bold underline]TOP SKILLS[/bold underline]", "",
-            "[dim]Skill confidence[/dim]",
-            "",
+            "[bold underline]JOB DESCRIPTION PROVIDED[/bold underline]", escape(jd_snippet), "",
+            f"[bold]Role:[/bold]  {escape(self.role)}", f"[bold]Type:[/bold]  {escape(self.job_type)}", f"[bold]Mode:[/bold]  {mode_markup}", "",
+            "[bold underline]TOP SKILLS[/bold underline]", "", "[dim]Skill confidence[/dim]", "",
         ]
         above_threshold = [(str(label), float(prob)) for label, prob in self.results if float(prob) >= THRESHOLD]
         if not above_threshold:
             lines.append("[dim]No skills predicted above threshold (0.30). Showing the highest-scoring skills instead:[/dim]")
             above_threshold = [(str(label), float(prob)) for label, prob in list(self.results)[:10]]
             lines.append("")
-
         for label, prob in above_threshold[:20]:
             value = max(0.0, min(1.0, prob))
             width = 20
             filled = int(round(value * width))
             empty = width - filled
-            if value >= 0.75:
-                tone = "green"
-            elif value >= 0.50:
-                tone = "yellow"
-            else:
-                tone = "cyan"
+            tone = "green" if value >= 0.75 else "yellow" if value >= 0.50 else "cyan"
             bar = f"[{tone}]{'█' * filled}[/][dim]{'░' * empty}[/dim]"
-            percent = value * 100
-            lines.append(f"{escape(label)[:22]:22}  {bar}  [bold]{percent:5.1f}%[/bold]")
+            lines.append(f"{escape(label)[:22]:22}  {bar}  [bold]{value * 100:5.1f}%[/bold]")
         return "\n".join(lines)
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
@@ -155,7 +139,6 @@ class AnalysisScreen(Screen[None]):
 class JobSelectTUI(App[None]):
     TITLE = "JobSelect CLI"
     SUB_TITLE = "JobAnalyze 6k v1.0  ·  Copyright © Akshay Babu, JobSelect Labs"
-
     CSS = """
     Screen { align: center middle; }
     #main-scroll { width: 100%; height: 1fr; padding: 1 2; }
@@ -172,7 +155,6 @@ class JobSelectTUI(App[None]):
     #loading { height: 1; margin: 0; display: none; }
     #loading.visible { display: block; }
     """
-
     BINDINGS = [("q", "quit", "Quit"), ("escape", "focus_description", "Description"), ("ctrl+r", "focus_role", "Role"), ("ctrl+t", "focus_job_type", "Type")]
 
     def compose(self) -> ComposeResult:
@@ -247,12 +229,21 @@ class JobSelectTUI(App[None]):
         jd = self.query_one("#jd", TextArea).text.strip()
         role = self.query_one("#role", Select).value
         job_type = self.query_one("#job-type", Select).value
+        missing: list[str] = []
         if not jd:
-            self._status("[yellow]Please enter a job description.[/yellow]")
-            self.query_one("#jd", TextArea).focus()
-            return
-        if role is Select.BLANK or job_type is Select.BLANK:
-            self._status("[yellow]Please select both a job role and job type.[/yellow]")
+            missing.append("Job Description")
+        if role is Select.BLANK:
+            missing.append("Job Role")
+        if job_type is Select.BLANK:
+            missing.append("Job Type")
+        if missing:
+            self._status("[bold red]Error:[/bold red] Please fill all three fields: [bold]Job Description, Job Role, and Job Type[/bold].")
+            if not jd:
+                self.query_one("#jd", TextArea).focus()
+            elif role is Select.BLANK:
+                self.query_one("#role", Select).focus()
+            else:
+                self.query_one("#job-type", Select).focus()
             return
         self.query_one("#analyze", Button).disabled = True
         self._set_loading(True)
