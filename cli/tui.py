@@ -11,8 +11,15 @@ from rich.markup import escape
 from textual.app import App, ComposeResult
 from textual.containers import Container, Horizontal, VerticalScroll
 from textual.widgets import (
-    Button, Footer, Header, Input, Label,
-    LoadingIndicator, Select, Static, TextArea,
+    Button,
+    Footer,
+    Header,
+    Input,
+    Label,
+    LoadingIndicator,
+    Select,
+    Static,
+    TextArea,
 )
 from textual.worker import Worker, WorkerState
 from textual.screen import Screen
@@ -22,13 +29,13 @@ from .model_select import predict
 
 
 ROLES: tuple[tuple[str, str], ...] = (
-    ("AI Engineer",  "AI Engineer"),
+    ("AI Engineer", "AI Engineer"),
     ("AI Developer", "AI Developer"),
 )
 JOB_TYPES: tuple[tuple[str, str], ...] = (
     ("Internship", "Internship"),
-    ("Junior",     "Junior"),
-    ("Senior",     "Senior"),
+    ("Junior", "Junior"),
+    ("Senior", "Senior"),
 )
 
 THRESHOLD = 0.30
@@ -114,64 +121,177 @@ class APIKeyScreen(Screen[str]):
         self.dismiss("")
 
 
+class AnalysisScreen(Screen[None]):
+    """Display completed analysis results on a dedicated, scrollable screen."""
+
+    BINDINGS = [("escape", "go_back", "Back")]
+
+    CSS = """
+    AnalysisScreen { align: center middle; }
+    #analysis-scroll {
+        width: 100%;
+        height: 1fr;
+        padding: 1 2;
+    }
+    #analysis-box {
+        width: 92%;
+        max-width: 120;
+        height: auto;
+        min-height: 100%;
+        border: round $accent;
+        padding: 1 2;
+    }
+    #analysis-title {
+        text-style: bold;
+        margin-bottom: 1;
+    }
+    #analysis-results {
+        width: 100%;
+        height: auto;
+    }
+    #analysis-actions {
+        width: 100%;
+        height: auto;
+        margin-top: 1;
+    }
+    #analysis-actions Button {
+        margin: 0 1 0 0;
+    }
+    """
+
+    def __init__(
+        self,
+        results: list[tuple[str, float]],
+        mode: str,
+        jd: str,
+        role: str,
+        job_type: str,
+    ) -> None:
+        super().__init__()
+        self.results = results
+        self.mode = mode
+        self.jd = jd
+        self.role = role
+        self.job_type = job_type
+
+    def compose(self) -> ComposeResult:
+        yield Header(show_clock=True)
+        with VerticalScroll(id="analysis-scroll"):
+            with Container(id="analysis-box"):
+                yield Static("JobSelect · Analysis Results", id="analysis-title")
+                yield Static(self._build_results(), id="analysis-results")
+                with Horizontal(id="analysis-actions"):
+                    yield Button("← Analyze Another", variant="success", id="analysis-again")
+                    yield Button("Back", id="analysis-back")
+        yield Footer()
+
+    def _build_results(self) -> str:
+        jd_snippet = self.jd[:120] + ("…" if len(self.jd) > 120 else "")
+        mode_markup = "[green]API[/green]" if self.mode == "API" else "[cyan]LOCAL[/cyan]"
+
+        lines = [
+            "[bold underline]JOB DESCRIPTION PROVIDED[/bold underline]",
+            escape(jd_snippet),
+            "",
+            f"[bold]Role:[/bold]  {escape(self.role)}",
+            f"[bold]Type:[/bold]  {escape(self.job_type)}",
+            f"[bold]Mode:[/bold]  {mode_markup}",
+            "",
+            "[bold underline]TOP SKILLS[/bold underline]",
+            "",
+        ]
+
+        above_threshold = [
+            (str(label), float(prob))
+            for label, prob in self.results
+            if float(prob) >= THRESHOLD
+        ]
+
+        if not above_threshold:
+            lines.append(
+                "[dim]No skills predicted above threshold (0.30). "
+                "Showing the highest-scoring skills instead:[/dim]"
+            )
+            above_threshold = [
+                (str(label), float(prob)) for label, prob in list(self.results)[:10]
+            ]
+
+        for label, prob in above_threshold[:20]:
+            bar = "█" * max(0, min(30, int(prob * 30)))
+            percent = prob * 100
+            lines.append(f"{escape(label):25} {percent:5.1f}%  {bar}")
+
+        return "\n".join(lines)
+
+    def on_button_pressed(self, event: Button.Pressed) -> None:
+        if event.button.id in {"analysis-back", "analysis-again"}:
+            self.action_go_back()
+
+    def action_go_back(self) -> None:
+        self.app.pop_screen()
+
+
 class JobSelectTUI(App[None]):
-    TITLE     = "JobSelect CLI"
+    TITLE = "JobSelect CLI"
     SUB_TITLE = "JobAnalyze 6k v1.0  ·  Copyright © Akshay Babu, JobSelect Labs"
 
     CSS = """
     Screen { align: center middle; }
+    #main-scroll {
+        width: 100%;
+        height: 1fr;
+        padding: 1 2;
+    }
     #app {
         width: 92%;
         max-width: 120;
-        height: 92%;
+        height: auto;
         border: round $accent;
         padding: 1 2;
     }
-    #welcome         { height: auto; margin-bottom: 1; color: $text-muted; }
-    .label           { margin-top: 1; margin-bottom: 0; text-style: bold; }
-    TextArea         { height: 10; margin-bottom: 1; }
-    Select           { width: 100%; margin-bottom: 1; }
-    Button           { margin: 1 1 1 0; }
-    #analyze         { min-width: 24; }
-    #clear           { min-width: 12; }
-    #status          { height: auto; margin: 1 0; color: $text-muted; }
-    #loading         { height: 1; margin: 0; display: none; }
+    #welcome { height: auto; margin-bottom: 1; color: $text-muted; }
+    .label { margin-top: 1; margin-bottom: 0; text-style: bold; }
+    TextArea { height: 8; margin-bottom: 1; }
+    Select { width: 100%; margin-bottom: 1; }
+    #form-actions {
+        width: 100%;
+        height: auto;
+    }
+    #form-actions Button { margin: 1 1 1 0; }
+    #analyze { min-width: 24; }
+    #clear { min-width: 12; }
+    #status { height: auto; margin: 1 0; color: $text-muted; }
+    #loading { height: 1; margin: 0; display: none; }
     #loading.visible { display: block; }
-    #result-scroll   { height: 1fr; min-height: 8; border: round $panel; padding: 1 2; }
-    #results         { width: 1fr; height: auto; }
     """
 
     BINDINGS = [
-        ("q",      "quit",             "Quit"),
+        ("q", "quit", "Quit"),
         ("escape", "focus_description", "Description"),
-        ("ctrl+r", "focus_role",       "Role"),
-        ("ctrl+t", "focus_job_type",   "Type"),
+        ("ctrl+r", "focus_role", "Role"),
+        ("ctrl+t", "focus_job_type", "Type"),
     ]
 
     def compose(self) -> ComposeResult:
         yield Header(show_clock=True)
-        with Container(id="app"):
-            yield Static(
-                "Analyze job descriptions with JobAnalyze 6k. "
-                "Fill the fields below and activate [bold]Analyze Job Description[/bold].",
-                id="welcome",
-            )
-            yield Label("Job Description", classes="label")
-            yield TextArea(placeholder="Paste the full job description here...", id="jd")
-            yield Label("Job Role", classes="label")
-            yield Select(ROLES, prompt="Select a role", id="role", allow_blank=True)
-            yield Label("Job Type", classes="label")
-            yield Select(JOB_TYPES, prompt="Select job type", id="job-type", allow_blank=True)
-            with Horizontal():
-                yield Button("Analyze Job Description", variant="success", id="analyze")
-                yield Button("Clear", id="clear")
-            yield Static("", id="status")
-            yield LoadingIndicator(id="loading")
-            with VerticalScroll(id="result-scroll"):
+        with VerticalScroll(id="main-scroll"):
+            with Container(id="app"):
                 yield Static(
-                    "[dim]Results will appear here after analysis.[/dim]",
-                    id="results",
+                    "Analyze job descriptions with JobAnalyze 6k. "
+                    "Fill the fields below and activate [bold]Analyze Job Description[/bold].",
+                    id="welcome",
                 )
+                yield Label("Job Description", classes="label")
+                yield TextArea(placeholder="Paste the full job description here...", id="jd")
+                yield Label("Job Role", classes="label")
+                yield Select(ROLES, prompt="Select a role", id="role", allow_blank=True)
+                yield Label("Job Type", classes="label")
+                yield Select(JOB_TYPES, prompt="Select job type", id="job-type", allow_blank=True)
+                with Horizontal(id="form-actions"):
+                    yield Button("Analyze Job Description", variant="success", id="analyze")
+                    yield Button("Clear", id="clear")
+                yield Static("", id="status")
+                yield LoadingIndicator(id="loading")
         yield Footer()
 
     def on_mount(self) -> None:
@@ -233,15 +353,12 @@ class JobSelectTUI(App[None]):
         self.query_one("#jd", TextArea).text = ""
         self.query_one("#role", Select).value = Select.BLANK
         self.query_one("#job-type", Select).value = Select.BLANK
-        self.query_one("#results", Static).update(
-            "[dim]Results will appear here after analysis.[/dim]"
-        )
         self._status("Form cleared.")
         self.query_one("#jd", TextArea).focus()
 
     def start_analysis(self) -> None:
-        jd       = self.query_one("#jd", TextArea).text.strip()
-        role     = self.query_one("#role", Select).value
+        jd = self.query_one("#jd", TextArea).text.strip()
+        role = self.query_one("#role", Select).value
         job_type = self.query_one("#job-type", Select).value
 
         if not jd:
@@ -278,10 +395,9 @@ class JobSelectTUI(App[None]):
         if event.state == WorkerState.SUCCESS:
             try:
                 results, mode = event.worker.result
-                self._render_results(results, mode)
-                self._status("Analysis complete. You can analyze another job description.")
+                self._open_analysis_screen(results, mode)
             except Exception as exc:
-                self._status(f"[red]Could not render analysis results:[/red] {exc}")
+                self._status(f"[red]Could not display analysis results:[/red] {exc}")
 
         elif event.state == WorkerState.ERROR:
             self._status(
@@ -289,47 +405,11 @@ class JobSelectTUI(App[None]):
                 "Check your API key or switch to LOCAL mode."
             )
 
-    def _render_results(self, results: list[tuple[str, float]], mode: str) -> None:
+    def _open_analysis_screen(self, results: list[tuple[str, float]], mode: str) -> None:
         jd = self.query_one("#jd", TextArea).text.strip()
-        jd_snippet = jd[:120] + ("…" if len(jd) > 120 else "")
-
         role = str(self.query_one("#role", Select).value)
         job_type = str(self.query_one("#job-type", Select).value)
-        mode_markup = "[green]API[/green]" if mode == "API" else "[cyan]LOCAL[/cyan]"
-
-        lines = [
-            "[bold underline]JOB DESCRIPTION PROVIDED[/bold underline]",
-            escape(jd_snippet),
-            "",
-            f"[bold]Role:[/bold]  {escape(role)}",
-            f"[bold]Type:[/bold]  {escape(job_type)}",
-            f"[bold]Mode:[/bold]  {mode_markup}",
-            "",
-            "[bold underline]TOP SKILLS[/bold underline]",
-            "",
-        ]
-
-        above_threshold = [
-            (str(label), float(prob))
-            for label, prob in results
-            if float(prob) >= THRESHOLD
-        ]
-
-        if not above_threshold:
-            lines.append(
-                "[dim]No skills predicted above threshold (0.30). "
-                "Showing the highest-scoring skills instead:[/dim]"
-            )
-            above_threshold = [
-                (str(label), float(prob)) for label, prob in list(results)[:10]
-            ]
-
-        for label, prob in above_threshold[:20]:
-            bar = "█" * max(0, min(30, int(prob * 30)))
-            percent = prob * 100
-            lines.append(f"{escape(label):25} {percent:5.1f}%  {bar}")
-
-        self.query_one("#results", Static).update("\n".join(lines))
+        self.push_screen(AnalysisScreen(results, mode, jd, role, job_type))
 
 
 def run_tui() -> None:
