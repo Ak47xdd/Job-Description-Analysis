@@ -52,8 +52,17 @@ class APIKeyScreen(Screen[str]):
     #key-title  { text-style: bold; margin-bottom: 1; }
     #key-hint   { color: $text-muted; margin-bottom: 1; }
     #key-input  { width: 100%; margin-bottom: 1; }
-    #key-submit { margin-top: 1; min-width: 20; }
-    #key-local  { margin-top: 0; min-width: 16; }
+    #key-actions {
+        width: 100%;
+        height: auto;
+        align: left middle;
+    }
+    #key-actions Button {
+        margin: 0 1 0 0;
+        height: 3;
+    }
+    #key-submit { min-width: 20; }
+    #key-local  { min-width: 16; }
     """
 
     BINDINGS = [("escape", "run_local", "Run Locally")]
@@ -68,7 +77,7 @@ class APIKeyScreen(Screen[str]):
                 id="key-hint",
             )
             yield Input(placeholder="ja6k_...", password=True, id="key-input")
-            with Horizontal():
+            with Horizontal(id="key-actions"):
                 yield Button("Connect →", variant="success", id="key-submit")
                 yield Button("Run Locally", id="key-local")
 
