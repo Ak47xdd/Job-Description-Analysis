@@ -77,7 +77,6 @@ class APIKeyScreen(Screen[str]):
     def action_run_local(self) -> None:
         self.dismiss("")
 
-
 class AnalysisScreen(Screen[None]):
     """Display completed analysis results on a dedicated, scrollable screen."""
     BINDINGS = [("escape", "go_back", "Back")]
