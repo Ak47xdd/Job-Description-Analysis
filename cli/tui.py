@@ -107,7 +107,6 @@ class AnalysisScreen(Screen[None]):
                 yield Static(self._build_results(), id="analysis-results")
                 with Horizontal(id="analysis-actions"):
                     yield Button("← Analyze Another", variant="success", id="analysis-again")
-                    yield Button("Back", id="analysis-back")
         yield Footer()
 
     def _build_results(self) -> str:
@@ -146,7 +145,7 @@ class AnalysisScreen(Screen[None]):
         return "\n".join(lines)
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
-        if event.button.id in {"analysis-back", "analysis-again"}:
+        if event.button.id == "analysis-again":
             self.action_go_back()
 
     def action_go_back(self) -> None:
@@ -239,8 +238,8 @@ class JobSelectTUI(App[None]):
 
     def _clear_form(self) -> None:
         self.query_one("#jd", TextArea).text = ""
-        self.query_one("#role", Select).value = Select.BLANK
-        self.query_one("#job-type", Select).value = Select.BLANK
+        self.query_one("#role", Select).clear()
+        self.query_one("#job-type", Select).clear()
         self._status("Form cleared.")
         self.query_one("#jd", TextArea).focus()
 
