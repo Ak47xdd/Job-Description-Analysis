@@ -44,7 +44,7 @@ class APIKeyScreen(Screen[str]):
 
     def compose(self) -> ComposeResult:
         with Container(id="key-box"):
-            yield Static("[bold]JobSelect Labs · JobAnalyze 6k v1.0[/bold]", id="key-title")
+            yield Static("[bold]JobSelect CLI · JobAnalyze 6k v1.0[/bold]", id="key-title")
             yield Static("Enter your API key to use cloud inference, or press [bold]Run Locally[/bold] to use the local model.\nYour key will be saved to [italic]~/.jobselect/.env[/italic] for future sessions.", id="key-hint")
             yield Input(placeholder="ja6k_...", password=True, id="key-input")
             with Horizontal(id="key-actions"):
@@ -136,7 +136,7 @@ class AnalysisScreen(Screen[None]):
 
 class JobSelectTUI(App[None]):
     TITLE = "JobSelect CLI"
-    SUB_TITLE = "JobAnalyze 6k v1.0  ·  Copyright © Akshay Babu, JobSelect Labs"
+    SUB_TITLE = "Running JobAnalyze 6k v1.0  ·  Copyright © Akshay Babu, JobSelect Labs"
     CSS = """
     Screen { align: center middle; }
     #main-scroll { width: 100%; height: 1fr; padding: 1 2; }
