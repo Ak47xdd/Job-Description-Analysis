@@ -199,6 +199,8 @@ class AnalysisScreen(Screen[None]):
             "",
             "[bold underline]TOP SKILLS[/bold underline]",
             "",
+            "[dim]Score is shown as a percentage with a 24-character bar.[/dim]",
+            "",
         ]
 
         above_threshold = [
@@ -215,11 +217,19 @@ class AnalysisScreen(Screen[None]):
             above_threshold = [
                 (str(label), float(prob)) for label, prob in list(self.results)[:10]
             ]
+            lines.append("")
 
         for label, prob in above_threshold[:20]:
-            bar = "█" * max(0, min(30, int(prob * 30)))
-            percent = prob * 100
-            lines.append(f"{escape(label):25} {percent:5.1f}%  {bar}")
+            # Use a fixed-width, rounded-looking meter instead of a raw block
+            # run. This keeps every row aligned and readable in narrow terminals.
+            clamped = max(0.0, min(1.0, prob))
+            width = 24
+            filled = round(clamped * width)
+            empty = width - filled
+            bar = f"[green]{'━' * filled}[/green][dim]{'─' * empty}[/dim]"
+            percent = clamped * 100
+            label_text = escape(label)[:20]
+            lines.append(f"{label_text:<20}  {percent:5.1f}%  {bar}")
 
         return "\n".join(lines)
 
@@ -298,8 +308,6 @@ class JobSelectTUI(App[None]):
         self.query_one("#jd", TextArea).focus()
         self._status("Ready. Fill the fields then press Analyze Job Description.")
 
-        # Only the API KEY determines whether the startup key screen is needed.
-        # A saved API URL by itself must never suppress the key prompt.
         saved_key = os.getenv("JOBSELECT_API_KEY", "").strip()
         if not saved_key and ENV_FILE.exists():
             load_dotenv(dotenv_path=ENV_FILE, override=False)
