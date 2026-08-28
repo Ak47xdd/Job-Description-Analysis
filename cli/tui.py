@@ -19,6 +19,8 @@ from .model_select import predict
 
 ROLES: tuple[tuple[str, str], ...] = (("AI Engineer", "AI Engineer"), ("AI Developer", "AI Developer"))
 JOB_TYPES: tuple[tuple[str, str], ...] = (("Internship", "Internship"), ("Junior", "Junior"), ("Senior", "Senior"))
+VALID_ROLES = frozenset(value for _, value in ROLES)
+VALID_JOB_TYPES = frozenset(value for _, value in JOB_TYPES)
 THRESHOLD = 0.30
 API_URL = "https://job-description-analysis.onrender.com"
 ENV_DIR = Path.home() / ".jobselect"
@@ -76,6 +78,7 @@ class APIKeyScreen(Screen[str]):
 
     def action_run_local(self) -> None:
         self.dismiss("")
+
 
 class AnalysisScreen(Screen[None]):
     """Display completed analysis results on a dedicated, scrollable screen."""
@@ -203,9 +206,9 @@ class JobSelectTUI(App[None]):
 
     def on_select_changed(self, event: Select.Changed) -> None:
         if event.select.id == "role":
-            self._status(f"Role set to: {'not selected' if event.value is Select.BLANK else str(event.value)}")
+            self._status(f"Role set to: {'not selected' if event.value not in VALID_ROLES else str(event.value)}")
         elif event.select.id == "job-type":
-            self._status(f"Job type set to: {'not selected' if event.value is Select.BLANK else str(event.value)}")
+            self._status(f"Job type set to: {'not selected' if event.value not in VALID_JOB_TYPES else str(event.value)}")
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "clear":
@@ -221,34 +224,41 @@ class JobSelectTUI(App[None]):
         self.query_one("#jd", TextArea).focus()
 
     @staticmethod
-    def _is_missing_select(value) -> bool:
-        """Treat every unselected/empty Select representation as missing."""
-        if value is Select.BLANK or value is None or value is False:
-            return True
-        if isinstance(value, str):
-            return not value.strip()
-        return False
+    def _is_valid_role(value) -> bool:
+        """Only an actual role option counts as selected; blank sentinels are rejected."""
+        return value in VALID_ROLES
+
+    @staticmethod
+    def _is_valid_job_type(value) -> bool:
+        """Only an actual job-type option counts as selected; blank sentinels are rejected."""
+        return value in VALID_JOB_TYPES
 
     def start_analysis(self) -> None:
         jd = self.query_one("#jd", TextArea).text.strip()
         role = self.query_one("#role", Select).value
         job_type = self.query_one("#job-type", Select).value
-        missing: list[str] = []
+
+        missing = []
         if not jd:
             missing.append("Job Description")
-        if self._is_missing_select(role):
+        if not self._is_valid_role(role):
             missing.append("Job Role")
-        if self._is_missing_select(job_type):
+        if not self._is_valid_job_type(job_type):
             missing.append("Job Type")
+
         if missing:
-            self._status("[bold red]Error:[/bold red] Please fill all three fields: [bold]Job Description, Job Role, and Job Type[/bold].")
+            fields = ", ".join(missing)
+            self._status(
+                f"[bold red]Error:[/bold red] Please fill the required field(s): [bold]{fields}[/bold]."
+            )
             if not jd:
                 self.query_one("#jd", TextArea).focus()
-            elif self._is_missing_select(role):
+            elif not self._is_valid_role(role):
                 self.query_one("#role", Select).focus()
             else:
                 self.query_one("#job-type", Select).focus()
             return
+
         self.query_one("#analyze", Button).disabled = True
         self._set_loading(True)
         self._status("Analyzing job description… please wait.")
