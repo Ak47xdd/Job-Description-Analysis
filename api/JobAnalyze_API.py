@@ -7,8 +7,8 @@ from fastapi_mcp import FastApiMCP
 import hmac
 import os
 
-from auth import generate_api, API_KEY_DB, hash_key
 from routes import auth, oauth, account, analyzer, careers, news
+from auth import generate_api, API_KEY_DB, hash_key
 from supabase_client import upsert_api_key_db
 from rate_limit import limiter
 
