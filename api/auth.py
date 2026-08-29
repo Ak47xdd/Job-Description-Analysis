@@ -9,7 +9,6 @@ API_KEY_NAME   = "JobAnalyze_6k_Key"
 api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
 API_KEY_DB: dict = {}
 
-
 def generate_api(prefix: str = "ja6k") -> str:
     return f"{prefix}_{secrets.token_hex(32)}"
 
