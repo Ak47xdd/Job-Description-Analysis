@@ -1,22 +1,27 @@
+from enum import Enum
+
 from pydantic import BaseModel, field_validator, EmailStr
+
 
 class SignUpRequest(BaseModel):
     name: str
     email: EmailStr
     password: str
 
+
 class SignInRequest(BaseModel):
     email: EmailStr
     password: str
-    
+
+
 class JobOpeningCreate(BaseModel):
-    title:        str
-    department:   str
-    type:         str
-    location:     str  = "Remote"
-    description:  str
+    title: str
+    department: str
+    type: str
+    location: str = "Remote"
+    description: str
     requirements: list[str] = []
-    tags:         list[str] = []
+    tags: list[str] = []
 
     @field_validator("department")
     def dept_valid(cls, v):
@@ -31,14 +36,15 @@ class JobOpeningCreate(BaseModel):
         if v not in allowed:
             raise ValueError(f"type must be one of {allowed}")
         return v
-    
+
+
 class NewsItemCreate(BaseModel):
-    title:        str
-    summary:      str
-    category:     str  = "Update"
-    url:          str | None = None
-    body:         str | None = None
-    is_published: bool = True    
+    title: str
+    summary: str
+    category: str = "Update"
+    url: str | None = None
+    body: str | None = None
+    is_published: bool = True
 
     @field_validator("title")
     def title_length(cls, v):
@@ -59,34 +65,29 @@ class NewsItemCreate(BaseModel):
             raise ValueError(f"category must be one of {allowed}")
         return v
 
+
+class RoleEnum(str, Enum):
+    AI_ENGINEER = "AI Engineer"
+    AI_DEVELOPER = "AI Developer"
+    DATA_SCIENTIST = "Data Scientist"
+    ML_ENGINEER = "ML Engineer"
+    MLOPS_ENGINEER = "MLOps Engineer"
+    DATA_ANALYST = "Data Analyst"
+
+
+class TypeEnum(str, Enum):
+    INTERNSHIP = "Internship"
+    JUNIOR = "Junior"
+    SENIOR = "Senior"
+
+
 class ModelRequest(BaseModel):
     Job_Desc: str
-    Role:     str
-    Type:     str
+    Role: RoleEnum
+    Type: TypeEnum
 
     @field_validator("Job_Desc")
     def jd_not_empty(cls, v):
         if not v.strip():
             raise ValueError("Job_Desc cannot be empty")
         return v.strip()
-
-    @field_validator("Role")
-    def role_valid(cls, v):
-        allowed = [
-            "AI Engineer",
-            "AI Developer",
-            "Data Scientist",
-            "ML Engineer",
-            "MLOps Engineer",
-            "Data Analyst",
-        ]
-        if v not in allowed:
-            raise ValueError(f"Role must be one of {allowed}")
-        return v
-
-    @field_validator("Type")
-    def type_valid(cls, v):
-        allowed = ["Internship", "Junior", "Senior"]
-        if v not in allowed:
-            raise ValueError(f"Type must be one of {allowed}")
-        return v
