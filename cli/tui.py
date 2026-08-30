@@ -144,7 +144,12 @@ class JobSelectTUI(App[None]):
     #welcome { height: auto; margin-bottom: 1; color: $text-muted; }
     .label { margin-top: 1; margin-bottom: 0; text-style: bold; }
     TextArea { height: 8; margin-bottom: 1; }
+    Input { width: 100%; margin-bottom: 1; }
     Select { width: 100%; margin-bottom: 1; }
+    #role-row { width: 100%; height: auto; }
+    #role-row Input { width: 1fr; margin-right: 1; }
+    #role-picker { width: 20; }
+    #role-help { color: $text-muted; margin-bottom: 1; }
     #form-actions { width: 100%; height: auto; }
     #form-actions Button { margin: 1 1 1 0; }
     #analyze { min-width: 24; }
@@ -163,7 +168,10 @@ class JobSelectTUI(App[None]):
                 yield Label("Job Description", classes="label")
                 yield TextArea(placeholder="Paste the full job description here...", id="jd")
                 yield Label("Job Role", classes="label")
-                yield Select(ROLES, prompt="Select a role", id="role", allow_blank=True)
+                with Horizontal(id="role-row"):
+                    yield Input(placeholder="Type a custom role or choose one →", id="role-input")
+                    yield Select(ROLES, prompt="Presets", id="role-picker", allow_blank=True)
+                yield Static("Preset roles are suggestions. You can type any custom role in the textbox if your role isn't listed.", id="role-help")
                 yield Label("Job Type", classes="label")
                 yield Select(JOB_TYPES, prompt="Select job type", id="job-type", allow_blank=True)
                 with Horizontal(id="form-actions"):
@@ -197,16 +205,18 @@ class JobSelectTUI(App[None]):
         self.query_one("#jd", TextArea).focus()
 
     def action_focus_role(self) -> None:
-        self.query_one("#role", Select).focus()
-        self._status("Role focused. Space/Enter opens, ↑↓ selects, Enter confirms.")
+        self.query_one("#role-input", Input).focus()
+        self._status("Role focused. Type a custom role or use the Presets dropdown.")
 
     def action_focus_job_type(self) -> None:
         self.query_one("#job-type", Select).focus()
         self._status("Job type focused. Space/Enter opens, ↑↓ selects, Enter confirms.")
 
     def on_select_changed(self, event: Select.Changed) -> None:
-        if event.select.id == "role":
-            self._status(f"Role set to: {'not selected' if event.value not in VALID_ROLES else str(event.value)}")
+        if event.select.id == "role-picker" and event.value in VALID_ROLES:
+            role = str(event.value)
+            self.query_one("#role-input", Input).value = role
+            self._status(f"Role set to: {role}")
         elif event.select.id == "job-type":
             self._status(f"Job type set to: {'not selected' if event.value not in VALID_JOB_TYPES else str(event.value)}")
 
@@ -218,24 +228,23 @@ class JobSelectTUI(App[None]):
 
     def _clear_form(self) -> None:
         self.query_one("#jd", TextArea).text = ""
-        self.query_one("#role", Select).clear()
+        self.query_one("#role-input", Input).value = ""
+        self.query_one("#role-picker", Select).clear()
         self.query_one("#job-type", Select).clear()
         self._status("Form cleared.")
         self.query_one("#jd", TextArea).focus()
 
     @staticmethod
-    def _is_valid_role(value) -> bool:
-        """Only an actual role option counts as selected; blank sentinels are rejected."""
-        return value in VALID_ROLES
+    def _is_valid_role(value: str) -> bool:
+        return bool(str(value).strip())
 
     @staticmethod
     def _is_valid_job_type(value) -> bool:
-        """Only an actual job-type option counts as selected; blank sentinels are rejected."""
         return value in VALID_JOB_TYPES
 
     def start_analysis(self) -> None:
         jd = self.query_one("#jd", TextArea).text.strip()
-        role = self.query_one("#role", Select).value
+        role = self.query_one("#role-input", Input).value.strip()
         job_type = self.query_one("#job-type", Select).value
 
         missing = []
@@ -248,13 +257,11 @@ class JobSelectTUI(App[None]):
 
         if missing:
             fields = ", ".join(missing)
-            self._status(
-                f"[bold red]Error:[/bold red] Please fill the required field(s): [bold]{fields}[/bold]."
-            )
+            self._status(f"[bold red]Error:[/bold red] Please fill the required field(s): [bold]{fields}[/bold].")
             if not jd:
                 self.query_one("#jd", TextArea).focus()
             elif not self._is_valid_role(role):
-                self.query_one("#role", Select).focus()
+                self.query_one("#role-input", Input).focus()
             else:
                 self.query_one("#job-type", Select).focus()
             return
@@ -262,7 +269,7 @@ class JobSelectTUI(App[None]):
         self.query_one("#analyze", Button).disabled = True
         self._set_loading(True)
         self._status("Analyzing job description… please wait.")
-        self.run_worker(lambda: self._run_prediction(jd, str(role), str(job_type)), name="job-analysis", exclusive=True, thread=True)
+        self.run_worker(lambda: self._run_prediction(jd, role, str(job_type)), name="job-analysis", exclusive=True, thread=True)
 
     def _run_prediction(self, jd: str, role: str, job_type: str):
         infer = infer_mode()
@@ -284,7 +291,7 @@ class JobSelectTUI(App[None]):
 
     def _open_analysis_screen(self, results: list[tuple[str, float]], mode: str) -> None:
         jd = self.query_one("#jd", TextArea).text.strip()
-        role = str(self.query_one("#role", Select).value)
+        role = self.query_one("#role-input", Input).value.strip()
         job_type = str(self.query_one("#job-type", Select).value)
         self.push_screen(AnalysisScreen(results, mode, jd, role, job_type))
 
