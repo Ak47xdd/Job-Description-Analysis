@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+from enum import Enum
 import uuid
 import re
 
@@ -284,6 +285,8 @@ def _build_recommendation(compatibility: int | None, job_type: str) -> dict:
 
 
 def _build_analysis(predicted: list[tuple[str, float]], role: str, job_type: str, jd_text: str) -> dict:
+    role = role.value if isinstance(role, Enum) else role
+    job_type = job_type.value if isinstance(job_type, Enum) else job_type
     present = [(s, p) for s, p in predicted if p >= 0.3]
     required, _preferred = _classify_required_preferred(predicted, jd_text)
     responsibilities, responsibilities_found = _extract_responsibilities(jd_text, limit=5)
