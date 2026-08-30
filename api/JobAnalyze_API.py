@@ -48,11 +48,8 @@ app.include_router(auth.router)
 app.include_router(oauth.router)
 app.include_router(account.router)
 
-# Refactored routes.
 app.include_router(analyzer.router, prefix="/analyzer")
 
-# Backward-compatible routes for the existing frontend, CLI and integrations.
-# They are hidden from generated API documentation to avoid duplicate schemas.
 app.include_router(analyzer.router, include_in_schema=False)
 
 app.include_router(news.router)
@@ -93,7 +90,7 @@ async def create_api(
 mcp = FastApiMCP(
     app,
     name="JobAnalyze 6k",
-    description="Analyzes a job description using the JobAnalyze 6k skill classifier. Supported roles: AI Engineer, AI Developer, Data Scientist, ML Engineer, MLOps Engineer, and Data Analyst. Supported seniority types: Internship, Junior, Mid, and Senior. The role/type inputs provide context to the existing classifier; they do not imply that the underlying model was separately retrained for each role. Provide Job_Desc, Role, and Type.",
+    description="Analyzes a job description using the JobAnalyze 6k skill classifier. Supported roles: AI Engineer, AI Developer, Data Scientist, ML Engineer, MLOps Engineer, and Data Analyst. Supported seniority types: Internship, Junior and Senior. The role/type inputs provide context to the existing classifier; they do not imply that the underlying model was separately retrained for each role. Provide Job_Desc, Role, and Type.",
     include_operations=["analyze_job_description"]
 )
 
