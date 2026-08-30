@@ -21,8 +21,6 @@ The API intentionally keeps the existing seniority contract:
 - Junior
 - Senior
 
-`Mid` is not accepted yet because the response layer's existing experience metadata is only defined for the three values above. Adding `Mid` should be accompanied by an explicit experience metadata entry and tests for its years/level output rather than silently mapping it to another level.
-
 ## Validation behavior
 
 `Role` and `Type` are validated by `ModelRequest` before either analyzer endpoint runs. Invalid values return a Pydantic validation error listing the supported values.
