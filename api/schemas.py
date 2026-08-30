@@ -86,7 +86,7 @@ class ModelRequest(BaseModel):
 
     @field_validator("Type")
     def type_valid(cls, v):
-        allowed = ["Internship", "Junior", "Mid", "Senior"]
+        allowed = ["Internship", "Junior", "Senior"]
         if v not in allowed:
             raise ValueError(f"Type must be one of {allowed}")
         return v
