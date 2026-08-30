@@ -17,7 +17,7 @@ from textual.screen import Screen
 from .api_val import infer_mode
 from .model_select import predict
 
-ROLES: tuple[tuple[str, str], ...] = (("AI Engineer", "AI Engineer"), ("AI Developer", "AI Developer"))
+ROLES: tuple[tuple[str, str], ...] = (("AI Engineer", "AI Engineer"), ("AI Developer", "AI Developer"), ("Data Scientist", "Data Scientist"), ("ML Engineer", "ML Engineer"), ("MLOps Engineer", "MLOps Engineer"), ("Data Analyst", "Data Analyst"))
 JOB_TYPES: tuple[tuple[str, str], ...] = (("Internship", "Internship"), ("Junior", "Junior"), ("Senior", "Senior"))
 VALID_ROLES = frozenset(value for _, value in ROLES)
 VALID_JOB_TYPES = frozenset(value for _, value in JOB_TYPES)
