@@ -64,17 +64,74 @@ _EXP_META: dict[str, dict] = {
 }
 
 
-def _extract_company(jd_text: str) -> str:
+# These fields must be derived from the JD itself. The Role/Type request
+# parameters describe the classifier bucket and must never be copied into
+# extracted metadata.
+_TITLE_WORDS = (
+    r"engineer|developer|scientist|analyst|architect|manager|specialist|"
+    r"consultant|researcher|intern|designer|administrator|lead|director"
+)
+
+
+def _clean_extracted_text(value: str) -> str | None:
+    value = re.sub(r"\s+", " ", value).strip(" \t\r\n-–—:|,.;")
+    return value or None
+
+
+def _extract_company(jd_text: str) -> str | None:
+    """Extract an explicitly named organisation, or return None.
+
+    This intentionally prefers conservative matches. In particular, it does
+    not synthesize a company name from the role or experience inputs.
+    """
+    text = jd_text or ""
     patterns = [
-        r"\bat\s+([A-Z][A-Za-z0-9&\s]{2,30}?)(?:\s*[,.\n])",
-        r"\bjoin\s+([A-Z][A-Za-z0-9&\s]{2,30}?)(?:\s*[,.\n])",
-        r"([A-Z][A-Za-z0-9]+\s+(?:Inc|Labs|AI|Systems|Tech|Group|Corp|Ltd))\b",
+        r"\b(?:at|join|joining|from|with)\s+([A-Z][A-Za-z0-9&.'-]*(?:\s+[A-Z][A-Za-z0-9&.'-]*){0,5})(?=\s*(?:[,.;!?\n]|\b(?:is|are|seeks|seeking|looking|hiring|has|offers|for)\b))",
+        r"\b([A-Z][A-Za-z0-9&.'-]*(?:\s+[A-Z][A-Za-z0-9&.'-]*){0,4})\s+(?:Inc\.?|LLC|Ltd\.?|Limited|Corp\.?|Corporation|Company|Labs?|Technologies|Systems|Solutions|Group)\b",
     ]
-    for p in patterns:
-        m = re.search(p, jd_text)
-        if m:
-            return m.group(1).strip()
-    return "Unknown"
+    for pattern in patterns:
+        match = re.search(pattern, text)
+        if match:
+            candidate = _clean_extracted_text(match.group(1))
+            if candidate and candidate.lower() not in {"the", "our", "this", "a"}:
+                return candidate
+    return None
+
+
+def _extract_title(jd_text: str) -> str | None:
+    """Extract an explicit job title from the JD, or return None."""
+    text = jd_text or ""
+    if not text.strip():
+        return None
+
+    # A standalone first non-empty line is the strongest signal when it looks
+    # like a job title rather than a generic heading.
+    for line in text.splitlines()[:8]:
+        candidate = _clean_extracted_text(line)
+        if not candidate or len(candidate) > 100:
+            continue
+        if re.search(rf"\b(?:{_TITLE_WORDS})\b", candidate, re.IGNORECASE):
+            return candidate
+
+    patterns = [
+        rf"\b(?:looking for|seeking|hiring|need|hire)\s+(?:a|an|the)?\s*([A-Za-z][A-Za-z0-9&/+.\- ]{{2,80}}?\b(?:{_TITLE_WORDS}))\b",
+        rf"\b(?:position|role|title)\s*[:\-]\s*([A-Za-z][A-Za-z0-9&/+.\- ]{{2,80}}?\b(?:{_TITLE_WORDS}))\b",
+    ]
+    for pattern in patterns:
+        match = re.search(pattern, text, re.IGNORECASE)
+        if match:
+            candidate = _clean_extracted_text(match.group(1))
+            if candidate:
+                return candidate
+
+    # Conservative fallback: find a short phrase containing a recognised
+    # title word. Do not return the classifier's Role parameter.
+    match = re.search(
+        rf"\b([A-Za-z][A-Za-z0-9&/+.\- ]{{2,70}}\b(?:{_TITLE_WORDS}))\b",
+        text,
+        re.IGNORECASE,
+    )
+    return _clean_extracted_text(match.group(1)) if match else None
 
 
 def _get_complexity(present: list[tuple[str, float]]) -> str:
@@ -92,7 +149,6 @@ def _get_compatibility(required: list[tuple[str, float]]) -> tuple[int | None, s
     how well a specific user matches. Correlates with role clarity and
     how standard the skill requirements are.
     """
-    
     if not required:
         return None, None
     avg_conf = sum(p for _, p in required) / len(required)
@@ -106,7 +162,6 @@ def _get_compatibility(required: list[tuple[str, float]]) -> tuple[int | None, s
 
 def _build_categories(present: list[tuple[str, float]]) -> list[dict]:
     """Group predicted skills by UI category. status is always 'found'."""
-    
     buckets: dict[str, list[dict]] = {cat: [] for cat in SKILL_CATEGORIES}
     for skill, prob in present:
         cat = _SKILL_TO_CAT.get(skill)
@@ -114,7 +169,7 @@ def _build_categories(present: list[tuple[str, float]]) -> list[dict]:
             continue
         buckets[cat].append({
             "name":       skill.title(),
-            "status":     "found",           # matches JSON schema exactly
+            "status":     "found",
             "importance": int(prob * 100),
         })
     return [
@@ -130,11 +185,7 @@ def _build_summary(
     job_type: str,
     jd_text: str,
 ) -> dict:
-    """
-    Derive a structured summary from predicted skills and inputs.
-    Mirrors the schema: overview, responsibilities[], required[], preferred[].
-    """
-    
+    """Derive a structured summary from predicted skills and inputs."""
     top_required = [s.title() for s, _ in required[:5]]
     top_names  = ", ".join(s.title() for s, _ in required[:3])
     exp_label  = _EXP_META.get(job_type, _EXP_META["Junior"])["level"].lower()
@@ -173,11 +224,7 @@ def _build_recommendation(
     required: list[tuple[str, float]],
     job_type: str,
 ) -> dict:
-    """
-    Derive recommendation from skill count and seniority.
-    No user skills needed — based purely on JD complexity signal.
-    """
-    
+    """Derive recommendation from skill count and seniority."""
     req_count = len(required)
     if req_count >= 8:
         verdict = "Competitive Role"
@@ -213,14 +260,13 @@ def _build_analysis(
     job_type: str,
     jd_text: str,
 ) -> dict:
-    """
-    Build the full analysis object matching the /analyzer JSON schema exactly.
-    """
-    
+    """Build the full analysis object matching the /analyzer JSON schema."""
     present  = [(s, p) for s, p in predicted if p >= 0.3]
     required = [(s, p) for s, p in predicted if p >= 0.6]
 
     compatibility, compatibility_label = _get_compatibility(required)
+    detected_title = _extract_title(jd_text)
+    company = _extract_company(jd_text)
 
     return {
         "compatibility":      compatibility,
@@ -240,6 +286,6 @@ def _build_analysis(
         "createdAt":   datetime.now(timezone.utc).isoformat(),
         "role":        role,
         "experience":  job_type,
-        "detectedTitle": role,
-        "company":     _extract_company(jd_text),
+        "detectedTitle": detected_title,
+        "company":     company,
     }
