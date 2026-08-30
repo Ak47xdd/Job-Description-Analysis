@@ -81,12 +81,21 @@ class TypeEnum(str, Enum):
     SENIOR = "Senior"
 
 
+PRESET_ROLES = tuple(role.value for role in RoleEnum)
+
+
 class ModelRequest(BaseModel):
     Job_Desc: str
-    # Preset roles are documented here, but the analyzer also accepts a user-defined role.
-    # Keeping this as str allows the TUI's editable role field to work with custom roles.
+    # Role is intentionally a string: the six RoleEnum values are presets,
+    # but callers may provide any custom role supported by the analyzer.
     Role: str = Field(
-        description="Job role. Presets: AI Engineer, AI Developer, Data Scientist, ML Engineer, MLOps Engineer, Data Analyst. Custom roles are also accepted."
+        min_length=1,
+        max_length=100,
+        description=(
+            "Job role. Preset values: AI Engineer, AI Developer, Data Scientist, "
+            "ML Engineer, MLOps Engineer, Data Analyst. Custom roles are accepted."
+        ),
+        examples=["AI Engineer", "Computer Vision Engineer", "Robotics Engineer"],
     )
     Type: TypeEnum
 
@@ -101,6 +110,4 @@ class ModelRequest(BaseModel):
         value = v.strip()
         if not value:
             raise ValueError("Role cannot be empty")
-        if len(value) > 100:
-            raise ValueError("Role must be 100 characters or fewer")
         return value
