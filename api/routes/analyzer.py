@@ -67,10 +67,32 @@ def _finalize_analysis(analysis: dict, predicted: list[tuple[str, float]]) -> di
 async def web_analyze(request: Request, data: ModelRequest) -> dict:
     if len(data.Job_Desc) > MAX_JD_LENGTH:
         raise HTTPException(status_code=413, detail="Job description is too large.")
-    predicted = [(skill, float(score)) for skill, score in JobAnalyze_6k(job_desc=data.Job_Desc, role=data.Role, job_type=data.Type)]
     try:
-        analysis = _build_analysis(predicted=predicted, role=data.Role, job_type=data.Type, jd_text=data.Job_Desc)
-        return _finalize_analysis(analysis, predicted)
+        predicted = [
+            (skill, float(score))
+            for skill, score in JobAnalyze_6k(
+                job_desc=data.Job_Desc,
+                role=data.Role,
+                job_type=data.Type,
+            )
+        ]
+        analysis = _build_analysis(
+            predicted=predicted,
+            role=data.Role,
+            job_type=data.Type,
+            jd_text=data.Job_Desc,
+        )
+
+        # Keep the public /web_analyze response compatible with the
+        # authenticated /JobAnalyze_6k contract. The frontend expects the
+        # raw model predictions under `answer`; the richer analysis remains
+        # available under `analysis`.
+        return {
+            "answer": predicted,
+            "analysis": _finalize_analysis(analysis, predicted),
+        }
+    except HTTPException:
+        raise
     except Exception:
         traceback.print_exc()
         raise HTTPException(status_code=500, detail="Web Analyzer failed while building the analysis response.")
