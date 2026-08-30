@@ -18,6 +18,10 @@ _EXP_META = {
 }
 
 _TITLE_WORDS = r"engineer|developer|scientist|analyst|architect|manager|specialist|consultant|researcher|intern|designer|administrator|lead|director"
+_COMPANY_NOISE = {skill.lower() for skill in _SKILL_TO_CAT} | {
+    "the", "our", "this", "a", "an", "we", "you", "your", "team", "role", "position",
+    "job", "company", "candidate", "developer", "engineer", "scientist", "analyst",
+}
 
 
 def _clean_extracted_text(value: str) -> str | None:
@@ -26,17 +30,37 @@ def _clean_extracted_text(value: str) -> str | None:
     return value or None
 
 
+def _looks_like_company(candidate: str | None) -> bool:
+    if not candidate:
+        return False
+    normalized = candidate.strip().lower()
+    if normalized in _COMPANY_NOISE:
+        return False
+    tokens = [token for token in re.split(r"\s+", normalized) if token]
+    if not tokens or len(candidate) > 100:
+        return False
+    if any(token in _COMPANY_NOISE for token in tokens):
+        return False
+    if re.search(r"\b(?:git|github|docker|python|sql|aws|azure|kubernetes|tensorflow|pytorch|react|javascript|mlops|nlp|openai|llm|rag|api|mcp)\b", normalized):
+        return False
+    return bool(re.search(r"[A-Za-z]", candidate))
+
+
 def _extract_company(jd_text: str) -> str | None:
+    """Extract a company only when the JD contains a strong organization-name cue.
+
+    Skill/tool keywords are explicitly rejected. If no high-confidence company
+    pattern is present, returning None is preferable to fabricating a company.
+    """
     text = jd_text or ""
     patterns = [
         r"\b(?:at|join|joining|from|with)\s+([A-Z][A-Za-z0-9&.'-]*(?:\s+[A-Z][A-Za-z0-9&.'-]*){0,5})(?=\s*(?:[,.;!?\n]|\b(?:is|are|seeks|seeking|looking|hiring|has|offers|for)\b))",
         r"\b([A-Z][A-Za-z0-9&.'-]*(?:\s+[A-Z][A-Za-z0-9&.'-]*){0,4})\s+(?:Inc\.?|LLC|Ltd\.?|Limited|Corp\.?|Corporation|Company|Labs?|Technologies|Systems|Solutions|Group)\b",
     ]
     for pattern in patterns:
-        match = re.search(pattern, text)
-        if match:
+        for match in re.finditer(pattern, text):
             candidate = _clean_extracted_text(match.group(1))
-            if candidate and candidate.lower() not in {"the", "our", "this", "a"}:
+            if _looks_like_company(candidate):
                 return candidate
     return None
 
@@ -81,12 +105,6 @@ def _is_section_heading(line: str) -> bool:
 
 
 def _extract_responsibilities(jd_text: str, limit: int = 5) -> tuple[list[str], bool]:
-    """Extract bullets from a responsibility section.
-
-    Returns (bullets, section_found). Prose-only responsibility sections are
-    deliberately not sentence-mined: without explicit bullets we use the
-    clearly-labelled template fallback instead of inventing responsibilities.
-    """
     lines = (jd_text or "").replace("\r\n", "\n").replace("\r", "\n").split("\n")
     start = None
     for i, line in enumerate(lines):
@@ -95,7 +113,6 @@ def _extract_responsibilities(jd_text: str, limit: int = 5) -> tuple[list[str], 
             break
     if start is None:
         return [], False
-
     bullets: list[str] = []
     current: str | None = None
     for line in lines[start:]:
@@ -111,8 +128,7 @@ def _extract_responsibilities(jd_text: str, limit: int = 5) -> tuple[list[str], 
             current = _clean_extracted_text(f"{current} {stripped}")
     if current:
         bullets.append(current)
-    bullets = [b for b in bullets if b]
-    return bullets[:limit], True
+    return [b for b in bullets if b][:limit], True
 
 
 def _responsibility_icon(text: str) -> str:
@@ -140,8 +156,8 @@ def _get_compatibility(required: list[tuple[str, float]]) -> tuple[int | None, s
     score = int(avg_conf * 100)
     if score >= 80: label = "Excellent Match"
     elif score >= 65: label = "Good Match"
-    elif score >= 50: label = "Partial Match"
-    else: label = "Low Match"
+    elif score >= 40: label = "Partial Match"
+    else: label = "Weak Match"
     return score, label
 
 
@@ -240,18 +256,29 @@ def _build_summary(predicted: list[tuple[str, float]], role: str, job_type: str,
     return {"overview": overview, "responsibilities": responsibilities if responsibilities else fallback, "responsibilitiesSource": "extracted" if responsibilities else "template", "required": top_required, "preferred": [s.title() for s, _ in preferred[:3]]}
 
 
-def _build_recommendation(required: list[tuple[str, float]], job_type: str) -> dict:
-    req_count = len(required)
-    if req_count >= 8:
-        verdict, detail = "Competitive Role", "High number of required skills — strong preparation recommended."
-        points = [{"type": "warning", "text": f"{req_count} required skills identified"}, {"type": "positive", "text": "Well-defined skill set makes targeted prep easier"}]
-    elif req_count >= 5:
-        verdict, detail = "Good Match", "Balanced requirements — achievable with solid fundamentals."
-        points = [{"type": "positive", "text": f"{req_count} required skills — manageable scope"}, {"type": "positive", "text": "Role has clear technical expectations"}]
+def _build_recommendation(compatibility: int | None, job_type: str) -> dict:
+    """Derive recommendation from the compatibility score only.
+
+    This keeps the verdict and displayed compatibility percentage consistent.
+    """
+    if compatibility is None:
+        verdict = "Insufficient Data"
+        detail = "No required technical skills were identified, so a compatibility verdict cannot be calculated."
+        points = [{"type": "warning", "text": "No required technical skills identified"}]
+    elif compatibility >= 65:
+        verdict = "Good Match"
+        detail = "Compatibility is 65% or higher based on the identified required skills."
+        points = [{"type": "positive", "text": f"Compatibility score: {compatibility}%"}, {"type": "positive", "text": "Strong alignment with the identified required skills"}]
+    elif compatibility >= 40:
+        verdict = "Partial Match"
+        detail = "Compatibility is between 40% and 64% based on the identified required skills."
+        points = [{"type": "warning", "text": f"Compatibility score: {compatibility}%"}, {"type": "positive", "text": "Some required skills are aligned"}]
     else:
-        verdict, detail = "Accessible Role", "Lower required skill count — strong entry point."
-        points = [{"type": "positive", "text": "Accessible technical bar"}, {"type": "positive", "text": "Good opportunity for skill development"}]
-    if job_type == "Senior": points.append({"type": "warning", "text": "Senior seniority bar applies"})
+        verdict = "Weak Match"
+        detail = "Compatibility is below 40% based on the identified required skills."
+        points = [{"type": "warning", "text": f"Compatibility score: {compatibility}%"}, {"type": "warning", "text": "Several required skills may need development"}]
+    if job_type == "Senior":
+        points.append({"type": "warning", "text": "Senior seniority bar applies"})
     return {"verdict": verdict, "detail": detail, "points": points}
 
 
@@ -275,7 +302,7 @@ def _build_analysis(predicted: list[tuple[str, float]], role: str, job_type: str
         "categories": _build_categories(present),
         "importance": [{"name": s.title(), "value": int(p * 100)} for s, p in predicted[:7]],
         "experienceRequirement": exp_meta, "summary": summary,
-        "recommendation": _build_recommendation(required, job_type),
+        "recommendation": _build_recommendation(compatibility, job_type),
         "id": f"an_{uuid.uuid4().hex[:8]}", "createdAt": datetime.now(timezone.utc).isoformat(),
         "role": role, "experience": job_type, "detectedTitle": detected_title, "company": company,
     }
