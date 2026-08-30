@@ -72,14 +72,21 @@ class ModelRequest(BaseModel):
 
     @field_validator("Role")
     def role_valid(cls, v):
-        allowed = ["AI Engineer", "AI Developer"]
+        allowed = [
+            "AI Engineer",
+            "AI Developer",
+            "Data Scientist",
+            "ML Engineer",
+            "MLOps Engineer",
+            "Data Analyst",
+        ]
         if v not in allowed:
             raise ValueError(f"Role must be one of {allowed}")
         return v
 
     @field_validator("Type")
     def type_valid(cls, v):
-        allowed = ["Internship", "Junior", "Senior"]
+        allowed = ["Internship", "Junior", "Mid", "Senior"]
         if v not in allowed:
             raise ValueError(f"Type must be one of {allowed}")
         return v
