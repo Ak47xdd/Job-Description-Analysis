@@ -9,6 +9,7 @@ SKILL_CATEGORIES: dict[str, list[str]] = {
     "AI / GenAI": ["llms", "rag", "vectordb", "genai", "agents", "mcp", "prompt engineering", "anthropic /openai sdks", "openai"],
     "Web & Full Stack": ["apis", "react", "javascript", "full stack", "django", ".net", "c#", "c++", "java"],
 }
+
 _SKILL_TO_CAT = {skill: cat for cat, skills in SKILL_CATEGORIES.items() for skill in skills}
 
 _EXP_META = {
