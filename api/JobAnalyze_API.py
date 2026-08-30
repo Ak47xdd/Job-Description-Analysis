@@ -93,7 +93,7 @@ async def create_api(
 mcp = FastApiMCP(
     app,
     name="JobAnalyze 6k",
-    description="Analyzes a job description and returns ranked technical skills, skill categories, importance scores, complexity rating, experience requirements, summary, and recommendation. Provide Job_Desc (job description text), Role (AI Engineer or AI Developer), and Type (Internship, Junior, or Senior).",
+    description="Analyzes a job description using the JobAnalyze 6k skill classifier. Supported roles: AI Engineer, AI Developer, Data Scientist, ML Engineer, MLOps Engineer, and Data Analyst. Supported seniority types: Internship, Junior, Mid, and Senior. The role/type inputs provide context to the existing classifier; they do not imply that the underlying model was separately retrained for each role. Provide Job_Desc, Role, and Type.",
     include_operations=["analyze_job_description"]
 )
 
