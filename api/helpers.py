@@ -63,10 +63,6 @@ def _extract_title(jd_text: str) -> str | None:
     return _clean_extracted_text(match.group(1)) if match else None
 
 
-# ---------------------------------------------------------------------------
-# JD responsibility extraction
-# ---------------------------------------------------------------------------
-
 _RESPONSIBILITY_HEADING = re.compile(
     r"^\s*(?:#{1,6}\s*)?(?:key\s+)?responsibilities\s*:?[ \t]*$|"
     r"^\s*(?:#{1,6}\s*)?(?:what\s+you(?:'|’)ll|what\s+you\s+will|"
@@ -157,10 +153,6 @@ def _build_categories(present: list[tuple[str, float]]) -> list[dict]:
             buckets[cat].append({"name": skill.title(), "status": "found", "importance": int(prob * 100)})
     return [{"name": cat, "skills": sorted(skills, key=lambda x: -x["importance"])} for cat, skills in buckets.items() if skills]
 
-
-# ---------------------------------------------------------------------------
-# Required / preferred classification
-# ---------------------------------------------------------------------------
 
 _SECTION_HEADING = re.compile(r"(?im)^\s*(?:#+\s*)?(?P<heading>[^\n:]{2,100})\s*:?\s*$")
 _REQUIRED_HEADING = re.compile(r"\b(?:required|requirements|required\s+skills|required\s+qualifications|basic\s+qualifications|minimum\s+qualifications|must[- ]have|essential|what\s+you(?:'ll|\s+will)\s+need)\b", re.I)
