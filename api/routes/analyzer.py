@@ -5,13 +5,59 @@ import traceback
 
 from JobAnalyze.v1.pred_v1 import JobAnalyze_6k
 from rate_limit import limiter
-from helpers import _build_analysis
+from helpers import _build_analysis, _SKILL_TO_CAT, SKILL_CATEGORIES
 from schemas import ModelRequest
 from auth import verify
 
 router = APIRouter(tags=["items"])
 
 MAX_JD_LENGTH = 30000
+
+# Public response policy. A skill is "detected" when the model probability
+# reaches this minimum. Required-vs-preferred is NOT determined by this
+# threshold; explicit JD sections are authoritative in helpers.py.
+DETECTION_MIN_SCORE = 0.15
+REQUIRED_DEFINITION = "skills matched within the JD's Required/Qualifications section"
+
+
+def _detected_categories(predicted: list[tuple[str, float]]) -> list[dict]:
+    """Build categories using the same documented detection threshold."""
+    buckets: dict[str, list[dict]] = {cat: [] for cat in SKILL_CATEGORIES}
+    for skill, probability in predicted:
+        if probability < DETECTION_MIN_SCORE:
+            continue
+        category = _SKILL_TO_CAT.get(skill)
+        if not category:
+            continue
+        buckets[category].append({
+            "name": skill.title(),
+            "status": "found",
+            "importance": int(probability * 100),
+        })
+    return [
+        {"name": category, "skills": sorted(skills, key=lambda item: -item["importance"])}
+        for category, skills in buckets.items()
+        if skills
+    ]
+
+
+def _finalize_analysis(analysis: dict, predicted: list[tuple[str, float]]) -> dict:
+    """Apply the public threshold/count contract to a built analysis."""
+    detected = [(skill, probability) for skill, probability in predicted if probability >= DETECTION_MIN_SCORE]
+    summary = analysis.get("summary") or {}
+    required = summary.get("required") or []
+
+    # requiredTechCount is deliberately derived from summary.required so the
+    # API exposes one source of truth instead of maintaining two calculations.
+    analysis["technicalSkillCount"] = len(detected)
+    analysis["requiredTechCount"] = len(required)
+    analysis["categories"] = _detected_categories(predicted)
+    analysis["thresholds"] = {
+        "detectionMinScore": DETECTION_MIN_SCORE,
+        "requiredDefinition": REQUIRED_DEFINITION,
+    }
+    return analysis
+
 
 @router.post(
     "/web_analyze",
@@ -23,10 +69,12 @@ async def web_analyze(request: Request, data: ModelRequest) -> dict:
         raise HTTPException(status_code=413, detail="Job description is too large.")
     predicted = [(skill, float(score)) for skill, score in JobAnalyze_6k(job_desc=data.Job_Desc, role=data.Role, job_type=data.Type)]
     try:
-        return _build_analysis(predicted=predicted, role=data.Role, job_type=data.Type, jd_text=data.Job_Desc)
+        analysis = _build_analysis(predicted=predicted, role=data.Role, job_type=data.Type, jd_text=data.Job_Desc)
+        return _finalize_analysis(analysis, predicted)
     except Exception:
         traceback.print_exc()
         raise HTTPException(status_code=500, detail="Web Analyzer failed while building the analysis response.")
+
 
 @router.post(
     "/JobAnalyze_6k",
@@ -37,4 +85,5 @@ async def JobAnalyze_Pred(request: Request, data: ModelRequest, api_client: dict
     if len(data.Job_Desc) > MAX_JD_LENGTH:
         raise HTTPException(status_code=413, detail="Job description is too large.")
     predicted = [(skill, float(score)) for skill, score in JobAnalyze_6k(job_desc=data.Job_Desc, role=data.Role, job_type=data.Type)]
-    return {"answer": predicted, "analysis": _build_analysis(predicted=predicted, role=data.Role, job_type=data.Type, jd_text=data.Job_Desc)}
+    analysis = _build_analysis(predicted=predicted, role=data.Role, job_type=data.Type, jd_text=data.Job_Desc)
+    return {"answer": predicted, "analysis": _finalize_analysis(analysis, predicted)}
