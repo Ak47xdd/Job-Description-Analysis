@@ -1,6 +1,6 @@
 from enum import Enum
 
-from pydantic import BaseModel, field_validator, EmailStr
+from pydantic import BaseModel, field_validator, EmailStr, Field
 
 
 class SignUpRequest(BaseModel):
@@ -83,7 +83,11 @@ class TypeEnum(str, Enum):
 
 class ModelRequest(BaseModel):
     Job_Desc: str
-    Role: RoleEnum
+    # Preset roles are documented here, but the analyzer also accepts a user-defined role.
+    # Keeping this as str allows the TUI's editable role field to work with custom roles.
+    Role: str = Field(
+        description="Job role. Presets: AI Engineer, AI Developer, Data Scientist, ML Engineer, MLOps Engineer, Data Analyst. Custom roles are also accepted."
+    )
     Type: TypeEnum
 
     @field_validator("Job_Desc")
@@ -91,3 +95,12 @@ class ModelRequest(BaseModel):
         if not v.strip():
             raise ValueError("Job_Desc cannot be empty")
         return v.strip()
+
+    @field_validator("Role")
+    def role_not_empty(cls, v):
+        value = v.strip()
+        if not value:
+            raise ValueError("Role cannot be empty")
+        if len(value) > 100:
+            raise ValueError("Role must be 100 characters or fewer")
+        return value
