@@ -85,19 +85,31 @@ PRESET_ROLES = tuple(role.value for role in RoleEnum)
 
 
 class ModelRequest(BaseModel):
-    Job_Desc: str
+    Job_Desc: str = Field(
+        min_length=1,
+        description="Complete raw job description text to analyze. Provide the JD itself, not a summary or a pre-extracted skill list.",
+        examples=["We are hiring a Junior AI Engineer. Required Skills: Python, PyTorch, SQL."],
+    )
     # Role is intentionally a string: the six RoleEnum values are presets,
     # but callers may provide any custom role supported by the analyzer.
     Role: str = Field(
         min_length=1,
         max_length=100,
         description=(
-            "Job role. Preset values: AI Engineer, AI Developer, Data Scientist, "
+            "Target job role. Preset values: AI Engineer, AI Developer, Data Scientist, "
             "ML Engineer, MLOps Engineer, Data Analyst. Custom roles are accepted."
         ),
         examples=["AI Engineer", "Computer Vision Engineer", "Robotics Engineer"],
     )
-    Type: TypeEnum
+    Type: TypeEnum = Field(
+        description=(
+            "Seniority/employment context supplied to the classifier. Internship targets internship-level roles; "
+            "Junior targets entry/junior roles; Senior targets senior-level roles. This value is required and is "
+            "not automatically inferred or corrected from the JD. If it conflicts with seniority stated in the JD, "
+            "the supplied Type remains the classifier context."
+        ),
+        examples=["Internship", "Junior", "Senior"],
+    )
 
     @field_validator("Job_Desc")
     def jd_not_empty(cls, v):
