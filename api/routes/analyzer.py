@@ -25,17 +25,24 @@ PREFERRED_SELECTION_METHOD = (
 )
 
 
+def _canonical_skill_name(skill: str) -> str:
+    """Return the single canonical skill key used throughout the API."""
+    return skill.strip().lower()
+
+
 def _detected_categories(predicted: list[tuple[str, float]]) -> list[dict]:
-    """Build categories using the same documented detection threshold."""
+    """Build categories while preserving canonical lowercase skill keys."""
     buckets: dict[str, list[dict]] = {cat: [] for cat in SKILL_CATEGORIES}
     for skill, probability in predicted:
         if probability < DETECTION_MIN_SCORE:
             continue
-        category = _SKILL_TO_CAT.get(skill)
+        canonical = _canonical_skill_name(skill)
+        category = _SKILL_TO_CAT.get(canonical)
         if not category:
             continue
         buckets[category].append({
-            "name": skill.title(),
+            "name": canonical,
+            "displayName": skill.strip(),
             "status": "found",
             "importance": int(probability * 100),
         })
@@ -106,6 +113,7 @@ def _finalize_analysis(analysis: dict, predicted: list[tuple[str, float]], jd_te
         "requiredTotalCount": len(required_pairs),
         "preferredTotalCount": len(preferred_pairs),
         "summaryDisplayLimit": 5,
+        "skillNameKey": "lowercase canonical skill identifier",
     }
     return analysis
 
@@ -120,7 +128,7 @@ async def web_analyze(request: Request, data: ModelRequest) -> dict:
         raise HTTPException(status_code=413, detail="Job description is too large.")
     try:
         predicted = [
-            (skill, float(score))
+            (_canonical_skill_name(skill), float(score))
             for skill, score in JobAnalyze_6k(
                 job_desc=data.Job_Desc,
                 role=data.Role,
@@ -153,6 +161,6 @@ async def web_analyze(request: Request, data: ModelRequest) -> dict:
 async def JobAnalyze_Pred(request: Request, data: ModelRequest, api_client: dict = Depends(verify)) -> dict:
     if len(data.Job_Desc) > MAX_JD_LENGTH:
         raise HTTPException(status_code=413, detail="Job description is too large.")
-    predicted = [(skill, float(score)) for skill, score in JobAnalyze_6k(job_desc=data.Job_Desc, role=data.Role, job_type=data.Type)]
+    predicted = [(_canonical_skill_name(skill), float(score)) for skill, score in JobAnalyze_6k(job_desc=data.Job_Desc, role=data.Role, job_type=data.Type)]
     analysis = _build_analysis(predicted=predicted, role=data.Role, job_type=data.Type, jd_text=data.Job_Desc)
     return {"answer": predicted, "analysis": _finalize_analysis(analysis, predicted, data.Job_Desc)}
