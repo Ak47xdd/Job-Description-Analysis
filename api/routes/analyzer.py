@@ -5,7 +5,8 @@ import traceback
 
 from JobAnalyze.v1.pred_v1 import JobAnalyze_6k
 from rate_limit import limiter
-from helpers import _build_analysis, _SKILL_TO_CAT, SKILL_CATEGORIES
+from helpers import _build_analysis, _SKILL_TO_CAT, SKILL_CATEGORIES, _get_compatibility
+from section_skills import classify_required_preferred
 from schemas import ModelRequest
 from auth import verify
 
@@ -14,8 +15,8 @@ router = APIRouter(tags=["items"])
 MAX_JD_LENGTH = 30000
 
 # Public response policy. A skill is "detected" when the model probability
-# reaches this minimum. Required-vs-preferred is NOT determined by this
-# threshold; explicit JD sections are authoritative in helpers.py.
+# reaches this minimum. Required-vs-preferred is determined by explicit JD
+# sections by section_skills.py.
 DETECTION_MIN_SCORE = 0.15
 REQUIRED_DEFINITION = "skills matched within the JD's Required/Qualifications section"
 
@@ -41,16 +42,23 @@ def _detected_categories(predicted: list[tuple[str, float]]) -> list[dict]:
     ]
 
 
-def _finalize_analysis(analysis: dict, predicted: list[tuple[str, float]]) -> dict:
-    """Apply the public threshold/count contract to a built analysis."""
+def _finalize_analysis(analysis: dict, predicted: list[tuple[str, float]], jd_text: str) -> dict:
+    """Apply the public threshold/count contract and section-aware split."""
     detected = [(skill, probability) for skill, probability in predicted if probability >= DETECTION_MIN_SCORE]
+    required_pairs, preferred_pairs = classify_required_preferred(predicted, jd_text)
     summary = analysis.get("summary") or {}
-    required = summary.get("required") or []
 
-    # requiredTechCount is deliberately derived from summary.required so the
-    # API exposes one source of truth instead of maintaining two calculations.
+    # Replace the heuristic helper split with the authoritative section-aware
+    # classification. A skill mentioned in both sections belongs to required.
+    summary["required"] = [skill.title() for skill, _ in required_pairs[:5]]
+    summary["preferred"] = [skill.title() for skill, _ in preferred_pairs[:5]]
+    analysis["summary"] = summary
+
+    compatibility, compatibility_label = _get_compatibility(required_pairs)
+    analysis["compatibility"] = compatibility
+    analysis["compatibilityLabel"] = compatibility_label
     analysis["technicalSkillCount"] = len(detected)
-    analysis["requiredTechCount"] = len(required)
+    analysis["requiredTechCount"] = len(required_pairs)
     analysis["categories"] = _detected_categories(predicted)
     analysis["thresholds"] = {
         "detectionMinScore": DETECTION_MIN_SCORE,
@@ -83,13 +91,9 @@ async def web_analyze(request: Request, data: ModelRequest) -> dict:
             jd_text=data.Job_Desc,
         )
 
-        # Keep the public /web_analyze response compatible with the
-        # authenticated /JobAnalyze_6k contract. The frontend expects the
-        # raw model predictions under `answer`; the richer analysis remains
-        # available under `analysis`.
         return {
             "answer": predicted,
-            "analysis": _finalize_analysis(analysis, predicted),
+            "analysis": _finalize_analysis(analysis, predicted, data.Job_Desc),
         }
     except HTTPException:
         raise
@@ -108,4 +112,4 @@ async def JobAnalyze_Pred(request: Request, data: ModelRequest, api_client: dict
         raise HTTPException(status_code=413, detail="Job description is too large.")
     predicted = [(skill, float(score)) for skill, score in JobAnalyze_6k(job_desc=data.Job_Desc, role=data.Role, job_type=data.Type)]
     analysis = _build_analysis(predicted=predicted, role=data.Role, job_type=data.Type, jd_text=data.Job_Desc)
-    return {"answer": predicted, "analysis": _finalize_analysis(analysis, predicted)}
+    return {"answer": predicted, "analysis": _finalize_analysis(analysis, predicted, data.Job_Desc)}
