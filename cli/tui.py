@@ -26,6 +26,30 @@ API_URL = "https://job-description-analysis.onrender.com"
 ENV_DIR = Path.home() / ".jobselect"
 ENV_FILE = ENV_DIR / ".env"
 
+# The API deliberately uses lowercase canonical keys. The TUI converts those
+# machine keys back to the product's human-readable skill names at the display
+# boundary only; prediction/API data remains untouched.
+SKILL_DISPLAY_NAMES: dict[str, str] = {
+    ".net": ".NET", "agents": "Agents", "anthropic /openai sdks": "Anthropic / OpenAI SDKs",
+    "apis": "APIs", "autogen": "AutoGen", "aws/azure": "AWS/Azure", "c": "C", "c#": "C#",
+    "c++": "C++", "ci/cd": "CI/CD", "crewai": "CrewAI", "django": "Django", "docker": "Docker",
+    "feature engineering": "Feature Engineering", "full stack": "Full Stack", "genai": "GenAI",
+    "git": "Git", "github": "GitHub", "hugging face": "Hugging Face", "java": "Java",
+    "javascript": "JavaScript", "kubernetes": "Kubernetes", "langchain": "LangChain",
+    "langgraph": "LangGraph", "llamaindex": "LlamaIndex", "llms": "LLMs", "mcp": "MCP", "ml": "ML",
+    "mlflow": "MLflow", "mlops": "MLOps", "model evaluation": "Model Evaluation", "model training": "Model Training",
+    "n8n": "n8n", "nlp": "NLP", "numpy": "NumPy", "openai": "OpenAI", "pandas": "Pandas",
+    "powerbi": "Power BI", "prompt engineering": "Prompt Engineering", "python": "Python", "r": "R",
+    "rag": "RAG", "react": "React", "scikit-learn": "Scikit-learn", "sql": "SQL",
+    "system design": "System Design", "tensorflow/pytorch": "TensorFlow/PyTorch", "vectordb": "VectorDB",
+}
+
+
+def display_skill_name(name: str) -> str:
+    """Convert a canonical backend skill key into a human-readable label."""
+    key = str(name).strip().lower()
+    return SKILL_DISPLAY_NAMES.get(key, str(name).strip())
+
 
 class APIKeyScreen(Screen[str]):
     """Collect and persist the API key, or allow local inference."""
@@ -55,29 +79,23 @@ class APIKeyScreen(Screen[str]):
         self.query_one("#key-input", Input).focus()
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
-        if event.button.id == "key-local":
-            self.action_run_local()
-        elif event.button.id == "key-submit":
-            self._submit()
+        if event.button.id == "key-local": self.action_run_local()
+        elif event.button.id == "key-submit": self._submit()
 
-    def on_input_submitted(self, event: Input.Submitted) -> None:
-        self._submit()
+    def on_input_submitted(self, event: Input.Submitted) -> None: self._submit()
 
     def _submit(self) -> None:
         entered = self.query_one("#key-input", Input).value.strip()
         if entered:
             ENV_DIR.mkdir(parents=True, exist_ok=True)
             ENV_FILE.write_text(f'JOBSELECT_API_URL="{API_URL}"\nJOBSELECT_API_KEY="{entered}"\n', encoding="utf-8")
-            try:
-                ENV_FILE.chmod(0o600)
-            except OSError:
-                pass
+            try: ENV_FILE.chmod(0o600)
+            except OSError: pass
             os.environ["JOBSELECT_API_URL"] = API_URL
             os.environ["JOBSELECT_API_KEY"] = entered
         self.dismiss(entered)
 
-    def action_run_local(self) -> None:
-        self.dismiss("")
+    def action_run_local(self) -> None: self.dismiss("")
 
 
 class AnalysisScreen(Screen[None]):
@@ -111,10 +129,10 @@ class AnalysisScreen(Screen[None]):
         jd_snippet = self.jd[:120] + ("…" if len(self.jd) > 120 else "")
         mode_markup = "[green]API[/green]" if self.mode == "API" else "[cyan]LOCAL[/cyan]"
         lines = ["[bold underline]JOB DESCRIPTION PROVIDED[/bold underline]", escape(jd_snippet), "", f"[bold]Role:[/bold]  {escape(self.role)}", f"[bold]Type:[/bold]  {escape(self.job_type)}", f"[bold]Mode:[/bold]  {mode_markup}", "", "[bold underline]TOP SKILLS[/bold underline]", "", "[dim]Skill confidence[/dim]", ""]
-        above_threshold = [(str(label), float(prob)) for label, prob in self.results if float(prob) >= THRESHOLD]
+        above_threshold = [(display_skill_name(str(label)), float(prob)) for label, prob in self.results if float(prob) >= THRESHOLD]
         if not above_threshold:
             lines.append("[dim]No skills predicted above threshold (0.30). Showing the highest-scoring skills instead:[/dim]")
-            above_threshold = [(str(label), float(prob)) for label, prob in list(self.results)[:10]]
+            above_threshold = [(display_skill_name(str(label)), float(prob)) for label, prob in list(self.results)[:10]]
             lines.append("")
         for label, prob in above_threshold[:20]:
             value = max(0.0, min(1.0, prob))
@@ -127,11 +145,9 @@ class AnalysisScreen(Screen[None]):
         return "\n".join(lines)
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
-        if event.button.id == "analysis-again":
-            self.action_go_back()
+        if event.button.id == "analysis-again": self.action_go_back()
 
-    def action_go_back(self) -> None:
-        self.app.pop_screen()
+    def action_go_back(self) -> None: self.app.pop_screen()
 
 
 class JobSelectTUI(App[None]):
@@ -188,21 +204,18 @@ class JobSelectTUI(App[None]):
         if not saved_key and ENV_FILE.exists():
             load_dotenv(dotenv_path=ENV_FILE, override=False)
             saved_key = os.getenv("JOBSELECT_API_KEY", "").strip()
-        if not saved_key:
-            self.push_screen(APIKeyScreen(), self._on_key_screen_dismissed)
+        if not saved_key: self.push_screen(APIKeyScreen(), self._on_key_screen_dismissed)
 
     def _on_key_screen_dismissed(self, entered_key: str) -> None:
         self._status("API key saved. Running in [green]API[/green] mode." if entered_key else "Running in [cyan]LOCAL[/cyan] mode.")
 
-    def _status(self, message: str) -> None:
-        self.query_one("#status", Static).update(message)
+    def _status(self, message: str) -> None: self.query_one("#status", Static).update(message)
 
     def _set_loading(self, active: bool) -> None:
         loader = self.query_one("#loading", LoadingIndicator)
         loader.add_class("visible") if active else loader.remove_class("visible")
 
-    def action_focus_description(self) -> None:
-        self.query_one("#jd", TextArea).focus()
+    def action_focus_description(self) -> None: self.query_one("#jd", TextArea).focus()
 
     def action_focus_role(self) -> None:
         self.query_one("#role-input", Input).focus()
@@ -221,10 +234,8 @@ class JobSelectTUI(App[None]):
             self._status(f"Job type set to: {'not selected' if event.value not in VALID_JOB_TYPES else str(event.value)}")
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
-        if event.button.id == "clear":
-            self._clear_form()
-        elif event.button.id == "analyze":
-            self.start_analysis()
+        if event.button.id == "clear": self._clear_form()
+        elif event.button.id == "analyze": self.start_analysis()
 
     def _clear_form(self) -> None:
         self.query_one("#jd", TextArea).text = ""
@@ -235,37 +246,26 @@ class JobSelectTUI(App[None]):
         self.query_one("#jd", TextArea).focus()
 
     @staticmethod
-    def _is_valid_role(value: str) -> bool:
-        return bool(str(value).strip())
+    def _is_valid_role(value: str) -> bool: return bool(str(value).strip())
 
     @staticmethod
-    def _is_valid_job_type(value) -> bool:
-        return value in VALID_JOB_TYPES
+    def _is_valid_job_type(value) -> bool: return value in VALID_JOB_TYPES
 
     def start_analysis(self) -> None:
         jd = self.query_one("#jd", TextArea).text.strip()
         role = self.query_one("#role-input", Input).value.strip()
         job_type = self.query_one("#job-type", Select).value
-
         missing = []
-        if not jd:
-            missing.append("Job Description")
-        if not self._is_valid_role(role):
-            missing.append("Job Role")
-        if not self._is_valid_job_type(job_type):
-            missing.append("Job Type")
-
+        if not jd: missing.append("Job Description")
+        if not self._is_valid_role(role): missing.append("Job Role")
+        if not self._is_valid_job_type(job_type): missing.append("Job Type")
         if missing:
             fields = ", ".join(missing)
             self._status(f"[bold red]Error:[/bold red] Please fill the required field(s): [bold]{fields}[/bold].")
-            if not jd:
-                self.query_one("#jd", TextArea).focus()
-            elif not self._is_valid_role(role):
-                self.query_one("#role-input", Input).focus()
-            else:
-                self.query_one("#job-type", Select).focus()
+            if not jd: self.query_one("#jd", TextArea).focus()
+            elif not self._is_valid_role(role): self.query_one("#role-input", Input).focus()
+            else: self.query_one("#job-type", Select).focus()
             return
-
         self.query_one("#analyze", Button).disabled = True
         self._set_loading(True)
         self._status("Analyzing job description… please wait.")
@@ -276,8 +276,7 @@ class JobSelectTUI(App[None]):
         return predict(jd, role=role, job_type=job_type, force_local=(infer == "LOCAL"))
 
     def on_worker_state_changed(self, event: Worker.StateChanged) -> None:
-        if event.worker.name != "job-analysis" or event.state == WorkerState.RUNNING:
-            return
+        if event.worker.name != "job-analysis" or event.state == WorkerState.RUNNING: return
         self.query_one("#analyze", Button).disabled = False
         self._set_loading(False)
         if event.state == WorkerState.SUCCESS:
@@ -297,4 +296,8 @@ class JobSelectTUI(App[None]):
 
 
 def run_tui() -> None:
-    JobSelectTUI().run(mouse=False)
+    JobSelectTUI().run()
+
+
+if __name__ == "__main__":
+    run_tui()
