@@ -46,6 +46,36 @@ def _detected_categories(predicted: list[tuple[str, float]]) -> list[dict]:
     ]
 
 
+def _score_breakdown(
+    detected: list[tuple[str, float]],
+    required: list[tuple[str, float]],
+    preferred: list[tuple[str, float]],
+    compatibility: int,
+) -> dict:
+    """Expose the inputs to compatibility scoring without pretending it is a hiring probability."""
+    desired = required + preferred
+    desired_count = len(desired)
+    present_count = len(detected)
+    required_present = len(required)
+    preferred_present = len(preferred)
+    weighted_average = (
+        sum(score for _, score in desired) / desired_count if desired_count else 0.0
+    )
+    return {
+        "compatibilityScore": compatibility,
+        "detectedSkillCount": present_count,
+        "desiredSkillCount": desired_count,
+        "skillsPresentInDesiredSet": min(present_count, desired_count),
+        "requiredSkillCount": required_present,
+        "preferredSkillCount": preferred_present,
+        "weightedAverageImportance": round(weighted_average, 4),
+        "weightedAverageImportancePercent": round(weighted_average * 100, 1),
+        "requiredCoveragePercent": round(required_present / len(required) * 100, 1) if required else 0.0,
+        "preferredCoveragePercent": round(preferred_present / len(preferred) * 100, 1) if preferred else 0.0,
+        "selectionMethod": "section-aware_required_preferred; compatibility uses required skills returned by the section classifier",
+    }
+
+
 def _finalize_analysis(analysis: dict, predicted: list[tuple[str, float]], jd_text: str) -> dict:
     """Apply the public threshold/count and documented selection contracts."""
     detected = [(skill, probability) for skill, probability in predicted if probability >= DETECTION_MIN_SCORE]
@@ -65,6 +95,9 @@ def _finalize_analysis(analysis: dict, predicted: list[tuple[str, float]], jd_te
     analysis["requiredTechCount"] = len(required_pairs)
     analysis["preferredTechCount"] = len(preferred_pairs)
     analysis["categories"] = _detected_categories(predicted)
+    analysis["scoreBreakdown"] = _score_breakdown(
+        detected, required_pairs, preferred_pairs, compatibility
+    )
     analysis["thresholds"] = {
         "detectionMinScore": DETECTION_MIN_SCORE,
         "requiredDefinition": REQUIRED_DEFINITION,
