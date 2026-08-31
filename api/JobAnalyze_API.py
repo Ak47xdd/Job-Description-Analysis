@@ -12,46 +12,19 @@ from auth import generate_api, API_KEY_DB, hash_key
 from supabase_client import upsert_api_key_db
 from rate_limit import limiter
 
-ALLOWED_ORIGINS = [
-    "https://jobselect.vercel.app",
-]
+ALLOWED_ORIGINS = ["https://jobselect.vercel.app"]
+ALLOWED_HEADERS = ["Accept", "Content-Type", "Authorization", "JobAnalyze_6k_Key", "X-Admin-Secret"]
 
-ALLOWED_HEADERS = [
-    "Accept",
-    "Content-Type",
-    "Authorization",
-    "JobAnalyze_6k_Key",
-    "X-Admin-Secret"
-]
-
-app = FastAPI(
-    title="Unified JobAuto Model API",
-    docs_url=None,
-    redoc_url=None
-)
-
+app = FastAPI(title="Unified JobAuto Model API", docs_url=None, redoc_url=None)
 app.state.limiter = limiter
-app.add_exception_handler(
-    RateLimitExceeded,
-    _rate_limit_exceeded_handler
-)
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
-    allow_credentials=True,
-    allow_methods=["GET", "POST", "OPTIONS"],
-    allow_headers=ALLOWED_HEADERS
-)
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+app.add_middleware(CORSMiddleware, allow_origins=ALLOWED_ORIGINS, allow_credentials=True, allow_methods=["GET", "POST", "OPTIONS"], allow_headers=ALLOWED_HEADERS)
 
 app.include_router(auth.router)
 app.include_router(oauth.router)
 app.include_router(account.router)
-
 app.include_router(analyzer.router, prefix="/analyzer")
-
 app.include_router(analyzer.router, include_in_schema=False)
-
 app.include_router(news.router)
 app.include_router(careers.router)
 
@@ -63,17 +36,9 @@ async def main() -> dict:
 async def cron() -> dict:
     return {"message": "Cron Task Executed"}
 
-@app.post(
-    "/API/Generate",
-    status_code=status.HTTP_201_CREATED,
-    operation_id="api_key_creator"
-)
+@app.post("/API/Generate", status_code=status.HTTP_201_CREATED, operation_id="api_key_creator")
 @limiter.limit("5/hour")
-async def create_api(
-    request: Request,
-    email: str,
-    x_admin_secret: str | None = Header(default=None, alias="X-Admin-Secret")
-) -> dict:
+async def create_api(request: Request, email: str, x_admin_secret: str | None = Header(default=None, alias="X-Admin-Secret")) -> dict:
     configured_secret = os.getenv("ADMIN_SECRET")
     if not configured_secret:
         raise HTTPException(status_code=503, detail="API key generation is not configured.")
@@ -90,7 +55,16 @@ async def create_api(
 mcp = FastApiMCP(
     app,
     name="JobAnalyze 6k",
-    description="Analyzes a job description using the JobAnalyze 6k skill classifier. Supported roles: AI Engineer, AI Developer, Data Scientist, ML Engineer, MLOps Engineer, and Data Analyst. Supported seniority types: Internship, Junior and Senior. The role/type inputs provide context to the existing classifier; they do not imply that the underlying model was separately retrained for each role. Provide Job_Desc, Role, and Type.",
+    description=(
+        "Analyze raw job descriptions with the JobAnalyze 6k skill classifier. "
+        "The analyze_job_description tool extracts technical skills, analyzes required versus preferred/bonus "
+        "skills, and returns compatibility and score details. Job_Desc must be the complete raw JD text. "
+        "Role is the target role and accepts the preset roles AI Engineer, AI Developer, Data Scientist, "
+        "ML Engineer, MLOps Engineer, and Data Analyst, plus custom roles. Type is the required seniority "
+        "context: Internship, Junior, or Senior. Type is supplied by the caller and is not silently inferred "
+        "or corrected from the JD; if it conflicts with explicit seniority in the JD, the supplied Type remains "
+        "the classifier context."
+    ),
     include_operations=["analyze_job_description"]
 )
 
