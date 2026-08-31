@@ -14,11 +14,15 @@ router = APIRouter(tags=["items"])
 
 MAX_JD_LENGTH = 30000
 
-# Public response policy. A skill is "detected" when the model probability
-# reaches this minimum. Required-vs-preferred is determined by explicit JD
-# sections by section_skills.py.
 DETECTION_MIN_SCORE = 0.15
 REQUIRED_DEFINITION = "skills matched within the JD's Required/Qualifications section"
+REQUIRED_SELECTION_METHOD = (
+    "explicit_jd_section; if no Required section exists, confidence>=0.60 fallback; "
+    "summary.required is display-limited to the top 5 required skills by model confidence"
+)
+PREFERRED_SELECTION_METHOD = (
+    "explicit_jd_section; summary.preferred is display-limited to the top 5 preferred skills by model confidence"
+)
 
 
 def _detected_categories(predicted: list[tuple[str, float]]) -> list[dict]:
@@ -43,13 +47,13 @@ def _detected_categories(predicted: list[tuple[str, float]]) -> list[dict]:
 
 
 def _finalize_analysis(analysis: dict, predicted: list[tuple[str, float]], jd_text: str) -> dict:
-    """Apply the public threshold/count contract and section-aware split."""
+    """Apply the public threshold/count and documented selection contracts."""
     detected = [(skill, probability) for skill, probability in predicted if probability >= DETECTION_MIN_SCORE]
     required_pairs, preferred_pairs = classify_required_preferred(predicted, jd_text)
     summary = analysis.get("summary") or {}
 
-    # Replace the heuristic helper split with the authoritative section-aware
-    # classification. A skill mentioned in both sections belongs to required.
+    # Section classification determines membership. The UI summary is capped
+    # at five entries, selected by model confidence within each section.
     summary["required"] = [skill.title() for skill, _ in required_pairs[:5]]
     summary["preferred"] = [skill.title() for skill, _ in preferred_pairs[:5]]
     analysis["summary"] = summary
@@ -59,10 +63,16 @@ def _finalize_analysis(analysis: dict, predicted: list[tuple[str, float]], jd_te
     analysis["compatibilityLabel"] = compatibility_label
     analysis["technicalSkillCount"] = len(detected)
     analysis["requiredTechCount"] = len(required_pairs)
+    analysis["preferredTechCount"] = len(preferred_pairs)
     analysis["categories"] = _detected_categories(predicted)
     analysis["thresholds"] = {
         "detectionMinScore": DETECTION_MIN_SCORE,
         "requiredDefinition": REQUIRED_DEFINITION,
+        "requiredSelectionMethod": REQUIRED_SELECTION_METHOD,
+        "preferredSelectionMethod": PREFERRED_SELECTION_METHOD,
+        "requiredTotalCount": len(required_pairs),
+        "preferredTotalCount": len(preferred_pairs),
+        "summaryDisplayLimit": 5,
     }
     return analysis
 
