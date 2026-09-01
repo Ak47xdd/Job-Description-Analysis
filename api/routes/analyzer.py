@@ -2,6 +2,7 @@ from fastapi import Depends, HTTPException
 from starlette.requests import Request
 from fastapi import APIRouter
 import traceback
+import re
 
 from JobAnalyze.v1.pred_v1 import JobAnalyze_6k
 from rate_limit import limiter
@@ -20,6 +21,26 @@ PREFERRED_SELECTION_METHOD = "explicit_jd_section; summary.preferred is display-
 
 def _canonical_skill_name(skill: str) -> str:
     return skill.strip().lower()
+
+
+def _clean_detected_title(jd_text: str, fallback: str | None = None) -> str | None:
+    """Extract a clean seniority + role title without leading adjectives."""
+    text = jd_text or ""
+    role_words = r"engineer|developer|scientist|analyst|architect|manager|specialist|consultant|researcher|intern|designer|administrator|lead|director"
+    seniority = r"(?:entry[- ]level|junior|mid(?:[- ]level)?|senior|staff|principal|lead)"
+    patterns = [
+        rf"\b({seniority}\s+(?:[A-Za-z][A-Za-z0-9&/+.\-]*\s+){{0,4}}(?:{role_words}))\b",
+        rf"\b((?:[A-Za-z][A-Za-z0-9&/+.\-]*\s+){{0,4}}(?:{role_words}))\b",
+    ]
+    for pattern in patterns:
+        match = re.search(pattern, text, re.I)
+        if match:
+            value = match.group(1).strip(" \t-–—:|,.;")
+            value = re.sub(r"^(?:a|an|the|motivated|talented|experienced|passionate|highly\s+motivated|looking\s+for)\s+", "", value, flags=re.I)
+            value = re.sub(r"\s+", " ", value).strip()
+            if value:
+                return value
+    return fallback
 
 
 def _detected_categories(predicted: list[tuple[str, float]]) -> list[dict]:
@@ -48,8 +69,8 @@ def _score_breakdown(detected, required, preferred, compatibility) -> dict:
         "preferredSkillCount": len(preferred),
         "weightedAverageImportance": round(weighted_average, 4),
         "weightedAverageImportancePercent": round(weighted_average * 100, 1),
-        "requiredCoveragePercent": round(len(required) / len(required) * 100, 1) if required else 0.0,
-        "preferredCoveragePercent": round(len(preferred) / len(preferred) * 100, 1) if preferred else 0.0,
+        "requiredCoveragePercent": 100.0 if required else 0.0,
+        "preferredCoveragePercent": 100.0 if preferred else 0.0,
         "selectionMethod": "section-aware_required_preferred; compatibility uses required skills returned by the section classifier",
     }
 
@@ -64,9 +85,6 @@ def _finalize_analysis(analysis, predicted, jd_text):
     compatibility, compatibility_label = _get_compatibility(required_pairs)
     analysis["compatibility"] = compatibility
     analysis["compatibilityLabel"] = compatibility_label
-    # _build_analysis creates recommendation before section-aware required/preferred
-    # classification is finalized. Rebuild it here so every recommendation field
-    # uses the exact same compatibility score exposed at analysis.compatibility.
     job_type = analysis.get("experience", "Junior")
     analysis["recommendation"] = _build_recommendation(compatibility, job_type)
     analysis["technicalSkillCount"] = len(detected)
@@ -76,14 +94,11 @@ def _finalize_analysis(analysis, predicted, jd_text):
     analysis["scoreBreakdown"] = _score_breakdown(detected, required_pairs, preferred_pairs, compatibility)
     analysis.pop("importance", None)
     analysis["thresholds"] = {"detectionMinScore": DETECTION_MIN_SCORE, "requiredDefinition": REQUIRED_DEFINITION, "requiredSelectionMethod": REQUIRED_SELECTION_METHOD, "preferredSelectionMethod": PREFERRED_SELECTION_METHOD, "requiredTotalCount": len(required_pairs), "preferredTotalCount": len(preferred_pairs), "summaryDisplayLimit": 5, "skillNameKey": "lowercase canonical skill identifier"}
+    analysis["detectedTitle"] = _clean_detected_title(jd_text, analysis.get("detectedTitle"))
     return analysis
 
 
-@router.post(
-    "/web_analyze",
-    operation_id="web_analyze",
-    summary="Analyze a raw job description and extract skills, requirements, compatibility, and required/preferred sections.",
-    description=("Analyze raw job-description text with the JobAnalyze 6k skill classifier. Job_Desc must contain the raw JD text, not a summary or pre-extracted skill list. Role is the target job role and accepts the six preset roles or a custom role. Type is the caller-supplied seniority context and must be Internship, Junior, or Senior. Type is contextual input and is not silently inferred or corrected from the JD. If Type conflicts with explicit seniority language in the JD, the supplied Type remains the classifier context; the raw JD remains the source for extracted requirements."))
+@router.post("/web_analyze", operation_id="web_analyze", summary="Analyze a raw job description and extract skills, requirements, compatibility, and required/preferred sections.", description=("Analyze raw job-description text with the JobAnalyze 6k skill classifier. Job_Desc must contain the raw JD text, not a summary or pre-extracted skill list. Role is the target job role and accepts the six preset roles or a custom role. Type is the caller-supplied seniority context and must be Internship, Junior, or Senior. Type is contextual input and is not silently inferred or corrected from the JD. If Type conflicts with explicit seniority language in the JD, the supplied Type remains the classifier context; the raw JD remains the source for extracted requirements."))
 @limiter.limit("5/minute")
 async def web_analyze(request: Request, data: ModelRequest) -> dict:
     if len(data.Job_Desc) > MAX_JD_LENGTH:
@@ -99,11 +114,7 @@ async def web_analyze(request: Request, data: ModelRequest) -> dict:
         raise HTTPException(status_code=500, detail="Web Analyzer failed while building the analysis response.")
 
 
-@router.post(
-    "/JobAnalyze_6k",
-    operation_id="analyze_job_description",
-    summary="Analyze a raw job description with the JobAnalyze 6k skill classifier.",
-    description=("Analyze raw job-description text. Job_Desc should be the complete raw JD text. Role identifies the target role and accepts the six preset roles or a custom role. Type is the caller-supplied seniority context: Internship, Junior, or Senior. Type is not automatically inferred or corrected from the JD; if it conflicts with the JD's stated seniority, the supplied Type remains the classifier context."))
+@router.post("/JobAnalyze_6k", operation_id="analyze_job_description", summary="Analyze a raw job description with the JobAnalyze 6k skill classifier.", description=("Analyze raw job-description text. Job_Desc should be the complete raw JD text. Role identifies the target role and accepts the six preset roles or a custom role. Type is the caller-supplied seniority context: Internship, Junior, or Senior. Type is not automatically inferred or corrected from the JD; if it conflicts with the JD's stated seniority, the supplied Type remains the classifier context."))
 @limiter.limit("10/minute")
 async def JobAnalyze_Pred(request: Request, data: ModelRequest, api_client: dict = Depends(verify)) -> dict:
     if len(data.Job_Desc) > MAX_JD_LENGTH:
