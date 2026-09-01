@@ -31,8 +31,21 @@ def _detected_categories(predicted: list[tuple[str, float]]) -> list[dict]:
         category = _SKILL_TO_CAT.get(canonical)
         if not category:
             continue
-        buckets[category].append({"name": canonical, "displayName": skill.strip(), "status": "found", "importance": int(probability * 100)})
-    return [{"name": category, "skills": sorted(skills, key=lambda item: -item["importance"])} for category, skills in buckets.items() if skills]
+        buckets[category].append(
+            {
+                "name": canonical, 
+                "displayName": skill.strip(), 
+                "status": "found", 
+                "importance": int(probability * 100)
+             }
+            )
+    return [
+        {
+            "name": category, 
+            "skills": sorted(skills, key=lambda item: -item["importance"]
+                             )
+            } for category, skills in buckets.items() if skills
+        ]
 
 
 def _score_breakdown(detected, required, preferred, compatibility) -> dict:
