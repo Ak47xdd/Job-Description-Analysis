@@ -83,7 +83,16 @@ def _finalize_analysis(analysis, predicted, jd_text):
     analysis["categories"] = _detected_categories(predicted)
     analysis["scoreBreakdown"] = _score_breakdown(detected, required_pairs, preferred_pairs, compatibility)
     analysis.pop("importance", None)
-    analysis["thresholds"] = {"detectionMinScore": DETECTION_MIN_SCORE, "requiredDefinition": REQUIRED_DEFINITION, "requiredSelectionMethod": REQUIRED_SELECTION_METHOD, "preferredSelectionMethod": PREFERRED_SELECTION_METHOD, "requiredTotalCount": len(required_pairs), "preferredTotalCount": len(preferred_pairs), "summaryDisplayLimit": 5, "skillNameKey": "lowercase canonical skill identifier"}
+    analysis["thresholds"] = {
+        "detectionMinScore": DETECTION_MIN_SCORE, 
+        "requiredDefinition": REQUIRED_DEFINITION, 
+        "requiredSelectionMethod": REQUIRED_SELECTION_METHOD, 
+        "preferredSelectionMethod": PREFERRED_SELECTION_METHOD, 
+        "requiredTotalCount": len(required_pairs), 
+        "preferredTotalCount": len(preferred_pairs), 
+        "summaryDisplayLimit": 5, 
+        "skillNameKey": "lowercase canonical skill identifier"
+        }
     return analysis
 
 
