@@ -1,6 +1,6 @@
 [project]
 name = "JobSelect"
-version = "0.12.6"
+version = "0.12.7"
 dependencies = [
   "rich==15.0.0",
   "textual==8.2.8",
