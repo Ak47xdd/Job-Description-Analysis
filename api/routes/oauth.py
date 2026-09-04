@@ -20,7 +20,10 @@ async def google_login():
     try:
         return RedirectResponse(url=google_authorize_url(), status_code=302)
     except RuntimeError as exc:
-        raise HTTPException(status_code=503, detail=str(exc))
+        raise HTTPException(
+            status_code=503, 
+            detail=str(exc)
+            )
 
 @router.get(
     "/auth/google/callback", 
@@ -30,7 +33,8 @@ async def google_callback(
     code: str | None = None, 
     state: str | None = None, 
     error: str | None = None,
-    error_description: str | None = None):
+    error_description: str | None = None
+    ):
     
     if error:
         detail = (error_description or error).replace(" ", "_")
@@ -84,4 +88,8 @@ async def google_exchange(
     record = get_api_key_db(owner=bridge["email"], create_if_missing=True)
     if not record or not record.get("api_key"):
         raise HTTPException(status_code=500, detail="Unable to provision API key")
-    return {"email": bridge["email"], "name": bridge["name"] or bridge["email"].split("@")[0], "api_key": record["api_key"]}
+    return {
+        "email": bridge["email"], 
+        "name": bridge["name"] or bridge["email"].split("@")[0], 
+        "api_key": record["api_key"]
+        }
