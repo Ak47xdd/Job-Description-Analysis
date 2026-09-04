@@ -255,7 +255,13 @@ def _build_summary(predicted: list[tuple[str, float]], role: str, job_type: str,
     if "Infrastructure" in cats_hit: fallback.append("Operate and monitor models in production infrastructure")
     if "Frameworks & Libraries" in cats_hit: fallback.append("Implement solutions using modern ML frameworks and libraries")
     if "Web & Full Stack" in cats_hit: fallback.append("Develop APIs and backend services that serve model outputs")
-    return {"overview": overview, "responsibilities": responsibilities if responsibilities else fallback, "responsibilitiesSource": "extracted" if responsibilities else "template", "required": top_required, "preferred": [s.title() for s, _ in preferred[:3]]}
+    return {
+        "overview": overview, 
+        "responsibilities": responsibilities if responsibilities else fallback, 
+        "responsibilitiesSource": "extracted" if responsibilities else "template", 
+        "required": top_required, 
+        "preferred": [s.title() for s, _ in preferred[:3]]
+        }
 
 
 def _build_recommendation(compatibility: int | None, job_type: str) -> dict:
@@ -281,7 +287,11 @@ def _build_recommendation(compatibility: int | None, job_type: str) -> dict:
         points = [{"type": "warning", "text": f"Compatibility score: {compatibility}%"}, {"type": "warning", "text": "Several required skills may need development"}]
     if job_type == "Senior":
         points.append({"type": "warning", "text": "Senior seniority bar applies"})
-    return {"verdict": verdict, "detail": detail, "points": points}
+    return {
+        "verdict": verdict, 
+        "detail": detail, 
+        "points": points
+        }
 
 
 def _build_analysis(predicted: list[tuple[str, float]], role: str, job_type: str, jd_text: str) -> dict:
@@ -301,12 +311,20 @@ def _build_analysis(predicted: list[tuple[str, float]], role: str, job_type: str
     else:
         exp_meta["responsibilitiesSource"] = "template"
     return {
-        "compatibility": compatibility, "compatibilityLabel": compatibility_label,
-        "complexity": _get_complexity(present), "technicalSkillCount": len(present), "requiredTechCount": len(required),
+        "compatibility": compatibility, 
+        "compatibilityLabel": compatibility_label,
+        "complexity": _get_complexity(present), 
+        "technicalSkillCount": len(present), 
+        "requiredTechCount": len(required),
         "categories": _build_categories(present),
         "importance": [{"name": s.title(), "value": int(p * 100)} for s, p in predicted[:7]],
-        "experienceRequirement": exp_meta, "summary": summary,
+        "experienceRequirement": exp_meta, 
+        "summary": summary,
         "recommendation": _build_recommendation(compatibility, job_type),
-        "id": f"an_{uuid.uuid4().hex[:8]}", "createdAt": datetime.now(timezone.utc).isoformat(),
-        "role": role, "experience": job_type, "detectedTitle": detected_title, "company": company,
+        "id": f"an_{uuid.uuid4().hex[:8]}", 
+        "createdAt": datetime.now(timezone.utc).isoformat(),
+        "role": role, 
+        "experience": job_type, 
+        "detectedTitle": detected_title, 
+        "company": company,
     }
