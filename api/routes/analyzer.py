@@ -36,8 +36,17 @@ def _clean_detected_title(jd_text: str, fallback: str | None = None) -> str | No
         match = re.search(pattern, text, re.I)
         if match:
             value = match.group(1).strip(" \t-–—:|,.;")
-            value = re.sub(r"^(?:a|an|the|motivated|talented|experienced|passionate|highly\s+motivated|looking\s+for)\s+", "", value, flags=re.I)
-            value = re.sub(r"\s+", " ", value).strip()
+            value = re.sub(
+                r"^(?:a|an|the|motivated|talented|experienced|passionate|highly\s+motivated|looking\s+for)\s+", 
+                "", 
+                value, 
+                flags=re.I
+                )
+            value = re.sub(
+                r"\s+", 
+                " ", 
+                value
+                ).strip()
             if value:
                 return value
     return fallback
@@ -52,8 +61,16 @@ def _detected_categories(predicted: list[tuple[str, float]]) -> list[dict]:
         category = _SKILL_TO_CAT.get(canonical)
         if not category:
             continue
-        buckets[category].append({"name": canonical, "displayName": skill.strip(), "status": "found", "importance": int(probability * 100)})
-    return [{"name": category, "skills": sorted(skills, key=lambda item: -item["importance"])} for category, skills in buckets.items() if skills]
+        buckets[category].append({
+            "name": canonical, 
+            "displayName": skill.strip(), 
+            "status": "found", 
+            "importance": int(probability * 100)
+            })
+    return [{
+        "name": category, 
+        "skills": sorted(skills, key=lambda item: -item["importance"])
+        } for category, skills in buckets.items() if skills]
 
 
 def _score_breakdown(detected, required, preferred, compatibility) -> dict:
@@ -93,12 +110,26 @@ def _finalize_analysis(analysis, predicted, jd_text):
     analysis["categories"] = _detected_categories(predicted)
     analysis["scoreBreakdown"] = _score_breakdown(detected, required_pairs, preferred_pairs, compatibility)
     analysis.pop("importance", None)
-    analysis["thresholds"] = {"detectionMinScore": DETECTION_MIN_SCORE, "requiredDefinition": REQUIRED_DEFINITION, "requiredSelectionMethod": REQUIRED_SELECTION_METHOD, "preferredSelectionMethod": PREFERRED_SELECTION_METHOD, "requiredTotalCount": len(required_pairs), "preferredTotalCount": len(preferred_pairs), "summaryDisplayLimit": 5, "skillNameKey": "lowercase canonical skill identifier"}
+    analysis["thresholds"] = {
+        "detectionMinScore": DETECTION_MIN_SCORE, 
+        "requiredDefinition": REQUIRED_DEFINITION, 
+        "requiredSelectionMethod": REQUIRED_SELECTION_METHOD, 
+        "preferredSelectionMethod": PREFERRED_SELECTION_METHOD, 
+        "requiredTotalCount": len(required_pairs), 
+        "preferredTotalCount": len(preferred_pairs), 
+        "summaryDisplayLimit": 5, 
+        "skillNameKey": "lowercase canonical skill identifier"
+        }
     analysis["detectedTitle"] = _clean_detected_title(jd_text, analysis.get("detectedTitle"))
     return analysis
 
 
-@router.post("/web_analyze", operation_id="web_analyze", summary="Analyze a raw job description and extract skills, requirements, compatibility, and required/preferred sections.", description=("Analyze raw job-description text with the JobAnalyze 6k skill classifier. Job_Desc must contain the raw JD text, not a summary or pre-extracted skill list. Role is the target job role and accepts the six preset roles or a custom role. Type is the caller-supplied seniority context and must be Internship, Junior, or Senior. Type is contextual input and is not silently inferred or corrected from the JD. If Type conflicts with explicit seniority language in the JD, the supplied Type remains the classifier context; the raw JD remains the source for extracted requirements."))
+@router.post(
+    "/web_analyze", 
+    operation_id="web_analyze", 
+    summary="Analyze a raw job description and extract skills, requirements, compatibility, and required/preferred sections.", 
+    description=("Analyze raw job-description text with the JobAnalyze 6k skill classifier. Job_Desc must contain the raw JD text, not a summary or pre-extracted skill list. Role is the target job role and accepts the six preset roles or a custom role. Type is the caller-supplied seniority context and must be Internship, Junior, or Senior. Type is contextual input and is not silently inferred or corrected from the JD. If Type conflicts with explicit seniority language in the JD, the supplied Type remains the classifier context; the raw JD remains the source for extracted requirements.")
+    )
 @limiter.limit("5/minute")
 async def web_analyze(request: Request, data: ModelRequest) -> dict:
     if len(data.Job_Desc) > MAX_JD_LENGTH:
@@ -114,11 +145,19 @@ async def web_analyze(request: Request, data: ModelRequest) -> dict:
         raise HTTPException(status_code=500, detail="Web Analyzer failed while building the analysis response.")
 
 
-@router.post("/JobAnalyze_6k", operation_id="analyze_job_description", summary="Analyze a raw job description with the JobAnalyze 6k skill classifier.", description=("Analyze raw job-description text. Job_Desc should be the complete raw JD text. Role identifies the target role and accepts the six preset roles or a custom role. Type is the caller-supplied seniority context: Internship, Junior, or Senior. Type is not automatically inferred or corrected from the JD; if it conflicts with the JD's stated seniority, the supplied Type remains the classifier context."))
+@router.post(
+    "/JobAnalyze_6k", 
+    operation_id="analyze_job_description", 
+    summary="Analyze a raw job description with the JobAnalyze 6k skill classifier.", 
+    description=("Analyze raw job-description text. Job_Desc should be the complete raw JD text. Role identifies the target role and accepts the six preset roles or a custom role. Type is the caller-supplied seniority context: Internship, Junior, or Senior. Type is not automatically inferred or corrected from the JD; if it conflicts with the JD's stated seniority, the supplied Type remains the classifier context.")
+    )
 @limiter.limit("10/minute")
 async def JobAnalyze_Pred(request: Request, data: ModelRequest, api_client: dict = Depends(verify)) -> dict:
     if len(data.Job_Desc) > MAX_JD_LENGTH:
         raise HTTPException(status_code=413, detail="Job description is too large.")
     predicted = [(_canonical_skill_name(skill), float(score)) for skill, score in JobAnalyze_6k(job_desc=data.Job_Desc, role=data.Role, job_type=data.Type)]
     analysis = _build_analysis(predicted=predicted, role=data.Role, job_type=data.Type, jd_text=data.Job_Desc)
-    return {"answer": predicted, "analysis": _finalize_analysis(analysis, predicted, data.Job_Desc)}
+    return {
+        "answer": predicted, 
+        "analysis": _finalize_analysis(analysis, predicted, data.Job_Desc)
+        }
