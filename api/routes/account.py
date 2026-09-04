@@ -14,10 +14,16 @@ def _get_authenticated_user(request: Request):
     try:
         response = supabase.auth.get_user(access_token)
     except Exception:
-        raise HTTPException(status_code=401, detail="Invalid or expired Supabase session")
+        raise HTTPException(
+            status_code=401, 
+            detail="Invalid or expired Supabase session"
+            )
     user = response.user
     if user is None or not user.email:
-        raise HTTPException(status_code=401, detail="Unable to identify authenticated user")
+        raise HTTPException(
+            status_code=401, 
+            detail="Unable to identify authenticated user"
+            )
     return supabase, user
 
 
@@ -68,7 +74,10 @@ def _delete_user_data(supabase, user) -> dict:
     try:
         supabase.table("api_tok").delete().eq("owner", email).execute()
     except Exception:
-        raise HTTPException(status_code=500, detail="Account was deleted, but associated API credentials could not be cleaned up. Please contact support.")
+        raise HTTPException(
+            status_code=500, 
+            detail="Account was deleted, but associated API credentials could not be cleaned up. Please contact support."
+            )
     return {"success": True, "message": "Account deleted successfully"}
 
 
@@ -88,7 +97,27 @@ async def account_details(request: Request) -> dict:
     provider_label = "Google" if provider == "google" else "Email & password" if provider == "email" else provider
     record = get_api_key_db(owner=email, create_if_missing=False)
     api_key = record.get("api_key") if record else None
-    return {"user": {"id": str(user.id), "name": name, "email": email, "email_verified": bool(getattr(user, "email_confirmed_at", None)), "provider": provider_label, "created_at": getattr(user, "created_at", None), "last_sign_in_at": getattr(user, "last_sign_in_at", None)}, "api": {"status": "active" if api_key else "not_provisioned", "api_key": api_key, "created_at": record.get("created_at") if record else None}, "usage": {"tracking_enabled": False, "analysis_count": None, "api_request_count": None, "message": "Usage tracking is not enabled yet."}}
+    return {
+        "user": {
+            "id": str(user.id), 
+            "name": name, 
+            "email": email, 
+            "email_verified": bool(getattr(user, "email_confirmed_at", None)), 
+            "provider": provider_label, "created_at": getattr(user, "created_at", None), 
+            "last_sign_in_at": getattr(user, "last_sign_in_at", None)
+            }, 
+        "api": {
+            "status": "active" if api_key else "not_provisioned", 
+            "api_key": api_key, 
+            "created_at": record.get("created_at") if record else None
+            }, 
+        "usage": {
+            "tracking_enabled": False, 
+            "analysis_count": None, 
+            "api_request_count": None, 
+            "message": "Usage tracking is not enabled yet."
+            }
+        }
 
 
 @router.delete(
@@ -103,23 +132,41 @@ async def delete_email_account(request: Request, data: dict = Body(...)) -> dict
     password = str(data.get("password", ""))
     confirmation = str(data.get("confirmation", ""))
     if confirmation != DELETE_CONFIRMATION:
-        raise HTTPException(status_code=422, detail="Type DELETE to confirm account deletion")
+        raise HTTPException(
+            status_code=422, 
+            detail="Type DELETE to confirm account deletion"
+            )
     if not password:
-        raise HTTPException(status_code=422, detail="Your current password is required")
+        raise HTTPException(
+            status_code=422, 
+            detail="Your current password is required"
+            )
     try:
         current = supabase.auth.get_user(access_token).user
     except Exception:
-        raise HTTPException(status_code=401, detail="Invalid or expired Supabase session")
+        raise HTTPException(
+            status_code=401, 
+            detail="Invalid or expired Supabase session"
+            )
     if current is None or not current.email:
-        raise HTTPException(status_code=401, detail="Unable to identify authenticated user")
+        raise HTTPException(
+            status_code=401, 
+            detail="Unable to identify authenticated user"
+            )
     if _provider(current) != "email":
-        raise HTTPException(status_code=409, detail="This account uses Google sign-in. Use the Google account deletion confirmation instead.")
+        raise HTTPException(
+            status_code=409, 
+            detail="This account uses Google sign-in. Use the Google account deletion confirmation instead."
+            )
     try:
         reauth = supabase.auth.sign_in_with_password({"email": str(current.email).strip().lower(), "password": password})
     except Exception:
         raise HTTPException(status_code=401, detail="Incorrect password")
     if not reauth.user or str(reauth.user.id) != str(current.id):
-        raise HTTPException(status_code=401, detail="Unable to verify account ownership")
+        raise HTTPException(
+            status_code=401, 
+            detail="Unable to verify account ownership"
+            )
     return _delete_user_data(supabase, current)
 
 
@@ -135,5 +182,8 @@ async def delete_oauth_account(request: Request, data: dict = Body(...)) -> dict
         raise HTTPException(status_code=422, detail="Type DELETE to confirm account deletion")
     supabase, user = _get_authenticated_user(request)
     if _provider(user) != "google":
-        raise HTTPException(status_code=409, detail="This account uses email and password sign-in. Use the email account deletion confirmation instead.")
+        raise HTTPException(
+            status_code=409, 
+            detail="This account uses email and password sign-in. Use the email account deletion confirmation instead."
+            )
     return _delete_user_data(supabase, user)
