@@ -27,7 +27,13 @@ def _b64url_decode(value: str) -> bytes:
 
 def _create_oauth_bridge(*, email: str, name: str) -> str:
     now = int(time.time())
-    payload = {"email": email, "name": name, "iat": now, "exp": now + 120, "nonce": _b64url_encode(os.urandom(18))}
+    payload = {
+        "email": email, 
+        "name": name, 
+        "iat": now, 
+        "exp": now + 120, 
+        "nonce": _b64url_encode(os.urandom(18))
+        }
     encoded = _b64url_encode(json.dumps(payload, separators=(",", ":")).encode("utf-8"))
     signature = hmac.new(_oauth_bridge_secret(), encoded.encode("ascii"), hashlib.sha256).digest()
     return f"{encoded}.{_b64url_encode(signature)}"
@@ -49,7 +55,10 @@ def _supabase_access_token(request: Request) -> str:
     auth = request.headers.get("Authorization", "")
     scheme, _, token = auth.partition(" ")
     if scheme.lower() != "bearer" or not token:
-        raise HTTPException(status_code=401, detail="Supabase access token required")
+        raise HTTPException(
+            status_code=401, 
+            detail="Supabase access token required"
+            )
     return token
 
 def _provision_confirmed_user(*, access_token: str) -> dict:
@@ -57,12 +66,21 @@ def _provision_confirmed_user(*, access_token: str) -> dict:
     try:
         user_response = supabase.auth.get_user(access_token)
     except Exception:
-        raise HTTPException(status_code=401, detail="Invalid or expired Supabase session")
+        raise HTTPException(
+            status_code=401, 
+            detail="Invalid or expired Supabase session"
+            )
     user = user_response.user
     if user is None or not user.email:
-        raise HTTPException(status_code=401, detail="Unable to identify authenticated user")
+        raise HTTPException(
+            status_code=401, 
+            detail="Unable to identify authenticated user"
+            )
     if not getattr(user, "email_confirmed_at", None):
-        raise HTTPException(status_code=403, detail="Please confirm your email address before continuing.")
+        raise HTTPException(
+            status_code=403, 
+            detail="Please confirm your email address before continuing."
+            )
     email = str(user.email).strip().lower()
     metadata = user.user_metadata or {}
     name = str(metadata.get("name") or metadata.get("full_name") or email.split("@")[0]).strip()
@@ -71,5 +89,12 @@ def _provision_confirmed_user(*, access_token: str) -> dict:
         raw = generate_api()
         record = upsert_api_key_db(owner=email, api_key=raw)
     if not record or not record.get("api_key"):
-        raise HTTPException(status_code=500, detail="Unable to provision API key")
-    return {"email": email, "name": name, "api_key": record["api_key"]}
+        raise HTTPException(
+            status_code=500, 
+            detail="Unable to provision API key"
+            )
+    return {
+        "email": email, 
+        "name": name, 
+        "api_key": record["api_key"]
+        }
