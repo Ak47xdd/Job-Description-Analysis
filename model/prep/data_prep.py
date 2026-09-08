@@ -15,7 +15,7 @@ from sklearn.model_selection import train_test_split
 
 from sym_map import SYNONYM_MAP
 
-df = pd.read_csv(r'C:\Portfolio-Projects\Job-Description-Analysis\data\clean\cleaned_job_descriptions.csv')
+df = pd.read_csv(r'C:\Portfolio-Projects\Job-Description-Analysis\data\clean\v2\cleaned_job_descriptions_v2.csv')
 
 SKILLS_FIX = {
     'tesnorflow/pytorch': 'tensorflow/pytorch',
@@ -34,7 +34,7 @@ def normalizer(skills) -> list:
 df['skill_list'] = df['tech_skills'].apply(normalizer)
 
 freq  = Counter(s for lst in df['skill_list'] for s in lst)
-VOCAB = sorted([s for s, c in freq.items() if c >= 2])
+VOCAB = sorted([s for s, c in freq.items() if c >= 3])
 
 def encoder(skill_list) -> list:
     return [1 if lbl in skill_list else 0 for lbl in VOCAB]
@@ -57,7 +57,7 @@ vectorizer = TfidfVectorizer(
     max_features=150,
     stop_words='english',
     ngram_range=(1, 2),
-    min_df=2,
+    min_df=3,
 )
 X = vectorizer.fit_transform(jd_input).toarray().astype(np.float32)
 
