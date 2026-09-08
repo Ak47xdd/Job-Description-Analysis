@@ -17,14 +17,14 @@ from model import SkillClassifier
 
 sys.path.insert(0, '.')
 
-data = np.load('prep/v2/prepared_data_v2.npz')
+data = np.load('model/prep/v2/prepared_data_v2.npz')
 
 X_train = data['X_train']
 y_train = data['y_train']
 X_test = data['X_test']
 y_test = data['y_test']
 
-with open('prep/v2/label_vocab_v2.json') as f:
+with open('model/prep/v2/label_vocab_v2.json') as f:
     VOCAB = json.load(f)
     
 model = SkillClassifier(X_train.shape[1], len(VOCAB))
