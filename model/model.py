@@ -77,10 +77,14 @@ neg_counts = len(y_train) - pos_counts
 pos_weight = torch.tensor(neg_counts / (pos_counts + 1e-6), dtype=torch.float32)
 pos_weight = torch.clamp(pos_weight, max=10.0)
 
+for i, label in enumerate(VOCAB):
+    if label in ('docker', 'ci/cd', 'kubernetes', 'openai', 'java'):
+        pos_weight[i] = pos_weight[i] * 0.6 
+
 criterion = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
 optimizer = torch.optim.Adam(jobanalyze_6k.parameters(), lr=1e-3, weight_decay=1e-4)
 
-EPOCHS = 300
+EPOCHS = 610
 history = {'train_loss' : [], 'test_loss' : []}
 
 for epoch in range(1, EPOCHS + 1):
