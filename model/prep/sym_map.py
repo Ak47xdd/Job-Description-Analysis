@@ -107,4 +107,18 @@ SYNONYM_MAP = {
     'lambda':                   'aws/azure',
     'ec2':                      'aws/azure',
     's3':                       'aws/azure',
+    
+    'node js':                  'node.js',
+    'nodejs':                   'node.js',
+    'golang':                   'go',
+    'rustlang':                 'rust',
+    'bash scripting':           'bash',
+    'shell scripting':          'bash',
+    'ts':                       'typescript',
+    'mongo':                    'mongodb',
+    'mongo db':                 'mongodb',
+    'rest api':                 'rest',
+    'restful':                  'rest',
+    'oauth':                    'oauth 2.0',
+    'oauth2':                   'oauth 2.0',
 }
