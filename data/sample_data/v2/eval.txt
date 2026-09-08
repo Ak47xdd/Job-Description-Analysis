@@ -1,0 +1,130 @@
+ Model Evaluation Metrics
+
+label                    support   precision   recall    f1    
+.net                     1         0.00        0.00      0.00
+agents                   14        0.42        0.93      0.58
+apis                     24        0.63        0.92      0.75
+autogen                  8         0.30        0.38      0.33
+aws                      2         0.20        0.50      0.29
+aws/azure                21        0.73        0.90      0.81
+bash                     2         0.50        0.50      0.50
+c                        3         1.00        0.67      0.80
+c++                      6         0.80        0.67      0.73
+ci/cd                    5         0.33        1.00      0.50
+crewai                   9         0.27        0.33      0.30
+django                   1         0.00        0.00      0.00
+docker                   5         0.26        1.00      0.42
+full stack               1         0.00        0.00      0.00
+gcp                      1         0.00        0.00      0.00
+genai                    19        0.42        0.68      0.52
+git                      20        0.73        0.80      0.76
+github                   13        0.48        0.85      0.61
+go                       4         0.44        1.00      0.62
+hugging face             2         0.14        0.50      0.22
+java                     5         0.40        0.80      0.53
+javascript               9         0.31        0.56      0.40
+kubernetes               4         0.50        1.00      0.67
+langchain                25        0.82        0.92      0.87
+langgraph                21        0.76        0.90      0.83
+linux                    3         1.00        1.00      1.00
+llamaindex               10        0.57        0.80      0.67
+llms                     34        0.80        0.82      0.81
+mcp                      4         0.12        0.50      0.19
+ml                       30        0.70        0.93      0.80
+mlops                    9         0.30        0.67      0.41
+n8n                      4         0.38        0.75      0.50
+nlp                      11        0.38        0.82      0.51
+node.js                  1         0.00        0.00      0.00
+numpy                    5         0.42        1.00      0.59
+openai                   9         0.29        0.67      0.40
+pandas                   7         0.42        0.71      0.53
+prompt engineering       10        0.32        0.70      0.44
+python                   58        0.96        0.84      0.90
+rag                      20        0.67        0.90      0.77
+react                    11        0.38        0.45      0.42
+rest                     2         0.00        0.00      0.00
+rust                     2         0.67        1.00      0.80
+scikit-learn             6         0.36        0.83      0.50
+sql                      22        0.57        0.59      0.58
+system design            6         0.00        0.00      0.00
+tensorflow/pytorch       17        0.67        0.82      0.74
+typescript               2         0.00        0.00      0.00
+vectordb                 15        0.44        0.73      0.55
+
+Micro-F1: 0.631 | Macro-F1: 0.431
+
+=== PER-LABEL ACCURACY ===
+label                    accuracy%   support   trap? 
+.net                     98.5        1         Wrong
+agents                   70.8        14        Wrong
+apis                     76.9        24        Right
+autogen                  81.5        8         Wrong
+aws                      92.3        2         Wrong
+aws/azure                86.2        21        Right
+azure                    98.5        0         Wrong
+bash                     96.9        2         Wrong
+c                        98.5        3         Right
+c#                       100.0       0         Wrong
+c++                      95.4        6         Right
+ci/cd                    84.6        5         Wrong
+crewai                   78.5        9         Wrong
+django                   96.9        1         Wrong
+docker                   78.5        5         Wrong
+feature engineering      100.0       0         Wrong
+full stack               98.5        1         Wrong
+gcp                      96.9        1         Wrong
+genai                    63.1        19        Wrong
+git                      84.6        20        Right
+github                   78.5        13        Wrong
+go                       92.3        4         Wrong
+hugging face             89.2        2         Wrong
+java                     89.2        5         Wrong
+javascript               76.9        9         Wrong
+kubernetes               93.8        4         Wrong
+langchain                89.2        25        Right
+langgraph                87.7        21        Right
+linux                    100.0       3         Right
+llamaindex               87.7        10        Right
+llms                     80.0        34        Right
+mcp                      73.8        4         Wrong
+microservices            96.9        0         Wrong
+ml                       78.5        30        Right
+mlflow                   92.3        0         Wrong
+mlops                    73.8        9         Wrong
+model training           100.0       0         Wrong
+n8n                      90.8        4         Wrong
+nlp                      73.8        11        Wrong
+node.js                  98.5        1         Wrong
+numpy                    89.2        5         Wrong
+openai                   72.3        9         Wrong
+pandas                   86.2        7         Wrong
+powerbi                  100.0       0         Wrong
+prompt engineering       72.3        10        Wrong
+python                   83.1        58        Right
+rag                      83.1        20        Right
+react                    78.5        11        Wrong
+rest                     93.8        2         Wrong
+rust                     98.5        2         Right
+scikit-learn             84.6        6         Wrong
+sql                      70.8        22        Right
+system design            87.7        6         Wrong
+tensorflow/pytorch       84.6        17        Right
+typescript               93.8        2         Wrong
+vectordb                 72.3        15        Wrong
+Right : 
+ 16
+Wrong : 
+ 40
+Total Labels : 
+ 56
+Keyword Accuracy : 28.57%
+
+
+BASELINE: 
+
+Baseline always predicts: ['apis', 'git', 'llms', 'ml', 'python', 'sql']
+Baseline Micro-F1: 0.412 | Macro-F1: 0.067
+
+VERDICT 
+
+Model meaningfully beats the naive baseline.
