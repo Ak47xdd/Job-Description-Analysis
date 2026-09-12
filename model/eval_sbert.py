@@ -1,4 +1,4 @@
-"""SBERT evaluation with exact per-skill threshold optimization."""
+"""SBERT evaluation with constrained per-skill threshold optimization."""
 from __future__ import annotations
 
 import json
@@ -21,6 +21,10 @@ SPLIT_FILE = PREP_DIR / "v2" / "prepared_data_v2.npz"
 LABEL_FILE = PREP_DIR / "v2" / "label_vocab_v2.json"
 MODEL_FILE = ROOT / "model_out" / "v2_sentence_transformer" / "skill_classifier_sbert_v2.pt"
 THRESHOLD_FILE = ROOT / "model_out" / "v2_sentence_transformer" / "per_skill_thresholds.json"
+
+# Safety constraints against low-confidence/noisy skill guesses.
+MIN_PRECISION = 0.30
+MIN_THRESHOLD = 0.25
 
 
 def precision_at_k(y_true, probs, k):
@@ -47,21 +51,31 @@ def main():
     with torch.no_grad():
         probs = torch.sigmoid(model(torch.tensor(X_test))).numpy()
 
-    # Exact per-label optimization. Unlike the old global threshold search,
-    # every skill gets its own threshold based on all unique scores for that skill.
-    thresholds, threshold_f1 = optimize_per_label_thresholds(y_test, probs)
+    # Every skill gets its own threshold, but a threshold can never fall below
+    # MIN_THRESHOLD and must meet MIN_PRECISION when an observed candidate exists.
+    thresholds, threshold_f1, threshold_precision = optimize_per_label_thresholds(
+        y_test,
+        probs,
+        min_precision=MIN_PRECISION,
+        min_threshold=MIN_THRESHOLD,
+    )
     preds = (probs >= thresholds[None, :]).astype(int)
 
     threshold_payload = {
-        "method": "exact_per_skill_f1",
+        "method": "exact_per_skill_f1_with_precision_constraint",
         "metric": "binary_f1",
+        "min_precision": MIN_PRECISION,
+        "min_threshold": MIN_THRESHOLD,
         "prediction_rule": "probability >= skill-specific threshold",
         "labels": {
             label: {
                 "threshold": round(float(threshold), 8),
                 "best_f1": round(float(best_f1), 8),
+                "precision_at_threshold": round(float(precision), 8),
             }
-            for label, threshold, best_f1 in zip(vocab, thresholds, threshold_f1)
+            for label, threshold, best_f1, precision in zip(
+                vocab, thresholds, threshold_f1, threshold_precision
+            )
         },
     }
     THRESHOLD_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -73,7 +87,6 @@ def main():
     micro = f1_score(y_test, preds, average="micro", zero_division=0)
     macro = f1_score(y_test, preds, average="macro", zero_division=0)
 
-    # Keep the old global threshold as a comparison point.
     global_threshold = 0.65
     global_preds = (probs >= global_threshold).astype(int)
     global_micro = f1_score(y_test, global_preds, average="micro", zero_division=0)
@@ -83,10 +96,12 @@ def main():
     baseline_micro = f1_score(y_test, baseline, average="micro", zero_division=0)
     baseline_macro = f1_score(y_test, baseline, average="macro", zero_division=0)
 
-    print("\nSBERT Model Evaluation — Per-Skill Thresholds\n")
+    print("\nSBERT Model Evaluation — Constrained Per-Skill Thresholds\n")
     print(f"Embedding shape: {X_test.shape}")
+    print(f"Minimum precision constraint: {MIN_PRECISION:.2f}")
+    print(f"Minimum threshold floor: {MIN_THRESHOLD:.2f}")
     print(f"Global 0.65 threshold: Micro-F1={global_micro:.3f} | Macro-F1={global_macro:.3f}")
-    print(f"Per-skill optimal:    Micro-F1={micro:.3f} | Macro-F1={macro:.3f}")
+    print(f"Constrained per-skill: Micro-F1={micro:.3f} | Macro-F1={macro:.3f}")
     print(f"Thresholds saved to: {THRESHOLD_FILE}")
     print()
     print(f"{'label':25s}{'threshold':12s}{'support':10s}{'precision':12s}{'recall':10s}{'f1':6s}")
@@ -106,9 +121,9 @@ def main():
 
     print("\nVERDICT")
     if micro > global_micro:
-        print("Per-skill thresholds improve over the global 0.65 threshold.")
+        print("Constrained per-skill thresholds improve over the global 0.65 threshold.")
     else:
-        print("Per-skill thresholds did not improve over the global 0.65 threshold on this evaluation split.")
+        print("Constrained per-skill thresholds did not improve over the global 0.65 threshold on this evaluation split.")
     if micro > baseline_micro + 0.05:
         print("SBERT meaningfully beats the naive baseline.")
     else:
