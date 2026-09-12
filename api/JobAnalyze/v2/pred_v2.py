@@ -123,7 +123,7 @@ def _build_input_text(job_desc: str, role: str, job_type: str) -> str:
     )
 
 
-def JobAnalyze_6k_v2(
+def JobAnalyze_v2_SBERT(
     job_desc: str = "",
     role: str = "",
     job_type: str = "",
