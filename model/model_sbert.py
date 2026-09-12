@@ -35,7 +35,7 @@ OUT_DIR = ROOT / "model_out" / "v2_sentence_transformer"
 
 SEED = 42
 BATCH_SIZE = 32
-EPOCHS = 100
+EPOCHS = 130
 LEARNING_RATE = 1e-3
 WEIGHT_DECAY = 1e-4
 HIDDEN_DIM = 64

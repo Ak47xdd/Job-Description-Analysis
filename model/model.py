@@ -52,7 +52,7 @@ train_loader = DataLoader(train_ds, batch_size=64, shuffle=True)
 test_loader = DataLoader(test_ds, batch_size=64, shuffle=False)
 
 class SkillClassifier(nn.Module):
-    def __init__(self, input_dim, num_labels, hidden_dim=32, dropout=0.3) -> None:
+    def __init__(self, input_dim, num_labels, hidden_dim=64, dropout=0.4) -> None:
         super().__init__()
         self.net = nn.Sequential(
             nn.Linear(input_dim, hidden_dim),
@@ -84,7 +84,7 @@ for i, label in enumerate(VOCAB):
 criterion = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
 optimizer = torch.optim.Adam(jobanalyze_6k.parameters(), lr=1e-3, weight_decay=1e-4)
 
-EPOCHS = 610
+EPOCHS = 190
 history = {'train_loss' : [], 'test_loss' : []}
 
 for epoch in range(1, EPOCHS + 1):

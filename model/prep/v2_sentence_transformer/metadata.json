@@ -1,0 +1,9 @@
+{
+  "model_name": "all-MiniLM-L6-v2",
+  "embedding_dimension": 384,
+  "num_samples": 415,
+  "normalize_embeddings": true,
+  "batch_size": 32,
+  "source_csv": "C:\\Portfolio-Projects\\Job-Description-Analysis\\data\\clean\\v2\\cleaned_job_descriptions_v2.csv",
+  "input_format": "Role + Job type + Job description"
+}
