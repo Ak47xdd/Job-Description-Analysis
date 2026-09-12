@@ -5,7 +5,6 @@ import traceback
 import re
 
 from JobAnalyze.v1.pred_v1 import JobAnalyze_6k
-from JobAnalyze.v2.pred_v2 import JobAnalyze_SBERT
 from rate_limit import limiter
 from helpers import _build_analysis, _SKILL_TO_CAT, SKILL_CATEGORIES, _get_compatibility, _build_recommendation
 from section_skills import classify_required_preferred
@@ -157,23 +156,6 @@ async def JobAnalyze_Pred(request: Request, data: ModelRequest, api_client: dict
     if len(data.Job_Desc) > MAX_JD_LENGTH:
         raise HTTPException(status_code=413, detail="Job description is too large.")
     predicted = [(_canonical_skill_name(skill), float(score)) for skill, score in JobAnalyze_6k(job_desc=data.Job_Desc, role=data.Role, job_type=data.Type)]
-    analysis = _build_analysis(predicted=predicted, role=data.Role, job_type=data.Type, jd_text=data.Job_Desc)
-    return {
-        "answer": predicted, 
-        "analysis": _finalize_analysis(analysis, predicted, data.Job_Desc)
-        }
-
-@router.post(
-    "/JobAnalyze_sbert", 
-    operation_id="analyze_job_description_with_sbert", 
-    summary="Analyze a raw job description with the JobAnalyze SBERT skill classifier.", 
-    description=("Analyze raw job-description text. Job_Desc should be the complete raw JD text. Role identifies the target role and accepts the six preset roles or a custom role. Type is the caller-supplied seniority context: Internship, Junior, or Senior. Type is not automatically inferred or corrected from the JD; if it conflicts with the JD's stated seniority, the supplied Type remains the classifier context.")
-    )
-@limiter.limit("10/minute")
-async def JobAnalyze_SBERT(request: Request, data: ModelRequest, api_client: dict = Depends(verify)) -> dict:
-    if len(data.Job_Desc) > MAX_JD_LENGTH:
-        raise HTTPException(status_code=413, detail="Job description is too large.")
-    predicted = [(_canonical_skill_name(skill), float(score)) for skill, score in JobAnalyze_SBERT(job_desc=data.Job_Desc, role=data.Role, job_type=data.Type)]
     analysis = _build_analysis(predicted=predicted, role=data.Role, job_type=data.Type, jd_text=data.Job_Desc)
     return {
         "answer": predicted, 

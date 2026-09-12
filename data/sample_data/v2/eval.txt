@@ -1,129 +1,302 @@
  Model Evaluation Metrics
 
 label                    support   precision   recall    f1    
-.net                     1         0.00        0.00      0.00
-agents                   14        0.42        0.93      0.58
-apis                     24        0.63        0.92      0.75
-autogen                  8         0.30        0.38      0.33
-aws                      2         0.20        0.50      0.29
-aws/azure                21        0.73        0.90      0.81
-bash                     2         0.50        0.50      0.50
-c                        3         1.00        0.67      0.80
-c++                      6         0.80        0.67      0.73
-ci/cd                    5         0.33        1.00      0.50
-crewai                   9         0.27        0.33      0.30
+agents                   20        0.43        0.90      0.58
+ai                       5         0.25        0.60      0.35
+ai agents                1         0.00        0.00      0.00
+analytics                1         0.00        0.00      0.00
+android                  2         0.00        0.00      0.00
+apis                     31        0.53        0.90      0.67
+arm                      1         0.00        0.00      0.00
+autogen                  7         0.23        0.43      0.30
+automated testing        1         0.00        0.00      0.00
+automation               1         0.00        0.00      0.00
+automotive               1         0.00        0.00      0.00
+aws                      6         0.12        0.33      0.18
+aws/azure                26        0.71        0.92      0.80
+azure                    3         0.17        0.33      0.22
+bash                     3         0.12        0.33      0.18
+bios                     1         0.00        0.00      0.00
+c                        3         0.14        0.33      0.20
+c#                       1         0.00        0.00      0.00
+c++                      8         0.50        1.00      0.67
+ceph                     4         0.20        0.25      0.22
+ci/cd                    16        0.24        0.44      0.31
+cloud                    4         0.23        0.75      0.35
+containers               1         0.00        0.00      0.00
+crewai                   7         0.29        0.86      0.43
+css                      1         0.00        0.00      0.00
+data science             1         0.00        0.00      0.00
+desktop                  1         0.00        0.00      0.00
+distributed systems      2         0.00        0.00      0.00
 django                   1         0.00        0.00      0.00
-docker                   5         0.26        1.00      0.42
+docker                   21        0.33        0.52      0.41
+feature engineering      1         0.00        0.00      0.00
+flutter                  1         0.00        0.00      0.00
 full stack               1         0.00        0.00      0.00
-gcp                      1         0.00        0.00      0.00
-genai                    19        0.42        0.68      0.52
-git                      20        0.73        0.80      0.76
-github                   13        0.48        0.85      0.61
-go                       4         0.44        1.00      0.62
-hugging face             2         0.14        0.50      0.22
-java                     5         0.40        0.80      0.53
-javascript               9         0.31        0.56      0.40
-kubernetes               4         0.50        1.00      0.67
-langchain                25        0.82        0.92      0.87
-langgraph                21        0.76        0.90      0.83
-linux                    3         1.00        1.00      1.00
-llamaindex               10        0.57        0.80      0.67
-llms                     34        0.80        0.82      0.81
-mcp                      4         0.12        0.50      0.19
-ml                       30        0.70        0.93      0.80
-mlops                    9         0.30        0.67      0.41
-n8n                      4         0.38        0.75      0.50
-nlp                      11        0.38        0.82      0.51
-node.js                  1         0.00        0.00      0.00
-numpy                    5         0.42        1.00      0.59
-openai                   9         0.29        0.67      0.40
-pandas                   7         0.42        0.71      0.53
-prompt engineering       10        0.32        0.70      0.44
-python                   58        0.96        0.84      0.90
-rag                      20        0.67        0.90      0.77
-react                    11        0.38        0.45      0.42
-rest                     2         0.00        0.00      0.00
-rust                     2         0.67        1.00      0.80
-scikit-learn             6         0.36        0.83      0.50
-sql                      22        0.57        0.59      0.58
-system design            6         0.00        0.00      0.00
-tensorflow/pytorch       17        0.67        0.82      0.74
-typescript               2         0.00        0.00      0.00
-vectordb                 15        0.44        0.73      0.55
+gcp                      6         0.60        0.50      0.55
+genai                    24        0.49        1.00      0.66
+git                      31        0.49        0.58      0.53
+github                   16        0.24        0.69      0.35
+go                       15        0.43        0.87      0.58
+golang                   4         0.50        0.50      0.50
+gui                      2         0.00        0.00      0.00
+html                     1         0.00        0.00      0.00
+hugging face             2         0.17        0.50      0.25
+infrastructure as code   1         0.00        0.00      0.00
+ios                      2         0.00        0.00      0.00
+iot                      5         0.27        0.60      0.38
+java                     7         0.16        0.43      0.23
+javascript               12        0.14        0.50      0.21
+juju                     1         0.00        0.00      0.00
+kernel                   3         0.50        0.67      0.57
+kubernetes               21        0.45        0.48      0.47
+kvm                      2         0.50        0.50      0.50
+langchain                27        0.58        0.93      0.71
+langgraph                22        0.45        0.86      0.59
+linux                    19        0.90        1.00      0.95
+linux filesystems        1         0.00        0.00      0.00
+linux kernel             1         0.50        1.00      0.67
+llamaindex               7         0.19        0.71      0.29
+llms                     33        0.60        0.97      0.74
+lxc                      1         0.50        1.00      0.67
+lxd                      1         0.50        1.00      0.67
+maas                     3         0.00        0.00      0.00
+mcp                      5         0.21        0.80      0.33
+microservices            4         0.40        1.00      0.57
+ml                       37        0.68        0.97      0.80
+mlflow                   1         0.14        1.00      0.25
+mlops                    7         0.18        0.86      0.30
+model training           1         0.00        0.00      0.00
+mongodb                  2         0.00        0.00      0.00
+mysql                    1         0.00        0.00      0.00
+n8n                      2         0.25        0.50      0.33
+networking               3         0.00        0.00      0.00
+nlp                      12        0.24        0.83      0.37
+node.js                  4         1.00        0.25      0.40
+nosql                    1         0.00        0.00      0.00
+numpy                    7         0.45        0.71      0.56
+open source              5         0.21        0.60      0.32
+openai                   11        0.21        0.64      0.31
+openstack                4         0.36        1.00      0.53
+ovn                      1         0.33        1.00      0.50
+ovs                      1         0.50        1.00      0.67
+pandas                   9         0.31        0.44      0.36
+php                      1         0.33        1.00      0.50
+postgres                 1         0.00        0.00      0.00
+postgresql               2         0.10        0.50      0.17
+powerbi                  1         0.00        0.00      0.00
+prompt engineering       14        0.30        0.93      0.45
+public cloud             1         0.00        0.00      0.00
+python                   91        0.94        0.71      0.81
+rag                      20        0.43        0.95      0.59
+react                    13        0.17        0.62      0.27
+react native             2         0.00        0.00      0.00
+redis                    2         0.00        0.00      0.00
+rest                     5         0.40        0.80      0.53
+rest apis                1         0.00        0.00      0.00
+risc-v                   1         0.00        0.00      0.00
+rust                     6         0.26        0.83      0.40
+scikit-learn             8         0.40        1.00      0.57
+security                 2         0.00        0.00      0.00
+server                   1         0.00        0.00      0.00
+serverless               1         0.00        0.00      0.00
+spark                    1         0.00        0.00      0.00
+sql                      36        0.66        0.86      0.75
+storage                  2         0.00        0.00      0.00
+system design            4         0.00        0.00      0.00
+tensorflow/pytorch       10        0.26        0.90      0.41
+terraform                1         0.00        0.00      0.00
+test automation          1         0.00        0.00      0.00
+typescript               5         0.33        0.20      0.25
+ubuntu                   10        0.48        1.00      0.65
+ubuntu core              1         0.00        0.00      0.00
+vectordb                 16        0.35        0.88      0.50
+virtualization           1         0.00        0.00      0.00
+vue                      1         0.00        0.00      0.00
+web services             1         0.00        0.00      0.00
+x86                      1         0.00        0.00      0.00
 
-Micro-F1: 0.631 | Macro-F1: 0.431
+Micro-F1: 0.512 | Macro-F1: 0.186
 
 === PER-LABEL ACCURACY ===
 label                    accuracy%   support   trap? 
-.net                     98.5        1         Wrong
-agents                   70.8        14        Wrong
-apis                     76.9        24        Right
-autogen                  81.5        8         Wrong
-aws                      92.3        2         Wrong
-aws/azure                86.2        21        Right
-azure                    98.5        0         Wrong
-bash                     96.9        2         Wrong
-c                        98.5        3         Right
-c#                       100.0       0         Wrong
-c++                      95.4        6         Right
-ci/cd                    84.6        5         Wrong
-crewai                   78.5        9         Wrong
-django                   96.9        1         Wrong
-docker                   78.5        5         Wrong
-feature engineering      100.0       0         Wrong
-full stack               98.5        1         Wrong
-gcp                      96.9        1         Wrong
-genai                    63.1        19        Wrong
-git                      84.6        20        Right
-github                   78.5        13        Wrong
-go                       92.3        4         Wrong
-hugging face             89.2        2         Wrong
-java                     89.2        5         Wrong
-javascript               76.9        9         Wrong
-kubernetes               93.8        4         Wrong
-langchain                89.2        25        Right
-langgraph                87.7        21        Right
-linux                    100.0       3         Right
-llamaindex               87.7        10        Right
-llms                     80.0        34        Right
-mcp                      73.8        4         Wrong
-microservices            96.9        0         Wrong
-ml                       78.5        30        Right
-mlflow                   92.3        0         Wrong
-mlops                    73.8        9         Wrong
-model training           100.0       0         Wrong
-n8n                      90.8        4         Wrong
-nlp                      73.8        11        Wrong
-node.js                  98.5        1         Wrong
-numpy                    89.2        5         Wrong
-openai                   72.3        9         Wrong
-pandas                   86.2        7         Wrong
-powerbi                  100.0       0         Wrong
-prompt engineering       72.3        10        Wrong
-python                   83.1        58        Right
-rag                      83.1        20        Right
-react                    78.5        11        Wrong
-rest                     93.8        2         Wrong
-rust                     98.5        2         Right
-scikit-learn             84.6        6         Wrong
-sql                      70.8        22        Right
-system design            87.7        6         Wrong
-tensorflow/pytorch       84.6        17        Right
-typescript               93.8        2         Wrong
-vectordb                 72.3        15        Wrong
+.net                     95.5        0         Wrong
+access control           100.0       0         Wrong
+adlink                   100.0       0         Wrong
+advantech                100.0       0         Wrong
+agents                   76.4        20        Wrong
+ai                       90.0        5         Wrong
+ai agents                99.1        1         Wrong
+airflow                  100.0       0         Wrong
+amd                      100.0       0         Wrong
+analytics                99.1        1         Wrong
+android                  98.2        2         Wrong
+apis                     74.5        31        Right
+arm                      99.1        1         Wrong
+authentication           100.0       0         Wrong
+authorization            100.0       0         Wrong
+autogen                  87.3        7         Wrong
+automated testing        99.1        1         Wrong
+automation               93.6        1         Wrong
+automotive               99.1        1         Wrong
+aws                      83.6        6         Wrong
+aws/azure                89.1        26        Right
+azure                    93.6        3         Wrong
+bash                     91.8        3         Wrong
+benchmarking             100.0       0         Wrong
+bios                     98.2        1         Wrong
+c                        92.7        3         Wrong
+c#                       95.5        1         Wrong
+c++                      92.7        8         Wrong
+ceph                     93.6        4         Wrong
+ci/cd                    71.8        16        Wrong
+cloud                    90.0        4         Wrong
+cloud computing          100.0       0         Wrong
+cloud infrastructure     100.0       0         Wrong
+cloud-native             100.0       0         Wrong
+containers               97.3        1         Wrong
+crewai                   85.5        7         Wrong
+css                      99.1        1         Wrong
+data mesh                100.0       0         Wrong
+data science             98.2        1         Wrong
+dell                     100.0       0         Wrong
+desktop                  99.1        1         Wrong
+devops                   100.0       0         Wrong
+distributed systems      93.6        2         Wrong
+django                   94.5        1         Wrong
+docker                   70.9        21        Wrong
+embedded                 100.0       0         Wrong
+embedded systems         99.1        0         Wrong
+event-driven architecture100.0       0         Wrong
+fault tolerance          100.0       0         Wrong
+feature engineering      99.1        1         Wrong
+firmware                 99.1        0         Wrong
+flutter                  99.1        1         Wrong
+full stack               99.1        1         Wrong
+gcp                      95.5        6         Wrong
+genai                    77.3        24        Wrong
+git                      70.9        31        Wrong
+github                   63.6        16        Wrong
+go                       82.7        15        Wrong
+golang                   96.4        4         Wrong
+gui                      98.2        2         Wrong
+hardware                 100.0       0         Wrong
+high-scale systems       100.0       0         Wrong
+hisilicon                100.0       0         Wrong
+hp                       100.0       0         Wrong
+html                     99.1        1         Wrong
+hugging face             94.5        2         Wrong
+identity federation      100.0       0         Wrong
+industry gateways        100.0       0         Wrong
+infrastructure as code   98.2        1         Wrong
+intel                    100.0       0         Wrong
+ios                      98.2        2         Wrong
+iot                      90.9        5         Wrong
+java                     81.8        7         Wrong
+javascript               60.0        12        Wrong
+jenkins                  99.1        0         Wrong
+juju                     99.1        1         Wrong
+kafka                    100.0       0         Wrong
+kernel                   97.3        3         Wrong
+kubernetes               79.1        21        Wrong
+kvm                      98.2        2         Wrong
+langchain                81.8        27        Right
+langgraph                76.4        22        Wrong
+large language models    98.2        0         Wrong
+lenovo                   100.0       0         Wrong
+linux                    98.2        19        Right
+linux filesystems        99.1        1         Wrong
+linux kernel             99.1        1         Wrong
+llamaindex               78.2        7         Wrong
+llms                     80.0        33        Right
+lxc                      99.1        1         Wrong
+lxd                      99.1        1         Wrong
+maas                     97.3        3         Wrong
+mcp                      85.5        5         Wrong
+mediatek                 100.0       0         Wrong
+medical devices          100.0       0         Wrong
+microservices            94.5        4         Wrong
+ml                       83.6        37        Right
+mlflow                   94.5        1         Wrong
+mlops                    74.5        7         Wrong
+model training           99.1        1         Wrong
+mongodb                  98.2        2         Wrong
+mysql                    99.1        1         Wrong
+n8n                      96.4        2         Wrong
+networking               97.3        3         Wrong
+nlp                      69.1        12        Wrong
+node.js                  97.3        4         Wrong
+nosql                    99.1        1         Wrong
+numpy                    92.7        7         Wrong
+nvidia                   100.0       0         Wrong
+oauth 2.0                100.0       0         Wrong
+observability            99.1        0         Wrong
+oidc                     100.0       0         Wrong
+open source              88.2        5         Wrong
+openai                   71.8        11        Wrong
+openstack                93.6        4         Wrong
+ovn                      98.2        1         Wrong
+ovs                      99.1        1         Wrong
+pandas                   87.3        9         Wrong
+php                      98.2        1         Wrong
+postgres                 99.1        1         Wrong
+postgresql               90.9        2         Wrong
+powerbi                  99.1        1         Wrong
+prompt engineering       70.9        14        Wrong
+public cloud             99.1        1         Wrong
+python                   72.7        91        Right
+rag                      76.4        20        Wrong
+react                    60.0        13        Wrong
+react native             98.2        2         Wrong
+redis                    98.2        2         Wrong
+rest                     93.6        5         Wrong
+rest apis                99.1        1         Wrong
+risc-v                   99.1        1         Wrong
+robotics                 100.0       0         Wrong
+rust                     86.4        6         Wrong
+saas                     100.0       0         Wrong
+samsung                  100.0       0         Wrong
+scalability              100.0       0         Wrong
+scikit-learn             89.1        8         Wrong
+sdks                     100.0       0         Wrong
+search                   100.0       0         Wrong
+security                 97.3        2         Wrong
+server                   99.1        1         Wrong
+serverless               99.1        1         Wrong
+smartnic                 100.0       0         Wrong
+snap                     100.0       0         Wrong
+spark                    99.1        1         Wrong
+sql                      80.9        36        Right
+storage                  98.2        2         Wrong
+system debugging         100.0       0         Wrong
+system design            95.5        4         Wrong
+tensorflow/pytorch       76.4        10        Wrong
+terraform                99.1        1         Wrong
+test automation          99.1        1         Wrong
+token lifecycle          100.0       0         Wrong
+typescript               94.5        5         Wrong
+ubuntu                   90.0        10        Wrong
+ubuntu core              99.1        1         Wrong
+uefi                     99.1        0         Wrong
+vectordb                 74.5        16        Wrong
+virtualization           99.1        1         Wrong
+vue                      99.1        1         Wrong
+web services             99.1        1         Wrong
+x86                      99.1        1         Wrong
 Right : 
- 16
+ 8
 Wrong : 
- 40
+ 155
 Total Labels : 
- 56
-Keyword Accuracy : 28.57%
+ 163
+Keyword Accuracy : 4.91%
 
 
 BASELINE: 
 
-Baseline always predicts: ['apis', 'git', 'llms', 'ml', 'python', 'sql']
-Baseline Micro-F1: 0.412 | Macro-F1: 0.067
+Baseline always predicts: ['git', 'python', 'sql']
+Baseline Micro-F1: 0.271 | Macro-F1: 0.011
 
 VERDICT 
 

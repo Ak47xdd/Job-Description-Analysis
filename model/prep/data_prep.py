@@ -34,7 +34,7 @@ def normalizer(skills) -> list:
 df['skill_list'] = df['tech_skills'].apply(normalizer)
 
 freq  = Counter(s for lst in df['skill_list'] for s in lst)
-VOCAB = sorted([s for s, c in freq.items() if c >= 5])
+VOCAB = sorted([s for s, c in freq.items() if c >= 3])
 
 def encoder(skill_list) -> list:
     return [1 if lbl in skill_list else 0 for lbl in VOCAB]
@@ -54,7 +54,7 @@ jd_input = (
 )
 
 vectorizer = TfidfVectorizer(
-    max_features=200,
+    max_features=150,
     stop_words='english',
     ngram_range=(1, 2),
     min_df=3,
