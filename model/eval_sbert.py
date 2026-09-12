@@ -1,0 +1,111 @@
+"""
+eval_sbert.py - RUN after model_sbert.py
+
+Evaluation metrics for the SBERT embedding-based skill classifier.
+"""
+
+import json
+import sys
+from pathlib import Path
+
+import numpy as np
+import torch
+from sklearn.metrics import precision_recall_fscore_support, f1_score, accuracy_score
+
+ROOT = Path(__file__).resolve().parent.parent
+
+# Make imports work when run as: python model/eval_sbert.py
+sys.path.insert(0, str(ROOT))
+from model_sbert import SBERTSkillClassifier
+
+PREP_DIR = ROOT / "model" / "prep"
+EMBED_DIR = PREP_DIR / "v2_sentence_transformer"
+SPLIT_FILE = PREP_DIR / "v2" / "prepared_data_v2.npz"
+LABEL_FILE = PREP_DIR / "v2" / "label_vocab_v2.json"
+MODEL_FILE = ROOT / "model_out" / "v2_sentence_transformer" / "skill_classifier_sbert_v2.pt"
+
+# Load SBERT embeddings and the original train/test split.
+embeddings = np.load(EMBED_DIR / "embeddings.npy")
+data = np.load(SPLIT_FILE)
+
+idx_train = data["idx_train"]
+idx_test = data["idx_test"]
+y_train = data["y_train"]
+y_test = data["y_test"]
+
+X_train = embeddings[idx_train]
+X_test = embeddings[idx_test]
+
+with open(LABEL_FILE, encoding="utf-8") as f:
+    VOCAB = json.load(f)
+
+model = SBERTSkillClassifier(X_train.shape[1], len(VOCAB))
+model.load_state_dict(torch.load(MODEL_FILE, map_location="cpu"))
+model.eval()
+
+with torch.no_grad():
+    logits = model(torch.tensor(X_test, dtype=torch.float32))
+    probs = torch.sigmoid(logits).numpy()
+
+THRESHOLD = 0.5
+preds = (probs >= THRESHOLD).astype(int)
+
+precision, recall, f1, support = precision_recall_fscore_support(
+    y_test,
+    preds,
+    average=None,
+    zero_division=0,
+)
+micro_f1 = f1_score(y_test, preds, average="micro", zero_division=0)
+macro_f1 = f1_score(y_test, preds, average="macro", zero_division=0)
+
+print("\n Model Evaluation Metrics (SBERT)\n")
+print(f"{'label':25s}{'support':10s}{'precision':12s}{'recall':10s}{'f1':6s}")
+for lbl, p, r, f, s in zip(VOCAB, precision, recall, f1, support):
+    if s > 0:
+        print(f"{lbl:25s}{int(s):<10d}{p:<12.2f}{r:<10.2f}{f:.2f}")
+
+print(f"\nMicro-F1: {micro_f1:.3f} | Macro-F1: {macro_f1:.3f}")
+
+print("\n=== PER-LABEL ACCURACY ===")
+print(f"{'label':25s}{'accuracy%':12s}{'support':10s}{'trap?':6s}")
+
+is_right = 0
+is_wrong = 0
+
+for i, lbl in enumerate(VOCAB):
+    label_acc = accuracy_score(y_test[:, i], preds[:, i])
+    s = int(support[i])
+    always_zero_acc = 1.0 - (y_test[:, i].sum() / len(y_test))
+    is_trap = always_zero_acc >= label_acc - 0.01
+    trap_flag = "Wrong" if is_trap else "Right"
+    print(f"{lbl:25s}{label_acc*100:<12.1f}{s:<10d}{trap_flag}")
+
+    if trap_flag == "Right":
+        is_right += 1
+    else:
+        is_wrong += 1
+
+total_labels = is_right + is_wrong
+print("Right : \n", is_right)
+print("Wrong : \n", is_wrong)
+print("Total Labels : \n", total_labels)
+
+key_acc = (is_right / total_labels) * 100 if total_labels else 0.0
+print(f"Keyword Accuracy : {round(key_acc, 2)}%\n")
+
+train_freq = y_train.mean(axis=0)
+baseline_preds = np.tile((train_freq >= 0.3).astype(int), (len(y_test), 1))
+baseline_micro_f1 = f1_score(y_test, baseline_preds, average="micro", zero_division=0)
+baseline_macro_f1 = f1_score(y_test, baseline_preds, average="macro", zero_division=0)
+
+print("\nBASELINE: \n")
+baseline_labels = [lbl for lbl, f in zip(VOCAB, train_freq) if f >= 0.3]
+print(f"Baseline always predicts: {baseline_labels}")
+print(f"Baseline Micro-F1: {baseline_micro_f1:.3f} | Macro-F1: {baseline_macro_f1:.3f}")
+
+print("\nVERDICT \n")
+if micro_f1 > baseline_micro_f1 + 0.05:
+    print("Model meaningfully beats the naive baseline.")
+else:
+    print("Model is roughly tied with (or worse than) just guessing the most")
