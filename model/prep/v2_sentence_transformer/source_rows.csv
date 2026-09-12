@@ -1,4 +1,4 @@
-,id,role,type,job_desc,year,qualification,experience,tech_skills,soft_skills
+Unnamed: 0,id,role,type,job_desc,year,qualification,experience,tech_skills,soft_skills
 0,1,AI Engineer,Internship,"Final year students / recent graduates in CS, AI, Data Science, or related fields
 Strong Python programming skills
 Understanding of Machine Learning / Deep Learning fundamentals
@@ -30,7 +30,7 @@ A high degree of ownership and initiative, with the ability to operate independe
 Excellent communication skills, with the ability to explain complex technical concepts to both technical and non-technical audiences
 Experience collaborating cross-functionally and building trust with stakeholders at all levels of the organization
 Direct experience integrating automated AI Evaluation/Testing/Observability suites to continuously test model effectiveness leveraging platforms such as DeepEval, Langfuse/LangSmith or similar 
-",2026,,5-10,"Python, Javascript, React, Full Stack, SQL, APIs, ML, TesnorFlow/PyTorch, n8n","Communication, Problem Solving"
+",2026,Not Specified,5-10,"Python, Javascript, React, Full Stack, SQL, APIs, ML, TesnorFlow/PyTorch, n8n","Communication, Problem Solving"
 4,5,AI Engineer,Junior,"AI/ML models, Python, Core ML concepts, ML framework (Scikit‑learn/TensorFlow/PyTorch), MLOps, SQL/NoSQL, Messaging/queue systems 
 0–1 year of experience as an AI/ML Engineer, Data Scientist, or similar role, or strong academic/personal projects in AI/ML.
 Bachelor’s degree in Computer Science, Engineering, Data Science, Mathematics, or equivalent practical experience.
@@ -62,7 +62,7 @@ Exposure to LLMOps & MLOps pipelines and cloud platforms (AWS/GCP/Azure).
 SAP BusinessObjects: Universes (UNV/UNX), WebI, contexts, prompts, joins, aggregate awareness
 Power BI / Fabric: Data modeling, DAX, calculation groups, Tabular Editor, Power BI Service governance
 AI & Automation: Azure OpenAI / LLMs, prompt engineering, metadata and document parsing
-Strong SQL and data engineering fundamentals.",2026,,5-10,"Python, SQL, PowerBI, SAP, LLMs, Prompt Engineering, Data Engineering","Communication, Problem Solving"
+Strong SQL and data engineering fundamentals.",2026,Not Specified,5-10,"Python, SQL, PowerBI, SAP, LLMs, Prompt Engineering, Data Engineering","Communication, Problem Solving"
 7,8,AI Engineer,Junior,"Proficiency in C/C++ and python programming
 Hands-on experience in deploying AI models on embedded platforms.
 Experience working with MCU, bare-metal, RTOS and Edge AI/ML applications
@@ -107,7 +107,7 @@ Strong problem-solving and analytical skills
 Experience with cloud platforms (AWS / Azure / GCP)
 Exposure to model deployment tools (Docker, MLflow, etc.)
 Understanding of vector databases (FAISS, Pinecone, etc.)
-Experience working in agile development environments",2026,,5-10,"Python, Scikit-Learn, Pandas, NumPy, ML, LLMs, Prompt Engineering, RAG, LangChain, APIs, AWS/Azure, Docker, MLflow, VectorDB","Communication, Problem Solving"
+Experience working in agile development environments",2026,Not Specified,5-10,"Python, Scikit-Learn, Pandas, NumPy, ML, LLMs, Prompt Engineering, RAG, LangChain, APIs, AWS/Azure, Docker, MLflow, VectorDB","Communication, Problem Solving"
 11,12,AI Engineer,Senior,"Bachelor's or Master's degree in Computer Science, Information Technology, Artificial Intelligence, Data Science, or related fields.
 2–5 years of hands-on experience in AI/ML or Generative AI development.
 Experience building and deploying production-grade AI solutions.
@@ -149,7 +149,7 @@ Experience with cloud platforms (AWS / Azure / GCP)
 Exposure to model deployment tools (Docker, MLflow, etc.)
 Understanding of vector databases (FAISS, Pinecone, etc.)
 Experience working in agile development environments
-",2026,,5-10,"Python, ML, Pandas, NumPy, Scikit-Learn, GenAI, LLMs, Prompt Engineering, RAG,  LangChain, APIs, AWS/Azure, Docker, MLflow, VectorDB","Communication, Problem Solving"
+",2026,Not Specified,5-10,"Python, ML, Pandas, NumPy, Scikit-Learn, GenAI, LLMs, Prompt Engineering, RAG,  LangChain, APIs, AWS/Azure, Docker, MLflow, VectorDB","Communication, Problem Solving"
 15,16,AI Engineer,Junior,"Docker / Containerization
 AWS / Azure / GCP exposure
 AI Agent workflow understanding
@@ -191,7 +191,7 @@ Team handling experience and architecture design experience.
 Proficiency in creating and delivering Powerpoint presentations.
 Knowledge of Responsible AI practices and Nvidia MLOps platform.
 Experience with fine-tuning open-source AI/ML models.
-Familiarity with DevOps practices, including continuous integration, deployment, and monitoring of AI models",2026,,1-5,"Python, ML, NLP, MLOps, Feature Engineering, AWS/Azure, APIs","Communication, Problem Solving"
+Familiarity with DevOps practices, including continuous integration, deployment, and monitoring of AI models",2026,Not Specified,1-5,"Python, ML, NLP, MLOps, Feature Engineering, AWS/Azure, APIs","Communication, Problem Solving"
 20,21,AI Engineer,Senior,"5+ years overall experience in software development, data science, or machine learning.
 1+ year of hands-on experience developing AI applications with LLMs and systems such as retrieval-based methods, fine-tuning, or agent-based architectures.
 Strong programming skills in Python and basics in SQL.
@@ -211,7 +211,7 @@ Experience in strategy and roadmap work for Identity and Access management, espe
 2 or more years applying agile SDLC
 Experience in enterprise-scale deployments of AI-driven platforms.
 Contributions to open-source AI/ML projects are a plus.
-",2026,,5-10,"Python, APIs, LLMs, Prompt Engineering, LangChain, LlamaIndex, LangGraph, CrewAI, AutoGen,  Anthropic /OpenAI SDKs, MCP, VectorDB, n8n, RAG, Agents, AWS/Azure, PowerBI","Communication, Problem Solving"
+",2026,Not Specified,5-10,"Python, APIs, LLMs, Prompt Engineering, LangChain, LlamaIndex, LangGraph, CrewAI, AutoGen,  Anthropic /OpenAI SDKs, MCP, VectorDB, n8n, RAG, Agents, AWS/Azure, PowerBI","Communication, Problem Solving"
 21,22,AI Engineer,Junior,"Strong programming skills in Python.
 Experience with LLM architectures, prompt engineering, and RAG systems.
 Familiarity with deep learning frameworks such as PyTorch or TensorFlow.
@@ -240,7 +240,7 @@ Runtime Security / Runtime Protection (Required)
 Experience delivering solutions with runtime protection expectations (runtime security controls, access controls, and monitoring alignment as defined by enterprise governance).
 Experience integrating AI services into enterprise automation platforms (e.g., Power Platform, ServiceNow).
 Familiarity with Azure AI services and data platforms.
-",2026,,5-10,"Python, Javascript, AWS/Azure, VectorDB, LLMs, Agent 365","Communication, Problem Solving"
+",2026,Not Specified,5-10,"Python, Javascript, AWS/Azure, VectorDB, LLMs, Agent 365","Communication, Problem Solving"
 23,25,AI Engineer,Senior,"15+ years of overall IT experience
 Strong experience in AI Architecture
 Hands-on experience in Agentic AI
@@ -256,7 +256,7 @@ Exposure to cloud-based AI services
 Experience in API integration architecture
 Understanding of secure AI solution deployment
 Experience mentoring teams and driving architecture governance
-",2026,,15+,"Python, ML, APIs, AWS/Azure, CI/CD, Github, Git, ","Communication, Problem Solving"
+",2026,Not Specified,15+,"Python, ML, APIs, AWS/Azure, CI/CD, Github, Git, ","Communication, Problem Solving"
 24,26,AI Engineer,Junior,"Strong hands-on experience in Python programming
 Ability to code independently without relying on AI coding tools
 Basic understanding of AI/ML concepts and frameworks
@@ -334,7 +334,7 @@ Prior hands-on projects in Generative AI or agent-based systems
 • Familiarity with Docker and containerized deployments.
 • Exposure to AWSor similar cloud platforms.
 • Understanding ofAI observability, token usage, and cost-aware implementation.
-• Experience contributing to technical design and solution planning ",2026,,5-10,"Python, APIs, SQL, LLMs, Prompt Engineering, RAG,  MCP, VectorDB, Docker,  AWS/Azure","Communication, Problem Solving"
+• Experience contributing to technical design and solution planning ",2026,Not Specified,5-10,"Python, APIs, SQL, LLMs, Prompt Engineering, RAG,  MCP, VectorDB, Docker,  AWS/Azure","Communication, Problem Solving"
 32,34,AI Engineer,Senior,"- Experience in publishing research or contributing to open source AI initiatives
 - Designing AI systems for regulated or enterprise environments
 - Understanding of AI governance, responsible AI practices, and compliance frameworks
@@ -415,7 +415,7 @@ Contributions to open-source AI tools or models
 40,42,AI Engineer,Senior,"Python · JS/TS · Neo4j/Cypher · MongoDB · PostgreSQL · FastAPI · LLM APIs · Vector databases · LoRA/PEFT · Docker · Linux CLI
 What we value Side projects nobody asked you to build. Open-source contributions. Intellectual curiosity and ownership over any specific framework pedigree. 
 AWS or GCP working knowledge
-Annotation pipeline or ML dataset preparation experience",2026,,1-5,"Python, Javascript, SQL, LLMs, APIs, VectorDB, ML, AWS/Azure","Communication, Problem Solving"
+Annotation pipeline or ML dataset preparation experience",2026,Not Specified,1-5,"Python, Javascript, SQL, LLMs, APIs, VectorDB, ML, AWS/Azure","Communication, Problem Solving"
 41,43,AI Engineer,Junior,"• Strong programming skills in Python.
 • Understanding of Data Structures and Algorithms.
 • Knowledge of Machine Learning fundamentals.
@@ -456,7 +456,7 @@ Annotation pipeline or ML dataset preparation experience",2026,,1-5,"Python, Jav
 • Curiosity to learn and experiment with new AI frameworks and tools.
 • Good communication and teamwork skills.
 • Ability to work in a fast-paced, collaborative environment",2026,Bachelors,0-1,"Python, ML, NLP, MLOPS, Docker, GenAI, RAG, VectorDB, Agents, Prompt Engineering, TensorFlow/PyTorch, LangChain, LangGraph, Hugging Face, CI/CD, Git, Github, Kubernetes, MLflow, APIs, AWS/Azure","Communication, Problem Solving, Analytical Skills"
-42,44,AI Engineer,Senior,"You will focus on creating reusable agent architectures, integrating enterprise APIs, and implementing observability for production AI systems. This is a leadership-focused role that requires deep expertise in Python and modern LLM orchestration techniques. Must have: 5+ years of experience; Deep experience with LangGraph, CrewAI, or AutoGen; Advanced prompt engineering and function calling; Expert-level Python; Experience designing stateful, scalable AI systems; Ability to lead AI initiatives from zero to production. Required tools: langgraph, crewai, autogen, python, llm, prompt engineering, mops. ",2026,,5-10,"Python, ML, APIs, LLMs, LangChain, LangGraph, CrewAI, AutoGen, Prompt Engineering, MLOps","Communication, Problem Solving"
+42,44,AI Engineer,Senior,"You will focus on creating reusable agent architectures, integrating enterprise APIs, and implementing observability for production AI systems. This is a leadership-focused role that requires deep expertise in Python and modern LLM orchestration techniques. Must have: 5+ years of experience; Deep experience with LangGraph, CrewAI, or AutoGen; Advanced prompt engineering and function calling; Expert-level Python; Experience designing stateful, scalable AI systems; Ability to lead AI initiatives from zero to production. Required tools: langgraph, crewai, autogen, python, llm, prompt engineering, mops. ",2026,Not Specified,5-10,"Python, ML, APIs, LLMs, LangChain, LangGraph, CrewAI, AutoGen, Prompt Engineering, MLOps","Communication, Problem Solving"
 43,45,AI Engineer,Senior," Strong experience in Artificial Intelligence, Machine Learning (ML), and Generative AI (GenAI)
 • Hands-on with LLMs, RAG pipelines, NLP
 • Experience with LangGraph / AI workflow orchestration
@@ -674,7 +674,7 @@ Next.js 15, React 19, TypeScript, Zustand
 Data & Visualization
 Recharts, GeoJSON, MapLibre GL JS
 Infrastructure
-Docker, Azure Pipelines, Azure AD ",2026,,1-5,"Python, ML, LangChain, LangGraph, RAG, VectorDB, LLMs, APIs, Prompt Engineering, SQL, React, Javascript, Docker, CI/CD, AWS/Azure","Communication, Problem Solving"
+Docker, Azure Pipelines, Azure AD ",2026,Not Specified,1-5,"Python, ML, LangChain, LangGraph, RAG, VectorDB, LLMs, APIs, Prompt Engineering, SQL, React, Javascript, Docker, CI/CD, AWS/Azure","Communication, Problem Solving"
 53,55,AI Engineer,Junior,"• Strong understanding of RAG architecture — document chunking, embedding, retrieval, reranking, and synthesis.
 • Proficiency in Python, including libraries like Pandas,Numpy, and Scikit-learn.
 • Experience withFastAPIor Flask for microservice and API development.
@@ -702,7 +702,7 @@ Collaborate cross-functionally with product, engineering, and business teams to 
 Mentor and guide junior engineers, setting best practices for scalable, maintainable AI development.
 Required Experience:
 2+ years of professional software engineering experience focused on Generative AI / LLMbased applications. 
-",2026,,1-5,"Python, LLMs, MLOps, APIs, AWS/Azure, VectorDB, CI/CD, Docker, Kubernetes, GenAI","Communication, Problem Solving"
+",2026,Not Specified,1-5,"Python, LLMs, MLOps, APIs, AWS/Azure, VectorDB, CI/CD, Docker, Kubernetes, GenAI","Communication, Problem Solving"
 55,57,AI Engineer,Junior,"Bachelor's degree in a relevant field such as Computer Science, Data Science, or a related field
 1–2 years of professional experience building or supporting software or AI-driven systems in a work environment (internships and co-ops included)
 Hands-on experience working with LLM-based applications or agentic workflows in a professional or production setting
@@ -893,7 +893,7 @@ retrieval.
 • Familiarity with LangChain, LangGraph, LlamaIndex, Semantic Kernel, CrewAI,
 AutoGen, or similar frameworks is useful but not mandatory.
 • Ability to work with AI engineers / data scientists to integrate models, prompts,
-retrieval pipelines, and recommendation logic into enterprise applications. ",2026,,5-10,"Python, .NET, APIs, Java, SQL, AWS/Azure, ML, LLMs, OpenAI, Prompt Engineering, RAG, VectorDB,  LangChain, LangGraph, CrewAI, AutoGen","Communication, Problem Solving, Analytical Skills"
+retrieval pipelines, and recommendation logic into enterprise applications. ",2026,Not Specified,5-10,"Python, .NET, APIs, Java, SQL, AWS/Azure, ML, LLMs, OpenAI, Prompt Engineering, RAG, VectorDB,  LangChain, LangGraph, CrewAI, AutoGen","Communication, Problem Solving, Analytical Skills"
 63,65,AI Engineer,Junior,"• You have shipped multi-agent systems in production — not prototypes, not demos. Real users, real scale, real failure modes.
 • You have deep, hands-on experience with both vector databases and knowledge graphs, and critically, with combining them in hybrid retrieval architectures.
 • You understand orchestration frameworks (LangGraph, CrewAI, AutoGen, or equivalent) well enough to know when not to use one.
@@ -944,7 +944,7 @@ Proven experience implementing AI/ML use cases for customer-facing platforms
 Strong background in analytics, predictive modeling, and operational intelligence initiatives
 Experience designing scalable AI solutions that drive business outcomes and enhance customer engagement
 Expertise in Machine Learning, Deep Learning, and enterprise AI architectures
-Strong stakeholder management and technical leadership capabilities",2026,,15+,"Python, ML, LLMs","Communication, Problem Solving"
+Strong stakeholder management and technical leadership capabilities",2026,Not Specified,15+,"Python, ML, LLMs","Communication, Problem Solving"
 68,70,AI Engineer,Senior,"• 3+ years of overall IT experience with significant exposure to AI/ML architecture.
 • Strong expertise in Python programming.
 • Hands-on experience with Generative AI (GenAI) technologies and Large Language Models (LLMs).
@@ -953,7 +953,7 @@ Strong stakeholder management and technical leadership capabilities",2026,,15+,"
 • Proficiency in SQL and handling complex data structures.
 • Good understanding of JSON structures , APIs, and system integrations.
 • Proven experience in technical architecture , solution design, and enterprise application integration.
-• Strong problem-solving, communication, and stakeholder management skills. ",2026,,1-5,"Python, ML, GenAI, LLMs, Agents, SQL, APIs, ","Communication, Problem Solving"
+• Strong problem-solving, communication, and stakeholder management skills. ",2026,Not Specified,1-5,"Python, ML, GenAI, LLMs, Agents, SQL, APIs, ","Communication, Problem Solving"
 69,71,AI Engineer,Junior,"• Proficiency in Pattern Recognition and Neural Network design and implementation
 • Strong foundation in Computer Science with familiarity in algorithms, data structures, and computational models
 • Experience in Software Development, including coding, testing, debugging, and process optimization
@@ -977,7 +977,7 @@ Python
 Testing focus
 API TestingUI Testing
 Also listed
-Ai testingLlm testingRag evaluationPrompt engineeringDeepevalPromptfooLangsmithRagasData quality testingGreat expectationsDbtMachine learning lifecycleAutomation testingCi/cd ",2026,,5-10,"Python, Pytest, APIs, LLMs, RAG, Prompt Engineering, ML, LangChain, LangGraph, CI/CD","Communication, Problem Solving"
+Ai testingLlm testingRag evaluationPrompt engineeringDeepevalPromptfooLangsmithRagasData quality testingGreat expectationsDbtMachine learning lifecycleAutomation testingCi/cd ",2026,Not Specified,5-10,"Python, Pytest, APIs, LLMs, RAG, Prompt Engineering, ML, LangChain, LangGraph, CI/CD","Communication, Problem Solving"
 72,74,AI Developer,Senior,"• Bachelor’s degree in computer science, Engineering, Data Science, or related technical field
 • Master's degree preferred (Computer Science, AI/ML, or MBA with technical focus)
 • 6+ years of software development experience with 2+ years focused on AI agent development
@@ -1062,7 +1062,7 @@ Core Competencies
 • sExperience building or contributing to open-source LLM orchestration tools (LangGraph, LangChain, or similar)
 • .Familiarity with enterprise constraints: on-prem/cloud hybrid deployments, data residency, compliance requirements
 • .Background in security, privacy, or model governance for LLMs
-• .Demonstrated leadership in cross-functional projects and direct customer engagement ",2026,,5-10,"Python, ML, LLMs, RAG, LangChain, LangGraph ","Communication, Problem Solving"
+• .Demonstrated leadership in cross-functional projects and direct customer engagement ",2026,Not Specified,5-10,"Python, ML, LLMs, RAG, LangChain, LangGraph ","Communication, Problem Solving"
 77,79,AI Engineer,Senior,"Qualifications Bachelor’s/Master’s Degree or equivalent. 8+ years in software/ML engineering, 1.5+ years hands-on with LLMs/GenAI and agentic frameworks. Proven track record shipping production AI systems on at least one hyperscaler (Azure/AWS/GCP). Experience leading 3–6 engineers and owning end-to-end delivery. Required Skills Strong Python experience to build multiple AI-ML/ GenAI Solutions. Should have experience working on Agent orchestration with leading frameworks like LangGraph, LangChain, Semantic Kernel, CrewAI, AutoGen . Strong experience working on Vector DB like Pinecone, Milvus, Redis/pgvector); Should have experience working on hybrid search and re-rankers Should have experience on evaluation & observability Experience working on SQL Query , NLP, CV, Deep Learning Algorithms Should have working experience with Open Source Models Experience on UI/UX will be added advantage. #GenAINTT RESUME SELECTION Guidelines: Delivered at least 2 GenAI/Agentic AI solutions for clients Extensive experience of minimum 6+ years on Python Led 2–3 successful client  ",2026,Bachelors/Masters,5-10,"Python, ML, LLMs, GenAI, AWS/Azure, LangChain, LangGraph, CrewAI, AutoGen, VectorDB, RAG, SQL, NLP","Communication, Problem Solving, Analytical Skills"
 78,80,AI Engineer,Senior,"• Building and deploying autonomous agents
 • LangChain framework for developing applications
@@ -1125,7 +1125,7 @@ Soft Skills & Cultural Fit
 • Professional experience integrating LLMs into a software product (experience building a chatbot or using simple coding assistants is not sufficient)
 • Experience shipping a production system where a self-improving agent drove the iteration on the system itself (e.g., designed its own tools, refined its own reward function, etc.)
 • Experience curating evaluation or regression sets driving self-improving systems and defining measurable success criteria
-• Experience with modern agent-orchestration tooling (e.g., LangChain, LangGraph)",2026,,1-5,"Python, LLMs, LangChain, LangGraph, Agents, APIs, ","Communication, Problem Solving"
+• Experience with modern agent-orchestration tooling (e.g., LangChain, LangGraph)",2026,Not Specified,1-5,"Python, LLMs, LangChain, LangGraph, Agents, APIs, ","Communication, Problem Solving"
 82,84,AI Engineer,Junior,"• Bachelor’s degree in Computer Science, Artificial Intelligence, Data Science, or a related field; or High School Diploma/General Education Degree and 4+ years of relevant as outlined in the essential duties in lieu of Bachelor’s Degree.
 • Professional experience in AI/ML model development.
 • Demonstrated ability working with machine learning frameworks, programming languages like Python, and cloud platforms.
@@ -1146,7 +1146,7 @@ Notice Period: Immediate Joiners, 15 Days to 1 Month Preferred
 About the Role
 We are looking for a highly skilled Senior AI/ML Engineer to lead the design, development,
 deployment, and optimization of scalable AI solutions. 
-",2026,,5-10,"Python, ML, GenAI, LLMs, MLOps, APIs","Communication, Problem Solving"
+",2026,Not Specified,5-10,"Python, ML, GenAI, LLMs, MLOps, APIs","Communication, Problem Solving"
 84,86,AI Engineer,Senior,"- Significant experience in design (architecture, design patterns, reliability, and scaling) and implementation or enhancement of new and current systems
 - Significant experience in system engineering involving analytical systems design and implementation
 - Fluency and specialization with modern languages such as Java, C# or Python
@@ -1154,7 +1154,7 @@ deployment, and optimization of scalable AI solutions.
 - Familiarity with continuous delivery and infrastructure as code
 - Proven experience in cloud, DevOps, or AI modernization initiatives
 - Strong understanding of LLMs, automation, and engineering toolchains
-- Ability to translate AI innovation into business and productivity impact ",2026,,1-5,"Python, System Design, Java, C#, AIPs, MLOps, LLMs","Communication, Problem Solving"
+- Ability to translate AI innovation into business and productivity impact ",2026,Not Specified,1-5,"Python, System Design, Java, C#, AIPs, MLOps, LLMs","Communication, Problem Solving"
 85,87,AI Engineer,Senior,"• Minimum four years of experience building, training, and deploying machine learning models with measurable real-world impact
 • Deep proficiency in Python and frameworks such as PyTorch or JAX; expertise in model design and optimization
 • Proven experience fine-tuning and deploying large pre-trained and foundation models including language and scientific models
@@ -1162,8 +1162,8 @@ deployment, and optimization of scalable AI solutions.
 • Experience with distributed training and large-scale computing environments for high-performance model training
 • Hands-on expertise optimizing models and pipelines for latency, throughput, cost, and production performance
 • Experience with MLOps practices including experiment tracking, model versioning, reproducibility, and cloud deployment
-• Strong problem-solving, collaboration, and communication skills with ability to drive engineering excellence in complex environments ",2026,,5-10,"Python, ML, TensorFlow/Pytorch, LLMs, MLOps","Communication, Problem Solving"
-86,88,AI Engineer,Senior,"Minimum four years of experience building, training, and deploying machine learning models with measurable real-world impact Deep proficiency in Python and frameworks such as PyTorch or JAX; expertise in model design and optimization Proven experience fine-tuning and deploying large pre-trained and foundation models including language and scientific models Strong understanding of model evaluation including benchmarking, cross-validation, and performance across data distributions Experience with distributed training and large-scale computing environments for high-performance model training Hands-on expertise optimizing models and pipelines for latency, throughput, cost, and production performance Experience with MLOps practices including experiment tracking, model versioning, reproducibility, and cloud deployment Strong problem-solving, collaboration, and communication skills with ability to drive engineering excellence in complex environments ",2026,,5-10,"Python, ML, Git, Github, MLOps, TensorFlow/PyTorch","Communication, Problem Solving"
+• Strong problem-solving, collaboration, and communication skills with ability to drive engineering excellence in complex environments ",2026,Not Specified,5-10,"Python, ML, TensorFlow/Pytorch, LLMs, MLOps","Communication, Problem Solving"
+86,88,AI Engineer,Senior,"Minimum four years of experience building, training, and deploying machine learning models with measurable real-world impact Deep proficiency in Python and frameworks such as PyTorch or JAX; expertise in model design and optimization Proven experience fine-tuning and deploying large pre-trained and foundation models including language and scientific models Strong understanding of model evaluation including benchmarking, cross-validation, and performance across data distributions Experience with distributed training and large-scale computing environments for high-performance model training Hands-on expertise optimizing models and pipelines for latency, throughput, cost, and production performance Experience with MLOps practices including experiment tracking, model versioning, reproducibility, and cloud deployment Strong problem-solving, collaboration, and communication skills with ability to drive engineering excellence in complex environments ",2026,Not Specified,5-10,"Python, ML, Git, Github, MLOps, TensorFlow/PyTorch","Communication, Problem Solving"
 87,89,AI Engineer,Junior,"M.Tech (CS/IT) - Mandatory- Freshers (0 yrs) OR 1-2 years of experience in AI/ML- Strong interest in AI, machine learning, and automationKey Responsibilities : Build AI Solutions : - Develop AI/ML models and GenAI applications using LLMs- Build RAG pipelines, NLP models, and automation workflows- Work on real-world use cases across insurance & operationsCoding & Development (Core Focus) : - Write clean, scalable code using Python and ML frameworks- Work with HuggingFace, PyTorch, LangChain, APIs, and SQL- Design and implement end-to-end AI workflowsExperiment & Learn : - Work on prompt engineering, fine-tuning, and model optimisation- Explore techniques like LoRA / QLoRA, embeddings, vector DBs- Continuously experiment with new AI approaches and toolsDeployment & Integration : - Assist in deploying models using basic MLOps practices- Integrate AI solutions with internal systems via APIs and data pipelinesDrive Business Impact : - Understand business problems and convert them into AI use cases- Deliver measurable impact like: Process automation, TAT reduction, Efficiency improvement ",2026,Masters,1-5,"Python, ML, MLOps, Git, Github, LLMs, NLP, RAG, Agents, HuggingFace, TensorFlow/PyTorch, LangChain, APIs, SQL, VectorDB","Communication, Problem Solving"
 88,90,AI Engineer,Senior,"• • 6-12 years of software engineering experience, with at least 2 years focused on AI/ML application development.
 • • Hands-on experience shipping LLM-powered applications to real users or stakeholders: RAG pipelines, prompt engineering at system level, agentic workflows.
@@ -1190,7 +1190,7 @@ Preferred
 • • Experience with AI evaluation frameworks, prompt testing, and LLM output quality assurance.
 • • Background in digital marketing technology, SaaS platforms, or sales/marketing operations.
 • • Familiarity with AI Development Lifecycle (AI-DLC) methodologies.
-• • Experience with Agent-to-Agent(A2A) integration. ",2026,,5-10,"Python, ML, RAG, VectorDB, APIs, LLMs, AWS/Azure, MCP, Agents, LangChain, LangGraph, Prompt Engineering","Communication, Problem Solving, Analytical Skills"
+• • Experience with Agent-to-Agent(A2A) integration. ",2026,Not Specified,5-10,"Python, ML, RAG, VectorDB, APIs, LLMs, AWS/Azure, MCP, Agents, LangChain, LangGraph, Prompt Engineering","Communication, Problem Solving, Analytical Skills"
 89,91,AI Engineer,Senior,"Responsibilities: Design and implement autonomous agents using LangChain / Crew.ai / SK / Autogen and other relevant frameworks Develop and optimize RAG systems for improved information retrieval and response generation Create robust evaluation frameworks for testing agent performance and safety Implement monitoring and logging systems for agent behavior Develop documentation and best practices for agent development Contribute to the improvement of agent architecture and capabilities Hands-on experience with: Building and deploying autonomous agents LangChain framework for developing applications Retrieval Augmented Generation (RAG) systems Large Language Models (LLMs) and their APIs Solid understanding of safety principles and best practices Resolving hallucinations in the outcomes Mandatory Skill sets: Advanced Python programming with expertise in async programming and API developmenT Experience with vector databases and embedding models Proficiency in implementing RAG pipelines and knowledge retrieval systems Familiarity with prompt engineering and LLM optimization techniques Experience with development frameworks and tools Knowledge of modern software development practices (Git, CI/CD, testing) Preferred Skill sets: Multiple LLM providers (OpenAI, Anthropic, etc.) Tools for agent orchestration and workflow management Natural Language Processing (NLP) techniques Container technologies (Docker, Kubernetes) Understanding of semantic search and information retrieval concepts Knowledge of agent alignment and safety considerations Years of experience required: 2 to 3+yrs Education qualification: Bachelor’s degree in Computer Science, Computer Engineering, Information Systems, or a related fields ",2026,Bachelors,1-5,"Python, ML, RAG, VectorDB, APIs, LLMs, AWS/Azure, MCP, Agents, LangChain, LangGraph, Prompt Engineering, Git, Github, CI/CD, AutoGen, CrewAI, GenAI, NLP, Docker, Kubernetes","Commuication, Problem Solving"
 90,92,AI Engineer,Senior,"3+ years of overall IT experience with significant exposure to AI/ML architecture.
 Solid expertise in Python programming.
@@ -1200,7 +1200,7 @@ Strong knowledge of the Databricks Platform.
 Proficiency in SQL and handling complex data structures.
 Good understanding of JSON structures, APIs, and system integrations.
 Proven experience in technical architecture, solution design, and enterprise application integration.
-Strong problem-solving, communication, and stakeholder management skills. ",2026,,1-5,"Python, ML, GenAI, Agents, LangChain, LangGraph, LlamaIndex, SQL, APIs, System Design, LLMs","Communication, Problem Solving"
+Strong problem-solving, communication, and stakeholder management skills. ",2026,Not Specified,1-5,"Python, ML, GenAI, Agents, LangChain, LangGraph, LlamaIndex, SQL, APIs, System Design, LLMs","Communication, Problem Solving"
 91,93,AI Engineer,Senior,"Key Skills:
 • Python
 • Machine Learning & Deep Learning
@@ -1220,7 +1220,7 @@ Requirements:
 • 8–10 years of overall experience with strong expertise in AI/ML.
 • Hands-on experience in Python and AI frameworks.
 • Experience with cloud platforms and model deployment. 
-",2026,,5-10,"Python, ML, TensorFlow/PyTorch, NLP, GenAI, AWS/Azure, MLOps, APIs","Communication, Problem Solving"
+",2026,Not Specified,5-10,"Python, ML, TensorFlow/PyTorch, NLP, GenAI, AWS/Azure, MLOps, APIs","Communication, Problem Solving"
 92,94,AI Engineer,Junior,"• Strong foundation in Computer Science and Software Development, including data structures, algorithms, and version control.
 • Experience with Pattern Recognition and Neural Networks for real-world applications such as classification, prediction, and recommendation systems.
 • Hands-on expertise in Natural Language Processing (NLP), including text analysis, conversational interfaces, and language models.
@@ -1245,7 +1245,7 @@ Preferred Qualifications
 • Bachelor’s degree in Computer Science, Artificial Intelligence, Data Science, or a related field.
 • Strong analytical, problem-solving, and communication skills.
 • Ability to work independently and collaboratively in a fast-paced environment. ",2026,Bachelors,1-5,"Python, LLMs, GenAI, ML, LangChain, LangGraph, CrewAI, AutoGen, APIs, VectorDB, System Design, MLOps, ","Communication, Problem Solving, Analytical Skills"
-94,96,AI Engineer,Senior,"You will be responsible for setting up scalable cloud environments, building seamless CI/CD pipelines, and establishing cutting-edge deployment frameworks for Large Language Models (LLMs) and foundational AI applications.Key Responsibilities1. GenAI & LLMOps InfrastructureDesign and manage cloud infrastructure tailored for hosting, fine-tuning, and serving Generative AI models.Implement and manage infrastructure for AI orchestration frameworks (e.g., LangChain, LlamaIndex, Semantic Kernel).Optimize vector databases (e.g., Pinecone, Milvus, Qdrant, or pgvector in PostgreSQL) for highly efficient Retrieval-Augmented Generation (RAG) pipelines.Implement cost-optimization strategies for heavy compute resources (GPUs/TPUs).2. Core DevOps & Cloud EngineeringArchitect, scale, and maintain secure, cloud-native infrastructure utilizing AWS, Azure, or GCP.Orchestrate and manage containerized workloads using Docker and Kubernetes.Implement robust Infrastructure as Code (IaC) using Terraform, OpenTofu, or CloudFormation.Build, maintain, and optimize secure CI/CD pipelines (GitHub Actions, GitLab CI, or Jenkins) for automated software and model deployment.3. Monitoring, Observability & SecuritySet up advanced observability tools (Prometheus, Grafana, Datadog) to track both infrastructure health and AI model performance metrics (latency, token usage, drift).Collaborate with engineering teams to ensure highly secured IT solutions, embedding data privacy, vulnerability scanning, and guardrails for LLM prompts/outputs.Required Technical Skills & QualificationsExperience: 5+ years of total experience in DevOps/Cloud Engineering, with at least 1–2 years actively supporting AI/ML or GenAI workloads in production.AI/LLM Ecosystem: Practical exposure to deploying LLMs (OpenAI APIs, Hugging Face, Anthropic, or open-source models like Llama via Ollama/vLLM).Containerization & Orchestration: Deep expertise in Kubernetes (EKS, AKS, or GKE) and Docker.Infrastructure as Code: Proven mastery of Terraform.Databases: Familiarity with traditional databases (PostgreSQL, MongoDB) as well as vector stores.Programming: Strong scripting and automation skills in Python (highly preferred for AI workflows), Go (Golang), or Bash. ",2026,,5-10,"Python, LLMs, CI/CD, MLOps, LangChain, LlamaIndex, RAG, VectorDB, SQL,  Docker, Kubernetes, AWS/Azure, Github, Git, OpenAI, APIs, Hugging Face","Communication, Problem Solving"
+94,96,AI Engineer,Senior,"You will be responsible for setting up scalable cloud environments, building seamless CI/CD pipelines, and establishing cutting-edge deployment frameworks for Large Language Models (LLMs) and foundational AI applications.Key Responsibilities1. GenAI & LLMOps InfrastructureDesign and manage cloud infrastructure tailored for hosting, fine-tuning, and serving Generative AI models.Implement and manage infrastructure for AI orchestration frameworks (e.g., LangChain, LlamaIndex, Semantic Kernel).Optimize vector databases (e.g., Pinecone, Milvus, Qdrant, or pgvector in PostgreSQL) for highly efficient Retrieval-Augmented Generation (RAG) pipelines.Implement cost-optimization strategies for heavy compute resources (GPUs/TPUs).2. Core DevOps & Cloud EngineeringArchitect, scale, and maintain secure, cloud-native infrastructure utilizing AWS, Azure, or GCP.Orchestrate and manage containerized workloads using Docker and Kubernetes.Implement robust Infrastructure as Code (IaC) using Terraform, OpenTofu, or CloudFormation.Build, maintain, and optimize secure CI/CD pipelines (GitHub Actions, GitLab CI, or Jenkins) for automated software and model deployment.3. Monitoring, Observability & SecuritySet up advanced observability tools (Prometheus, Grafana, Datadog) to track both infrastructure health and AI model performance metrics (latency, token usage, drift).Collaborate with engineering teams to ensure highly secured IT solutions, embedding data privacy, vulnerability scanning, and guardrails for LLM prompts/outputs.Required Technical Skills & QualificationsExperience: 5+ years of total experience in DevOps/Cloud Engineering, with at least 1–2 years actively supporting AI/ML or GenAI workloads in production.AI/LLM Ecosystem: Practical exposure to deploying LLMs (OpenAI APIs, Hugging Face, Anthropic, or open-source models like Llama via Ollama/vLLM).Containerization & Orchestration: Deep expertise in Kubernetes (EKS, AKS, or GKE) and Docker.Infrastructure as Code: Proven mastery of Terraform.Databases: Familiarity with traditional databases (PostgreSQL, MongoDB) as well as vector stores.Programming: Strong scripting and automation skills in Python (highly preferred for AI workflows), Go (Golang), or Bash. ",2026,Not Specified,5-10,"Python, LLMs, CI/CD, MLOps, LangChain, LlamaIndex, RAG, VectorDB, SQL,  Docker, Kubernetes, AWS/Azure, Github, Git, OpenAI, APIs, Hugging Face","Communication, Problem Solving"
 95,97,AI Engineer,Senior,"• 5+ years of experience in AI/ML engineering with strong software development fundamentals.
 • Strong programming skills in Python; knowledge of SQL and Java is an advantage.
 • Hands-on experience in Machine Learning, Deep Learning, and Natural Language Processing (NLP).
@@ -1261,7 +1261,7 @@ Preferred Qualifications
 • Experience working with relational and NoSQL databases such as PostgreSQL, MySQL, MongoDB, or Redis.
 • Knowledge of software engineering best practices, scalable system design, and Agile development methodologies.
 • Excellent analytical, problem-solving, communication, and stakeholder management skills.
-• Ability to work collaboratively in cross-functional teams and deliver production-grade AI solutions. ",2026,,5-10,"Python, Java, SQL, NLP, GenAI, LLMs, RAG, Prompt Engineering, Agents, LangChain, LangGraph, LlamaIndex, Hugging Face, OpenAI, APIs, VectorDB, Pandas, Numpy, Scikit-Learn, TensorFlow/PyTorch, MLflow, MLOps, CI/CD, Git, Github, Docker, Kubernetes, AWS/Azure, System Design","Communication, Problem Solving"
+• Ability to work collaboratively in cross-functional teams and deliver production-grade AI solutions. ",2026,Not Specified,5-10,"Python, Java, SQL, NLP, GenAI, LLMs, RAG, Prompt Engineering, Agents, LangChain, LangGraph, LlamaIndex, Hugging Face, OpenAI, APIs, VectorDB, Pandas, Numpy, Scikit-Learn, TensorFlow/PyTorch, MLflow, MLOps, CI/CD, Git, Github, Docker, Kubernetes, AWS/Azure, System Design","Communication, Problem Solving"
 96,98,AI Engineer,Senior,"• 8–10 years of software engineering experience.
 • Strong hands-on experience with LangChain and LangGraph (Mandatory).
 • Strong knowledge of Agentic AI and Large Language Models (LLMs).
@@ -1269,7 +1269,7 @@ Preferred Qualifications
 • Experience with RAG architectures, vector databases, embeddings, and prompt engineering.
 • Experience integrating AI models through APIs and AI orchestration frameworks.
 • Strong understanding of software design principles and scalable application architecture.
-• Excellent analytical and problem-solving skills. ",2026,,5-10,"Python, ML, LLMs, Agents, LangChain, LangGraph, RAG, VectorDB, System Design, Prompt Engineering","Communication, Problem Solving, Analytical Skills"
+• Excellent analytical and problem-solving skills. ",2026,Not Specified,5-10,"Python, ML, LLMs, Agents, LangChain, LangGraph, RAG, VectorDB, System Design, Prompt Engineering","Communication, Problem Solving, Analytical Skills"
 97,99,AI Engineer,Senior,"AI & Machine Learning
 • Strong expertise in Machine Learning, Deep Learning, and Data Science.
 • Hands-on experience with Generative AI and Large Language Models (LLMs).
@@ -1331,7 +1331,7 @@ Technical Skills:
 • Familiarity with CI/CD pipelines and tools (Jenkins, GitLab CI, CircleCI)
 • Understanding of container orchestration tools and concepts
 • Knowledge of security best practices in cloud and distributed applications
-• Experience with infrastructure as code (IaC) tools (Terraform, CloudFormation). ",2026,,15+,"Python, LLMs, RAG, Agents, LangChain, LangGraph, LlamaIndex, NLP, TensorFlow/PyTorch, ML, Github, Git, AWS/Azure, CI/CD, SQL, MLflow, MLOps, Docker, Kubernetes","Communication, Problem Solving, Analytical Skills"
+• Experience with infrastructure as code (IaC) tools (Terraform, CloudFormation). ",2026,Not Specified,15+,"Python, LLMs, RAG, Agents, LangChain, LangGraph, LlamaIndex, NLP, TensorFlow/PyTorch, ML, Github, Git, AWS/Azure, CI/CD, SQL, MLflow, MLOps, Docker, Kubernetes","Communication, Problem Solving, Analytical Skills"
 99,101,AI Engineer,Junior,"• Assist in collecting, cleaning, and preprocessing datasets for ML models
 • Build, train, and evaluate machine learning and deep learning models
 • Support development and integration of AI features into existing products
@@ -1348,7 +1348,7 @@ Required Skills
 • Basic knowledge of Deep Learning (Neural Networks, CNNs, RNNs) is a plus
 • Understanding of statistics and probability
 • Familiarity with SQL and data handling
-• Basic knowledge of Git/GitHub for version control ",2026,,0-1,"Python, ML, TensorFlow/PyTorch, Scikit-Learn, LLMs, NLP, NumPy, Pandas, SQL, Git, Github","Communication, Problem Solving"
+• Basic knowledge of Git/GitHub for version control ",2026,Not Specified,0-1,"Python, ML, TensorFlow/PyTorch, Scikit-Learn, LLMs, NLP, NumPy, Pandas, SQL, Git, Github","Communication, Problem Solving"
 100,102,AI Engineer,Internship,"We are looking for candidates with strong programming skills, preferably in Python, hands-on experience with LLMs or AI systems, and a strong interest in agents, evaluation, alignment, interpretability, or enterprise AI.
 You should be comfortable working on ambiguous problems, building prototypes quickly, reading papers or technical material, documenting findings clearly, and independently identifying high-value directions.
 Bonus signals include experience with agent frameworks, long-horizon agents, evaluation pipelines, research projects, open-source tools, backend systems, enterprise data, or AI safety and interpretability. ",2026,Bachelors,0,"Python, ML, Agents, LangChain, LangGraph, LlamaIndex, LLMs","Communication, Problem Solving"
@@ -1368,25 +1368,25 @@ Mandatory Skills:
 • Hands‑on AWS Bedrock implementation (real project experience, not learning/demo)
 • Agentic AI / LLM agents / tool‑calling workflows
 • RAG architectures + vector databases
-• Strong Python background ",2026,,5-10,"Python, AWS/Azure, LLMs, GenAI, RAG, VectorDB, LangChain, LangGraph, LlamaIndex, Agents","Communication, Problem Solving"
+• Strong Python background ",2026,Not Specified,5-10,"Python, AWS/Azure, LLMs, GenAI, RAG, VectorDB, LangChain, LangGraph, LlamaIndex, Agents","Communication, Problem Solving"
 102,104,AI Engineer,Senior,"• 4+ yrs building AI-powered products served in production.
 • Strong Python; production LLM/RAG; embeddings + vector databases (HNSW/IVF indexing).
 • Inference serving (FastAPI/Triton/TorchServe-class); latency/throughput optimization.
 • NLP fundamentals; API design; caching and queueing.
 Strong signals
-• Learning-to-rank / recommendation systems; multilingual/low-resource NLP; semantic search; on-device inference integration; prompt/reasoning orchestration. ",2026,,1-5,"Python, LLMs, VectorDB, RAG, APIs, NLP","Communication, Problem Solving"
+• Learning-to-rank / recommendation systems; multilingual/low-resource NLP; semantic search; on-device inference integration; prompt/reasoning orchestration. ",2026,Not Specified,1-5,"Python, LLMs, VectorDB, RAG, APIs, NLP","Communication, Problem Solving"
 103,105,AI Engineer,Senior,"-5+ years of professional experience as a Fullstack Developer building production applications
 -Strong hands‑on experience with Microsoft Azure (App Services, Azure Functions, APIs, storage, authentication, etc.)
 -Solid backend development experience (e.g., .NET, Java, Node.js, or Python) with API and service‑oriented architectures
 -Frontend development experience with modern frameworks (React, Angular, or similar)
--Experience working on cloud‑based or AI‑adjacent products, including integration with AI/ML services or data‑driven platforms ",2026,,5-10,"Python, .NET, Java, Javascript, React, APIs, AWS/Azure, ML","Communication, Problem Solving"
+-Experience working on cloud‑based or AI‑adjacent products, including integration with AI/ML services or data‑driven platforms ",2026,Not Specified,5-10,"Python, .NET, Java, Javascript, React, APIs, AWS/Azure, ML","Communication, Problem Solving"
 104,106,AI Engineer,Senior,"• 9–12 years of overall experience with strong ML engineering focus
 • Hands-on experience in ML and DL frameworks (TensorFlow / PyTorch / scikit-learn)
 • Experience working with LLMs and GenAI architectures
 • Strong Python programming skills
 • Experience deploying models on AWS (SageMaker, EC2, Lambda, S3)
 • Experience building REST APIs for model serving
-• Strong understanding of data preprocessing and feature engineering ",2026,,5-10,"Python. ML, TensorFlow/PyTorch, Scikit-Learn, LLMs, GenAI, AWS/Azure, APIs","Communication, Problem Solving"
+• Strong understanding of data preprocessing and feature engineering ",2026,Not Specified,5-10,"Python. ML, TensorFlow/PyTorch, Scikit-Learn, LLMs, GenAI, AWS/Azure, APIs","Communication, Problem Solving"
 105,107,AI Engineer,Junior,"Strong understanding of AI/ML fundamentals, model development, and deployment strategies.
 Hands-on experience training and fine-tuning models (e.g., regression, classification, ranking, NLP).
 Familiarity with AdTech systems such as SSP, DSP, DMP, and RTB (Real-Time Bidding).
@@ -1399,7 +1399,7 @@ AWS Machine Learning Specialty or AI Practitioner certifications.
 Experience with RAG systems, LLMs, or Generative AI for AdTech use cases.
 Knowledge of MLOps and CI/CD pipelines for model deployment.
 Exposure automated campaign optimization, bid strategy modeling, or user segmentation algorithms 
-",2026,,0-1,"Python, ML, NLP, AWS/Azure, TensorFlow/PyTorch, Scikit-Learn, RAG, LLMs, GenAI, MLOps, CI/CD","Communication, Problem Solving"
+",2026,Not Specified,0-1,"Python, ML, NLP, AWS/Azure, TensorFlow/PyTorch, Scikit-Learn, RAG, LLMs, GenAI, MLOps, CI/CD","Communication, Problem Solving"
 106,108,AI Engineer,Junior,"Strong foundation in Computer Science and Software Development, including data structures, algorithms, and version control.Experience with Pattern Recognition and Neural Networks for real-world applications such as classification, prediction, and recommendation systems.Hands-on expertise in Natural Language Processing (NLP), including text analysis, conversational interfaces, and language models.Proficiency with programming languages commonly used in AI (such as Python or JavaScript) and relevant AI/ML libraries (e.g., TensorFlow, PyTorch, scikit-learn).Bachelors or Masters degree in Computer Science, Artificial Intelligence, Data Science, or a related field, or equivalent practical experience.Ability to work collaboratively on-site, communicate complex technical concepts clearly, and translate business needs into AI solutions.Experience deploying AI models into production environments and optimizing for scalability and performance is a plus.Familiarity with cloud platforms, APIs, and MLOps practices for model monitoring and continuous improvement is beneficial. ",2026,Bachelors/Masters,0-1,"Python, ML, NLP, Javascript, TensorFlow/PyTorch, Scikit-Learn, APUIs, MLOps, CI/CD","Communication, Problem Solving"
 107,109,AI Engineer,Junior,"• Bachelor’s Degree in IT or equivalent Computer Science, Machine Learning, or related field.
 • 5-8 years of professional experience in software development; you will be able to discuss in depth both the design and your significant contributions to one or more projects.
@@ -1445,7 +1445,7 @@ Education
 • Strong knowledge of PostgreSQL and Snowflake.
 • Experience designing scalable cloud-native applications on AWS.
 • Excellent problem-solving and communication skills.
-• Experience working in Agile/Scrum environments. ",2026,,5-10,"Python, ML, LLMs, AWS/Azure, SQL, APIs, Agents, LangGraph, LangChain","Communication, Problem Solving"
+• Experience working in Agile/Scrum environments. ",2026,Not Specified,5-10,"Python, ML, LLMs, AWS/Azure, SQL, APIs, Agents, LangGraph, LangChain","Communication, Problem Solving"
 110,112,AI Engineer,Junior,"• Bachelor's degree in Computer Science, Data Science, AI/ML, or a related field (or final-year student/intern).
 • Strong foundation in Java and Python and familiarity with ML libraries like scikit-learn, TensorFlow, or PyTorch.
 • Basic understanding of LLMs and their applications (e. g., chatbots, text classification, summarization), openAI or claude.
@@ -2032,7 +2032,7 @@ Nice to have
 • Plotly Dash or equivalent Python data visualisation framework
 • Google Workspace API integration experience
 • Microsoft 365 / Graph API integration experience 
-",2026,,5-10,"Python, SQL, Javascript, C#, APIs, Github, Git, LLMs, OpenAI, AWS/Azure","Communication, Problem Solving, Analytical Skills"
+",2026,Not Specified,5-10,"Python, SQL, Javascript, C#, APIs, Github, Git, LLMs, OpenAI, AWS/Azure","Communication, Problem Solving, Analytical Skills"
 166,170,AI Developer,Senior,"• 3+ years of experience in Generative AI, AI Operations, Prompt Engineering, AI Evaluation, Product Operations, Business Analysis, Technical Writing, Content Strategy, or related fields.
 • Strong understanding of Generative AI, Large Language Models (LLMs), and AI-powered applications.
 • Hands-on experience with AI platforms such as ChatGPT, Claude, and Gemini.
@@ -2046,7 +2046,7 @@ Good to Have
 • Experience with AI evaluation frameworks and RLHF (Reinforcement Learning from Human Feedback).
 • Basic understanding of APIs, Python, SQL, or automation platforms.
 • Experience working with AI training data, annotations, or model evaluation projects.
-• Knowledge of AI governance, trust & safety, and responsible AI practices. ",2026,,1-5,"Python, GenAI, ML, Prompt Engineering, LLMs, RAG, Agents, LangChain, LangGraph, APIs","Communication, Problem Solving"
+• Knowledge of AI governance, trust & safety, and responsible AI practices. ",2026,Not Specified,1-5,"Python, GenAI, ML, Prompt Engineering, LLMs, RAG, Agents, LangChain, LangGraph, APIs","Communication, Problem Solving"
 167,171,AI Developer,Senior,"Required Technical SkillsProgramming Language
 • Python
 AI/ML Technologies
@@ -4280,28 +4280,28 @@ Actualmente nos encontramos en búsqueda de Backend Software Engineer II para su
 
 Ofrecemos autonomía, impacto real y un entorno donde crear, aprender y escalar. Integrar un equipo que valora la diversidad y pone a las personas en el centro.
 
-Viajar te transforma, trabajar en Despegar también ✈️",2026,,0-2 years,"Python, SQL, Git","Communication, Teamwork, Problem Solving"
+Viajar te transforma, trabajar en Despegar también ✈️",2026,Not Specified,0-2 years,"Python, SQL, Git","Communication, Teamwork, Problem Solving"
 254,262,Software Developer,Senior,"En el #EquipoD revolucionamos el futuro de los viajes en América Latina hace más de 25 años ✈️. Buscamos talento que piense en grande, actúe con autonomía y genere impacto real. Si te apasiona innovar, aprender rápido y trabajar en equipo para crear experiencias memorables, únete a nosotros.
 
 Actualmente nos encontramos en búsqueda de un Back End Developer, para sumarse a nuestro equipo de Posventa.
 
 Ofrecemos autonomía, impacto real y un entorno donde crear, aprender y escalar. Integrar un equipo que valora la diversidad y pone a las personas en el centro.
 
-Viajar te transforma, trabajar en Despegar también ✈️",2026,,0-2 years,"Python, SQL, Git","Communication, Teamwork, Problem Solving"
+Viajar te transforma, trabajar en Despegar también ✈️",2026,Not Specified,0-2 years,"Python, SQL, Git","Communication, Teamwork, Problem Solving"
 256,267,Software Engineer,Junior,"En el #EquipoD revolucionamos el futuro de los viajes en América Latina hace más de 25 años ✈️. Buscamos talento que piense en grande, actúe con autonomía y genere impacto real. Si te apasiona innovar, aprender rápido y trabajar en equipo para crear experiencias memorables, únete a nosotros.
 
 Actualmente nos encontramos en búsqueda de Backend Software Engineer II para sumarse a nuestro equipo de tecnología dentro del equipo de Vuelos. Dentro de vuelos, somos el equipo de tecnología que se encarga del motor de búsqueda y pricing de esa vertical. Estarás trabajando en proyectos con importante impacto en el negocio, encontrando desafíos que te van a hacer crecer constantemente.
 
 Ofrecemos autonomía, impacto real y un entorno donde crear, aprender y escalar. Integrar un equipo que valora la diversidad y pone a las personas en el centro.
 
-Viajar te transforma, trabajar en Despegar también ✈️",2026,,0-2 years,"Python, SQL, Git","Communication, Teamwork, Problem Solving"
+Viajar te transforma, trabajar en Despegar también ✈️",2026,Not Specified,0-2 years,"Python, SQL, Git","Communication, Teamwork, Problem Solving"
 257,269,Software Engineer,Senior,"En el #EquipoD revolucionamos el futuro de los viajes en América Latina hace más de 25 años ✈️. Buscamos talento que piense en grande, actúe con autonomía y genere impacto real. Si te apasiona innovar, aprender rápido y trabajar en equipo para crear experiencias memorables, únete a nosotros.
 
 Buscamos incorporar a una persona con experiencia como Back End Developer SR, para acompañar los desafíos técnicos de nuestro equipo de Alojamientos.
 
 Ofrecemos autonomía, impacto real y un entorno donde crear, aprender y escalar. Integrar un equipo que valora la diversidad y pone a las personas en el centro.
 
-Viajar te transforma, trabajar en Despegar también ✈️",2026,,3+ years,"Python, SQL, Git","Communication, Teamwork, Problem Solving"
+Viajar te transforma, trabajar en Despegar también ✈️",2026,Not Specified,3+ years,"Python, SQL, Git","Communication, Teamwork, Problem Solving"
 258,273,Software Engineer,Senior,"3Pillar is an AI transformation partner on a mission to help enterprises build the AI-native products and intelligent agents that will define the next era of business. With teams across North America, Europe, Latin America, and Asia, we work with the most ambitious companies in financial services, healthcare, media, and technology — helping them move faster, modernize boldly, and compete on their own terms. Our HelixAI platform and Helix Pods delivery model put our engineers at the center of real agentic transformation — doing work that is open, portable, and built to last. We are building the future of enterprise AI.
 
 👋 Greetings, future tech savant:
@@ -4327,7 +4327,7 @@ Join us and be a part of a global tech community! 🌍💼  Check out our Linke
 
 🌟 Accomplished Tech Visionary:
 
-At 3Pillar Global, we specialize in building impactful software products that power digital businesses. We are looking for a talented Senior AI ML Engineer who will not only write code but also deliver exceptional product capabilities for our clients. Your contributions will play a pivotal role in achieving our passion for client success, solidifying our position as a leading product development services company.",2026,,3+ years,"Python, SQL, Git, MLOps, Databricks, AI, ML","Communication, Teamwork, Problem Solving"
+At 3Pillar Global, we specialize in building impactful software products that power digital businesses. We are looking for a talented Senior AI ML Engineer who will not only write code but also deliver exceptional product capabilities for our clients. Your contributions will play a pivotal role in achieving our passion for client success, solidifying our position as a leading product development services company.",2026,Not Specified,3+ years,"Python, SQL, Git, MLOps, Databricks, AI, ML","Communication, Teamwork, Problem Solving"
 260,276,Software Engineer,Senior,"3Pillar is an AI transformation partner on a mission to help enterprises build the AI-native products and intelligent agents that will define the next era of business. With teams across North America, Europe, Latin America, and Asia, we work with the most ambitious companies in financial services, healthcare, media, and technology — helping them move faster, modernize boldly, and compete on their own terms. Our HelixAI platform and Helix Pods delivery model put our engineers at the center of real agentic transformation — doing work that is open, portable, and built to last. We are building the future of enterprise AI.
 
 🌟 Accomplished Tech Visionary:
@@ -4348,10 +4348,10 @@ You will be focused on leading the development of Python backend services runnin
 
 🌟 Accomplished Tech Visionary:
 
-At 3Pillar Global, we specialize in building impactful software products that power digital businesses. We are looking for a talented Senior Data Python + AWS Engineer  who will not only write code but also deliver exceptional product capabilities for our clients. Your contributions will play a pivotal role in achieving our passion for client success, solidifying our position as a leading product development services company.",2026,,3+ years,"AWS, Python","Communication, Teamwork, Problem Solving"
+At 3Pillar Global, we specialize in building impactful software products that power digital businesses. We are looking for a talented Senior Data Python + AWS Engineer  who will not only write code but also deliver exceptional product capabilities for our clients. Your contributions will play a pivotal role in achieving our passion for client success, solidifying our position as a leading product development services company.",2026,Not Specified,3+ years,"AWS, Python","Communication, Teamwork, Problem Solving"
 263,279,Software Engineer,Senior,"👋 Greetings, future tech savant:
 
-Embark on an exciting journey into the realm of software development with 3Pillar! We extend an invitation for you to join our team and gear up for a thrilling adventure. At 3Pillar, our focus is on crafting cutting-edge technologies that revolutionize industries. As a Software Engineer, you'll play a vital role in our dynamic team, contributing to exciting projects that redefine urban living, establish new media channels for enterprise companies, or drive innovation in healthcare. This opportunity goes beyond code – it's about creating epic solutions that leave a lasting impression in the market. If your passion for programming fuels your drive to make a real-world impact, consider this your pass to the captivating world of Product Development! 🚀💻",2026,,3+ years,"Python, SQL, Git","Communication, Teamwork, Problem Solving"
+Embark on an exciting journey into the realm of software development with 3Pillar! We extend an invitation for you to join our team and gear up for a thrilling adventure. At 3Pillar, our focus is on crafting cutting-edge technologies that revolutionize industries. As a Software Engineer, you'll play a vital role in our dynamic team, contributing to exciting projects that redefine urban living, establish new media channels for enterprise companies, or drive innovation in healthcare. This opportunity goes beyond code – it's about creating epic solutions that leave a lasting impression in the market. If your passion for programming fuels your drive to make a real-world impact, consider this your pass to the captivating world of Product Development! 🚀💻",2026,Not Specified,3+ years,"Python, SQL, Git","Communication, Teamwork, Problem Solving"
 264,280,Software Engineer,Senior,"3PILLAR GLOBAL Company
 
 3Pillar is an AI transformation partner on a mission to help enterprises build the AI-native products and intelligent agents that will define the next era of business. With teams across North America, Europe, Latin America, and Asia, we work with the most ambitious companies in financial services, healthcare, media, and technology — helping them move faster, modernize boldly, and compete on their own terms. Our HelixAI platform and Helix Pods delivery model put our engineers at the center of real agentic transformation — doing work that is open, portable, and built to last. We are building the future of enterprise AI.
@@ -4360,10 +4360,10 @@ We work with clients to build incredible innovative products as their developmen
 
 WHAT WE BELIEVE
 
-At 3Pillar, our core values – Intrinsic Dignity, Outsized Impact, Open Collaboration, and Continuous Improvement – drive our commitment to providing best in class product development services to high growth businesses across the globe. We’ve spent more than fifteen years building innovative software solutions. Our executive team has always held our values to the highest standard which has led to active participation on the Forbes Tech Council, a winner of the Ernst & Young Entrepreneur of the Year Award, and a spot on the Washington Business Journal’s Women Who Mean Business list.",2026,,3+ years (implied by Senior title),"Python, SQL, Git",Collaboration
+At 3Pillar, our core values – Intrinsic Dignity, Outsized Impact, Open Collaboration, and Continuous Improvement – drive our commitment to providing best in class product development services to high growth businesses across the globe. We’ve spent more than fifteen years building innovative software solutions. Our executive team has always held our values to the highest standard which has led to active participation on the Forbes Tech Council, a winner of the Ernst & Young Entrepreneur of the Year Award, and a spot on the Washington Business Journal’s Women Who Mean Business list.",2026,Not Specified,3+ years (implied by Senior title),"Python, SQL, Git",Collaboration
 265,281,Software Engineer,Senior,"We build breakthrough software products that power digital businesses. We are an innovative product development partner whose solutions drive rapid revenue, market share, and customer growth for industry leaders in Software and SaaS, Media and Publishing, Information Services, and Retail. Our key differentiator is our Product Mindset. Our development teams focus on building for outcomes and all of our team members around the globe are trained on the Product Mindset’s core values – Minimize Time to Value, Solve For Need, and Excel at Change. Our teams apply this mindset to build digital products that are customer-facing and revenue-generating. Our business-minded approach to agile development ensures that we align to client goals from the earliest conceptual stages through market launch and beyond.
 
-In 2024, 3Pillar Global India was named as a “Great Place to Work” for the fifth year in a row based on how our employees feel about our company, collaborative culture, and work/life balance - come join our growing team",2026,,3+ years,"Python, SQL, Git, Java, Spring Boot, Microservices","Communication, Teamwork, Problem Solving"
+In 2024, 3Pillar Global India was named as a “Great Place to Work” for the fifth year in a row based on how our employees feel about our company, collaborative culture, and work/life balance - come join our growing team",2026,Not Specified,3+ years,"Python, SQL, Git, Java, Spring Boot, Microservices","Communication, Teamwork, Problem Solving"
 266,283,Software Engineer,Senior,"3PILLAR GLOBAL Company
 
 3Pillar is an AI transformation partner on a mission to help enterprises build the AI-native products and intelligent agents that will define the next era of business. With teams across North America, Europe, Latin America, and Asia, we work with the most ambitious companies in financial services, healthcare, media, and technology — helping them move faster, modernize boldly, and compete on their own terms. Our HelixAI platform and Helix Pods delivery model put our engineers at the center of real agentic transformation — doing work that is open, portable, and built to last. We are building the future of enterprise AI.
@@ -4372,7 +4372,7 @@ We work with clients to build incredible innovative products as their developmen
 
 WHAT WE BELIEVE
 
-At 3Pillar, our core values – Intrinsic Dignity, Outsized Impact, Open Collaboration, and Continuous Improvement – drive our commitment to providing best in class product development services to high growth businesses across the globe. We’ve spent more than fifteen years building innovative software solutions. Our executive team has always held our values to the highest standard which has led to active participation on the Forbes Tech Council, a winner of the Ernst & Young Entrepreneur of the Year Award, and a spot on the Washington Business Journal’s Women Who Mean Business list",2026,,3+ years,"Python, SQL, Git, AI",Collaboration
+At 3Pillar, our core values – Intrinsic Dignity, Outsized Impact, Open Collaboration, and Continuous Improvement – drive our commitment to providing best in class product development services to high growth businesses across the globe. We’ve spent more than fifteen years building innovative software solutions. Our executive team has always held our values to the highest standard which has led to active participation on the Forbes Tech Council, a winner of the Ernst & Young Entrepreneur of the Year Award, and a spot on the Washington Business Journal’s Women Who Mean Business list",2026,Not Specified,3+ years,"Python, SQL, Git, AI",Collaboration
 267,284,Software Engineer,Senior,"3Pillar is an AI transformation partner on a mission to help enterprises build the AI-native products and intelligent agents that will define the next era of business. With teams across North America, Europe, Latin America, and Asia, we work with the most ambitious companies in financial services, healthcare, media, and technology — helping them move faster, modernize boldly, and compete on their own terms. Our HelixAI platform and Helix Pods delivery model put our engineers at the center of real agentic transformation — doing work that is open, portable, and built to last. We are building the future of enterprise AI.
 
 SQL/Node/AWS Software Engineer (Backend development)
@@ -4381,7 +4381,7 @@ Accomplished Tech Visionary:
 
 Elevate your expertise to new heights at 3Pillar, the premier destination for trailblazing senior software engineers like yourself. Picture collaborating with industry leaders, spearheading transformative projects that redefine urban living, establishing new media channels for enterprise companies, or driving innovation in healthcare. Our mission is to revolutionize the tech landscape, and your skills are integral to achieving this ambitious goal.
 
-Your role extends beyond the realm of code composition; you will architect transformative solutions that reshape entire industries. Join us and spearhead the charge toward a tech future that transcends the ordinary.",2026,,3+ years,"AWS, SQL, Node","Communication, Teamwork, Problem Solving"
+Your role extends beyond the realm of code composition; you will architect transformative solutions that reshape entire industries. Join us and spearhead the charge toward a tech future that transcends the ordinary.",2026,Not Specified,3+ years,"AWS, SQL, Node","Communication, Teamwork, Problem Solving"
 269,286,Software Engineer,Junior,"Canonical is a leading provider of open source software and operating systems to the global enterprise and technology markets. Our platform, Ubuntu, is very widely used in breakthrough enterprise initiatives such as public cloud, data science, AI, engineering innovation and IoT. Our customers include the world's leading public cloud and silicon providers, and industry leaders in many sectors. The company is a pioneer of global distributed collaboration, with 1100+ colleagues in 75+ countries and very few office based roles. Teams meet two to four times yearly in person, in interesting locations around the world, to align on strategy and execution.
 
 The company is founder led, profitable and growing.
@@ -6524,7 +6524,7 @@ Canonical è un datore di lavoro che offre pari opportunità
 
 Siamo orgogliosi di promuovere un luogo di lavoro libero da discriminazioni. La diversità di esperienze, prospettive e background crea un ambiente di lavoro migliore e prodotti migliori. Qualunque sia la tua identità, daremo alla tua richiesta la giusta considerazione.
 
-#LI-remoto",2026,,0-2 years,Linux,"Communication, Teamwork, Problem Solving"
+#LI-remoto",2026,Not Specified,0-2 years,Linux,"Communication, Teamwork, Problem Solving"
 292,342,Software Developer,Senior,"Canonical is a leading provider of open source software and operating systems to the global enterprise and technology markets. Our platform, Ubuntu, is very widely used in breakthrough enterprise initiatives such as public cloud, data science, AI, engineering innovation and IoT. Our customers include the world's leading public cloud and silicon providers, and industry leaders in many sectors. The company is a pioneer of global distributed collaboration, with 1200+ colleagues in 75+ countries and very few office based roles. Teams meet two to four times yearly in person, in interesting locations around the world, to align on strategy and execution.
 
 The company is founder led, profitable and growing.
@@ -9405,7 +9405,7 @@ About Everbridge
 
 Everbridge empowers enterprises and government organizations to anticipate, mitigate, respond to and recover stronger from critical events. In today’s unpredictable world, resilient organizations minimize impact to people and operations, absorb stress, and return to productivity faster when deploying critical event management (CEM) technology. Everbridge digitizes organizational resilience by combining intelligent automation with the industry’s most comprehensive risk data to Keep People Safe and Organizations Running™. For more information, visit our website, read the company blog, and follow us on social media.
 
-Everbridge… Empowering Resilience.  Everbridge is an Equal Opportunity/Affirmative Action Employer. All qualified applicants will receive consideration for employment without regard to race, creed, colour, religion, sex (including sexual orientation and gender identity), national origin, disability, protected veteran status, or any other characteristic protected by applicable law",2026,,0-2 years,"Python, SQL, Git",Ownership
+Everbridge… Empowering Resilience.  Everbridge is an Equal Opportunity/Affirmative Action Employer. All qualified applicants will receive consideration for employment without regard to race, creed, colour, religion, sex (including sexual orientation and gender identity), national origin, disability, protected veteran status, or any other characteristic protected by applicable law",2026,Not Specified,0-2 years,"Python, SQL, Git",Ownership
 328,411,Software Engineer,Senior,"We are looking for a Senior Software Engineer who is passionate about building scalable, reliable, and cloud-native software systems. While this role is primarily focused on backend engineering, we are seeking engineers who are comfortable contributing across the stack when needed and are excited to leverage AI-powered development tools to accelerate delivery and innovation.
 
 You will play a key role in designing and developing backend services that power mission-critical applications while collaborating closely with frontend, product, QA, and platform engineering teams. We value engineers who can adapt quickly, learn continuously, and use modern AI-assisted development practices to improve productivity and software quality.
@@ -9467,7 +9467,7 @@ Even Better If You Have -
 
 - Computer Science, Engineering, or Math degree (or equivalent experience).
 
-- Strong product instincts - ability to define success metrics and contribute customer insights to product evolution.",2026,,5+ years,"Python, SQL, Git, APIs, LLMs, AI agents, CRM, ticketing, data pipelines, software integration",Ownership
+- Strong product instincts - ability to define success metrics and contribute customer insights to product evolution.",2026,Not Specified,5+ years,"Python, SQL, Git, APIs, LLMs, AI agents, CRM, ticketing, data pipelines, software integration",Ownership
 330,418,Software Engineer,Senior,"About Level AI
 
 Level AI is on a mission to turn every customer interaction into a strategic advantage. Our AI-native platform helps enterprises transform contact centers from cost centers into engines of customer intelligence, operational efficiency, and business growth. By combining advanced AI with deep domain understanding of customer experience, Level AI empowers teams to unlock actionable insights, automate workflows, and deliver more consistent, higher-quality support across the customer journey.
@@ -9504,7 +9504,7 @@ Funding : https://www.crunchbase.com/organization/level-ai
 
 LinkedIn : https://www.linkedin.com/company/level-ai/
 
-Our AI platform : https://www.youtube.com/watch?v=g06q2V_kb-s",2026,,5+ years,"Python, SQL, Git, Large Language Models, Small Language Models, distributed systems, cloud infrastructure, AI agents, real-time systems, high-volume enterprise environments",Collaboration
+Our AI platform : https://www.youtube.com/watch?v=g06q2V_kb-s",2026,Not Specified,5+ years,"Python, SQL, Git, Large Language Models, Small Language Models, distributed systems, cloud infrastructure, AI agents, real-time systems, high-volume enterprise environments",Collaboration
 331,419,Software Engineer,Senior,"About Level AI
 
 Level AI is a Series C conversational intelligence company headquartered in Mountain View, CA, backed by top-tier VCs and Silicon Valley operators. We help enterprise contact centers understand every customer conversation — using speech AI, NLP/NLU, and retrieval systems to turn millions of unstructured interactions into decisions businesses can act on.
@@ -9517,7 +9517,7 @@ This is a Principal role: you'll set technical direction for backend and ML infr
 
 You'll work alongside engineers from Amazon, Google, and Meta who chose to build here because the problems are unsolved and the ownership is real.
 
-Level AI is an equal opportunity employer. We hire and promote on merit and evaluate all applicants without regard to caste, religion, sex, gender identity, sexual orientation, marital or parental status, disability, or any other personal characteristic unrelated to the job. We maintain a zero-tolerance policy on harassment in line with the POSH Act, 2013. If you need any accommodation during the interview process, tell us — we'll arrange it.",2026,,3+ years,"Python, SQL, Git",Ownership
+Level AI is an equal opportunity employer. We hire and promote on merit and evaluate all applicants without regard to caste, religion, sex, gender identity, sexual orientation, marital or parental status, disability, or any other personal characteristic unrelated to the job. We maintain a zero-tolerance policy on harassment in line with the POSH Act, 2013. If you need any accommodation during the interview process, tell us — we'll arrange it.",2026,Not Specified,3+ years,"Python, SQL, Git",Ownership
 332,425,Software Engineer,Senior,"Level AI was founded in 2019 and is a Series C startup headquartered in Mountain View, California. Level AI revolutionizes customer engagement by transforming contact centers into strategic assets. Our AI-native platform leverages advanced technologies such as Large Language Models to extract deep insights from customer interactions. By providing actionable intelligence, Level AI empowers organizations to enhance customer experience and drive growth. Consistently updated with the latest AI innovations, Level AI stands as the most adaptive and forward-thinking solution in the industry.
 
 Empowering contact center stakeholders with real-time insights, our tech facilitates data-driven decision-making for contact centers, enhancing service levels and agent performance. As a vital team member, your work will be cutting-edge technologies and will play a high-impact role in shaping the future of AI-driven enterprise applications. You will directly work with people who've worked at Amazon, Facebook, Google, and other technology companies in the world. With Level AI, you will get to have fun, learn new things, and grow along with us. Ready to redefine possibilities? Join us!
@@ -9788,7 +9788,7 @@ Xsolla takes your privacy seriously and will not sell or externally distribute a
 
 For any inquiries related to data privacy, please contact: careers@xsolla.com
 
-Explore more opportunities at: https://xsolla.com/careers",2026,,3+ years,"Python, SQL, Git, coding, SDKs, APIs",Communication
+Explore more opportunities at: https://xsolla.com/careers",2026,Not Specified,3+ years,"Python, SQL, Git, coding, SDKs, APIs",Communication
 341,441,Software Engineer,Senior,"ABOUT YOU
 
 We are seeking a highly analytical and hands-on Senior FinOps Engineer to lead and mature our cloud and infrastructure financial management capabilities across GCP, AWS, and on-prem environments. As part of our talented infrastructure team, you will drive cost transparency, optimize cloud spend at scale, and partner with engineering, product, and finance teams to ensure that Xsolla’s global infrastructure is efficient, predictable, and aligned with business priorities.
@@ -9887,7 +9887,7 @@ Accessing confidential company data
 
 Ensuring compliance with regulatory requirements
 
-Handling sensitive financial information/ managing budgets /accessing funds",2026,,0-2 years,"Python, SQL, Git",Collaboration
+Handling sensitive financial information/ managing budgets /accessing funds",2026,Not Specified,0-2 years,"Python, SQL, Git",Collaboration
 344,446,Software Engineer,Junior,"ABOUT YOU
 
 We are looking for a Full-Stack Engineer who is curious, detail-oriented, and collaborative to join our Engineering team. The best candidate will be someone who enjoys working in a fast-paced, team-oriented environment and is eager to contribute to end-to-end solutions, learn scalable architecture patterns, and help improve performance and reliability across both frontend and backend systems.
@@ -10058,7 +10058,7 @@ Handling sensitive financial information/managing budgets/accessing funds
 
 Rights Under the Fair Chance Act:
 
-Applicants are encouraged to inquire about their rights under the Fair Chance Act. If you have questions regarding our hiring practices, please contact careers@xsolla.com.",2026,,3+ years,"Python, SQL, Git, Go",Collaboration
+Applicants are encouraged to inquire about their rights under the Fair Chance Act. If you have questions regarding our hiring practices, please contact careers@xsolla.com.",2026,Not Specified,3+ years,"Python, SQL, Git, Go",Collaboration
 350,457,Software Engineer,Senior,"ABOUT YOU
 
 We are looking for a Principal Engineer to take architectural ownership of the agent-readable Shop Builder platform. This is the most senior individual contributor role on the DevX and AI team, and the decisions you make here — which surfaces to expose, which formats to support, which standards to set — will bind the platform for years.
@@ -10103,7 +10103,7 @@ Handling sensitive financial information/managing budgets/accessing funds
 
 Rights Under the Fair Chance Act:
 
-Applicants are encouraged to inquire about their rights under the Fair Chance Act. If you have questions regarding our hiring practices, please contact careers@xsolla.com.",2026,,3+ years,"Python, SQL, Git","Collaboration, Ownership"
+Applicants are encouraged to inquire about their rights under the Fair Chance Act. If you have questions regarding our hiring practices, please contact careers@xsolla.com.",2026,Not Specified,3+ years,"Python, SQL, Git","Collaboration, Ownership"
 351,459,Software Developer,Senior,"ABOUT YOU
 
 Xsolla is looking for a Senior Frontend Software Developer to join a team responsible for building the platform powering all user-facing experiences. This role offers a unique opportunity to collaborate with both local and international teams, focusing on user-centric software that elevates the digital experience for Xsolla’s global audience. In this role you will have the opportunity to contribute in building high-performance frontend solutions used by game developers worldwide. This position requires strong frontend and e-commerce experience, the ability to work on complex technical initiatives, and the capability to support predictable, reliable delivery.
@@ -10130,7 +10130,7 @@ The background check is relevant to this position because of the following role 
 
 Rights Under the Fair Chance Act:
 
-Applicants are encouraged to inquire about their rights under the Fair Chance Act. If you have questions regarding our hiring practices, please contact careers@xsolla.com.By submitting the following job application form, you consent to Xsolla processing your data for career-related inquiries and potential employment opportunities. We process your data in accordance with this Xsolla Privacy Notice for Job Applicants. Please direct any inquiries regarding your data privacy to careers@xsolla.com.",2026,,3+ years,"Python, SQL, Git, frontend",Collaboration
+Applicants are encouraged to inquire about their rights under the Fair Chance Act. If you have questions regarding our hiring practices, please contact careers@xsolla.com.By submitting the following job application form, you consent to Xsolla processing your data for career-related inquiries and potential employment opportunities. We process your data in accordance with this Xsolla Privacy Notice for Job Applicants. Please direct any inquiries regarding your data privacy to careers@xsolla.com.",2026,Not Specified,3+ years,"Python, SQL, Git, frontend",Collaboration
 352,460,Software Engineer,Senior,"ABOUT YOU
 
 We are looking for a Senior Frontend Software Engineer who is innovative, detail-oriented, and highly collaborative to join our Engineering team. The ideal candidate is someone who thrives in a fast-paced, exceptionally dynamic setting and is passionate about building high-performance, scalable user interfaces that power the global video game commerce ecosystem.
@@ -10200,7 +10200,7 @@ Handling sensitive financial information/ managing budgets /accessing funds
 
 Rights Under the Fair Chance Act:
 
-Applicants are encouraged to inquire about their rights under the Fair Chance Act. If you have questions regarding our hiring practices, please contact careers@xsolla.com",2026,,4+ years,"CI/CD, React, React Native, iOS, Android, Clean Architecture, Mentoring","Collaboration, Mentoring"
+Applicants are encouraged to inquire about their rights under the Fair Chance Act. If you have questions regarding our hiring practices, please contact careers@xsolla.com",2026,Not Specified,4+ years,"CI/CD, React, React Native, iOS, Android, Clean Architecture, Mentoring","Collaboration, Mentoring"
 354,467,Software Engineer,Senior,"ABOUT YOU
 
 We’re looking for a Senior Software Engineer to join Xsolla and help build and scale the technology that powers global gaming commerce. In this role, you’ll work on high-impact projects with some of the world’s leading gaming companies, developing services that support payments, integrations, and seamless player experiences across millions of users.
@@ -10303,7 +10303,7 @@ Ensuring compliance with regulatory requirements
 
 Rights Under the Fair Chance Act:
 
-Applicants are encouraged to inquire about their rights under the Fair Chance Act. If you have questions regarding our hiring practices, please contact careers@xsolla.com.",2026,,3+ years,"Python, SQL, Git",Collaboration
+Applicants are encouraged to inquire about their rights under the Fair Chance Act. If you have questions regarding our hiring practices, please contact careers@xsolla.com.",2026,Not Specified,3+ years,"Python, SQL, Git",Collaboration
 358,471,Software Developer,Senior,"ABOUT YOU
 
 We are looking for a strategic and hands-on Software Development Director to lead our global software engineering function. You will drive the execution of high-impact technical initiatives and oversee multiple development teams delivering scalable, secure, and innovative products that serve millions of users worldwide.
@@ -10348,7 +10348,7 @@ Rights Under the Fair Chance Act:
 
 Applicants are encouraged to inquire about their rights under the Fair Chance Act. If you have questions regarding our hiring practices, please contact careers@xsolla.com.
 
-By submitting the following job application form, you consent to Xsolla processing your data for career-related inquiries and potential employment opportunities. We process your data in accordance with this Xsolla Privacy Notice for Job Applicants. Please direct any inquiries regarding your data privacy to careers@xsolla.com.",2026,,3+ years,"Python, SQL, Git",Collaboration
+By submitting the following job application form, you consent to Xsolla processing your data for career-related inquiries and potential employment opportunities. We process your data in accordance with this Xsolla Privacy Notice for Job Applicants. Please direct any inquiries regarding your data privacy to careers@xsolla.com.",2026,Not Specified,3+ years,"Python, SQL, Git",Collaboration
 359,472,Software Developer,Senior,"About the job
 
 About Us
@@ -10582,7 +10582,7 @@ Experience: 11+ yrs
 
 Location: Bangalore
 
-Job Type: Full-Time",2026,,11+ years,"Python, SQL, Git","Communication, Teamwork, Problem Solving"
+Job Type: Full-Time",2026,Not Specified,11+ years,"Python, SQL, Git","Communication, Teamwork, Problem Solving"
 372,495,Software Engineer,Senior,"This role is for one of our clients
 
 Location: San Francisco (On-site)
@@ -10648,7 +10648,7 @@ Experience: 3+ yrs
 
 Location: Bengaluru
 
-Job Type: Full-time",2026,,3+ years,"Python, SQL, Git","Communication, Teamwork, Problem Solving"
+Job Type: Full-time",2026,Not Specified,3+ years,"Python, SQL, Git","Communication, Teamwork, Problem Solving"
 374,497,Software Engineer,Senior,"This role is for one of our clients
 
 Company Name: Aerospike
@@ -10661,7 +10661,7 @@ Min Experience: 6+ years
 
 Location: Bengaluru
 
-JobType: full-time",2026,,6+ years,"Python, SQL, Git","Communication, Teamwork, Problem Solving"
+JobType: full-time",2026,Not Specified,6+ years,"Python, SQL, Git","Communication, Teamwork, Problem Solving"
 375,500,Software Developer,Senior,"About us
 
 HighLevel is an AI-powered business operating system that gives agencies, entrepreneurs and SMBs the infrastructure to build, automate and scale. Today, HighLevel supports SMBs across 150+ countries, fueling community-driven growth rooted in real customer outcomes.
@@ -11087,7 +11087,7 @@ Why Apply Through Jobgether?
 
 Data Privacy Notice: By submitting your application, you acknowledge that Jobgether will process your personal data to evaluate your candidacy and share relevant information with the hiring employer. This processing is based on legitimate interest and pre-contractual measures under applicable data protection laws (including GDPR). You may exercise your rights (access, rectification, erasure, objection) at any time.
 
-#LI-CL1",2026,,3+ years,"Python, SQL, Git","Collaboration, Ownership"
+#LI-CL1",2026,Not Specified,3+ years,"Python, SQL, Git","Collaboration, Ownership"
 390,530,Software Engineer,Senior,"This position is listed on behalf of a partner company, who manages all applications and next steps. Our partner is looking for an Experienced Software Engineer based in India.
 
 This is an opportunity for an experienced software engineer to contribute to products used by millions of people worldwide.
@@ -11114,7 +11114,7 @@ Why Apply Through Jobgether?
 
 Data Privacy Notice: By submitting your application, you acknowledge that Jobgether will process your personal data to evaluate your candidacy and share relevant information with the hiring employer. This processing is based on legitimate interest and pre-contractual measures under applicable data protection laws (including GDPR). You may exercise your rights (access, rectification, erasure, objection) at any time.
 
-#LI-CL1",2026,,3+ years,"Python, SQL, Git","Collaboration, Ownership"
+#LI-CL1",2026,Not Specified,3+ years,"Python, SQL, Git","Collaboration, Ownership"
 391,531,Software Engineer,Junior,"This position is listed on behalf of a partner company, who manages all applications and next steps. Our partner is looking for a Product Engineer (Full Stack) based in Netherlands.
 
 As a Product Engineer (Full Stack), you’ll play a central role in building a customer-facing B2B SaaS product at the intersection of generative AI and cybersecurity.
@@ -11141,7 +11141,7 @@ Why Apply Through Jobgether?
 
 Data Privacy Notice: By submitting your application, you acknowledge that Jobgether will process your personal data to evaluate your candidacy and share relevant information with the hiring employer. This processing is based on legitimate interest and pre-contractual measures under applicable data protection laws (including GDPR). You may exercise your rights (access, rectification, erasure, objection) at any time.
 
-#LI-CL1",2026,,0-2 years,"React, APIs, databases",Ownership
+#LI-CL1",2026,Not Specified,0-2 years,"React, APIs, databases",Ownership
 392,538,Software Engineer,Senior,"This position is listed on behalf of a partner company, who manages all applications and next steps. Our partner is looking for a Staff Software Engineer - Data based in Romania.
 
 This is a high-impact engineering role focused on the foundations of a large-scale, multi-chain data platform.
@@ -11168,7 +11168,7 @@ Why Apply Through Jobgether?
 
 Data Privacy Notice: By submitting your application, you acknowledge that Jobgether will process your personal data to evaluate your candidacy and share relevant information with the hiring employer. This processing is based on legitimate interest and pre-contractual measures under applicable data protection laws (including GDPR). You may exercise your rights (access, rectification, erasure, objection) at any time.
 
-#LI-CL1",2026,,0-2,"Go, Python, Rust",Ownership
+#LI-CL1",2026,Not Specified,0-2,"Go, Python, Rust",Ownership
 393,539,Software Engineer,Junior,"This position is listed on behalf of a partner company, who manages all applications and next steps. Our partner is looking for a Ubuntu Security Engineer based in Mexico.
 
 Join a globally distributed security engineering team dedicated to protecting users and strengthening the security of open source software.
@@ -11195,7 +11195,7 @@ Why Apply Through Jobgether?
 
 Data Privacy Notice: By submitting your application, you acknowledge that Jobgether will process your personal data to evaluate your candidacy and share relevant information with the hiring employer. This processing is based on legitimate interest and pre-contractual measures under applicable data protection laws (including GDPR). You may exercise your rights (access, rectification, erasure, objection) at any time.
 
-#LI-CL1",2026,,0-2 years,Linux,"Communication, Teamwork, Problem Solving"
+#LI-CL1",2026,Not Specified,0-2 years,Linux,"Communication, Teamwork, Problem Solving"
 394,540,Software Engineer,Senior,"About HighLevel:
 
 HighLevel is an AI-powered business operating system that gives agencies, entrepreneurs and SMBs the infrastructure to build, automate and scale. Today, HighLevel supports SMBs across 150+ countries, fueling community-driven growth rooted in real customer outcomes.
@@ -11517,7 +11517,7 @@ Fully remote with flexible work hours
 
 -
 
-Professional development budget for courses, conferences, and certifications",2026,,4+ years,"AWS, Azure, Docker, GCP, Kafka, Kubernetes, Microservices, Node.js, PostgreSQL, Python, REST, RabbitMQ, Redis, SQL, REST APIs, Prisma, ORM, JWT, CloudWatch","Communication, Teamwork, Problem Solving"
+Professional development budget for courses, conferences, and certifications",2026,Not Specified,4+ years,"AWS, Azure, Docker, GCP, Kafka, Kubernetes, Microservices, Node.js, PostgreSQL, Python, REST, RabbitMQ, Redis, SQL, REST APIs, Prisma, ORM, JWT, CloudWatch","Communication, Teamwork, Problem Solving"
 404,550,Software Developer,Senior,"Who We Are:
 
 Interra Health is a fast-growing healthcare technology company transforming how providers and patients navigate the prescription journey. Formed through the merger of DoseSpot, Arrive Health, and pVerify, Interra Health delivers trusted eligibility, real-time coverage and pricing insights, prescribing tools, and pharmacy transparency at the point of care—helping providers make informed decisions and patients access the right medications with greater clarity and affordability. Backed by strong market momentum and a bold vision for the future of connected care, Interra Health offers the chance to join an innovative, mission-driven team working at the intersection of software and healthcare to reduce friction, improve access, and make the healthcare experience better for everyone.
@@ -12143,7 +12143,7 @@ Inclusion Statement: We're building products for a diverse world, and we need a 
 
 Accessibility Statement: We're committed to an accessible hiring experience. If you need any accommodations throughout the interview process, please let us know — we'll work with you to make sure you have what you need. We also welcome any feedback on how we can better accommodate candidates with accessibility needs.
 
-AI in Hiring: We may use artificial intelligence (AI) tools to support parts of our hiring process, such as reviewing applications, analyzing resumes, or assessing responses. These tools assist our team but don't replace human judgment – all final hiring decisions are made by people. If you have questions about how your data is used, reach out to us.",2026,,3+ years,"AWS, Java, MongoDB, Node.js, Python, AI, LLM integrations, scraping, APIs",Communication
+AI in Hiring: We may use artificial intelligence (AI) tools to support parts of our hiring process, such as reviewing applications, analyzing resumes, or assessing responses. These tools assist our team but don't replace human judgment – all final hiring decisions are made by people. If you have questions about how your data is used, reach out to us.",2026,Not Specified,3+ years,"AWS, Java, MongoDB, Node.js, Python, AI, LLM integrations, scraping, APIs",Communication
 408,554,Software Developer,Senior,"Build something people love
 
 Wealthsimple is Canada’s leading financial innovator. The company offers a full suite of simple, sophisticated financial products across managed investing, do-it-yourself trading, cryptocurrency, tax filing, spending and saving. Wealthsimple currently serves more than 4 million Canadians and holds over $155 billion in assets under administration. The company was founded in 2014 by a team of financial experts and technology entrepreneurs, and is headquartered in Toronto, Canada.
@@ -12260,7 +12260,7 @@ Inclusion Statement: We're building products for a diverse world, and we need a 
 
 Accessibility Statement: We're committed to an accessible hiring experience. If you need any accommodations throughout the interview process, please let us know — we'll work with you to make sure you have what you need. We also welcome any feedback on how we can better accommodate candidates with accessibility needs.
 
-AI in Hiring: We may use artificial intelligence (AI) tools to support parts of our hiring process, such as reviewing applications, analyzing resumes, or assessing responses. These tools assist our team but don't replace human judgment – all final hiring decisions are made by people. If you have questions about how your data is used, reach out to us.",2026,,3+ years,"Kubernetes, AI, LLM integrations, scraping, APIs","Communication, Leadership"
+AI in Hiring: We may use artificial intelligence (AI) tools to support parts of our hiring process, such as reviewing applications, analyzing resumes, or assessing responses. These tools assist our team but don't replace human judgment – all final hiring decisions are made by people. If you have questions about how your data is used, reach out to us.",2026,Not Specified,3+ years,"Kubernetes, AI, LLM integrations, scraping, APIs","Communication, Leadership"
 409,555,Software Developer,Senior,"Build something people love
 
 Wealthsimple is Canada’s leading financial innovator. The company offers a full suite of simple, sophisticated financial products across managed investing, do-it-yourself trading, cryptocurrency, tax filing, spending and saving. Wealthsimple currently serves more than 4 million Canadians and holds over $155 billion in assets under administration. The company was founded in 2014 by a team of financial experts and technology entrepreneurs, and is headquartered in Toronto, Canada.
@@ -12571,7 +12571,7 @@ Inclusion Statement: We're building products for a diverse world, and we need a 
 
 Accessibility Statement: We're committed to an accessible hiring experience. If you need any accommodations throughout the interview process, please let us know — we'll work with you to make sure you have what you need. We also welcome any feedback on how we can better accommodate candidates with accessibility needs.
 
-AI in Hiring: We may use artificial intelligence (AI) tools to support parts of our hiring process, such as reviewing applications, analyzing resumes, or assessing responses. These tools assist our team but don't replace human judgment – all final hiring decisions are made by people. If you have questions about how your data is used, reach out to us.",2026,,3+ years,"AWS, FastAPI, Kafka, Kubernetes, Python, Terraform, cloud, GPU, LLM, infrastructure, model-routing, benchmarking, evaluation","Communication, Teamwork, Problem Solving"
+AI in Hiring: We may use artificial intelligence (AI) tools to support parts of our hiring process, such as reviewing applications, analyzing resumes, or assessing responses. These tools assist our team but don't replace human judgment – all final hiring decisions are made by people. If you have questions about how your data is used, reach out to us.",2026,Not Specified,3+ years,"AWS, FastAPI, Kafka, Kubernetes, Python, Terraform, cloud, GPU, LLM, infrastructure, model-routing, benchmarking, evaluation","Communication, Teamwork, Problem Solving"
 412,558,Software Developer,Senior,"Build something people love
 
 Wealthsimple is Canada’s leading financial innovator. The company offers a full suite of simple, sophisticated financial products across managed investing, do-it-yourself trading, cryptocurrency, tax filing, spending and saving. Wealthsimple currently serves more than 4 million Canadians and holds over $155 billion in assets under administration. The company was founded in 2014 by a team of financial experts and technology entrepreneurs, and is headquartered in Toronto, Canada.
@@ -12851,7 +12851,7 @@ Inclusion Statement: We're building products for a diverse world, and we need a 
 
 Accessibility Statement: We're committed to an accessible hiring experience. If you need any accommodations throughout the interview process, please let us know — we'll work with you to make sure you have what you need. We also welcome any feedback on how we can better accommodate candidates with accessibility needs.
 
-AI in Hiring: We may use artificial intelligence (AI) tools to support parts of our hiring process, such as reviewing applications, analyzing resumes, or assessing responses. These tools assist our team but don't replace human judgment – all final hiring decisions are made by people. If you have questions about how your data is used, reach out to us.",2026,,3+ years (Senior level),"Python, React, jQuery, Backbone","Communication, Mentoring, Ownership, Teamwork"
+AI in Hiring: We may use artificial intelligence (AI) tools to support parts of our hiring process, such as reviewing applications, analyzing resumes, or assessing responses. These tools assist our team but don't replace human judgment – all final hiring decisions are made by people. If you have questions about how your data is used, reach out to us.",2026,Not Specified,3+ years (Senior level),"Python, React, jQuery, Backbone","Communication, Mentoring, Ownership, Teamwork"
 414,560,Software Developer,Senior,"Build something people love
 
 Wealthsimple is Canada’s leading financial innovator. The company offers a full suite of simple, sophisticated financial products across managed investing, do-it-yourself trading, cryptocurrency, tax filing, spending and saving. Wealthsimple currently serves more than 4 million Canadians and holds over $155 billion in assets under administration. The company was founded in 2014 by a team of financial experts and technology entrepreneurs, and is headquartered in Toronto, Canada.
@@ -13244,7 +13244,7 @@ Inclusion Statement: We're building products for a diverse world, and we need a 
 
 Accessibility Statement: We're committed to an accessible hiring experience. If you need any accommodations throughout the interview process, please let us know — we'll work with you to make sure you have what you need. We also welcome any feedback on how we can better accommodate candidates with accessibility needs.
 
-AI in Hiring: We may use artificial intelligence (AI) tools to support parts of our hiring process, such as reviewing applications, analyzing resumes, or assessing responses. These tools assist our team but don't replace human judgment – all final hiring decisions are made by people. If you have questions about how your data is used, reach out to us.",2026,,Senior role (no explicit years stated),"AWS, Java, Kubernetes, React","Communication, Mentoring"
+AI in Hiring: We may use artificial intelligence (AI) tools to support parts of our hiring process, such as reviewing applications, analyzing resumes, or assessing responses. These tools assist our team but don't replace human judgment – all final hiring decisions are made by people. If you have questions about how your data is used, reach out to us.",2026,Not Specified,Senior role (no explicit years stated),"AWS, Java, Kubernetes, React","Communication, Mentoring"
 417,563,Software Developer,Junior,"Reaktor's award-winning tech community is looking for full-stack developers to join us in Helsinki.
 
 If you are in your element with a full software development cycle, have a passion for solving human problems with a holistic approach, and are curious to experience working in a low-hierarchy environment, you might just be what we're looking for.
@@ -14226,4 +14226,4 @@ Why Apply Through Jobgether?
 
 Data Privacy Notice: By submitting your application, you acknowledge that Jobgether will process your personal data to evaluate your candidacy and share relevant information with the hiring employer. This processing is based on legitimate interest and pre-contractual measures under applicable data protection laws (including GDPR). You may exercise your rights (access, rectification, erasure, objection) at any time.
 
-#LI-CL1",2026,,0-2 years,"Python, SQL, Git","Communication, Teamwork, Problem Solving"
+#LI-CL1",2026,Not Specified,0-2 years,"Python, SQL, Git","Communication, Teamwork, Problem Solving"
