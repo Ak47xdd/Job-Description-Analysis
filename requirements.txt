@@ -108,7 +108,7 @@ pydantic-settings==2.14.2
 pydantic_core==2.46.0
 pyfiglet==1.0.2
 Pygments==2.20.0
-PyJWT==2.10.1
+PyJWT==2.13.0
 pyperclip==1.11.0
 pyproject_hooks==1.2.0
 pytest==9.1.1
