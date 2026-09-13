@@ -5,6 +5,6 @@
   "hidden_dim": 64,
   "dropout": 0.3,
   "batch_size": 32,
-  "epochs": 100,
-  "best_test_loss": 0.534223815762853
+  "epochs": 130,
+  "best_test_loss": 0.5308522129633341
 }
