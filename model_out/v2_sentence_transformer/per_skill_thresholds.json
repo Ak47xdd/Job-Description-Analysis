@@ -11,14 +11,14 @@
       "precision_at_threshold": 0.0
     },
     "agents": {
-      "threshold": 0.62452722,
-      "best_f1": 0.57894737,
-      "precision_at_threshold": 0.42307692
+      "threshold": 0.66988766,
+      "best_f1": 0.61111111,
+      "precision_at_threshold": 0.45833333
     },
     "ai": {
       "threshold": 0.25,
-      "best_f1": 0.23076923,
-      "precision_at_threshold": 0.13636364
+      "best_f1": 0.22222222,
+      "precision_at_threshold": 0.13043478
     },
     "android": {
       "threshold": 0.25,
@@ -26,9 +26,14 @@
       "precision_at_threshold": 0.0
     },
     "apis": {
-      "threshold": 0.46460125,
+      "threshold": 0.45629233,
       "best_f1": 0.71052632,
       "precision_at_threshold": 0.55102041
+    },
+    "authorization": {
+      "threshold": 0.25,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0
     },
     "autogen": {
       "threshold": 0.25,
@@ -41,14 +46,14 @@
       "precision_at_threshold": 0.0
     },
     "aws": {
-      "threshold": 0.42376089,
+      "threshold": 0.45017782,
       "best_f1": 0.58333333,
       "precision_at_threshold": 0.53846154
     },
     "aws/azure": {
-      "threshold": 0.61603487,
-      "best_f1": 0.80701754,
-      "precision_at_threshold": 0.71875
+      "threshold": 0.66321504,
+      "best_f1": 0.8,
+      "precision_at_threshold": 0.73333333
     },
     "azure": {
       "threshold": 0.25,
@@ -61,38 +66,58 @@
       "precision_at_threshold": 0.0
     },
     "c": {
-      "threshold": 0.3983278,
-      "best_f1": 0.5,
-      "precision_at_threshold": 0.33333333
+      "threshold": 0.46662277,
+      "best_f1": 0.66666667,
+      "precision_at_threshold": 0.5
     },
     "c#": {
-      "threshold": 0.37932375,
+      "threshold": 0.42785478,
       "best_f1": 0.4,
       "precision_at_threshold": 1.0
     },
     "c++": {
-      "threshold": 0.75454026,
-      "best_f1": 0.57142857,
-      "precision_at_threshold": 0.5
+      "threshold": 0.80706602,
+      "best_f1": 0.66666667,
+      "precision_at_threshold": 0.66666667
+    },
+    "ceph": {
+      "threshold": 0.25,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0
     },
     "ci/cd": {
-      "threshold": 0.79862124,
-      "best_f1": 0.54545455,
-      "precision_at_threshold": 1.0
-    },
-    "cloud": {
-      "threshold": 0.65505755,
+      "threshold": 0.75056994,
       "best_f1": 0.5,
       "precision_at_threshold": 0.5
     },
+    "cloud": {
+      "threshold": 0.63658702,
+      "best_f1": 0.5,
+      "precision_at_threshold": 0.5
+    },
+    "cloud-native": {
+      "threshold": 0.25,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0
+    },
+    "containers": {
+      "threshold": 0.25,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0
+    },
     "crewai": {
-      "threshold": 0.54312098,
-      "best_f1": 0.46153846,
+      "threshold": 0.61284888,
+      "best_f1": 0.375,
       "precision_at_threshold": 0.3
     },
     "css": {
-      "threshold": 0.34008107,
-      "best_f1": 0.66666667,
+      "threshold": 0.25,
+      "best_f1": 0.18181818,
+      "precision_at_threshold": 0.11111111
+    },
+    "data science": {
+      "threshold": 0.34150937,
+      "best_f1": 1.0,
       "precision_at_threshold": 1.0
     },
     "distributed systems": {
@@ -102,63 +127,88 @@
     },
     "django": {
       "threshold": 0.25,
-      "best_f1": 0.14285714,
-      "precision_at_threshold": 0.09090909
+      "best_f1": 0.18181818,
+      "precision_at_threshold": 0.125
     },
     "docker": {
-      "threshold": 0.76427013,
-      "best_f1": 0.60869565,
-      "precision_at_threshold": 0.7
+      "threshold": 0.69855356,
+      "best_f1": 0.59259259,
+      "precision_at_threshold": 0.57142857
+    },
+    "feature engineering": {
+      "threshold": 0.25,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0
+    },
+    "full stack": {
+      "threshold": 0.25,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0
     },
     "gcp": {
-      "threshold": 0.45864314,
-      "best_f1": 0.4,
-      "precision_at_threshold": 1.0
+      "threshold": 0.48865622,
+      "best_f1": 0.33333333,
+      "precision_at_threshold": 0.5
     },
     "genai": {
-      "threshold": 0.63288468,
+      "threshold": 0.63973594,
       "best_f1": 0.58333333,
       "precision_at_threshold": 0.4375
     },
     "git": {
-      "threshold": 0.47279084,
-      "best_f1": 0.58064516,
-      "precision_at_threshold": 0.46153846
+      "threshold": 0.46772048,
+      "best_f1": 0.57627119,
+      "precision_at_threshold": 0.47222222
     },
     "github": {
-      "threshold": 0.68357778,
-      "best_f1": 0.70967742,
-      "precision_at_threshold": 0.6875
+      "threshold": 0.65075034,
+      "best_f1": 0.68571429,
+      "precision_at_threshold": 0.6
     },
     "go": {
-      "threshold": 0.72379017,
-      "best_f1": 0.58823529,
-      "precision_at_threshold": 0.5
+      "threshold": 0.79279602,
+      "best_f1": 0.61538462,
+      "precision_at_threshold": 0.66666667
     },
     "golang": {
       "threshold": 0.25,
       "best_f1": 0.0,
       "precision_at_threshold": 0.0
     },
+    "html": {
+      "threshold": 0.25,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0
+    },
     "hugging face": {
       "threshold": 0.25,
-      "best_f1": 0.08,
-      "precision_at_threshold": 0.04545455
+      "best_f1": 0.08333333,
+      "precision_at_threshold": 0.04761905
+    },
+    "infrastructure as code": {
+      "threshold": 0.25,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0
+    },
+    "ios": {
+      "threshold": 0.25,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0
     },
     "iot": {
-      "threshold": 0.59950554,
-      "best_f1": 0.8,
-      "precision_at_threshold": 0.66666667
-    },
-    "java": {
-      "threshold": 0.76899529,
-      "best_f1": 0.25,
+      "threshold": 0.647439,
+      "best_f1": 1.0,
       "precision_at_threshold": 1.0
     },
+    "java": {
+      "threshold": 0.5965482,
+      "best_f1": 0.30769231,
+      "precision_at_threshold": 0.33333333
+    },
     "javascript": {
-      "threshold": 0.66767001,
-      "best_f1": 0.66666667,
-      "precision_at_threshold": 0.7
+      "threshold": 0.61523485,
+      "best_f1": 0.60869565,
+      "precision_at_threshold": 0.58333333
     },
     "kafka": {
       "threshold": 0.25,
@@ -171,47 +221,57 @@
       "precision_at_threshold": 0.0
     },
     "kubernetes": {
-      "threshold": 0.71504521,
-      "best_f1": 0.69565217,
-      "precision_at_threshold": 0.8
+      "threshold": 0.6784724,
+      "best_f1": 0.64,
+      "precision_at_threshold": 0.66666667
     },
     "langchain": {
-      "threshold": 0.55942565,
-      "best_f1": 0.75862069,
-      "precision_at_threshold": 0.64705882
+      "threshold": 0.65535623,
+      "best_f1": 0.75471698,
+      "precision_at_threshold": 0.68965517
     },
     "langgraph": {
-      "threshold": 0.70798141,
-      "best_f1": 0.73913043,
-      "precision_at_threshold": 0.62962963
+      "threshold": 0.68397695,
+      "best_f1": 0.70833333,
+      "precision_at_threshold": 0.5862069
     },
     "linux": {
-      "threshold": 0.82950532,
+      "threshold": 0.90794396,
       "best_f1": 0.93333333,
       "precision_at_threshold": 0.875
     },
     "llamaindex": {
-      "threshold": 0.66555369,
-      "best_f1": 0.33333333,
+      "threshold": 0.71060866,
+      "best_f1": 0.22222222,
       "precision_at_threshold": 0.33333333
     },
+    "llm integrations": {
+      "threshold": 0.25,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0
+    },
     "llms": {
-      "threshold": 0.66319603,
+      "threshold": 0.6760391,
       "best_f1": 0.82352941,
       "precision_at_threshold": 0.77777778
     },
+    "maas": {
+      "threshold": 0.25,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0
+    },
     "mcp": {
-      "threshold": 0.75590658,
-      "best_f1": 0.33333333,
-      "precision_at_threshold": 0.5
+      "threshold": 0.58279508,
+      "best_f1": 0.47058824,
+      "precision_at_threshold": 0.30769231
     },
     "microservices": {
-      "threshold": 0.83331823,
+      "threshold": 0.8039856,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0
     },
     "ml": {
-      "threshold": 0.60641134,
+      "threshold": 0.5986951,
       "best_f1": 0.76923077,
       "precision_at_threshold": 0.67567568
     },
@@ -221,19 +281,34 @@
       "precision_at_threshold": 0.0
     },
     "mlops": {
-      "threshold": 0.77850348,
-      "best_f1": 0.55555556,
-      "precision_at_threshold": 0.625
+      "threshold": 0.73594707,
+      "best_f1": 0.52631579,
+      "precision_at_threshold": 0.55555556
+    },
+    "model training": {
+      "threshold": 0.25,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0
+    },
+    "mongodb": {
+      "threshold": 0.25,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0
+    },
+    "mysql": {
+      "threshold": 0.25,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0
     },
     "n8n": {
       "threshold": 0.25,
-      "best_f1": 0.10810811,
-      "precision_at_threshold": 0.05714286
+      "best_f1": 0.10526316,
+      "precision_at_threshold": 0.05555556
     },
     "nlp": {
-      "threshold": 0.59217328,
-      "best_f1": 0.4375,
-      "precision_at_threshold": 0.30434783
+      "threshold": 0.79547405,
+      "best_f1": 0.28571429,
+      "precision_at_threshold": 0.4
     },
     "node.js": {
       "threshold": 0.25,
@@ -241,89 +316,119 @@
       "precision_at_threshold": 0.0
     },
     "numpy": {
-      "threshold": 0.67762196,
-      "best_f1": 0.72727273,
-      "precision_at_threshold": 0.8
+      "threshold": 0.67547351,
+      "best_f1": 0.66666667,
+      "precision_at_threshold": 0.66666667
     },
     "open source": {
-      "threshold": 0.48972973,
+      "threshold": 0.53951114,
       "best_f1": 0.8,
       "precision_at_threshold": 1.0
     },
     "openai": {
-      "threshold": 0.73551136,
-      "best_f1": 0.52631579,
-      "precision_at_threshold": 0.45454545
+      "threshold": 0.76037616,
+      "best_f1": 0.53333333,
+      "precision_at_threshold": 0.57142857
     },
     "openstack": {
-      "threshold": 0.57378352,
+      "threshold": 0.60759258,
       "best_f1": 0.66666667,
       "precision_at_threshold": 1.0
     },
     "pandas": {
-      "threshold": 0.5608713,
-      "best_f1": 0.63157895,
-      "precision_at_threshold": 0.6
+      "threshold": 0.67402792,
+      "best_f1": 0.625,
+      "precision_at_threshold": 0.71428571
+    },
+    "php": {
+      "threshold": 0.25,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0
     },
     "postgresql": {
       "threshold": 0.25,
       "best_f1": 0.0,
       "precision_at_threshold": 0.0
     },
+    "powerbi": {
+      "threshold": 0.25,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0
+    },
     "prompt engineering": {
-      "threshold": 0.79236197,
-      "best_f1": 0.4,
-      "precision_at_threshold": 0.36363636
+      "threshold": 0.7672255,
+      "best_f1": 0.38095238,
+      "precision_at_threshold": 0.33333333
     },
     "python": {
-      "threshold": 0.30375054,
-      "best_f1": 0.92537313,
-      "precision_at_threshold": 0.89855072
+      "threshold": 0.31319344,
+      "best_f1": 0.93129771,
+      "precision_at_threshold": 0.92424242
     },
     "rag": {
-      "threshold": 0.65726262,
+      "threshold": 0.6810019,
       "best_f1": 0.65217391,
       "precision_at_threshold": 0.53571429
     },
     "react": {
-      "threshold": 0.70502955,
-      "best_f1": 0.58333333,
-      "precision_at_threshold": 0.58333333
+      "threshold": 0.66332799,
+      "best_f1": 0.60869565,
+      "precision_at_threshold": 0.63636364
+    },
+    "redis": {
+      "threshold": 0.25,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0
     },
     "rest": {
-      "threshold": 0.64218736,
+      "threshold": 0.65627682,
       "best_f1": 0.33333333,
       "precision_at_threshold": 0.33333333
     },
     "rust": {
-      "threshold": 0.53595322,
+      "threshold": 0.35910112,
       "best_f1": 0.5,
-      "precision_at_threshold": 0.5
+      "precision_at_threshold": 0.375
     },
     "scikit-learn": {
-      "threshold": 0.74034226,
-      "best_f1": 0.75,
-      "precision_at_threshold": 0.75
+      "threshold": 0.73337239,
+      "best_f1": 0.70588235,
+      "precision_at_threshold": 0.66666667
+    },
+    "scraping": {
+      "threshold": 0.25,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0
+    },
+    "sdks": {
+      "threshold": 0.25,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0
     },
     "security": {
       "threshold": 0.25,
       "best_f1": 0.0,
       "precision_at_threshold": 0.0
     },
+    "spark": {
+      "threshold": 0.26688391,
+      "best_f1": 0.5,
+      "precision_at_threshold": 0.33333333
+    },
     "sql": {
-      "threshold": 0.4669674,
-      "best_f1": 0.63291139,
-      "precision_at_threshold": 0.54347826
+      "threshold": 0.43630692,
+      "best_f1": 0.65116279,
+      "precision_at_threshold": 0.52830189
     },
     "system design": {
       "threshold": 0.25,
-      "best_f1": 0.15384615,
-      "precision_at_threshold": 0.09090909
+      "best_f1": 0.18181818,
+      "precision_at_threshold": 0.11111111
     },
     "tensorflow/pytorch": {
-      "threshold": 0.75005853,
+      "threshold": 0.57455701,
       "best_f1": 0.66666667,
-      "precision_at_threshold": 0.61538462
+      "precision_at_threshold": 0.52631579
     },
     "terraform": {
       "threshold": 0.25,
@@ -331,19 +436,24 @@
       "precision_at_threshold": 0.0
     },
     "typescript": {
-      "threshold": 0.71738178,
-      "best_f1": 0.4,
-      "precision_at_threshold": 0.5
+      "threshold": 0.62930036,
+      "best_f1": 0.33333333,
+      "precision_at_threshold": 0.33333333
     },
     "ubuntu": {
-      "threshold": 0.47091678,
+      "threshold": 0.63076425,
       "best_f1": 0.54545455,
       "precision_at_threshold": 0.375
     },
     "vectordb": {
-      "threshold": 0.7154265,
-      "best_f1": 0.68421053,
-      "precision_at_threshold": 0.54166667
+      "threshold": 0.7129845,
+      "best_f1": 0.64864865,
+      "precision_at_threshold": 0.52173913
+    },
+    "web services": {
+      "threshold": 0.37680197,
+      "best_f1": 1.0,
+      "precision_at_threshold": 1.0
     }
   }
 }
