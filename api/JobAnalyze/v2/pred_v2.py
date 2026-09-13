@@ -1,5 +1,5 @@
 """
-pred_v2.py - JobAnalyze 6k v2 SBERT inference.
+pred_v2.py - JobAnalyze v2 SBERT inference.
 
 The checkpoint, model_config.json, label vocabulary, and Sentence Transformer
 embedding dimension must all describe the same training run.
@@ -8,6 +8,7 @@ embedding dimension must all describe the same training run.
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 from typing import List, Tuple
 
@@ -18,6 +19,11 @@ from torch import nn
 
 ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_EMBEDDING_MODEL = "all-MiniLM-L6-v2"
+# Shorter inputs reduce transformer CPU latency while retaining the important
+# skills in most job descriptions. Override with SBERT_MAX_SEQ_LENGTH if needed.
+MAX_SEQ_LENGTH = int(os.getenv("SBERT_MAX_SEQ_LENGTH", "256"))
+BATCH_SIZE = int(os.getenv("SBERT_BATCH_SIZE", "8"))
+SBERT_BACKEND = os.getenv("SBERT_BACKEND", "onnx").strip().lower()
 
 
 class SBERTSkillClassifier(nn.Module):
@@ -37,6 +43,26 @@ class SBERTSkillClassifier(nn.Module):
 _embedding_model: SentenceTransformer | None = None
 _classifier: SBERTSkillClassifier | None = None
 _label_vocab: list[str] | None = None
+
+
+def _load_embedding_model(model_name: str) -> SentenceTransformer:
+    """Load the encoder once, preferring ONNX on CPU with a safe fallback."""
+    kwargs = {"device": "cpu"}
+    if SBERT_BACKEND in {"onnx", "pytorch"}:
+        kwargs["backend"] = SBERT_BACKEND
+
+    try:
+        model = SentenceTransformer(model_name, **kwargs)
+    except Exception:
+        if SBERT_BACKEND != "onnx":
+            raise
+        # ONNX is optional; deployments without sentence-transformers[onnx]
+        # should continue to work instead of failing at startup.
+        model = SentenceTransformer(model_name, device="cpu")
+
+    model.max_seq_length = MAX_SEQ_LENGTH
+    model.eval()
+    return model
 
 
 def _load_artifacts() -> tuple[SentenceTransformer, SBERTSkillClassifier, list[str]]:
@@ -99,7 +125,7 @@ def _load_artifacts() -> tuple[SentenceTransformer, SBERTSkillClassifier, list[s
             "  python model/model_sbert.py"
         )
 
-    embedding_model = SentenceTransformer(embedding_model_name)
+    embedding_model = _load_embedding_model(embedding_model_name)
     embedding_dim = int(embedding_model.get_sentence_embedding_dimension())
     if embedding_dim != configured_input_dim:
         raise ValueError(
@@ -125,15 +151,36 @@ def _build_input_text(job_desc: str, role: str, job_type: str) -> str:
 
 
 def JobAnalyze_v2_SBERT(job_desc: str = "", role: str = "", job_type: str = "", top_k: int = 50) -> List[Tuple[str, float]]:
+    return JobAnalyze_v2_SBERT_batch([job_desc], role=role, job_type=job_type, top_k=top_k)[0]
+
+
+def JobAnalyze_v2_SBERT_batch(
+    job_descs: list[str],
+    role: str = "",
+    job_type: str = "",
+    top_k: int = 50,
+) -> list[List[Tuple[str, float]]]:
+    """Analyze multiple descriptions in one encoder call."""
     if top_k < 1:
+        return [[] for _ in job_descs]
+    if not job_descs:
         return []
+
     embedding_model, classifier, label_vocab = _load_artifacts()
-    embedding = embedding_model.encode(
-        [_build_input_text(job_desc, role, job_type)],
+    texts = [_build_input_text(text or "", role, job_type) for text in job_descs]
+    embeddings = embedding_model.encode(
+        texts,
+        batch_size=max(1, BATCH_SIZE),
         convert_to_numpy=True,
         normalize_embeddings=True,
-    ).astype(np.float32)
-    with torch.no_grad():
-        probs = torch.sigmoid(classifier(torch.from_numpy(embedding))).cpu().numpy()[0]
-    ranked = sorted(zip(label_vocab, probs), key=lambda item: -float(item[1]))
-    return [(skill, float(score)) for skill, score in ranked[:top_k]]
+        show_progress_bar=False,
+    ).astype(np.float32, copy=False)
+
+    with torch.inference_mode():
+        probs = torch.sigmoid(classifier(torch.from_numpy(embeddings))).cpu().numpy()
+
+    results: list[List[Tuple[str, float]]] = []
+    for row in probs:
+        ranked = sorted(zip(label_vocab, row), key=lambda item: -float(item[1]))
+        results.append([(skill, float(score)) for skill, score in ranked[:top_k]])
+    return results
