@@ -11,8 +11,6 @@ app.add_middleware(SecurityHeadersMiddleware)
 
 
 if __name__ == "__main__":
-    # Render supplies PORT dynamically. Hard-coding 5000 can make the service
-    # fail health/port detection even when the application starts correctly.
     port = int(os.getenv("PORT", "10000"))
     uvicorn.run(
         "security_server:app",
