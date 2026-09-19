@@ -12,6 +12,38 @@ from schemas import ModelRequest
 from auth import verify
 
 router = APIRouter(tags=["items"])
+
+@router.get(
+    "/health/sbert",
+    operation_id="sbert_health",
+    summary="Report SBERT configuration and load state without loading the model.",
+)
+async def sbert_health() -> dict:
+    """Cheap diagnostic endpoint that never initializes SentenceTransformer."""
+    import os
+
+    try:
+        from JobAnalyze.v2 import pred_v2
+        backend = pred_v2.SBERT_BACKEND
+        max_seq_length = pred_v2.MAX_SEQ_LENGTH
+        batch_size = pred_v2.BATCH_SIZE
+        loaded = pred_v2._embedding_model is not None
+    except Exception:
+        backend = os.getenv("SBERT_BACKEND", "onnx")
+        max_seq_length = int(os.getenv("SBERT_MAX_SEQ_LENGTH", "128"))
+        batch_size = int(os.getenv("SBERT_BATCH_SIZE", "1"))
+        loaded = False
+
+    return {
+        "service": "JobSelect",
+        "model": "JobAnalyze_SBERT",
+        "backend": backend,
+        "requireOnnx": True,
+        "maxSeqLength": max_seq_length,
+        "batchSize": batch_size,
+        "loaded": loaded,
+    }
+
 MAX_JD_LENGTH = 30000
 DETECTION_MIN_SCORE = 0.15
 REQUIRED_DEFINITION = "skills matched within the JD's Required/Qualifications section"
