@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import List, Tuple
 
 import numpy as np
+import onnxruntime as ort
 import torch
 from sentence_transformers import SentenceTransformer
 from torch import nn
@@ -69,12 +70,12 @@ def _load_embedding_model(model_name: str) -> SentenceTransformer:
         "export": False,
     }
     if SBERT_ONNX_DISABLE_CPU_ARENA:
-        model_kwargs["session_options"] = {
-            "enable_cpu_mem_arena": False,
-            "enable_mem_pattern": False,
-            "intra_op_num_threads": 1,
-            "inter_op_num_threads": 1,
-        }
+        session_options = ort.SessionOptions()
+        session_options.enable_cpu_mem_arena = False
+        session_options.enable_mem_pattern = False
+        session_options.intra_op_num_threads = 1
+        session_options.inter_op_num_threads = 1
+        model_kwargs["session_options"] = session_options
 
     model = SentenceTransformer(
         model_name,
