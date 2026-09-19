@@ -26,7 +26,7 @@ MAX_SEQ_LENGTH = max(64, int(os.getenv("SBERT_MAX_SEQ_LENGTH", "128")))
 BATCH_SIZE = max(1, int(os.getenv("SBERT_BATCH_SIZE", "1")))
 SBERT_BACKEND = os.getenv("SBERT_BACKEND", "onnx").strip().lower()
 REQUIRE_ONNX = os.getenv("SBERT_REQUIRE_ONNX", "true").strip().lower() not in {"0", "false", "no"}
-SBERT_ONNX_FILE = os.getenv("SBERT_ONNX_FILE", "onnx/model_qint8_avx2.onnx").strip()
+SBERT_ONNX_FILE = os.getenv("SBERT_ONNX_FILE", "onnx/model_quint8_avx2.onnx").strip()
 SBERT_ONNX_PROVIDER = os.getenv("SBERT_ONNX_PROVIDER", "CPUExecutionProvider").strip()
 SBERT_ONNX_DISABLE_CPU_ARENA = os.getenv("SBERT_ONNX_DISABLE_CPU_ARENA", "true").strip().lower() not in {"0", "false", "no"}
 
