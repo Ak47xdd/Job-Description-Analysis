@@ -21,9 +21,10 @@ ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_EMBEDDING_MODEL = "all-MiniLM-L6-v2"
 # Shorter inputs reduce transformer CPU latency while retaining the important
 # skills in most job descriptions. Override with SBERT_MAX_SEQ_LENGTH if needed.
-MAX_SEQ_LENGTH = int(os.getenv("SBERT_MAX_SEQ_LENGTH", "256"))
-BATCH_SIZE = int(os.getenv("SBERT_BATCH_SIZE", "8"))
+MAX_SEQ_LENGTH = max(64, int(os.getenv("SBERT_MAX_SEQ_LENGTH", "128")))
+BATCH_SIZE = max(1, int(os.getenv("SBERT_BATCH_SIZE", "1")))
 SBERT_BACKEND = os.getenv("SBERT_BACKEND", "onnx").strip().lower()
+REQUIRE_ONNX = os.getenv("SBERT_REQUIRE_ONNX", "true").strip().lower() not in {"0", "false", "no"}
 
 
 class SBERTSkillClassifier(nn.Module):
@@ -46,20 +47,18 @@ _label_vocab: list[str] | None = None
 
 
 def _load_embedding_model(model_name: str) -> SentenceTransformer:
-    """Load the encoder once, preferring ONNX on CPU with a safe fallback."""
-    kwargs = {"device": "cpu"}
-    if SBERT_BACKEND in {"onnx", "pytorch"}:
-        kwargs["backend"] = SBERT_BACKEND
+    """Load the encoder once using CPU ONNX; never silently fall back to PyTorch."""
+    if REQUIRE_ONNX and SBERT_BACKEND != "onnx":
+        raise RuntimeError(
+            "Render-safe SBERT requires SBERT_BACKEND=onnx. "
+            "PyTorch SBERT fallback is disabled to avoid memory spikes."
+        )
 
-    try:
-        model = SentenceTransformer(model_name, **kwargs)
-    except Exception:
-        if SBERT_BACKEND != "onnx":
-            raise
-        # ONNX is optional; deployments without sentence-transformers[onnx]
-        # should continue to work instead of failing at startup.
-        model = SentenceTransformer(model_name, device="cpu")
-
+    model = SentenceTransformer(
+        model_name,
+        device="cpu",
+        backend=SBERT_BACKEND,
+    )
     model.max_seq_length = MAX_SEQ_LENGTH
     model.eval()
     return model
