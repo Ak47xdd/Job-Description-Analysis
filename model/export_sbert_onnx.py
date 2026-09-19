@@ -33,15 +33,15 @@ def main() -> None:
         model=model,
         quantization_config="avx2",
         model_name_or_path=str(output),
-        file_suffix="qint8_avx2",
+        file_suffix="quint8_avx2",
     )
 
-    expected = output / "onnx" / "model_qint8_avx2.onnx"
+    expected = output / "onnx" / "model_quint8_avx2.onnx"
     if not expected.exists():
         raise RuntimeError(f"Quantized artifact was not created at {expected}")
 
     print(f"Ready: {expected}")
-    print("Configure Render with SBERT_ONNX_FILE=onnx/model_qint8_avx2.onnx")
+    print("Configure Render with SBERT_ONNX_FILE=onnx/model_quint8_avx2.onnx")
 
 
 if __name__ == "__main__":
