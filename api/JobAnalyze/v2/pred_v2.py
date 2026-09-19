@@ -25,6 +25,15 @@ MAX_SEQ_LENGTH = max(64, int(os.getenv("SBERT_MAX_SEQ_LENGTH", "128")))
 BATCH_SIZE = max(1, int(os.getenv("SBERT_BATCH_SIZE", "1")))
 SBERT_BACKEND = os.getenv("SBERT_BACKEND", "onnx").strip().lower()
 REQUIRE_ONNX = os.getenv("SBERT_REQUIRE_ONNX", "true").strip().lower() not in {"0", "false", "no"}
+SBERT_ONNX_FILE = os.getenv("SBERT_ONNX_FILE", "onnx/model_qint8_avx2.onnx").strip()
+SBERT_ONNX_PROVIDER = os.getenv("SBERT_ONNX_PROVIDER", "CPUExecutionProvider").strip()
+SBERT_ONNX_DISABLE_CPU_ARENA = os.getenv("SBERT_ONNX_DISABLE_CPU_ARENA", "true").strip().lower() not in {"0", "false", "no"}
+
+try:
+    torch.set_num_threads(1)
+    torch.set_num_interop_threads(1)
+except RuntimeError:
+    pass
 
 
 class SBERTSkillClassifier(nn.Module):
@@ -54,10 +63,24 @@ def _load_embedding_model(model_name: str) -> SentenceTransformer:
             "PyTorch SBERT fallback is disabled to avoid memory spikes."
         )
 
+    model_kwargs = {
+        "provider": SBERT_ONNX_PROVIDER,
+        "file_name": SBERT_ONNX_FILE,
+        "export": False,
+    }
+    if SBERT_ONNX_DISABLE_CPU_ARENA:
+        model_kwargs["session_options"] = {
+            "enable_cpu_mem_arena": False,
+            "enable_mem_pattern": False,
+            "intra_op_num_threads": 1,
+            "inter_op_num_threads": 1,
+        }
+
     model = SentenceTransformer(
         model_name,
         device="cpu",
         backend=SBERT_BACKEND,
+        model_kwargs=model_kwargs,
     )
     model.max_seq_length = MAX_SEQ_LENGTH
     model.eval()
