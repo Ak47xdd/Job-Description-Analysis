@@ -34,9 +34,11 @@ jobs:
 
       - name: Commit artifact if changed
         run: |
-          if git diff --quiet -- model_out/v1/skill_classifier.npz; then
-            echo "v1 NumPy artifact is already up to date."
-            exit 0
+          if git ls-files --error-unmatch model_out/v1/skill_classifier.npz >/dev/null 2>&1; then
+            if git diff --quiet -- model_out/v1/skill_classifier.npz; then
+              echo "v1 NumPy artifact is already up to date."
+              exit 0
+            fi
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
