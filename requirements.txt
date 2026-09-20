@@ -28,10 +28,14 @@ scikit-learn==1.7.2
 scipy==1.16.2
 joblib==1.5.3
 
-# ML models
-sentence-transformers[onnx]>=3.0.0
-torch==2.12.1
+# Lightweight production model inference
+onnxruntime==1.30.0
+tokenizers==0.23.2
+huggingface_hub==1.32.0
 
 # Runtime utilities
 PyYAML==6.0.3
 python-dateutil==2.9.0
+
+# PyTorch and sentence-transformers are build/training-only.
+# Production inference uses ONNX Runtime + tokenizers + NumPy.
