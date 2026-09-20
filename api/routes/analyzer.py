@@ -4,7 +4,6 @@ from fastapi import APIRouter
 import traceback
 import re
 
-from JobAnalyze.v1.pred_v1 import JobAnalyze_6k
 from rate_limit import limiter
 from helpers import _build_analysis, _SKILL_TO_CAT, SKILL_CATEGORIES, _get_compatibility, _build_recommendation
 from section_skills import classify_required_preferred
@@ -19,7 +18,7 @@ router = APIRouter(tags=["items"])
     summary="Report SBERT configuration and load state without loading the model.",
 )
 async def sbert_health() -> dict:
-    """Cheap diagnostic endpoint that never initializes SentenceTransformer."""
+    """Cheap diagnostic endpoint that never initializes the SBERT runtime."""
     import os
 
     try:
@@ -27,7 +26,7 @@ async def sbert_health() -> dict:
         backend = pred_v2.SBERT_BACKEND
         max_seq_length = pred_v2.MAX_SEQ_LENGTH
         batch_size = pred_v2.BATCH_SIZE
-        loaded = pred_v2._embedding_model is not None
+        loaded = pred_v2._onnx_session is not None
     except Exception:
         backend = os.getenv("SBERT_BACKEND", "onnx")
         max_seq_length = int(os.getenv("SBERT_MAX_SEQ_LENGTH", "128"))
@@ -38,6 +37,8 @@ async def sbert_health() -> dict:
         "service": "JobSelect",
         "model": "JobAnalyze_SBERT",
         "backend": backend,
+        "runtime": "onnxruntime-direct",
+        "onnxFile": os.getenv("SBERT_ONNX_FILE", "onnx/model.onnx"),
         "requireOnnx": True,
         "maxSeqLength": max_seq_length,
         "batchSize": batch_size,
@@ -61,8 +62,8 @@ def _clean_detected_title(jd_text: str, fallback: str | None = None) -> str | No
     role_words = r"engineer|developer|scientist|analyst|architect|manager|specialist|consultant|researcher|intern|designer|administrator|lead|director"
     seniority = r"(?:entry[- ]level|junior|mid(?:[- ]level)?|senior|staff|principal|lead)"
     patterns = [
-        rf"\b({seniority}\s+(?:[A-Za-z][A-Za-z0-9&/+.\-]*\s+){{0,4}}(?:{role_words}))\b",
-        rf"\b((?:[A-Za-z][A-Za-z0-9&/+.\-]*\s+){{0,4}}(?:{role_words}))\b",
+        rf"\b({seniority}\s+(?:[A-Za-z][A-Za-z0-9&/+.-]*\s+){{0,4}}(?:{role_words}))\b",
+        rf"\b((?:[A-Za-z][A-Za-z0-9&/+.-]*\s+){{0,4}}(?:{role_words}))\b",
     ]
     for pattern in patterns:
         match = re.search(pattern, text, re.I)
@@ -152,6 +153,13 @@ def _finalize_analysis(analysis, predicted, jd_text):
     return analysis
 
 
+def _get_v1_predictor():
+    # JobAnalyze 6k is also loaded lazily so the API process does not import
+    # its PyTorch stack until a v1 request actually needs it.
+    from JobAnalyze.v1.pred_v1 import JobAnalyze_6k
+    return JobAnalyze_6k
+
+
 @router.post(
     "/web_analyze",
     operation_id="web_analyze",
@@ -163,6 +171,7 @@ async def web_analyze(request: Request, data: ModelRequest) -> dict:
     if len(data.Job_Desc) > MAX_JD_LENGTH:
         raise HTTPException(status_code=413, detail="Job description is too large.")
     try:
+        JobAnalyze_6k = _get_v1_predictor()
         predicted = [(_canonical_skill_name(skill), float(score)) for skill, score in JobAnalyze_6k(job_desc=data.Job_Desc, role=data.Role, job_type=data.Type)]
         analysis = _build_analysis(predicted=predicted, role=data.Role, job_type=data.Type, jd_text=data.Job_Desc)
         return {"answer": predicted, "analysis": _finalize_analysis(analysis, predicted, data.Job_Desc)}
@@ -183,6 +192,7 @@ async def web_analyze(request: Request, data: ModelRequest) -> dict:
 async def JobAnalyze_Pred(request: Request, data: ModelRequest, api_client: dict = Depends(verify)) -> dict:
     if len(data.Job_Desc) > MAX_JD_LENGTH:
         raise HTTPException(status_code=413, detail="Job description is too large.")
+    JobAnalyze_6k = _get_v1_predictor()
     predicted = [(_canonical_skill_name(skill), float(score)) for skill, score in JobAnalyze_6k(job_desc=data.Job_Desc, role=data.Role, job_type=data.Type)]
     analysis = _build_analysis(predicted=predicted, role=data.Role, job_type=data.Type, jd_text=data.Job_Desc)
     return {
@@ -201,8 +211,6 @@ async def JobAnalyze_Pred(request: Request, data: ModelRequest, api_client: dict
 async def JobAnalyze_SBERT_Pred(request: Request, data: ModelRequest, api_client: dict = Depends(verify)) -> dict:
     if len(data.Job_Desc) > MAX_JD_LENGTH:
         raise HTTPException(status_code=413, detail="Job description is too large.")
-    # Import SBERT lazily. sentence-transformers/transformers/torch are much heavier
-    # than the v1 API stack and should not be loaded during Render startup.
     from JobAnalyze.v2.pred_v2 import JobAnalyze_v2_SBERT
 
     predicted = [(_canonical_skill_name(skill), float(score)) for skill, score in JobAnalyze_v2_SBERT(job_desc=data.Job_Desc, role=data.Role, job_type=data.Type)]
