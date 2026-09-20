@@ -1,8 +1,11 @@
 """
 pred_v2.py - JobAnalyze v2 SBERT inference.
 
-The checkpoint, model_config.json, label vocabulary, and Sentence Transformer
-embedding dimension must all describe the same training run.
+Render-safe runtime:
+- Uses the original all-MiniLM-L6-v2 transformer through ONNX Runtime directly.
+- Does not instantiate SentenceTransformer, avoiding the extra model/pipeline objects.
+- Uses the same 384-d mean-pooling + L2-normalization pipeline as Sentence Transformers.
+- Keeps the trained SBERT classifier unchanged.
 """
 
 from __future__ import annotations
@@ -15,20 +18,26 @@ from typing import List, Tuple
 import numpy as np
 import onnxruntime as ort
 import torch
-from sentence_transformers import SentenceTransformer
+from huggingface_hub import hf_hub_download
+from transformers import AutoTokenizer
 from torch import nn
 
 ROOT = Path(__file__).resolve().parents[3]
-DEFAULT_EMBEDDING_MODEL = "all-MiniLM-L6-v2"
-# Shorter inputs reduce transformer CPU latency while retaining the important
-# skills in most job descriptions. Override with SBERT_MAX_SEQ_LENGTH if needed.
+DEFAULT_EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+
 MAX_SEQ_LENGTH = max(64, int(os.getenv("SBERT_MAX_SEQ_LENGTH", "128")))
 BATCH_SIZE = max(1, int(os.getenv("SBERT_BATCH_SIZE", "1")))
 SBERT_BACKEND = os.getenv("SBERT_BACKEND", "onnx").strip().lower()
 REQUIRE_ONNX = os.getenv("SBERT_REQUIRE_ONNX", "true").strip().lower() not in {"0", "false", "no"}
-SBERT_ONNX_FILE = os.getenv("SBERT_ONNX_FILE", "onnx/model_quint8_avx2.onnx").strip()
+
+# FP32 is the default. This preserves the transformer weights used by the
+# original model. Quantized files remain opt-in through SBERT_ONNX_FILE.
+SBERT_ONNX_FILE = os.getenv("SBERT_ONNX_FILE", "onnx/model.onnx").strip()
 SBERT_ONNX_PROVIDER = os.getenv("SBERT_ONNX_PROVIDER", "CPUExecutionProvider").strip()
-SBERT_ONNX_DISABLE_CPU_ARENA = os.getenv("SBERT_ONNX_DISABLE_CPU_ARENA", "true").strip().lower() not in {"0", "false", "no"}
+SBERT_ONNX_DISABLE_CPU_ARENA = (
+    os.getenv("SBERT_ONNX_DISABLE_CPU_ARENA", "true").strip().lower()
+    not in {"0", "false", "no"}
+)
 
 try:
     torch.set_num_threads(1)
@@ -38,7 +47,13 @@ except RuntimeError:
 
 
 class SBERTSkillClassifier(nn.Module):
-    def __init__(self, input_dim: int, num_labels: int, hidden_dim: int = 64, dropout: float = 0.30):
+    def __init__(
+        self,
+        input_dim: int,
+        num_labels: int,
+        hidden_dim: int = 64,
+        dropout: float = 0.30,
+    ):
         super().__init__()
         self.net = nn.Sequential(
             nn.Linear(input_dim, hidden_dim),
@@ -51,48 +66,108 @@ class SBERTSkillClassifier(nn.Module):
         return self.net(x)
 
 
-_embedding_model: SentenceTransformer | None = None
+_tokenizer: AutoTokenizer | None = None
+_onnx_session: ort.InferenceSession | None = None
 _classifier: SBERTSkillClassifier | None = None
 _label_vocab: list[str] | None = None
+_embedding_dim: int | None = None
 
 
-def _load_embedding_model(model_name: str) -> SentenceTransformer:
-    """Load the encoder once using CPU ONNX; never silently fall back to PyTorch."""
+def _normalise_model_repo(model_name: str) -> str:
+    """Expand the short model name used by older config files."""
+    if "/" not in model_name and not Path(model_name).exists():
+        return f"sentence-transformers/{model_name}"
+    return model_name
+
+
+def _resolve_onnx_path(model_name: str) -> str:
+    """Resolve an ONNX file locally or download only that file from HF Hub."""
+    model_path = Path(model_name)
+    if model_path.exists():
+        candidate = model_path / SBERT_ONNX_FILE
+        if not candidate.exists():
+            raise FileNotFoundError(
+                f"Missing ONNX model {candidate}. "
+                f"Expected SBERT_ONNX_FILE={SBERT_ONNX_FILE}."
+            )
+        return str(candidate)
+
+    repo_id = _normalise_model_repo(model_name)
+    try:
+        return hf_hub_download(repo_id=repo_id, filename=SBERT_ONNX_FILE)
+    except Exception as exc:
+        raise RuntimeError(
+            f"Could not download ONNX model '{SBERT_ONNX_FILE}' from '{repo_id}'. "
+            "Verify the model repository and SBERT_ONNX_FILE."
+        ) from exc
+
+
+def _load_embedding_runtime(model_name: str) -> tuple[AutoTokenizer, ort.InferenceSession, int]:
+    """Load tokenizer + raw ONNX transformer without SentenceTransformer."""
+    global _tokenizer, _onnx_session, _embedding_dim
+
     if REQUIRE_ONNX and SBERT_BACKEND != "onnx":
         raise RuntimeError(
             "Render-safe SBERT requires SBERT_BACKEND=onnx. "
-            "PyTorch SBERT fallback is disabled to avoid memory spikes."
+            "PyTorch/SentenceTransformer fallback is disabled."
         )
 
-    model_kwargs = {
-        "provider": SBERT_ONNX_PROVIDER,
-        "file_name": SBERT_ONNX_FILE,
-        "export": False,
-    }
-    if SBERT_ONNX_DISABLE_CPU_ARENA:
-        session_options = ort.SessionOptions()
-        session_options.enable_cpu_mem_arena = False
-        session_options.enable_mem_pattern = False
-        session_options.intra_op_num_threads = 1
-        session_options.inter_op_num_threads = 1
-        model_kwargs["session_options"] = session_options
+    if _tokenizer is not None and _onnx_session is not None and _embedding_dim is not None:
+        return _tokenizer, _onnx_session, _embedding_dim
 
-    model = SentenceTransformer(
-        model_name,
-        device="cpu",
-        backend=SBERT_BACKEND,
-        model_kwargs=model_kwargs,
+    repo_or_path = _normalise_model_repo(model_name)
+    tokenizer = AutoTokenizer.from_pretrained(repo_or_path, use_fast=True)
+    onnx_path = _resolve_onnx_path(model_name)
+
+    session_options = ort.SessionOptions()
+    session_options.intra_op_num_threads = 1
+    session_options.inter_op_num_threads = 1
+    session_options.enable_mem_pattern = False
+    session_options.enable_cpu_mem_arena = not SBERT_ONNX_DISABLE_CPU_ARENA
+
+    session = ort.InferenceSession(
+        onnx_path,
+        sess_options=session_options,
+        providers=[SBERT_ONNX_PROVIDER],
     )
-    model.max_seq_length = MAX_SEQ_LENGTH
-    model.eval()
-    return model
+
+    outputs = session.get_outputs()
+    if not outputs:
+        raise RuntimeError(f"ONNX model has no outputs: {onnx_path}")
+
+    output_shape = outputs[0].shape
+    if len(output_shape) != 3:
+        raise RuntimeError(
+            f"Expected transformer token output [batch, sequence, hidden], got {output_shape}."
+        )
+
+    hidden_dim = output_shape[-1]
+    if not isinstance(hidden_dim, int):
+        raise RuntimeError(
+            f"Could not determine ONNX embedding dimension from output shape {output_shape}."
+        )
+
+    _tokenizer, _onnx_session, _embedding_dim = tokenizer, session, hidden_dim
+    return tokenizer, session, hidden_dim
 
 
-def _load_artifacts() -> tuple[SentenceTransformer, SBERTSkillClassifier, list[str]]:
-    global _embedding_model, _classifier, _label_vocab
+def _load_artifacts() -> tuple[
+    AutoTokenizer,
+    ort.InferenceSession,
+    SBERTSkillClassifier,
+    list[str],
+    int,
+]:
+    global _classifier, _label_vocab
 
-    if _embedding_model is not None and _classifier is not None and _label_vocab is not None:
-        return _embedding_model, _classifier, _label_vocab
+    if (
+        _tokenizer is not None
+        and _onnx_session is not None
+        and _classifier is not None
+        and _label_vocab is not None
+        and _embedding_dim is not None
+    ):
+        return _tokenizer, _onnx_session, _classifier, _label_vocab, _embedding_dim
 
     label_path = ROOT / "model" / "prep" / "v2" / "label_vocab_v2.json"
     out_dir = ROOT / "model_out" / "v2_sentence_transformer"
@@ -106,7 +181,12 @@ def _load_artifacts() -> tuple[SentenceTransformer, SBERTSkillClassifier, list[s
 
     with label_path.open(encoding="utf-8") as file:
         label_vocab = json.load(file)
-    if not isinstance(label_vocab, list) or not label_vocab or len(label_vocab) != len(set(label_vocab)):
+
+    if (
+        not isinstance(label_vocab, list)
+        or not label_vocab
+        or len(label_vocab) != len(set(label_vocab))
+    ):
         raise ValueError(f"Invalid or duplicate SBERT label vocabulary: {label_path}")
 
     config = {}
@@ -125,11 +205,15 @@ def _load_artifacts() -> tuple[SentenceTransformer, SBERTSkillClassifier, list[s
     first_weight = state_dict.get("net.0.weight")
     output_weight = state_dict.get("net.3.weight")
     output_bias = state_dict.get("net.3.bias")
+
     if first_weight is None or output_weight is None or output_bias is None:
-        raise ValueError(f"Invalid SBERT checkpoint {weights_path}: missing classifier layers.")
+        raise ValueError(
+            f"Invalid SBERT checkpoint {weights_path}: missing classifier layers."
+        )
 
     checkpoint_input_dim = int(first_weight.shape[1])
     checkpoint_labels = int(output_weight.shape[0])
+
     if checkpoint_labels != len(label_vocab):
         raise ValueError(
             f"Stale SBERT checkpoint: checkpoint outputs {checkpoint_labels} labels, "
@@ -138,21 +222,19 @@ def _load_artifacts() -> tuple[SentenceTransformer, SBERTSkillClassifier, list[s
 
     embedding_model_name = config.get("embedding_model", DEFAULT_EMBEDDING_MODEL)
     configured_input_dim = int(config.get("input_dim", 384))
+
     if checkpoint_input_dim != configured_input_dim:
         raise ValueError(
             "Stale SBERT checkpoint: checkpoint input dimension is "
             f"{checkpoint_input_dim}, but model_config.json says {configured_input_dim}. "
-            "The checkpoint was trained with a different architecture. Run:\n"
-            "  python model/prep/data_prep.py\n"
-            "  python model/sentence_transformer_v2.py\n"
-            "  python model/model_sbert.py"
+            "Run data_prep.py, sentence_transformer_v2.py, and model_sbert.py again."
         )
 
-    embedding_model = _load_embedding_model(embedding_model_name)
-    embedding_dim = int(embedding_model.get_sentence_embedding_dimension())
+    tokenizer, session, embedding_dim = _load_embedding_runtime(embedding_model_name)
+
     if embedding_dim != configured_input_dim:
         raise ValueError(
-            f"SBERT embedding dimension mismatch: encoder produces {embedding_dim}, "
+            f"SBERT embedding dimension mismatch: ONNX encoder produces {embedding_dim}, "
             f"but model_config.json specifies {configured_input_dim}."
         )
 
@@ -165,16 +247,64 @@ def _load_artifacts() -> tuple[SentenceTransformer, SBERTSkillClassifier, list[s
     classifier.load_state_dict(state_dict)
     classifier.eval()
 
-    _embedding_model, _classifier, _label_vocab = embedding_model, classifier, label_vocab
-    return embedding_model, classifier, label_vocab
+    _classifier, _label_vocab = classifier, label_vocab
+    return tokenizer, session, classifier, label_vocab, embedding_dim
 
 
 def _build_input_text(job_desc: str, role: str, job_type: str) -> str:
     return f"Role: {role}. Job type: {job_type}. Job description: {job_desc}"
 
 
-def JobAnalyze_v2_SBERT(job_desc: str = "", role: str = "", job_type: str = "", top_k: int = 50) -> List[Tuple[str, float]]:
-    return JobAnalyze_v2_SBERT_batch([job_desc], role=role, job_type=job_type, top_k=top_k)[0]
+def _encode_embeddings(
+    texts: list[str],
+    tokenizer: AutoTokenizer,
+    session: ort.InferenceSession,
+) -> np.ndarray:
+    """Reproduce all-MiniLM-L6-v2 mean pooling + L2 normalization."""
+    encoded = tokenizer(
+        texts,
+        padding=True,
+        truncation=True,
+        max_length=MAX_SEQ_LENGTH,
+        return_tensors="np",
+    )
+
+    session_inputs = {item.name for item in session.get_inputs()}
+    ort_inputs = {
+        name: np.asarray(value, dtype=np.int64)
+        for name, value in encoded.items()
+        if name in session_inputs
+    }
+
+    missing = session_inputs.difference(ort_inputs)
+    if missing:
+        raise RuntimeError(
+            f"Tokenizer did not produce required ONNX inputs: {sorted(missing)}"
+        )
+
+    token_embeddings = session.run(None, ort_inputs)[0].astype(np.float32, copy=False)
+
+    attention_mask = encoded["attention_mask"].astype(np.float32, copy=False)
+    mask = attention_mask[:, :, None]
+    summed = np.sum(token_embeddings * mask, axis=1)
+    counts = np.clip(mask.sum(axis=1), 1e-9, None)
+    embeddings = summed / counts
+
+    norms = np.linalg.norm(embeddings, axis=1, keepdims=True)
+    embeddings = embeddings / np.clip(norms, 1e-12, None)
+
+    return np.asarray(embeddings, dtype=np.float32)
+
+
+def JobAnalyze_v2_SBERT(
+    job_desc: str = "",
+    role: str = "",
+    job_type: str = "",
+    top_k: int = 50,
+) -> List[Tuple[str, float]]:
+    return JobAnalyze_v2_SBERT_batch(
+        [job_desc], role=role, job_type=job_type, top_k=top_k
+    )[0]
 
 
 def JobAnalyze_v2_SBERT_batch(
@@ -183,27 +313,43 @@ def JobAnalyze_v2_SBERT_batch(
     job_type: str = "",
     top_k: int = 50,
 ) -> list[List[Tuple[str, float]]]:
-    """Analyze multiple descriptions in one encoder call."""
+    """Analyze multiple descriptions with one lightweight ONNX encoder call."""
     if top_k < 1:
         return [[] for _ in job_descs]
     if not job_descs:
         return []
 
-    embedding_model, classifier, label_vocab = _load_artifacts()
-    texts = [_build_input_text(text or "", role, job_type) for text in job_descs]
-    embeddings = embedding_model.encode(
-        texts,
-        batch_size=max(1, BATCH_SIZE),
-        convert_to_numpy=True,
-        normalize_embeddings=True,
-        show_progress_bar=False,
-    ).astype(np.float32, copy=False)
+    tokenizer, session, classifier, label_vocab, _ = _load_artifacts()
 
-    with torch.inference_mode():
-        probs = torch.sigmoid(classifier(torch.from_numpy(embeddings))).cpu().numpy()
+    texts = [
+        _build_input_text(text or "", role, job_type)
+        for text in job_descs
+    ]
+
+    all_probs: list[np.ndarray] = []
+
+    # Keep batches tiny on Render so intermediate token tensors cannot create
+    # a large transient RSS spike.
+    for start in range(0, len(texts), BATCH_SIZE):
+        batch_texts = texts[start : start + BATCH_SIZE]
+        embeddings = _encode_embeddings(batch_texts, tokenizer, session)
+
+        with torch.inference_mode():
+            logits = classifier(torch.from_numpy(embeddings))
+            probs = torch.sigmoid(logits).cpu().numpy()
+
+        all_probs.append(np.asarray(probs, dtype=np.float32))
+
+    probabilities = np.concatenate(all_probs, axis=0)
 
     results: list[List[Tuple[str, float]]] = []
-    for row in probs:
-        ranked = sorted(zip(label_vocab, row), key=lambda item: -float(item[1]))
-        results.append([(skill, float(score)) for skill, score in ranked[:top_k]])
+    for row in probabilities:
+        ranked = sorted(
+            zip(label_vocab, row),
+            key=lambda item: -float(item[1]),
+        )
+        results.append(
+            [(skill, float(score)) for skill, score in ranked[:top_k]]
+        )
+
     return results
