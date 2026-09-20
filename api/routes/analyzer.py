@@ -12,6 +12,7 @@ from auth import verify
 
 router = APIRouter(tags=["items"])
 
+
 @router.get(
     "/health/sbert",
     operation_id="sbert_health",
@@ -44,6 +45,39 @@ async def sbert_health() -> dict:
         "batchSize": batch_size,
         "loaded": loaded,
     }
+
+
+@router.get(
+    "/health/memory",
+    operation_id="memory_health",
+    summary="Report current process memory and SBERT load stages.",
+)
+async def memory_health() -> dict:
+    """Read-only RSS diagnostic; does not initialize any model."""
+    import os
+
+    rss_mb = None
+    try:
+        with open("/proc/self/status", encoding="utf-8") as handle:
+            for line in handle:
+                if line.startswith("VmRSS:"):
+                    rss_mb = round(int(line.split()[1]) / 1024.0, 2)
+                    break
+    except (FileNotFoundError, OSError, ValueError):
+        pass
+
+    result = {
+        "rssMb": rss_mb,
+        "pid": os.getpid(),
+        "sbert": None,
+    }
+    try:
+        from JobAnalyze.v2 import pred_v2
+        result["sbert"] = pred_v2.memory_diagnostics()
+    except Exception as exc:
+        result["sbert"] = {"error": type(exc).__name__}
+    return result
+
 
 MAX_JD_LENGTH = 30000
 DETECTION_MIN_SCORE = 0.15
@@ -154,8 +188,8 @@ def _finalize_analysis(analysis, predicted, jd_text):
 
 
 def _get_v1_predictor():
-    # JobAnalyze 6k is also loaded lazily so the API process does not import
-    # its PyTorch stack until a v1 request actually needs it.
+    # JobAnalyze 6k is loaded lazily so the API process never imports the
+    # legacy PyTorch training/runtime stack just to serve other endpoints.
     from JobAnalyze.v1.pred_v1 import JobAnalyze_6k
     return JobAnalyze_6k
 
