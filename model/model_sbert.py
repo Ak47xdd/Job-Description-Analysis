@@ -19,7 +19,10 @@ Artifacts:
 
 from __future__ import annotations
 
+import hashlib
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -33,6 +36,9 @@ EMBED_DIR = PREP_DIR / "v2_sentence_transformer"
 LABEL_FILE = PREP_DIR / "v2" / "label_vocab_v2.json"
 SPLIT_FILE = PREP_DIR / "v2" / "prepared_data_v2.npz"
 OUT_DIR = ROOT / "model_out" / "v2_sentence_transformer"
+DATA_FILE = ROOT / "data" / "clean" / "v2" / "cleaned_job_descriptions_v2.csv"
+DATA_MANIFEST = PREP_DIR / "v2" / "data_manifest.json"
+EMBED_METADATA = EMBED_DIR / "metadata.json"
 
 SEED = 42
 BATCH_SIZE = 32
@@ -74,7 +80,55 @@ class SBERTSkillClassifier(nn.Module):
         return self.net(x)
 
 
+def _sha256_file(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _run_pipeline_step(script: Path) -> None:
+    print(f"Refreshing SBERT artifact prerequisite: {script.relative_to(ROOT)}")
+    subprocess.run([sys.executable, str(script)], cwd=ROOT, check=True)
+
+
+def _ensure_fresh_v2_inputs() -> None:
+    if not DATA_FILE.exists():
+        raise FileNotFoundError(f"Missing cleaned v2 dataset: {DATA_FILE}")
+
+    dataset_hash = _sha256_file(DATA_FILE)
+    row_count = sum(1 for _ in DATA_FILE.open("rb")) - 1
+    manifest_ok = False
+
+    if DATA_MANIFEST.exists():
+        try:
+            manifest = json.loads(DATA_MANIFEST.read_text(encoding="utf-8"))
+            manifest_ok = (
+                manifest.get("source_dataset_sha256") == dataset_hash
+                and int(manifest.get("num_rows", -1)) == row_count
+            )
+        except (OSError, ValueError, TypeError, json.JSONDecodeError):
+            manifest_ok = False
+
+    if not manifest_ok:
+        _run_pipeline_step(ROOT / "model" / "prep" / "data_prep.py")
+
+    embedding_ok = False
+    if EMBED_METADATA.exists() and (EMBED_DIR / "embeddings.npy").exists():
+        try:
+            metadata = json.loads(EMBED_METADATA.read_text(encoding="utf-8"))
+            embedding_ok = (
+                metadata.get("source_csv_sha256") == dataset_hash
+                and int(metadata.get("num_samples", -1)) == row_count
+                and metadata.get("model_name") == "all-MiniLM-L6-v2"
+                and int(metadata.get("embedding_dimension", -1)) == 384
+            )
+        except (OSError, ValueError, TypeError, json.JSONDecodeError):
+            embedding_ok = False
+
+    if not embedding_ok:
+        _run_pipeline_step(ROOT / "model" / "sentence_transformer_v2.py")
+
+
 def load_data():
+    _ensure_fresh_v2_inputs()
     embeddings_path = EMBED_DIR / "embeddings.npy"
     if not embeddings_path.exists():
         raise FileNotFoundError(
@@ -149,6 +203,11 @@ def main() -> None:
         SkillDataset(X_test, y_test), batch_size=BATCH_SIZE, shuffle=False
     )
 
+    # Never allow a stale checkpoint to survive into a new training run.
+    best_checkpoint = OUT_DIR / "skill_classifier_sbert_v2.pt"
+    if best_checkpoint.exists():
+        best_checkpoint.unlink()
+
     model = SBERTSkillClassifier(X_train.shape[1], len(vocab))
 
     pos_counts = y_train.sum(axis=0)
@@ -201,11 +260,31 @@ def main() -> None:
     # Restore the best checkpoint before exporting lightweight inference
     # weights. This keeps the .pt, .npz, config, and vocabulary synchronized.
     best_checkpoint = OUT_DIR / "skill_classifier_sbert_v2.pt"
+    if not best_checkpoint.exists():
+        raise RuntimeError("Training produced no checkpoint; refusing to export stale artifacts.")
     best_state = torch.load(best_checkpoint, map_location="cpu", weights_only=True)
     model.load_state_dict(best_state)
     model.eval()
 
     state = model.state_dict()
+    expected_output_shape = (len(vocab), HIDDEN_DIM)
+    if tuple(state["net.3.weight"].shape) != expected_output_shape:
+        raise RuntimeError(
+            "Refusing to export SBERT classifier: "
+            f'final layer is {tuple(state["net.3.weight"].shape)}, '
+            f"expected {expected_output_shape}."
+        )
+    if tuple(state["net.3.bias"].shape) != (len(vocab),):
+        raise RuntimeError(
+            "Refusing to export SBERT classifier: "
+            f'final bias is {tuple(state["net.3.bias"].shape)}, '
+            f"expected {(len(vocab),)}."
+        )
+
+    vocab_hash = hashlib.sha256(
+        json.dumps(vocab, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+    ).hexdigest()
+
     np.savez(
         OUT_DIR / "skill_classifier_sbert_v2.npz",
         w1=state["net.0.weight"].detach().cpu().numpy().astype(np.float32),
@@ -224,6 +303,7 @@ def main() -> None:
                 "input_dim": int(X_train.shape[1]),
                 "num_labels": len(vocab),
                 "label_vocab_path": "model/prep/v2/label_vocab_v2.json",
+                "label_vocab_sha256": vocab_hash,
                 "hidden_dim": HIDDEN_DIM,
                 "dropout": DROPOUT,
                 "batch_size": BATCH_SIZE,
