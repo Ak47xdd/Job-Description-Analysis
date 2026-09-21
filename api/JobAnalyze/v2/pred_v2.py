@@ -187,21 +187,26 @@ def _load_artifacts():
         with config_path.open(encoding="utf-8") as handle:
             config = json.load(handle)
 
-    if config.get("num_labels") is not None and int(config["num_labels"]) != len(label_vocab):
-        raise ValueError("SBERT config and vocabulary label counts disagree.")
+    # The label vocabulary and classifier artifact are the source of truth for
+    # the output dimension. model_config.json is metadata and may be stale after
+    # a retraining run. This prevents a stale config from breaking deployment
+    # when the vocabulary legitimately grows or shrinks.
+    config_embedding_model = config.get("embedding_model", DEFAULT_EMBEDDING_MODEL)
+    config_input_dim = int(config.get("input_dim", 384))
+    config_hidden_dim = int(config.get("hidden_dim", 64))
 
-    input_dim = int(config.get("input_dim", 384))
-    hidden_dim = int(config.get("hidden_dim", 64))
-    tokenizer, session, embedding_dim = _load_embedding_runtime(
-        config.get("embedding_model", DEFAULT_EMBEDDING_MODEL)
+    tokenizer, session, embedding_dim = _load_embedding_runtime(config_embedding_model)
+    if embedding_dim != config_input_dim:
+        # A stale input_dim is recoverable; the classifier artifact below is
+        # validated against the actual encoder dimension.
+        config_input_dim = embedding_dim
+
+    # Load against the vocabulary count. If the retrained classifier has not
+    # been exported, _load_numpy_classifier will fail with the exact tensor
+    # shape mismatch instead of silently pairing the wrong labels and weights.
+    weights = _load_numpy_classifier(
+        weights_path, embedding_dim, len(label_vocab), config_hidden_dim
     )
-    if embedding_dim != input_dim:
-        raise ValueError(
-            f"SBERT embedding dimension mismatch: ONNX encoder produces {embedding_dim}, "
-            f"classifier expects {input_dim}."
-        )
-
-    weights = _load_numpy_classifier(weights_path, input_dim, len(label_vocab), hidden_dim)
     _classifier_weights, _label_vocab = weights, label_vocab
     _record_memory("after_classifier")
     return tokenizer, session, weights, label_vocab, embedding_dim
