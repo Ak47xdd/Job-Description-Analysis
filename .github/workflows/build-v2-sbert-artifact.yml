@@ -8,6 +8,7 @@ on:
       - "model/prep/v2/label_vocab_v2.json"
       - "model/export_sbert_classifier_numpy.py"
       - "model/model_sbert.py"
+      - "model/validate_sbert_artifacts.py"
       - ".github/workflows/build-v2-sbert-artifact.yml"
   workflow_dispatch:
 
@@ -33,6 +34,9 @@ jobs:
 
       - name: Export and validate v2 artifact
         run: python model/export_sbert_classifier_numpy.py
+
+      - name: Validate complete SBERT artifact set
+        run: python model/validate_sbert_artifacts.py
 
       - name: Commit synchronized artifacts
         run: |
