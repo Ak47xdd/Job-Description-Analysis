@@ -8,6 +8,7 @@ job-description dataset changes.
 
 from __future__ import annotations
 
+import hashlib
 import json
 from collections import Counter
 from pathlib import Path
@@ -130,6 +131,22 @@ def main() -> None:
 
     with (V2_DIR / "vectorizer_v2.pkl").open("wb") as file:
         pickle.dump(vectorizer, file)
+
+    dataset_sha256 = hashlib.sha256(DATA_FILE.read_bytes()).hexdigest()
+    manifest = {
+        "source_dataset": str(DATA_FILE.relative_to(ROOT)),
+        "source_dataset_sha256": dataset_sha256,
+        "num_rows": int(len(df)),
+        "num_labels": int(len(vocab)),
+        "label_vocab_sha256": hashlib.sha256(
+            json.dumps(vocab, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+        ).hexdigest(),
+        "random_state": 42,
+        "test_size": 0.2,
+    }
+    (V2_DIR / "data_manifest.json").write_text(
+        json.dumps(manifest, indent=2) + "\n", encoding="utf-8"
+    )
 
     print(
         f"Dataset: {len(df)} rows | Vocab: {len(vocab)} labels | "
