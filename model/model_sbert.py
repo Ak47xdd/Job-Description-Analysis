@@ -19,6 +19,7 @@ Artifacts:
 
 from __future__ import annotations
 
+import csv
 import hashlib
 import json
 import subprocess
@@ -94,7 +95,8 @@ def _ensure_fresh_v2_inputs() -> None:
         raise FileNotFoundError(f"Missing cleaned v2 dataset: {DATA_FILE}")
 
     dataset_hash = _sha256_file(DATA_FILE)
-    row_count = sum(1 for _ in DATA_FILE.open("rb")) - 1
+    with DATA_FILE.open("r", encoding="utf-8", newline="") as handle:
+        row_count = max(0, sum(1 for _ in csv.reader(handle)) - 1)
     manifest_ok = False
 
     if DATA_MANIFEST.exists():
