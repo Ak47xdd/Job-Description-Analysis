@@ -96,6 +96,11 @@ def load_data():
     with LABEL_FILE.open(encoding="utf-8") as file:
         vocab = json.load(file)
 
+    if not isinstance(vocab, list) or not vocab or len(vocab) != len(set(vocab)):
+        raise ValueError(
+            f"Invalid or duplicate SBERT label vocabulary: {LABEL_FILE}"
+        )
+
     num_labels = len(vocab)
     if y_train.ndim != 2 or y_test.ndim != 2:
         raise ValueError(
@@ -193,7 +198,25 @@ def main() -> None:
                 f"train_loss={train_loss:.4f} | test_loss={test_loss:.4f}"
             )
 
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    # Restore the best checkpoint before exporting lightweight inference
+    # weights. This keeps the .pt, .npz, config, and vocabulary synchronized.
+    best_checkpoint = OUT_DIR / "skill_classifier_sbert_v2.pt"
+    best_state = torch.load(best_checkpoint, map_location="cpu", weights_only=True)
+    model.load_state_dict(best_state)
+    model.eval()
+
+    with np.load(EMBED_DIR / "embeddings.npy", mmap_mode="r") as _:
+        pass
+
+    state = model.state_dict()
+    np.savez(
+        OUT_DIR / "skill_classifier_sbert_v2.npz",
+        w1=state["net.0.weight"].detach().cpu().numpy().astype(np.float32),
+        b1=state["net.0.bias"].detach().cpu().numpy().astype(np.float32),
+        w2=state["net.3.weight"].detach().cpu().numpy().astype(np.float32),
+        b2=state["net.3.bias"].detach().cpu().numpy().astype(np.float32),
+    )
+
     with (OUT_DIR / "training_history_sbert_v2.json").open("w", encoding="utf-8") as file:
         json.dump(history, file, indent=2)
 
@@ -203,6 +226,7 @@ def main() -> None:
                 "embedding_model": "all-MiniLM-L6-v2",
                 "input_dim": int(X_train.shape[1]),
                 "num_labels": len(vocab),
+                "label_vocab_path": "model/prep/v2/label_vocab_v2.json",
                 "hidden_dim": HIDDEN_DIM,
                 "dropout": DROPOUT,
                 "batch_size": BATCH_SIZE,
