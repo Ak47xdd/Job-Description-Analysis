@@ -19,6 +19,7 @@ same contextual input fields as the original TF-IDF pipeline.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 from typing import Iterable, Sequence
@@ -94,6 +95,7 @@ def encode_dataset(
         "normalize_embeddings": normalize_embeddings,
         "batch_size": batch_size,
         "source_csv": str(csv_path),
+        "source_csv_sha256": hashlib.sha256(csv_path.read_bytes()).hexdigest(),
         "input_format": "Role + Job type + Job description",
     }
     (output_dir / "metadata.json").write_text(
