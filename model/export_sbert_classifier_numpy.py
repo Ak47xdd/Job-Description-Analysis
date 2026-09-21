@@ -5,8 +5,9 @@ The label vocabulary is treated as the source of truth for the classifier output
 dimension.
 """
 
-from pathlib import Path
+import hashlib
 import json
+from pathlib import Path
 
 import numpy as np
 import torch
@@ -46,10 +47,20 @@ if w2.shape[0] != len(vocab):
         "Regenerate v2 data and retrain the classifier from the same label vocabulary."
     )
 
+if w1.ndim != 2 or w1.shape[1] != 384 or w1.shape[0] != 64:
+    raise ValueError(f"Invalid first layer shape {w1.shape}; expected (64, 384).")
+if b1.shape != (64,):
+    raise ValueError(f"Invalid first layer bias shape {b1.shape}; expected (64,).")
+if w2.shape != (len(vocab), 64):
+    raise ValueError(f"Invalid output layer shape {w2.shape}; expected {(len(vocab), 64)}.")
 if b2.shape != (len(vocab),):
     raise ValueError(
         f"Invalid classifier bias shape {b2.shape}; expected {(len(vocab),)}."
     )
+
+vocab_hash = hashlib.sha256(
+    json.dumps(vocab, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+).hexdigest()
 
 np.savez(DST, w1=w1, b1=b1, w2=w2, b2=b2)
 
@@ -64,6 +75,7 @@ config.update({
     "num_labels": int(len(vocab)),
     "hidden_dim": int(w1.shape[0]),
     "label_vocab_path": "model/prep/v2/label_vocab_v2.json",
+    "label_vocab_sha256": vocab_hash,
 })
 
 with CONFIG_FILE.open("w", encoding="utf-8") as file:
@@ -71,4 +83,5 @@ with CONFIG_FILE.open("w", encoding="utf-8") as file:
     file.write("\n")
 
 print(f"Wrote {DST}")
+print(f"Validated classifier: input=384, hidden=64, labels={len(vocab)}")
 print(f"Synchronized {CONFIG_FILE}: labels={len(vocab)}, input_dim={w1.shape[1]}, hidden_dim={w1.shape[0]}")
