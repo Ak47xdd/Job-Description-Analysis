@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import gc
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -191,6 +192,16 @@ def _load_artifacts():
     # the output dimension. model_config.json is metadata and may be stale after
     # a retraining run. This prevents a stale config from breaking deployment
     # when the vocabulary legitimately grows or shrinks.
+    vocab_hash = hashlib.sha256(
+        json.dumps(label_vocab, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+    ).hexdigest()
+    configured_vocab_hash = config.get("label_vocab_sha256")
+    if configured_vocab_hash and configured_vocab_hash != vocab_hash:
+        raise ValueError(
+            "SBERT label vocabulary hash mismatch: model_config.json was generated "
+            "for a different label ordering. Retrain/export the v2 classifier."
+        )
+
     config_embedding_model = config.get("embedding_model", DEFAULT_EMBEDDING_MODEL)
     config_input_dim = int(config.get("input_dim", 384))
     config_hidden_dim = int(config.get("hidden_dim", 64))
