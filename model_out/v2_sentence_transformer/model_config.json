@@ -1,10 +1,11 @@
 {
   "embedding_model": "all-MiniLM-L6-v2",
   "input_dim": 384,
-  "num_labels": 90,
+  "num_labels": 236,
   "hidden_dim": 64,
   "dropout": 0.3,
   "batch_size": 32,
   "epochs": 130,
-  "best_test_loss": 0.5308522129633341
+  "best_test_loss": 0.5308522129633341,
+  "label_vocab_path": "model/prep/v2/label_vocab_v2.json"
 }
