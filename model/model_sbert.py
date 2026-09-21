@@ -205,9 +205,6 @@ def main() -> None:
     model.load_state_dict(best_state)
     model.eval()
 
-    with np.load(EMBED_DIR / "embeddings.npy", mmap_mode="r") as _:
-        pass
-
     state = model.state_dict()
     np.savez(
         OUT_DIR / "skill_classifier_sbert_v2.npz",
