@@ -2,10 +2,11 @@
   "embedding_model": "all-MiniLM-L6-v2",
   "input_dim": 384,
   "num_labels": 236,
+  "label_vocab_path": "model/prep/v2/label_vocab_v2.json",
+  "label_vocab_sha256": "b74212608ee5be71de8de1ab7b918946adbb017d2bfa0ffa5a73f0ff7b2755cb",
   "hidden_dim": 64,
   "dropout": 0.3,
   "batch_size": 32,
   "epochs": 130,
-  "best_test_loss": 0.5308522129633341,
-  "label_vocab_path": "model/prep/v2/label_vocab_v2.json"
+  "best_test_loss": 0.32911170800526934
 }
