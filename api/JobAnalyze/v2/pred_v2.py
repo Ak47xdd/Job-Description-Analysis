@@ -10,6 +10,7 @@ import numpy as np
 import onnxruntime as ort
 from huggingface_hub import hf_hub_download
 from tokenizers import Tokenizer
+from JobAnalyze.v2.token_override import apply_token_matching_override
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -279,6 +280,28 @@ def _classifier_predict(embeddings, weights):
     return (1.0 / (1.0 + np.exp(-logits))).astype(np.float32, copy=False)
 
 
+def _apply_hybrid_token_override(probabilities, label_vocab, job_desc: str):
+    """Apply deterministic lexical matching after SBERT classification.
+
+    Exact, isolated skill names mentioned in the raw JD are authoritative for
+    detection. This runs before top-k selection so an explicitly mentioned
+    skill cannot be hidden by a low embedding score.
+    """
+    if os.getenv("SBERT_TOKEN_OVERRIDE", "true").strip().lower() in {"0", "false", "no"}:
+        return probabilities
+
+    overridden = []
+    for index in range(probabilities.shape[0]):
+        updated, matches = apply_token_matching_override(
+            probabilities[index],
+            label_vocab,
+            job_desc[index] if isinstance(job_desc, list) else job_desc,
+        )
+        probabilities[index] = updated
+        overridden.append(matches)
+    return probabilities
+
+
 def JobAnalyze_v2_SBERT(job_desc="", role="", job_type="", top_k=50):
     return JobAnalyze_v2_SBERT_batch([job_desc], role, job_type, top_k)[0]
 
@@ -296,6 +319,11 @@ def JobAnalyze_v2_SBERT_batch(job_descs, role="", job_type="", top_k=50):
     for start in range(0, len(texts), BATCH_SIZE):
         embeddings = _encode_embeddings(texts[start:start + BATCH_SIZE], tokenizer, session)
         probabilities = _classifier_predict(embeddings, weights)
+        probabilities = _apply_hybrid_token_override(
+            probabilities,
+            label_vocab,
+            texts[start:start + BATCH_SIZE],
+        )
 
         for row in probabilities:
             ranked = sorted(zip(label_vocab, row), key=lambda item: -float(item[1]))
