@@ -35,8 +35,17 @@ SYNONYM_MAP = {
     'gemini':                   'genai',
     'claude':                   'genai',
     'gpt':                      'genai',
+    'large language models':    'llms',
+    'large language model':     'llms',
+    'llm':                       'llms',
+    'ai tools':                 'ai',
 
-    # agents 
+    # backend / full-stack taxonomy
+    'backend services':         'backend',
+    'backend engineering':      'backend',
+    'full stack':                'full-stack',
+
+    # agents
     'multi-agent':              'agents',
     'orchestrat':               'agents',
     'agentic':                  'agents',
