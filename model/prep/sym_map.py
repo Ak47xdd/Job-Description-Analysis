@@ -27,7 +27,7 @@ SYNONYM_MAP = {
     'devops':                   'ci/cd',
     'cicd':                     'ci/cd',
 
-    # genai 
+    # genai
     'generative ai':            'genai',
     'frontier model':           'genai',
     'foundation model':         'genai',
