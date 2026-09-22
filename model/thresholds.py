@@ -4,12 +4,42 @@ from __future__ import annotations
 import numpy as np
 
 
+def support_aware_threshold_floor(
+    support: int,
+    *,
+    base_floor: float = 0.25,
+    low_support_cutoff: int = 5,
+    low_support_floor: float = 0.70,
+    medium_support_cutoff: int = 10,
+    medium_support_floor: float = 0.55,
+    established_support_cutoff: int = 20,
+    established_support_floor: float = 0.40,
+) -> float:
+    """Return a conservative threshold floor based on positive-label support."""
+    if support < 0:
+        raise ValueError("support must be non-negative")
+    if support < low_support_cutoff:
+        return float(max(base_floor, low_support_floor))
+    if support < medium_support_cutoff:
+        return float(max(base_floor, medium_support_floor))
+    if support < established_support_cutoff:
+        return float(max(base_floor, established_support_floor))
+    return float(base_floor)
+
+
 def best_threshold(
     y_true: np.ndarray,
     scores: np.ndarray,
     *,
     min_precision: float = 0.30,
     min_threshold: float = 0.25,
+    support_aware: bool = True,
+    low_support_cutoff: int = 5,
+    low_support_floor: float = 0.70,
+    medium_support_cutoff: int = 10,
+    medium_support_floor: float = 0.55,
+    established_support_cutoff: int = 20,
+    established_support_floor: float = 0.40,
 ) -> tuple[float, float, float]:
     """Find the lowest threshold satisfying the precision constraint.
 
@@ -33,6 +63,20 @@ def best_threshold(
         raise ValueError("min_threshold must be between 0 and 1")
 
     positives = int(y_true.sum())
+    effective_min_threshold = (
+        support_aware_threshold_floor(
+            positives,
+            base_floor=min_threshold,
+            low_support_cutoff=low_support_cutoff,
+            low_support_floor=low_support_floor,
+            medium_support_cutoff=medium_support_cutoff,
+            medium_support_floor=medium_support_floor,
+            established_support_cutoff=established_support_cutoff,
+            established_support_floor=established_support_floor,
+        )
+        if support_aware
+        else float(min_threshold)
+    )
     order = np.argsort(-scores, kind="stable")
     sorted_scores = scores[order]
     sorted_true = y_true[order]
@@ -60,7 +104,7 @@ def best_threshold(
         denom = 2 * tp + fp + fn
         f1 = (2.0 * tp / denom) if denom else 0.0
 
-        if score >= min_threshold and precision >= min_precision:
+        if score >= effective_min_threshold and precision >= min_precision:
             if f1 > best_f1 or (np.isclose(f1, best_f1) and (best_threshold is None or score < best_threshold)):
                 best_threshold = score
                 best_f1 = f1
@@ -72,7 +116,7 @@ def best_threshold(
         # No observed score satisfies the precision requirement. The floor is
         # retained as a predictable safety boundary; downstream evaluation can
         # reveal that this label cannot meet the requested precision on this set.
-        fallback_pred = scores >= min_threshold
+        fallback_pred = scores >= effective_min_threshold
         fallback_tp = int(np.logical_and(fallback_pred, y_true).sum())
         fallback_count = int(fallback_pred.sum())
         fallback_precision = fallback_tp / fallback_count if fallback_count else 0.0
@@ -80,7 +124,7 @@ def best_threshold(
         fallback_fp = fallback_count - fallback_tp
         fallback_denom = 2 * fallback_tp + fallback_fp + fallback_fn
         fallback_f1 = (2.0 * fallback_tp / fallback_denom) if fallback_denom else 0.0
-        return float(min_threshold), fallback_f1, fallback_precision
+        return float(effective_min_threshold), fallback_f1, fallback_precision
 
     return float(best_threshold), float(best_f1), float(best_precision)
 
@@ -91,6 +135,13 @@ def optimize_per_label_thresholds(
     *,
     min_precision: float = 0.30,
     min_threshold: float = 0.25,
+    support_aware: bool = True,
+    low_support_cutoff: int = 5,
+    low_support_floor: float = 0.70,
+    medium_support_cutoff: int = 10,
+    medium_support_floor: float = 0.55,
+    established_support_cutoff: int = 20,
+    established_support_floor: float = 0.40,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Optimize every label independently under precision/floor constraints."""
     y_true = np.asarray(y_true)
@@ -108,6 +159,13 @@ def optimize_per_label_thresholds(
             scores[:, label_idx],
             min_precision=min_precision,
             min_threshold=min_threshold,
+            support_aware=support_aware,
+            low_support_cutoff=low_support_cutoff,
+            low_support_floor=low_support_floor,
+            medium_support_cutoff=medium_support_cutoff,
+            medium_support_floor=medium_support_floor,
+            established_support_cutoff=established_support_cutoff,
+            established_support_floor=established_support_floor,
         )
 
     return thresholds, best_f1, best_precision
