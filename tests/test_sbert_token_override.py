@@ -28,7 +28,7 @@ def test_override_sets_explicit_skills_to_one():
     )
 
     assert overridden == ["sql", "fastapi", "git"]
-    assert updated.tolist() == [0.91, 1.0, 1.0, 1.0]
+    assert np.allclose(updated, [0.91, 1.0, 1.0, 1.0])
 
 
 def test_override_can_promote_a_skill_into_top_k():
