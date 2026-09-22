@@ -37,13 +37,27 @@ SKILLS_FIX = {
     "python. ml": "ml",
 }
 
+# Canonical label hierarchy. These are taxonomy aliases merged before the
+# multi-label target matrix is built. Conceptually distinct labels such as
+# "genai" and "llms" remain separate.
+LABEL_CANONICAL_MAP = {
+    "ai tools": "ai",
+    "generative ai": "genai",
+    "large language models": "llms",
+    "llm": "llms",
+    "full stack": "full-stack",
+    "backend services": "backend",
+    "backend engineering": "backend",
+}
+
 
 def normalizer(skills) -> list[str]:
     if pd.isna(skills):
         return []
     skill = [s.strip().lower() for s in str(skills).split(",") if s.strip()]
     fixed = [SKILLS_FIX.get(s, s) for s in skill]
-    return list(dict.fromkeys(fixed))
+    canonical = [LABEL_CANONICAL_MAP.get(s, s) for s in fixed]
+    return list(dict.fromkeys(canonical))
 
 
 def apply_synonyms(text: str) -> str:
