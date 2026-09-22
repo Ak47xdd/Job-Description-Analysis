@@ -64,7 +64,7 @@ def normalizer(skills) -> list[str]:
 def apply_synonyms(text: str) -> str:
     text = text.lower()
     # Protect plural LLMs while canonicalizing singular "llm" below.
-    text = re.sub(r"\\bllms\\b", "__CANONICAL_LLMS__", text)
+    text = re.sub(r"\bllms\b", "__CANONICAL_LLMS__", text)
     for phrase, canonical in sorted(SYNONYM_MAP.items(), key=lambda x: -len(x[0])):
         text = text.replace(phrase, canonical)
     return text.replace("__canonical_llms__", "llms")
