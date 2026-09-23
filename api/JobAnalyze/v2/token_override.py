@@ -1,10 +1,9 @@
-"""Deterministic token matching for the SBERT hybrid classifier.
+"""Deterministic lexical support for the SBERT hybrid classifier.
 
-Embedding models handle semantic similarity well, but exact technology names
-such as SQL, Git, and FastAPI should not depend on an embedding score.
-This module provides a conservative lexical override: a vocabulary label is
-forced to probability 1.0 only when that exact label occurs as an isolated
-token/phrase in the raw job-description text.
+SBERT handles semantic similarity well, while exact lexical matches can recover
+technologies whose names are easy to miss in embeddings. Exact matches are
+therefore used as a controlled confidence boost, not as a hard probability of
+1.0. Generic taxonomy labels receive a smaller boost than specific technologies.
 """
 
 from __future__ import annotations
@@ -17,6 +16,27 @@ import numpy as np
 
 _TOKEN_PREFIX = r"(?<!\w)"
 _TOKEN_SUFFIX = r"(?!\w)"
+
+GENERIC_LABELS = frozenset(
+    {
+        "ai",
+        "apis",
+        "api",
+        "backend",
+        "cloud",
+        "infrastructure",
+        "search",
+        "software",
+        "technology",
+        "data",
+        "development",
+        "engineering",
+    }
+)
+
+SPECIFIC_MATCH_BOOST = 0.75
+GENERIC_MATCH_BOOST = 0.25
+MAX_LEXICAL_PROBABILITY = 0.95
 
 
 @lru_cache(maxsize=512)
@@ -32,17 +52,19 @@ def skill_is_explicitly_present(skill: str, text: str) -> bool:
     return _compiled_pattern(skill).search(text) is not None
 
 
+def _lexical_boost(skill: str) -> float:
+    return GENERIC_MATCH_BOOST if skill.strip().lower() in GENERIC_LABELS else SPECIFIC_MATCH_BOOST
+
+
 def apply_token_matching_override(
     probabilities: np.ndarray,
     label_vocab: list[str],
     text: str,
 ) -> tuple[np.ndarray, list[str]]:
-    """Force explicitly mentioned vocabulary skills to probability 1.0.
+    """Boost explicitly mentioned vocabulary skills without forcing 100%.
 
-    The returned list contains the labels overridden by the lexical matcher.
-    Matching is performed against the complete vocabulary, so a skill can be
-    added to the final top-k results even when the SBERT classifier ranked it
-    below the cutoff.
+    The boost is applied as p' = p + (1 - p) * boost and capped at
+    MAX_LEXICAL_PROBABILITY. Generic taxonomy labels use a smaller boost.
     """
     scores = np.asarray(probabilities, dtype=np.float32).copy()
     if scores.ndim != 1:
@@ -53,9 +75,13 @@ def apply_token_matching_override(
             f"{len(label_vocab)} labels."
         )
 
-    overridden: list[str] = []
+    matched: list[str] = []
     for index, skill in enumerate(label_vocab):
         if skill_is_explicitly_present(skill, text):
-            scores[index] = 1.0
-            overridden.append(skill)
-    return scores, overridden
+            boost = _lexical_boost(skill)
+            scores[index] = min(
+                MAX_LEXICAL_PROBABILITY,
+                scores[index] + (1.0 - scores[index]) * boost,
+            )
+            matched.append(skill)
+    return scores, matched
