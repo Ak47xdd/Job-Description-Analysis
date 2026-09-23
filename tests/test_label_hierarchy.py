@@ -31,3 +31,24 @@ def test_input_synonyms_match_canonical_labels():
     assert SYNONYM_MAP["full stack"] == "full-stack"
     assert SYNONYM_MAP["backend services"] == "backend"
     assert SYNONYM_MAP["ai tools"] == "ai"
+
+
+def test_cloud_provider_aliases_share_one_canonical_label():
+    labels = normalizer(
+        "AWS, Azure, Microsoft Azure, Amazon Web Services, GCP, "
+        "Google Cloud, AWS/Azure"
+    )
+
+    assert labels == ["aws/azure"]
+
+
+def test_cloud_provider_text_synonyms_use_one_canonical_bucket():
+    from model.prep.data_prep import apply_synonyms
+
+    text = apply_synonyms(
+        "AWS, Azure, Microsoft Azure, Amazon Web Services, GCP, Google Cloud"
+    )
+
+    assert text.count("aws/azure") == 6
+    assert "azure" not in text.replace("aws/azure", "")
+    assert "aws" not in text.replace("aws/azure", "")
