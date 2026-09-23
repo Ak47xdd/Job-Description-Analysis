@@ -322,7 +322,7 @@ def JobAnalyze_v2_SBERT_batch(job_descs, role="", job_type="", top_k=50):
         probabilities = _apply_hybrid_token_override(
             probabilities,
             label_vocab,
-            texts[start:start + BATCH_SIZE],
+            job_descs[start:start + BATCH_SIZE],
         )
 
         for row in probabilities:
