@@ -2,8 +2,8 @@
   "source_dataset": "data\\clean\\v2\\cleaned_job_descriptions_v2.csv",
   "source_dataset_sha256": "2834c71e7ed44f17a55551c84b6fc8b370fe4a1c7e72f14313cdd3a6606dca17",
   "num_rows": 747,
-  "num_labels": 229,
-  "label_vocab_sha256": "3f7f52b75f5c2262b4c8189b262e3b56df5684429c705036b001afcdfd073f15",
+  "num_labels": 224,
+  "label_vocab_sha256": "b8bac532b2e0b31af4d6145c84e8760b16a79b0b42c2174d4adb0868f757f63f",
   "random_state": 42,
   "test_size": 0.2
 }
