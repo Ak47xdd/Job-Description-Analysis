@@ -105,9 +105,11 @@ SYNONYM_MAP = {
     'named entity':             'nlp',
     'text classification':      'nlp',
 
-    # aws/azure 
+    # aws/azure -- cloud-provider aliases share one canonical bucket
+    'microsoft azure':          'aws/azure',
     'amazon web services':      'aws/azure',
     'azure openai':             'aws/azure',
+    'google cloud platform':    'aws/azure',
     'google cloud':             'aws/azure',
     'ai foundry':               'aws/azure',
     'sagemaker':                'aws/azure',
