@@ -49,6 +49,15 @@ LABEL_CANONICAL_MAP = {
     "full stack": "full-stack",
     "backend services": "backend",
     "backend engineering": "backend",
+    # Cloud-provider aliases share one canonical bucket.
+    "aws": "aws/azure",
+    "azure": "aws/azure",
+    "microsoft azure": "aws/azure",
+    "amazon web services": "aws/azure",
+    "gcp": "aws/azure",
+    "google cloud": "aws/azure",
+    "google cloud platform": "aws/azure",
+    "aws/azure": "aws/azure",
 }
 
 
@@ -63,11 +72,19 @@ def normalizer(skills) -> list[str]:
 
 def apply_synonyms(text: str) -> str:
     text = text.lower()
-    # Protect plural LLMs while canonicalizing singular "llm" below.
-    text = re.sub(r"\bllms\b", "__CANONICAL_LLMS__", text)
-    for phrase, canonical in sorted(SYNONYM_MAP.items(), key=lambda x: -len(x[0])):
-        text = text.replace(phrase, canonical)
-    return text.replace("__canonical_llms__", "llms")
+    # Canonicalize aliases in one pass so a replacement cannot be re-matched
+    # inside the canonical label itself (for example "azure" inside
+    # "aws/azure").
+    synonym_items = sorted(SYNONYM_MAP.items(), key=lambda x: -len(x[0]))
+    if synonym_items:
+        pattern = re.compile(
+            r"(?<![\\w])(?:"
+            + "|".join(re.escape(phrase) for phrase, _ in synonym_items)
+            + r")(?![\\w])"
+        )
+        lookup = dict(synonym_items)
+        text = pattern.sub(lambda match: lookup[match.group(0)], text)
+    return text
 
 
 def main() -> None:
