@@ -1,17 +1,17 @@
-id,role,type,job_desc,year,qualification,experience,tech_skills,soft_skills
-1,AI Engineer,Internship,"Final year students / recent graduates in CS, AI, Data Science, or related fields
+Unnamed: 0,id,role,type,job_desc,year,qualification,experience,tech_skills,soft_skills
+0,1,AI Engineer,Internship,"Final year students / recent graduates in CS, AI, Data Science, or related fields
 Strong Python programming skills
 Understanding of Machine Learning / Deep Learning fundamentals
 Exposure to LangChain, Hugging Face, OpenAI APIs, or similar tools
 Curiosity, ownership mindset, and willingness to learn fast
 Strong problem-solving skills",2026,Bachelors,0,"Python, ML, LangChain, Hugging Face, OpenAI API","Communication, Problem Solving"
-2,AI Engineer,Internship,"Proficiency in Python and comfort working with APIs (REST, JSON, authentication).
+1,2,AI Engineer,Internship,"Proficiency in Python and comfort working with APIs (REST, JSON, authentication).
 Working understanding of Large Language Models (LLMs) and prompt engineering - gained through coursework, online learning, personal projects, hackathons, or open-source contributions.
 Familiarity with at least one agent or LLM framework (e.g., LangChain, LlamaIndex, LangGraph, CrewAI, AutoGen, the Anthropic /OpenAI SDKs, or the Model Context Protocol).
 Strong problem-solving skills and the ability to break ambiguous business problems into structured, automatable steps.
 Excellent communication skills and ability to work collaboratively with others.
 Experience with vector databases and Retrieval-Augmented Generation (RAG), Exposure to tool use / function calling, multi-agent orchestration, or workflow automation tools (e.g., n8n, Zapier), SQL and PowerBI, Awareness of evaluation, guardrails, or safety practices for LLM applications are good to have. B Tech / B.E. in Computer Science, Information Technology, or a similar field. Candidates from other engineering or science backgrounds with demonstrated hands-on experience building with LLMs or AI agents are also encouraged to apply.",2026,Bachelors,0,"Python, APIs, LLMs, Prompt Engineering, LangChain, LangGraph, CrewAI, AutoGen, MCP, VectorDB, n8n, RAG","Communication, Problem Solving"
-3,AI Engineer,Internship,"Strong interest in AI and a willingness to learn and explore GenAI tools and frameworks.
+2,3,AI Engineer,Internship,"Strong interest in AI and a willingness to learn and explore GenAI tools and frameworks.
 Programming skills in languages such as Python, JavaScript (React, Angular, Express.js, Node.js, NextJS), or similar.
 Front-end and Back-end engineers are welcome; Full-Stack developers are preferred.
 Excellent problem-solving skills and ability to work in a collaborative environment.
@@ -21,7 +21,7 @@ Frontend: Ability to consider user interactions when interacting with a model an
 Backend - Understanding of machine learning concepts and frameworks (e.g., TensorFlow, PyTorch).
 Backend/Frontend - API integration - Familiarity with REST, GraphQL, or gRPC.
 Data Scientist = Familiarity with data pipelines: Ingestion, Cleaning/preprocessing, Transformation/Feature Engineering, Model Training/Evaluation, Model Deploying/Serving and Monitoring/Maintenance",2026,Bachelors,0,"Python, Javascript, React, Full Stack, APIs, ML, TesnorFlow/Pytorch, Ingestion, Data Cleaning, Feature Engineering, Model Training, Model Evaluation, Model Deploying, Model Maintenance, GenAI","Communication, Problem Solving"
-9,AI Engineer,Internship,"Python
+8,9,AI Engineer,Internship,"Python
 Machine Learning Fundamentals
 Large Language Models (LLMs)
 Prompt Engineering
@@ -33,7 +33,7 @@ Vector Databases
 Hugging Face
 TensorFlow
 PyTorch",2026,Bachelors,0,"Python, ML, LLMs, Prompt Engineering, APIs, LangChain, RAG, VectorDB, Hugging Face, TensorFlow/PyTorch","Communication, Problem Solving"
-10,AI Engineer,Internship,"Solid understanding of LLMs, tokenization, transformers.
+9,10,AI Engineer,Internship,"Solid understanding of LLMs, tokenization, transformers.
 Python programming (Pandas, NumPy, Hugging Face, LangChain, etc.).
 Exposure to AWS services like EC2, Lambda, S3, or SageMaker.
 Eagerness to explore real-world AI use cases (agents, copilots, RAG).
@@ -41,13 +41,13 @@ Basic ML knowledge and hands-on project experience.
 Experience with serverless deployments on AWS.
 Familiarity with monitoring and logging (e.g., CloudWatch, OpenTelemetry).
 Contributions to open-source AI tools or model",2026,Bachelors,0,"Python, Pandas, NumPyHugging Face, LangChain, AWS, Agents, RAG","Communication, Problem Solving"
-13,AI Developer,Internship,"Basic to intermediate Python programming skills.
+12,13,AI Developer,Internship,"Basic to intermediate Python programming skills.
 Understanding of AI/ML, Generative AI, and Prompt Engineering.
 Familiarity with APIs, databases, and version control (Git).
 Strong analytical, problem-solving, and communication skills.
 Exposure to LangChain, RAG, Vector Databases, AI Chatbots, or related projects.
 Knowledge of AWS, Azure, or Google Cloud is a plus\",2026,Bachelors,0,"Python, ML, GenAI, APIs, Git, Prompt Engineering, LangChain, RAG, VectorDB, AWS/Azure","Communication, Problem Solving, Analytical Skills"
-27,AI Engineer,Internship,"Python Skills: You should be very comfortable with Python and async programming.
+24,25,AI Engineer,Internship,"Python Skills: You should be very comfortable with Python and async programming.
 LLM Experience: You have used APIs from OpenAI, Anthropic, or Gemini to build more than just a simple chatbot.
 Agent Knowledge: You understand how to give an AI tools (functions) to call so it can perform real tasks.
 Vector Databases: Basic experience with Pinecone, FAISS, or similar tools for searching through product data.
@@ -55,7 +55,7 @@ You have used LangGraph, CrewAI, or AutoGen before.
 You understand RAG (Retrieval-Augmented Generation).
 You can build simple frontends in React or Next.js to show off your AI tools. 
 ",2026,Bachelors,0,"Python, Javascript, React, LLMs, VectorDB, LangGraph, CrewAI, AutoGen, RAG","Communication, Problem Solving"
-28,AI Engineer,Internship,"Exposure to Full-Stack Development (frontend and backend technologies).
+25,26,AI Engineer,Internship,"Exposure to Full-Stack Development (frontend and backend technologies).
 Experience working with or building projects using AI technologies and Large Language Models (LLMs).
 Familiarity with modern web development frameworks and APIs.
 Understanding of software development best practices.
@@ -70,8 +70,8 @@ Experience with OpenAI, Anthropic, or other LLM platforms.
 Knowledge of vector databases, RAG systems, or AI agents.
 Experience deploying applications to cloud platforms.
 Previous internship, academic, or personal projects involving AI products. ",2026,Bachelors,0,"Python, Git, Github, Full Stack, LLMs, APIs, GenAI, VectorDB, RAG, AWS/Azure","Communication, Problem Solving, Analytical Skills"
-29,AI Engineer,Internship,"Python, TensorFlow, PyTorch, Scikit-learn, NumPy, pandas, Git, C#, .NET, R, Deep Learning, LLMs ",2026,Bachelors,0,"Python, TensorFlow/PyTorch, Scikit-Learn, NumPy, Pandas, Git, C#, .NET, R, ML, LLMs ","Communication, Problem Solving"
-30,AI Engineer,Internship,"Recently completed a degree in Computer Science, AI, ML, Data Science, or related fields
+26,27,AI Engineer,Internship,"Python, TensorFlow, PyTorch, Scikit-learn, NumPy, pandas, Git, C#, .NET, R, Deep Learning, LLMs ",2026,Bachelors,0,"Python, TensorFlow/PyTorch, Scikit-Learn, NumPy, Pandas, Git, C#, .NET, R, ML, LLMs ","Communication, Problem Solving"
+27,28,AI Engineer,Internship,"Recently completed a degree in Computer Science, AI, ML, Data Science, or related fields
 Strong understanding of Generative AI and LLM fundamentals
 Proficiency in Python
 Experience or familiarity with:
@@ -91,7 +91,7 @@ Knowledge of NLP, embeddings, and semantic search
 Familiarity with cloud platforms or deployment workflows
 Prior hands-on projects in Generative AI or agent-based systems
 ",2026,Bachelors,0,"Python, GenAI, LLMs, RAG, Prompt Engineering, VectorDB, LangChain, LangGraph, APIs, NLP","Communication, Problem Solving, Analytical Skills"
-38,AI Engineer,Internship,"Currently pursuing or recently completed a Bachelor's or Master's degree in Computer Science, Data Science, AI, Machine Learning, or a related field
+35,36,AI Engineer,Internship,"Currently pursuing or recently completed a Bachelor's or Master's degree in Computer Science, Data Science, AI, Machine Learning, or a related field
 Foundational knowledge of machine learning concepts, statistical modeling, and data structures
 Proficiency in Python and familiarity with ML libraries such as PyTorch or TensorFlow
 Experience with data preprocessing and dataset management
@@ -101,7 +101,7 @@ Ability to work independently in a remote environment while meeting deadlines
 Prior experience contributing to AI/ML research projects or open-source repositories
 Familiarity with hybrid AI approaches, generative models, or symbolic AI
 Experience with version control (Git) and collaborative development workflows ",2026,Bachelors,0,"Python, ML, TensorFlow/Pytorch, GenAI, Git, Github","Communication, Problem Solving"
-39,AI Engineer,Internship,"• B.Tech, MCA, MSc, BSc, BCA, M.Tech students or graduates
+36,37,AI Engineer,Internship,"• B.Tech, MCA, MSc, BSc, BCA, M.Tech students or graduates
 • Basic knowledge of Python preferred
 • Strong interest in AI and Data Science
 • Willingness to work on real-world projects 
@@ -110,14 +110,14 @@ Experience with version control (Git) and collaborative development workflows ",
 • Data Analysis Project Knowledge
 • Basic Knowledge of AI Concepts including Gen AI/LLM Cloud Deployment 
 ",2026,Bachelors,0,"Python, ML, GenAI, LLMs","Communication, Problem Solving"
-40,AI Engineer,Internship,"• Final year students / recent graduates in CS, AI, Data Science, or related fields
+37,38,AI Engineer,Internship,"• Final year students / recent graduates in CS, AI, Data Science, or related fields
 • Strong Python programming skills
 • Understanding of Machine Learning / Deep Learning fundamentals
 • Exposure to LangChain, Hugging Face, OpenAI APIs, or similar tools
 • Curiosity, ownership mindset, and willingness to learn fast
 • Strong problem-solving skills 
 ",2026,Bachelors,0,"Python, ML, LangChain, Hugging Face, APIs","Communication, Problem Solving"
-41,AI Engineer,Internship,"Solid understanding of LLMs, tokenization, transformers.
+38,39,AI Engineer,Internship,"Solid understanding of LLMs, tokenization, transformers.
 Python programming (Pandas, NumPy, Hugging Face, LangChain, etc.).
 Exposure to AWS services like EC2, Lambda, S3, or SageMaker.
 Eagerness to explore real-world AI use cases (agents, copilots, RAG).
@@ -126,7 +126,7 @@ Experience with serverless deployments on AWS.
 Familiarity with monitoring and logging (e.g., CloudWatch, OpenTelemetry).
 Contributions to open-source AI tools or models 
 ",2026,Bachelors,0,"Python, Pandas, NumPy, Hugging Face, LangChain, AWS/Azure, RAG, ML ","Communication, Problem Solving"
-46,AI Engineer,Internship,"1. Design, build, and optimize scalable Agentic RAG (Retrieval-Augmented Generation)
+43,44,AI Engineer,Internship,"1. Design, build, and optimize scalable Agentic RAG (Retrieval-Augmented Generation)
 pipelines for complex data environments.
 2. Develop and implement Agentic AI workflows to automate multi-step reasoning and
 decision-making tasks.
@@ -137,7 +137,7 @@ mechanisms.
 5. Write scalable, maintainable, and well-documented code to support AI infrastructure.
 6. Collaborate with backend engineers to seamlessly integrate AI agents and LLM 
 Python, Machine Learning, Artificial intelligence and LLM evaluation",2026,Bachelors,0,"Python, RAG, LLMs, ML, ","Communication, Problem Solving"
-47,AI Engineer,Internship,"• Perform data collection, cleaning, preprocessing, and exploratory analysis on structured and unstructured datasets.
+44,45,AI Engineer,Internship,"• Perform data collection, cleaning, preprocessing, and exploratory analysis on structured and unstructured datasets.
 • Implement algorithms for supervised, unsupervised, and deep learning under mentor guidance.
 • Conduct experiments, tune hyperparameters, and document results clearly and accurately.
 • Support deployment of models through APIs, pipelines, or cloud platforms.
@@ -150,7 +150,7 @@ Python, Machine Learning, Artificial intelligence and LLM evaluation",2026,Bache
 • Strong fundamentals in statistics, linear algebra, and probability concepts.
 • Hands-on experience with Python, SQL, and ML frameworks such as TensorFlow or PyTorch.
 • Curious, analytical, self-driven, and eager to learn fast in a dynamic environment. ",2026,Bachelors,0,"Python, ML, APIs, SQL, TensorFlow/PyTorch, ","Communication, Problem Solving, Analytical Skills"
-48,AI Engineer,Internship,"1. Work across AI automation, full-stack development, and AI/ML tasks based on project requirements and individual core strengths.
+45,46,AI Engineer,Internship,"1. Work across AI automation, full-stack development, and AI/ML tasks based on project requirements and individual core strengths.
 2. Build automation workflows using Make.com and n8n for end-to-end system integration.
 3. Integrate APIs including CRMs, email systems, WhatsApp platforms, and advertising tools into automated workflows.
 4. Develop and maintain web applications using React for frontend development and FastAPI or Node.js for backend systems.
@@ -173,7 +173,7 @@ Python, SQL, Machine Learning, Neural Networks, Deep Learning, Artificial intell
 • 4. A portfolio or GitHub profile showcasing real-world projects will be strongly preferred.
 • 5. Familiarity with AI tools such as ChatGPT, Claude, and LangChain is valued.
 • 6. A fast-execution and builder-oriented mindset is appreciated.",2026,Bachelors,0,"Python, APIs, ML, n8n, React, SQL, AWS/Azure, RAG, LLMs, Github, LangChain","Communication, Problem Solving"
-49,AI Developer,Internship,"1. Building event-driven automations to capture notifications, web-hooks, emails, messages, and CRM events, and routing them to LLMs for contextual responses.
+46,47,AI Developer,Internship,"1. Building event-driven automations to capture notifications, web-hooks, emails, messages, and CRM events, and routing them to LLMs for contextual responses.
 2. Designing and deploying AI agents using Power Automate ( Desktop), Make.com, Zapier, OpenAI Assistants API etc.
 3. Implementing multi-agent workflows for various applications needs like lead qualification, follow-ups, marketing content for social media, etc.
 4. Enabling cross-platform messaging automation across WhatsApp, LinkedIn, email, and CRM systems with full context retention.
@@ -192,14 +192,14 @@ Logical reasoning, Problem Solving, Automation, APIs, Generative AI Tools, ChatG
 • 11. Understanding of motion design basics using tools like After Effects.
 • 12. Experience with AI image generation tools
 • 13. Experience with AI video generation tools ",2026,Bachelors,0,"Python, LLMs, ML, APIs, n8n, GenAI","Communication, Problem Solving"
-50,AI Developer,Internship,"• Currently pursuing a bachelor's or master's degree in computer science with a strong interest or focus on Generative AI and/or Machine Learning
+47,48,AI Developer,Internship,"• Currently pursuing a bachelor's or master's degree in computer science with a strong interest or focus on Generative AI and/or Machine Learning
 • Some knowledge and coursework related to Large Language Models, generative AI applications, and/or agentic AI concepts
 • A foundational understanding of programming concepts, ideally with some exposure to languages like Python or C++
 • A proactive attitude and eagerness to learn about emerging AI methodologies and tools
 • A genuine passion for staying informed about the latest advancements in the field of Artificial Intelligence
 • Basic familiarity with operating systems and common networking protocols is a plus
 • A willingness to embrace a growth mindset and contribute to end-to-end product thinking",2026,Bachelors,0,"Python, LLMs, GenAI, ML, Agents","Communication, Problem Solving"
-51,AI Developer,Internship,"• Basic knowledge of Python programming.
+48,49,AI Developer,Internship,"• Basic knowledge of Python programming.
 • Understanding of Artificial Intelligence / Machine Learning concepts.
 • Familiarity with Generative AI, ChatGPT, OpenAI API, NLP, or LLMs is a plus.
 • Basic knowledge of TensorFlow, PyTorch, Scikit-learn, Pandas, or NumPy is an advantage.
@@ -209,15 +209,15 @@ Logical reasoning, Problem Solving, Automation, APIs, Generative AI Tools, ChatG
 • Final Year Students / Freshers / Recent Graduates.
 • B.E / B.Tech / BCA / MCA / B.Sc / M.Sc (Computer Science, AI, Data Science, IT, or related fields).
 • Candidates with mini-projects or AI-related knowledge are preferred. ",2026,Bachelors,0,"Python, ML, GenAI, LLMs, NLP, APIs, TensorFlow/PyTorch, Scikit-learn, Pandas, NumPy, SQL","Communication, Problem Solving"
-102,AI Engineer,Internship,"We are looking for candidates with strong programming skills, preferably in Python, hands-on experience with LLMs or AI systems, and a strong interest in agents, evaluation, alignment, interpretability, or enterprise AI.
+98,99,AI Engineer,Internship,"We are looking for candidates with strong programming skills, preferably in Python, hands-on experience with LLMs or AI systems, and a strong interest in agents, evaluation, alignment, interpretability, or enterprise AI.
 You should be comfortable working on ambiguous problems, building prototypes quickly, reading papers or technical material, documenting findings clearly, and independently identifying high-value directions.
 Bonus signals include experience with agent frameworks, long-horizon agents, evaluation pipelines, research projects, open-source tools, backend systems, enterprise data, or AI safety and interpretability. ",2026,Bachelors,0,"Python, ML, Agents, LangChain, LangGraph, LlamaIndex, LLMs","Communication, Problem Solving"
-116,AI Engineer,Internship,"• Currently pursuing or recently completed a degree in Computer Science, Engineering, Human-Computer Interaction (HCI), Data Science, or a related field.
+112,113,AI Engineer,Internship,"• Currently pursuing or recently completed a degree in Computer Science, Engineering, Human-Computer Interaction (HCI), Data Science, or a related field.
 • Programming experience in Java and/or Python.
 • Understanding of software engineering fundamentals (data structures, APIs, modular design).
 • Basic familiarity with UX principles such as usability, accessibility, and user-centered design.
 • Strong interest in AI, machine learning, or Generative AI technologies. ",2026,Bachelors,0,"Python, Java, Full Stack, ML, GenAI, APIs","Communication, Problem Solving"
-120,AI Developer,Internship,"Bachelor's Degree in Computer Science, Information Technology, Artificial Intelligence, Data Science, or a related field
+116,117,AI Developer,Internship,"Bachelor's Degree in Computer Science, Information Technology, Artificial Intelligence, Data Science, or a related field
 Fresh graduates are encouraged to apply
 Candidates who have completed AI/ML courses, certifications, bootcamps, or training programs can also apply
 Internship experience in AI, ML, Data Science, or related domains will be an added advantage
@@ -227,14 +227,15 @@ Understanding of AI frameworks and libraries such as TensorFlow, PyTorch, Scikit
 Basic understanding of data structures, databases, and APIs
 Strong analytical and problem-solving skills
 Passion for learning and exploring emerging AI technologies",2026,Bachelors,0,"Python, TensorFlow/PyTorch, Scikit-Learn, APIs, SQL","Communication, Problem Solving"
-122,AI Engineer,Internship,"• Collaborate with senior engineers to design and implement AI algorithms.
+118,119,AI Engineer,Internship,"• Collaborate with senior engineers to design and implement AI algorithms.
 • Assist in testing and debugging AI models to ensure accuracy and efficiency.
 • Research and experiment with new AI technologies to enhance product performance.
 • Participate in team meetings and brainstorming sessions to contribute ideas and insights.
 • Analyze data sets and generate reports to support decision-making processes.
 • Help in optimizing and fine-tuning AI models to improve overall system performance.
-• Stay updated on the latest trends and advancements in the AI industry to enhance your skills and knowledge. ",2026,Bachelors,0,"Python, ML","Communication, Problem Solving"
-127,AI Engineer,Internship,"• Foundational knowledge of programming concepts (e.g., Python or similar languages) and familiarity with data structures.
+• Stay updated on the latest trends and advancements in the AI industry to enhance your skills and knowledge. 
+",2026,Bachelors,0,"Python, ML","Communication, Problem Solving"
+123,124,AI Engineer,Internship,"• Foundational knowledge of programming concepts (e.g., Python or similar languages) and familiarity with data structures.
 • Basic understanding of artificial intelligence and machine learning principles, such as supervised learning, classification, or recommendation systems.
 • Ability to work with datasets, including data collection, cleaning, and simple analysis using tools like spreadsheets or basic libraries.
 • Strong analytical and problem-solving skills, with attention to detail and an interest in education technology.
@@ -242,14 +243,7 @@ Passion for learning and exploring emerging AI technologies",2026,Bachelors,0,"P
 • Current enrollment in or recent completion of a degree program in Computer Science, Data Science, Engineering, Mathematics, or a related field is preferred.
 • Interest in K–12 education, student development, and building inclusive, learner-focused technology solutions.
 • Self-motivated, organized, and able to manage tasks independently in a remote setting. ",2026,Bachelors,0,"Python, ML, Pandas, NumPy, LLMs","Communication, Problem Solving"
-132,AI Engineer,Internship,"• Collaborate with senior engineers to design and implement AI algorithms.
-• Assist in testing and debugging AI models to ensure accuracy and efficiency.
-• Research and experiment with new AI technologies to enhance product performance.
-• Participate in team meetings and brainstorming sessions to contribute ideas and insights.
-• Analyze data sets and generate reports to support decision-making processes.
-• Help in optimizing and fine-tuning AI models to improve overall system performance.
-• Stay updated on the latest trends and advancements in the AI industry to enhance your skills and knowledge. ",2026,Bachelors,0,"Python, ML, GenAI, LLMs","Communication, Problem Solving"
-134,AI Engineer,Internship,"1. Collaborate with senior engineers to design and implement AI algorithms.
+128,129,AI Engineer,Internship,"1. Collaborate with senior engineers to design and implement AI algorithms.
 2. Assist in testing and debugging AI models to ensure accuracy and efficiency.
 3. Research and experiment with new AI technologies to enhance product performance.
 4. Participate in team meetings and brainstorming sessions to contribute ideas and insights.
@@ -257,7 +251,7 @@ Passion for learning and exploring emerging AI technologies",2026,Bachelors,0,"P
 6. Help in optimizing and fine-tuning AI models to improve overall system performance.
 7. Stay updated on the latest trends and advancements in the AI industry to enhance your skills and knowledge.
 If you are a self-motivated individual with a strong foundation in Python and a keen interest in AI technology, this internship opportunity at The Inventar company is perfect for you. Join us in shaping the future of AI technology and make a real impact on the world. Apply now and be part of our dynamic team! ",2026,Bachelors,0,"Python, LLMs, GenAI, ML","Communication, Problem Solving"
-136,AI Engineer,Internship,"- Foundational knowledge of AI/ML concepts such as supervised and unsupervised learning, model evaluation, and basic statistics.
+130,131,AI Engineer,Internship,"- Foundational knowledge of AI/ML concepts such as supervised and unsupervised learning, model evaluation, and basic statistics.
 - Proficiency in at least one programming language commonly used in AI (e.g., Python) and familiarity with version control tools (e.g., Git).
 - Exposure to machine learning or deep learning frameworks (e.g., TensorFlow, PyTorch, scikit-learn), even at a project or coursework level.
 - Ability to work with data: basic data cleaning, preprocessing, and visualization skills using tools such as NumPy, pandas, or similar libraries.
@@ -267,21 +261,23 @@ If you are a self-motivated individual with a strong foundation in Python and a 
 - Interest in XR, AI applications for interactive environments, and emerging technologies; prior personal or academic projects in these areas are a plus.
 - Familiarity with basic software development practices, including debugging, testing, and documenting code.
 - Self-motivated, organized, and able to manage time effectively in a fully remote internship setting. ",2026,Bachelors,0,"Python, ML, TensorFlow/PyTorch, Scikit-Learn, Git, Github, Pandas, NumPy, MLOps","Communication, Problem Solving"
-137,AI Engineer,Internship,"Selected Intern's Day-to-day Responsibilities Include
+131,132,AI Engineer,Internship,"Selected Intern's Day-to-day Responsibilities Include
 • Contribute to the development and implementation of AI algorithms and models.
 • Collaborate with our team to optimize and enhance existing AI technologies.
 • Conduct research and analysis to identify opportunities for AI integration.
 • Assist in data collection, cleansing, and preprocessing for AI projects.
 • Participate in testing and evaluation of AI solutions to ensure functionality and accuracy.
 • Stay up-to-date with the latest advancements in AI and machine learning.
-• Present findings and recommendations to stakeholders, contributing to the overall success of our AI initiatives. ",2026,Bachelors,0,"Python, ML, LLMs, MLOps, Prompt Engineering","Communication, Problem Solving"
-138,AI Engineer,Internship,"• Design and develop innovative AI models and algorithms to solve complex problems.
+• Present findings and recommendations to stakeholders, contributing to the overall success of our AI initiatives. 
+",2026,Bachelors,0,"Python, ML, LLMs, MLOps, Prompt Engineering","Communication, Problem Solving"
+132,133,AI Engineer,Internship,"• Design and develop innovative AI models and algorithms to solve complex problems.
 • Collaborate with cross-functional teams to integrate AI solutions into existing systems.
 • Develop and maintain large-scale data pipelines and architectures.
 • Conduct thorough analysis and testing of AI models to ensure quality and reliability.
 • Stay updated with industry trends and advancements in AI and machine learning.
-• Participate in code reviews and contribute to improving overall code quality. ",2026,Bachelors,0,"Python, ML, LLMs","Communication, Problem Solving"
-139,AI Developer,Internship,"• Good knowledge of React.js and frontend development
+• Participate in code reviews and contribute to improving overall code quality. 
+",2026,Bachelors,0,"Python, ML, LLMs","Communication, Problem Solving"
+133,134,AI Developer,Internship,"• Good knowledge of React.js and frontend development
 • Basic backend knowledge with Node.js
 • Understanding of JavaScript, HTML, and CSS
 • Basic understanding of REST APIs and Git
@@ -296,7 +292,7 @@ Good to Have
 • Any GitHub or project portfolio
 • Understanding of no-code/low-code platforms
 • Familiarity with databases, cloud platforms, or AI frameworks ",2026,Bachelors,0,"Python, ML, Javascript, React, Git, Github, APIs, LLMs, OpenAI, Prompt Enginerring, NLP","Communication, Problem Solving"
-140,AI Developer,Internship,"• Python, FastAPI
+134,135,AI Developer,Internship,"• Python, FastAPI
 • Frontend basics (React/Next.js or similar) — enough to prototype and ship
 • Deployment (Docker, basic cloud infra)
 AI & LLM Stack:
@@ -309,7 +305,7 @@ Tooling:
 • Cursor, Claude Code, GitHub Copilot — as daily drivers, not occasional toys
 • Web scraping (BeautifulSoup, Playwright, Scrapy, or API-based extraction)
 • Social data pipelines (Twitter/X, LinkedIn, Reddit, etc.) ",2026,Bachelors,0,"Python, ML, APIs, React, Javascript, Docker, LLMs, RAG, VectorDB, LangChain, LangGraph, CrewAI, AutoGen, n8n, GenAI","Communication, Problem Solving"
-141,AI Developer,Internship,"• Python and/or Java (strong focus on backend logic)
+135,136,AI Developer,Internship,"• Python and/or Java (strong focus on backend logic)
 • SQL (PostgreSQL preferred)
 • Basic understanding of NoSQL (MongoDB concepts)
 • REST APIs & JSON
@@ -329,7 +325,7 @@ Preferred Skills
 • Understanding of Git/GitHub basics
 • Curiosity to learn backend systems deeply
 • Comfort working across multiple backend technologies ",2026,Bachelors,0,"Python, ML, SQL, Java, APIs,LLMs, APIs, OpenAI, Git, Github","Communication, Problem Solving"
-145,AI Developer,Internship,"Interns will get hands-on exposure to frontend and backend development, API integration, ERP/business applications, and AI-assisted development workflows. Candidates with knowledge of Python, React.js, Angular, and modern AI tools such as ChatGPT, GitHub Copilot, Claude, or Gemini will have an added advantage.
+139,140,AI Developer,Internship,"Interns will get hands-on exposure to frontend and backend development, API integration, ERP/business applications, and AI-assisted development workflows. Candidates with knowledge of Python, React.js, Angular, and modern AI tools such as ChatGPT, GitHub Copilot, Claude, or Gemini will have an added advantage.
 This internship is ideal for freshers and students who want to strengthen their technical skills, improve problem-solving abilities, and work closely with experienced developers on practical projects.
 Responsibilities include
 • Assisting in web and application development
@@ -337,14 +333,14 @@ Responsibilities include
 • Supporting frontend and backend development tasks
 • Debugging and testing applications
 • Learning and contributing to real-time projects ",2026,Bachelors,0,"Python, SQL, React, Javascript, GenAI","Communication, Problem Solving"
-146,AI Developer,Internship,"• Must-Have: Python or JavaScript (strong basics), API understanding, Basic LLM knowledge: Tokens, Context Prompting, Critical (Filter Here), Can build, not just explore, Understands: MCP / tool calling, How LLM apps actually work, Cursor, Antigravity
+140,141,AI Developer,Internship,"• Must-Have: Python or JavaScript (strong basics), API understanding, Basic LLM knowledge: Tokens, Context Prompting, Critical (Filter Here), Can build, not just explore, Understands: MCP / tool calling, How LLM apps actually work, Cursor, Antigravity
 • Good to Have: RAG / vector DB, FastAPI / Node backend, GitHub projects
 Ideal Candidate:
 • Builds side projects
 • Actively explores new AI tools
 • Thinks: “How can I use this in real product?”
 • Not a YouTube learner, a doer ",2026,Bachelors,0,"Python, APIs, Javascript, LLMs, RAG, VectorDB, Github, Git, MCP","Communication, Problem Solving"
-147,AI Developer,Internship,"• 1. Automation and workflow design with strong logical reasoning and test automation skills.
+141,142,AI Developer,Internship,"• 1. Automation and workflow design with strong logical reasoning and test automation skills.
 • 2. Experience with Power Automate.
 • 3. Working knowledge of n8n, Make.com, Zapier, and similar automation platforms.
 • 4. Experience building and managing AI agents and LLMs.
@@ -356,8 +352,9 @@ Ideal Candidate:
 • 10. Ability to create photorealistic mockups with accurate lighting, textures, and perspective.
 • 11. Understanding of motion design basics using tools like After Effects.
 • 12. Experience with AI image generation tools
-• 13. Experience with AI video generation tools ",2026,Bachelors,0,"Python, n8n, LLMs, APIs, GenAI","Communication, Problem Solving"
-148,AI Developer,Internship,"• Pursuing or recently completed a Bachelor's or Master's degree in:
+• 13. Experience with AI video generation tools 
+",2026,Bachelors,0,"Python, n8n, LLMs, APIs, GenAI","Communication, Problem Solving"
+142,143,AI Developer,Internship,"• Pursuing or recently completed a Bachelor's or Master's degree in:
 • Computer Science
 • Artificial Intelligence
 • Data Science
@@ -382,14 +379,15 @@ Preferred Skills
 • FastAPI
 • Docker
 • Azure or AWS
-• Personal AI projects, GitHub contributions, or hackathon participation ",2026,Bachelors,0,"Python, ML, GenAI, APIs, SQL, Git, Github, OpenAI, LangChain, LangGraph, LlamaIndex, CrewAI, AutoGen, VectorDB, Docker, AWS/Azure","Communication, Problem Solving"
-150,AI Developer,Internship,"• Programming: Strong proficiency in Python.
+• Personal AI projects, GitHub contributions, or hackathon participation 
+",2026,Bachelors,0,"Python, ML, GenAI, APIs, SQL, Git, Github, OpenAI, LangChain, LangGraph, LlamaIndex, CrewAI, AutoGen, VectorDB, Docker, AWS/Azure","Communication, Problem Solving"
+144,145,AI Developer,Internship,"• Programming: Strong proficiency in Python.
 • AI Frameworks: Solid understanding of LangChain and experience working with LLMs (e.g., OpenAI API, Anthropic, or local models).
 • Development Environment: Deep comfort with VS Code and Git/GitHub version control.
 • Core Skills: Ability to design logical workflows and handle API-based integrations.
 • Education: Pursuing or completed B.Tech/BCA/B.Sc in Computer Science or related fields.",2026,Bachelors,0,"Python, ML, Agents, LangChain, LangGraph, Git, Github, APIs, LLMs, OpenAI","Communication, Problem Solving"
-151,AI Developer,Internship,"Required Skills & QualificationsRecently completed a degree in Computer Science, AI, ML, Data Science, or related fieldsStrong understanding of Generative AI and LLM fundamentalsProficiency in PythonExperience or familiarity with:RAG architecturesPrompt engineeringVector databases (FAISS, Pinecone, Chroma, etc.)Good problem-solving and analytical skillsAbility to work independently in a remote environmentTools & Technologies (Exposure to Any Is a Plus)LangGraph for agent workflowsStrands or similar agent frameworksA2A (Agent-to-Agent) protocolsLLM frameworks such as LangChainOpenAI / open-source LLMsREST APIs and JSON-based integrationsGood to HaveExperience building AI agents or copilotsKnowledge of NLP, embeddings, and semantic searchFamiliarity with cloud platforms or deployment workflowsPrior hands-on projects in Generative AI or agent-based systemsWhat Youll GainReal-world experience building Generative AI & agentic systems ",2026,Bachelors,0,"Python, ML, GenAI, RAG, Prompt Engineering, VectorDB, LLMs, LangChain, LangGraph, Agents, OpenAI, NLP","Communication, Problem Solving"
-152,AI Developer,Internship,"• Basic understanding of Machine Learning / Deep Learning concepts
+145,146,AI Developer,Internship,"Required Skills & QualificationsRecently completed a degree in Computer Science, AI, ML, Data Science, or related fieldsStrong understanding of Generative AI and LLM fundamentalsProficiency in PythonExperience or familiarity with:RAG architecturesPrompt engineeringVector databases (FAISS, Pinecone, Chroma, etc.)Good problem-solving and analytical skillsAbility to work independently in a remote environmentTools & Technologies (Exposure to Any Is a Plus)LangGraph for agent workflowsStrands or similar agent frameworksA2A (Agent-to-Agent) protocolsLLM frameworks such as LangChainOpenAI / open-source LLMsREST APIs and JSON-based integrationsGood to HaveExperience building AI agents or copilotsKnowledge of NLP, embeddings, and semantic searchFamiliarity with cloud platforms or deployment workflowsPrior hands-on projects in Generative AI or agent-based systemsWhat Youll GainReal-world experience building Generative AI & agentic systems ",2026,Bachelors,0,"Python, ML, GenAI, RAG, Prompt Engineering, VectorDB, LLMs, LangChain, LangGraph, Agents, OpenAI, NLP","Communication, Problem Solving"
+146,147,AI Developer,Internship,"• Basic understanding of Machine Learning / Deep Learning concepts
 • Familiarity with Python and AI libraries (NumPy, Pandas, TensorFlow, PyTorch)
 • Interest in working with LLMs, NLP, and AI automation
 • Experience with small AI/ML projects (college, personal, course-based) is a plus
@@ -397,7 +395,7 @@ Preferred Skills
 • Willingness to learn fast and try out new AI tools and techniques
 • Good research skills and curiosity about modern AI advancements
 • Ability to commit 20 hours per week ",2026,Bachelors,0,"Python, ML, NLP, LLMs, NumPy, Pandas, TensorFlow/PyTorch, Scikit-Learn","Communication, Problem Solving"
-153,AI Developer,Internship,"• Develop and improve frontend pages, dashboards, forms, tables, filters, and user interfaces for company operations.
+147,148,AI Developer,Internship,"• Develop and improve frontend pages, dashboards, forms, tables, filters, and user interfaces for company operations.
 • Work on backend APIs, database models, authentication, role-based access, and business workflow logic.
 • Integrate AI/LLM features for report generation, data search, assistant workflows, automated summaries, and operational automation.
 • Build automation flows for tasks, reminders, notifications, customer follow-ups, production updates, and internal coordination.
@@ -406,10 +404,11 @@ Preferred Skills
 • Work with databases, file storage, dashboards, and real-time business data.
 • Identify bugs, improve performance, and support testing of new features before release.
 • Prepare basic technical documentation for features, APIs, workflows, and deployment steps.
-• Coordinate with internal teams to understand operational requirements and convert them into software features. ",2026,Bachelors,0,"Python, ML, APIs, LLMs, n8n","Communication, Problem Solving"
-154,AI Developer,Internship,"• Exposure to LangChain, RAG, Vector Databases, AI Chatbots, or related projects.
+• Coordinate with internal teams to understand operational requirements and convert them into software features. 
+",2026,Bachelors,0,"Python, ML, APIs, LLMs, n8n","Communication, Problem Solving"
+148,149,AI Developer,Internship,"• Exposure to LangChain, RAG, Vector Databases, AI Chatbots, or related projects.
 • Knowledge of AWS, Azure, or Google Cloud is a plus. ",2026,Bachelors,0,"Python, Agents, RAG, LangChain, LangGraph, VectorDB, AWS/Azure","Communication, Problem Solving"
-155,AI Developer,Internship,"Required Skills
+149,150,AI Developer,Internship,"Required Skills
 . Programming Languages
 · Python
 · JavaScript
@@ -444,13 +443,13 @@ Preferred Qualifications
 · Familiarity with AI automation platforms and agentic AI systems.
 · Good problem-solving and analytical skills.
 · Strong communication and teamwork abilities.",2026,Bachelors,0,"Python, Javascript, n8n, CrewAI, AutoGen, APIs, MCP, Agents, LangChain, LangGraph, Prompt Engineering, RAG, LLMs","Commuication, Problem Solving"
-156,AI Developer,Internship,"as an AI & ML / Full Stack Developer Intern. Work on AI models, web applications, APIs, databases, and real-world projects. 2-month unpaid internship with hands-on training.  ",2026,Bachelors,0,"Python, ML, APIs, SQL","Communication, Problem Solving"
-157,AI Developer,Internship,"1. Collaborate with the development team to design, develop, and implement new features for AI applications.
+150,151,AI Developer,Internship,"as an AI & ML / Full Stack Developer Intern. Work on AI models, web applications, APIs, databases, and real-world projects. 2-month unpaid internship with hands-on training.  ",2026,Bachelors,0,"Python, ML, APIs, SQL","Communication, Problem Solving"
+151,152,AI Developer,Internship,"1. Collaborate with the development team to design, develop, and implement new features for AI applications.
 2. Develop backend functionalities using Python
 3. Deploy and manage applications on AWS for optimal performance and reliability.
 5. Conduct thorough testing and debugging to ensure high-quality code and functionality.
 6. Stay updated on industry trends and best practices to contribute innovative ideas to the team. ",2026,Bachelors,0,"Python, ML, AWS/Azure","Communication, Problem Solving"
-158,AI Developer,Internship,"• Basic knowledge of web development
+152,153,AI Developer,Internship,"• Basic knowledge of web development
 • Understanding of HTML, CSS, JavaScript
 • Familiarity with React, Node.js, or Python is a plus
 • Interest in AI and emerging technologies
@@ -466,7 +465,7 @@ The intern will gain hands-on experience with:
 • Python
 • REST APIs
 • Git & GitHub",2026,Bachelors,0,"Python, Javascript, React, Git, Github, GenAI, APIs","Communication, Problem Solving"
-159,AI Developer,Internship,"• LLMs & OpenAI:
+153,154,AI Developer,Internship,"• LLMs & OpenAI:
 • Hands-on experience with OpenAI GPT (3.5, 4, 4-turbo) APIs
 • Experience building custom GPTs or AI assistants
 • Understanding of function calling, tool use, prompt design, and system messages
@@ -478,7 +477,7 @@ Nice to Have:
 • Experience in LangChain, LlamaIndex, or similar frameworks
 • Familiarity with deploying models on cloud platforms (AWS, GCP, Azure)
 • Prior work in building chatbots, agents, or AI-driven automation tools ",2026,Bachelors,0,"Python, LLMs, OpenAI, APIs, Prompt Engineering, VectorDB, RAG, MLOps, Agents, LangChain, LangGraph, LlamaIndex, AWS/Azure","Communication, Problem Solving"
-160,AI Developer,Internship,"Required Skills
+154,155,AI Developer,Internship,"Required Skills
 • Strong knowledge of Python.
 • Experience with Machine Learning and Deep Learning frameworks.
 • Knowledge of Generative AI, LLMs, and Prompt Engineering.
@@ -493,15 +492,16 @@ Preferred Skills
 Qualification
 • Bachelor's degree in Computer Science, IT, AI, or a related field.
 • Relevant certifications in AI/ML are a plus. ",2026,Bachelors,0,"Python, ML, GenAI, TensorFlow/PyTorch, Scikit-Learn, Prompt Engineering, APIs, Agents, LangChain, RAG, OpenAI, VectorDB, AWS/Azure","Communication, Problem Solving"
-161,AI Developer,Internship,"Develop and implement AI/ML models for real-world applications.
+155,156,AI Developer,Internship,"Develop and implement AI/ML models for real-world applications.
 Work on Generative AI solutions using LLMs such as GPT, Claude, and Gemini.
 Build AI-powered chatbots, voice assistants, and automation tools.
 Perform data collection, cleaning, preprocessing, and analysis.
 Integrate AI APIs and models into web and mobile applications.
 Fine-tune and evaluate machine learning models.
 Research emerging AI technologies and recommend improvements.
-Document AI solutions, workflows, and technical specifications ",2026,Bachelors,0,"Python, LLMs, ML, GenAI, APIs",Communication
-162,AI Developer,Internship,"• 1. Basic understanding of Artificial Intelligence and Large Language Models (LLMs).
+Document AI solutions, workflows, and technical specifications 
+",2026,Bachelors,0,"Python, LLMs, ML, GenAI, APIs",Communication
+156,157,AI Developer,Internship,"• 1. Basic understanding of Artificial Intelligence and Large Language Models (LLMs).
 • 2. Knowledge of Python programming is preferred.
 • 3. Familiarity with APIs and system integrations.
 • 4. Experience with automation tools such as n8n, Zapier, Make, or similar platforms.
@@ -511,8 +511,9 @@ Document AI solutions, workflows, and technical specifications ",2026,Bachelors
 • 8. Problem-solving mindset with attention to detail.
 • 9. Ability to understand and evaluate business processes.
 • 10. Good written and verbal communication skills.
-• 11. Curiosity and enthusiasm for exploring emerging AI technologies. ",2026,Bachelors,0,"Python, LLMs, APIs, n8n, Prompt Engineering","Communication, Problem Solving"
-163,AI Developer,Internship,"Required Skills & Qualifications:-
+• 11. Curiosity and enthusiasm for exploring emerging AI technologies. 
+",2026,Bachelors,0,"Python, LLMs, APIs, n8n, Prompt Engineering","Communication, Problem Solving"
+157,158,AI Developer,Internship,"Required Skills & Qualifications:-
 • Strong foundation in Python programming.
 • Basic understanding of AI/ML concepts and their practical applications.
 • Basic Knowledge of GenAI.
@@ -521,20 +522,20 @@ Document AI solutions, workflows, and technical specifications ",2026,Bachelors
 • Knowledge or Hands-on experience with Django will be preferred.
 • Excellent academic record: 80%+ in 10th, 12th, and Graduation.
 • Pursuing or recently completed Bachelor’s/Master’s in Computer Science, Data Science, AI/ML, or related field. ",2026,Bachelors,0,"Python, ML, GenAI, Django","Communication, Problem Solving"
-164,AI Developer,Internship,"Skills required:
+158,159,AI Developer,Internship,"Skills required:
 SQL, PostgreSQL, JSON, Artificial intelligence, APIs, OpenAI API, Artificial Intelligence Markup Language (AIML) and Claude
 Other Requirements:
 • 1. Familier with n8n AI Workflow Automation
 • 2. Hands-on knowledge of n8n workflow automation.
 • 3. Knowledge of LLMs, AI APIs, and prompt-based automation.
 • 4. Familiarity with AI APIs ",2026,Bachelors,0,"Python, SQL, APIs, n8n, ML, LLMs","Communication, Problem Solving"
-165,AI Developer,Internship,"• Comfort using MERN Stack, Python languages and relational databases like PostgreSQL, my SQL, etc
+159,160,AI Developer,Internship,"• Comfort using MERN Stack, Python languages and relational databases like PostgreSQL, my SQL, etc
 • Strong cloud computing experience with AWS etc.
 • 1-3 years of full stack software development experience ",2026,Bachelors,0,"Python, SQL, AWS/Azure","Communication, Problem Solving"
-166,AI Developer,Internship,"Skills required:
+160,161,AI Developer,Internship,"Skills required:
 MySQL, HTML, CSS, JavaScript, Python, Bootstrap, MongoDB, Node.js, GitHub, Express.js, React, REST API, TypeScript and Next.js ",2026,Bachelors,0,"Python, Javascript, Git, Github, React, SQL","Communication, Problem Solving"
-177,AI Developer,Internship,"Cloud Computing, Python, SQL, Machine Learning, Problem Solving, Natural Language Processing (NLP), PyTorch, Feature Engineering and Prompt Engineering",2026,Bachelors,0,"Python, SQL, ML, TensorFlow/PyTorch, NLP, Prompt Engineering","Communication, Problem Solving"
-178,AI Developer,Internship,"Required Skills Technical Skills
+171,172,AI Developer,Internship,"Cloud Computing, Python, SQL, Machine Learning, Problem Solving, Natural Language Processing (NLP), PyTorch, Feature Engineering and Prompt Engineering",2026,Bachelors,0,"Python, SQL, ML, TensorFlow/PyTorch, NLP, Prompt Engineering","Communication, Problem Solving"
+172,173,AI Developer,Internship,"Required Skills Technical Skills
 • Strong knowledge of Python programming.
 • Familiarity with Machine Learning concepts and AI technologies.
 • Hands-on exposure to:
@@ -556,7 +557,7 @@ Preferred Qualifications
 • Good problem-solving and analytical skills.
 • Passion for technology and continuous learning.
 • Ability to work independently and in a team environment.",2026,Bachelors,0,"Python, SQL, ML, Scikit-Learn, NumPy, TemsorFlow/PyTorch, APIs, React, Javascript, Java, GenAI","Communication, Problem Solving"
-179,AI Developer,Internship,"What We Expect From You
+173,174,AI Developer,Internship,"What We Expect From You
 • Be able to learn fast on the job
 Absolute Requirement (Non-Negotiable)
 • A deployed web app
@@ -575,13 +576,14 @@ These are not required but will strongly differentiate you:
 • Vercel, Fly.io, Render, AWS, etc.
 • Built internal tools for a team before
 • Strong product intuition (you care about UX, not just code)
-• Experience automating your own workflows using scripts or AI ",2026,Bachelors,0,"Python, GenAI, Github, Git, LLMs, APIs, Agents, LangChain, LangGraph, LlamaIndex, VectorDB, RAG, AWS/Azure","Communication, Problem Solving"
-180,AI Developer,Internship,"What we are looking for
+• Experience automating your own workflows using scripts or AI 
+",2026,Bachelors,0,"Python, GenAI, Github, Git, LLMs, APIs, Agents, LangChain, LangGraph, LlamaIndex, VectorDB, RAG, AWS/Azure","Communication, Problem Solving"
+174,175,AI Developer,Internship,"What we are looking for
 Recent grad or final year student preferably at IIT/NIT
 Strong foundations: Proficiency in Python, coursework or projects in ML, NLP, or applied statistics
 Builder mindset: You are comfortable working with real world messy, large data sets. You can communicate your findings to non-technical stakeholders in plain language
 Nice to have: Prior exposure to B2B, SaaS, or enterprise software contexts — even through internships or projects. Experience with LLM APIs, prompt engineering, or RAG architectures ",2026,Bachelors,0,"Python, ML, NLP, Prompt Engineering, LLMs, APIs, RAG","Communication, Problem Solving"
-181,AI Developer,Internship,"What we're looking for
+175,176,AI Developer,Internship,"What we're looking for
 • Hands-on experience (personal projects count!) with Cursor, Antigravity, or similar AI coding tools
 • Comfort with vibe coding — shipping first, perfecting second
 • Basic understanding of HTML, CSS, JavaScript, or any modern framework (React, Next.js, etc.)
@@ -591,7 +593,7 @@ Nice to have
 • Experience with AI agents, LLM APIs (OpenAI, Anthropic, etc.), or no-code/low-code tools
 • Familiarity with deployment platforms like Vercel, Netlify, or Railway
 • An eye for design — clean UIs are a bonus ",2026,Bachelors,0,"Python, Javascript, Github, Git, LLMs, APIs, OpenAI, React","Communication, Problem Solving"
-185,AI Developer,Internship,"Hands-on experience with Generative AI and LLMs
+179,180,AI Developer,Internship,"Hands-on experience with Generative AI and LLMs
 Proven ability to deploy and run open-source models locally
 Practical experience with automation tools like n8n
 Strong foundation in Reinforcement Learning, CNNs, and Transformers
@@ -599,30 +601,31 @@ Proficiency in Python, PyTorch/TensorFlow, and Hugging Face ecosystem
 Portfolio demonstrating AI/ML projects (GitHub repos, project demos)
 Self-starter with problem-solving mindset and passion for innovation
 Excellent communication and collaboration skills",2026,Bachelors,0,"Python, GenAI, LLMs, n8n, ML, TensorFlow/PyTorch, Hugging Face, Github, Git","Communication, Problem Solving"
-186,AI Developer,Internship,"Skills Required
+180,181,AI Developer,Internship,"Skills Required
 Candidates should have basic Python knowledge, interest in AI/ML, logical thinking, problem-solving skills, basic understanding of data, a positive attitude, and willingness to learn. Freshers can also apply",2026,Bachelors,0,"Python, ML, LLMs","Communication, Problem Solving"
-194,AI Developer,Internship,"Assist in designing, developing, and testing AI/ML models and applications.
+188,189,AI Developer,Internship,"Assist in designing, developing, and testing AI/ML models and applications.
 Work on Generative AI, NLP, Chatbots, and automation solutions.
 Support data collection, preprocessing, and analysis activities.
 Collaborate with developers and product teams on AI integrations.
 Research and experiment with the latest AI technologies and frameworks.
 Develop APIs and backend services for AI applications.
 Create technical documentation and project reports.
-Participate in code reviews and debugging sessions.",2026,Bachelors,0,"Python, ML, NLP, APIs","Communication, Problem Solving"
-195,AI Developer,Internship,"Strong experience in AI/ML model development and deployment
+Participate in code reviews and debugging sessions.
+",2026,Bachelors,0,"Python, ML, NLP, APIs","Communication, Problem Solving"
+189,190,AI Developer,Internship,"Strong experience in AI/ML model development and deployment
 Hands-on experience with NLP, computer vision, or generative AI projects
 Proven background in Python, TensorFlow, PyTorch, or similar frameworks
 Bonus: Prior experience developing CPaaS platforms or communication-based web applications
 Solid understanding of REST APIs, integrations, and cloud environments
 Excellent problem-solving and communication skills
 Ability to thrive in a fast-paced, agile startup ecosystem",2026,Bachelors,0,"Python, ML, NLP, GenAI, TensorFlow/PyTorch, APIs","Communication, Problem Solving"
-196,AI Developer,Internship,"Develop and implement AI models using Python and other relevant technologies.
+190,191,AI Developer,Internship,"Develop and implement AI models using Python and other relevant technologies.
 Collaborate with cross-functional teams to design and develop new features.
 Work on PDF/OCR extraction, accounting, and JavaScript tasks.
 Analyze data and create visualizations using JSON and SQL.
 Participate in code reviews and contribute to improving the overall quality of the codebase.
 Stay updated with industry trends and emerging technologies in AI and Pytho",2026,Bachelors,0,"Python, Javascript, SQL, ML","Communication, Problem Solving"
-197,AI Developer,Internship,"Strong knowledge of Python (preferably with frameworks like Flask, FastAPI).
+191,192,AI Developer,Internship,"Strong knowledge of Python (preferably with frameworks like Flask, FastAPI).
 Familiarity with AI concepts such as Machine Learning, Deep Learning, Natural Language Processing (NLP), etc.
 Knowledge of AI libraries such as TensorFlow, Keras, PyTorch, or Scikit-Learn.
 Experience with SQL or NoSQL databases (e.g., MySQL, MongoDB).
@@ -630,21 +633,13 @@ Basic understanding of RESTful APIs and data serialization formats like JSON and
 Familiarity with version control systems like Git.
 Understanding of OOP (Object-Oriented Programming) concepts.
 Ability to work with cloud platforms (AWS, Google Cloud, etc.) is a plus.",2026,Bachelors,0,"Python, APIs, ML, TensorFlow/PyTorch, Scikit-Learn, NLP, SQL, Git, Github, AWS/Azure","Communication, Problem Solving"
-192,AI Developer,Internship,"Assist in designing, developing, and testing AI/ML models and applications.
-Work on Generative AI, NLP, Chatbots, and automation solutions.
-Support data collection, preprocessing, and analysis activities.
-Collaborate with developers and product teams on AI integrations.
-Research and experiment with the latest AI technologies and frameworks.
-Develop APIs and backend services for AI applications.
-Create technical documentation and project reports.
-Participate in code reviews and debugging sessions.",2026,Bachelors,0,"Python, ML, GenAI, NLP, APIs","Communication, Problem Solving"
-199,AI Developer,Internship,"Develop and implement AI models using Python and other relevant technologies.
+202,203,AI Developer,Internship,"Develop and implement AI models using Python and other relevant technologies.
 Collaborate with cross-functional teams to design and develop new features.
 Work on PDF/OCR extraction, accounting, and JavaScript tasks.
 Analyze data and create visualizations using JSON and SQL.
 Participate in code reviews and contribute to improving the overall quality of the codebase.
 Stay updated with industry trends and emerging technologies in AI and Python",2026,Bachelors,0,"Python, Javascript, SQL, ML","Communication, Problem Solving"
-200,AI Developer,Internship,"Interest in Generative AI, Large Language Models (LLMs), and AI Agentic Systems is an advantage.
+203,204,AI Developer,Internship,"Interest in Generative AI, Large Language Models (LLMs), and AI Agentic Systems is an advantage.
 Basic knowledge of programming languages such as C#, Python, or similar technologies.
 Understanding of Object-Oriented Programming (OOP) concepts.
 Familiarity with databases and SQL queries.
@@ -652,13 +647,13 @@ Basic understanding of web technologies (HTML, CSS, JavaScript).
 Strong analytical, problem-solving, and communication skills.
 Eagerness to learn new technologies and adapt to a fast-paced environment.
 Ability to work from the Hyderabad office throughout the internship period",2026,Bachelors,0,"Python, LLMs, C#, Agents, SQL, Javascript, GenAI","Communication, Problem Solving"
-201,AI Developer,Internship,"What You ll Do (Responsibilities)
+204,205,AI Developer,Internship,"What You ll Do (Responsibilities)
 AI-Pair Programming: Use tools like antigravity, GitHub Copilot, Cursor, or Claude Dev to build production-ready features, focusing on architectural logic while the AI handles the syntax.
 Prompt Engineering for Code: Create and maintain a Prompt Library for the team to automate repetitive tasks like unit testing, documentation, and SQL migrations.
 Code Verification: Act as the Human-in-the-loop to audit AI-generated code for security flaws, technical debt, and logical errors.
 RAG & Tooling: Assist in building internal AI tools (using LangChain or LlamaIndex) that help our senior devs navigate our massive internal codebase.
 Performance Benchmarking: Help track Developer Velocity measuring how much faster we ship code with AI assistance vs. traditional methods.",2026,Bachelors,0,"Python, Github, Git, Prompt Engineering, SQL, Agents, LangChain, LangGraph, LlamaIndex, RAG, GenAI ","Communication, Problem Solving"
-212,AI Developer,Internship,"Interest in Generative AI, Large Language Models (LLMs), and AI Agentic Systems is an advantage.
+215,216,AI Developer,Internship,"Interest in Generative AI, Large Language Models (LLMs), and AI Agentic Systems is an advantage.
 Basic knowledge of programming languages such as C#, Python, or similar technologies.
 Understanding of Object-Oriented Programming (OOP) concepts.
 Familiarity with databases and SQL queries.
@@ -666,13 +661,13 @@ Basic understanding of web technologies (HTML, CSS, JavaScript).
 Strong analytical, problem-solving, and communication skills.
 Eagerness to learn new technologies and adapt to a fast-paced environment.
 Ability to work from the Hyderabad office throughout the internship period.",2026,Bachelors,0,"Python, GenAI, LLMs, Agents, C#, SQL, Javascript,","Communication, Problem Solving"
-213,AI Developer,Internship,"What You ll Do (Responsibilities)
+216,217,AI Developer,Internship,"What You ll Do (Responsibilities)
 AI-Pair Programming: Use tools like antigravity, GitHub Copilot, Cursor, or Claude Dev to build production-ready features, focusing on architectural logic while the AI handles the syntax.
 Prompt Engineering for Code: Create and maintain a Prompt Library for the team to automate repetitive tasks like unit testing, documentation, and SQL migrations.
 Code Verification: Act as the Human-in-the-loop to audit AI-generated code for security flaws, technical debt, and logical errors.
 RAG & Tooling: Assist in building internal AI tools (using LangChain or LlamaIndex) that help our senior devs navigate our massive internal codebase.
 Performance Benchmarking: Help track Developer Velocity measuring how much faster we ship code with AI assistance vs. traditional methods",2026,Bachelors,0,"Python, GenAI, Github, Git, Prompt Engineering, SQL, RAG, Agents, LangChain, LangGraph, LlamaIndex","Communication, Problem Solving"
-214,AI Developer,Internship,"As part of this role, you will be expected to take ownership of building and improving AI-driven systems that directly impact business operations.
+217,218,AI Developer,Internship,"As part of this role, you will be expected to take ownership of building and improving AI-driven systems that directly impact business operations.
 You will design and develop frontend/ backend services and APIs that support internal tools, ensuring they are scalable, reliable, and easy to integrate with other modules. A significant part of your work will involve building AI-powered workflows using large language models, where you will experiment with prompt engineering, structured outputs, and response optimization.
 You will also work on developing automation pipelines for translation and localization workflows, including content ingestion, processing, and validation. This includes contributing to systems such as QA engines that can intelligently evaluate translated content based on defined rules and contextual understanding.
 In addition, you will integrate with third-party tools and platforms such as translation management systems (TMS), machine translation APIs, and QA tools, enabling seamless data flow across systems. You will be responsible for designing connectors and ensuring that integrations are robust and maintainable.
@@ -692,13 +687,13 @@ Exposure to localization workflows, translation tools (such as CAT tools or TMS 
 Experience & Qualification:
 We are open to candidates with 24 years of experience, or strong candidates with slightly less experience but demonstrated hands-on project work.
 A background in Computer Science, Artificial Intelligence, Data Science, or a related field is preferred. However, practical experience and the ability to build real-world solutions will be valued more than formal qualifications.",2026,Bachelors,0,"Python, RAG, ML, NLP, APIs, GenAI, LLMs, OpenAI, Agents, LangChain, LangGraph, VectorDB, LlamaIndex, ","Communication, Problem Solving"
-215,AI Developer,Internship,"Problem-solving mind-set and open to learn new technology at a fast pace.
+218,219,AI Developer,Internship,"Problem-solving mind-set and open to learn new technology at a fast pace.
 Strong proficiency in Python, LLMs, agentic and non-agentic AI
 Familiarity with web application technologies, APIs, and protocols like HTTP, WebSocket, MCP, ACP, AG-UI.
 Basic knowledge of database management, CI/CD pipelines and version control tools like Git is a plus.
 Keen Interest in learning about LLM penetration testing especially manual techniques.
 Understanding of basic security concepts and common vulnerabilities (e.g., LLM Top 10) is a plu",2026,Bachelors,0,"Python, LLMs, APIs, CI/CD, SQL, Agents, LangChain, LangGraph, LlamaIndex, MCP, Git, Github","Communication, Problem Solving"
-216,AI Developer,Internship,"Students who are in final year of studies and available for full-time internship for a duration of at least 4 - 6 months. Post internship subject to performance review, candidates will be offered full-time role.
+219,220,AI Developer,Internship,"Students who are in final year of studies and available for full-time internship for a duration of at least 4 - 6 months. Post internship subject to performance review, candidates will be offered full-time role.
 Proficiency in Python.
 Very good understanding of concepts in Machine Learning.
 Should have hand-on experience with at least one deep learning framework (Pytorch or Tensorflow or Keras).
@@ -707,7 +702,7 @@ Specialised knowledge in Computer Vision or Natural Language Processing.
 Understanding of version control systems such as Git.
 Experience of working on projects involving Machine Learning at a personal or academic level.
 Having some prior relevant internship experience related to ML",2026,Bachelors,0,"Python, ML, NLP, Git, Github, TensorFlow/PyTorch","Communication, Problem Solving"
-228,AI Developer,Internship,"Required
+230,231,AI Developer,Internship,"Required
 Currently pursuing or recently completed a degree in Computer Science, Machine Learning, AI, or related field (B.Tech, M.Tech, MS, or PhD) from a recognized institution
 Strong Python skills and comfort working in modern AI development environments
 Hands-on experience with LLMs (Claude, GPT, open-source models) through APIs or local deployment
@@ -723,8 +718,9 @@ Background in evaluation methodology (BLEU, ROUGE, LLM-as-judge, human eval desi
 Prior work on multi-agent systems, tool use, or function calling
 Exposure to Kubernetes, Kafka, or distributed systems
 Contributions to open-source AI/ML projects
-Exposure to reinforcement learning techniques (PPO, DPO, GRPO) is a plus but not required",2026,Bachelors,0,"Python, ML, LLMs, GenAI, RAG, LangChain, LlamaIndex, LangGraph, Kubernetes, Docker","Communication, Problem Solving"
-229,AI Developer,Internship,"Preferred candidate profile:
+Exposure to reinforcement learning techniques (PPO, DPO, GRPO) is a plus but not required
+",2026,Bachelors,0,"Python, ML, LLMs, GenAI, RAG, LangChain, LlamaIndex, LangGraph, Kubernetes, Docker","Communication, Problem Solving"
+231,232,AI Developer,Internship,"Preferred candidate profile:
 Bachelors/Masters degree in Computer Science, AI/ML, or a related field.
 Strong programming skills in Python with good knowledge of TensorFlow, PyTorch, Transformers, and Scikit-learn.
 Basic understanding of LLMs, prompt engineering, and model fine-tuning (preferred).
@@ -732,13 +728,13 @@ Familiarity with OCR and document parsing tools such as Tesseract OCR, PDFMiner,
 Exposure to workflow automation tools like Crew AI or LangChain (preferred).
 Knowledge of REST APIs, microservices, and containerization concepts.
 Strong analytical thinking with a focus on problem-solving and process improvement.",2026,Bachelors,0,"Python, ML, TensorFlow, PyTorch, Scikit-Learn, LLMs, Prompt Engineering, Agents, LangChain, LangGraph, LlamaIndex, APIs, Docker, Kubernetes, CrewAI, AWS/Azure","Communication, Problem Solving"
-230,AI Developer,Internship,"Strong understanding of AI concepts, including machine learning algorithms and deep learning techniques.
+232,233,AI Developer,Internship,"Strong understanding of AI concepts, including machine learning algorithms and deep learning techniques.
 Proficiency in programming languages such as Python or Java.
 Experience with AI frameworks such as TensorFlow or PyTorch.
 Excellent problem-solving skills and attention to detail.
 Strong communication and collaboration skills.
 Ability to work in a fast-paced environment and adapt to changing priorities",2026,Bachelors,0,"Python, ML, TensorFlow/PyTorch, Java","Communication, Problem Solving"
-231,AI Developer,Internship,"Required Skills Qualifications
+233,234,AI Developer,Internship,"Required Skills Qualifications
 Strong knowledge of Python programming
 Basic understanding of Generative AI and LLMs
 Familiarity with concepts like:
@@ -749,8 +745,9 @@ Experience with libraries or tools such as:
 OpenAI APIs / Hugging Face (preferred)
 NumPy, Pandas (basic level)
 Good problem-solving and analytical skills
-Ability to learn quickly and work independently",2026,Bachelors,0,"Python, GenAI, LLMs, Prompt Engineering, OpenAI, Hugging Face, NumPy, Pandas","Communication, Problem Solving"
-232,AI Developer,Internship,"Build web applications and product prototypes.
+Ability to learn quickly and work independently
+",2026,Bachelors,0,"Python, GenAI, LLMs, Prompt Engineering, OpenAI, Hugging Face, NumPy, Pandas","Communication, Problem Solving"
+234,235,AI Developer,Internship,"Build web applications and product prototypes.
 Develop frontend and backend features.
 Integrate APIs, databases, and third-party services.
 Work on AI-powered applications, chatbots, and automation workflows.
@@ -770,4 +767,1118 @@ Cursor
 GitHub Copilot
 Replit
 Lovable
-Bolt",2026,Bachelors,0,"Python, APIs, Javascript, React, SQL, Git, Github, Prompt Engineering, N8N, GenAI","Communication, Problem Solving"
+Bolt
+",2026,Bachelors,0,"Python, APIs, Javascript, React, SQL, Git, Github, Prompt Engineering, N8N, GenAI","Communication, Problem Solving"
+332,333,Software Engineer,Internship,"ABOUT US
+
+Xsolla is a global commerce company with robust tools and services to help developers solve the inherent challenges of the video game industry. From indie to AAA, companies partner with Xsolla to help them fund, distribute, market, and monetize their games. Grounded in the belief in the future of video games, Xsolla is resolute in the mission to bring opportunities together, and continually make new resources available to creators. Headquartered and incorporated in Los Angeles, California, Xsolla operates as the merchant of record and has helped over 1,500+ game developers to reach more players and grow their businesses around the world. With more paths to profits and ways to win, developers have all the things needed to enjoy the game.
+
+For more information, visit xsolla.com.
+
+Why This Role Exists
+
+Xsolla is going all-in on becoming an AI-first company, and we're not waiting for a slow rollout to get there. We're offering AI Engineer Internships in regions across the globe to help drive that shift directly, not by sitting in the back office, but by building.
+
+You'll work on two things:
+
+Internal AI initiatives – helping unlock AI tooling and integrations across Xsolla faster than our existing teams can alone.
+
+Proof-of-concept builds on our own APIs – showing our product and engineering teams what's possible when you build with AI as a core part of your workflow, not an afterthought.
+
+This isn't a shadow-and-observe internship. You'll ship code that goes to customers – internal teams or external players and game developers – working closely with senior engineers and fellow interns across our global regions.
+
+Who You'll Work With
+
+You won't be isolated on an intern-only project island. You'll work closely with senior engineers who are actively rebuilding how we write software, and you'll be part of a global cohort of interns building in parallel across our regions. That combination is the point: senior engineers give you a bar for what production-grade, customer-facing code looks like, and your fellow interns give you a peer group to trade ideas, code, and AI workflows every week.
+
+Xsolla takes your privacy seriously and will not sell or externally distribute any personal data received during the hiring process. In accordance with applicable data protection laws, Xsolla is committed to protecting your personal information and respecting your privacy.
+
+For any inquiries related to data privacy, please contact: careers@xsolla.com
+
+Explore more opportunities at: https://xsolla.com/careers",2026,Bachelors,0-2 years,"Python, SQL, Git","Communication, Teamwork, Problem Solving"
+334,335,Software Engineer,Internship,"ABOUT US
+
+Xsolla is a global commerce company with robust tools and services to help developers solve the inherent challenges of the video game industry. From indie to AAA, companies partner with Xsolla to help them fund, distribute, market, and monetize their games. Grounded in the belief in the future of video games, Xsolla is resolute in the mission to bring opportunities together, and continually make new resources available to creators. Headquartered and incorporated in Los Angeles, California, Xsolla operates as the merchant of record and has helped over 1,500+ game developers to reach more players and grow their businesses around the world. With more paths to profits and ways to win, developers have all the things needed to enjoy the game.
+
+For more information, visit xsolla.com.
+
+ABOUT YOU
+
+We are looking for a Backend Engineer at junior level to join our APAC Partnerships team in Vladivostok, working alongside our HQ Integration Management and Engineering teams. Your job is to make partnerships technically real: turning an inbound partnerships inquiry into a working integration, generating and serving the affiliate and referral links that Traffic Source Partners use, and making sure the traffic those links carry lands correctly in our Web Shops and is attributed all the way through to a purchase.
+
+You will write the backend that sits between a partner and our commerce platform — link generation, click and conversion tracking, attribution pass-through, postbacks, and the reporting endpoints that feed partner payouts. You will also build the internal tooling that lets the Partnerships and Customer Success teams onboard partners and reconcile payouts without hand-editing spreadsheets.
+
+This is an entry-level engineering role with genuine product surface area. Recent graduates and career-changers with a strong project portfolio are welcome. If you like small, well-scoped systems that other people depend on daily, and you want to learn commerce, attribution, and payments engineering from a team that runs it at global scale, we would love to hear from you.
+
+RESPONSIBILITIES
+
+Build partner integrations
+
+Build and maintain backend services that power Traffic Source partnerships: affiliate and referral link generation, click and conversion tracking, attribution parameter pass-through, server-to-server postbacks and webhooks, and partner-facing reporting endpoints.
+
+Take new partnerships inquiries from intake through to production — clarify the requirement with the Partnerships and BD teams, write the technical spec, implement, test, and deploy.
+
+Integrate affiliate links with Xsolla Web Shops so partner-driven traffic is tracked end to end and attributed correctly at checkout.
+
+Read a partner's API documentation and build against it; where a partner needs to build against us, document our side clearly and support their integration.
+
+Tooling & data
+
+Build internal tooling and scripts for partner onboarding, bulk link generation, performance data extraction, and payout reconciliation reporting used by the Customer Success and Partnerships teams.
+
+Investigate and resolve attribution and tracking discrepancies together with Analytics and Customer Success — missing conversions, duplicate events, broken parameters, timing mismatches.
+
+Add logging, metrics, and alerting so integration failures are caught by us rather than reported by a partner.
+
+Ways of working
+
+Write and maintain API documentation and integration guides for partners and internal stakeholders.
+
+Participate in code review, write tests, and work within existing CI/CD pipelines and Git workflows.
+
+Work with the HQ Engineering and Integration Management teams on standards and architecture; escalate design decisions early rather than working around them.
+
+Collaborate closely with the Partnerships Designer on the frontend surfaces your integrations power, and with Customer Success on the payout data your services produce.
+
+Track work in Jira and keep technical documentation current in Confluence.
+
+REQUIREMENTS
+
+1–4 years of professional backend development experience, or a strong portfolio of personal, academic, or internship projects you can walk us through. Recent graduates are welcome.
+
+Working proficiency in at least one backend language — Go, PHP, Python, Node.js / TypeScript, or Java.
+
+Solid SQL and relational database fundamentals (schema design, joins, indexing basics).
+
+Good understanding of HTTP, REST APIs, JSON, webhooks, and API authentication (API keys, OAuth 2.0).
+
+Comfortable with Git and working in a code-review culture.
+
+Able to debug a problem you did not write — read logs, reproduce, isolate, and explain the cause.
+
+English sufficient for technical discussion and written documentation with HQ teams; Russian for day-to-day work in the Vladivostok office.
+
+Based in, or willing to relocate to, Vladivostok for an onsite role.
+
+NICE TO HAVE
+
+Exposure to affiliate or performance marketing technology: tracking pixels, S2S postbacks, click IDs and UTM parameters, last-click attribution, deduplication, or traffic-quality and fraud filtering.
+
+E-commerce, storefront, checkout, or payments integration experience.
+
+Frontend basics (JavaScript / TypeScript, React) — enough to work productively with the Partnerships Designer on shop and landing-page surfaces.
+
+Docker, CI/CD pipelines, and cloud platforms (GCP or AWS).
+
+Message queues, scheduled jobs, or data pipeline experience.
+
+Familiarity with analytics or BI tooling.
+
+Interest in the gaming industry, fintech, or high-load consumer platforms.
+
+BENEFITS
+
+We are passionate about fostering a supportive environment for our team, so we prioritize the physical, mental, and emotional well-being of our employees and their families through a comprehensive Benefits Program. This includes 100% company-paid medical, dental, and vision plans, Flexible Time Off, and a personalized career roadmap for each employee. By investing in professional development through training and educational opportunities, we ensure that our team thrives both personally and professionally. Together, we’re not just building a business; we’re cultivating a community that values creativity, collaboration, and the transformative power of play.
+
+The duties and responsibilities of this position may evolve over time to support the organization's goals and individual growth. This job description is intended to outline the general nature and level of work being performed and is not intended to be an exhaustive list of all duties, responsibilities, and qualifications required. By submitting your application, you consent to Xsolla conducting background checks, where permitted by law, after the final interview stage. All checks will comply with local regulations, and your information will be handled confidentially. Xsolla takes your privacy seriously and will not sell or externally distribute any personal data received during the hiring process. In accordance with applicable data protection laws, Xsolla is committed to protecting your personal information and respecting your privacy.
+
+For any inquiries related to data privacy, please contact: careers@xsolla.com
+
+Explore more opportunities at: https://xsolla.com/careers",2026,Bachelors,0-2 years,"AWS, CI/CD, Docker, GCP, Git, Go, Java, JavaScript, Node.js, Python, REST, React, SQL, TypeScript",Collaboration
+360,361,Software Engineer,Internship,"Our Journey
+
+The ShopBack Group is Asia-Pacific’s leading shopping, rewards, and payments platform, serving over 20 million active members across 13 markets. In 2025, the Group continued its global growth with its expansion into North America. Driven by the vision to make every day more rewarding, ShopBack is dedicated to saving members money and time, and delivering delight every day. The platform also enables merchants and brands to engage with their members in a cost-effective manner. Founded in 2014, ShopBack now powers over US$5.5 billion in annual sales for over 20,000 online and in-store partners, and has rewarded shoppers with more than US$900 million (over S$1 billion) in Cashback to date. Through its innovative offerings, ShopBack continues to create value for both members and merchants. Notably, its payment solution, ShopBack Pay, offers members a convenient and rewarding payment option at checkout.
+
+We are seeking a talented and motivated Operations Automation Engineer Intern to join our team and support our process automation initiatives. As an intern, you will work closely with our development team to create, enhance, and maintain Python-based automation solutions. You will have the opportunity to gain practical experience in a professional environment while contributing to real-world projects.
+
+This job posting is open for H2 2026 internship applications.
+
+ShopBacker Traits
+
+Agency - We take ownership and act, rather than waiting for permission. When something's blocking progress, we find a way through it and follow through until it's done.
+
+Judgement - We aim for high-impact decisions, not just easy wins, and we put the bigger picture ahead of individual interests. That means moving quickly and confidently, while staying thoughtful about when a call really matters.
+
+Learning Velocity - We pick up new skills fast and let go of old habits just as quickly when something better comes along. We benchmark ourselves against the best and keep raising our own bar.
+
+Tenacity - We stay in it when things get hard, keeping a level head under pressure. We debate openly before deciding, then commit fully — and support each other along the way.
+
+What's in it for ShopBackers
+
+Career growth opportunities to take on greater challenges that help you realise your ambitions.
+
+Be part of a winning team on a journey to global scale.
+
+Competitive compensation based on performance.
+
+Candid, open, and collaborative culture where feedback is valued.",2026,Bachelors,0-2 years,"Go, Python",Ownership
+361,362,Software Engineer,Internship,"Our Journey
+
+The ShopBack Group is Asia-Pacific’s leading shopping, rewards, and payments platform, serving over 20 million active members across 13 markets. In 2025, the Group continued its global growth with its expansion into North America. Driven by the vision to make every day more rewarding, ShopBack is dedicated to saving members money and time, and delivering delight every day. The platform also enables merchants and brands to engage with their members in a cost-effective manner. Founded in 2014, ShopBack now powers over US$5.5 billion in annual sales for over 20,000 online and in-store partners, and has rewarded shoppers with more than US$900 million (over S$1 billion) in Cashback to date. Through its innovative offerings, ShopBack continues to create value for both members and merchants. Notably, its payment solution, ShopBack Pay, offers members a convenient and rewarding payment option at checkout.
+
+At ShopBack, our engineering teams build scalable platforms and utilize leading-edge technologies to build a world-class product. You will join a diverse and talented team of aspiring engineers with great ambitions to impact the eCommerce landscape. We are seeking team members who strive to solve the hard problems, take pride in delivering world-class products, and are strong team players.
+
+You are someone who wants to see the impact of your work making a difference every day. You find passion in the craft and are constantly seeking improvement and better ways to solve tough problems.
+
+We are currently accepting credit-bearing internship applications for H1 2027 (Jan - Jul 2027).
+
+ShopBacker Traits
+
+Agency - We take ownership and act, rather than waiting for permission. When something's blocking progress, we find a way through it and follow through until it's done.
+
+Judgement - We aim for high-impact decisions, not just easy wins, and we put the bigger picture ahead of individual interests. That means moving quickly and confidently, while staying thoughtful about when a call really matters.
+
+Learning Velocity - We pick up new skills fast and let go of old habits just as quickly when something better comes along. We benchmark ourselves against the best and keep raising our own bar.
+
+Tenacity - We stay in it when things get hard, keeping a level head under pressure. We debate openly before deciding, then commit fully — and support each other along the way.
+
+What's in it for ShopBackers
+
+Career growth opportunities to take on greater challenges that help you realise your ambitions.
+
+Be part of a winning team on a journey to global scale.
+
+Competitive compensation based on performance.
+
+Candid, open, and collaborative culture where feedback is valued.",2026,Bachelors,0-2 years,Go,Ownership
+366,367,Software Engineer,Internship,"SoloPulse Corp is a dual-use radar company committed to the relentless exploration of the frontiers of radar sensing technology. Through the utilization of novel advanced wave theory algorithms, underpinned by the principles of special relativity, SoloPulse can achieve state of the art resolution and latency metrics. Located in Atlanta, GA, SoloPulse stands as a venture-backed startup, diligently cultivating strategic collaborations to proactively address critical safety imperatives and emerging autonomy needs across both civilian and military domains. Our distinguished team encompasses accomplished engineers, seasoned advisors, and experienced startup veterans, collectively driven by an overarching mission to change the way the world sees.
+
+As a Software Engineer Intern/Co-op at SoloPulse, you will play a critical role in the development of our software solutions. You will work on a wide range of tasks, from algorithm development to frontend-backend integration.
+
+Join our team and be part of a dynamic, collaborative environment where innovation and creativity thrive. We offer competitive compensation and the opportunity to work on groundbreaking projects that will shape the future of radar technology.",2026,Bachelors,0-2 years,"Python, SQL, Git, algorithm development, frontend integration, backend integration","Communication, Teamwork, Problem Solving"
+426,427,Software Developer,Internship,"As a developer at Zaber, you will work on projects critical to Zaber’s motion control product line. This is a great opportunity to learn how to develop embedded software in a commercial environment from the requirements gathering stage to implementation and testing. The code you write will be released and in the hands of real customers. You'll participate in our thorough code review process with some of our experienced developers.
+
+You'll join, and be mentored by, a team of developers building the next generation of motion control software, targeting high speed and high torque applications, which require nanometer accuracy. You’ll work on products that need to perform real-time motor control while minimizing complexity for end-users.
+
+Zaber manufactures precision motion control equipment for applications in fields such as photonics, biotechnology, aerospace, and semiconductor engineering. For the past 20 years, Zaber has provided powerful motion control solutions for industry and for scientific research.
+
+Embedded Software Developer Responsibilities
+
+In this position, you'll work as part of a team to implement and expand the features used to control our actuators and stages. The work is varied, and you can expect to:
+
+Design and implement features in modern C++ on an ARM microcontroller (you'll be working on
+
+this
+
+API).
+
+Collect requirements from other teams (e.g. Customer Support, Mechanical, and/or Production) and use them to design new features.
+
+Write unit and integration tests.
+
+Research and deploy tools to manage our workflow.
+
+Document code and embedded software features for developers, internal users, and customers.
+
+Check out what our previous co-ops have worked on
+
+here
+
+.
+
+Embedded Software Developer Qualifications
+
+You have experience in programming and you are familiar with best development and testing practices.
+
+You dig deep and seek to understand the fundamental concepts of whichever programming language you're using.
+
+You are experienced with C++ (use in low-level or systems programming is a bonus).
+
+You are excited to write software that makes things move in the real world, and are interested in mechatronics.
+
+You like problem solving, challenges, and the process of learning - you dive in when you see behaviour you don't think makes sense.
+
+You are enthusiastic about working on a Firmware team.
+
+You pay attention to details and have thorough testing and documentation practices.
+
+You are currently enrolled in a degree or diploma program.
+
+Embedded Software Developer Details
+
+Wage: $24 - $28/hour depending on experience.
+
+Closing Date: September 26, 2026
+
+Start Date: January 4, 2027
+
+Length of position: 8 months preferred
+
+Team: Firmware
+
+To learn more about our company culture and previous co-op experiences, visit our careers page:
+
+https://www.zaber.com/careers
+
+.",2026,Bachelors,0-2 years,"C++, ARM, Unit Testing, Integration Testing, Embedded, Firmware",Problem Solving
+532,533,Data Scientist,Internship,"Ready to do the most impactful work of your career? At  Coinbase , we are uncompromising on our mission to increase economic freedom. The bar is high, the environment is intense, and we like it that way. This isn't a place for complacency, it’s a place to be pushed past your perceived limits. If you're ready to build the future of finance alongside people who refuse to settle for ""good enough,"" you belong here. Coinbase is a remote-first, but not remote-only company. Expect to get together quarterly for intense in-person working sessions called “surges.”  learn more about working at Coinbase .
+
+This is a 12-week internship during summer 2027.
+
+You'll join the Analytics Engineering team within Platform, which builds and maintains the trusted data infrastructure that powers decision-making across Coinbase. As an Analytics Engineer Intern, you'll model complex data, build scalable pipelines, and deliver insights that help teams across the company unlock the full potential of our data. You will gain hands-on experience building production data systems at scale, mentorship from senior analytics engineers, and exposure to how data powers decision-making across a publicly traded crypto-native company.
+
+What you'll do:
+
+- Build and maintain dimensional data models that transform raw data into clean, reliable datasets used by analysts, data scientists, and product teams across the organization.
+
+- Develop data pipelines using SQL, ensuring data quality, freshness, and documentation meet production standards.
+
+- Partner with cross-functional stakeholders to understand their data needs and deliver well-structured datasets or dashboards that enable self-serve analytics.
+
+- Leverage generative AI tools to streamline data development, modeling, and documentation workflows.
+
+- Investigate and resolve data quality issues, implementing tests and monitors that catch problems before they reach downstream consumers.
+
+Required Skills and Experience:
+
+- Currently pursuing a degree in computer science, data science, statistics, economics, or a related quantitative field, or equivalent experience
+
+- Demonstrated proficiency in SQL through coursework, projects, or prior internship experience, with the ability to write complex queries involving joins, window functions, and aggregations.
+
+- Familiarity with at least one programming language (Python preferred)
+
+- Ability to communicate technical concepts clearly to both technical and non-technical audiences, demonstrated through project presentations, dashboards, documentation, or collaborative work.
+
+- Utilizes generative AI responsibly, maintaining human oversight to deliver business-ready outputs and drive measurable improvements in workflow efficiency, cost, and quality.
+
+Req ID: P78159
+
+#LI-Hybrid
+
+Pay Transparency Notice:  Depending on your work location, the target hourly rate for this position can range as detailed below.
+
+Hourly Rate:
+
+$50 — $50 USD
+
+- Application Limit: Candidates may submit a maximum of 3 applications within a 6-month period.
+
+- Equal Opportunity Employer: Coinbase is an Equal Opportunity Employer. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, sexual orientation, gender identity, national origin, disability, protected veteran status, or genetic information. Applicants with criminal histories will be considered consistent with applicable federal, state, and local laws.
+
+- US Applicants: View Employee Rights , Know Your Rights , and E-Verify Notice of Participation.
+
+- Accommodations: If you are an individual with a disability who needs a reasonable accommodation, email us your request and contact info at accommodations[at]coinbase.com. Need screen reading technology? Click here to download a free compatible screen reader and view the tutorial .
+
+- Data Privacy & Arbitration: By submitting your application, you agree to our Candidate Privacy Notice . US applicants: By submitting your application, you agree to Arbitration of Disputes .",2026,Bachelors,12-week internship,"Python, SQL, Statistics, generative AI","Communication, Problem Solving, Teamwork"
+533,534,Data Scientist,Internship,"Ready to do the most impactful work of your career? At  Coinbase , we are uncompromising on our mission to increase economic freedom. The bar is high, the environment is intense, and we like it that way. This isn't a place for complacency, it’s a place to be pushed past your perceived limits. If you're ready to build the future of finance alongside people who refuse to settle for ""good enough,"" you belong here. Coinbase is a remote-first, but not remote-only company. Expect to get together quarterly for intense in-person working sessions called “surges.”  learn more about working at Coinbase .
+
+This is a 12-week internship during summer 2027.
+
+You'll join the People Analytics team within our People Success Function. This team provides intelligence and tools that empower leaders to make key people decisions and drive business value. You'll support analyses across the employee lifecycle, help streamline reporting processes, and contribute to solutions that measure the impact of complex People programs.
+
+What you'll do:
+
+- Analyze People data across the employee lifecycle to identify trends and surface actionable insights for leadership
+
+- Apply AI tools to accelerate data exploration and enable self-service access to insights for stakeholders
+
+- Prototype AI-driven workflow automations for recurring reports, anomaly detection, and data-quality checks
+
+- Support ad hoc data requests by building and maintaining spreadsheets and dashboards
+
+- Partner with stakeholders to improve dashboard navigation, access, and self-service reporting
+
+- Collaborate with team members to develop executive presentations that translate data into clear narratives
+
+Required Skills and Experience:
+
+- Currently pursuing a degree or certificate in an analytical discipline (e.g., data science, statistics, I/O psychology, business analytics, or related field).
+
+- Demonstrated experience analyzing and manipulating data using spreadsheets (Excel, Google Sheets) with the ability to translate findings into actionable recommendations.
+
+- Proven ability to communicate data insights clearly in both written and verbal formats to non-technical audiences.
+
+- Track record of handling highly sensitive or confidential data with discretion.
+
+- Familiarity with at least one data visualization tool (Looker, Tableau, PowerBI, or OneModel) or basic SQL knowledge is a plus.
+
+- Utilizes generative AI responsibly, maintaining human oversight to deliver business-ready outputs and drive measurable improvements in workflow efficiency, cost, and quality
+
+Position ID: P78055
+
+#LI-Hybrid
+
+Pay Transparency Notice:  Depending on your work location, the target hourly rate for this position can range as detailed below.
+
+Hourly Rate:
+
+$40 — $40 USD
+
+- Application Limit: Candidates may submit a maximum of 3 applications within a 6-month period.
+
+- Equal Opportunity Employer: Coinbase is an Equal Opportunity Employer. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, sexual orientation, gender identity, national origin, disability, protected veteran status, or genetic information. Applicants with criminal histories will be considered consistent with applicable federal, state, and local laws.
+
+- US Applicants: View Employee Rights , Know Your Rights , and E-Verify Notice of Participation.
+
+- Accommodations: If you are an individual with a disability who needs a reasonable accommodation, email us your request and contact info at accommodations[at]coinbase.com. Need screen reading technology? Click here to download a free compatible screen reader and view the tutorial .
+
+- Data Privacy & Arbitration: By submitting your application, you agree to our Candidate Privacy Notice . US applicants: By submitting your application, you agree to Arbitration of Disputes .",2026,Bachelors,0-2 years,"Looker, SQL, Statistics, Tableau, PowerBI, Python, generative AI",Leadership
+647,648,Data Analyst,Internship,"Ready to do the most impactful work of your career? At  Coinbase , we are uncompromising on our mission to increase economic freedom. The bar is high, the environment is intense, and we like it that way. This isn't a place for complacency, it’s a place to be pushed past your perceived limits. If you're ready to build the future of finance alongside people who refuse to settle for ""good enough,"" you belong here. Coinbase is a remote-first, but not remote-only company. Expect to get together quarterly for intense in-person working sessions called “surges.”  learn more about working at Coinbase .
+
+This is a 12-week internship during summer 2027.
+
+As an Associate Product Manager (APM) Intern, you'll spend 12 weeks partnering with engineering, design, and cross-functional teams to build products that bring the world onchain. Coinbase's product managers play a pivotal role in shaping the future of cryptocurrency and creating an open financial system, and you'll experience that firsthand. You'll own a meaningful product area, ship real features used by millions of customers, and develop the strategic thinking that defines great product managers.
+
+Product Group Teams (internship location = San Francisco):
+
+- Consumer - Shape the fastest way to access crypto through the Coinbase retail app, advanced trade, dApps, and staking, paving the way for the future onchain.
+
+- Developer - Drive the roadmap for simple, secure APIs and SDKs that bring a million builders onchain across payments, trading, wallets, and stablecoins.
+
+- Institutional - Lead product initiatives enabling thousands of large financial institutions to securely custody digital assets, stake, and participate in the crypto economy.
+
+- Platform - Own product strategy for the scalable, compliant foundational systems (Identity, FinHub, Payments) that underpin all Coinbase products and leverage machine learning to drive intelligent automation.
+
+Core Teams (internship location = New York City):
+
+- Enterprise Applications and Architecture (EAA) - Drive the roadmap for internal platforms that enhance customer support, HR tools, and compliance through automation and customer-first engineering.
+
+What you'll do:
+
+- Own the definition of product requirements and drive execution of a product launch alongside engineering, design, and data partners.
+
+- Build a forward-looking product strategy for your assigned area using user research, market data, and competitive analysis.
+
+- Lead user research and feedback loops to maintain a customer-centric approach and guide product decisions with measurable data.
+
+- Set success metrics for your launches and analyze results at each stage to inform iteration and future roadmap priorities.
+
+- Develop deep expertise in Coinbase's competitive position across the onchain ecosystem, including DeFi, NFTs, Layer 2 blockchains, and trading infrastructure.
+
+Required Skills and Experience:
+
+- Prior internship or project experience in software product management, product design, or a technical cross-functional role where you shipped a product or feature.
+
+- Demonstrated experience with cryptocurrency, blockchain technology, or crypto-powered products through coursework, personal projects, prior internships, or active participation in the ecosystem.
+
+- Quantitative aptitude demonstrated through coursework, projects, or prior roles requiring data analysis, A/B testing, or metrics-driven decision-making.
+
+- Utilizes generative AI responsibly, maintaining human oversight to deliver business-ready outputs and drive measurable improvements in workflow efficiency, cost, and quality.
+
+Req ID: GETR-PAPM00US-Q326
+
+#LI-Hybrid
+
+Pay Transparency Notice:  Depending on your work location, the target hourly rate for this position can range as detailed below.
+
+Hourly Rate:
+
+$55 — $55 USD
+
+- Application Limit: Candidates may submit a maximum of 3 applications within a 6-month period.
+
+- Equal Opportunity Employer: Coinbase is an Equal Opportunity Employer. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, sexual orientation, gender identity, national origin, disability, protected veteran status, or genetic information. Applicants with criminal histories will be considered consistent with applicable federal, state, and local laws.
+
+- US Applicants: View Employee Rights , Know Your Rights , and E-Verify Notice of Participation.
+
+- Accommodations: If you are an individual with a disability who needs a reasonable accommodation, email us your request and contact info at accommodations[at]coinbase.com. Need screen reading technology? Click here to download a free compatible screen reader and view the tutorial .
+
+- Data Privacy & Arbitration: By submitting your application, you agree to our Candidate Privacy Notice . US applicants: By submitting your application, you agree to Arbitration of Disputes .",2026,Bachelors,12-week internship,"A/B Testing, Machine Learning, data analysis, generative AI","Communication, Problem Solving, Teamwork"
+648,649,Data Analyst,Internship,"Who We Are
+
+2K is headquartered in Novato, California and is a wholly owned label of Take-Two Interactive Software, Inc. (NASDAQ: TTWO). Founded in 2005, 2K Games is a global video game company, publishing titles developed by some of the most influential game development studios in the world. Our studios responsible for developing 2K’s portfolio of world-class games across multiple platforms, include Visual Concepts, Firaxis, Hangar 13, CatDaddy, Cloud Chamber, 31st Union, HB Studios, and 2K SportsLab. Our portfolio of titles is expanding due to our global strategic plan, building and acquiring exciting studios whose content continues to inspire all of us! 2K publishes titles in today’s most popular gaming genres, including sports, shooters, action, role-playing, strategy, casual, and family entertainment.
+
+Our team of engineers, marketers, artists, writers, data scientists, producers, thinkers and doers, are the professional publishing stewards of 2K’s portfolio currently includes several AAA, sports and entertainment brands, including global powerhouse NBA®️ 2K,  renowned BioShock®️, Borderlands®️, Mafia, Sid Meier’s Civilization®️ and XCOM®️ brands; popular WWE®️ 2K and WWE®️ SuperCard franchises, TopSpin 2K25, as well as the critically and commercially acclaimed PGA TOUR®️ 2K.
+
+At 2K, we pride ourselves on creating an inclusive work environment, which means encouraging our teams to Come as You Are and do your best work! We encourage ALL applicants to explore our global positions, even if they don’t meet every requirement for the role.  If you're interested in the job and think you have what it takes to work at 2K, we encourage you to apply!
+
+What We Need
+
+The FP&A Financial Analyst will directly support our Games Studios, driving production & studio budgeting, reporting, forecasting, and performance analysis. This is a key role in the development of, and measurement against, our financial targets for our most important game franchises. A successful candidate must be highly analytical and detail oriented, demonstrate expertise in developing and maintaining complex financial models, and provide succinct analyses to inform a wide range of business decisions
+
+What You Will Do
+
+●      Create and maintain sophisticated game production budgets and schedules in partnership with Studio, Publishing and Development Services teams
+
+●      Prepare and verify financial data, including month end financial performance, reclasses and accruals, annual operating budgets, development reviews and ad hoc opportunity and risk analysis
+
+●      Partner on headcount and external resource planning and allocation plans across projects and titles
+
+●      Prepare monthly, quarterly and annual review presentations for Studios, Publishing and Finance partners
+
+●      Support compliance processes; including project/time tracking and tracking of key milestone and license payments
+
+●      Review revenue and marketing forecasts and consider interplay with production budgets and alignment with financial targets
+
+Who We Think Will Be A Great Fit
+
+●      At least 2 years accounting or finance experience
+
+●      Experience creating financial forecasts and modeling different scenarios, ideally in video games, e-commerce, or mobile apps
+
+●      Strong background of delivering accurate, high-quality work while maintaining strong working relationships
+
+●      Proven ability to communicate effectively and collaborate with colleagues at all levels of the organization
+
+●      Bachelor's degree in Finance, Accounting, or Business; or equivalent experience
+
+●      Experience using databases and data visualization tools (e.g. Tableau, Oracle, Workday, SQL)
+
+Bonus Points
+
+●      Passion for gaming
+
+●      Proficiency with SQL, JDE, Tableau, Python, Snowflake
+
+As an equal opportunity employer, we are committed to ensuring that qualified individuals with disabilities are provided reasonable accommodation to participate in the job application or interview process, to perform their essential job functions, and to receive other benefits and privileges of employment.  Please contact us if you need reasonable accommodation.
+
+The pay range for this position in California at the start of employment is expected to be between $68,000 and $100,640 per Year. However, base pay offered is based on market location, and may vary further depending on individualized factors for job candidates, such as job-related knowledge, skills, experience, and other objective business considerations. Subject to those same considerations, the total compensation package for employees in regular roles may also include other elements, including a bonus and/or equity awards, in addition to a full range of medical, financial, and/or other benefits, provided that temporary or intern roles will not be eligible for many of these payments or benefits. Details of participation in compensation and benefit plans (if applicable) will be provided if an employee receives an offer of employment.If hired, employee will be in an ~at-will position~ and the company reserves the right to modify base salary (as well as any other discretionary payment or compensation or benefit program) at any time, including for reasons related to individual performance, company or individual department/team performance, and market factors.
+
+Subject to those same considerations, the total compensation package for employees in regular roles may also include other elements, including a bonus and/or equity awards, in addition to a full range of medical, financial, and/or other benefits, provided that temporary or intern roles will not be eligible for many of these payments or benefits. Details of participation in compensation and benefit plans (if applicable) will be provided if an employee receives an offer of employment. If hired, employee will be in an ""at-will position"" and the company reserves the right to modify base salary (as well as any other discretionary payment or compensation or benefit program) at any time, including for reasons related to individual performance, company or individual department/team performance, and market factors.
+
+Please note that 2K Games and its studios never uses instant messaging apps or personal email accounts to contact prospective employees or conduct interviews and when emailing, only use 2K.com accounts
+
+#LI-Hybrid",2026,Bachelors,0-2 years,"Python, SQL, Snowflake, Tableau","Communication, Problem Solving, Teamwork"
+649,650,Data Analyst,Internship,"Hi there! Thanks for stopping by 👋
+
+Are you actively looking for a new opportunity? Or just checking the market? Well… you might just be in the right place!
+
+We’re looking for a Strategy Analyst to join our team at Lightspeed. This role will support enterprise and business strategy efforts by conducting analysis, developing insights, and helping teams make data-driven decisions. As Lightspeed enters its next phase of growth and a multi-year transformation, this role will help shape and support key strategic priorities across the business. The ideal candidate brings strong strategic thinking, problem-solving skills, and the ability to work cross-functionally in a fast-paced environment.
+
+What you'll be doing:
+
+-
+
+Support enterprise and business strategy efforts through research, analysis, and insight development, including contributing to annual strategic planning and ongoing strategic review cadences
+
+-
+
+Break down complex business problems and conduct quantitative and qualitative analysis
+
+-
+
+Build models, synthesize data, and develop materials to support executive-level decision-making
+
+-
+
+Contribute to the development of business cases, plans, and recommendations
+
+-
+
+Collaborate with cross-functional teams to gather inputs and support the execution of key initiatives
+
+-
+
+Help track progress and performance of initiatives against key milestones and targets
+
+What you need to bring:
+
+-
+
+Strong analytical and problem-solving skills, with attention to detail
+
+-
+
+Ability to structure problems and work through ambiguity in a fast-paced environment
+
+-
+
+Comfort working with data and translating findings into clear insights
+
+-
+
+Strong written and verbal communication skills
+
+-
+
+Ability to collaborate effectively across teams and functions
+
+-
+
+Proactive mindset with a willingness to learn and take ownership
+
+-
+
+As a global company with employees and clients outside of Quebec, fluency in English as a working language is required for this position.
+
+Even better if you have, but not necessary:
+
+-
+
+3-5 years of experience in consulting, strategy, finance, or a related field
+
+-
+
+Experience working on structured problem-solving engagements (e.g., strategy, operations, or transformation projects)
+
+-
+
+Internship or early-career experience involving data analysis and business problem solving
+
+-
+
+Experience in SaaS, fintech, or other technology-driven environments
+
+You’ll enjoy:
+
+-
+
+A flexible work environment that empowers you to do your best work
+
+-
+
+A culture that celebrates performance
+
+-
+
+The chance to make an impact in a team that’s big enough for career growth, but lean enough to make your voice heard
+
+-
+
+Career-defining opportunities
+
+Plus benefits designed to keep you happy, healthy and fulfilled.
+
+-
+
+Flexible paid time off and remote work policies
+
+-
+
+Equity options, because this is your company too
+
+-
+
+Contributions to your pension plan. Your future matters
+
+-
+
+Training opportunities to grow your skills and career
+
+-
+
+Health and wellness credit so you feel your best
+
+-
+
+Time off to volunteer and give back to your community
+
+-
+
+Interest groups, employee led networks, social committees to sponsored sports teams
+
+-
+
+Computer purchase program to get your personal MacBook
+
+-
+
+Enhanced parental leave to support growing families
+
+To all recruitment agencies: Lightspeed does not accept unsolicited agency resumes. If we have not directly engaged your company in writing to supply candidates for a specific vacancy, Lightspeed will not be responsible for any fees related to unsolicited resumes.
+
+Lightspeed is a proud equal opportunity employer and we are committed to creating an inclusive and barrier-free workplace. Lightspeed welcomes and encourages applications from people with disabilities. Accommodations are available on request for candidates taking part in all aspects of the selection process.
+
+Where to from here?
+
+Obviously, this has to be mutually beneficial: we want you to step into a role you love, and we want to offer you a place you’re proud to come to every day. For a glimpse into our world check out our career page here .
+
+Lightspeed is building communities through commerce, and we need people from all backgrounds and lived experiences to do that. We were founded in 2005, in Montreal’s gay village and our original members were all part of the LGBTQ+ community. The ethos of our business has been about inclusion from the very beginning, and we strive to provide a workplace where everyone belongs.
+
+Who we are:
+
+Powering the businesses that are the backbone of the global economy, Lightspeed's one-stop commerce platform helps merchants innovate to simplify, scale, and provide exceptional customer experiences. Our cloud commerce solution transforms and unifies online and physical operations, multichannel sales, expansion to new locations, global payments, financial solutions, and connection to supplier networks.
+
+Founded in Montréal, Canada in 2005, Lightspeed is dual-listed on the New York Stock Exchange (NYSE: LSPD) and Toronto Stock Exchange (TSX: LSPD). With teams across North America, Europe, and Asia Pacific, the company serves retail, hospitality, and golf businesses in over 100 countries.
+
+Lightspeed handles your information in accordance with our Applicant Privacy Statement .",2026,Bachelors,0-2 years,"Python, SQL, Statistics, Machine Learning","Attention to Detail, Communication, Ownership, Problem Solving"
+651,652,Data Analyst,Internship,"Our Journey
+
+The ShopBack Group is Asia-Pacific’s leading shopping, rewards, and payments platform, serving over 20 million active members across 13 markets. In 2025, the Group continued its global growth with its expansion into North America. Driven by the vision to make every day more rewarding, ShopBack is dedicated to saving members money and time, and delivering delight every day. The platform also enables merchants and brands to engage with their members in a cost-effective manner. Founded in 2014, ShopBack now powers over US$5.5 billion in annual sales for over 20,000 online and in-store partners, and has rewarded shoppers with more than US$900 million (over S$1 billion) in Cashback to date. Through its innovative offerings, ShopBack continues to create value for both members and merchants. Notably, its payment solution, ShopBack Pay, offers members a convenient and rewarding payment option at checkout.
+
+At ShopBack, we handle a lot of data that can tell us about the way shoppers make buying decisions and the data team is responsible for collecting, processing and organising these large amounts of data. We then analyse these complex datasets to draw out practical findings and data solutions that different stakeholders can utilise to enhance the ShopBack experience. As a Data Analyst (intern), you will see a direct link between your work, company growth, and user satisfaction. You will partner with different stakeholders to support business decisions and generate actionable insights. Your work has a direct impact on millions of shoppers in 13 markets ShopBack operates in and is pivotal in driving the direction and future success of ShopBack.
+
+This posting is for applicants for H1 2027 and has a minimum requirement of 6 months.
+
+At this time, we are only able to consider candidates located ONLY in Singapore. However, we’d hope you continue to keep us in mind for other potential opportunities in the future.
+
+ShopBacker Traits
+
+Agency - We take ownership and act, rather than waiting for permission. When something's blocking progress, we find a way through it and follow through until it's done.
+
+Judgement - We aim for high-impact decisions, not just easy wins, and we put the bigger picture ahead of individual interests. That means moving quickly and confidently, while staying thoughtful about when a call really matters.
+
+Learning Velocity - We pick up new skills fast and let go of old habits just as quickly when something better comes along. We benchmark ourselves against the best and keep raising our own bar.
+
+Tenacity - We stay in it when things get hard, keeping a level head under pressure. We debate openly before deciding, then commit fully — and support each other along the way.
+
+What's in it for ShopBackers
+
+Career growth opportunities to take on greater challenges that help you realise your ambitions.
+
+Be part of a winning team on a journey to global scale.
+
+Competitive compensation based on performance.
+
+Candid, open, and collaborative culture where feedback is valued.",2026,Bachelors,0-2 years,"Go, data analysis, data processing, SQL",Ownership
+652,653,Data Analyst,Internship,"Ready to do the most impactful work of your career? At  Coinbase , we are uncompromising on our mission to increase economic freedom. The bar is high, the environment is intense, and we like it that way. This isn't a place for complacency, it’s a place to be pushed past your perceived limits. If you're ready to build the future of finance alongside people who refuse to settle for ""good enough,"" you belong here. Coinbase is a remote-first, but not remote-only company. Expect to get together quarterly for intense in-person working sessions called “surges.”  learn more about working at Coinbase .
+
+This is a 12-week internship during summer 2027.
+
+As an Internal Audit Intern, you'll join Coinbase's Internal Audit team, which provides independent, risk-based assurance and advisory services that strengthen governance, compliance, risk management, and internal controls across the company. You'll get hands-on experience supporting one of the following audit areas: Information Technology (IT), Sarbanes-Oxley (SOX), or Financial Crimes Compliance (FCC). You'll own real audit work from planning through reporting and explore how emerging technologies like AI can improve audit quality and efficiency.
+
+What you'll do:
+
+- Own assigned audit work end-to-end with guidance from the Internal Audit team, and present observations to leadership in clear, actionable terms
+
+- Build accurate, detailed workpapers that clearly describe work performed, testing results, and conclusions for each audit project
+
+- Analyze datasets using SQL or other analytics tools to test control populations, identify exceptions, and support data-driven audit conclusions
+
+- Apply professional skepticism to evaluate evidence, challenge assumptions, and identify control design gaps or operational deficiencies that others may overlook
+
+- Map complex business processes into structured process flows and control narratives, identifying key control points, dependencies, and risk areas through walkthroughs with process owners
+
+- Explore and prototype how AI and emerging technologies can improve audit processes and outcomes
+
+Required Skills and Experience:
+
+- Currently pursuing a BA/BS degree with coursework in accounting, finance, data analytics, or risk management, with exposure to internal controls, audit frameworks, or risk management concepts through academic or project experience
+
+- Demonstrated critical thinking and analytical reasoning, including the ability to evaluate evidence, identify patterns and anomalies, challenge assumptions, and draw well-supported, independent conclusions
+
+- Ability to understand and document complex business workflows: translate multi-step processes into clear process flows, control matrices, and risk assessments (experience with flowcharting tools a plus)
+
+- Intermediate experience with at least one data analytics or visualization tool (e.g., Tableau, SQL, Power BI, Python)
+
+- Experience documenting audit findings, control observations, or analytical conclusions in written format and presenting recommendations to senior stakeholders
+
+- Utilizes generative AI responsibly, maintaining human oversight to deliver business-ready outputs and drive measurable improvements in workflow efficiency, cost, and quality.
+
+Position ID: P78088
+
+#LI-Hybrid
+
+Pay Transparency Notice:  Depending on your work location, the target hourly rate for this position can range as detailed below.
+
+Hourly Rate:
+
+$40 — $40 USD
+
+- Application Limit: Candidates may submit a maximum of 3 applications within a 6-month period.
+
+- Equal Opportunity Employer: Coinbase is an Equal Opportunity Employer. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, sexual orientation, gender identity, national origin, disability, protected veteran status, or genetic information. Applicants with criminal histories will be considered consistent with applicable federal, state, and local laws.
+
+- US Applicants: View Employee Rights , Know Your Rights , and E-Verify Notice of Participation.
+
+- Accommodations: If you are an individual with a disability who needs a reasonable accommodation, email us your request and contact info at accommodations[at]coinbase.com. Need screen reading technology? Click here to download a free compatible screen reader and view the tutorial .
+
+- Data Privacy & Arbitration: By submitting your application, you agree to our Candidate Privacy Notice . US applicants: By submitting your application, you agree to Arbitration of Disputes .",2026,Bachelors,0-2 years,"Power BI, Python, SQL, Tableau, data analytics, generative AI","Critical Thinking, Leadership"
+653,654,Data Analyst,Internship,"Who We Are
+
+2K is headquartered in Novato, California and is a wholly owned label of Take-Two Interactive Software, Inc. (NASDAQ: TTWO). Founded in 2005, 2K Games is a global video game company, publishing titles developed by some of the most influential game development studios in the world. Our studios responsible for developing 2K’s portfolio of world-class games across multiple platforms, include Visual Concepts, Firaxis, Hangar 13, CatDaddy, Cloud Chamber, 31st Union, and HB Studios. Our portfolio of titles is expanding due to our global strategic plan, building and acquiring exciting studios whose content continues to inspire all of us! 2K publishes titles in today’s most popular gaming genres, including sports, shooters, action, role-playing, strategy, casual, and family entertainment.
+
+Our team of engineers, marketers, artists, writers, data scientists, producers, thinkers and doers, are the professional publishing stewards of our growing library of critically-acclaimed franchises such as NBA 2K, 2K PGA, Battleborn, BioShock, Borderlands, The Quarry, The Darkness, Mafia, Sid Meier’s Civilization, Marvel’s Midnight Suns, WWE 2K, and XCOM.
+
+At 2K, we pride ourselves on creating an inclusive work environment, which means encouraging our teams to Come as You Are  and do your best work! We encourage ALL applicants to explore our global positions, even if they don’t meet every requirement for the role. If you're interested in the job and think you have what it takes to work at 2K, we encourage you to apply!
+
+What We Need
+
+We’re looking for a highly analytical and strategic thinker to join our team as a Manager, Commercial Strategy. In this role, you’ll help define the strategy behind how our games are launched, monetized, and supported over time. This is a 0-to-1 role. You won't be inheriting a mature P&L and tuning it at the margins, instead you'll be defining the commercial model from the ground up: designing the monetization framework, building the forecasting models, standing up the KPIs and dashboards, and partnering closely with product and design as we move between development milestones toward a global launch and ongoing live operations. If you’re the kind of person who enjoys diving into data, building business cases, and translating insights into clear, actionable plans, then this is a great opportunity!
+
+You'll sit at the intersection of product, design, marketing, data analytics, and finance, and you'll be the person who connects the dots between ""what's good for the player"" to ""what's good for the business.""
+
+What You Will Do
+
+- Modeling & Business Case Development: Build and maintain Excel-based financial and strategic models to support business cases, investment decisions, and scenario planning
+
+- KPI Frameworks & Forecasting: Create and deliver forecast and reporting packages, showcasing key business metrics and financial results, to the broader Business Unit leadership teams
+
+- Continuously refine the free-to-play monetization framework, including virtual currency, battle/season pass, cosmetics, bundles, offers, etc.
+
+- Define and maintain the monetization roadmap in partnership with product and design, always balancing revenue against player experience, fairness, and long-term retention
+
+- Stand up commercial reporting and dashboards in partnership with the data / analytics team so the business has a single source of truth
+
+- Live Services P&L Support: Develop a clear understanding of the drivers behind a live services P&L. Interpret weekly business performance, identifying trends and levers that can be pulled to optimize player engagement and profitability
+
+- Market & Competitive Analysis: Maintain a clear view of the F2P / live-service competitive landscape, including benchmarks, market sizing, and emerging trends. Translate findings into actionable recommendations to inform leadership and support strategic planning
+
+- Partner with the Product, Marketing & Analytics teams to design and prioritize strategic projects that provide deep commercial insight and inform product and marketing decisions
+
+What Will Make You a Great Fit
+
+- 4-6+ years of experience in a strategy, finance, consulting, or analytics role, ideally within gaming, entertainment, or a digital consumer business
+
+- Advanced Excel / financial modeling skills; comfortable building models from scratch
+
+- Strong understanding of live service game economics and the gaming market landscape
+
+- Ability to distill complex data into clear narratives and recommendations for senior stakeholders
+
+- Experience collaborating with data teams and familiarity with data tools (e.g., SQL, Tableau, Looker) is a plus
+
+- You’re intellectually curious: you enjoy asking why, digging into the details, and connecting dots others might miss.
+
+- You’re comfortable working in gray areas: ambiguity doesn’t throw you off; in fact, you enjoy bringing structure to messy or open-ended problems.
+
+- You know how to manage up: you’re proactive in keeping stakeholders informed, setting expectations, and getting buy-in from senior leaders.
+
+As an equal opportunity employer, we are committed to ensuring that qualified individuals with disabilities are provided reasonable accommodation to participate in the job application or interview process, perform their essential job functions, and receive other benefits and privileges of employment. Please contact us if you need a reasonable accommodation.
+
+Please note that 2K Games and its studios never use instant messaging apps or personal email accounts to contact prospective employees or conduct interviews and when emailing, only use 2K.com accounts.
+
+The pay range for this position in California at the start of employment is expected to be between $108,900 and $161,160 per Year. However, base pay offered is based on market location, and may vary further depending on individualized factors for job candidates, such as job-related knowledge, skills, experience, and other objective business considerations. Subject to those same considerations, the total compensation package for employees in regular roles may also include other elements, including a bonus and/or equity awards, in addition to a full range of medical, financial, and/or other benefits, provided that temporary or intern roles will not be eligible for many of these payments or benefits. Details of participation in compensation and benefit plans (if applicable) will be provided if an employee receives an offer of employment.If hired, employee will be in an ~at-will position~ and the company reserves the right to modify base salary (as well as any other discretionary payment or compensation or benefit program) at any time, including for reasons related to individual performance, company or individual department/team performance, and market factors.",2026,Bachelors,0-2 years,"Looker, SQL, Tableau",Leadership
+654,655,Data Analyst,Internship,"About Flowmingo AI
+
+Flowmingo is a Y Combinator-backed startup (plus VinaCapital & top global investors) on a mission to democratize hiring. We believe the current hiring model is broken: recruiters only have time to interview 5% of applicants, leaving 95% of talent—the ""hidden gems""—undiscovered. We are fixing this with an AI-native, high-volume interviewing platform. Our model is unique: we offer our tool for free to recruiters to capture the massive, uncontested markets of Southeast Asia, LATAM, and Africa. This allows us to process massive volumes of candidates that traditional, expensive platforms cannot touch.
+
+About the Role: Product Intern / Fresher
+
+Join a YC-backed AI hiring startup and help shape the future of AI collaboration. As a Product Intern/Fresher, your primary focus will be on understanding and optimizing the ""User Journey."" Our platform serves thousands of candidates daily, and your mission will be to delve into their motivations and behaviors: Why do they sign up? Where do they encounter friction? How can we enhance the product's value to transform users into advocates?
+
+Key Responsibilities
+
+Product Ideation & Strategy: Contribute to brainstorming and strategic discussions, identifying user pain points and proposing new features that drive growth and engagement.
+
+Cross-Functional Collaboration: Work with Engineering on feasibility, Marketing on launch messaging, and Operations to understand real-time user feedback.
+
+Funnel Optimization: Analyze data to identify areas for improvement in the user journey. For example, investigate why only 40% of users complete their profile and propose strategies to increase this to 60%.
+
+Feature Specifications & Documentation: Write clear, concise requirements for new features and assist in maintaining the product roadmap.
+
+Product Testing (QA): Test new features before launch to ensure a polished user experience and identify any bugs.
+
+Launch Management: Help coordinate feature releases, ensuring alignment across Marketing, Operations, and Technology teams for successful rollouts.
+
+What We're Looking For
+
+Data-Driven Intuition: You can use data to inform decisions while maintaining empathy for user psychology.
+
+Clear Communicator: You can explain complex ideas simply and write concise requirements.
+
+Entrepreneurial Spirit: You are interested in how products grow from inception to scale. You are eager to learn about Product-Led Growth (PLG) and viral loops.
+
+Design Sensibility: While not a designer, you have a good sense of what constitutes a ""clean"" and ""trustworthy"" user interface.
+
+Bonus: A strong interest in tech products, data analytics, or coding. Curiosity about how software is built is a significant plus.
+
+What We Offer
+
+Competitive Remuneration: Monthly compensation will be provided, tailored to your experience level.
+
+Startup Scaling Insights: Gain direct insights into how YC-backed Silicon Valley startups build and scale products.
+
+Real Impact: See your ideas implemented and directly influence the user experience for thousands.
+
+Mentorship: Work closely with the Founder and the Product team.
+
+How to Apply
+
+Ready to make an impact? Apply now!
+
+We review applications on a rolling basis. In your application, demonstrate your understanding of user behavior and motivation.
+
+Location: Remote (Global)
+
+Employment type: Internship → Full-time
+
+Compensation: Stipend + potential full-time offer
+
+How to apply
+
+Apply here:
+
+Originally posted on
+
+Himalayas",2026,Bachelors,0-2 years,"Python, SQL, Statistics, Machine Learning, data analytics, coding",Collaboration
+655,656,Data Analyst,Internship,"Ready to do the most impactful work of your career? At  Coinbase , we are uncompromising on our mission to increase economic freedom. The bar is high, the environment is intense, and we like it that way. This isn't a place for complacency, it’s a place to be pushed past your perceived limits. If you're ready to build the future of finance alongside people who refuse to settle for ""good enough,"" you belong here. Coinbase is a remote-first, but not remote-only company. Expect to get together quarterly for intense in-person working sessions called “surges.”  learn more about working at Coinbase .
+
+This is a 12-week internship during summer 2027.
+
+As a Data Science Intern on the Strategy, Execution, & Analytics team within the Platform group, you'll partner with product and engineering teams to turn data into decisions that drive real business impact. This team builds analytics models and systems that scale insights across Coinbase and directly into the product. You'll collaborate with senior data scientists and business partners to design experiments, build models, and deliver data-driven recommendations that shape how millions of customers experience crypto. You will gain hands-on experience at a publicly traded crypto-native company, with mentorship from senior data scientists and direct exposure to how data shapes the company.
+
+What you'll do:
+
+- Collaborate with product teams to create analyses and build models that drive measurable business outcomes.
+
+- Support the design and execution of experiments, including A/B tests and causal inference methods.
+
+- Build and maintain analytical datasets and pipelines that ensure data integrity and power your analyses and models.
+
+- Distill complex analyses into clear, actionable insights through data-driven storytelling for technical and non-technical audiences.
+
+- Partner with senior team members on analytical deep dives to diagnose and address complex business problems.
+
+Required Skills and Experience:
+
+- Coursework or project experience in statistical modeling, data analysis, or a related quantitative field (e.g., mathematics, economics, physics, computer science).
+
+- Familiarity with SQL for data analysis and Python for programming or modeling.
+
+- Demonstrated interest in experimentation (A/B testing), causal inference, or machine learning through coursework or projects.
+
+- Currently pursuing a BA/BS or graduate degree in a quantitative discipline (e.g., Math, Statistics, Physics, Computer Science, Economics) or equivalent experience.
+
+- Utilizes generative AI responsibly, maintaining human oversight to deliver business-ready outputs and drive measurable improvements in workflow efficiency, cost, and quality.
+
+Req ID: P78149
+
+#LI-Hybrid
+
+Pay Transparency Notice:  Depending on your work location, the target hourly rate for this position can range as detailed below.
+
+Hourly Rate:
+
+$50 — $50 USD
+
+- Application Limit: Candidates may submit a maximum of 3 applications within a 6-month period.
+
+- Equal Opportunity Employer: Coinbase is an Equal Opportunity Employer. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, sexual orientation, gender identity, national origin, disability, protected veteran status, or genetic information. Applicants with criminal histories will be considered consistent with applicable federal, state, and local laws.
+
+- US Applicants: View Employee Rights , Know Your Rights , and E-Verify Notice of Participation.
+
+- Accommodations: If you are an individual with a disability who needs a reasonable accommodation, email us your request and contact info at accommodations[at]coinbase.com. Need screen reading technology? Click here to download a free compatible screen reader and view the tutorial .
+
+- Data Privacy & Arbitration: By submitting your application, you agree to our Candidate Privacy Notice . US applicants: By submitting your application, you agree to Arbitration of Disputes .",2026,Bachelors,12-week internship (0-2 years),"A/B Testing, Experimentation, Machine Learning, Python, SQL, Statistics, causal inference, generative AI, data pipelines, analytical datasets","Communication, Problem Solving, Teamwork"
+656,657,Data Analyst,Internship,"Ready to do the most impactful work of your career? At  Coinbase , we are uncompromising on our mission to increase economic freedom. The bar is high, the environment is intense, and we like it that way. This isn't a place for complacency, it’s a place to be pushed past your perceived limits. If you're ready to build the future of finance alongside people who refuse to settle for ""good enough,"" you belong here. Coinbase is a remote-first, but not remote-only company. Expect to get together quarterly for intense in-person working sessions called “surges.”  learn more about working at Coinbase .
+
+This is a 12-week internship during summer 2027.
+
+As a Data Engineer Intern within the Platform product group, you'll partner with analytics engineering to build and maintain the data pipelines and infrastructure that power insights across Coinbase. You'll work alongside senior engineers and cross-functional partners in product and engineering to ensure data accuracy, scalability, and accessibility for analytical and machine learning use cases.
+
+What you'll do:
+
+- Build and maintain data pipelines that ensure data integrity and accessibility for analytics and machine learning workloads
+
+- Support the development of scalable data infrastructure using Python and cloud-based technologies
+
+- Integrate and manage data from multiple sources, including internal systems and external APIs
+
+- Contribute to analytical deep dives with senior team members, translating findings into clear documentation and recommendations
+
+- Learn and apply data engineering best practices including data governance, security, and performance optimization
+
+Required Skills and Experience:
+
+- Completed or in-progress coursework in Computer Science, Data Engineering, or equivalent experience with demonstrated programming proficiency in Python, including data structures and algorithms
+
+- Hands-on experience writing SQL for data analysis and working with relational database concepts
+
+- Familiarity with cloud platforms (AWS, GCP, or Azure) and a demonstrated interest in AI, LLMs, or API integrations
+
+- Exposure to software architecture concepts such as microservices, distributed systems, or cloud-native design through coursework or projects
+
+- Utilizes generative AI responsibly, maintaining human oversight to deliver business-ready outputs and drive measurable improvements in workflow efficiency, cost, and quality.
+
+Req ID: P78146
+
+#LI-Hybrid
+
+Pay Transparency Notice:  Depending on your work location, the target hourly rate for this position can range as detailed below.
+
+Hourly Rate:
+
+$50 — $50 USD
+
+- Application Limit: Candidates may submit a maximum of 3 applications within a 6-month period.
+
+- Equal Opportunity Employer: Coinbase is an Equal Opportunity Employer. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, sexual orientation, gender identity, national origin, disability, protected veteran status, or genetic information. Applicants with criminal histories will be considered consistent with applicable federal, state, and local laws.
+
+- US Applicants: View Employee Rights , Know Your Rights , and E-Verify Notice of Participation.
+
+- Accommodations: If you are an individual with a disability who needs a reasonable accommodation, email us your request and contact info at accommodations[at]coinbase.com. Need screen reading technology? Click here to download a free compatible screen reader and view the tutorial .
+
+- Data Privacy & Arbitration: By submitting your application, you agree to our Candidate Privacy Notice . US applicants: By submitting your application, you agree to Arbitration of Disputes .",2026,Bachelors,0-2 years,"AWS, Azure, GCP, Machine Learning, Microservices, Python, SQL, Security, APIs, distributed systems, cloud-native design, generative AI","Communication, Problem Solving, Teamwork"
+657,658,Data Analyst,Internship,"Ready to do the most impactful work of your career? At  Coinbase , we are uncompromising on our mission to increase economic freedom. The bar is high, the environment is intense, and we like it that way. This isn't a place for complacency, it’s a place to be pushed past your perceived limits. If you're ready to build the future of finance alongside people who refuse to settle for ""good enough,"" you belong here. Coinbase is a remote-first, but not remote-only company. Expect to get together quarterly for intense in-person working sessions called “surges.”  learn more about working at Coinbase .
+
+This is a 12-week internship during summer 2027.
+
+Join the Institutional Operations Solutions (IOS) team within the Institutional group as a Finance Operations Intern. This team manages risk and delivers operational solutions across Coinbase’s Institutional organization, supporting a broad range of teams and functions that help scale the institutional business. You'll work cross-functionally with internal stakeholders and institutional clients, tackling real operational challenges.
+
+What you'll do:
+
+- Support day-to-day IOS operations while identifying and managing operational risk across compliance and regulatory requirements
+
+- Identify opportunities to improve existing processes and risk management capabilities, recommending solutions backed by data analysis
+
+- Partner with Product, Engineering, and other cross-functional stakeholders to build technology solutions that support institutional operations at scale
+
+- Analyze data sets and deliver recommendations grounded in sound quantitative reasoning
+
+- Collaborate with fellow interns on a group project solving a real business problem, presenting findings and solutions to the leadership team
+
+Required Skills and Experience:
+
+- Currently pursuing a degree or certificate in business, management, finance, accounting, or a related discipline
+
+- Demonstrated problem-solving ability with capacity to identify second-order effects and streamline processes accordingly
+
+- Proven willingness to engage cross-functional stakeholders and collaborate in team settings
+
+- Familiarity with finance or banking concepts, with interest in crypto and digital assets
+
+- Utilizes generative AI responsibly, maintaining human oversight to deliver business-ready outputs and drive measurable improvements in workflow efficiency, cost, and quality
+
+Position ID: P78040
+
+#LI-Hybrid
+
+Pay Transparency Notice:  Depending on your work location, the target hourly rate for this position can range as detailed below.
+
+Hourly Rate:
+
+$40 — $40 USD
+
+- Application Limit: Candidates may submit a maximum of 3 applications within a 6-month period.
+
+- Equal Opportunity Employer: Coinbase is an Equal Opportunity Employer. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, sexual orientation, gender identity, national origin, disability, protected veteran status, or genetic information. Applicants with criminal histories will be considered consistent with applicable federal, state, and local laws.
+
+- US Applicants: View Employee Rights , Know Your Rights , and E-Verify Notice of Participation.
+
+- Accommodations: If you are an individual with a disability who needs a reasonable accommodation, email us your request and contact info at accommodations[at]coinbase.com. Need screen reading technology? Click here to download a free compatible screen reader and view the tutorial .
+
+- Data Privacy & Arbitration: By submitting your application, you agree to our Candidate Privacy Notice . US applicants: By submitting your application, you agree to Arbitration of Disputes .",2026,Bachelors,0-2 years,"Python, SQL, Statistics, Machine Learning, data analysis, generative AI, finance, crypto, digital assets",Leadership
+766,767,Data Analyst,Internship,"Hi there! Thanks for stopping by 👋
+
+Are you actively looking for a new opportunity? Or just checking the market? Well… you might just be in the right place!
+
+We’re looking for a Strategy Manager to join our Montreal team at Lightspeed. This role will support enterprise and business strategy efforts by conducting analysis, developing insights, and helping teams make data-driven decisions. As Lightspeed enters its next phase of growth and a multi-year transformation, this role will help shape and support key strategic priorities across the business. The ideal candidate brings strong strategic thinking, problem-solving skills, and the ability to work cross-functionally in a fast-paced environment.
+
+What you'll be doing:
+
+-
+
+Support enterprise and business strategy efforts through research, analysis, and insight development, including contributing to annual strategic planning and ongoing strategic review cadences
+
+-
+
+Break down complex business problems and conduct quantitative and qualitative analysis
+
+-
+
+Build models, synthesize data, and develop materials to support executive-level decision-making
+
+-
+
+Contribute to the development of business cases, plans, and recommendations
+
+-
+
+Collaborate with cross-functional teams to gather inputs and support the execution of key initiatives
+
+-
+
+Help track progress and performance of initiatives against key milestones and targets
+
+What you need to bring:
+
+-
+
+Strong analytical and problem-solving skills, with attention to detail
+
+-
+
+Ability to structure problems and work through ambiguity in a fast-paced environment
+
+-
+
+Comfort working with data and translating findings into clear insights
+
+-
+
+Strong written and verbal communication skills
+
+-
+
+Ability to collaborate effectively across teams and functions
+
+-
+
+Proactive mindset with a willingness to learn and take ownership
+
+-
+
+As a global company with employees and clients outside of Quebec, fluency in English as a working language is required for this position.
+
+Even better if you have, but not necessary:
+
+-
+
+3-5 years of experience in consulting, strategy, finance, or a related field
+
+-
+
+Experience working on structured problem-solving engagements (e.g., strategy, operations, or transformation projects)
+
+-
+
+Internship or early-career experience involving data analysis and business problem solving
+
+-
+
+Experience in SaaS, fintech, or other technology-driven environments
+
+You’ll enjoy:
+
+-
+
+A flexible work environment that empowers you to do your best work
+
+-
+
+A culture that celebrates performance
+
+-
+
+The chance to make an impact in a team that’s big enough for career growth, but lean enough to make your voice heard
+
+-
+
+Career-defining opportunities
+
+Plus benefits designed to keep you happy, healthy and fulfilled.
+
+-
+
+Flexible paid time off and remote work policies
+
+-
+
+Equity options, because this is your company too
+
+-
+
+Contributions to your pension plan. Your future matters
+
+-
+
+Training opportunities to grow your skills and career
+
+-
+
+Health and wellness credit so you feel your best
+
+-
+
+Time off to volunteer and give back to your community
+
+-
+
+Interest groups, employee led networks, social committees to sponsored sports teams
+
+-
+
+Computer purchase program to get your personal MacBook
+
+-
+
+Enhanced parental leave to support growing families
+
+To all recruitment agencies: Lightspeed does not accept unsolicited agency resumes. If we have not directly engaged your company in writing to supply candidates for a specific vacancy, Lightspeed will not be responsible for any fees related to unsolicited resumes.
+
+Lightspeed is a proud equal opportunity employer and we are committed to creating an inclusive and barrier-free workplace. Lightspeed welcomes and encourages applications from people with disabilities. Accommodations are available on request for candidates taking part in all aspects of the selection process.
+
+Where to from here?
+
+Obviously, this has to be mutually beneficial: we want you to step into a role you love, and we want to offer you a place you’re proud to come to every day. For a glimpse into our world check out our career page here .
+
+Lightspeed is building communities through commerce, and we need people from all backgrounds and lived experiences to do that. We were founded in 2005, in Montreal’s gay village and our original members were all part of the LGBTQ+ community. The ethos of our business has been about inclusion from the very beginning, and we strive to provide a workplace where everyone belongs.
+
+Who we are:
+
+Powering the businesses that are the backbone of the global economy, Lightspeed's one-stop commerce platform helps merchants innovate to simplify, scale, and provide exceptional customer experiences. Our cloud commerce solution transforms and unifies online and physical operations, multichannel sales, expansion to new locations, global payments, financial solutions, and connection to supplier networks.
+
+Founded in Montréal, Canada in 2005, Lightspeed is dual-listed on the New York Stock Exchange (NYSE: LSPD) and Toronto Stock Exchange (TSX: LSPD). With teams across North America, Europe, and Asia Pacific, the company serves retail, hospitality, and golf businesses in over 100 countries.
+
+Lightspeed handles your information in accordance with our Applicant Privacy Statement .",2026,Bachelors,0-2 years,"Python, SQL, Statistics, Machine Learning","Attention to Detail, Communication, Ownership, Problem Solving"
