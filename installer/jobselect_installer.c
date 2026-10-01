@@ -25,7 +25,6 @@ int refresh_and_continue()
 {
     char current_dir[MAX_PATH];
 
-    // Get the current working directory so the new CMD opens in the exact same folder
     if (_getcwd(current_dir, sizeof(current_dir)) == NULL)
     {
         printf("Error getting current directory.\n");
