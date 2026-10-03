@@ -59,10 +59,21 @@ def main():
         min_precision=MIN_PRECISION,
         min_threshold=MIN_THRESHOLD,
     )
+    # Defense-in-depth: never serialize or evaluate a threshold that violates
+    # the configured precision floor. The optimizer already enforces this;
+    # this assertion catches future optimizer regressions at the evaluation boundary.
+    invalid_precision = np.flatnonzero(threshold_precision < MIN_PRECISION)
+    if invalid_precision.size:
+        bad_labels = [vocab[int(i)] for i in invalid_precision]
+        raise RuntimeError(
+            "Threshold optimization returned precision below the safety floor "
+            f"for: {bad_labels}"
+        )
+
     preds = (probs >= thresholds[None, :]).astype(int)
 
     threshold_payload = {
-        "method": "exact_per_skill_f1_with_precision_constraint",
+        "method": "exact_per_skill_f1_with_strict_precision_constraint",
         "metric": "binary_f1",
         "min_precision": MIN_PRECISION,
         "min_threshold": MIN_THRESHOLD,
