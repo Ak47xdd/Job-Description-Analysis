@@ -12,6 +12,11 @@ from huggingface_hub import hf_hub_download
 from tokenizers import Tokenizer
 from JobAnalyze.v2.token_override import apply_token_matching_override
 
+try:
+    from model.prep.sym_map import canonicalize_skill_text
+except ImportError:
+    canonicalize_skill_text = lambda text: str(text or "").lower()
+
 
 ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
@@ -225,7 +230,8 @@ def _load_artifacts():
 
 
 def _build_input_text(job_desc: str, role: str, job_type: str) -> str:
-    return f"Role: {role}. Job type: {job_type}. Job description: {job_desc}"
+    normalized_desc = canonicalize_skill_text(job_desc)
+    return f"Role: {role}. Job type: {job_type}. Job description: {normalized_desc}"
 
 
 def _encode_embeddings(texts, tokenizer: Tokenizer, session):
@@ -295,7 +301,7 @@ def _apply_hybrid_token_override(probabilities, label_vocab, job_desc: str):
         updated, matches = apply_token_matching_override(
             probabilities[index],
             label_vocab,
-            job_desc[index] if isinstance(job_desc, list) else job_desc,
+            canonicalize_skill_text(job_desc[index] if isinstance(job_desc, list) else job_desc),
         )
         probabilities[index] = updated
         overridden.append(matches)
