@@ -65,6 +65,10 @@ def best_threshold(
         raise ValueError("min_precision must be between 0 and 1")
     if not 0.0 <= min_threshold <= 1.0:
         raise ValueError("min_threshold must be between 0 and 1")
+    if not 0.0 <= rare_support_floor <= 1.0:
+        raise ValueError("rare_support_floor must be between 0 and 1")
+    if rare_support_cutoff < 0:
+        raise ValueError("rare_support_cutoff must be non-negative")
     fallback_thresholds = tuple(float(t) for t in zero_f1_fallback_thresholds)
     if any(t < 0.0 or t > 1.0 for t in fallback_thresholds):
         raise ValueError("zero_f1_fallback_thresholds must be between 0 and 1")
@@ -73,7 +77,7 @@ def best_threshold(
 
     positives = int(y_true.sum())
     effective_min_threshold = (
-        rare_support_floor
+        max(min_threshold, rare_support_floor)
         if support_aware and positives <= rare_support_cutoff
         else support_aware_threshold_floor(
             positives,
