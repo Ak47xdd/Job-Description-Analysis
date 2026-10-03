@@ -58,7 +58,7 @@ def best_threshold(
     if y_true.shape[0] != scores.shape[0]:
         raise ValueError("y_true and scores must have the same number of rows")
     if y_true.size == 0:
-        return max(0.5, min_threshold), 0.0, 0.0
+        raise ValueError("Cannot enforce a precision constraint on an empty label set")
     if not 0.0 <= min_precision <= 1.0:
         raise ValueError("min_precision must be between 0 and 1")
     if not 0.0 <= min_threshold <= 1.0:
