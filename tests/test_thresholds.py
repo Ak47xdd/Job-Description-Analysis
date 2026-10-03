@@ -1,4 +1,5 @@
 import numpy as np
+import pytest
 
 from model.thresholds import best_threshold, optimize_per_label_thresholds, support_aware_threshold_floor
 
@@ -67,9 +68,11 @@ def test_zero_f1_fallback_tries_thresholds_sequentially():
     assert precision == 1.0
 
 
-def test_zero_f1_fallback_keeps_precision_constraint():
+def test_zero_f1_fallback_steps_back_up_until_precision_clears():
+    # 0.45 predicts two rows and has precision 0.50, so it is rejected.
+    # The optimizer must step back up to 0.46, where the single prediction is correct.
     y_true = np.array([1, 0, 0, 0])
-    scores = np.array([0.39, 0.50, 0.49, 0.48])
+    scores = np.array([0.46, 0.45, 0.44, 0.43])
 
     threshold, f1, precision = best_threshold(
         y_true,
@@ -78,6 +81,19 @@ def test_zero_f1_fallback_keeps_precision_constraint():
         min_threshold=0.25,
     )
 
-    assert threshold >= 0.70
-    assert f1 == 0.0
-    assert precision == 0.0
+    assert threshold == 0.46
+    assert f1 > 0.0
+    assert precision == 1.0
+
+
+def test_precision_constraint_raises_when_no_valid_threshold_exists():
+    y_true = np.array([1, 0, 0, 0])
+    scores = np.array([0.39, 0.50, 0.49, 0.48])
+
+    with pytest.raises(ValueError, match="No threshold satisfies the precision constraint"):
+        best_threshold(
+            y_true,
+            scores,
+            min_precision=0.30,
+            min_threshold=0.25,
+        )
