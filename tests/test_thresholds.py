@@ -15,7 +15,7 @@ def test_support_floor_policy():
 
 def test_rare_skill_relaxes_floor_when_f1_is_zero():
     y_true = np.array([1, 0, 0, 0, 0, 0])
-    scores = np.array([0.61, 0.60, 0.59, 0.58, 0.10, 0.05])
+    scores = np.array([0.51, 0.49, 0.20, 0.10, 0.05, 0.01])
 
     threshold, _, _ = best_threshold(
         y_true,
