@@ -13,7 +13,7 @@ def test_support_floor_policy():
     assert support_aware_threshold_floor(100) == 0.25
 
 
-def test_rare_skill_cannot_optimize_below_high_floor():
+def test_rare_skill_relaxes_floor_when_f1_is_zero():
     y_true = np.array([1, 0, 0, 0, 0, 0])
     scores = np.array([0.61, 0.60, 0.59, 0.58, 0.10, 0.05])
 
@@ -24,7 +24,7 @@ def test_rare_skill_cannot_optimize_below_high_floor():
         min_threshold=0.25,
     )
 
-    assert threshold >= 0.70
+    assert threshold == 0.50
 
 
 def test_support_aware_optimizer_applies_each_label_floor():
@@ -49,3 +49,35 @@ def test_support_aware_optimizer_applies_each_label_floor():
 
     # Supports are 1, 2 and 3: all must use the strict rare-label floor.
     assert np.all(thresholds >= 0.70)
+
+def test_zero_f1_fallback_tries_thresholds_sequentially():
+    # At 0.50 there is no prediction, so the optimizer must continue to 0.45.
+    y_true = np.array([1, 0, 0, 0])
+    scores = np.array([0.46, 0.44, 0.20, 0.10])
+
+    threshold, f1, precision = best_threshold(
+        y_true,
+        scores,
+        min_precision=0.30,
+        min_threshold=0.25,
+    )
+
+    assert threshold == 0.45
+    assert f1 > 0.0
+    assert precision == 1.0
+
+
+def test_zero_f1_fallback_keeps_precision_constraint():
+    y_true = np.array([1, 0, 0, 0])
+    scores = np.array([0.39, 0.50, 0.49, 0.48])
+
+    threshold, f1, precision = best_threshold(
+        y_true,
+        scores,
+        min_precision=0.30,
+        min_threshold=0.25,
+    )
+
+    assert threshold >= 0.70
+    assert f1 == 0.0
+    assert precision == 0.0
