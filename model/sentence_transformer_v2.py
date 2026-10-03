@@ -29,9 +29,9 @@ import pandas as pd
 from sentence_transformers import SentenceTransformer
 
 try:
-    from .prep.data_prep import apply_synonyms
+    from .prep.sym_map import canonicalize_skill_text
 except ImportError:
-    from prep.data_prep import apply_synonyms
+    from prep.sym_map import canonicalize_skill_text
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -56,7 +56,7 @@ def build_input_texts(df: pd.DataFrame) -> list[str]:
     role_col = _find_column(df.columns, ["role", "Role"])
     type_col = _find_column(df.columns, ["type", "job type", "job_type", "Type"])
 
-    descriptions = df[description_col].fillna("").astype(str).apply(apply_synonyms)
+    descriptions = df[description_col].fillna("").astype(str).apply(canonicalize_skill_text)
     roles = df[role_col].fillna("").astype(str)
     job_types = df[type_col].fillna("").astype(str)
 
