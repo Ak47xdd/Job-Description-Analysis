@@ -40,6 +40,7 @@ def best_threshold(
     medium_support_floor: float = 0.55,
     established_support_cutoff: int = 20,
     established_support_floor: float = 0.40,
+    zero_f1_fallback_thresholds: tuple[float, ...] = (0.50, 0.45, 0.40),
 ) -> tuple[float, float, float]:
     """Find the lowest threshold satisfying the precision constraint.
 
@@ -61,6 +62,11 @@ def best_threshold(
         raise ValueError("min_precision must be between 0 and 1")
     if not 0.0 <= min_threshold <= 1.0:
         raise ValueError("min_threshold must be between 0 and 1")
+    fallback_thresholds = tuple(float(t) for t in zero_f1_fallback_thresholds)
+    if any(t < 0.0 or t > 1.0 for t in fallback_thresholds):
+        raise ValueError("zero_f1_fallback_thresholds must be between 0 and 1")
+    if any(fallback_thresholds[i] < fallback_thresholds[i + 1] for i in range(len(fallback_thresholds) - 1)):
+        raise ValueError("zero_f1_fallback_thresholds must be in descending order")
 
     positives = int(y_true.sum())
     effective_min_threshold = (
@@ -73,6 +79,7 @@ def best_threshold(
             medium_support_floor=medium_support_floor,
             established_support_cutoff=established_support_cutoff,
             established_support_floor=established_support_floor,
+            zero_f1_fallback_thresholds=zero_f1_fallback_thresholds,
         )
         if support_aware
         else float(min_threshold)
@@ -112,6 +119,25 @@ def best_threshold(
 
         i = j
 
+    # Rare labels can end up with F1=0 at the support-aware floor because the
+    # model never predicts them there. Only in that specific failure case do we
+    # relax the floor, trying progressively lower thresholds. This keeps the
+    # normal precision/safety policy unchanged for labels that already work.
+    if best_f1 == 0.0 and positives > 0:
+        for candidate_threshold in fallback_thresholds:
+            if candidate_threshold < min_threshold:
+                continue
+            candidate_pred = scores >= candidate_threshold
+            candidate_count = int(candidate_pred.sum())
+            candidate_tp = int(np.logical_and(candidate_pred, y_true).sum())
+            candidate_fp = candidate_count - candidate_tp
+            candidate_fn = positives - candidate_tp
+            candidate_precision = candidate_tp / candidate_count if candidate_count else 0.0
+            candidate_denom = 2 * candidate_tp + candidate_fp + candidate_fn
+            candidate_f1 = (2.0 * candidate_tp / candidate_denom) if candidate_denom else 0.0
+            if candidate_f1 > 0.0 and candidate_precision >= min_precision:
+                return float(candidate_threshold), float(candidate_f1), float(candidate_precision)
+
     if best_threshold is None:
         # No observed score satisfies the precision requirement. The floor is
         # retained as a predictable safety boundary; downstream evaluation can
@@ -142,6 +168,7 @@ def optimize_per_label_thresholds(
     medium_support_floor: float = 0.55,
     established_support_cutoff: int = 20,
     established_support_floor: float = 0.40,
+    zero_f1_fallback_thresholds: tuple[float, ...] = (0.50, 0.45, 0.40),
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Optimize every label independently under precision/floor constraints."""
     y_true = np.asarray(y_true)
