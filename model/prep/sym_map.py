@@ -2,6 +2,8 @@
 sym_map.py - All synonyms for the TF-IDF Vectorizer
 """
 
+TAXONOMY_VERSION = "v3-canonical-buckets"
+
 SYNONYM_MAP = {
     # docker 
     'containeriz':              'docker',
