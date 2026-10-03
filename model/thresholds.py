@@ -10,6 +10,10 @@ def support_aware_threshold_floor(
     base_floor: float = 0.25,
     low_support_cutoff: int = 5,
     low_support_floor: float = 0.70,
+    rare_support_cutoff: int = 3,
+    rare_support_floor: float = 0.15,
+    rare_support_cutoff: int = 3,
+    rare_support_floor: float = 0.15,
     medium_support_cutoff: int = 10,
     medium_support_floor: float = 0.55,
     established_support_cutoff: int = 20,
@@ -71,11 +75,15 @@ def best_threshold(
 
     positives = int(y_true.sum())
     effective_min_threshold = (
-        support_aware_threshold_floor(
+        rare_support_floor
+        if support_aware and positives <= rare_support_cutoff
+        else support_aware_threshold_floor(
             positives,
             base_floor=min_threshold,
             low_support_cutoff=low_support_cutoff,
             low_support_floor=low_support_floor,
+            rare_support_cutoff=rare_support_cutoff,
+            rare_support_floor=rare_support_floor,
             medium_support_cutoff=medium_support_cutoff,
             medium_support_floor=medium_support_floor,
             established_support_cutoff=established_support_cutoff,
