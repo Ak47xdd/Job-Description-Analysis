@@ -87,8 +87,6 @@ def best_threshold(
             base_floor=min_threshold,
             low_support_cutoff=low_support_cutoff,
             low_support_floor=low_support_floor,
-            rare_support_cutoff=rare_support_cutoff,
-            rare_support_floor=rare_support_floor,
             medium_support_cutoff=medium_support_cutoff,
             medium_support_floor=medium_support_floor,
             established_support_cutoff=established_support_cutoff,
@@ -231,6 +229,8 @@ def optimize_per_label_thresholds(
             established_support_cutoff=established_support_cutoff,
             established_support_floor=established_support_floor,
             zero_f1_fallback_thresholds=zero_f1_fallback_thresholds,
+            rare_support_cutoff=rare_support_cutoff,
+            rare_support_floor=rare_support_floor,
             on_infeasible=on_infeasible,
         )
 
