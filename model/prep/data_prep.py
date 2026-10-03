@@ -21,9 +21,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 
 try:
-    from .sym_map import CANONICAL_LABEL_MAP, SYNONYM_MAP
+    from .sym_map import CANONICAL_LABEL_MAP, SYNONYM_MAP, TAXONOMY_VERSION
 except ImportError:
-    from sym_map import CANONICAL_LABEL_MAP, SYNONYM_MAP
+    from sym_map import CANONICAL_LABEL_MAP, SYNONYM_MAP, TAXONOMY_VERSION
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -171,6 +171,7 @@ def main() -> None:
         ).hexdigest(),
         "random_state": 42,
         "test_size": 0.2,
+        "skill_taxonomy_version": TAXONOMY_VERSION,
     }
     (V2_DIR / "data_manifest.json").write_text(
         json.dumps(manifest, indent=2) + "\n", encoding="utf-8"
