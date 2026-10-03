@@ -43,6 +43,7 @@ def best_threshold(
     established_support_cutoff: int = 20,
     established_support_floor: float = 0.40,
     zero_f1_fallback_thresholds: tuple[float, ...] = (0.50, 0.45, 0.40),
+    on_infeasible: str = "raise",
 ) -> tuple[float, float, float]:
     """Find a threshold whose measured precision satisfies min_precision.
 
@@ -74,6 +75,8 @@ def best_threshold(
         raise ValueError("zero_f1_fallback_thresholds must be between 0 and 1")
     if any(fallback_thresholds[i] == fallback_thresholds[i + 1] for i in range(len(fallback_thresholds) - 1)):
         raise ValueError("zero_f1_fallback_thresholds must contain unique thresholds")
+    if on_infeasible not in {"raise", "disable"}:
+        raise ValueError('on_infeasible must be "raise" or "disable"')
 
     positives = int(y_true.sum())
     effective_min_threshold = (
@@ -84,6 +87,8 @@ def best_threshold(
             base_floor=min_threshold,
             low_support_cutoff=low_support_cutoff,
             low_support_floor=low_support_floor,
+            rare_support_cutoff=rare_support_cutoff,
+            rare_support_floor=rare_support_floor,
             medium_support_cutoff=medium_support_cutoff,
             medium_support_floor=medium_support_floor,
             established_support_cutoff=established_support_cutoff,
@@ -170,6 +175,12 @@ def best_threshold(
                 return float(candidate_threshold), float(candidate_f1), float(candidate_precision)
 
     if best_threshold is None:
+        if on_infeasible == "disable":
+            # A threshold above 1.0 guarantees that sigmoid probabilities in
+            # [0, 1] can never activate this label. The label remains visible
+            # to the evaluator as an explicit infeasible/disabled label rather
+            # than being assigned an unsafe threshold.
+            return float(np.nextafter(1.0, np.inf)), 0.0, 0.0
         raise ValueError(
             "No threshold satisfies the precision constraint: "
             f"min_precision={min_precision:.3f}, min_threshold={effective_min_threshold:.3f}"
@@ -192,6 +203,9 @@ def optimize_per_label_thresholds(
     established_support_cutoff: int = 20,
     established_support_floor: float = 0.40,
     zero_f1_fallback_thresholds: tuple[float, ...] = (0.50, 0.45, 0.40),
+    rare_support_cutoff: int = 3,
+    rare_support_floor: float = 0.15,
+    on_infeasible: str = "raise",
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Optimize every label independently under precision/floor constraints."""
     y_true = np.asarray(y_true)
@@ -217,6 +231,7 @@ def optimize_per_label_thresholds(
             established_support_cutoff=established_support_cutoff,
             established_support_floor=established_support_floor,
             zero_f1_fallback_thresholds=zero_f1_fallback_thresholds,
+            on_infeasible=on_infeasible,
         )
 
     return thresholds, best_f1, best_precision
