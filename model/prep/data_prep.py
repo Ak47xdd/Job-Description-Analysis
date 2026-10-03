@@ -21,9 +21,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 
 try:
-    from .sym_map import SYNONYM_MAP
+    from .sym_map import CANONICAL_LABEL_MAP, SYNONYM_MAP
 except ImportError:
-    from sym_map import SYNONYM_MAP
+    from sym_map import CANONICAL_LABEL_MAP, SYNONYM_MAP
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -41,32 +41,13 @@ SKILLS_FIX = {
 # Canonical label hierarchy. These are taxonomy aliases merged before the
 # multi-label target matrix is built. Conceptually distinct labels such as
 # "genai" and "llms" remain separate.
-LABEL_CANONICAL_MAP = {
-    "ai tools": "ai",
-    "generative ai": "genai",
-    "large language models": "llms",
-    "llm": "llms",
-    "full stack": "full-stack",
-    "backend services": "backend",
-    "backend engineering": "backend",
-    # Cloud-provider aliases share one canonical bucket.
-    "aws": "aws/azure",
-    "azure": "aws/azure",
-    "microsoft azure": "aws/azure",
-    "amazon web services": "aws/azure",
-    "gcp": "aws/azure",
-    "google cloud": "aws/azure",
-    "google cloud platform": "aws/azure",
-    "aws/azure": "aws/azure",
-}
-
 
 def normalizer(skills) -> list[str]:
     if pd.isna(skills):
         return []
     skill = [s.strip().lower() for s in str(skills).split(",") if s.strip()]
     fixed = [SKILLS_FIX.get(s, s) for s in skill]
-    canonical = [LABEL_CANONICAL_MAP.get(s, s) for s in fixed]
+    canonical = [CANONICAL_LABEL_MAP.get(s, s) for s in fixed]
     return list(dict.fromkeys(canonical))
 
 
@@ -83,6 +64,19 @@ def apply_synonyms(text: str) -> str:
             + r")(?![\\w])"
         )
         lookup = dict(synonym_items)
+        text = pattern.sub(lambda match: lookup[match.group(0)], text)
+
+    # Apply the same canonical buckets used to build y. This keeps training
+    # text aligned with the label taxonomy instead of teaching SBERT separate
+    # representations for aliases such as PostgreSQL/SQL or React/React.js.
+    bucket_items = sorted(CANONICAL_LABEL_MAP.items(), key=lambda x: -len(x[0]))
+    if bucket_items:
+        pattern = re.compile(
+            r"(?<![\\w])(?:"
+            + "|".join(re.escape(phrase) for phrase, _ in bucket_items)
+            + r")(?![\\w])"
+        )
+        lookup = dict(bucket_items)
         text = pattern.sub(lambda match: lookup[match.group(0)], text)
     return text
 
