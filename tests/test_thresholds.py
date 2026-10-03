@@ -53,7 +53,7 @@ def test_support_aware_optimizer_applies_each_label_floor():
     assert np.all(thresholds >= 0.15)
 
 def test_zero_f1_fallback_tries_thresholds_sequentially():
-    # At 0.50 there is no prediction, so the optimizer must continue to 0.45.
+    # The exact search now sees the 0.46 positive directly.
     y_true = np.array([1, 0, 0, 0])
     scores = np.array([0.46, 0.44, 0.20, 0.10])
 
@@ -102,7 +102,7 @@ def test_precision_constraint_raises_when_no_valid_threshold_exists():
 
 def test_support_above_three_keeps_existing_floor():
     y_true = np.array([1, 1, 1, 1, 0, 0, 0])
-    scores = np.array([0.60, 0.59, 0.58, 0.57, 0.20, 0.10, 0.05])
+    scores = np.array([0.80, 0.79, 0.78, 0.77, 0.20, 0.10, 0.05])
 
     threshold, _, precision = best_threshold(
         y_true,
