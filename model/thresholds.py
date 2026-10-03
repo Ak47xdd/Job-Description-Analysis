@@ -100,7 +100,7 @@ def best_threshold(
     sorted_true = y_true[order]
 
     best_threshold = None
-    best_f1 = -1.0
+    best_f1 = 0.0
     best_precision = 0.0
     tp = 0
     i = 0
