@@ -226,6 +226,7 @@ CANONICAL_LABEL_MAP = {
     "version control": "git",
     "source control": "git",
     "gitlab": "git",
+    "github": "git",
     "bitbucket": "git",
     # Containers
     "containerization": "docker",
@@ -285,3 +286,30 @@ CANONICAL_LABEL_MAP = {
     "audit logs": "observability",
 }
 
+
+
+def canonicalize_skill_text(text: str) -> str:
+    """Normalize aliases and canonical skill buckets in free-form text."""
+    import re
+
+    text = str(text or "").lower()
+    synonym_items = sorted(SYNONYM_MAP.items(), key=lambda x: -len(x[0]))
+    if synonym_items:
+        pattern = re.compile(
+            r"(?<![\\w])(?:"
+            + "|".join(re.escape(phrase) for phrase, _ in synonym_items)
+            + r")(?![\\w])"
+        )
+        lookup = dict(synonym_items)
+        text = pattern.sub(lambda match: lookup[match.group(0)], text)
+
+    bucket_items = sorted(CANONICAL_LABEL_MAP.items(), key=lambda x: -len(x[0]))
+    if bucket_items:
+        pattern = re.compile(
+            r"(?<![\\w])(?:"
+            + "|".join(re.escape(phrase) for phrase, _ in bucket_items)
+            + r")(?![\\w])"
+        )
+        lookup = dict(bucket_items)
+        text = pattern.sub(lambda match: lookup[match.group(0)], text)
+    return text
