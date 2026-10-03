@@ -42,14 +42,15 @@ def best_threshold(
     established_support_floor: float = 0.40,
     zero_f1_fallback_thresholds: tuple[float, ...] = (0.50, 0.45, 0.40),
 ) -> tuple[float, float, float]:
-    """Find the lowest threshold satisfying the precision constraint.
+    """Find a threshold whose measured precision satisfies min_precision.
 
-    Among thresholds with precision >= ``min_precision`` and threshold >=
-    ``min_threshold``, choose the one with the highest F1. Ties choose the
-    lower threshold, which favors recall. If no candidate satisfies the
-    precision constraint, the threshold floor is used as a safe fallback.
+    Among valid thresholds, choose the one with the highest F1. Ties choose the
+    lower threshold, which favors recall. Relaxed rare-label thresholds are
+    re-checked against the same precision constraint.
 
-    The search is exact: predictions only change at unique model scores.
+    The search is exact: predictions only change at unique model scores. If no
+    threshold can satisfy the requested precision, raise ValueError rather than
+    returning an unsafe threshold below the precision floor.
     """
     y_true = np.asarray(y_true, dtype=np.int8)
     scores = np.asarray(scores, dtype=np.float64)
@@ -65,8 +66,8 @@ def best_threshold(
     fallback_thresholds = tuple(float(t) for t in zero_f1_fallback_thresholds)
     if any(t < 0.0 or t > 1.0 for t in fallback_thresholds):
         raise ValueError("zero_f1_fallback_thresholds must be between 0 and 1")
-    if any(fallback_thresholds[i] < fallback_thresholds[i + 1] for i in range(len(fallback_thresholds) - 1)):
-        raise ValueError("zero_f1_fallback_thresholds must be in descending order")
+    if any(fallback_thresholds[i] == fallback_thresholds[i + 1] for i in range(len(fallback_thresholds) - 1)):
+        raise ValueError("zero_f1_fallback_thresholds must contain unique thresholds")
 
     positives = int(y_true.sum())
     effective_min_threshold = (
@@ -119,13 +120,16 @@ def best_threshold(
         i = j
 
     # Rare labels can end up with F1=0 at the support-aware floor because the
-    # model never predicts them there. Only in that specific failure case do we
-    # relax the floor, trying progressively lower thresholds. This keeps the
-    # normal precision/safety policy unchanged for labels that already work.
+    # model never predicts them there. Relax the support floor only through the
+    # explicit fallback thresholds, but ALWAYS re-check precision. If a relaxed
+    # threshold is too permissive (precision < min_precision), walk back upward
+    # until the precision constraint is satisfied.
     if best_f1 == 0.0 and positives > 0:
-        for candidate_threshold in fallback_thresholds:
-            if candidate_threshold < min_threshold:
-                continue
+        fallback_candidates = sorted(
+            {t for t in fallback_thresholds if min_threshold <= t < effective_min_threshold},
+            reverse=True,
+        )
+        for candidate_threshold in fallback_candidates:
             candidate_pred = scores >= candidate_threshold
             candidate_count = int(candidate_pred.sum())
             candidate_tp = int(np.logical_and(candidate_pred, y_true).sum())
@@ -137,19 +141,31 @@ def best_threshold(
             if candidate_f1 > 0.0 and candidate_precision >= min_precision:
                 return float(candidate_threshold), float(candidate_f1), float(candidate_precision)
 
+        # Check every observed score below the support-aware floor, from highest
+        # to lowest. This explicitly steps the threshold back up to the first
+        # observed score that clears min_precision.
+        lower_fallback = max(min_threshold, min(fallback_thresholds, default=min_threshold))
+        upward_candidates = sorted(
+            {float(score) for score in scores if lower_fallback <= float(score) < effective_min_threshold},
+            reverse=True,
+        )
+        for candidate_threshold in upward_candidates:
+            candidate_pred = scores >= candidate_threshold
+            candidate_count = int(candidate_pred.sum())
+            candidate_tp = int(np.logical_and(candidate_pred, y_true).sum())
+            candidate_fp = candidate_count - candidate_tp
+            candidate_fn = positives - candidate_tp
+            candidate_precision = candidate_tp / candidate_count if candidate_count else 0.0
+            candidate_denom = 2 * candidate_tp + candidate_fp + candidate_fn
+            candidate_f1 = (2.0 * candidate_tp / candidate_denom) if candidate_denom else 0.0
+            if candidate_precision >= min_precision:
+                return float(candidate_threshold), float(candidate_f1), float(candidate_precision)
+
     if best_threshold is None:
-        # No observed score satisfies the precision requirement. The floor is
-        # retained as a predictable safety boundary; downstream evaluation can
-        # reveal that this label cannot meet the requested precision on this set.
-        fallback_pred = scores >= effective_min_threshold
-        fallback_tp = int(np.logical_and(fallback_pred, y_true).sum())
-        fallback_count = int(fallback_pred.sum())
-        fallback_precision = fallback_tp / fallback_count if fallback_count else 0.0
-        fallback_fn = positives - fallback_tp
-        fallback_fp = fallback_count - fallback_tp
-        fallback_denom = 2 * fallback_tp + fallback_fp + fallback_fn
-        fallback_f1 = (2.0 * fallback_tp / fallback_denom) if fallback_denom else 0.0
-        return float(effective_min_threshold), fallback_f1, fallback_precision
+        raise ValueError(
+            "No threshold satisfies the precision constraint: "
+            f"min_precision={min_precision:.3f}, min_threshold={effective_min_threshold:.3f}"
+        )
 
     return float(best_threshold), float(best_f1), float(best_precision)
 
