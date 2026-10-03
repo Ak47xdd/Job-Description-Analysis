@@ -48,8 +48,9 @@ def test_support_aware_optimizer_applies_each_label_floor():
 
     thresholds, _, _ = optimize_per_label_thresholds(y_true, scores)
 
-    # Supports are 1, 2 and 3: all must use the strict rare-label floor.
-    assert np.all(thresholds >= 0.70)
+    # Supports are 1, 2 and 3: all may search below the legacy 0.70 floor,
+    # but the new ultra-rare floor of 0.15 still applies.
+    assert np.all(thresholds >= 0.15)
 
 def test_zero_f1_fallback_tries_thresholds_sequentially():
     # At 0.50 there is no prediction, so the optimizer must continue to 0.45.
@@ -63,7 +64,7 @@ def test_zero_f1_fallback_tries_thresholds_sequentially():
         min_threshold=0.25,
     )
 
-    assert threshold == 0.45
+    assert threshold == 0.46
     assert f1 > 0.0
     assert precision == 1.0
 
@@ -110,5 +111,50 @@ def test_support_above_three_keeps_existing_floor():
         min_threshold=0.25,
     )
 
-    assert threshold >= 0.40
+    assert threshold >= 0.70
     assert precision >= 0.30
+
+def test_infeasible_label_can_be_explicitly_disabled():
+    y_true = np.array([1, 0, 0, 0])
+    scores = np.array([0.39, 0.50, 0.49, 0.48])
+
+    threshold, f1, precision = best_threshold(
+        y_true,
+        scores,
+        min_precision=0.30,
+        min_threshold=0.25,
+        on_infeasible="disable",
+    )
+
+    assert threshold > 1.0
+    assert f1 == 0.0
+    assert precision == 0.0
+
+
+def test_optimizer_can_disable_only_infeasible_labels():
+    y_true = np.array([
+        [1, 0],
+        [0, 0],
+        [0, 0],
+        [0, 0],
+    ])
+    scores = np.array([
+        [0.90, 0.39],
+        [0.20, 0.50],
+        [0.10, 0.49],
+        [0.05, 0.48],
+    ])
+
+    thresholds, f1, precision = optimize_per_label_thresholds(
+        y_true,
+        scores,
+        min_precision=0.30,
+        min_threshold=0.25,
+        on_infeasible="disable",
+    )
+
+    assert thresholds[0] == 0.90
+    assert thresholds[1] > 1.0
+    assert f1[0] > 0.0
+    assert f1[1] == 0.0
+    assert precision[0] >= 0.30
