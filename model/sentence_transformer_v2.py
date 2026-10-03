@@ -29,9 +29,9 @@ import pandas as pd
 from sentence_transformers import SentenceTransformer
 
 try:
-    from .prep.sym_map import canonicalize_skill_text
+    from .prep.sym_map import TAXONOMY_VERSION, canonicalize_skill_text
 except ImportError:
-    from prep.sym_map import canonicalize_skill_text
+    from prep.sym_map import TAXONOMY_VERSION, canonicalize_skill_text
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -102,6 +102,7 @@ def encode_dataset(
         "source_csv": str(csv_path),
         "source_csv_sha256": hashlib.sha256(csv_path.read_bytes()).hexdigest(),
         "input_format": "Role + Job type + Job description",
+        "skill_taxonomy_version": TAXONOMY_VERSION,
     }
     (output_dir / "metadata.json").write_text(
         json.dumps(metadata, indent=2), encoding="utf-8"
