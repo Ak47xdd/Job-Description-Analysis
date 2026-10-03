@@ -28,6 +28,11 @@ import numpy as np
 import pandas as pd
 from sentence_transformers import SentenceTransformer
 
+try:
+    from .prep.data_prep import apply_synonyms
+except ImportError:
+    from prep.data_prep import apply_synonyms
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DATA = ROOT / "data" / "clean" / "v2" / "cleaned_job_descriptions_v2.csv"
@@ -51,7 +56,7 @@ def build_input_texts(df: pd.DataFrame) -> list[str]:
     role_col = _find_column(df.columns, ["role", "Role"])
     type_col = _find_column(df.columns, ["type", "job type", "job_type", "Type"])
 
-    descriptions = df[description_col].fillna("").astype(str)
+    descriptions = df[description_col].fillna("").astype(str).apply(apply_synonyms)
     roles = df[role_col].fillna("").astype(str)
     job_types = df[type_col].fillna("").astype(str)
 
