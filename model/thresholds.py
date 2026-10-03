@@ -79,7 +79,6 @@ def best_threshold(
             medium_support_floor=medium_support_floor,
             established_support_cutoff=established_support_cutoff,
             established_support_floor=established_support_floor,
-            zero_f1_fallback_thresholds=zero_f1_fallback_thresholds,
         )
         if support_aware
         else float(min_threshold)
@@ -193,6 +192,7 @@ def optimize_per_label_thresholds(
             medium_support_floor=medium_support_floor,
             established_support_cutoff=established_support_cutoff,
             established_support_floor=established_support_floor,
+            zero_f1_fallback_thresholds=zero_f1_fallback_thresholds,
         )
 
     return thresholds, best_f1, best_precision
