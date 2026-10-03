@@ -25,6 +25,8 @@ THRESHOLD_FILE = ROOT / "model_out" / "v2_sentence_transformer" / "per_skill_thr
 # Safety constraints against low-confidence/noisy skill guesses.
 MIN_PRECISION = 0.30
 MIN_THRESHOLD = 0.25
+RARE_SUPPORT_CUTOFF = 3
+RARE_SUPPORT_FLOOR = 0.15
 
 
 def precision_at_k(y_true, probs, k):
@@ -51,18 +53,24 @@ def main():
     with torch.no_grad():
         probs = torch.sigmoid(model(torch.tensor(X_test))).numpy()
 
-    # Every skill gets its own threshold, but a threshold can never fall below
-    # MIN_THRESHOLD and must meet MIN_PRECISION when an observed candidate exists.
+    # Every skill gets its own threshold. Rare labels (support <= 3) can search
+    # down to 0.15, while MIN_PRECISION remains an absolute safety constraint.
     thresholds, threshold_f1, threshold_precision = optimize_per_label_thresholds(
         y_test,
         probs,
         min_precision=MIN_PRECISION,
         min_threshold=MIN_THRESHOLD,
+        rare_support_cutoff=RARE_SUPPORT_CUTOFF,
+        rare_support_floor=RARE_SUPPORT_FLOOR,
+        on_infeasible="disable",
     )
-    # Defense-in-depth: never serialize or evaluate a threshold that violates
-    # the configured precision floor. The optimizer already enforces this;
-    # this assertion catches future optimizer regressions at the evaluation boundary.
-    invalid_precision = np.flatnonzero(threshold_precision < MIN_PRECISION)
+    # An infeasible label is explicitly disabled with a threshold > 1.0.
+    # This is not a precision violation: it means no observed threshold on
+    # this evaluation split can satisfy the 0.30 precision requirement.
+    disabled_labels = np.flatnonzero(thresholds > 1.0)
+    invalid_precision = np.flatnonzero(
+        (thresholds <= 1.0) & (threshold_precision < MIN_PRECISION)
+    )
     if invalid_precision.size:
         bad_labels = [vocab[int(i)] for i in invalid_precision]
         raise RuntimeError(
@@ -77,12 +85,17 @@ def main():
         "metric": "binary_f1",
         "min_precision": MIN_PRECISION,
         "min_threshold": MIN_THRESHOLD,
-        "prediction_rule": "probability >= skill-specific threshold",
+        "rare_support_cutoff": RARE_SUPPORT_CUTOFF,
+        "rare_support_floor": RARE_SUPPORT_FLOOR,
+        "infeasible_policy": "disable",
+        "disabled_labels": [vocab[int(i)] for i in disabled_labels],
+        "prediction_rule": "probability >= skill-specific threshold; disabled labels use >1.0",
         "labels": {
             label: {
                 "threshold": round(float(threshold), 8),
                 "best_f1": round(float(best_f1), 8),
                 "precision_at_threshold": round(float(precision), 8),
+                "status": "disabled" if threshold > 1.0 else "active",
             }
             for label, threshold, best_f1, precision in zip(
                 vocab, thresholds, threshold_f1, threshold_precision
@@ -111,6 +124,10 @@ def main():
     print(f"Embedding shape: {X_test.shape}")
     print(f"Minimum precision constraint: {MIN_PRECISION:.2f}")
     print(f"Minimum threshold floor: {MIN_THRESHOLD:.2f}")
+    print(f"Rare-label floor (support <= {RARE_SUPPORT_CUTOFF}): {RARE_SUPPORT_FLOOR:.2f}")
+    print(f"Infeasible labels disabled: {len(disabled_labels)}")
+    if disabled_labels.size:
+        print("Disabled labels:", ", ".join(vocab[int(i)] for i in disabled_labels))
     print(f"Global 0.65 threshold: Micro-F1={global_micro:.3f} | Macro-F1={global_macro:.3f}")
     print(f"Constrained per-skill: Micro-F1={micro:.3f} | Macro-F1={macro:.3f}")
     print(f"Thresholds saved to: {THRESHOLD_FILE}")
