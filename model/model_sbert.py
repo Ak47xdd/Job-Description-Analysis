@@ -127,6 +127,7 @@ def _ensure_fresh_v2_inputs() -> None:
                 and int(metadata.get("num_samples", -1)) == row_count
                 and metadata.get("model_name") == "all-MiniLM-L6-v2"
                 and int(metadata.get("embedding_dimension", -1)) == 384
+                and metadata.get("skill_taxonomy_version") == TAXONOMY_VERSION
             )
         except (OSError, ValueError, TypeError, json.JSONDecodeError):
             embedding_ok = False
