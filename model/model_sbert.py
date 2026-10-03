@@ -31,6 +31,11 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, Dataset
 
+try:
+    from .prep.sym_map import TAXONOMY_VERSION
+except ImportError:
+    from prep.sym_map import TAXONOMY_VERSION
+
 ROOT = Path(__file__).resolve().parents[1]
 PREP_DIR = ROOT / "model" / "prep"
 EMBED_DIR = PREP_DIR / "v2_sentence_transformer"
@@ -105,6 +110,7 @@ def _ensure_fresh_v2_inputs() -> None:
             manifest_ok = (
                 manifest.get("source_dataset_sha256") == dataset_hash
                 and int(manifest.get("num_rows", -1)) == row_count
+                and manifest.get("skill_taxonomy_version") == TAXONOMY_VERSION
             )
         except (OSError, ValueError, TypeError, json.JSONDecodeError):
             manifest_ok = False
