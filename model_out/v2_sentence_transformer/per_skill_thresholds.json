@@ -1,1129 +1,1084 @@
 {
-  "method": "exact_per_skill_f1_with_precision_constraint",
+  "method": "exact_per_skill_f1_with_strict_precision_constraint",
   "metric": "binary_f1",
   "min_precision": 0.3,
   "min_threshold": 0.25,
-  "prediction_rule": "probability >= skill-specific threshold",
+  "rare_support_cutoff": 3,
+  "rare_support_floor": 0.15,
+  "infeasible_policy": "disable",
+  "disabled_labels": [
+    ".net",
+    "advertising systems",
+    "agile",
+    "ai",
+    "android",
+    "anthropic",
+    "apache iceberg",
+    "argocd",
+    "authentication",
+    "authorization",
+    "automation",
+    "bidding",
+    "big data",
+    "bigquery",
+    "ceph",
+    "clean architecture",
+    "cloudwatch",
+    "coding",
+    "compliance",
+    "containers",
+    "css",
+    "customer relationship management",
+    "cypress",
+    "data analytics",
+    "data governance",
+    "databases",
+    "datadog",
+    "distributed systems",
+    "django",
+    "dns",
+    "fastapi",
+    "feature engineering",
+    "financial modeling",
+    "finops",
+    "flink",
+    "flutter",
+    "full-stack",
+    "hex",
+    "html",
+    "iam",
+    "incident response",
+    "ios",
+    "istio",
+    "jira",
+    "linkerd",
+    "llm integrations",
+    "maas",
+    "model training",
+    "n8n",
+    "networking",
+    "next.js",
+    "open source",
+    "openstack",
+    "performance optimization",
+    "power automate",
+    "powershell",
+    "prompt engineering",
+    "pytorch",
+    "r",
+    "rabbitmq",
+    "rds",
+    "redis",
+    "routing",
+    "saas",
+    "scraping",
+    "search",
+    "soap",
+    "spring",
+    "spring boot",
+    "swift",
+    "system design",
+    "systems engineering",
+    "temporal",
+    "tensorflow",
+    "testing",
+    "time series",
+    "unity catalog",
+    "vue",
+    "windows server",
+    "wordpress"
+  ],
+  "prediction_rule": "probability >= skill-specific threshold; disabled labels use >1.0",
   "labels": {
     ".net": {
-      "threshold": 0.55,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "a/b testing": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.4687908,
+      "best_f1": 0.57142857,
+      "precision_at_threshold": 0.5,
+      "status": "active"
     },
     "advertising systems": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "agents": {
-      "threshold": 0.85255677,
-      "best_f1": 0.6,
-      "precision_at_threshold": 0.6
+      "threshold": 0.7773388,
+      "best_f1": 0.76190476,
+      "precision_at_threshold": 0.66666667,
+      "status": "active"
     },
     "agile": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "ai": {
-      "threshold": 0.55,
-      "best_f1": 0.08333333,
-      "precision_at_threshold": 0.06666667
-    },
-    "ai agents": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "airflow": {
-      "threshold": 0.82690704,
-      "best_f1": 0.44444444,
-      "precision_at_threshold": 1.0
-    },
-    "analytics": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.57048929,
+      "best_f1": 0.5,
+      "precision_at_threshold": 0.6,
+      "status": "active"
     },
     "android": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "angular": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.45591104,
+      "best_f1": 0.5,
+      "precision_at_threshold": 0.33333333,
+      "status": "active"
     },
     "ansible": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.41025224,
+      "best_f1": 0.5,
+      "precision_at_threshold": 0.5,
+      "status": "active"
     },
     "anthropic": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "apache iceberg": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "apache spark": {
-      "threshold": 0.80865836,
-      "best_f1": 1.0,
-      "precision_at_threshold": 1.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "apis": {
-      "threshold": 0.63735354,
-      "best_f1": 0.76712329,
-      "precision_at_threshold": 0.75675676
+      "threshold": 0.55521065,
+      "best_f1": 0.7184466,
+      "precision_at_threshold": 0.67272727,
+      "status": "active"
     },
     "argocd": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "asset data": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "audit logs": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.59374821,
+      "best_f1": 1.0,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "authentication": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "authorization": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "autogen": {
-      "threshold": 0.73990935,
-      "best_f1": 0.28571429,
-      "precision_at_threshold": 0.33333333
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "automation": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "aws/azure": {
-      "threshold": 0.56825,
-      "best_f1": 0.72164948,
-      "precision_at_threshold": 0.7
-    },
-    "azure devops": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.47097367,
+      "best_f1": 0.72566372,
+      "precision_at_threshold": 0.62121212,
+      "status": "active"
     },
     "backend": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.5,
+      "best_f1": 0.4,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "bash": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.58650661,
+      "best_f1": 0.5,
+      "precision_at_threshold": 0.5,
+      "status": "active"
     },
     "bidding": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "big data": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "bigquery": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "c": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.43955794,
+      "best_f1": 1.0,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "c#": {
-      "threshold": 0.55,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.57875478,
+      "best_f1": 0.25,
+      "precision_at_threshold": 0.33333333,
+      "status": "active"
     },
     "c++": {
-      "threshold": 0.58402079,
-      "best_f1": 0.76923077,
-      "precision_at_threshold": 0.625
+      "threshold": 0.7123186,
+      "best_f1": 0.66666667,
+      "precision_at_threshold": 0.75,
+      "status": "active"
     },
     "ceph": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "ci/cd": {
-      "threshold": 0.57667047,
-      "best_f1": 0.5625,
-      "precision_at_threshold": 0.48648649
+      "threshold": 0.57707942,
+      "best_f1": 0.56666667,
+      "precision_at_threshold": 0.5483871,
+      "status": "active"
     },
     "clean architecture": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "clojure": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.30538195,
+      "best_f1": 0.66666667,
+      "precision_at_threshold": 0.5,
+      "status": "active"
     },
     "cloud": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "cloud apis": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "cloud computing": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "cloud environments": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "cloud infrastructure": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "cloud platforms": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "cloud provider apis": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "cloud-native": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.74030632,
+      "best_f1": 0.57142857,
+      "precision_at_threshold": 0.66666667,
+      "status": "active"
     },
     "cloudwatch": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "coding": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "compliance": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "containers": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "crewai": {
-      "threshold": 0.59616756,
-      "best_f1": 0.53333333,
-      "precision_at_threshold": 0.44444444
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "css": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "customer relationship management": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "cypress": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "dashboards": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "data analysis": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "data analytics": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "data engineering": {
-      "threshold": 0.7,
-      "best_f1": 0.4,
-      "precision_at_threshold": 0.25
+      "threshold": 0.75050104,
+      "best_f1": 0.35294118,
+      "precision_at_threshold": 0.375,
+      "status": "active"
     },
     "data governance": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "data pipelines": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "data processing": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "data science": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.44133645,
+      "best_f1": 0.4,
+      "precision_at_threshold": 0.33333333,
+      "status": "active"
     },
     "databases": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "databricks": {
-      "threshold": 0.8696326,
-      "best_f1": 0.76923077,
-      "precision_at_threshold": 1.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "datadog": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "dbt": {
-      "threshold": 0.74201846,
+      "threshold": 0.76633137,
       "best_f1": 0.66666667,
-      "precision_at_threshold": 1.0
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "deep learning": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.81389505,
+      "best_f1": 0.8,
+      "precision_at_threshold": 0.76923077,
+      "status": "active"
     },
     "delta lake": {
-      "threshold": 0.73997301,
-      "best_f1": 1.0,
-      "precision_at_threshold": 1.0
+      "threshold": 0.7851454,
+      "best_f1": 0.66666667,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "devops": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.44218352,
+      "best_f1": 0.66666667,
+      "precision_at_threshold": 0.5,
+      "status": "active"
     },
     "devsecops": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.36529398,
+      "best_f1": 1.0,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "distributed systems": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "django": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "dns": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "docker": {
-      "threshold": 0.70669949,
-      "best_f1": 0.45714286,
-      "precision_at_threshold": 0.5
-    },
-    "eks": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.5919565,
+      "best_f1": 0.42307692,
+      "precision_at_threshold": 0.33333333,
+      "status": "active"
     },
     "elasticsearch": {
-      "threshold": 0.88429946,
+      "threshold": 0.88523817,
       "best_f1": 0.66666667,
-      "precision_at_threshold": 1.0
-    },
-    "elt": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "endpoint data": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "etl": {
-      "threshold": 0.67102468,
-      "best_f1": 0.33333333,
-      "precision_at_threshold": 0.33333333
+      "threshold": 0.59375292,
+      "best_f1": 1.0,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "excel": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.6444543,
+      "best_f1": 0.66666667,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "experimentation": {
-      "threshold": 0.7398895,
-      "best_f1": 0.66666667,
-      "precision_at_threshold": 0.57142857
+      "threshold": 0.75278652,
+      "best_f1": 0.6,
+      "precision_at_threshold": 0.6,
+      "status": "active"
     },
     "fastapi": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "feature engineering": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "financial modeling": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "finops": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "flink": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "flutter": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "frontend": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.26193646,
+      "best_f1": 0.66666667,
+      "precision_at_threshold": 0.66666667,
+      "status": "active"
     },
     "full-stack": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "gemini": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "genai": {
-      "threshold": 0.56885684,
-      "best_f1": 0.55737705,
-      "precision_at_threshold": 0.39534884
+      "threshold": 0.81196493,
+      "best_f1": 0.625,
+      "precision_at_threshold": 0.71428571,
+      "status": "active"
     },
     "git": {
-      "threshold": 0.70006257,
-      "best_f1": 0.46428571,
-      "precision_at_threshold": 0.54166667
-    },
-    "github": {
-      "threshold": 0.55501789,
-      "best_f1": 0.44117647,
-      "precision_at_threshold": 0.35714286
-    },
-    "github actions": {
-      "threshold": 0.8468982,
-      "best_f1": 1.0,
-      "precision_at_threshold": 1.0
-    },
-    "gitlab": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "gitlab ci": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "gitops": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.47063607,
+      "best_f1": 0.54545455,
+      "precision_at_threshold": 0.41772152,
+      "status": "active"
     },
     "go": {
-      "threshold": 0.6513983,
-      "best_f1": 0.43902439,
-      "precision_at_threshold": 0.42857143
-    },
-    "golang": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.62969482,
+      "best_f1": 0.44897959,
+      "precision_at_threshold": 0.42307692,
+      "status": "active"
     },
     "google sheets": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.41733921,
+      "best_f1": 0.66666667,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "grafana": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.33627871,
+      "best_f1": 0.66666667,
+      "precision_at_threshold": 0.5,
+      "status": "active"
     },
     "graphql": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.39873576,
+      "best_f1": 0.4,
+      "precision_at_threshold": 0.33333333,
+      "status": "active"
     },
     "hadoop": {
-      "threshold": 0.77354115,
-      "best_f1": 1.0,
-      "precision_at_threshold": 1.0
-    },
-    "helm": {
-      "threshold": 0.90354854,
-      "best_f1": 0.5,
-      "precision_at_threshold": 1.0
+      "threshold": 0.83651823,
+      "best_f1": 0.66666667,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "hex": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "html": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "hugging face": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.63357711,
+      "best_f1": 0.66666667,
+      "precision_at_threshold": 0.5,
+      "status": "active"
     },
     "iam": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "identity saas": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.59375489,
+      "best_f1": 1.0,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "incident response": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "infrastructure": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.28445211,
+      "best_f1": 0.8,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "infrastructure as code": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "ingestion pipelines": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.34011474,
+      "best_f1": 0.66666667,
+      "precision_at_threshold": 0.5,
+      "status": "active"
     },
     "ios": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "iot": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.45,
+      "best_f1": 0.44444444,
+      "precision_at_threshold": 0.4,
+      "status": "active"
     },
     "istio": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "java": {
-      "threshold": 0.63002276,
-      "best_f1": 0.51428571,
-      "precision_at_threshold": 0.5625
+      "threshold": 0.77723318,
+      "best_f1": 0.4516129,
+      "precision_at_threshold": 0.58333333,
+      "status": "active"
     },
     "javascript": {
-      "threshold": 0.65945989,
-      "best_f1": 0.51282051,
-      "precision_at_threshold": 0.43478261
-    },
-    "jenkins": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.63519299,
+      "best_f1": 0.63157895,
+      "precision_at_threshold": 0.54545455,
+      "status": "active"
     },
     "jira": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "kafka": {
-      "threshold": 0.60089087,
-      "best_f1": 0.58823529,
-      "precision_at_threshold": 0.625
+      "threshold": 0.63640594,
+      "best_f1": 0.57142857,
+      "precision_at_threshold": 0.8,
+      "status": "active"
     },
     "kotlin": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.76030105,
+      "best_f1": 0.4,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "kubeflow": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.28389788,
+      "best_f1": 1.0,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "kubernetes": {
-      "threshold": 0.50390667,
-      "best_f1": 0.52631579,
-      "precision_at_threshold": 0.40540541
-    },
-    "lambda": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "langchain": {
-      "threshold": 0.87390983,
-      "best_f1": 0.68965517,
-      "precision_at_threshold": 0.71428571
-    },
-    "langgraph": {
-      "threshold": 0.68580008,
-      "best_f1": 0.66666667,
-      "precision_at_threshold": 0.54545455
+      "threshold": 0.57029343,
+      "best_f1": 0.59574468,
+      "precision_at_threshold": 0.51851852,
+      "status": "active"
     },
     "linkerd": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "linux": {
-      "threshold": 0.72071582,
+      "threshold": 0.71243227,
       "best_f1": 0.81818182,
-      "precision_at_threshold": 0.9
-    },
-    "llamaindex": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.9,
+      "status": "active"
     },
     "llm integrations": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "llms": {
-      "threshold": 0.55409616,
+      "threshold": 0.53043938,
       "best_f1": 0.77647059,
-      "precision_at_threshold": 0.7173913
+      "precision_at_threshold": 0.7173913,
+      "status": "active"
     },
     "looker": {
-      "threshold": 0.6823892,
-      "best_f1": 0.36363636,
-      "precision_at_threshold": 0.5
+      "threshold": 0.66643858,
+      "best_f1": 0.33333333,
+      "precision_at_threshold": 0.4,
+      "status": "active"
     },
     "maas": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "machine learning": {
-      "threshold": 0.39462772,
-      "best_f1": 0.63492063,
-      "precision_at_threshold": 0.46511628
+      "threshold": 0.58332211,
+      "best_f1": 0.6728972,
+      "precision_at_threshold": 0.63157895,
+      "status": "active"
     },
     "mcp": {
-      "threshold": 0.55011261,
-      "best_f1": 0.5,
-      "precision_at_threshold": 0.44444444
+      "threshold": 0.59688973,
+      "best_f1": 0.53333333,
+      "precision_at_threshold": 0.5,
+      "status": "active"
     },
     "microservices": {
-      "threshold": 0.90904933,
+      "threshold": 0.93465966,
       "best_f1": 0.6,
-      "precision_at_threshold": 1.0
-    },
-    "ml": {
-      "threshold": 0.44878095,
-      "best_f1": 0.75949367,
-      "precision_at_threshold": 0.6122449
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "mlflow": {
-      "threshold": 0.75703037,
+      "threshold": 0.75279069,
       "best_f1": 0.66666667,
-      "precision_at_threshold": 1.0
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "mlops": {
-      "threshold": 0.77746153,
-      "best_f1": 0.33333333,
-      "precision_at_threshold": 0.42857143
+      "threshold": 0.74955654,
+      "best_f1": 0.47619048,
+      "precision_at_threshold": 0.5,
+      "status": "active"
     },
     "model training": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "mongodb": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "monitoring": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "mysql": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.52992111,
+      "best_f1": 0.66666667,
+      "precision_at_threshold": 0.5,
+      "status": "active"
     },
     "n8n": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "networking": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "next.js": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "nlp": {
-      "threshold": 0.82159817,
-      "best_f1": 0.55555556,
-      "precision_at_threshold": 0.625
-    },
-    "node": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.91444248,
+      "best_f1": 0.42857143,
+      "precision_at_threshold": 0.75,
+      "status": "active"
     },
     "node.js": {
-      "threshold": 0.77826005,
-      "best_f1": 0.88888889,
-      "precision_at_threshold": 0.8
-    },
-    "nosql": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.87221098,
+      "best_f1": 0.85714286,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "numpy": {
-      "threshold": 0.63826835,
-      "best_f1": 0.61538462,
-      "precision_at_threshold": 0.57142857
+      "threshold": 0.64788383,
+      "best_f1": 0.76923077,
+      "precision_at_threshold": 0.71428571,
+      "status": "active"
     },
     "observability": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.90317744,
+      "best_f1": 0.66666667,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "open source": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "openai": {
-      "threshold": 0.74421901,
-      "best_f1": 0.66666667,
-      "precision_at_threshold": 0.71428571
+      "threshold": 0.82679963,
+      "best_f1": 0.61538462,
+      "precision_at_threshold": 0.8,
+      "status": "active"
     },
     "openstack": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "oracle": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "pandas": {
-      "threshold": 0.51902562,
-      "best_f1": 0.51612903,
-      "precision_at_threshold": 0.42105263
+      "threshold": 0.64974862,
+      "best_f1": 0.6,
+      "precision_at_threshold": 0.75,
+      "status": "active"
     },
     "performance optimization": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "php": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "postgresql": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.31994289,
+      "best_f1": 0.66666667,
+      "precision_at_threshold": 0.5,
+      "status": "active"
     },
     "power automate": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "power bi": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "powerbi": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.5,
+      "best_f1": 0.4,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "powershell": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "production-grade systems": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.5599941,
+      "best_f1": 1.0,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "prometheus": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.34707367,
+      "best_f1": 0.5,
+      "precision_at_threshold": 0.5,
+      "status": "active"
     },
     "prompt engineering": {
-      "threshold": 0.80065107,
-      "best_f1": 0.44444444,
-      "precision_at_threshold": 0.4
-    },
-    "public cloud": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "python": {
-      "threshold": 0.2749612,
+      "threshold": 0.25983456,
       "best_f1": 0.875,
-      "precision_at_threshold": 0.78321678
+      "precision_at_threshold": 0.78321678,
+      "status": "active"
     },
     "pytorch": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "r": {
-      "threshold": 0.7,
-      "best_f1": 0.2,
-      "precision_at_threshold": 0.125
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "rabbitmq": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "rag": {
-      "threshold": 0.84583831,
-      "best_f1": 0.66666667,
-      "precision_at_threshold": 0.75
+      "threshold": 0.90053117,
+      "best_f1": 0.61538462,
+      "precision_at_threshold": 0.72727273,
+      "status": "active"
     },
     "rds": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "react": {
-      "threshold": 0.53609055,
-      "best_f1": 0.66666667,
-      "precision_at_threshold": 0.5625
-    },
-    "react native": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "react.js": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.60106474,
+      "best_f1": 0.72,
+      "precision_at_threshold": 0.64285714,
+      "status": "active"
     },
     "redis": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "reporting": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "rest": {
-      "threshold": 0.47265717,
-      "best_f1": 0.38709677,
-      "precision_at_threshold": 0.3
-    },
-    "rest apis": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "routing": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "rust": {
-      "threshold": 0.55,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "s3": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.41454604,
+      "best_f1": 0.25,
+      "precision_at_threshold": 0.33333333,
+      "status": "active"
     },
     "saas": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "salesforce": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.59831423,
+      "best_f1": 0.66666667,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "sap": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.40566459,
+      "best_f1": 1.0,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "scala": {
-      "threshold": 0.79990119,
-      "best_f1": 0.6,
-      "precision_at_threshold": 0.6
+      "threshold": 0.71455055,
+      "best_f1": 0.54545455,
+      "precision_at_threshold": 0.5,
+      "status": "active"
     },
     "scikit-learn": {
-      "threshold": 0.50152671,
-      "best_f1": 0.64516129,
-      "precision_at_threshold": 0.55555556
+      "threshold": 0.50629359,
+      "best_f1": 0.66666667,
+      "precision_at_threshold": 0.58823529,
+      "status": "active"
     },
     "scraping": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "sdks": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "search": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "security": {
-      "threshold": 0.81900597,
-      "best_f1": 0.51851852,
-      "precision_at_threshold": 0.63636364
-    },
-    "security telemetry": {
-      "threshold": 0.79370457,
-      "best_f1": 1.0,
-      "precision_at_threshold": 1.0
+      "threshold": 0.73315221,
+      "best_f1": 0.59259259,
+      "precision_at_threshold": 0.72727273,
+      "status": "active"
     },
     "serverless": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "shell scripting": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "snowflake": {
-      "threshold": 0.82233959,
+      "threshold": 0.33928111,
       "best_f1": 0.5,
-      "precision_at_threshold": 0.66666667
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "soap": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "spark": {
-      "threshold": 0.6817106,
-      "best_f1": 0.82352941,
-      "precision_at_threshold": 0.875
+      "threshold": 0.67415971,
+      "best_f1": 0.75,
+      "precision_at_threshold": 0.85714286,
+      "status": "active"
     },
     "spring": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "spring boot": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "sql": {
-      "threshold": 0.46424428,
-      "best_f1": 0.75362319,
-      "precision_at_threshold": 0.69333333
+      "threshold": 0.42172921,
+      "best_f1": 0.79503106,
+      "precision_at_threshold": 0.71111111,
+      "status": "active"
     },
     "statistics": {
-      "threshold": 0.85606092,
-      "best_f1": 0.57142857,
-      "precision_at_threshold": 1.0
+      "threshold": 0.87356681,
+      "best_f1": 0.53333333,
+      "precision_at_threshold": 0.8,
+      "status": "active"
     },
     "swift": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "system design": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "systems engineering": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "tableau": {
-      "threshold": 0.69971257,
+      "threshold": 0.56712538,
       "best_f1": 0.4,
-      "precision_at_threshold": 0.33333333
+      "precision_at_threshold": 0.3,
+      "status": "active"
     },
     "telemetry": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "threshold": 0.78145736,
+      "best_f1": 1.0,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "temporal": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "tensorflow": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "tensorflow/pytorch": {
-      "threshold": 0.8796705,
-      "best_f1": 0.76190476,
-      "precision_at_threshold": 0.88888889
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "terraform": {
-      "threshold": 0.62006456,
-      "best_f1": 0.71428571,
-      "precision_at_threshold": 0.71428571
+      "threshold": 0.64518791,
+      "best_f1": 0.66666667,
+      "precision_at_threshold": 0.625,
+      "status": "active"
     },
     "testing": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "time series": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "trino": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "typescript": {
-      "threshold": 0.72766328,
-      "best_f1": 0.60869565,
-      "precision_at_threshold": 0.53846154
+      "threshold": 0.74216723,
+      "best_f1": 0.7,
+      "precision_at_threshold": 0.7,
+      "status": "active"
     },
     "ubuntu": {
-      "threshold": 0.78088915,
-      "best_f1": 0.66666667,
-      "precision_at_threshold": 0.6
+      "threshold": 0.81486022,
+      "best_f1": 0.75,
+      "precision_at_threshold": 0.75,
+      "status": "active"
     },
     "unity catalog": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "vector databases": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "vectordb": {
-      "threshold": 0.86091733,
-      "best_f1": 0.7,
-      "precision_at_threshold": 0.7
+      "threshold": 0.8351509,
+      "best_f1": 0.66666667,
+      "precision_at_threshold": 0.57142857,
+      "status": "active"
     },
     "vue": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
-    },
-    "web services": {
-      "threshold": 0.7,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "windows server": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "wordpress": {
-      "threshold": 0.7,
+      "threshold": 1.0,
       "best_f1": 0.0,
-      "precision_at_threshold": 0.0
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     }
   }
 }
