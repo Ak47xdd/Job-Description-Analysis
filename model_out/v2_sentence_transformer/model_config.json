@@ -1,12 +1,12 @@
 {
   "embedding_model": "all-MiniLM-L6-v2",
   "input_dim": 384,
-  "num_labels": 224,
+  "num_labels": 165,
   "label_vocab_path": "model/prep/v2/label_vocab_v2.json",
-  "label_vocab_sha256": "b8bac532b2e0b31af4d6145c84e8760b16a79b0b42c2174d4adb0868f757f63f",
+  "label_vocab_sha256": "55d3f904fd7041a57c55b6260ef881cc63603de770d19d539f5c0990b1d05b48",
   "hidden_dim": 64,
   "dropout": 0.3,
   "batch_size": 32,
-  "epochs": 910,
-  "best_test_loss": 0.31565316637357077
+  "epochs": 690,
+  "best_test_loss": 0.3536243430773417
 }
