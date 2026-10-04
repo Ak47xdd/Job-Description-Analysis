@@ -2,8 +2,9 @@
   "source_dataset": "data\\clean\\v2\\cleaned_job_descriptions_v2.csv",
   "source_dataset_sha256": "2834c71e7ed44f17a55551c84b6fc8b370fe4a1c7e72f14313cdd3a6606dca17",
   "num_rows": 747,
-  "num_labels": 224,
-  "label_vocab_sha256": "b8bac532b2e0b31af4d6145c84e8760b16a79b0b42c2174d4adb0868f757f63f",
+  "num_labels": 165,
+  "label_vocab_sha256": "55d3f904fd7041a57c55b6260ef881cc63603de770d19d539f5c0990b1d05b48",
   "random_state": 42,
-  "test_size": 0.2
+  "test_size": 0.2,
+  "skill_taxonomy_version": "v3-canonical-buckets"
 }
