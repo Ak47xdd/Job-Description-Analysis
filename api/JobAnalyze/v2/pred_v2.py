@@ -398,6 +398,46 @@ def _classifier_predict(embeddings, weights):
     return (1.0 / (1.0 + np.exp(-logits))).astype(np.float32, copy=False)
 
 
+def _apply_deterministic_fallbacks(probabilities, label_vocab, raw_job_descs, thresholds):
+    """Apply strict lexical fallbacks for high-value skills SBERT can blend or drop."""
+    label_to_index = {str(label).strip().lower(): index for index, label in enumerate(label_vocab)}
+
+    def raise_to_threshold(probabilities_row, label, threshold_margin=0.01):
+        index = label_to_index.get(label)
+        if index is None:
+            return
+        threshold = float(thresholds[index])
+        probabilities_row[index] = max(
+            float(probabilities_row[index]),
+            min(1.0, threshold + threshold_margin),
+        )
+
+    git_index = label_to_index.get("git")
+
+    for row_index, raw_text in enumerate(raw_job_descs):
+        cleaned_text = canonicalize_skill_text(raw_text)
+
+        # GitHub: require both explicit "github" text and SBERT detection of Git.
+        git_detected = (
+            git_index is not None
+            and float(probabilities[row_index, git_index]) >= float(thresholds[git_index])
+        )
+        if git_detected and "github" in cleaned_text:
+            raise_to_threshold(probabilities[row_index], "github")
+
+        # OpenAI: explicit provider/model references are deterministic evidence.
+        if "gpt" in cleaned_text or "openai" in cleaned_text:
+            raise_to_threshold(probabilities[row_index], "openai")
+
+        # Prompt Engineering: modern agentic wording can be semantically close
+        # to, but distinct from, the legacy target label.
+        agentic_phrases = ("agentic pair", "multi-agent", "state graphs", "prompt engineering")
+        if any(phrase in cleaned_text for phrase in agentic_phrases):
+            raise_to_threshold(probabilities[row_index], "prompt engineering")
+
+    return probabilities
+
+
 def _apply_semantic_aliases(probabilities, label_vocab, raw_job_descs, thresholds):
     """Use narrow phrase evidence without changing the global/per-skill floors.
 
@@ -486,6 +526,12 @@ def JobAnalyze_v2_SBERT_batch(job_descs, role="", job_type="", top_k=50):
         embeddings = _encode_embeddings(texts[start:start + BATCH_SIZE], tokenizer, session)
         probabilities = _classifier_predict(embeddings, weights)
         batch_descs = job_descs[start:start + BATCH_SIZE]
+        probabilities = _apply_deterministic_fallbacks(
+            probabilities,
+            label_vocab,
+            batch_descs,
+            thresholds,
+        )
         probabilities = _apply_hybrid_token_override(
             probabilities,
             label_vocab,
