@@ -28,6 +28,11 @@ SBERT_ONNX_FILE = os.getenv("SBERT_ONNX_FILE", "onnx/model.onnx").strip()
 SBERT_ONNX_PROVIDER = os.getenv("SBERT_ONNX_PROVIDER", "CPUExecutionProvider").strip()
 SBERT_ONNX_DISABLE_CPU_ARENA = os.getenv("SBERT_ONNX_DISABLE_CPU_ARENA", "true").strip().lower() not in {"0", "false", "no"}
 SBERT_THRESHOLD_FILE = os.getenv("SBERT_THRESHOLD_FILE", "").strip()
+CORE_DOMAIN_THRESHOLD = float(os.getenv("SBERT_CORE_DOMAIN_THRESHOLD", "0.80"))
+CORE_DOMAIN_LABELS = {
+    "machine learning": ("machine learning", "machine-learning", "ml"),
+    "deep learning": ("deep learning", "deep-learning"),
+}
 
 _tokenizer = None
 _onnx_session = None
@@ -334,6 +339,30 @@ def _classifier_predict(embeddings, weights):
     return (1.0 / (1.0 + np.exp(-logits))).astype(np.float32, copy=False)
 
 
+def _apply_core_domain_guard(probabilities, label_vocab, raw_job_descs):
+    """Require stronger structural confidence for broad ML domain labels.
+
+    A core-domain label may pass its learned per-skill threshold when its
+    specific term is explicitly present. Otherwise it must clear the stricter
+    structural floor, preventing semantic similarity from making junior JDs
+    look like deep ML/PhD requirements.
+    """
+    if not 0.0 <= CORE_DOMAIN_THRESHOLD <= 1.0:
+        raise ValueError("SBERT_CORE_DOMAIN_THRESHOLD must be between 0 and 1.")
+
+    for row_index, raw_text in enumerate(raw_job_descs):
+        text = str(raw_text or "").lower()
+        for label, aliases in CORE_DOMAIN_LABELS.items():
+            try:
+                label_index = label_vocab.index(label)
+            except ValueError:
+                continue
+            explicit = any(alias in text for alias in aliases)
+            if not explicit and float(probabilities[row_index, label_index]) < CORE_DOMAIN_THRESHOLD:
+                probabilities[row_index, label_index] = 0.0
+    return probabilities
+
+
 def _apply_hybrid_token_override(probabilities, label_vocab, job_desc: str):
     """Apply deterministic lexical matching after SBERT classification.
 
@@ -375,6 +404,11 @@ def JobAnalyze_v2_SBERT_batch(job_descs, role="", job_type="", top_k=50):
         embeddings = _encode_embeddings(texts[start:start + BATCH_SIZE], tokenizer, session)
         probabilities = _classifier_predict(embeddings, weights)
         probabilities = _apply_hybrid_token_override(
+            probabilities,
+            label_vocab,
+            job_descs[start:start + BATCH_SIZE],
+        )
+        probabilities = _apply_core_domain_guard(
             probabilities,
             label_vocab,
             job_descs[start:start + BATCH_SIZE],
