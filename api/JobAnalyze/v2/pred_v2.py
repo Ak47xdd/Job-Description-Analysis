@@ -417,12 +417,10 @@ def _apply_deterministic_fallbacks(probabilities, label_vocab, raw_job_descs, th
     for row_index, raw_text in enumerate(raw_job_descs):
         cleaned_text = canonicalize_skill_text(raw_text)
 
-        # GitHub: require both explicit "github" text and SBERT detection of Git.
-        git_detected = (
-            git_index is not None
-            and float(probabilities[row_index, git_index]) >= float(thresholds[git_index])
-        )
-        if git_detected and "github" in cleaned_text:
+        # GitHub: explicit text is authoritative. Do not require SBERT to
+        # separately recognize the parent "git" label; otherwise SBERT can
+        # structurally absorb GitHub into Git and the target key is lost.
+        if "github" in cleaned_text:
             raise_to_threshold(probabilities[row_index], "github")
 
         # OpenAI: explicit provider/model references are deterministic evidence.
