@@ -28,6 +28,7 @@ SBERT_ONNX_FILE = os.getenv("SBERT_ONNX_FILE", "onnx/model.onnx").strip()
 SBERT_ONNX_PROVIDER = os.getenv("SBERT_ONNX_PROVIDER", "CPUExecutionProvider").strip()
 SBERT_ONNX_DISABLE_CPU_ARENA = os.getenv("SBERT_ONNX_DISABLE_CPU_ARENA", "true").strip().lower() not in {"0", "false", "no"}
 SBERT_THRESHOLD_FILE = os.getenv("SBERT_THRESHOLD_FILE", "").strip()
+ARTIFACT_MANIFEST_REQUIRED = os.getenv("SBERT_ARTIFACT_MANIFEST_REQUIRED", "true").strip().lower() not in {"0", "false", "no"}
 CORE_DOMAIN_THRESHOLD = float(os.getenv("SBERT_CORE_DOMAIN_THRESHOLD", "0.80"))
 
 # High-confidence semantic aliases. These are deliberately narrow: they do not
@@ -40,7 +41,7 @@ SEMANTIC_ALIAS_MAP = {
     ),
 }
 SEMANTIC_ALIAS_ENABLED = os.getenv("SBERT_SEMANTIC_ALIASES", "true").strip().lower() not in {"0", "false", "no"}
-SEMANTIC_ALIAS_MIN_SCORE = float(os.getenv("SBERT_SEMANTIC_ALIAS_MIN_SCORE", "0.10"))
+SEMANTIC_ALIAS_MIN_SCORE = float(os.getenv("SBERT_SEMANTIC_ALIAS_MIN_SCORE", "0.0"))
 SEMANTIC_ALIAS_MARGIN = float(os.getenv("SBERT_SEMANTIC_ALIAS_MARGIN", "0.01"))
 
 CORE_DOMAIN_LABELS = {
@@ -92,6 +93,7 @@ def memory_diagnostics() -> dict:
         "semanticAliasesEnabled": SEMANTIC_ALIAS_ENABLED,
         "semanticAliasMinScore": SEMANTIC_ALIAS_MIN_SCORE,
         "semanticAliasMargin": SEMANTIC_ALIAS_MARGIN,
+        "artifactManifestRequired": ARTIFACT_MANIFEST_REQUIRED,
     }
 
 
@@ -166,7 +168,8 @@ def _load_numpy_classifier(weights_path: Path, input_dim: int, num_labels: int, 
     if not npz_path.exists():
         raise FileNotFoundError(
             f"Missing lightweight classifier artifact: {npz_path}. "
-            "Run python model/export_sbert_classifier_numpy.py locally and commit the generated .npz."
+            "Run python model/model_sbert.py locally; it now regenerates .npz, thresholds, "
+            "and the artifact manifest together."
         )
 
     with np.load(npz_path, allow_pickle=False) as data:
@@ -227,6 +230,54 @@ def _load_per_skill_thresholds(threshold_path: Path, label_vocab: list[str]) -> 
     return thresholds
 
 
+def _validate_artifact_manifest(out_dir: Path, label_path: Path, threshold_path: Path, weights_path: Path) -> dict:
+    """Reject mixed/stale SBERT artifacts before serving predictions."""
+    manifest_path = out_dir / "artifact_manifest.json"
+    if not manifest_path.exists():
+        if ARTIFACT_MANIFEST_REQUIRED:
+            raise FileNotFoundError(
+                f"Missing SBERT artifact manifest: {manifest_path}. "
+                "Run python model/model_sbert.py locally and commit all generated v2 artifacts."
+            )
+        return {}
+
+    with manifest_path.open(encoding="utf-8") as handle:
+        manifest = json.load(handle)
+    required = (
+        "classifier_pt_sha256",
+        "classifier_npz_sha256",
+        "thresholds_sha256",
+        "label_vocab_sha256",
+    )
+    missing = [key for key in required if not manifest.get(key)]
+    if missing:
+        raise ValueError(f"Incomplete SBERT artifact manifest {manifest_path}: missing={missing}")
+
+    actual = {
+        "classifier_pt_sha256": hashlib.sha256(weights_path.read_bytes()).hexdigest(),
+        "classifier_npz_sha256": hashlib.sha256(weights_path.with_suffix(".npz").read_bytes()).hexdigest(),
+        "thresholds_sha256": hashlib.sha256(threshold_path.read_bytes()).hexdigest(),
+        "label_vocab_sha256": hashlib.sha256(
+            json.dumps(
+                json.loads(label_path.read_text(encoding="utf-8")),
+                separators=(",", ":"),
+                ensure_ascii=False,
+            ).encode("utf-8")
+        ).hexdigest(),
+    }
+    mismatches = [
+        key for key in required
+        if str(manifest[key]) != actual[key]
+    ]
+    if mismatches:
+        raise RuntimeError(
+            "Stale/mixed SBERT deployment artifacts detected: "
+            f"{mismatches}. Retrain/export with python model/model_sbert.py and deploy "
+            "the generated .pt, .npz, threshold, vocabulary, config, and artifact_manifest.json together."
+        )
+    return manifest
+
+
 def _load_artifacts():
     global _classifier_weights, _label_vocab, _label_thresholds
 
@@ -275,6 +326,13 @@ def _load_artifacts():
     config_embedding_model = config.get("embedding_model", DEFAULT_EMBEDDING_MODEL)
     config_input_dim = int(config.get("input_dim", 384))
     config_hidden_dim = int(config.get("hidden_dim", 64))
+
+    _validate_artifact_manifest(
+        out_dir,
+        label_path,
+        threshold_path,
+        weights_path,
+    )
 
     tokenizer, session, embedding_dim = _load_embedding_runtime(config_embedding_model)
     if embedding_dim != config_input_dim:
