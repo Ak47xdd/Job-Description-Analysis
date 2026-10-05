@@ -27,11 +27,13 @@ REQUIRE_ONNX = os.getenv("SBERT_REQUIRE_ONNX", "true").strip().lower() not in {"
 SBERT_ONNX_FILE = os.getenv("SBERT_ONNX_FILE", "onnx/model.onnx").strip()
 SBERT_ONNX_PROVIDER = os.getenv("SBERT_ONNX_PROVIDER", "CPUExecutionProvider").strip()
 SBERT_ONNX_DISABLE_CPU_ARENA = os.getenv("SBERT_ONNX_DISABLE_CPU_ARENA", "true").strip().lower() not in {"0", "false", "no"}
+SBERT_THRESHOLD_FILE = os.getenv("SBERT_THRESHOLD_FILE", "").strip()
 
 _tokenizer = None
 _onnx_session = None
 _classifier_weights = None
 _label_vocab = None
+_label_thresholds = None
 _embedding_dim = None
 _memory_stages: dict[str, dict] = {}
 
@@ -62,10 +64,12 @@ def memory_diagnostics() -> dict:
         "onnxSessionLoaded": _onnx_session is not None,
         "classifierLoaded": _classifier_weights is not None,
         "labelVocabLoaded": _label_vocab is not None,
+        "thresholdsLoaded": _label_thresholds is not None,
         "onnxFile": SBERT_ONNX_FILE,
         "provider": SBERT_ONNX_PROVIDER,
         "maxSeqLength": MAX_SEQ_LENGTH,
         "batchSize": BATCH_SIZE,
+        "thresholdFile": SBERT_THRESHOLD_FILE or str(ROOT / "model_out" / "v2_sentence_transformer" / "per_skill_thresholds.json"),
     }
 
 
@@ -161,14 +165,56 @@ def _load_numpy_classifier(weights_path: Path, input_dim: int, num_labels: int, 
     return w1, b1, w2, b2
 
 
+def _resolve_threshold_file(out_dir: Path) -> Path:
+    """Resolve the deployment threshold artifact without a global fallback."""
+    path = Path(SBERT_THRESHOLD_FILE) if SBERT_THRESHOLD_FILE else out_dir / "per_skill_thresholds.json"
+    if not path.is_absolute():
+        path = ROOT / path
+    if not path.exists():
+        raise FileNotFoundError(
+            f"Missing required SBERT threshold artifact: {path}. "
+            "Deployment will not fall back to a global threshold."
+        )
+    return path
+
+
+def _load_per_skill_thresholds(threshold_path: Path, label_vocab: list[str]) -> np.ndarray:
+    with threshold_path.open(encoding="utf-8") as handle:
+        payload = json.load(handle)
+    labels = payload.get("labels") if isinstance(payload, dict) else None
+    if not isinstance(labels, dict):
+        raise ValueError(f"Invalid SBERT threshold artifact: {threshold_path}")
+
+    vocab_set = set(label_vocab)
+    missing = [label for label in label_vocab if label not in labels]
+    extra = [label for label in labels if label not in vocab_set]
+    if missing or extra:
+        raise ValueError(
+            "SBERT threshold vocabulary mismatch: "
+            f"missing={missing[:10]}, extra={extra[:10]}. Regenerate per_skill_thresholds.json."
+        )
+
+    thresholds = np.empty(len(label_vocab), dtype=np.float32)
+    for index, label in enumerate(label_vocab):
+        entry = labels[label]
+        if not isinstance(entry, dict) or "threshold" not in entry:
+            raise ValueError(f"Missing threshold for SBERT label {label!r} in {threshold_path}")
+        threshold = float(entry["threshold"])
+        if not np.isfinite(threshold) or threshold < 0.0:
+            raise ValueError(f"Invalid threshold {threshold!r} for SBERT label {label!r}")
+        thresholds[index] = threshold
+    return thresholds
+
+
 def _load_artifacts():
-    global _classifier_weights, _label_vocab
+    global _classifier_weights, _label_vocab, _label_thresholds
 
     if (
         _tokenizer is not None
         and _onnx_session is not None
         and _classifier_weights is not None
         and _label_vocab is not None
+        and _label_thresholds is not None
         and _embedding_dim is not None
     ):
         return _tokenizer, _onnx_session, _classifier_weights, _label_vocab, _embedding_dim
@@ -178,6 +224,7 @@ def _load_artifacts():
     out_dir = ROOT / "model_out" / "v2_sentence_transformer"
     weights_path = out_dir / "skill_classifier_sbert_v2.pt"
     config_path = out_dir / "model_config.json"
+    threshold_path = _resolve_threshold_file(out_dir)
 
     if not label_path.exists():
         raise FileNotFoundError(f"Missing {label_path}.")
@@ -224,7 +271,8 @@ def _load_artifacts():
     weights = _load_numpy_classifier(
         weights_path, embedding_dim, len(label_vocab), config_hidden_dim
     )
-    _classifier_weights, _label_vocab = weights, label_vocab
+    thresholds = _load_per_skill_thresholds(threshold_path, label_vocab)
+    _classifier_weights, _label_vocab, _label_thresholds = weights, label_vocab, thresholds
     _record_memory("after_classifier")
     return tokenizer, session, weights, label_vocab, embedding_dim
 
@@ -319,6 +367,7 @@ def JobAnalyze_v2_SBERT_batch(job_descs, role="", job_type="", top_k=50):
         return []
 
     tokenizer, session, weights, label_vocab, _ = _load_artifacts()
+    thresholds = _label_thresholds
     texts = [_build_input_text(text or "", role, job_type) for text in job_descs]
     results = []
 
@@ -332,8 +381,13 @@ def JobAnalyze_v2_SBERT_batch(job_descs, role="", job_type="", top_k=50):
         )
 
         for row in probabilities:
-            ranked = sorted(zip(label_vocab, row), key=lambda item: -float(item[1]))
-            results.append([(skill, float(score)) for skill, score in ranked[:top_k]])
+            eligible = [
+                (skill, float(score), float(threshold))
+                for skill, score, threshold in zip(label_vocab, row, thresholds)
+                if float(score) >= float(threshold)
+            ]
+            ranked = sorted(eligible, key=lambda item: -item[1])
+            results.append([(skill, score) for skill, score, _ in ranked[:top_k]])
 
         del embeddings, probabilities
         gc.collect()
