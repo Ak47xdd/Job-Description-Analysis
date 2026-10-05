@@ -29,6 +29,20 @@ SBERT_ONNX_PROVIDER = os.getenv("SBERT_ONNX_PROVIDER", "CPUExecutionProvider").s
 SBERT_ONNX_DISABLE_CPU_ARENA = os.getenv("SBERT_ONNX_DISABLE_CPU_ARENA", "true").strip().lower() not in {"0", "false", "no"}
 SBERT_THRESHOLD_FILE = os.getenv("SBERT_THRESHOLD_FILE", "").strip()
 CORE_DOMAIN_THRESHOLD = float(os.getenv("SBERT_CORE_DOMAIN_THRESHOLD", "0.80"))
+
+# High-confidence semantic aliases. These are deliberately narrow: they do not
+# rename labels or alter the SBERT embedding. They provide deterministic
+# evidence for a legacy skill when a modern phrase is strong evidence for it.
+SEMANTIC_ALIAS_MAP = {
+    "prompt engineering": (
+        "agentic pair programming",
+        "multi-agent compositions",
+    ),
+}
+SEMANTIC_ALIAS_ENABLED = os.getenv("SBERT_SEMANTIC_ALIASES", "true").strip().lower() not in {"0", "false", "no"}
+SEMANTIC_ALIAS_MIN_SCORE = float(os.getenv("SBERT_SEMANTIC_ALIAS_MIN_SCORE", "0.10"))
+SEMANTIC_ALIAS_MARGIN = float(os.getenv("SBERT_SEMANTIC_ALIAS_MARGIN", "0.01"))
+
 CORE_DOMAIN_LABELS = {
     "machine learning": ("machine learning", "machine-learning", "ml"),
     "deep learning": ("deep learning", "deep-learning"),
@@ -75,6 +89,9 @@ def memory_diagnostics() -> dict:
         "maxSeqLength": MAX_SEQ_LENGTH,
         "batchSize": BATCH_SIZE,
         "thresholdFile": SBERT_THRESHOLD_FILE or str(ROOT / "model_out" / "v2_sentence_transformer" / "per_skill_thresholds.json"),
+        "semanticAliasesEnabled": SEMANTIC_ALIAS_ENABLED,
+        "semanticAliasMinScore": SEMANTIC_ALIAS_MIN_SCORE,
+        "semanticAliasMargin": SEMANTIC_ALIAS_MARGIN,
     }
 
 
@@ -171,7 +188,6 @@ def _load_numpy_classifier(weights_path: Path, input_dim: int, num_labels: int, 
 
 
 def _resolve_threshold_file(out_dir: Path) -> Path:
-    """Resolve the deployment threshold artifact without a global fallback."""
     path = Path(SBERT_THRESHOLD_FILE) if SBERT_THRESHOLD_FILE else out_dir / "per_skill_thresholds.json"
     if not path.is_absolute():
         path = ROOT / path
@@ -246,10 +262,6 @@ def _load_artifacts():
         with config_path.open(encoding="utf-8") as handle:
             config = json.load(handle)
 
-    # The label vocabulary and classifier artifact are the source of truth for
-    # the output dimension. model_config.json is metadata and may be stale after
-    # a retraining run. This prevents a stale config from breaking deployment
-    # when the vocabulary legitimately grows or shrinks.
     vocab_hash = hashlib.sha256(
         json.dumps(label_vocab, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
     ).hexdigest()
@@ -266,13 +278,8 @@ def _load_artifacts():
 
     tokenizer, session, embedding_dim = _load_embedding_runtime(config_embedding_model)
     if embedding_dim != config_input_dim:
-        # A stale input_dim is recoverable; the classifier artifact below is
-        # validated against the actual encoder dimension.
         config_input_dim = embedding_dim
 
-    # Load against the vocabulary count. If the retrained classifier has not
-    # been exported, _load_numpy_classifier will fail with the exact tensor
-    # shape mismatch instead of silently pairing the wrong labels and weights.
     weights = _load_numpy_classifier(
         weights_path, embedding_dim, len(label_vocab), config_hidden_dim
     )
@@ -339,14 +346,44 @@ def _classifier_predict(embeddings, weights):
     return (1.0 / (1.0 + np.exp(-logits))).astype(np.float32, copy=False)
 
 
-def _apply_core_domain_guard(probabilities, label_vocab, raw_job_descs):
-    """Require stronger structural confidence for broad ML domain labels.
+def _apply_semantic_aliases(probabilities, label_vocab, raw_job_descs, thresholds):
+    """Use narrow phrase evidence without changing the global/per-skill floors.
 
-    A core-domain label may pass its learned per-skill threshold when its
-    specific term is explicitly present. Otherwise it must clear the stricter
-    structural floor, preventing semantic similarity from making junior JDs
-    look like deep ML/PhD requirements.
+    An alias only applies when the model already gives the target skill a
+    minimum semantic score. When triggered, its score is raised just above
+    that skill's own calibrated threshold, rather than to 1.0. This keeps the
+    existing threshold policy intact and avoids globally boosting unrelated
+    skills.
     """
+    if not SEMANTIC_ALIAS_ENABLED:
+        return probabilities
+
+    if not 0.0 <= SEMANTIC_ALIAS_MIN_SCORE <= 1.0:
+        raise ValueError("SBERT_SEMANTIC_ALIAS_MIN_SCORE must be between 0 and 1.")
+    if SEMANTIC_ALIAS_MARGIN < 0.0:
+        raise ValueError("SBERT_SEMANTIC_ALIAS_MARGIN must be non-negative.")
+
+    label_to_index = {label: index for index, label in enumerate(label_vocab)}
+
+    for row_index, raw_text in enumerate(raw_job_descs):
+        normalized = canonicalize_skill_text(raw_text)
+        for target_label, aliases in SEMANTIC_ALIAS_MAP.items():
+            target_index = label_to_index.get(target_label)
+            if target_index is None:
+                continue
+            if any(alias in normalized for alias in aliases):
+                score = float(probabilities[row_index, target_index])
+                threshold = float(thresholds[target_index])
+                if score >= SEMANTIC_ALIAS_MIN_SCORE:
+                    probabilities[row_index, target_index] = max(
+                        score,
+                        min(1.0, threshold + SEMANTIC_ALIAS_MARGIN),
+                    )
+    return probabilities
+
+
+def _apply_core_domain_guard(probabilities, label_vocab, raw_job_descs):
+    """Require stronger structural confidence for broad ML domain labels."""
     if not 0.0 <= CORE_DOMAIN_THRESHOLD <= 1.0:
         raise ValueError("SBERT_CORE_DOMAIN_THRESHOLD must be between 0 and 1.")
 
@@ -363,25 +400,18 @@ def _apply_core_domain_guard(probabilities, label_vocab, raw_job_descs):
     return probabilities
 
 
-def _apply_hybrid_token_override(probabilities, label_vocab, job_desc: str):
-    """Apply deterministic lexical matching after SBERT classification.
-
-    Exact, isolated skill names mentioned in the raw JD are authoritative for
-    detection. This runs before top-k selection so an explicitly mentioned
-    skill cannot be hidden by a low embedding score.
-    """
+def _apply_hybrid_token_override(probabilities, label_vocab, job_desc):
+    """Apply deterministic lexical matching after SBERT classification."""
     if os.getenv("SBERT_TOKEN_OVERRIDE", "true").strip().lower() in {"0", "false", "no"}:
         return probabilities
 
-    overridden = []
     for index in range(probabilities.shape[0]):
-        updated, matches = apply_token_matching_override(
+        updated, _matches = apply_token_matching_override(
             probabilities[index],
             label_vocab,
             canonicalize_skill_text(job_desc[index] if isinstance(job_desc, list) else job_desc),
         )
         probabilities[index] = updated
-        overridden.append(matches)
     return probabilities
 
 
@@ -403,15 +433,22 @@ def JobAnalyze_v2_SBERT_batch(job_descs, role="", job_type="", top_k=50):
     for start in range(0, len(texts), BATCH_SIZE):
         embeddings = _encode_embeddings(texts[start:start + BATCH_SIZE], tokenizer, session)
         probabilities = _classifier_predict(embeddings, weights)
+        batch_descs = job_descs[start:start + BATCH_SIZE]
         probabilities = _apply_hybrid_token_override(
             probabilities,
             label_vocab,
-            job_descs[start:start + BATCH_SIZE],
+            batch_descs,
         )
         probabilities = _apply_core_domain_guard(
             probabilities,
             label_vocab,
-            job_descs[start:start + BATCH_SIZE],
+            batch_descs,
+        )
+        probabilities = _apply_semantic_aliases(
+            probabilities,
+            label_vocab,
+            batch_descs,
+            thresholds,
         )
 
         for row in probabilities:
