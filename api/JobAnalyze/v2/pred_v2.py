@@ -257,13 +257,7 @@ def _validate_artifact_manifest(out_dir: Path, label_path: Path, threshold_path:
         "classifier_pt_sha256": hashlib.sha256(weights_path.read_bytes()).hexdigest(),
         "classifier_npz_sha256": hashlib.sha256(weights_path.with_suffix(".npz").read_bytes()).hexdigest(),
         "thresholds_sha256": hashlib.sha256(threshold_path.read_bytes()).hexdigest(),
-        "label_vocab_sha256": hashlib.sha256(
-            json.dumps(
-                json.loads(label_path.read_text(encoding="utf-8")),
-                separators=(",", ":"),
-                ensure_ascii=False,
-            ).encode("utf-8")
-        ).hexdigest(),
+        "label_vocab_sha256": hashlib.sha256(label_path.read_bytes()).hexdigest(),
     }
     mismatches = [
         key for key in required
