@@ -10,7 +10,7 @@ import numpy as np
 import onnxruntime as ort
 from huggingface_hub import hf_hub_download
 from tokenizers import Tokenizer
-from JobAnalyze.v2.token_override import apply_token_matching_override
+from .token_override import apply_token_matching_override
 
 try:
     from model.prep.sym_map import canonicalize_skill_text
