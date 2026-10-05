@@ -140,11 +140,19 @@ def _score_breakdown(detected, required, preferred, compatibility) -> dict:
     desired = required + preferred
     desired_count = len(desired)
     weighted_average = sum(score for _, score in desired) / desired_count if desired_count else 0.0
+
+    # Evaluation/coverage comparisons must be case-insensitive. Keep the
+    # display labels untouched, but normalize both sides at the comparison
+    # boundary so GitHub/Github/GITHUB are the same skill identifier.
+    detected_keys = {str(skill).strip().lower() for skill, _ in detected}
+    desired_keys = {str(skill).strip().lower() for skill, _ in desired}
+    skills_present_in_desired = len(detected_keys & desired_keys)
+
     return {
         "compatibilityScore": compatibility,
         "detectedSkillCount": len(detected),
         "desiredSkillCount": desired_count,
-        "skillsPresentInDesiredSet": min(len(detected), desired_count),
+        "skillsPresentInDesiredSet": skills_present_in_desired,
         "requiredSkillCount": len(required),
         "preferredSkillCount": len(preferred),
         "weightedAverageImportance": round(weighted_average, 4),
