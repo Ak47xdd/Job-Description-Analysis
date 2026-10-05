@@ -64,6 +64,9 @@ vocab_hash = hashlib.sha256(
 
 np.savez(DST, w1=w1, b1=b1, w2=w2, b2=b2)
 
+def sha256_file(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
 if CONFIG_FILE.exists():
     with CONFIG_FILE.open(encoding="utf-8") as file:
         config = json.load(file)
@@ -76,6 +79,8 @@ config.update({
     "hidden_dim": int(w1.shape[0]),
     "label_vocab_path": "model/prep/v2/label_vocab_v2.json",
     "label_vocab_sha256": vocab_hash,
+    "classifier_pt_sha256": sha256_file(SRC),
+    "classifier_npz_sha256": sha256_file(DST),
 })
 
 with CONFIG_FILE.open("w", encoding="utf-8") as file:
