@@ -323,7 +323,26 @@ def main() -> None:
             indent=2,
         )
 
-    print(f"Saved best SBERT classifier to {OUT_DIR}")
+    # Regenerate calibration thresholds from the newly trained checkpoint and
+    # re-export the NumPy runtime artifact. Never leave a previous threshold
+    # file or .npz paired with a newly trained .pt checkpoint.
+    print("Refreshing per-skill thresholds from the new checkpoint...")
+    _run_pipeline_step(ROOT / "model" / "eval_sbert.py")
+    print("Refreshing the Render-safe NumPy classifier artifact...")
+    _run_pipeline_step(ROOT / "model" / "export_sbert_classifier_numpy.py")
+
+    manifest = {
+        "format": 1,
+        "classifier_pt_sha256": _sha256_file(OUT_DIR / "skill_classifier_sbert_v2.pt"),
+        "classifier_npz_sha256": _sha256_file(OUT_DIR / "skill_classifier_sbert_v2.npz"),
+        "thresholds_sha256": _sha256_file(OUT_DIR / "per_skill_thresholds.json"),
+        "label_vocab_sha256": _sha256_file(LABEL_FILE),
+    }
+    with (OUT_DIR / "artifact_manifest.json").open("w", encoding="utf-8") as file:
+        json.dump(manifest, file, indent=2)
+        file.write("\n")
+
+    print(f"Saved synchronized SBERT artifacts to {OUT_DIR}")
     print(f"Final artifact dimensions: input={X_train.shape[1]}, labels={len(vocab)}")
 
 
