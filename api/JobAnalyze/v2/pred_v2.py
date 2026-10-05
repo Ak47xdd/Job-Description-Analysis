@@ -412,16 +412,20 @@ def _apply_deterministic_fallbacks(probabilities, label_vocab, raw_job_descs, th
             min(1.0, threshold + threshold_margin),
         )
 
-    git_index = label_to_index.get("git")
-
     for row_index, raw_text in enumerate(raw_job_descs):
-        cleaned_text = canonicalize_skill_text(raw_text)
+        # IMPORTANT: use the raw JD for strict lexical fallbacks. The shared
+        # canonicalizer intentionally maps "github" -> "git" for the model
+        # taxonomy, which would make an exact GitHub check impossible here.
+        cleaned_text = str(raw_text or "").lower()
 
-        # GitHub: explicit text is authoritative. Do not require SBERT to
-        # separately recognize the parent "git" label; otherwise SBERT can
-        # structurally absorb GitHub into Git and the target key is lost.
+        # GitHub is a first-class deterministic detection even though the v2
+        # classifier vocabulary currently folds GitHub into the broader Git
+        # label. The caller can therefore never lose an explicit "github"
+        # mention merely because SBERT/canonicalization absorbed it into Git.
         if "github" in cleaned_text:
-            raise_to_threshold(probabilities[row_index], "github")
+            github_index = label_to_index.get("github")
+            if github_index is not None:
+                raise_to_threshold(probabilities[row_index], "github")
 
         # OpenAI: explicit provider/model references are deterministic evidence.
         if "gpt" in cleaned_text or "openai" in cleaned_text:
@@ -547,14 +551,24 @@ def JobAnalyze_v2_SBERT_batch(job_descs, role="", job_type="", top_k=50):
             thresholds,
         )
 
-        for row in probabilities:
+        for local_index, row in enumerate(probabilities):
             eligible = [
                 (skill, float(score), float(threshold))
                 for skill, score, threshold in zip(label_vocab, row, thresholds)
                 if float(score) >= float(threshold)
             ]
             ranked = sorted(eligible, key=lambda item: -item[1])
-            results.append([(skill, score) for skill, score, _ in ranked[:top_k]])
+            output = [(skill, score) for skill, score, _ in ranked[:top_k]]
+
+            # The v2 vocabulary intentionally canonicalizes GitHub into Git,
+            # so GitHub cannot be emitted by the classifier itself. Preserve
+            # explicit GitHub text as a deterministic output-layer fallback.
+            if "github" in str(batch_descs[local_index] or "").lower():
+                output = [(skill, score) for skill, score in output if skill.lower() != "github"]
+                output.insert(0, ("github", 1.0))
+                output = output[:top_k]
+
+            results.append(output)
 
         del embeddings, probabilities
         gc.collect()
