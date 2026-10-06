@@ -10,5 +10,5 @@
   "epochs": 690,
   "best_test_loss": 0.3536243430773417,
   "classifier_pt_sha256": "88dccefa46744797f2c581edef201639f91a7e802662d6672fe0c3ce6ebc3e05",
-  "classifier_npz_sha256": "653c726af281e1deffd9879c517b4d99dad63aaaa288fff6d2fb3aebdc467af4"
+  "classifier_npz_sha256": "8be14f03d4aa8e242e912b49dc4d602674ef2f00e5e097fbfa39a39dcbf3247c"
 }
