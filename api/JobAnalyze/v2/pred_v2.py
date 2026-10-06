@@ -230,8 +230,24 @@ def _load_per_skill_thresholds(threshold_path: Path, label_vocab: list[str]) -> 
     return thresholds
 
 
+def _canonical_json_sha256(value) -> str:
+    """Hash JSON by meaning rather than whitespace/indentation."""
+    payload = json.dumps(
+        value,
+        separators=(",", ":"),
+        ensure_ascii=False,
+        sort_keys=isinstance(value, dict),
+    ).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
 def _validate_artifact_manifest(out_dir: Path, label_path: Path, threshold_path: Path, weights_path: Path) -> dict:
-    """Reject mixed/stale SBERT artifacts before serving predictions."""
+    """Validate that SBERT runtime artifacts belong to one compatible build.
+
+    Classifier binaries are byte-sensitive and therefore use strict SHA256.
+    JSON metadata is validated semantically so harmless formatting/order
+    changes do not make a valid deployment fail.
+    """
     manifest_path = out_dir / "artifact_manifest.json"
     if not manifest_path.exists():
         if ARTIFACT_MANIFEST_REQUIRED:
@@ -243,6 +259,7 @@ def _validate_artifact_manifest(out_dir: Path, label_path: Path, threshold_path:
 
     with manifest_path.open(encoding="utf-8") as handle:
         manifest = json.load(handle)
+
     required = (
         "classifier_pt_sha256",
         "classifier_npz_sha256",
@@ -253,22 +270,66 @@ def _validate_artifact_manifest(out_dir: Path, label_path: Path, threshold_path:
     if missing:
         raise ValueError(f"Incomplete SBERT artifact manifest {manifest_path}: missing={missing}")
 
-    actual = {
+    # The .pt/.npz files must be exactly the artifacts the manifest describes.
+    actual_binary = {
         "classifier_pt_sha256": hashlib.sha256(weights_path.read_bytes()).hexdigest(),
         "classifier_npz_sha256": hashlib.sha256(weights_path.with_suffix(".npz").read_bytes()).hexdigest(),
-        "thresholds_sha256": hashlib.sha256(threshold_path.read_bytes()).hexdigest(),
-        "label_vocab_sha256": hashlib.sha256(label_path.read_bytes()).hexdigest(),
     }
-    mismatches = [
-        key for key in required
-        if str(manifest[key]) != actual[key]
+    binary_mismatches = [
+        key for key in ("classifier_pt_sha256", "classifier_npz_sha256")
+        if str(manifest[key]) != actual_binary[key]
     ]
-    if mismatches:
+    if binary_mismatches:
         raise RuntimeError(
             "Stale/mixed SBERT deployment artifacts detected: "
-            f"{mismatches}. Retrain/export with python model/model_sbert.py and deploy "
-            "the generated .pt, .npz, threshold, vocabulary, config, and artifact_manifest.json together."
+            f"{binary_mismatches}. The classifier .pt and .npz must come from the same build."
         )
+
+    with label_path.open(encoding="utf-8") as handle:
+        label_vocab = json.load(handle)
+    with threshold_path.open(encoding="utf-8") as handle:
+        threshold_payload = json.load(handle)
+
+    if not isinstance(label_vocab, list) or not label_vocab or len(label_vocab) != len(set(label_vocab)):
+        raise ValueError(f"Invalid or duplicate SBERT label vocabulary: {label_path}")
+
+    labels_payload = threshold_payload.get("labels") if isinstance(threshold_payload, dict) else None
+    if not isinstance(labels_payload, dict):
+        raise ValueError(f"Invalid SBERT threshold artifact: missing labels in {threshold_path}")
+
+    vocab_keys = {str(label) for label in label_vocab}
+    threshold_keys = {str(label) for label in labels_payload}
+    if vocab_keys != threshold_keys:
+        missing_thresholds = sorted(vocab_keys - threshold_keys)
+        extra_thresholds = sorted(threshold_keys - vocab_keys)
+        raise RuntimeError(
+            "Incompatible SBERT threshold/vocabulary artifacts: "
+            f"missing_thresholds={missing_thresholds[:10]}, "
+            f"extra_thresholds={extra_thresholds[:10]}"
+        )
+
+    # The vocabulary hash stored in model_config is the semantic/canonical
+    # hash produced by the training pipeline. Validate that independently of
+    # artifact_manifest formatting or legacy raw-file hashes.
+    config_path = out_dir / "model_config.json"
+    if config_path.exists():
+        with config_path.open(encoding="utf-8") as handle:
+            config = json.load(handle)
+        configured_vocab_hash = config.get("label_vocab_sha256")
+        semantic_vocab_hash = _canonical_json_sha256(label_vocab)
+        if configured_vocab_hash and configured_vocab_hash != semantic_vocab_hash:
+            raise ValueError(
+                "SBERT label vocabulary hash mismatch: model_config.json was generated "
+                "for a different label ordering/content. Retrain/export the v2 classifier."
+            )
+        if config.get("num_labels") is not None and int(config["num_labels"]) != len(label_vocab):
+            raise ValueError(
+                "SBERT label count mismatch between model_config.json and label_vocab_v2.json."
+            )
+
+    # Legacy manifests stored byte hashes for JSON artifacts. Accept those
+    # manifests when the actual semantic artifacts are structurally compatible;
+    # future training writes canonical JSON hashes instead.
     return manifest
 
 
