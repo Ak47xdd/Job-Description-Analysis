@@ -90,6 +90,19 @@ def _sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def _sha256_json_file(path: Path) -> str:
+    """Hash JSON semantically so formatting changes do not invalidate artifacts."""
+    with path.open(encoding="utf-8") as handle:
+        value = json.load(handle)
+    payload = json.dumps(
+        value,
+        separators=(",", ":"),
+        ensure_ascii=False,
+        sort_keys=isinstance(value, dict),
+    ).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
 def _run_pipeline_step(script: Path) -> None:
     print(f"Refreshing SBERT artifact prerequisite: {script.relative_to(ROOT)}")
     subprocess.run([sys.executable, str(script)], cwd=ROOT, check=True)
@@ -335,8 +348,8 @@ def main() -> None:
         "format": 1,
         "classifier_pt_sha256": _sha256_file(OUT_DIR / "skill_classifier_sbert_v2.pt"),
         "classifier_npz_sha256": _sha256_file(OUT_DIR / "skill_classifier_sbert_v2.npz"),
-        "thresholds_sha256": _sha256_file(OUT_DIR / "per_skill_thresholds.json"),
-        "label_vocab_sha256": _sha256_file(LABEL_FILE),
+        "thresholds_sha256": _sha256_json_file(OUT_DIR / "per_skill_thresholds.json"),
+        "label_vocab_sha256": _sha256_json_file(LABEL_FILE),
     }
     with (OUT_DIR / "artifact_manifest.json").open("w", encoding="utf-8") as file:
         json.dump(manifest, file, indent=2)
