@@ -52,7 +52,7 @@ async def create_api(request: Request, email: str, x_admin_secret: str | None = 
     upsert_api_key_db(user_id=hash_key(raw), owner=email, api_key=raw)
     return {"owner": email, "api_key": raw, "warning": "Copy this key, this is a one time displayed key"}
 
-mcp = FastApiMCP(
+mcp_v1 = FastApiMCP(
     app,
     name="JobAnalyze 6k",
     description=(
@@ -68,4 +68,22 @@ mcp = FastApiMCP(
     include_operations=["analyze_job_description"]
 )
 
-mcp.mount_http()
+mcp_v1.mount_http()
+
+mcp_v2 = FastApiMCP(
+    app,
+    name="JobAnalyze SBERT",
+    description=(
+        "Analyze raw job descriptions with the JobAnalyze SBERT skill classifier. "
+        "The analyze_job_description tool extracts technical skills, analyzes required versus preferred/bonus "
+        "skills, and returns compatibility and score details. Job_Desc must be the complete raw JD text. "
+        "Role is the target role and accepts the preset roles AI Engineer, AI Developer, Data Scientist, "
+        "ML Engineer, MLOps Engineer, and Data Analyst, plus custom roles. Type is the required seniority "
+        "context: Internship, Junior, or Senior. Type is supplied by the caller and is not silently inferred "
+        "or corrected from the JD; if it conflicts with explicit seniority in the JD, the supplied Type remains "
+        "the classifier context."
+    ),
+    include_operations=["analyze_job_description_using_BERT"]
+)
+
+mcp_v2.mount_http()
