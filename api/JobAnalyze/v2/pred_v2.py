@@ -657,11 +657,7 @@ def JobAnalyze_v2_SBERT_batch(job_descs, role="", job_type="", top_k=50):
                 or "natural language processing" in raw_text
                 or "natural-language processing" in raw_text
             )
-            if explicit_nlp and any(skill.lower() == "nlp" for skill, _ in output):
-                output = [(skill, score) for skill, score in output if skill.lower() != "nlp"] + [
-                    item for item in output if item[0].lower() == "nlp"
-                ]
-            elif explicit_nlp:
+            if explicit_nlp:
                 nlp_index = next(
                     (index for index, skill in enumerate(label_vocab) if skill.lower() == "nlp"),
                     None,
@@ -671,8 +667,16 @@ def JobAnalyze_v2_SBERT_batch(job_descs, role="", job_type="", top_k=50):
                         float(row[nlp_index]),
                         float(thresholds[nlp_index]) + SEMANTIC_ALIAS_MARGIN,
                     )
+                    output = [(skill, score) for skill, score in output if skill.lower() != "nlp"]
                     output.append(("nlp", min(1.0, nlp_score)))
-                    output = sorted(output, key=lambda item: -item[1])[:top_k]
+                    output = sorted(output, key=lambda item: -item[1])
+                    if len(output) > top_k:
+                        # Explicit NLP is a required-skill lexical hit, so it
+                        # is never evicted by top-k truncation. Drop the lowest
+                        # non-NLP result instead.
+                        output = [item for item in output if item[0].lower() != "nlp"][: top_k - 1] + [
+                            item for item in output if item[0].lower() == "nlp"
+                        ]
 
             results.append(output)
 
