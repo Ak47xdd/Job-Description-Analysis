@@ -102,8 +102,15 @@ SYNONYM_MAP = {
     'faiss':                    'vectordb',
     'milvus':                   'vectordb',
 
-    # nlp 
+    # nlp
+    # Keep the full phrase intact for both SBERT semantic context and
+    # deterministic lexical recovery. The previous map only handled
+    # "natural language", so an explicit "Natural Language Processing (NLP)"
+    # requirement could remain invisible to the output label.
+    'natural language processing': 'nlp',
+    'natural-language processing': 'nlp',
     'natural language':         'nlp',
+    'nlp':                      'nlp',
     'named entity':             'nlp',
     'text classification':      'nlp',
 
