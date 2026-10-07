@@ -86,4 +86,4 @@ mcp_v2 = FastApiMCP(
     include_operations=["analyze_job_description_using_BERT"]
 )
 
-mcp_v2.mount_http()
+mcp_v2.mount_http(mount_path="/mcp/sbert")
