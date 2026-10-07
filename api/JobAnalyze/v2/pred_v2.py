@@ -492,6 +492,21 @@ def _apply_deterministic_fallbacks(probabilities, label_vocab, raw_job_descs, th
         if "gpt" in cleaned_text or "openai" in cleaned_text:
             raise_to_threshold(probabilities[row_index], "openai")
 
+        # NLP: "Natural Language Processing (NLP)" is an explicit skill
+        # declaration, not merely a semantic hint. SBERT can under-score this
+        # broad label because the surrounding JD contains many competing AI
+        # skills. Recover the label deterministically when either the acronym
+        # or the full phrase is explicitly present. This is intentionally
+        # narrow and does not lower the global threshold floor or boost any
+        # unrelated labels.
+        nlp_explicit = (
+            "nlp" in cleaned_text
+            or "natural language processing" in cleaned_text
+            or "natural-language processing" in cleaned_text
+        )
+        if nlp_explicit:
+            raise_to_threshold(probabilities[row_index], "nlp")
+
         # Prompt Engineering: modern agentic wording can be semantically close
         # to, but distinct from, the legacy target label.
         agentic_phrases = ("agentic pair", "multi-agent", "state graphs", "prompt engineering")
