@@ -52,38 +52,21 @@ async def create_api(request: Request, email: str, x_admin_secret: str | None = 
     upsert_api_key_db(user_id=hash_key(raw), owner=email, api_key=raw)
     return {"owner": email, "api_key": raw, "warning": "Copy this key, this is a one time displayed key"}
 
-mcp_v1 = FastApiMCP(
+mcp = FastApiMCP(
     app,
-    name="JobAnalyze 6k",
+    name="JobAnalyze",
     description=(
-        "Analyze raw job descriptions with the JobAnalyze 6k skill classifier. "
-        "The analyze_job_description tool extracts technical skills, analyzes required versus preferred/bonus "
-        "skills, and returns compatibility and score details. Job_Desc must be the complete raw JD text. "
-        "Role is the target role and accepts the preset roles AI Engineer, AI Developer, Data Scientist, "
-        "ML Engineer, MLOps Engineer, and Data Analyst, plus custom roles. Type is the required seniority "
-        "context: Internship, Junior, or Senior. Type is supplied by the caller and is not silently inferred "
-        "or corrected from the JD; if it conflicts with explicit seniority in the JD, the supplied Type remains "
-        "the classifier context."
+        "JobAnalyze provides two job-description analysis tools through this single MCP server. "
+        "Use analyze_job_description_using_BERT for the current SBERT v2 semantic skill classifier; "
+        "it is the recommended/default tool for new agents and general job-description analysis. "
+        "Use analyze_job_description only when the caller explicitly requests the legacy JobAnalyze 6k "
+        "or v1 classifier for compatibility or comparison. Do not select the legacy tool merely because "
+        "its name is shorter. Both tools accept the same raw Job_Desc, Role, and Type inputs."
     ),
-    include_operations=["analyze_job_description"]
+    include_operations=[
+        "analyze_job_description",
+        "analyze_job_description_using_BERT",
+    ],
 )
 
-mcp_v1.mount_http()
-
-mcp_v2 = FastApiMCP(
-    app,
-    name="JobAnalyze SBERT",
-    description=(
-        "Analyze raw job descriptions with the JobAnalyze SBERT skill classifier. "
-        "The analyze_job_description tool extracts technical skills, analyzes required versus preferred/bonus "
-        "skills, and returns compatibility and score details. Job_Desc must be the complete raw JD text. "
-        "Role is the target role and accepts the preset roles AI Engineer, AI Developer, Data Scientist, "
-        "ML Engineer, MLOps Engineer, and Data Analyst, plus custom roles. Type is the required seniority "
-        "context: Internship, Junior, or Senior. Type is supplied by the caller and is not silently inferred "
-        "or corrected from the JD; if it conflicts with explicit seniority in the JD, the supplied Type remains "
-        "the classifier context."
-    ),
-    include_operations=["analyze_job_description_using_BERT"]
-)
-
-mcp_v2.mount_http(mount_path="/mcp/sbert")
+mcp.mount_http()
