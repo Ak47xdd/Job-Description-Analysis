@@ -265,17 +265,22 @@ def _build_summary(predicted: list[tuple[str, float]], role: str, job_type: str,
 
 
 def _build_recommendation(compatibility: int | None, job_type: str) -> dict:
-    """Derive recommendation from the compatibility score only.
+    """Derive recommendation from the same compatibility bands used by _get_compatibility.
 
-    This keeps the verdict and displayed compatibility percentage consistent.
+    Keep the verdict, detail text, and compatibilityLabel on one shared score
+    scale so every model/API path produces the same interpretation.
     """
     if compatibility is None:
         verdict = "Insufficient Data"
         detail = "No required technical skills were identified, so a compatibility verdict cannot be calculated."
         points = [{"type": "warning", "text": "No required technical skills identified"}]
+    elif compatibility >= 80:
+        verdict = "Excellent Match"
+        detail = "Compatibility is 80% or higher based on the identified required skills."
+        points = [{"type": "positive", "text": f"Compatibility score: {compatibility}%"}, {"type": "positive", "text": "Excellent alignment with the identified required skills"}]
     elif compatibility >= 65:
         verdict = "Good Match"
-        detail = "Compatibility is 65% or higher based on the identified required skills."
+        detail = "Compatibility is between 65% and 79% based on the identified required skills."
         points = [{"type": "positive", "text": f"Compatibility score: {compatibility}%"}, {"type": "positive", "text": "Strong alignment with the identified required skills"}]
     elif compatibility >= 40:
         verdict = "Partial Match"
@@ -288,10 +293,10 @@ def _build_recommendation(compatibility: int | None, job_type: str) -> dict:
     if job_type == "Senior":
         points.append({"type": "warning", "text": "Senior seniority bar applies"})
     return {
-        "verdict": verdict, 
-        "detail": detail, 
+        "verdict": verdict,
+        "detail": detail,
         "points": points
-        }
+    }
 
 
 def _build_analysis(predicted: list[tuple[str, float]], role: str, job_type: str, jd_text: str) -> dict:
