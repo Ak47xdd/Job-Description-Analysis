@@ -31,3 +31,11 @@ def test_text_canonicalization_prevents_duplicate_skill_terms():
     assert "aws/azure" in text
     assert "kubernetes" in text
     assert "ci/cd" in text
+
+
+def test_nlp_full_phrase_canonicalizes_to_first_class_label():
+    text = canonicalize_skill_text(
+        "Required: Natural Language Processing (NLP) and Generative AI."
+    )
+    assert "nlp" in text
+    assert "natural language processing" not in text
