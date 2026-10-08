@@ -56,7 +56,7 @@ mcp = FastApiMCP(
     app,
     name="JobAnalyze",
     description=(
-        "JobAnalyze provides two job-description analysis tools through this single MCP server. "
+        "JobSelect Labs provides two job-description analysis tools through this single MCP server. "
         "Use analyze_job_description_using_BERT for the current SBERT v2 semantic skill classifier; "
         "it is the recommended/default tool for new agents and general job-description analysis. "
         "Use analyze_job_description only when the caller explicitly requests the legacy JobAnalyze 6k "
