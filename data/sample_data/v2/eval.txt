@@ -1,96 +1,199 @@
 SBERT Model Evaluation — Constrained Per-Skill Thresholds
 
-Embedding shape: (83, 384)
+Embedding shape: (150, 384)
 Minimum precision constraint: 0.30
 Minimum threshold floor: 0.25
-Global 0.65 threshold: Micro-F1=0.549 | Macro-F1=0.226
-Constrained per-skill: Micro-F1=0.534 | Macro-F1=0.357
+Global 0.65 threshold: Micro-F1=0.479 | Macro-F1=0.164
+Constrained per-skill: Micro-F1=0.583 | Macro-F1=0.184
 Thresholds saved to: C:\Portfolio-Projects\Job-Description-Analysis\model_out\v2_sentence_transformer\per_skill_thresholds.json
 
 label                    threshold   support   precision   recall    f1    
-agents                   0.6699      12        0.46        0.92      0.61
-ai                       0.2500      4         0.13        0.75      0.22
-apis                     0.4563      27        0.55        1.00      0.71
-autogen                  0.2500      4         0.12        1.00      0.22
-aws                      0.4502      11        0.54        0.64      0.58
-aws/azure                0.6632      25        0.73        0.88      0.80
-azure                    0.2500      1         0.00        0.00      0.00
-c                        0.4666      1         0.50        1.00      0.67
-c#                       0.4279      4         1.00        0.25      0.40
-c++                      0.8071      3         0.67        0.67      0.67
-ci/cd                    0.7506      8         0.50        0.50      0.50
-cloud                    0.6366      2         0.50        0.50      0.50
-cloud-native             0.2500      2         0.00        0.00      0.00
-containers               0.2500      1         0.00        0.00      0.00
-crewai                   0.6128      6         0.30        0.50      0.38
-css                      0.2500      2         0.11        0.50      0.18
-data science             0.3415      1         1.00        1.00      1.00
-django                   0.2500      3         0.12        0.33      0.18
-docker                   0.6986      13        0.57        0.62      0.59
-feature engineering      0.2500      1         0.00        0.00      0.00
-gcp                      0.4887      4         0.50        0.25      0.33
-genai                    0.6397      16        0.44        0.88      0.58
-git                      0.4677      23        0.47        0.74      0.58
-github                   0.6508      15        0.60        0.80      0.69
-go                       0.7928      7         0.67        0.57      0.62
-golang                   0.2500      1         0.00        0.00      0.00
-html                     0.2500      2         0.00        0.00      0.00
-hugging face             0.2500      3         0.05        0.33      0.08
-iot                      0.6474      2         1.00        1.00      1.00
-java                     0.5965      7         0.33        0.29      0.31
-javascript               0.6152      11        0.58        0.64      0.61
-kafka                    0.2500      3         0.00        0.00      0.00
-kubernetes               0.6785      13        0.67        0.62      0.64
-langchain                0.6554      24        0.69        0.83      0.75
-langgraph                0.6840      19        0.59        0.89      0.71
-linux                    0.9079      7         0.88        1.00      0.93
-llamaindex               0.7106      6         0.33        0.17      0.22
-llms                     0.6760      32        0.78        0.88      0.82
-mcp                      0.5828      4         0.31        1.00      0.47
-microservices            0.8040      5         1.00        1.00      1.00
-ml                       0.5987      28        0.68        0.89      0.77
-mlflow                   0.2500      1         0.00        0.00      0.00
-mlops                    0.7359      10        0.56        0.50      0.53
-mysql                    0.2500      2         0.00        0.00      0.00
-n8n                      0.2500      2         0.06        1.00      0.11
-nlp                      0.7955      9         0.40        0.22      0.29
-node.js                  0.2500      3         0.00        0.00      0.00
-numpy                    0.6755      6         0.67        0.67      0.67
-open source              0.5395      3         1.00        0.67      0.80
-openai                   0.7604      8         0.57        0.50      0.53
-openstack                0.6076      2         1.00        0.50      0.67
-pandas                   0.6740      9         0.71        0.56      0.62
-php                      0.2500      2         0.00        0.00      0.00
-postgresql               0.2500      1         0.00        0.00      0.00
-prompt engineering       0.7672      9         0.33        0.44      0.38
-python                   0.3132      65        0.92        0.94      0.93
-rag                      0.6810      18        0.54        0.83      0.65
-react                    0.6633      12        0.64        0.58      0.61
-redis                    0.2500      1         0.00        0.00      0.00
-rest                     0.6563      3         0.33        0.33      0.33
-rust                     0.3591      4         0.38        0.75      0.50
-scikit-learn             0.7334      8         0.67        0.75      0.71
-security                 0.2500      1         0.00        0.00      0.00
-spark                    0.2669      1         0.33        1.00      0.50
-sql                      0.4363      33        0.53        0.85      0.65
-system design            0.2500      4         0.11        0.50      0.18
-tensorflow/pytorch       0.5746      11        0.53        0.91      0.67
-terraform                0.2500      2         0.00        0.00      0.00
-typescript               0.6293      3         0.33        0.33      0.33
-ubuntu                   0.6308      3         0.38        1.00      0.55
-vectordb                 0.7130      14        0.52        0.86      0.65
-web services             0.3768      1         1.00        1.00      1.00
+.net                     0.5500      6         0.00        0.00      0.00
+a/b testing              0.7000      3         0.00        0.00      0.00
+agents                   0.8251      10        0.60        0.60      0.60
+agile                    0.7000      2         0.00        0.00      0.00
+ai                       0.5500      9         0.11        0.22      0.15
+airflow                  0.7919      7         1.00        0.29      0.44
+analytics                0.7000      1         0.00        0.00      0.00
+angular                  0.7000      1         0.00        0.00      0.00
+ansible                  0.7000      2         0.00        0.00      0.00
+apache spark             0.8114      3         0.75        1.00      0.86
+apis                     0.5035      36        0.67        0.94      0.78
+argocd                   0.7000      1         0.00        0.00      0.00
+asset data               0.7000      1         0.00        0.00      0.00
+audit logs               0.7000      1         0.00        0.00      0.00
+authentication           0.7000      2         0.00        0.00      0.00
+authorization            0.7000      3         0.00        0.00      0.00
+autogen                  0.7379      4         0.33        0.25      0.29
+automation               0.7000      1         0.00        0.00      0.00
+aws                      0.7318      25        0.79        0.44      0.56
+aws/azure                0.7701      19        0.73        0.84      0.78
+azure                    0.6955      15        0.67        0.67      0.67
+azure devops             0.7000      1         0.00        0.00      0.00
+backend                  0.7000      4         0.00        0.00      0.00
+bash                     0.7000      1         0.00        0.00      0.00
+bigquery                 0.7000      2         0.00        0.00      0.00
+c                        0.7000      1         0.00        0.00      0.00
+c#                       0.5500      5         0.00        0.00      0.00
+c++                      0.7399      5         0.57        0.80      0.67
+ceph                     0.7000      1         0.00        0.00      0.00
+ci/cd                    0.5762      27        0.50        0.63      0.56
+clean architecture       0.7000      1         0.00        0.00      0.00
+clojure                  0.7000      2         0.00        0.00      0.00
+cloud                    0.7000      1         0.00        0.00      0.00
+cloud apis               0.7000      1         0.00        0.00      0.00
+cloud computing          0.7000      1         0.00        0.00      0.00
+cloud environments       0.7000      1         0.00        0.00      0.00
+coding                   0.7000      1         0.00        0.00      0.00
+compliance               0.7000      1         0.00        0.00      0.00
+containers               0.7000      1         0.00        0.00      0.00
+crewai                   0.6276      6         0.50        0.67      0.57
+css                      0.7000      1         0.00        0.00      0.00
+customer relationship management0.7000      1         0.00        0.00      0.00
+data analysis            0.7000      1         0.00        0.00      0.00
+data engineering         0.7000      1         0.25        1.00      0.40
+data pipelines           0.7000      2         0.00        0.00      0.00
+data processing          0.7000      1         0.00        0.00      0.00
+data science             0.7000      2         0.00        0.00      0.00
+databases                0.7000      2         0.00        0.00      0.00
+databricks               0.9062      8         1.00        0.62      0.77
+dbt                      0.7557      4         1.00        0.50      0.67
+delta lake               0.7626      4         1.00        1.00      1.00
+devops                   0.7000      1         0.00        0.00      0.00
+devsecops                0.7000      1         0.00        0.00      0.00
+django                   0.7000      2         0.00        0.00      0.00
+docker                   0.6182      19        0.35        0.47      0.40
+elasticsearch            0.8901      2         1.00        0.50      0.67
+elt                      0.7000      3         0.00        0.00      0.00
+endpoint data            0.7000      1         0.00        0.00      0.00
+etl                      0.7667      6         0.50        0.33      0.40
+excel                    0.7000      2         0.00        0.00      0.00
+experimentation          0.7130      5         0.50        0.80      0.62
+fastapi                  0.7000      3         0.00        0.00      0.00
+feature engineering      0.7000      1         0.00        0.00      0.00
+financial modeling       0.7000      2         0.00        0.00      0.00
+flink                    0.7000      2         0.00        0.00      0.00
+frontend                 0.7000      3         0.00        0.00      0.00
+full-stack               0.7000      2         0.00        0.00      0.00
+gcp                      0.7979      13        1.00        0.54      0.70
+genai                    0.5966      18        0.40        0.94      0.57
+git                      0.4759      32        0.32        0.78      0.46
+github                   0.4833      26        0.32        0.62      0.42
+github actions           0.8403      1         1.00        1.00      1.00
+gitlab                   0.7000      1         0.00        0.00      0.00
+gitops                   0.7000      1         0.00        0.00      0.00
+go                       0.7082      20        0.62        0.40      0.48
+golang                   0.7000      3         0.00        0.00      0.00
+google cloud             0.7000      4         0.00        0.00      0.00
+google sheets            0.7000      2         0.00        0.00      0.00
+grafana                  0.7000      2         0.00        0.00      0.00
+graphql                  0.7000      2         0.00        0.00      0.00
+hadoop                   0.7980      4         1.00        1.00      1.00
+helm                     0.9144      3         1.00        0.33      0.50
+hex                      0.7000      1         0.00        0.00      0.00
+html                     0.7000      1         0.00        0.00      0.00
+hugging face             0.7000      1         0.00        0.00      0.00
+identity saas            0.7000      1         0.00        0.00      0.00
+infrastructure           0.7000      3         0.00        0.00      0.00
+infrastructure as code   0.7000      2         0.00        0.00      0.00
+iot                      0.7000      4         0.00        0.00      0.00
+java                     0.6315      19        0.53        0.47      0.50
+javascript               0.5599      16        0.36        0.81      0.50
+jenkins                  0.7000      1         0.00        0.00      0.00
+jira                     0.7000      3         0.00        0.00      0.00
+kafka                    0.6430      9         0.62        0.56      0.59
+kotlin                   0.7000      4         0.00        0.00      0.00
+kubeflow                 0.7000      1         0.00        0.00      0.00
+kubernetes               0.6037      20        0.57        0.60      0.59
+langchain                0.8634      15        0.71        0.67      0.69
+langgraph                0.8354      14        0.64        0.64      0.64
+linux                    0.7344      12        0.90        0.75      0.82
+llamaindex               0.7000      2         0.00        0.00      0.00
+llms                     0.4936      39        0.72        0.85      0.78
+looker                   0.5632      7         0.33        0.57      0.42
+machine learning         0.4201      20        0.48        1.00      0.65
+mcp                      0.5591      7         0.57        0.57      0.57
+microservices            0.8986      7         1.00        0.43      0.60
+microsoft azure          0.7000      1         0.00        0.00      0.00
+ml                       0.4748      30        0.61        1.00      0.76
+mlflow                   0.5545      6         0.67        0.67      0.67
+mlops                    0.7129      11        0.42        0.45      0.43
+model training           0.7000      1         0.00        0.00      0.00
+mongodb                  0.7000      1         0.00        0.00      0.00
+mysql                    0.7000      3         0.00        0.00      0.00
+n8n                      0.7000      2         0.00        0.00      0.00
+networking               0.7000      1         0.25        1.00      0.40
+next.js                  0.7000      1         0.00        0.00      0.00
+nlp                      0.8526      10        0.57        0.40      0.47
+node.js                  0.8750      4         1.00        0.75      0.86
+nosql                    0.7000      1         0.00        0.00      0.00
+numpy                    0.6312      6         0.57        0.67      0.62
+observability            0.7000      1         0.00        0.00      0.00
+open source              0.7000      1         0.00        0.00      0.00
+openai                   0.7506      8         1.00        0.62      0.77
+openstack                0.7000      1         0.00        0.00      0.00
+oracle                   0.7000      1         0.00        0.00      0.00
+pandas                   0.5598      12        0.47        0.58      0.52
+performance optimization 0.7000      1         0.00        0.00      0.00
+php                      0.7000      1         0.00        0.00      0.00
+postgresql               0.7000      3         0.00        0.00      0.00
+power bi                 0.7000      3         0.00        0.00      0.00
+powerbi                  0.7000      1         0.00        0.00      0.00
+production-grade systems 0.7000      1         0.00        0.00      0.00
+prometheus               0.7000      2         0.00        0.00      0.00
+prompt engineering       0.7799      12        0.40        0.50      0.44
+public cloud             0.7000      1         0.00        0.00      0.00
+python                   0.2727      113       0.78        0.98      0.87
+pytorch                  0.7000      4         0.00        0.00      0.00
+r                        0.7000      2         0.11        0.50      0.18
+rabbitmq                 0.7000      2         0.00        0.00      0.00
+rag                      0.8275      15        0.71        0.67      0.69
+react                    0.5957      22        0.61        0.77      0.68
+react native             0.7000      2         0.00        0.00      0.00
+redis                    0.7000      1         0.00        0.00      0.00
+rest                     0.6065      11        0.75        0.27      0.40
+rust                     0.5500      5         0.00        0.00      0.00
+salesforce               0.7000      2         0.00        0.00      0.00
+sap                      0.7000      1         0.00        0.00      0.00
+scala                    0.5923      5         0.50        0.80      0.62
+scikit-learn             0.6312      13        0.62        0.62      0.62
+sdks                     0.7000      1         0.00        0.00      0.00
+security                 0.8242      16        0.64        0.44      0.52
+security telemetry       0.7904      1         1.00        1.00      1.00
+serverless               0.7000      3         0.00        0.00      0.00
+shell scripting          0.7000      1         0.00        0.00      0.00
+snowflake                0.7880      5         0.40        0.40      0.40
+soap                     0.7000      2         0.00        0.00      0.00
+spark                    0.6983      9         0.88        0.78      0.82
+spring                   0.7000      2         0.00        0.00      0.00
+spring boot              0.7000      3         0.00        0.00      0.00
+sql                      0.4140      63        0.62        0.94      0.75
+statistics               0.8821      10        1.00        0.40      0.57
+system design            0.7000      1         0.00        0.00      0.00
+systems engineering      0.7000      1         0.00        0.00      0.00
+tableau                  0.6185      10        0.31        0.50      0.38
+temporal                 0.7000      1         0.00        0.00      0.00
+tensorflow               0.7000      4         0.00        0.00      0.00
+tensorflow/pytorch       0.8085      12        0.82        0.75      0.78
+terraform                0.6683      7         0.71        0.71      0.71
+time series              0.7000      3         0.00        0.00      0.00
+typescript               0.7430      10        0.58        0.70      0.64
+ubuntu                   0.7452      4         0.50        0.75      0.60
+vectordb                 0.7589      10        0.56        0.90      0.69
+vue                      0.7000      1         0.00        0.00      0.00
+web services             0.7000      1         0.00        0.00      0.00
+wordpress                0.7000      1         0.00        0.00      0.00
 
-Micro-F1: 0.534 | Macro-F1: 0.357
-Hamming Loss: 0.1056
-Jaccard Micro: 0.364
-Jaccard Macro: 0.274
-Precision@3: 0.651 | Precision@5: 0.561
+Micro-F1: 0.583 | Macro-F1: 0.184
+Hamming Loss: 0.0286
+Jaccard Micro: 0.412
+Jaccard Macro: 0.140
+Precision@3: 0.569 | Precision@5: 0.491
 
 === BASELINE ===
-Baseline Micro-F1: 0.360
-Baseline Macro-F1: 0.033
+Baseline Micro-F1: 0.244
+Baseline Macro-F1: 0.006
 
 VERDICT
-Constrained per-skill thresholds did not improve over the global 0.65 threshold on this evaluation split.
+Constrained per-skill thresholds improve over the global 0.65 threshold.
 SBERT meaningfully beats the naive baseline.
