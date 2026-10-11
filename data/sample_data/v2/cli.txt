@@ -1,0 +1,99 @@
+ Job Description Provided : 
+Python as primary language. Microsoft Azure required as the primary cloud platform.     Hands-on experience building with Azure AI Foundry.     Claude Code 
+experience and expertise required, including hands-on development of skills and plugins on the platform.     This is non-negotiable for the role. LangGraph 
+experience required.     Demonstrated ability to design state graphs, conditional edges, and multi-agent compositions.     Model Context Protocol experience 
+required.     Comfortable designing tool calls and building protocol wrappers.     Agentic pair programming with generative AI as the primary working mode.    
+Prior experience is required.     Pydantic for data validation and structured outputs across agent systems and APIs.     SQL proficiency and PostgreSQL 
+experience. Vector database experience (pgvector, Azure AI Search, or similar).     Familiarity with modern data platforms such as Snowflake and Databricks.   
+Multi-step agent systems with proper evaluation and validation.     Strong fluency across modern frontier language models such as the GPT, Claude, and Gemini 
+model families.     Model selection is driven by the requirements of each task and the practical considerations of cost.     The discipline to choose mature, 
+proven frameworks for AI engineering work.     Technical decisions are grounded in clear engineering justification and supported by data.     Docker and 
+containerization for development and deployment workflows.     FastAPI or equivalent web frameworks for building APIs and backend services.     Working 
+knowledge of GitHub workflows, code review discipline, and infrastructure-as-code patterns
+
+  │  JOB DESCRIPTION PROVIDED                                                                                            │                                    
+  │  Python as primary language. Microsoft Azure required as the primary cloud platform.     Hands-on experience         │                                    
+  │  building wit…                                                                                                       │                                    
+  │                                                                                                                      │                                    
+  │  Role:  AI Engineer                                                                                                  │                                    
+  │  Type:  Junior                                                                                                       │                                ▇▇  
+  │  Mode:  API                                                                                                          │                                    
+  │                                                                                                                      │                                    
+  │  TOP SKILLS                                                                                                          │                                    
+  │                                                                                                                      │                                    
+  │  Skill confidence                                                                                                    │                                    
+  │                                                                                                                      │                                    
+  │  GitHub                  ████████████████████  100.0%                                                                │                                    
+  │  Prompt Engineering      ████████████████████  100.0%                                                                │                                    
+  │  Agents                  ███████████████████░   95.0%                                                                │                                    
+  │  GenAI                   ███████████████████░   95.0%                                                                │                                    
+  │  Python                  ███████████████████░   95.0%                                                                │                                    
+  │  VectorDB                ███████████████████░   95.0%                                                                │                                    
+  │  LLMs                    ███████████████████░   92.7%                                                                │                                    
+  │  RAG                     ██████████████████░░   91.7%                                                                │                                    
+  │  AWS/Azure               ██████████████████░░   91.5%                                                                │                                    
+  │  Docker                  ██████████████████░░   90.0%                                                                │                                    
+  │  MCP                     ██████████████████░░   88.9%                                                                │                                    
+  │  Git                     ██████████████████░░   88.4%                                                                │                                    
+  │  CI/CD                   █████████████████░░░   86.1%                                                                │                                    
+  │  OpenAI                  █████████████████░░░   83.7%                                                                │                                    
+  │  APIs                    ████████████████░░░░   81.6%                                                                │                                ▃▃  
+  │  SQL                     ████████████████░░░░   80.5%                                                                │
+
+
+Java Backend Developer with AWS CloudExperience: 5+ YearsLocation: Trivandrum (TCS Office)Interview Mode: 
+Face-to-Face (TCS Walk-in Drive)
+Job Description
+We are looking for an experienced Java Backend Developer with strong AWS Cloud expertise to join our team.
+The ideal candidate should have hands-on experience in designing, developing, and deploying scalable backend
+applications using Java and cloud-native technologies.Key Responsibilities
+Design, develop, and maintain enterprise-grade backend applications using Java technologies.
+Develop RESTful APIs and microservices-based applications.
+Build and deploy cloud-native applications on AWS.
+Collaborate with cross-functional teams to define and deliver technical solutions.
+Optimize application performance, scalability, and security.
+Troubleshoot and resolve production issues.
+Participate in code reviews and follow best development practices.
+Required Skills
+5+ years of experience in Java backend development.
+Strong expertise in Java 8/11/17, Spring Boot, Spring MVC.
+Hands-on experience with Microservices Architecture.
+Strong knowledge of REST APIs and backend integration.
+Experience with AWS Services:
+EC2
+S3
+Lambda
+RDS
+CloudWatch
+SNS/SQS
+API Gateway
+IAM
+Knowledge of Docker and Kubernetes.
+Experience with Git, Maven, Jenkins, CI/CD pipelines.
+Strong understanding of SQL databases (MySQL/PostgreSQL) and NoSQL databases.
+Good understanding of design patterns and software development best practices.
+Preferred Skills
+Experience in Agile/Scrum methodology.
+Exposure to Terraform or CloudFormation.
+AWS Certification is an added advantage.
+Educational Qualification
+BE/B.Tech/MCA or equivalent degree in Computer Science or related field.
+
+keys :
+Java, AWS/Azure, APIs, Docker, Kubernetes, Git, CI/CD, SQL, Terraform
+(9)
+
+  │  AWS/Azure               ███████████████████░   95.0%                                                                │                                    
+  │  CI/CD                   ███████████████████░   95.0%                                                                │                                    
+  │  Docker                  ███████████████████░   95.0%                                                                │                                    
+  │  Git                     ███████████████████░   94.1%                                                                │                                    
+  │  Kubernetes              ███████████████████░   93.7%                                                                │                                    
+  │  Java                    ██████████████████░░   89.3%                                                                │                                    
+  │  terraform               ██████████████████░░   89.1%                                                                │                                    
+  │  SQL                     █████████████████░░░   87.4%                                                                │                                    
+  │  security                ███████████████░░░░░   76.2%                                                                │                                    
+  │  APIs                    ██████████████░░░░░░   68.1%                                                                │                                    
+  │  Python                  ████████████░░░░░░░░   61.4%  
+
+predicted :
+Java, AWS/Azure, APIs, Docker, Kubernetes, Git, CI/CD, SQL, Terraform
