@@ -33,12 +33,26 @@ Role :
 Type : 
     Junior
 
-Keys to be predicted (15):
-    Python, LLMs, LangGraph, MCP, GenAI, VectorDB, SQL, APIs, Docker, Agents, Github, CI/CD, Git, AWS/Azure, Prompt Engineering
+Keys to be predicted :
+    Python, LLMs, MCP, GenAI, OpenAI, VectorDB, SQL, APIs, Docker, Agents, Github, CI/CD, Git, AWS/Azure, Prompt Engineering
+    (15)  
 
-Keys with less score (< 0.3):
-    CI/CD
-    (1/15)
+keys predicted :
+    Python, LLMs, MCP, GenAI, OpenAI, VectorDB, SQL, APIs, Docker, Agents, Github, CI/CD, Git, AWS/Azure, Prompt Engineering             
+    (15/15)
+
+keys predicted extra :
+    RAG
+    (1)   
+
+keys hallucinated extra :
+    NULL
+    (0)
+
+Keys not predicted :
+    NULL
+    (0/15)
 
 Accuracy (recall):
-    (14/15) * 100 = 93.34%
+    (15/15) * 100 = 100.00% [Predicted Recall]
+    (16/16) * 100 = 100.00% [Generalization Recall]
