@@ -7,8 +7,8 @@
   "hidden_dim": 64,
   "dropout": 0.3,
   "batch_size": 32,
-  "epochs": 690,
-  "best_test_loss": 0.3536243430773417,
-  "classifier_pt_sha256": "88dccefa46744797f2c581edef201639f91a7e802662d6672fe0c3ce6ebc3e05",
-  "classifier_npz_sha256": "653c726af281e1deffd9879c517b4d99dad63aaaa288fff6d2fb3aebdc467af4"
+  "epochs": 810,
+  "best_test_loss": 0.3531332806746165,
+  "classifier_pt_sha256": "ebff3c4a4d76f8647667ca6034d17e4c07e87bd345d915dab0be2fe0e4a98940",
+  "classifier_npz_sha256": "63eae183c9a84ff7fc261963397e761e957736dbbeed8856ca36c4e8c6d18a65"
 }
