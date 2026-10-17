@@ -10,7 +10,7 @@ import numpy as np
 import onnxruntime as ort
 from huggingface_hub import hf_hub_download
 from tokenizers import Tokenizer
-from .token_override import apply_token_matching_override
+from .token_override import apply_token_matching_override, detect_exact_keyword_matches
 
 try:
     from model.prep.sym_map import canonicalize_skill_text
@@ -570,16 +570,19 @@ def _apply_core_domain_guard(probabilities, label_vocab, raw_job_descs):
     return probabilities
 
 
-def _apply_hybrid_token_override(probabilities, label_vocab, job_desc):
-    """Apply deterministic lexical matching after SBERT classification."""
+def _apply_hybrid_token_override(probabilities, label_vocab, job_desc, thresholds, exact_matches=None):
+    """Apply precomputed exact-keyword matches after SBERT produces scores."""
     if os.getenv("SBERT_TOKEN_OVERRIDE", "true").strip().lower() in {"0", "false", "no"}:
         return probabilities
 
     for index in range(probabilities.shape[0]):
+        raw_text = str(job_desc[index] if isinstance(job_desc, list) else job_desc or "")
         updated, _matches = apply_token_matching_override(
             probabilities[index],
             label_vocab,
-            canonicalize_skill_text(job_desc[index] if isinstance(job_desc, list) else job_desc),
+            raw_text,
+            thresholds=thresholds,
+            matched_labels=exact_matches[index] if exact_matches is not None else None,
         )
         probabilities[index] = updated
     return probabilities
@@ -601,9 +604,16 @@ def JobAnalyze_v2_SBERT_batch(job_descs, role="", job_type="", top_k=50):
     results = []
 
     for start in range(0, len(texts), BATCH_SIZE):
+        batch_descs = job_descs[start:start + BATCH_SIZE]
+        # Run deterministic regex extraction first, against the unmodified JD.
+        # SBERT then scores contextual/abstract skills; lexical hits are applied
+        # to its score vector using each label's calibrated threshold.
+        exact_matches = [
+            detect_exact_keyword_matches(label_vocab, str(description or ""))
+            for description in batch_descs
+        ]
         embeddings = _encode_embeddings(texts[start:start + BATCH_SIZE], tokenizer, session)
         probabilities = _classifier_predict(embeddings, weights)
-        batch_descs = job_descs[start:start + BATCH_SIZE]
         probabilities = _apply_deterministic_fallbacks(
             probabilities,
             label_vocab,
@@ -614,6 +624,8 @@ def JobAnalyze_v2_SBERT_batch(job_descs, role="", job_type="", top_k=50):
             probabilities,
             label_vocab,
             batch_descs,
+            thresholds,
+            exact_matches=exact_matches,
         )
         probabilities = _apply_core_domain_guard(
             probabilities,
