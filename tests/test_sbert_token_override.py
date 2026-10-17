@@ -1,10 +1,8 @@
 import numpy as np
 
 from api.JobAnalyze.v2.token_override import (
-    GENERIC_MATCH_BOOST,
-    MAX_LEXICAL_PROBABILITY,
-    SPECIFIC_MATCH_BOOST,
     apply_token_matching_override,
+    detect_exact_keyword_matches,
     skill_is_explicitly_present,
 )
 
@@ -12,6 +10,8 @@ from api.JobAnalyze.v2.token_override import (
 def test_exact_tokens_are_case_insensitive():
     assert skill_is_explicitly_present("sql", "Experience with SQL and FastAPI.")
     assert skill_is_explicitly_present("fastapi", "Built services with FastAPI.")
+    assert skill_is_explicitly_present("jmeter", "Performance testing with JMeter.")
+    assert skill_is_explicitly_present("figma", "Designs created in Figma.")
 
 
 def test_substrings_inside_words_do_not_match():
@@ -20,63 +20,49 @@ def test_substrings_inside_words_do_not_match():
     assert not skill_is_explicitly_present("c", "Experience with cloud systems.")
 
 
-def test_specific_match_is_a_boost_not_a_hard_one():
-    labels = ["python", "sql", "fastapi", "git"]
-    probabilities = np.array([0.91, 0.12, 0.03, 0.08], dtype=np.float32)
+def test_exact_keyword_layer_detects_tools_but_not_abstract_skills():
+    labels = ["python", "jmeter", "figma", "git", "fastapi", "system design", "agile development"]
+    matches = detect_exact_keyword_matches(
+        labels,
+        "Use Python, JMeter, Figma, Git and FastAPI. Strong system design and agile development skills.",
+    )
+    assert matches == ["fastapi", "figma", "git", "jmeter", "python"]
+
+
+def test_exact_matches_are_promoted_above_their_calibrated_threshold():
+    labels = ["python", "jmeter", "figma", "git"]
+    probabilities = np.array([0.91, 0.02, 0.03, 0.08], dtype=np.float32)
+    thresholds = np.array([0.50, 0.65, 0.70, 0.60], dtype=np.float32)
 
     updated, matched = apply_token_matching_override(
         probabilities,
         labels,
-        "Build FastAPI services, write SQL queries, and use Git.",
+        "JMeter, Figma and Git are explicitly required.",
+        thresholds=thresholds,
     )
 
-    assert matched == ["sql", "fastapi", "git"]
+    assert matched == ["figma", "git", "jmeter"]
     assert updated[0] == probabilities[0]
-    assert 0.12 < updated[1] <= MAX_LEXICAL_PROBABILITY
-    assert 0.03 < updated[2] <= MAX_LEXICAL_PROBABILITY
-    assert 0.08 < updated[3] <= MAX_LEXICAL_PROBABILITY
-    assert np.all(updated <= MAX_LEXICAL_PROBABILITY)
-    assert np.all(updated < 1.0)
+    assert updated[1] > thresholds[1]
+    assert updated[2] > thresholds[2]
+    assert updated[3] > thresholds[3]
+    assert np.all(updated <= 1.0)
 
 
-def test_generic_match_gets_smaller_boost():
-    labels = ["cloud", "fastapi"]
-    probabilities = np.array([0.10, 0.10], dtype=np.float32)
-
-    updated, matched = apply_token_matching_override(
-        probabilities,
-        labels,
-        "Cloud deployment uses FastAPI.",
-    )
-
-    assert matched == ["cloud", "fastapi"]
-    assert np.isclose(
-        updated[0],
-        0.10 + (1.0 - 0.10) * GENERIC_MATCH_BOOST,
-        atol=1e-6,
-    )
-    assert np.isclose(
-        updated[1],
-        0.10 + (1.0 - 0.10) * SPECIFIC_MATCH_BOOST,
-        atol=1e-6,
-    )
-    assert updated[1] > updated[0]
-
-
-def test_override_can_promote_a_skill_into_top_k():
-    labels = ["python", "sql", "fastapi"]
-    probabilities = np.array([0.99, 0.01, 0.02], dtype=np.float32)
+def test_semantic_only_labels_are_not_forced_by_exact_layer():
+    labels = ["system design", "agile development", "infrastructure operations"]
+    probabilities = np.array([0.2, 0.3, 0.1], dtype=np.float32)
+    thresholds = np.array([0.6, 0.6, 0.6], dtype=np.float32)
 
     updated, matched = apply_token_matching_override(
         probabilities,
         labels,
-        "SQL is explicitly required.",
+        "System design, agile development and infrastructure operations.",
+        thresholds=thresholds,
     )
 
-    ranked = sorted(zip(labels, updated), key=lambda item: -float(item[1]))
-    assert matched == ["sql"]
-    assert ranked[0][0] == "python"
-    assert updated[1] > 0.01
+    assert matched == []
+    assert np.array_equal(updated, probabilities)
 
 
 def test_empty_or_unmatched_text_leaves_scores_unchanged():
