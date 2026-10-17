@@ -100,6 +100,7 @@ def apply_token_matching_override(
     text: str,
     thresholds: np.ndarray | list[float] | None = None,
     margin: float = EXACT_MATCH_MARGIN,
+    matched_labels: list[str] | None = None,
 ) -> tuple[np.ndarray, list[str]]:
     """Promote exact lexical hits above their own calibrated threshold.
 
@@ -124,7 +125,7 @@ def apply_token_matching_override(
             f"Threshold/vocabulary mismatch: {threshold_values.shape} vs {scores.shape}."
         )
 
-    matches = detect_exact_keyword_matches(label_vocab, text)
+    matches = matched_labels if matched_labels is not None else detect_exact_keyword_matches(label_vocab, text)
     index_by_label = {str(label): index for index, label in enumerate(label_vocab)}
     for label in matches:
         index = index_by_label[label]
