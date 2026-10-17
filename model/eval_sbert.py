@@ -25,8 +25,8 @@ THRESHOLD_FILE = ROOT / "model_out" / "v2_sentence_transformer" / "per_skill_thr
 # Safety constraints against low-confidence/noisy skill guesses.
 MIN_PRECISION = 0.30
 MIN_THRESHOLD = 0.25
-RARE_SUPPORT_CUTOFF = 3
-RARE_SUPPORT_FLOOR = 0.15
+RARE_SUPPORT_CUTOFF = 5
+RARE_LABEL_THRESHOLD = 0.25
 
 
 def precision_at_k(y_true, probs, k):
@@ -42,6 +42,8 @@ def main():
     idx_test = data["idx_test"].astype(int)
     X_test = embeddings[idx_test]
     y_test = data["y_test"].astype(int)
+    support_parts = [data[key].astype(int) for key in ("y_train", "y_val", "y_test") if key in data]
+    dataset_supports = np.sum(support_parts, axis=0).astype(int)
 
     with LABEL_FILE.open(encoding="utf-8") as f:
         vocab = json.load(f)
@@ -60,8 +62,8 @@ def main():
         probs,
         min_precision=MIN_PRECISION,
         min_threshold=MIN_THRESHOLD,
-        rare_support_cutoff=RARE_SUPPORT_CUTOFF,
-        rare_support_floor=RARE_SUPPORT_FLOOR,
+        dataset_supports=dataset_supports,
+        rare_label_threshold=RARE_LABEL_THRESHOLD,
         on_infeasible="disable",
     )
     # An infeasible label is explicitly disabled with a threshold > 1.0.
@@ -81,12 +83,14 @@ def main():
     preds = (probs >= thresholds[None, :]).astype(int)
 
     threshold_payload = {
-        "method": "exact_per_skill_f1_with_strict_precision_constraint",
+        "method": "support_gated_per_skill_f1_with_fixed_rare_label_baseline",
         "metric": "binary_f1",
         "min_precision": MIN_PRECISION,
         "min_threshold": MIN_THRESHOLD,
         "rare_support_cutoff": RARE_SUPPORT_CUTOFF,
-        "rare_support_floor": RARE_SUPPORT_FLOOR,
+        "rare_label_threshold": RARE_LABEL_THRESHOLD,
+        "rare_label_policy": "dataset support <= 5 bypasses optimization and uses fixed 0.25 threshold",
+        "dataset_support": {label: int(support) for label, support in zip(vocab, dataset_supports)},
         "infeasible_policy": "disable",
         "disabled_labels": [vocab[int(i)] for i in disabled_labels],
         "prediction_rule": "probability >= skill-specific threshold; disabled labels use >1.0",
@@ -124,7 +128,7 @@ def main():
     print(f"Embedding shape: {X_test.shape}")
     print(f"Minimum precision constraint: {MIN_PRECISION:.2f}")
     print(f"Minimum threshold floor: {MIN_THRESHOLD:.2f}")
-    print(f"Rare-label floor (support <= {RARE_SUPPORT_CUTOFF}): {RARE_SUPPORT_FLOOR:.2f}")
+    print(f"Rare-label fixed threshold (dataset support <= {RARE_SUPPORT_CUTOFF}): {RARE_LABEL_THRESHOLD:.2f}")
     print(f"Infeasible labels disabled: {len(disabled_labels)}")
     if disabled_labels.size:
         print("Disabled labels:", ", ".join(vocab[int(i)] for i in disabled_labels))
