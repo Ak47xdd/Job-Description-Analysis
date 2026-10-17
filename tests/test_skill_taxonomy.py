@@ -2,7 +2,7 @@ from model.prep.sym_map import CANONICAL_LABEL_MAP, TAXONOMY_VERSION, canonicali
 
 
 def test_taxonomy_version_is_explicit():
-    assert TAXONOMY_VERSION == "v3-canonical-buckets"
+    assert TAXONOMY_VERSION == "v4-parent-buckets"
 
 
 def test_aliases_share_canonical_buckets():
@@ -39,3 +39,35 @@ def test_nlp_full_phrase_canonicalizes_to_first_class_label():
     )
     assert "nlp" in text
     assert "natural language processing" not in text
+
+
+
+def test_dotnet_framework_variants_collapse_to_parent_label():
+    from model.prep.data_prep import normalizer
+
+    labels = normalizer(".NET, .NET Core, ASP.NET Core, ASP.NET, .NET Framework")
+    assert labels == [".net"]
+
+
+def test_ai_ml_variants_collapse_to_parent_label():
+    from model.prep.data_prep import normalizer
+
+    labels = normalizer("AI, AI/ML, machine learning, ML, artificial intelligence")
+    assert labels == ["ai/ml"]
+
+
+def test_ai_ml_text_canonicalization_uses_parent_bucket():
+    text = canonicalize_skill_text(
+        "Experience in AI, machine learning, ASP.NET Core and .NET Core."
+    )
+    assert "ai/ml" in text
+    assert "machine learning" not in text
+    assert "asp.net core" not in text
+    assert ".net core" not in text
+    assert ".net" in text
+
+
+def test_agent_frameworks_remain_distinct_labels():
+    # These are different tools, not synonyms for the generic agent category.
+    assert "langchain" not in CANONICAL_LABEL_MAP
+    assert "langgraph" not in CANONICAL_LABEL_MAP
