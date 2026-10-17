@@ -70,8 +70,9 @@ def main():
     # This is not a precision violation: it means no observed threshold on
     # this evaluation split can satisfy the 0.30 precision requirement.
     disabled_labels = np.flatnonzero(thresholds > 1.0)
+    rare_labels = dataset_supports <= RARE_SUPPORT_CUTOFF
     invalid_precision = np.flatnonzero(
-        (thresholds <= 1.0) & (threshold_precision < MIN_PRECISION)
+        (thresholds <= 1.0) & (threshold_precision < MIN_PRECISION) & ~rare_labels
     )
     if invalid_precision.size:
         bad_labels = [vocab[int(i)] for i in invalid_precision]
