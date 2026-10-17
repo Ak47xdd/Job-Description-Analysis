@@ -42,8 +42,22 @@ def main():
     idx_test = data["idx_test"].astype(int)
     X_test = embeddings[idx_test]
     y_test = data["y_test"].astype(int)
-    support_parts = [data[key].astype(int) for key in ("y_train", "y_val", "y_test") if key in data]
-    dataset_supports = np.sum(support_parts, axis=0).astype(int)
+    # Splits have different row counts, so sum positive counts per label first
+    # rather than asking NumPy to stack arrays with different shapes. The current
+    # prepared dataset contains train/test splits; include y_val if a future split
+    # artifact provides it.
+    split_keys = [key for key in ("y_train", "y_val", "y_test") if key in data]
+    if not split_keys:
+        raise ValueError(f"No label split arrays found in {SPLIT_FILE}")
+    dataset_supports = np.zeros(data[split_keys[0]].shape[1], dtype=np.int64)
+    for key in split_keys:
+        split_labels = np.asarray(data[key])
+        if split_labels.ndim != 2 or split_labels.shape[1] != dataset_supports.shape[0]:
+            raise ValueError(
+                f"Inconsistent label split {key}: expected (*, {dataset_supports.shape[0]}), "
+                f"got {split_labels.shape}"
+            )
+        dataset_supports += np.sum(split_labels > 0, axis=0, dtype=np.int64)
 
     with LABEL_FILE.open(encoding="utf-8") as f:
         vocab = json.load(f)
