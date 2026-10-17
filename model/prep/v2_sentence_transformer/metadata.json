@@ -1,11 +1,11 @@
 {
   "model_name": "all-MiniLM-L6-v2",
   "embedding_dimension": 384,
-  "num_samples": 747,
+  "num_samples": 1742,
   "normalize_embeddings": true,
   "batch_size": 32,
   "source_csv": "C:\\Portfolio-Projects\\Job-Description-Analysis\\data\\clean\\v2\\cleaned_job_descriptions_v2.csv",
-  "source_csv_sha256": "2834c71e7ed44f17a55551c84b6fc8b370fe4a1c7e72f14313cdd3a6606dca17",
+  "source_csv_sha256": "58131f4cabd50f37a307bd097d14d3bf8a5f10e09195a691cfbbd351e16b232d",
   "input_format": "Role + Job type + Job description",
   "skill_taxonomy_version": "v3-canonical-buckets"
 }
