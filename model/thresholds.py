@@ -44,6 +44,8 @@ def best_threshold(
     established_support_floor: float = 0.40,
     zero_f1_fallback_thresholds: tuple[float, ...] = (0.50, 0.45, 0.40),
     on_infeasible: str = "raise",
+    dataset_support: int | None = None,
+    rare_label_threshold: float = 0.25,
 ) -> tuple[float, float, float]:
     """Find a threshold whose measured precision satisfies min_precision.
 
@@ -79,6 +81,25 @@ def best_threshold(
         raise ValueError('on_infeasible must be "raise" or "disable"')
 
     positives = int(y_true.sum())
+    if not 0.0 <= rare_label_threshold <= 1.0:
+        raise ValueError("rare_label_threshold must be between 0 and 1")
+    # Rare-label policy is based on the full dataset's support, not only the
+    # evaluation split. For support <= 5, bypass optimization and use a fixed
+    # conservative baseline; report metrics at that fixed threshold.
+    support_for_policy = positives if dataset_support is None else int(dataset_support)
+    if support_for_policy < 0:
+        raise ValueError("dataset_support must be non-negative")
+    if support_for_policy <= 5:
+        fixed_pred = scores >= rare_label_threshold
+        fixed_count = int(fixed_pred.sum())
+        fixed_tp = int(np.logical_and(fixed_pred, y_true).sum())
+        fixed_fp = fixed_count - fixed_tp
+        fixed_fn = positives - fixed_tp
+        fixed_precision = fixed_tp / fixed_count if fixed_count else 0.0
+        fixed_denom = 2 * fixed_tp + fixed_fp + fixed_fn
+        fixed_f1 = (2.0 * fixed_tp / fixed_denom) if fixed_denom else 0.0
+        return float(rare_label_threshold), float(fixed_f1), float(fixed_precision)
+
     effective_min_threshold = (
         max(min_threshold, rare_support_floor)
         if support_aware and positives <= rare_support_cutoff
@@ -204,12 +225,19 @@ def optimize_per_label_thresholds(
     rare_support_cutoff: int = 3,
     rare_support_floor: float = 0.15,
     on_infeasible: str = "raise",
+    dataset_supports: np.ndarray | None = None,
+    rare_label_threshold: float = 0.25,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Optimize every label independently under precision/floor constraints."""
     y_true = np.asarray(y_true)
     scores = np.asarray(scores)
     if y_true.ndim != 2 or scores.ndim != 2 or y_true.shape != scores.shape:
         raise ValueError("y_true and scores must be 2D arrays with identical shapes")
+
+    if dataset_supports is not None:
+        dataset_supports = np.asarray(dataset_supports, dtype=np.int64)
+        if dataset_supports.shape != (scores.shape[1],):
+            raise ValueError("dataset_supports must have one count per label")
 
     thresholds = np.empty(scores.shape[1], dtype=np.float64)
     best_f1 = np.empty(scores.shape[1], dtype=np.float64)
@@ -232,6 +260,8 @@ def optimize_per_label_thresholds(
             rare_support_cutoff=rare_support_cutoff,
             rare_support_floor=rare_support_floor,
             on_infeasible=on_infeasible,
+            dataset_support=(int(dataset_supports[label_idx]) if dataset_supports is not None else None),
+            rare_label_threshold=rare_label_threshold,
         )
 
     return thresholds, best_f1, best_precision
