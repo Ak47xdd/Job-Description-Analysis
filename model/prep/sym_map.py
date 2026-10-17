@@ -2,7 +2,7 @@
 sym_map.py - All synonyms for the TF-IDF Vectorizer
 """
 
-TAXONOMY_VERSION = "v3-canonical-buckets"
+TAXONOMY_VERSION = "v4-parent-buckets"
 
 SYNONYM_MAP = {
     # docker 
@@ -41,6 +41,18 @@ SYNONYM_MAP = {
     'large language model':     'llms',
     'llm':                       'llms',
     'ai tools':                 'ai',
+
+    # Consolidated parent buckets: normalize framework variants to one label.
+    '.net core':                '.net',
+    'asp.net core':              '.net',
+    'asp.net':                   '.net',
+    '.net framework':            '.net',
+    'dotnet core':               '.net',
+    'artificial intelligence':  'ai/ml',
+    'machine learning':         'ai/ml',
+    'machine-learning':         'ai/ml',
+    'ai/ml':                    'ai/ml',
+    'ml':                       'ai/ml',
 
     # backend / full-stack taxonomy
     'backend services':         'backend',
@@ -148,8 +160,20 @@ SYNONYM_MAP = {
 # to avoid spending separate output neurons on the same underlying skill.
 CANONICAL_LABEL_MAP = {
     # AI / GenAI / LLMs
-    "ai tools": "ai",
-    "artificial intelligence": "ai",
+    # AI/ML parent bucket pools sparse synonymous labels together.
+    "ai": "ai/ml",
+    "ai tools": "ai/ml",
+    "ai/ml": "ai/ml",
+    "artificial intelligence": "ai/ml",
+    "machine learning": "ai/ml",
+    "machine-learning": "ai/ml",
+    "ml": "ai/ml",
+    # .NET ecosystem variants share one canonical parent label.
+    ".net core": ".net",
+    "asp.net core": ".net",
+    "asp.net": ".net",
+    ".net framework": ".net",
+    "dotnet core": ".net",
     "generative ai": "genai",
     "gen ai": "genai",
     "frontier model": "genai",
@@ -167,8 +191,6 @@ CANONICAL_LABEL_MAP = {
     "agentic": "agents",
     "autogen": "agents",
     "crewai": "agents",
-    "langchain": "agents",
-    "langgraph": "agents",
     "llamaindex": "agents",
     "copilot": "agents",
     # Cloud
@@ -272,9 +294,9 @@ CANONICAL_LABEL_MAP = {
     "shell scripting": "bash",
     "bash scripting": "bash",
     "powershell scripting": "powershell",
-    # ML aliases
-    "machine-learning": "machine learning",
-    "ml": "machine learning",
+    # ML-specific child concepts remain separate; their parent is ai/ml.
+    "machine-learning": "ai/ml",
+    "ml": "ai/ml",
     "deep neural networks": "deep learning",
     "tensorflow/pytorch": "deep learning",
     # Vector DB aliases
