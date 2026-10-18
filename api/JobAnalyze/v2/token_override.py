@@ -54,6 +54,54 @@ EXACT_KEYWORD_ALIASES = {
 
 EXACT_MATCH_MARGIN = 0.02
 
+def select_regex_fallback_labels(
+    label_vocab: list[str],
+    threshold_payload: dict,
+    rare_support_cutoff: int = 5,
+) -> list[str]:
+    """Select labels recoverable by exact regex when SBERT calibration fails.
+
+    Include labels explicitly disabled by threshold optimization, and labels
+    with very low dataset support whose measured best F1 is zero. This changes
+    no model threshold: a selected label still requires an exact lexical hit.
+    """
+    if rare_support_cutoff < 0:
+        raise ValueError("rare_support_cutoff must be non-negative.")
+
+    entries = threshold_payload.get("labels", {})
+    dataset_support = threshold_payload.get("dataset_support", {})
+    if not isinstance(entries, dict) or not isinstance(dataset_support, dict):
+        return []
+
+    selected = []
+    for label in label_vocab:
+        entry = entries.get(label)
+        if not isinstance(entry, dict):
+            continue
+        status = str(entry.get("status", "")).strip().lower()
+        try:
+            support = int(dataset_support.get(label, 0))
+            best_f1 = float(entry.get("best_f1", 0.0))
+        except (TypeError, ValueError):
+            continue
+
+        if status == "disabled" or (support <= rare_support_cutoff and best_f1 <= 0.0):
+            if label.strip().lower() not in SEMANTIC_ONLY_LABELS:
+                selected.append(label)
+
+    return selected
+
+
+def detect_regex_fallback_matches(
+    fallback_labels: list[str],
+    text: str,
+) -> list[str]:
+    """Return exact regex hits only among the labels selected for fallback."""
+    if not text or not fallback_labels:
+        return []
+    return detect_exact_keyword_matches(fallback_labels, text)
+
+
 
 @lru_cache(maxsize=1024)
 def _compiled_pattern(skill: str) -> re.Pattern[str]:
