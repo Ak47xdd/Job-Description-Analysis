@@ -3,6 +3,8 @@ import numpy as np
 from api.JobAnalyze.v2.token_override import (
     apply_token_matching_override,
     detect_exact_keyword_matches,
+    detect_regex_fallback_matches,
+    select_regex_fallback_labels,
     skill_is_explicitly_present,
 )
 
@@ -77,3 +79,37 @@ def test_empty_or_unmatched_text_leaves_scores_unchanged():
 
     assert matched == []
     assert np.array_equal(updated, probabilities)
+
+
+
+def test_rare_fallback_selects_disabled_and_zero_f1_rare_labels_only():
+    labels = ["disabled_tool", "rare_zero_f1", "rare_working", "common_zero_f1", "system design"]
+    payload = {
+        "rare_support_cutoff": 5,
+        "dataset_support": {
+            "disabled_tool": 100,
+            "rare_zero_f1": 3,
+            "rare_working": 4,
+            "common_zero_f1": 100,
+            "system design": 1,
+        },
+        "labels": {
+            "disabled_tool": {"status": "disabled", "best_f1": 0.0},
+            "rare_zero_f1": {"status": "active", "best_f1": 0.0},
+            "rare_working": {"status": "active", "best_f1": 0.25},
+            "common_zero_f1": {"status": "active", "best_f1": 0.0},
+            "system design": {"status": "disabled", "best_f1": 0.0},
+        },
+    }
+
+    selected = select_regex_fallback_labels(labels, payload)
+
+    assert selected == ["disabled_tool", "rare_zero_f1"]
+
+
+def test_rare_fallback_requires_exact_explicit_skill_name():
+    fallback_labels = ["jmeter", "fastapi", "sql"]
+    assert detect_regex_fallback_matches(
+        fallback_labels,
+        "JMeter and FastAPI are required; SQLAlchemy is used elsewhere.",
+    ) == ["fastapi", "jmeter"]
