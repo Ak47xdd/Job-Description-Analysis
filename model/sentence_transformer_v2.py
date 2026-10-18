@@ -29,6 +29,11 @@ import pandas as pd
 from sentence_transformers import SentenceTransformer
 
 try:
+    from .prep.embedding_text import MAX_SEQ_LENGTH, PREPROCESSING_VERSION, prepare_job_description
+except ImportError:
+    from prep.embedding_text import MAX_SEQ_LENGTH, PREPROCESSING_VERSION, prepare_job_description
+
+try:
     from .prep.sym_map import TAXONOMY_VERSION, canonicalize_skill_text
 except ImportError:
     from prep.sym_map import TAXONOMY_VERSION, canonicalize_skill_text
@@ -56,7 +61,7 @@ def build_input_texts(df: pd.DataFrame) -> list[str]:
     role_col = _find_column(df.columns, ["role", "Role"])
     type_col = _find_column(df.columns, ["type", "job type", "job_type", "Type"])
 
-    descriptions = df[description_col].fillna("").astype(str).apply(canonicalize_skill_text)
+    descriptions = df[description_col].fillna("").astype(str).apply(prepare_job_description).apply(canonicalize_skill_text)
     roles = df[role_col].fillna("").astype(str)
     job_types = df[type_col].fillna("").astype(str)
 
@@ -79,6 +84,8 @@ def encode_dataset(
 
     output_dir.mkdir(parents=True, exist_ok=True)
     embedding_model = SentenceTransformer(model_name)
+    # Match API inference truncation so train/inference see the same token window.
+    embedding_model.max_seq_length = MAX_SEQ_LENGTH
 
     embeddings = embedding_model.encode(
         texts,
@@ -98,6 +105,8 @@ def encode_dataset(
         "embedding_dimension": int(embeddings.shape[1]),
         "num_samples": int(embeddings.shape[0]),
         "normalize_embeddings": normalize_embeddings,
+        "max_seq_length": MAX_SEQ_LENGTH,
+        "text_preprocessing_version": PREPROCESSING_VERSION,
         "batch_size": batch_size,
         "source_csv": str(csv_path),
         "source_csv_sha256": hashlib.sha256(csv_path.read_bytes()).hexdigest(),
