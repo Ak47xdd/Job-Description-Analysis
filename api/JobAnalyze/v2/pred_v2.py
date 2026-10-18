@@ -7,6 +7,14 @@ import os
 from pathlib import Path
 
 import numpy as np
+
+try:
+    from model.prep.embedding_text import MAX_SEQ_LENGTH as PREPROCESS_MAX_SEQ_LENGTH, PREPROCESSING_VERSION, prepare_job_description
+except ImportError:
+    PREPROCESS_MAX_SEQ_LENGTH = 128
+    PREPROCESSING_VERSION = "jd-focus-v1"
+    def prepare_job_description(value):
+        return str(value or "")
 import onnxruntime as ort
 from huggingface_hub import hf_hub_download
 from tokenizers import Tokenizer
@@ -25,7 +33,7 @@ except ImportError:
 
 ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
-MAX_SEQ_LENGTH = max(64, int(os.getenv("SBERT_MAX_SEQ_LENGTH", "128")))
+MAX_SEQ_LENGTH = max(64, min(PREPROCESS_MAX_SEQ_LENGTH, int(os.getenv("SBERT_MAX_SEQ_LENGTH", str(PREPROCESS_MAX_SEQ_LENGTH)))))
 BATCH_SIZE = max(1, int(os.getenv("SBERT_BATCH_SIZE", "1")))
 SBERT_BACKEND = os.getenv("SBERT_BACKEND", "onnx").strip().lower()
 REQUIRE_ONNX = os.getenv("SBERT_REQUIRE_ONNX", "true").strip().lower() not in {"0", "false", "no"}
@@ -417,7 +425,8 @@ def _load_artifacts():
 
 
 def _build_input_text(job_desc: str, role: str, job_type: str) -> str:
-    normalized_desc = canonicalize_skill_text(job_desc)
+    cleaned_desc = prepare_job_description(job_desc)
+    normalized_desc = canonicalize_skill_text(cleaned_desc)
     return f"Role: {role}. Job type: {job_type}. Job description: {normalized_desc}"
 
 
