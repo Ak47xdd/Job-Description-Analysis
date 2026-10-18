@@ -146,6 +146,7 @@ def _ensure_fresh_v2_inputs() -> None:
                 and metadata.get("skill_taxonomy_version") == TAXONOMY_VERSION
                 and int(metadata.get("max_seq_length", -1)) == MAX_SEQ_LENGTH
                 and metadata.get("text_preprocessing_version") == PREPROCESSING_VERSION
+                and metadata.get("normalize_embeddings") is True
             )
         except (OSError, ValueError, TypeError, json.JSONDecodeError):
             embedding_ok = False
