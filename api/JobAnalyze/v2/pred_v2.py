@@ -10,7 +10,12 @@ import numpy as np
 import onnxruntime as ort
 from huggingface_hub import hf_hub_download
 from tokenizers import Tokenizer
-from .token_override import (\n    apply_token_matching_override,\n    detect_exact_keyword_matches,\n    detect_regex_fallback_matches,\n    select_regex_fallback_labels,\n)
+from .token_override import (
+    apply_token_matching_override,
+    detect_exact_keyword_matches,
+    detect_regex_fallback_matches,
+    select_regex_fallback_labels,
+)
 
 try:
     from model.prep.sym_map import canonicalize_skill_text
@@ -54,6 +59,7 @@ _onnx_session = None
 _classifier_weights = None
 _label_vocab = None
 _label_thresholds = None
+_rare_regex_fallback_labels: list[str] | None = None
 _embedding_dim = None
 _memory_stages: dict[str, dict] = {}
 
@@ -334,7 +340,7 @@ def _validate_artifact_manifest(out_dir: Path, label_path: Path, threshold_path:
 
 
 def _load_artifacts():
-    global _classifier_weights, _label_vocab, _label_thresholds
+    global _classifier_weights, _label_vocab, _label_thresholds, _rare_regex_fallback_labels
 
     if (
         _tokenizer is not None
@@ -342,6 +348,7 @@ def _load_artifacts():
         and _classifier_weights is not None
         and _label_vocab is not None
         and _label_thresholds is not None
+        and _rare_regex_fallback_labels is not None
         and _embedding_dim is not None
     ):
         return _tokenizer, _onnx_session, _classifier_weights, _label_vocab, _embedding_dim
@@ -397,6 +404,13 @@ def _load_artifacts():
         weights_path, embedding_dim, len(label_vocab), config_hidden_dim
     )
     thresholds = _load_per_skill_thresholds(threshold_path, label_vocab)
+    with threshold_path.open(encoding="utf-8") as handle:
+        threshold_payload = json.load(handle)
+    _rare_regex_fallback_labels = select_regex_fallback_labels(
+        label_vocab,
+        threshold_payload,
+        rare_support_cutoff=int(threshold_payload.get("rare_support_cutoff", 5)),
+    )
     _classifier_weights, _label_vocab, _label_thresholds = weights, label_vocab, thresholds
     _record_memory("after_classifier")
     return tokenizer, session, weights, label_vocab, embedding_dim
