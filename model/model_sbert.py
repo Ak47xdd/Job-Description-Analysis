@@ -124,6 +124,7 @@ def _ensure_fresh_v2_inputs() -> None:
                 manifest.get("source_dataset_sha256") == dataset_hash
                 and int(manifest.get("num_rows", -1)) == row_count
                 and manifest.get("skill_taxonomy_version") == TAXONOMY_VERSION
+                and manifest.get("split_method") == "MultilabelStratifiedShuffleSplit"
             )
         except (OSError, ValueError, TypeError, json.JSONDecodeError):
             manifest_ok = False
