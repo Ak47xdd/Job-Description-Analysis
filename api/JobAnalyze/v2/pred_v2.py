@@ -10,7 +10,7 @@ import numpy as np
 import onnxruntime as ort
 from huggingface_hub import hf_hub_download
 from tokenizers import Tokenizer
-from .token_override import apply_token_matching_override, detect_exact_keyword_matches
+from .token_override import (\n    apply_token_matching_override,\n    detect_exact_keyword_matches,\n    detect_regex_fallback_matches,\n    select_regex_fallback_labels,\n)
 
 try:
     from model.prep.sym_map import canonicalize_skill_text
@@ -649,6 +649,23 @@ def JobAnalyze_v2_SBERT_batch(job_descs, role="", job_type="", top_k=50):
             output = [(skill, score) for skill, score, _ in ranked[:top_k]]
 
             raw_text = str(batch_descs[local_index] or "").lower()
+
+            # Disabled and zero-F1 rare labels bypass SBERT thresholding only
+            # when their exact name/approved alias occurs in the original JD.
+            # This is lexical evidence, not a probability-threshold relaxation.
+            fallback_matches = detect_regex_fallback_matches(
+                _rare_regex_fallback_labels or [],
+                raw_text,
+            )
+            for skill in fallback_matches:
+                output = [
+                    (existing_skill, score)
+                    for existing_skill, score in output
+                    if existing_skill.lower() != skill.lower()
+                ]
+                output.insert(0, (skill, 1.0))
+            if fallback_matches:
+                output = output[:top_k]
 
             # The v2 vocabulary intentionally canonicalizes GitHub into Git,
             # so GitHub cannot be emitted by the classifier itself. Preserve
