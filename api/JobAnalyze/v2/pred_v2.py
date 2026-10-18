@@ -31,7 +31,8 @@ except ImportError:
 
 ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
-MAX_SEQ_LENGTH = max(64, min(PREPROCESS_MAX_SEQ_LENGTH, int(os.getenv("SBERT_MAX_SEQ_LENGTH", str(PREPROCESS_MAX_SEQ_LENGTH)))))
+# Must match the sequence length used to generate training embeddings.
+MAX_SEQ_LENGTH = PREPROCESS_MAX_SEQ_LENGTH
 BATCH_SIZE = max(1, int(os.getenv("SBERT_BATCH_SIZE", "1")))
 SBERT_BACKEND = os.getenv("SBERT_BACKEND", "onnx").strip().lower()
 REQUIRE_ONNX = os.getenv("SBERT_REQUIRE_ONNX", "true").strip().lower() not in {"0", "false", "no"}
