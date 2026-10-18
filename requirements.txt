@@ -25,6 +25,7 @@ beautifulsoup4==4.15.0
 pandas==3.0.3
 numpy==2.4.6
 scikit-learn==1.7.2
+iterative-stratification==0.1.9  # Multi-label train/test stratification for model preparation
 scipy==1.16.2
 joblib==1.5.3
 
