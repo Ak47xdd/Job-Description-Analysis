@@ -31,7 +31,7 @@ joblib==1.5.3
 
 # Lightweight production model inference
 onnxruntime==1.30.0
-tokenizers==0.23.2
+tokenizers==0.23.0  # Compatible with the current Transformers tokenizer constraint
 huggingface_hub==1.32.0
 
 # Runtime utilities
