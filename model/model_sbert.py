@@ -33,8 +33,10 @@ from torch.utils.data import DataLoader, Dataset
 
 try:
     from .prep.sym_map import TAXONOMY_VERSION
+    from .prep.embedding_text import MAX_SEQ_LENGTH, PREPROCESSING_VERSION
 except ImportError:
     from prep.sym_map import TAXONOMY_VERSION
+    from prep.embedding_text import MAX_SEQ_LENGTH, PREPROCESSING_VERSION
 
 ROOT = Path(__file__).resolve().parents[1]
 PREP_DIR = ROOT / "model" / "prep"
@@ -142,6 +144,8 @@ def _ensure_fresh_v2_inputs() -> None:
                 and metadata.get("model_name") == "all-MiniLM-L6-v2"
                 and int(metadata.get("embedding_dimension", -1)) == 384
                 and metadata.get("skill_taxonomy_version") == TAXONOMY_VERSION
+                and int(metadata.get("max_seq_length", -1)) == MAX_SEQ_LENGTH
+                and metadata.get("text_preprocessing_version") == PREPROCESSING_VERSION
             )
         except (OSError, ValueError, TypeError, json.JSONDecodeError):
             embedding_ok = False
@@ -323,6 +327,8 @@ def main() -> None:
         json.dump(
             {
                 "embedding_model": "all-MiniLM-L6-v2",
+                "max_seq_length": MAX_SEQ_LENGTH,
+                "text_preprocessing_version": PREPROCESSING_VERSION,
                 "input_dim": int(X_train.shape[1]),
                 "num_labels": len(vocab),
                 "label_vocab_path": "model/prep/v2/label_vocab_v2.json",
