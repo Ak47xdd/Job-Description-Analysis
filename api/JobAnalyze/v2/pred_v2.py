@@ -8,13 +8,11 @@ from pathlib import Path
 
 import numpy as np
 
-try:
-    from model.prep.embedding_text import MAX_SEQ_LENGTH as PREPROCESS_MAX_SEQ_LENGTH, PREPROCESSING_VERSION, prepare_job_description
-except ImportError:
-    PREPROCESS_MAX_SEQ_LENGTH = 128
-    PREPROCESSING_VERSION = "jd-focus-v1"
-    def prepare_job_description(value):
-        return str(value or "")
+from model.prep.embedding_text import (
+    MAX_SEQ_LENGTH as PREPROCESS_MAX_SEQ_LENGTH,
+    PREPROCESSING_VERSION,
+    prepare_job_description,
+)
 import onnxruntime as ort
 from huggingface_hub import hf_hub_download
 from tokenizers import Tokenizer
