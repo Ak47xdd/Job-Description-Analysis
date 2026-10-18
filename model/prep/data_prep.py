@@ -18,7 +18,7 @@ import re
 import numpy as np
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.model_selection import train_test_split
+from iterstrat.ml_stratifiers import MultilabelStratifiedShuffleSplit
 
 try:
     from .sym_map import CANONICAL_LABEL_MAP, SYNONYM_MAP, TAXONOMY_VERSION
@@ -128,14 +128,46 @@ def main() -> None:
     )
     X = vectorizer.fit_transform(jd_input).toarray().astype(np.float32)
 
+    # Multi-label iterative stratification attempts to preserve each skill's
+    # positive-label prevalence in both splits. Ordinary train_test_split can
+    # place every positive example for a rare skill in only one split.
     indices = np.arange(len(df), dtype=np.int64)
-    X_train, X_test, y_train, y_test, idx_train, idx_test = train_test_split(
-        X,
-        y,
-        indices,
+    splitter = MultilabelStratifiedShuffleSplit(
+        n_splits=1,
         test_size=0.2,
         random_state=42,
     )
+    train_positions, test_positions = next(splitter.split(indices.reshape(-1, 1), y))
+    idx_train = indices[train_positions]
+    idx_test = indices[test_positions]
+    X_train, X_test = X[train_positions], X[test_positions]
+    y_train, y_test = y[train_positions], y[test_positions]
+
+    dataset_supports = y.sum(axis=0).astype(int)
+    train_supports = y_train.sum(axis=0).astype(int)
+    test_supports = y_test.sum(axis=0).astype(int)
+    train_zero = [vocab[i] for i, count in enumerate(train_supports) if count == 0]
+    test_zero = [vocab[i] for i, count in enumerate(test_supports) if count == 0]
+    splittable_zero_train = [
+        vocab[i] for i, count in enumerate(train_supports)
+        if count == 0 and dataset_supports[i] >= 2
+    ]
+    splittable_zero_test = [
+        vocab[i] for i, count in enumerate(test_supports)
+        if count == 0 and dataset_supports[i] >= 2
+    ]
+    print(
+        "Multilabel stratification: "
+        f"{int(np.count_nonzero(dataset_supports >= 2))} labels have >=2 positives; "
+        f"{len(splittable_zero_train)} of these have zero train positives and "
+        f"{len(splittable_zero_test)} have zero test positives."
+    )
+    if train_zero:
+        print("WARNING: labels with zero train positives (not learnable from this split): "
+              + ", ".join(train_zero))
+    if test_zero:
+        print("WARNING: labels with zero test positives (per-label test metrics are not "
+              "meaningful for these labels): " + ", ".join(test_zero))
 
     if y_train.shape[1] != len(vocab) or y_test.shape[1] != len(vocab):
         raise RuntimeError(
@@ -171,6 +203,12 @@ def main() -> None:
         ).hexdigest(),
         "random_state": 42,
         "test_size": 0.2,
+        "split_method": "MultilabelStratifiedShuffleSplit",
+        "dataset_support": {label: int(count) for label, count in zip(vocab, dataset_supports)},
+        "train_support": {label: int(count) for label, count in zip(vocab, train_supports)},
+        "test_support": {label: int(count) for label, count in zip(vocab, test_supports)},
+        "zero_train_positive_labels": train_zero,
+        "zero_test_positive_labels": test_zero,
         "skill_taxonomy_version": TAXONOMY_VERSION,
     }
     (V2_DIR / "data_manifest.json").write_text(
