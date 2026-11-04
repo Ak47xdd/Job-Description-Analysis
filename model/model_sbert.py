@@ -414,6 +414,11 @@ def main() -> None:
 
 def run_with_log() -> None:
     """Run training and overwrite a complete console log on every invocation."""
+    # Prevent Windows cp1252 console output from crashing on Unicode skill labels.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(errors="replace")
+
     log_path = ROOT / "data" / "sample_data" / "v2" / "eval.txt"
     log_path.parent.mkdir(parents=True, exist_ok=True)
 
