@@ -24,6 +24,8 @@ import hashlib
 import json
 import subprocess
 import sys
+import traceback
+from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 
 import numpy as np
@@ -107,9 +109,46 @@ def _sha256_json_file(path: Path) -> str:
     return hashlib.sha256(payload).hexdigest()
 
 
+class _Tee:
+    """Write output to both the terminal and the run log."""
+
+    def __init__(self, *streams) -> None:
+        self.streams = streams
+
+    def write(self, value: str) -> int:
+        for stream in self.streams:
+            stream.write(value)
+            stream.flush()
+        return len(value)
+
+    def flush(self) -> None:
+        for stream in self.streams:
+            stream.flush()
+
+    def isatty(self) -> bool:
+        return any(getattr(stream, "isatty", lambda: False)() for stream in self.streams)
+
+
 def _run_pipeline_step(script: Path) -> None:
     print(f"Refreshing SBERT artifact prerequisite: {script.relative_to(ROOT)}")
-    subprocess.run([sys.executable, str(script)], cwd=ROOT, check=True)
+    command = [sys.executable, str(script)]
+    result = subprocess.run(
+        command,
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        check=False,
+    )
+    if result.stdout:
+        sys.stdout.write(result.stdout)
+    if result.stderr:
+        sys.stderr.write(result.stderr)
+    if result.returncode:
+        raise subprocess.CalledProcessError(
+            result.returncode, command, output=result.stdout, stderr=result.stderr
+        )
 
 
 def _ensure_fresh_v2_inputs() -> None:
@@ -373,5 +412,24 @@ def main() -> None:
     print(f"Final artifact dimensions: input={X_train.shape[1]}, labels={len(vocab)}")
 
 
+def run_with_log() -> None:
+    """Run training and overwrite a complete console log on every invocation."""
+    log_path = ROOT / "data" / "sample_data" / "v2" / "eval.txt"
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with log_path.open("w", encoding="utf-8", buffering=1) as log_file:
+        stdout_tee = _Tee(sys.stdout, log_file)
+        stderr_tee = _Tee(sys.stderr, log_file)
+        with redirect_stdout(stdout_tee), redirect_stderr(stderr_tee):
+            print(f"SBERT training run started. Full output is being saved to: {log_path}")
+            try:
+                main()
+            except BaseException:
+                # Include the traceback in eval.txt as well as preserving a
+                # non-zero process exit status for shells and automation.
+                traceback.print_exc()
+                raise SystemExit(1)
+
+
 if __name__ == "__main__":
-    main()
+    run_with_log()
