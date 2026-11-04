@@ -35,8 +35,10 @@ except ImportError:
 
 try:
     from .prep.sym_map import TAXONOMY_VERSION, canonicalize_skill_text
+    from .prep.dataset_source import sync_latest_clean_dataset
 except ImportError:
     from prep.sym_map import TAXONOMY_VERSION, canonicalize_skill_text
+    from prep.dataset_source import sync_latest_clean_dataset
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -79,6 +81,8 @@ def encode_dataset(
     normalize_embeddings: bool = True,
 ) -> dict:
     """Encode all rows and save embeddings plus metadata."""
+    if csv_path.resolve() == DEFAULT_DATA.resolve():
+        csv_path = sync_latest_clean_dataset()
     df = pd.read_csv(csv_path)
     texts = build_input_texts(df)
 
