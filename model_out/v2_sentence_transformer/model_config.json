@@ -1,14 +1,16 @@
 {
   "embedding_model": "all-MiniLM-L6-v2",
+  "max_seq_length": 128,
+  "text_preprocessing_version": "jd-focus-v1",
   "input_dim": 384,
-  "num_labels": 1205,
+  "num_labels": 1730,
   "label_vocab_path": "model/prep/v2/label_vocab_v2.json",
-  "label_vocab_sha256": "0f75efeabffb772aeb63122de4f22e63f723f8ba97595e0398ff0ab34e8da206",
+  "label_vocab_sha256": "e32b8ddc4474cc8a3f9f590252d6e96d0bff22781adc2449c6724bb5e4f990a0",
   "hidden_dim": 64,
   "dropout": 0.3,
   "batch_size": 32,
-  "epochs": 780,
-  "best_test_loss": 0.17568594669885826,
-  "classifier_pt_sha256": "030616683b845c3d349516c183a4fdc3b4ad0adb84d21f49dcae2c44fc88d227",
-  "classifier_npz_sha256": "af0d92ed1d9d8530d0830b5afe9a3054eaa7eb78a1bd668856859d25b5cdde71"
+  "epochs": 1000,
+  "best_test_loss": 0.14525860825250314,
+  "classifier_pt_sha256": "a61bdb285145bb5f7a31ab8b99a9a6cce35ebb47478319ae50ec4ef60f3b4607",
+  "classifier_npz_sha256": "ff14e1db6ab796c902546b2b9f0e1a78ec05c72533ea49eca91b65169a8edf33"
 }

@@ -1,11 +1,13 @@
 {
   "model_name": "all-MiniLM-L6-v2",
   "embedding_dimension": 384,
-  "num_samples": 1742,
+  "num_samples": 3416,
   "normalize_embeddings": true,
+  "max_seq_length": 128,
+  "text_preprocessing_version": "jd-focus-v1",
   "batch_size": 32,
   "source_csv": "C:\\Portfolio-Projects\\Job-Description-Analysis\\data\\clean\\v2\\cleaned_job_descriptions_v2.csv",
-  "source_csv_sha256": "58131f4cabd50f37a307bd097d14d3bf8a5f10e09195a691cfbbd351e16b232d",
+  "source_csv_sha256": "047aaa3df25a35b9d6edfa0f28b89bcb87c0270543b5a8c79ea6fcbf89871b2e",
   "input_format": "Role + Job type + Job description",
-  "skill_taxonomy_version": "v3-canonical-buckets"
+  "skill_taxonomy_version": "v4-parent-buckets"
 }
