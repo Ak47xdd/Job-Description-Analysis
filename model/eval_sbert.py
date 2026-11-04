@@ -5,6 +5,12 @@ import json
 import sys
 from pathlib import Path
 
+# Windows consoles may default to cp1252, which cannot print some Unicode labels.
+# Replace unsupported characters rather than aborting evaluation.
+for _stream in (sys.stdout, sys.stderr):
+    if hasattr(_stream, "reconfigure"):
+        _stream.reconfigure(errors="replace")
+
 import numpy as np
 import torch
 from sklearn.metrics import f1_score, hamming_loss, jaccard_score, precision_recall_fscore_support
