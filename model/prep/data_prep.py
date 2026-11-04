@@ -84,7 +84,9 @@ def apply_synonyms(text: str) -> str:
 
 
 def main() -> None:
-    # The notebook used to refresh this file manually. Sync first so training\n    # never silently uses an older, smaller cleaned CSV.\n    sync_latest_clean_dataset()\n    if not DATA_FILE.exists():
+    # Refresh the cleaned CSV before reading it, so training uses the latest raw dataset.
+    sync_latest_clean_dataset()
+    if not DATA_FILE.exists():
         raise FileNotFoundError(f"Missing cleaned v2 dataset: {DATA_FILE}")
 
     df = pd.read_csv(DATA_FILE)
