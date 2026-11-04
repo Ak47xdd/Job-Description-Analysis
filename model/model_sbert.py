@@ -34,9 +34,11 @@ from torch.utils.data import DataLoader, Dataset
 try:
     from .prep.sym_map import TAXONOMY_VERSION
     from .prep.embedding_text import MAX_SEQ_LENGTH, PREPROCESSING_VERSION
+    from .prep.dataset_source import sync_latest_clean_dataset
 except ImportError:
     from prep.sym_map import TAXONOMY_VERSION
     from prep.embedding_text import MAX_SEQ_LENGTH, PREPROCESSING_VERSION
+    from prep.dataset_source import sync_latest_clean_dataset
 
 ROOT = Path(__file__).resolve().parents[1]
 PREP_DIR = ROOT / "model" / "prep"
@@ -111,6 +113,10 @@ def _run_pipeline_step(script: Path) -> None:
 
 
 def _ensure_fresh_v2_inputs() -> None:
+    # Refresh the cleaned CSV from the raw source before checking hashes. This
+    # catches newly scraped rows even when the previous clean-file manifest is
+    # internally consistent but out of date.
+    sync_latest_clean_dataset()
     if not DATA_FILE.exists():
         raise FileNotFoundError(f"Missing cleaned v2 dataset: {DATA_FILE}")
 
