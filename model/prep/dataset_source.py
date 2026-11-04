@@ -10,8 +10,8 @@ from pathlib import Path
 
 import pandas as pd
 
-# dataset_source.py lives at <repo>/model/prep, so parents[1] is the repo root.
-ROOT = Path(__file__).resolve().parents[1]
+# dataset_source.py lives at <repo>/model/prep; parents[2] is the repository root.
+ROOT = Path(__file__).resolve().parents[2]
 RAW_DATA_FILE = ROOT / "data" / "raw" / "Job_descriptions_v2.csv"
 CLEAN_DATA_FILE = ROOT / "data" / "clean" / "v2" / "cleaned_job_descriptions_v2.csv"
 REQUIRED_COLUMNS = {"tech_skills", "job_desc", "role", "type"}
