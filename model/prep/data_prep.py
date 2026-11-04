@@ -22,8 +22,10 @@ from iterstrat.ml_stratifiers import MultilabelStratifiedShuffleSplit
 
 try:
     from .sym_map import CANONICAL_LABEL_MAP, SYNONYM_MAP, TAXONOMY_VERSION
+    from .dataset_source import sync_latest_clean_dataset
 except ImportError:
     from sym_map import CANONICAL_LABEL_MAP, SYNONYM_MAP, TAXONOMY_VERSION
+    from dataset_source import sync_latest_clean_dataset
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -82,7 +84,7 @@ def apply_synonyms(text: str) -> str:
 
 
 def main() -> None:
-    if not DATA_FILE.exists():
+    # The notebook used to refresh this file manually. Sync first so training\n    # never silently uses an older, smaller cleaned CSV.\n    sync_latest_clean_dataset()\n    if not DATA_FILE.exists():
         raise FileNotFoundError(f"Missing cleaned v2 dataset: {DATA_FILE}")
 
     df = pd.read_csv(DATA_FILE)
