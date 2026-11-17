@@ -35,7 +35,7 @@ Type :
 
 Keys to be predicted :
     Python, LLMs, MCP, GenAI, OpenAI, VectorDB, SQL, APIs, Docker, Agents, Github, CI/CD, Git, AWS/Azure, Prompt Engineering
-    (15)  
+    (15) 
 
 keys predicted :
     Python, LLMs, MCP, GenAI, OpenAI, VectorDB, SQL, APIs, Docker, Agents, Github, CI/CD, Git, AWS/Azure, Prompt Engineering             
