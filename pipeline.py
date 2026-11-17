@@ -3,6 +3,7 @@ pipeline.py - Main training pipeline, run this to retrain the model
 """
 
 import subprocess as sub
+import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent
@@ -34,10 +35,12 @@ def run_notebook(notebook_path: str, kernel_name: str = "python3") -> None:
 
     print(f"Finished: {notebook_path}\n")
     
-def run_scripts(script_path: str, shell_name: str = "python") -> None:
+def run_scripts(script_path: str, shell_name: str | None = None) -> None:
     print(f"Running scripts from {script_path}")
 
-    sub.run([f"{shell_name}", f"{script_path}"], cwd=REPO_ROOT, check=True)
+    # Reuse the exact interpreter running pipeline.py (normally .venv Python).
+    interpreter = shell_name or sys.executable
+    sub.run([interpreter, script_path], cwd=REPO_ROOT, check=True)
 
 run_notebook("notebooks/01_EDA.ipynb")
 run_notebook("notebooks/02_Data_Engineering.ipynb")
