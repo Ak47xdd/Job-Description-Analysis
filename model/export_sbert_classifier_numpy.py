@@ -47,12 +47,26 @@ if w2.shape[0] != len(vocab):
         "Regenerate v2 data and retrain the classifier from the same label vocabulary."
     )
 
-if w1.ndim != 2 or w1.shape[1] != 384 or w1.shape[0] != 64:
-    raise ValueError(f"Invalid first layer shape {w1.shape}; expected (64, 384).")
-if b1.shape != (64,):
-    raise ValueError(f"Invalid first layer bias shape {b1.shape}; expected (64,).")
-if w2.shape != (len(vocab), 64):
-    raise ValueError(f"Invalid output layer shape {w2.shape}; expected {(len(vocab), 64)}.")
+# Derive the hidden dimension from the checkpoint instead of assuming 64.
+# The current SBERTSkillClassifier uses HIDDEN_DIM=384, so its first layer is
+# expected to be (384, 384). Deriving it here also keeps export compatible if
+# the model architecture is intentionally changed in the future.
+if w1.ndim != 2 or w1.shape[1] != 384:
+    raise ValueError(
+        f"Invalid first layer shape {w1.shape}; expected (hidden_dim, 384)."
+    )
+hidden_dim = int(w1.shape[0])
+if hidden_dim <= 0:
+    raise ValueError(f"Invalid hidden dimension: {hidden_dim}.")
+if b1.shape != (hidden_dim,):
+    raise ValueError(
+        f"Invalid first layer bias shape {b1.shape}; expected {(hidden_dim,)}."
+    )
+if w2.shape != (len(vocab), hidden_dim):
+    raise ValueError(
+        f"Invalid output layer shape {w2.shape}; "
+        f"expected {(len(vocab), hidden_dim)}."
+    )
 if b2.shape != (len(vocab),):
     raise ValueError(
         f"Invalid classifier bias shape {b2.shape}; expected {(len(vocab),)}."
@@ -76,7 +90,7 @@ else:
 config.update({
     "input_dim": int(w1.shape[1]),
     "num_labels": int(len(vocab)),
-    "hidden_dim": int(w1.shape[0]),
+    "hidden_dim": hidden_dim,
     "label_vocab_path": "model/prep/v2/label_vocab_v2.json",
     "label_vocab_sha256": vocab_hash,
     "classifier_pt_sha256": sha256_file(SRC),
@@ -88,5 +102,5 @@ with CONFIG_FILE.open("w", encoding="utf-8") as file:
     file.write("\n")
 
 print(f"Wrote {DST}")
-print(f"Validated classifier: input=384, hidden=64, labels={len(vocab)}")
-print(f"Synchronized {CONFIG_FILE}: labels={len(vocab)}, input_dim={w1.shape[1]}, hidden_dim={w1.shape[0]}")
+print(f"Validated classifier: input=384, hidden={hidden_dim}, labels={len(vocab)}")
+print(f"Synchronized {CONFIG_FILE}: labels={len(vocab)}, input_dim={w1.shape[1]}, hidden_dim={hidden_dim}")
