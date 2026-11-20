@@ -2,7 +2,7 @@
 sym_map.py - All synonyms for the TF-IDF Vectorizer
 """
 
-TAXONOMY_VERSION = "v4-parent-buckets"
+TAXONOMY_VERSION = "v5-duplicate-label-consolidation"
 
 SYNONYM_MAP = {
     # docker 
@@ -319,10 +319,82 @@ CANONICAL_LABEL_MAP = {
     # Observability aliases
     "monitoring": "observability",
     "audit logs": "observability",
+
+    # Excel aliases and proficiency wording.
+    "advanced excel": "excel",
+    "microsoft excel": "excel",
+    "ms excel": "excel",
+
+    # SEO specializations and wording variants share one broad SEO target.
+    # SEO tools/products are intentionally kept separate where they identify
+    # a concrete product rather than the general SEO competency.
+    "search engine optimization": "seo",
+    "on-page seo": "seo",
+    "off-page seo": "seo",
+    "technical seo": "seo",
+    "local seo": "seo",
+    "international seo": "seo",
+    "seo fundamentals": "seo",
+    "seo strategy": "seo",
+    "seo best practices implementation": "seo",
+    "seo performance tracking": "seo",
+    "seo reporting": "seo",
+    "seo reporting tools": "seo",
+    "seo tools": "seo",
+    "seo audits": "seo",
+    "technical seo audits": "seo",
+    "ai-powered seo": "seo",
+    "ai seo tools": "seo",
+
+    # Analytics product naming variants.
+    "ga4": "google analytics",
+    "google analytics (ga4)": "google analytics",
+    "google analytics 4": "google analytics",
+    "search console": "google search console",
+
+    # Office suite naming variants. Individual Word/PowerPoint skills remain
+    # separate from the broader Microsoft Office competency.
+    "ms office": "microsoft office",
+    "microsoft office suite": "microsoft office",
+    "office 365": "microsoft 365",
+    "ms word": "microsoft word",
+
+    # Google productivity-suite naming variants.
+    "g suite": "google workspace",
+    "gsuite": "google workspace",
+    "google suite": "google workspace",
+
+    # CRM naming variants.
+    "customer relationship management": "crm",
+    "crm systems": "crm",
+    "crm tools": "crm",
+
+    # Identity and access management wording variants.
+    "identity & access management": "identity and access management",
+    "iam": "identity and access management",
+
+    # Audit/auditing are grammatical variants; retain domain-specific audit
+    # labels such as IT audit, internal audit and financial auditing.
+    "auditing": "audit",
+    "auditing methodologies": "audit methodologies",
+    "audit methodologies": "audit methodologies",
+    "auditing procedures": "audit procedures",
+    "internal auditing": "internal audit",
+    "it auditing": "it audit",
+
+    # Communication wording variants.
+    "communication skills": "communication",
+
+    # Common spelling and formatting variants.
+    "corel draw": "coreldraw",
+    "full-stack development": "full-stack",
+    "full stack development": "full-stack",
+    "nodejs": "node.js",
+    "node js": "node.js",
 }
-
-
-
+ 
+ 
+ 
 def canonicalize_skill_text(text: str) -> str:
     """Normalize aliases and canonical skill buckets in free-form text."""
     import re
