@@ -9,5 +9,5 @@
   "source_csv": "C:\\Portfolio-Projects\\Job-Description-Analysis\\data\\clean\\v2\\cleaned_job_descriptions_v2.csv",
   "source_csv_sha256": "772d5a40bc5863c5ecf80e27b7f4cb33cb1e337a571f582890d7662bf88533a5",
   "input_format": "Role + Job type + Job description",
-  "skill_taxonomy_version": "v4-parent-buckets"
+  "skill_taxonomy_version": "v5-duplicate-label-consolidation"
 }
