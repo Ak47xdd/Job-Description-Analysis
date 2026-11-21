@@ -55,7 +55,6 @@
     "adobe xd": 15,
     "ads": 5,
     "advanced analytics": 4,
-    "advanced excel": 12,
     "advertising systems": 3,
     "aeo": 20,
     "aerodynamics": 4,
@@ -81,7 +80,6 @@
     "ai search": 6,
     "ai search optimization": 3,
     "ai security": 9,
-    "ai seo tools": 3,
     "ai tooling": 8,
     "ai tools (claude": 3,
     "ai-assisted automation": 3,
@@ -98,7 +96,6 @@
     "ai-human collaboration": 4,
     "ai-powered products": 3,
     "ai-powered search optimization": 3,
-    "ai-powered seo": 3,
     "ai-powered tools": 6,
     "ai/ml": 2207,
     "air export": 6,
@@ -197,22 +194,19 @@
     "ats platforms": 3,
     "attribution": 7,
     "audio editing": 3,
-    "audit": 22,
+    "audit": 37,
     "audit analytics": 3,
     "audit automation": 3,
     "audit documentation": 4,
     "audit execution": 4,
     "audit management software": 7,
-    "audit methodologies": 6,
-    "audit procedures": 3,
+    "audit methodologies": 7,
+    "audit procedures": 5,
     "audit processes": 6,
     "audit reporting": 16,
     "audit software": 15,
     "audit tools": 4,
     "audit trails": 6,
-    "auditing": 18,
-    "auditing methodologies": 3,
-    "auditing procedures": 3,
     "auditing software": 3,
     "auditing standards": 3,
     "aurora": 7,
@@ -464,8 +458,7 @@
     "commercial credit underwriting": 4,
     "commercial invoices": 4,
     "commissioning": 4,
-    "communication": 42,
-    "communication skills": 6,
+    "communication": 45,
     "compass": 3,
     "compensation": 3,
     "competition analysis": 8,
@@ -534,8 +527,7 @@
     "core data": 3,
     "core mobile principles": 3,
     "core web vitals": 22,
-    "corel draw": 8,
-    "coreldraw": 24,
+    "coreldraw": 30,
     "coroutines": 9,
     "cosmos db": 3,
     "coso": 4,
@@ -555,9 +547,7 @@
     "creo": 12,
     "crimping": 4,
     "crisc": 13,
-    "crm": 39,
-    "crm systems": 4,
-    "crm tools": 3,
+    "crm": 47,
     "cro": 10,
     "cross-browser testing": 4,
     "cross-functional collaboration": 4,
@@ -579,7 +569,6 @@
     "customer engagement": 4,
     "customer experience": 4,
     "customer journey mapping": 4,
-    "customer relationship management": 3,
     "customer service": 10,
     "customer success": 9,
     "customer support": 9,
@@ -814,7 +803,7 @@
     "event-driven architecture": 7,
     "event-driven architectures": 5,
     "event-driven systems": 4,
-    "excel": 182,
+    "excel": 255,
     "exchange": 3,
     "exchange online": 5,
     "execution plan analysis": 3,
@@ -918,8 +907,7 @@
     "front-end web standards": 3,
     "frontend": 12,
     "frontend development": 11,
-    "full-stack": 13,
-    "full-stack development": 7,
+    "full-stack": 19,
     "full\u2011stack development": 4,
     "functional reactive programming": 3,
     "functional testing": 11,
@@ -927,8 +915,6 @@
     "funnel analysis": 3,
     "fusion 360": 5,
     "fuzzing": 5,
-    "g suite": 6,
-    "ga4": 45,
     "gaap": 4,
     "gainsight": 5,
     "game engines": 3,
@@ -966,9 +952,7 @@
     "google ads": 36,
     "google adwords": 3,
     "google ai": 3,
-    "google analytics": 97,
-    "google analytics (ga4)": 9,
-    "google analytics 4": 26,
+    "google analytics": 145,
     "google business profile": 7,
     "google calendar": 3,
     "google cloud pub/sub": 6,
@@ -982,13 +966,12 @@
     "google play console": 3,
     "google play store": 4,
     "google search": 4,
-    "google search console": 96,
+    "google search console": 104,
     "google sheets": 57,
     "google slides": 14,
-    "google suite": 6,
     "google tag manager": 16,
     "google trends": 7,
-    "google workspace": 38,
+    "google workspace": 55,
     "governance": 17,
     "gps": 10,
     "gpu": 29,
@@ -1008,7 +991,6 @@
     "grpc": 13,
     "gsc": 4,
     "gst": 6,
-    "gsuite": 8,
     "gtm": 5,
     "gtm systems": 4,
     "guardduty": 3,
@@ -1079,15 +1061,13 @@
     "i2c": 6,
     "iaas": 6,
     "iac": 32,
-    "iam": 123,
     "icd-10": 3,
     "iceberg": 3,
     "icofr": 3,
     "idea": 6,
     "idea statica": 5,
     "identity": 10,
-    "identity & access management": 7,
-    "identity and access management": 14,
+    "identity and access management": 130,
     "identity detection": 4,
     "identity governance": 3,
     "identity management": 15,
@@ -1139,11 +1119,9 @@
     "interaction design": 3,
     "interactive prototypes": 4,
     "interface control document (icd)": 4,
-    "internal audit": 5,
-    "internal auditing": 6,
+    "internal audit": 9,
     "internal controls": 11,
     "internal linking": 18,
-    "international seo": 3,
     "interviews": 13,
     "intrusion detection": 4,
     "intune": 10,
@@ -1186,9 +1164,8 @@
     "istqb": 4,
     "it": 4,
     "it application controls": 3,
-    "it audit": 4,
+    "it audit": 8,
     "it audit methodologies": 6,
-    "it auditing": 6,
     "it controls": 4,
     "it general controls": 4,
     "it governance": 7,
@@ -1285,7 +1262,6 @@
     "load calculations": 4,
     "load optimization": 4,
     "load testing": 5,
-    "local seo": 12,
     "localization": 3,
     "location services": 4,
     "log analysis": 13,
@@ -1373,23 +1349,21 @@
     "mfa": 8,
     "microservice architecture": 3,
     "microservices": 182,
-    "microsoft 365": 13,
+    "microsoft 365": 17,
     "microsoft clarity": 8,
     "microsoft copilot": 11,
     "microsoft defender": 6,
     "microsoft defender for cloud": 5,
     "microsoft entra id": 10,
-    "microsoft excel": 52,
     "microsoft fabric": 3,
-    "microsoft office": 75,
-    "microsoft office suite": 24,
+    "microsoft office": 139,
     "microsoft outlook": 9,
     "microsoft power platform": 5,
     "microsoft powerpoint": 11,
     "microsoft sentinel": 10,
     "microsoft sql server": 10,
     "microsoft teams": 9,
-    "microsoft word": 24,
+    "microsoft word": 32,
     "middleware": 3,
     "midjourney": 4,
     "migration": 6,
@@ -1439,11 +1413,8 @@
     "motion graphics": 16,
     "moz": 29,
     "moz pro": 3,
-    "ms excel": 49,
-    "ms office": 61,
     "ms powerpoint": 4,
     "ms project": 6,
-    "ms word": 11,
     "ms-office": 3,
     "msk": 4,
     "mssql": 4,
@@ -1511,9 +1482,7 @@
     "oc-x": 3,
     "oci": 9,
     "off-page optimization": 21,
-    "off-page seo": 38,
     "offensive security": 4,
-    "office 365": 4,
     "office software": 3,
     "offline storage": 5,
     "oidc": 16,
@@ -1524,7 +1493,6 @@
     "on-call rotation": 7,
     "on-call support": 5,
     "on-page optimization": 22,
-    "on-page seo": 49,
     "on-premise infrastructure": 7,
     "onboarding": 7,
     "onedrive": 5,
@@ -1936,10 +1904,8 @@
     "sdk development": 3,
     "sdlc": 14,
     "search": 20,
-    "search console": 12,
     "search engine algorithms": 3,
     "search engine marketing": 4,
-    "search engine optimization": 3,
     "secret manager": 4,
     "secrets management": 17,
     "section 508": 4,
@@ -1992,15 +1958,7 @@
     "sentiment analysis": 3,
     "sentinelone": 6,
     "sentry": 5,
-    "seo": 109,
-    "seo audits": 4,
-    "seo best practices implementation": 3,
-    "seo fundamentals": 5,
-    "seo performance tracking": 3,
-    "seo reporting": 5,
-    "seo reporting tools": 3,
-    "seo strategy": 5,
-    "seo tools": 11,
+    "seo": 140,
     "server": 4,
     "server logs": 3,
     "serverless": 80,
@@ -2199,8 +2157,6 @@
     "technical drawings": 4,
     "technical onboarding": 4,
     "technical sales": 4,
-    "technical seo": 42,
-    "technical seo audits": 8,
     "technical support": 11,
     "technical writing": 13,
     "technical writing tools": 6,
@@ -2477,11 +2433,9 @@
     "adobe photoshop",
     "adobe premiere pro",
     "adobe xd",
-    "advanced excel",
     "aeo",
     "after effects",
     "agentic ai",
-    "agents",
     "agile",
     "agile development",
     "ahrefs",
@@ -2539,13 +2493,13 @@
     "audit reporting",
     "audit software",
     "audit trails",
-    "auditing",
     "aurora",
     "auth",
     "authentication",
     "authorization",
     "autocad",
     "automated testing",
+    "automation",
     "automation scripts",
     "aws rds",
     "aws s3",
@@ -2642,7 +2596,6 @@
     "color theory",
     "command line",
     "communication",
-    "communication skills",
     "competition analysis",
     "competitive analysis",
     "competitor analysis",
@@ -2672,7 +2625,6 @@
     "conversion optimization",
     "copywriting",
     "core web vitals",
-    "corel draw",
     "coreldraw",
     "coroutines",
     "cost management",
@@ -2693,7 +2645,6 @@
     "crypto",
     "cryptography",
     "csat",
-    "css",
     "cucumber",
     "cuda",
     "cursor",
@@ -2709,7 +2660,6 @@
     "dast",
     "data",
     "data analysis tools",
-    "data analytics",
     "data engineering",
     "data governance",
     "data integration",
@@ -2757,6 +2707,7 @@
     "distributed tracing",
     "django",
     "dns",
+    "docker",
     "docs",
     "documentation",
     "documentation tools",
@@ -2822,13 +2773,11 @@
     "frontend",
     "frontend development",
     "full-stack",
-    "full-stack development",
     "functional testing",
-    "g suite",
-    "ga4",
     "gd&t",
     "gdpr",
     "gem",
+    "genai",
     "generative engine optimization",
     "geo",
     "geolocation",
@@ -2840,8 +2789,6 @@
     "github pipelines",
     "gmail",
     "google ads",
-    "google analytics (ga4)",
-    "google analytics 4",
     "google business profile",
     "google cloud pub/sub",
     "google docs",
@@ -2849,10 +2796,8 @@
     "google keyword planner",
     "google my business",
     "google play",
-    "google search console",
     "google sheets",
     "google slides",
-    "google suite",
     "google tag manager",
     "google trends",
     "google workspace",
@@ -2861,7 +2806,6 @@
     "gpu",
     "grading",
     "gradle",
-    "grafana",
     "graphic design",
     "graphql",
     "grc",
@@ -2869,7 +2813,6 @@
     "groovy",
     "grpc",
     "gst",
-    "gsuite",
     "guardrails",
     "hadoop",
     "hardware",
@@ -2894,10 +2837,8 @@
     "i2c",
     "iaas",
     "iac",
-    "iam",
     "idea",
     "identity",
-    "identity & access management",
     "identity and access management",
     "identity management",
     "ids",
@@ -2909,6 +2850,7 @@
     "indexing",
     "inference",
     "infiniband",
+    "information security",
     "infrastructure",
     "infrastructure as code",
     "infrastructure automation",
@@ -2919,7 +2861,7 @@
     "integration",
     "integration testing",
     "integrations",
-    "internal auditing",
+    "internal audit",
     "internal controls",
     "internal linking",
     "interviews",
@@ -2936,8 +2878,8 @@
     "iso 27001",
     "iso 9001",
     "istio",
+    "it audit",
     "it audit methodologies",
-    "it auditing",
     "it governance",
     "itgc",
     "itil",
@@ -2957,6 +2899,7 @@
     "kyc",
     "lakehouse",
     "landing page optimization",
+    "langchain",
     "langgraph",
     "layout design",
     "leadership",
@@ -2969,7 +2912,6 @@
     "linux",
     "load balancers",
     "load balancing",
-    "local seo",
     "log analysis",
     "log analytics",
     "logging",
@@ -3013,9 +2955,7 @@
     "microsoft copilot",
     "microsoft defender",
     "microsoft entra id",
-    "microsoft excel",
     "microsoft office",
-    "microsoft office suite",
     "microsoft outlook",
     "microsoft powerpoint",
     "microsoft sentinel",
@@ -3037,10 +2977,7 @@
     "mongodb atlas",
     "motion graphics",
     "moz",
-    "ms excel",
-    "ms office",
     "ms project",
-    "ms word",
     "multi-cloud",
     "mvp",
     "mvvm",
@@ -3054,6 +2991,7 @@
     "nist",
     "nist csf",
     "nlp",
+    "node.js",
     "notion",
     "npm",
     "nps",
@@ -3064,12 +3002,10 @@
     "objective-c",
     "oci",
     "off-page optimization",
-    "off-page seo",
     "oidc",
     "okta",
     "on-call rotation",
     "on-page optimization",
-    "on-page seo",
     "on-premise infrastructure",
     "onboarding",
     "onshape",
@@ -3240,7 +3176,6 @@
     "sdk",
     "sdlc",
     "search",
-    "search console",
     "secrets management",
     "secure coding",
     "secure coding practices",
@@ -3263,10 +3198,8 @@
     "segmentation",
     "selenium",
     "sem",
-    "semrush",
     "sensors",
     "sentinelone",
-    "seo tools",
     "serverless",
     "service mesh",
     "service-oriented architecture",
@@ -3348,8 +3281,6 @@
     "teamcity",
     "teams",
     "technical documentation",
-    "technical seo",
-    "technical seo audits",
     "technical support",
     "technical writing",
     "technical writing tools",
@@ -3746,12 +3677,6 @@
       "precision_at_threshold": 0.0,
       "status": "active"
     },
-    "advanced excel": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
     "advertising systems": {
       "threshold": 0.25,
       "best_f1": 0.0,
@@ -3789,10 +3714,10 @@
       "status": "active"
     },
     "agents": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.32210898,
+      "best_f1": 0.17142857,
+      "precision_at_threshold": 0.3,
+      "status": "active"
     },
     "agile": {
       "threshold": 1.0,
@@ -3902,12 +3827,6 @@
       "precision_at_threshold": 0.0,
       "status": "disabled"
     },
-    "ai seo tools": {
-      "threshold": 0.25,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "active"
-    },
     "ai tooling": {
       "threshold": 1.0,
       "best_f1": 0.0,
@@ -4004,12 +3923,6 @@
       "precision_at_threshold": 0.0,
       "status": "active"
     },
-    "ai-powered seo": {
-      "threshold": 0.25,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "active"
-    },
     "ai-powered tools": {
       "threshold": 1.0,
       "best_f1": 0.0,
@@ -4017,9 +3930,9 @@
       "status": "disabled"
     },
     "ai/ml": {
-      "threshold": 0.46199727,
-      "best_f1": 0.70244821,
-      "precision_at_threshold": 0.6016129,
+      "threshold": 0.40396649,
+      "best_f1": 0.69642857,
+      "precision_at_threshold": 0.57522124,
       "status": "active"
     },
     "air export": {
@@ -4311,9 +4224,9 @@
       "status": "disabled"
     },
     "apis": {
-      "threshold": 0.64400476,
-      "best_f1": 0.21818182,
-      "precision_at_threshold": 0.30508475,
+      "threshold": 0.64091575,
+      "best_f1": 0.16438356,
+      "precision_at_threshold": 0.31578947,
       "status": "active"
     },
     "apm": {
@@ -4676,24 +4589,6 @@
       "precision_at_threshold": 0.0,
       "status": "disabled"
     },
-    "auditing": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
-    "auditing methodologies": {
-      "threshold": 0.25,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "active"
-    },
-    "auditing procedures": {
-      "threshold": 0.25,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "active"
-    },
     "auditing software": {
       "threshold": 0.25,
       "best_f1": 0.0,
@@ -4785,10 +4680,10 @@
       "status": "active"
     },
     "automation": {
-      "threshold": 0.39501145,
-      "best_f1": 0.13636364,
-      "precision_at_threshold": 0.42857143,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "automation frameworks": {
       "threshold": 0.25,
@@ -4905,9 +4800,9 @@
       "status": "active"
     },
     "aws/azure": {
-      "threshold": 0.61844069,
-      "best_f1": 0.59550562,
-      "precision_at_threshold": 0.60571429,
+      "threshold": 0.58211064,
+      "best_f1": 0.57281553,
+      "precision_at_threshold": 0.51082251,
       "status": "active"
     },
     "azure ad": {
@@ -5475,9 +5370,9 @@
       "status": "disabled"
     },
     "c++": {
-      "threshold": 0.46330953,
-      "best_f1": 0.31372549,
-      "precision_at_threshold": 0.72727273,
+      "threshold": 0.43081558,
+      "best_f1": 0.05882353,
+      "precision_at_threshold": 1.0,
       "status": "active"
     },
     "c/c++": {
@@ -5751,9 +5646,9 @@
       "status": "disabled"
     },
     "ci/cd": {
-      "threshold": 0.48124734,
-      "best_f1": 0.43312102,
-      "precision_at_threshold": 0.34170854,
+      "threshold": 0.65422362,
+      "best_f1": 0.29885057,
+      "precision_at_threshold": 0.39393939,
       "status": "active"
     },
     "ci/cd pipelines": {
@@ -6206,12 +6101,6 @@
       "precision_at_threshold": 0.0,
       "status": "disabled"
     },
-    "communication skills": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
     "compass": {
       "threshold": 0.25,
       "best_f1": 0.0,
@@ -6620,12 +6509,6 @@
       "precision_at_threshold": 0.0,
       "status": "disabled"
     },
-    "corel draw": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
     "coreldraw": {
       "threshold": 1.0,
       "best_f1": 0.0,
@@ -6752,18 +6635,6 @@
       "precision_at_threshold": 0.0,
       "status": "disabled"
     },
-    "crm systems": {
-      "threshold": 0.25,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "active"
-    },
-    "crm tools": {
-      "threshold": 0.25,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "active"
-    },
     "cro": {
       "threshold": 1.0,
       "best_f1": 0.0,
@@ -6825,10 +6696,10 @@
       "status": "disabled"
     },
     "css": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.25202599,
+      "best_f1": 0.09090909,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "css3": {
       "threshold": 0.25,
@@ -6885,12 +6756,6 @@
       "status": "active"
     },
     "customer journey mapping": {
-      "threshold": 0.25,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "active"
-    },
-    "customer relationship management": {
       "threshold": 0.25,
       "best_f1": 0.0,
       "precision_at_threshold": 0.0,
@@ -7023,10 +6888,10 @@
       "status": "disabled"
     },
     "data analytics": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.42983148,
+      "best_f1": 0.03846154,
+      "precision_at_threshold": 0.5,
+      "status": "active"
     },
     "data center": {
       "threshold": 0.25,
@@ -7731,10 +7596,10 @@
       "status": "disabled"
     },
     "docker": {
-      "threshold": 0.57907403,
-      "best_f1": 0.06451613,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "docs": {
       "threshold": 1.0,
@@ -8930,12 +8795,6 @@
       "precision_at_threshold": 0.0,
       "status": "disabled"
     },
-    "full-stack development": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
     "full\u2011stack development": {
       "threshold": 0.25,
       "best_f1": 0.0,
@@ -8977,18 +8836,6 @@
       "best_f1": 0.0,
       "precision_at_threshold": 0.0,
       "status": "active"
-    },
-    "g suite": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
-    "ga4": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
     },
     "gaap": {
       "threshold": 0.25,
@@ -9045,10 +8892,10 @@
       "status": "disabled"
     },
     "genai": {
-      "threshold": 0.47677976,
-      "best_f1": 0.04347826,
-      "precision_at_threshold": 1.0,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "generative ai tools": {
       "threshold": 0.25,
@@ -9093,9 +8940,9 @@
       "status": "disabled"
     },
     "git": {
-      "threshold": 0.50380224,
-      "best_f1": 0.41269841,
-      "precision_at_threshold": 0.30350195,
+      "threshold": 0.56257349,
+      "best_f1": 0.3877551,
+      "precision_at_threshold": 0.32947977,
       "status": "active"
     },
     "github copilot": {
@@ -9171,9 +9018,9 @@
       "status": "active"
     },
     "go": {
-      "threshold": 0.52894861,
-      "best_f1": 0.36450839,
-      "precision_at_threshold": 0.30039526,
+      "threshold": 0.47841412,
+      "best_f1": 0.41777778,
+      "precision_at_threshold": 0.32867133,
       "status": "active"
     },
     "gong": {
@@ -9213,22 +9060,10 @@
       "status": "active"
     },
     "google analytics": {
-      "threshold": 0.30064246,
-      "best_f1": 0.41666667,
-      "precision_at_threshold": 0.43478261,
+      "threshold": 0.51741803,
+      "best_f1": 0.18181818,
+      "precision_at_threshold": 0.30769231,
       "status": "active"
-    },
-    "google analytics (ga4)": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
-    "google analytics 4": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
     },
     "google business profile": {
       "threshold": 1.0,
@@ -9309,10 +9144,10 @@
       "status": "active"
     },
     "google search console": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.3289493,
+      "best_f1": 0.27272727,
+      "precision_at_threshold": 0.31578947,
+      "status": "active"
     },
     "google sheets": {
       "threshold": 1.0,
@@ -9321,12 +9156,6 @@
       "status": "disabled"
     },
     "google slides": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
-    "google suite": {
       "threshold": 1.0,
       "best_f1": 0.0,
       "precision_at_threshold": 0.0,
@@ -9387,10 +9216,10 @@
       "status": "disabled"
     },
     "grafana": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.42016926,
+      "best_f1": 0.26086957,
+      "precision_at_threshold": 0.3,
+      "status": "active"
     },
     "grafana cloud": {
       "threshold": 0.25,
@@ -9459,12 +9288,6 @@
       "status": "active"
     },
     "gst": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
-    "gsuite": {
       "threshold": 1.0,
       "best_f1": 0.0,
       "precision_at_threshold": 0.0,
@@ -9777,9 +9600,9 @@
       "status": "disabled"
     },
     "html": {
-      "threshold": 0.2617678,
-      "best_f1": 0.13793103,
-      "precision_at_threshold": 0.33333333,
+      "threshold": 0.35335106,
+      "best_f1": 0.08,
+      "precision_at_threshold": 1.0,
       "status": "active"
     },
     "html/css": {
@@ -9890,12 +9713,6 @@
       "precision_at_threshold": 0.0,
       "status": "disabled"
     },
-    "iam": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
     "icd-10": {
       "threshold": 0.25,
       "best_f1": 0.0,
@@ -9927,12 +9744,6 @@
       "status": "active"
     },
     "identity": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
-    "identity & access management": {
       "threshold": 1.0,
       "best_f1": 0.0,
       "precision_at_threshold": 0.0,
@@ -10113,10 +9924,10 @@
       "status": "active"
     },
     "information security": {
-      "threshold": 0.25163999,
-      "best_f1": 0.06666667,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "infrastructure": {
       "threshold": 1.0,
@@ -10251,12 +10062,6 @@
       "status": "active"
     },
     "internal audit": {
-      "threshold": 0.25,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "active"
-    },
-    "internal auditing": {
       "threshold": 1.0,
       "best_f1": 0.0,
       "precision_at_threshold": 0.0,
@@ -10273,12 +10078,6 @@
       "best_f1": 0.0,
       "precision_at_threshold": 0.0,
       "status": "disabled"
-    },
-    "international seo": {
-      "threshold": 0.25,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "active"
     },
     "interviews": {
       "threshold": 1.0,
@@ -10533,18 +10332,12 @@
       "status": "active"
     },
     "it audit": {
-      "threshold": 0.25,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "active"
-    },
-    "it audit methodologies": {
       "threshold": 1.0,
       "best_f1": 0.0,
       "precision_at_threshold": 0.0,
       "status": "disabled"
     },
-    "it auditing": {
+    "it audit methodologies": {
       "threshold": 1.0,
       "best_f1": 0.0,
       "precision_at_threshold": 0.0,
@@ -10617,9 +10410,9 @@
       "status": "active"
     },
     "java": {
-      "threshold": 0.61364043,
-      "best_f1": 0.22429907,
-      "precision_at_threshold": 0.30769231,
+      "threshold": 0.59547955,
+      "best_f1": 0.2020202,
+      "precision_at_threshold": 0.33333333,
       "status": "active"
     },
     "javascript": {
@@ -10719,9 +10512,9 @@
       "status": "active"
     },
     "kafka": {
-      "threshold": 0.34468085,
-      "best_f1": 0.46153846,
-      "precision_at_threshold": 0.69230769,
+      "threshold": 0.40137586,
+      "best_f1": 0.13793103,
+      "precision_at_threshold": 1.0,
       "status": "active"
     },
     "kanban": {
@@ -10839,9 +10632,9 @@
       "status": "disabled"
     },
     "kubernetes": {
-      "threshold": 0.53003424,
-      "best_f1": 0.47577093,
-      "precision_at_threshold": 0.44262295,
+      "threshold": 0.57596946,
+      "best_f1": 0.47682119,
+      "precision_at_threshold": 0.34951456,
       "status": "active"
     },
     "kyb": {
@@ -10881,10 +10674,10 @@
       "status": "disabled"
     },
     "langchain": {
-      "threshold": 0.33763131,
-      "best_f1": 0.14814815,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "langfuse": {
       "threshold": 0.25,
@@ -11079,9 +10872,9 @@
       "status": "active"
     },
     "llms": {
-      "threshold": 0.44929707,
-      "best_f1": 0.28169014,
-      "precision_at_threshold": 0.35714286,
+      "threshold": 0.47916266,
+      "best_f1": 0.32,
+      "precision_at_threshold": 0.33333333,
       "status": "active"
     },
     "lms": {
@@ -11125,12 +10918,6 @@
       "best_f1": 0.0,
       "precision_at_threshold": 0.0,
       "status": "active"
-    },
-    "local seo": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
     },
     "localization": {
       "threshold": 0.25,
@@ -11649,9 +11436,9 @@
       "status": "active"
     },
     "microservices": {
-      "threshold": 0.41087422,
-      "best_f1": 0.29090909,
-      "precision_at_threshold": 0.72727273,
+      "threshold": 0.44776368,
+      "best_f1": 0.04545455,
+      "precision_at_threshold": 1.0,
       "status": "active"
     },
     "microsoft 365": {
@@ -11690,12 +11477,6 @@
       "precision_at_threshold": 0.0,
       "status": "disabled"
     },
-    "microsoft excel": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
     "microsoft fabric": {
       "threshold": 0.25,
       "best_f1": 0.0,
@@ -11703,12 +11484,6 @@
       "status": "active"
     },
     "microsoft office": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
-    "microsoft office suite": {
       "threshold": 1.0,
       "best_f1": 0.0,
       "precision_at_threshold": 0.0,
@@ -12050,18 +11825,6 @@
       "precision_at_threshold": 0.0,
       "status": "active"
     },
-    "ms excel": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
-    "ms office": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
     "ms powerpoint": {
       "threshold": 0.25,
       "best_f1": 0.0,
@@ -12069,12 +11832,6 @@
       "status": "active"
     },
     "ms project": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
-    "ms word": {
       "threshold": 1.0,
       "best_f1": 0.0,
       "precision_at_threshold": 0.0,
@@ -12279,9 +12036,9 @@
       "status": "active"
     },
     "networking": {
-      "threshold": 0.50370216,
-      "best_f1": 0.35359116,
-      "precision_at_threshold": 0.35555556,
+      "threshold": 0.69899243,
+      "best_f1": 0.06521739,
+      "precision_at_threshold": 0.42857143,
       "status": "active"
     },
     "networking fundamentals": {
@@ -12351,10 +12108,10 @@
       "status": "active"
     },
     "node.js": {
-      "threshold": 0.31633824,
-      "best_f1": 0.41666667,
-      "precision_at_threshold": 0.37037037,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "non-human identity": {
       "threshold": 0.25,
@@ -12447,9 +12204,9 @@
       "status": "disabled"
     },
     "observability": {
-      "threshold": 0.4449842,
-      "best_f1": 0.23728814,
-      "precision_at_threshold": 0.36842105,
+      "threshold": 0.4219934,
+      "best_f1": 0.28571429,
+      "precision_at_threshold": 0.30769231,
       "status": "active"
     },
     "observability tooling": {
@@ -12482,19 +12239,7 @@
       "precision_at_threshold": 0.0,
       "status": "disabled"
     },
-    "off-page seo": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
     "offensive security": {
-      "threshold": 0.25,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "active"
-    },
-    "office 365": {
       "threshold": 0.25,
       "best_f1": 0.0,
       "precision_at_threshold": 0.0,
@@ -12555,12 +12300,6 @@
       "status": "active"
     },
     "on-page optimization": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
-    "on-page seo": {
       "threshold": 1.0,
       "best_f1": 0.0,
       "precision_at_threshold": 0.0,
@@ -13827,9 +13566,9 @@
       "status": "disabled"
     },
     "python": {
-      "threshold": 0.47090396,
-      "best_f1": 0.76966292,
-      "precision_at_threshold": 0.62557078,
+      "threshold": 0.40304881,
+      "best_f1": 0.77084793,
+      "precision_at_threshold": 0.62713797,
       "status": "active"
     },
     "pytorch": {
@@ -15032,12 +14771,6 @@
       "precision_at_threshold": 0.0,
       "status": "disabled"
     },
-    "search console": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
     "search engine algorithms": {
       "threshold": 0.25,
       "best_f1": 0.0,
@@ -15045,12 +14778,6 @@
       "status": "active"
     },
     "search engine marketing": {
-      "threshold": 0.25,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "active"
-    },
-    "search engine optimization": {
       "threshold": 0.25,
       "best_f1": 0.0,
       "precision_at_threshold": 0.0,
@@ -15105,9 +14832,9 @@
       "status": "active"
     },
     "security": {
-      "threshold": 0.46216178,
-      "best_f1": 0.58596491,
-      "precision_at_threshold": 0.47988506,
+      "threshold": 0.50954807,
+      "best_f1": 0.5758092,
+      "precision_at_threshold": 0.4630137,
       "status": "active"
     },
     "security analysis": {
@@ -15333,10 +15060,10 @@
       "status": "active"
     },
     "semrush": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.31061181,
+      "best_f1": 0.08333333,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "sendoso": {
       "threshold": 0.25,
@@ -15369,58 +15096,10 @@
       "status": "active"
     },
     "seo": {
-      "threshold": 0.28690693,
-      "best_f1": 0.4,
-      "precision_at_threshold": 0.40909091,
+      "threshold": 0.45206669,
+      "best_f1": 0.31578947,
+      "precision_at_threshold": 0.36,
       "status": "active"
-    },
-    "seo audits": {
-      "threshold": 0.25,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "active"
-    },
-    "seo best practices implementation": {
-      "threshold": 0.25,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "active"
-    },
-    "seo fundamentals": {
-      "threshold": 0.25,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "active"
-    },
-    "seo performance tracking": {
-      "threshold": 0.25,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "active"
-    },
-    "seo reporting": {
-      "threshold": 0.25,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "active"
-    },
-    "seo reporting tools": {
-      "threshold": 0.25,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "active"
-    },
-    "seo strategy": {
-      "threshold": 0.25,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "active"
-    },
-    "seo tools": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
     },
     "server": {
       "threshold": 0.25,
@@ -16065,9 +15744,9 @@
       "status": "disabled"
     },
     "sql": {
-      "threshold": 0.42280439,
-      "best_f1": 0.74063401,
-      "precision_at_threshold": 0.58810069,
+      "threshold": 0.37049884,
+      "best_f1": 0.72618026,
+      "precision_at_threshold": 0.62759644,
       "status": "active"
     },
     "sql server": {
@@ -16173,9 +15852,9 @@
       "status": "disabled"
     },
     "statistics": {
-      "threshold": 0.49640745,
-      "best_f1": 0.73096447,
-      "precision_at_threshold": 0.67924528,
+      "threshold": 0.42834863,
+      "best_f1": 0.7160804,
+      "precision_at_threshold": 0.63474388,
       "status": "active"
     },
     "statutory audit": {
@@ -16610,18 +16289,6 @@
       "precision_at_threshold": 0.0,
       "status": "active"
     },
-    "technical seo": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
-    "technical seo audits": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
     "technical support": {
       "threshold": 1.0,
       "best_f1": 0.0,
@@ -16683,9 +16350,9 @@
       "status": "active"
     },
     "terraform": {
-      "threshold": 0.45616069,
-      "best_f1": 0.42211055,
-      "precision_at_threshold": 0.30882353,
+      "threshold": 0.6349048,
+      "best_f1": 0.33333333,
+      "precision_at_threshold": 0.36734694,
       "status": "active"
     },
     "terraform cdk": {
