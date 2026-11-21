@@ -3,14 +3,14 @@
   "max_seq_length": 128,
   "text_preprocessing_version": "jd-focus-v1",
   "input_dim": 384,
-  "num_labels": 2442,
+  "num_labels": 2398,
   "label_vocab_path": "model/prep/v2/label_vocab_v2.json",
-  "label_vocab_sha256": "c0abb88c711383e51e0b71832173aa7d1d5120869cf5d2140606c8b2e3844c42",
-  "hidden_dim": 64,
+  "label_vocab_sha256": "1dda689f2ee7344614d0cabc6f37b3e73a4009f3728300a3214bf60f731af17c",
+  "hidden_dim": 384,
   "dropout": 0.3,
   "batch_size": 32,
   "epochs": 280,
-  "best_test_loss": 0.12191843323103368,
-  "classifier_pt_sha256": "5996206db78b60455cbaea31f2b1dcd1c698ca3251f9f8caa877fef134d88656",
-  "classifier_npz_sha256": "05bdb86e32612e5c0b95842d637482c49795d839085e5a3b15d345046f4cb16a"
+  "best_test_loss": 0.12219214170933314,
+  "classifier_pt_sha256": "a4161e9355b8d6ff25f9a51aeeb2d3993ad77a556e527687e6c613f87701f7f8",
+  "classifier_npz_sha256": "8f1c5f726b70b8d3ffb0a9290bb3cc0a8608eb0bb8aa6b454995ec1f0ab458f6"
 }
