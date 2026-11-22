@@ -283,11 +283,26 @@ def main() -> None:
 
     model = SBERTSkillClassifier(X_train.shape[1], len(vocab))
 
-    pos_counts = y_train.sum(axis=0)
+    # Class-weighted BCE: give underrepresented positive labels more influence.
+    # A square-root inverse-prevalence weight is deliberately less aggressive
+    # than neg/pos itself; full inverse weighting can make noisy rare labels
+    # dominate training and damage precision. The upper cap bounds that risk.
+    pos_counts = y_train.sum(axis=0).astype(np.float32)
     neg_counts = len(y_train) - pos_counts
-    pos_weight = torch.tensor(neg_counts / (pos_counts + 1e-6), dtype=torch.float32)
-    pos_weight = torch.clamp(pos_weight, max=10.0)
+    raw_pos_weight = np.sqrt(
+        (neg_counts + 1.0) / (pos_counts + 1.0)
+    )
+    pos_weight = torch.tensor(
+        np.clip(raw_pos_weight, 1.0, 20.0),
+        dtype=torch.float32,
+    )
     criterion = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
+    print(
+        "Loss: class-weighted BCEWithLogitsLoss "
+        f"(sqrt inverse prevalence, pos_weight range="
+        f"{float(pos_weight.min()):.2f}-{float(pos_weight.max()):.2f}, "
+        f"mean={float(pos_weight.mean()):.2f})"
+    )
     optimizer = torch.optim.Adam(
         model.parameters(), lr=LEARNING_RATE, weight_decay=WEIGHT_DECAY
     )
@@ -384,6 +399,10 @@ def main() -> None:
                 "batch_size": BATCH_SIZE,
                 "epochs": EPOCHS,
                 "best_test_loss": best_test_loss,
+                "loss": "BCEWithLogitsLoss",
+                "positive_class_weighting": "sqrt((negative_count + 1) / (positive_count + 1))",
+                "positive_class_weight_min": 1.0,
+                "positive_class_weight_max": 20.0,
             },
             file,
             indent=2,
