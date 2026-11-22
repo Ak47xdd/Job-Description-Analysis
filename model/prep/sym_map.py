@@ -2,7 +2,7 @@
 sym_map.py - All synonyms for the TF-IDF Vectorizer
 """
 
-TAXONOMY_VERSION = "v5-duplicate-label-consolidation"
+TAXONOMY_VERSION = "v6-aggressive-parent-taxonomy"
 
 SYNONYM_MAP = {
     # docker 
@@ -391,6 +391,78 @@ CANONICAL_LABEL_MAP = {
     "full stack development": "full-stack",
     "nodejs": "node.js",
     "node js": "node.js",
+
+    # Aggressive office-productivity consolidation. Individual application
+    # distinctions are intentionally pooled into one competency-family label.
+    "microsoft office": "office productivity",
+    "microsoft office suite": "office productivity",
+    "ms office": "office productivity",
+    "microsoft 365": "office productivity",
+    "office 365": "office productivity",
+    "excel": "office productivity",
+    "advanced excel": "office productivity",
+    "microsoft excel": "office productivity",
+    "ms excel": "office productivity",
+    "word": "office productivity",
+    "microsoft word": "office productivity",
+    "ms word": "office productivity",
+    "powerpoint": "office productivity",
+    "microsoft powerpoint": "office productivity",
+    "sheets": "office productivity",
+    "google sheets": "office productivity",
+    "google docs": "office productivity",
+    "google slides": "office productivity",
+    "google workspace": "office productivity",
+    "g suite": "office productivity",
+    "gsuite": "office productivity",
+    "google suite": "office productivity",
+    "spreadsheets": "office productivity",
+    "outlook": "office productivity",
+    "visio": "office productivity",
+
+    # SEO competency family: specializations and commonly named SEO tools.
+    "ahrefs": "seo",
+    "semrush": "seo",
+    "moz": "seo",
+    "moz pro": "seo",
+    "screaming frog": "seo",
+    "screaming frog seo spider": "seo",
+    "yoast seo": "seo",
+    "google search console": "seo",
+    "search console": "seo",
+    "on-page seo": "seo",
+    "off-page seo": "seo",
+    "technical seo": "seo",
+    "local seo": "seo",
+    "international seo": "seo",
+    "seo audits": "seo",
+    "technical seo audits": "seo",
+    "seo reporting": "seo",
+    "seo tools": "seo",
+
+    # Web analytics spelling variants.
+    "website analytics": "web analytics",
+    "digital analytics": "web analytics",
+    "google analytics 4": "google analytics",
+    "google analytics (ga4)": "google analytics",
+    "ga4": "google analytics",
+
+    # Product-name and spelling aliases.
+    "adobe premiere": "adobe premiere pro",
+    "after effects": "adobe after effects",
+    "mssql": "sql server",
+    "microsoft sql server": "sql server",
+    "t-sql": "sql",
+    "postgres": "postgresql",
+    "mongo": "mongodb",
+    "mongo db": "mongodb",
+    "nodejs": "node.js",
+    "node js": "node.js",
+    "react.js": "react",
+    "vue.js": "vue",
+    "nextjs": "next.js",
+    "argocd": "argo cd",
+
 }
  
  
