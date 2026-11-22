@@ -33,6 +33,10 @@ DATA_FILE = ROOT / "data" / "clean" / "v2" / "cleaned_job_descriptions_v2.csv"
 OUT_DIR = Path(__file__).resolve().parent
 V2_DIR = OUT_DIR / "v2"
 
+# Apply after canonicalization so aliases pool their support before filtering.
+# A six-example floor removes labels too sparse for stable supervised learning.
+MIN_LABEL_FREQUENCY = 6
+
 SKILLS_FIX = {
     "tesnorflow/pytorch": "tensorflow/pytorch",
     "numpyhugging face": "numpy",
@@ -98,7 +102,7 @@ def main() -> None:
     df["skill_list"] = df["tech_skills"].apply(normalizer)
 
     freq = Counter(s for lst in df["skill_list"] for s in lst)
-    vocab = sorted([s for s, count in freq.items() if count >= 3])
+    vocab = sorted([s for s, count in freq.items() if count >= MIN_LABEL_FREQUENCY])
     if not vocab:
         raise ValueError("No v2 labels survived the minimum frequency filter.")
 
@@ -202,6 +206,7 @@ def main() -> None:
         "source_dataset_sha256": dataset_sha256,
         "num_rows": int(len(df)),
         "num_labels": int(len(vocab)),
+        "min_label_frequency": MIN_LABEL_FREQUENCY,
         "label_vocab_sha256": hashlib.sha256(
             json.dumps(vocab, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
         ).hexdigest(),
@@ -220,7 +225,8 @@ def main() -> None:
     )
 
     print(
-        f"Dataset: {len(df)} rows | Vocab: {len(vocab)} labels | "
+        f"Dataset: {len(df)} rows | Vocab: {len(vocab)} labels "
+        f"(minimum support: {MIN_LABEL_FREQUENCY}) | "
         f"TF-IDF features: {X.shape[1]}"
     )
     print(f"Train: {len(X_train)} | Test: {len(X_test)}")
