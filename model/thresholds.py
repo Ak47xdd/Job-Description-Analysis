@@ -227,8 +227,14 @@ def optimize_per_label_thresholds(
     on_infeasible: str = "raise",
     dataset_supports: np.ndarray | None = None,
     rare_label_threshold: float = 0.25,
+    per_label_min_precisions: np.ndarray | None = None,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    """Optimize every label independently under precision/floor constraints."""
+    """Optimize every label independently under precision/floor constraints.
+
+    per_label_min_precisions optionally supplies a separate precision floor for
+    each output column. This supports narrowly scoped, explicitly approved
+    exceptions without weakening the global default for the rest of the taxonomy.
+    """
     y_true = np.asarray(y_true)
     scores = np.asarray(scores)
     if y_true.ndim != 2 or scores.ndim != 2 or y_true.shape != scores.shape:
@@ -238,6 +244,12 @@ def optimize_per_label_thresholds(
         dataset_supports = np.asarray(dataset_supports, dtype=np.int64)
         if dataset_supports.shape != (scores.shape[1],):
             raise ValueError("dataset_supports must have one count per label")
+    if per_label_min_precisions is not None:
+        per_label_min_precisions = np.asarray(per_label_min_precisions, dtype=np.float64)
+        if per_label_min_precisions.shape != (scores.shape[1],):
+            raise ValueError("per_label_min_precisions must have one value per label")
+        if np.any((per_label_min_precisions < 0.0) | (per_label_min_precisions > 1.0)):
+            raise ValueError("per_label_min_precisions must be between 0 and 1")
 
     thresholds = np.empty(scores.shape[1], dtype=np.float64)
     best_f1 = np.empty(scores.shape[1], dtype=np.float64)
@@ -247,7 +259,11 @@ def optimize_per_label_thresholds(
         thresholds[label_idx], best_f1[label_idx], best_precision[label_idx] = best_threshold(
             y_true[:, label_idx],
             scores[:, label_idx],
-            min_precision=min_precision,
+            min_precision=(
+                float(per_label_min_precisions[label_idx])
+                if per_label_min_precisions is not None
+                else min_precision
+            ),
             min_threshold=min_threshold,
             support_aware=support_aware,
             low_support_cutoff=low_support_cutoff,
