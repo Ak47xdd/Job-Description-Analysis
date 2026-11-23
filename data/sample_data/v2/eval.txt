@@ -3,25 +3,24 @@ Cleaned training dataset is current: 4,349 rows (raw source: 4,349 rows)
 Loss: class-weighted BCEWithLogitsLoss (sqrt inverse prevalence, pos_weight range=1.00-20.00, mean=16.79)
 SBERT input dimension: 384
 Labels: 986 | Train: 3479 | Test: 870
-Epoch 001/180 | train_loss=0.3604 | test_loss=0.2326
-Epoch 010/180 | train_loss=0.2028 | test_loss=0.2135
-Epoch 020/180 | train_loss=0.1941 | test_loss=0.2049
-Epoch 030/180 | train_loss=0.1852 | test_loss=0.1969
-Epoch 040/180 | train_loss=0.1794 | test_loss=0.1917
-Epoch 050/180 | train_loss=0.1765 | test_loss=0.1894
-Epoch 060/180 | train_loss=0.1751 | test_loss=0.1885
-Epoch 070/180 | train_loss=0.1748 | test_loss=0.1873
-Epoch 080/180 | train_loss=0.1738 | test_loss=0.1876
-Epoch 090/180 | train_loss=0.1735 | test_loss=0.1867
-Epoch 100/180 | train_loss=0.1731 | test_loss=0.1869
-Epoch 110/180 | train_loss=0.1739 | test_loss=0.1863
-Epoch 120/180 | train_loss=0.1735 | test_loss=0.1864
-Epoch 130/180 | train_loss=0.1731 | test_loss=0.1868
-Epoch 140/180 | train_loss=0.1732 | test_loss=0.1868
-Epoch 150/180 | train_loss=0.1738 | test_loss=0.1863
-Epoch 160/180 | train_loss=0.1732 | test_loss=0.1861
-Epoch 170/180 | train_loss=0.1724 | test_loss=0.1859
-Epoch 180/180 | train_loss=0.1733 | test_loss=0.1866
+Epoch 001/170 | train_loss=0.3604 | test_loss=0.2326
+Epoch 010/170 | train_loss=0.2028 | test_loss=0.2135
+Epoch 020/170 | train_loss=0.1941 | test_loss=0.2049
+Epoch 030/170 | train_loss=0.1852 | test_loss=0.1969
+Epoch 040/170 | train_loss=0.1794 | test_loss=0.1917
+Epoch 050/170 | train_loss=0.1765 | test_loss=0.1894
+Epoch 060/170 | train_loss=0.1751 | test_loss=0.1885
+Epoch 070/170 | train_loss=0.1748 | test_loss=0.1873
+Epoch 080/170 | train_loss=0.1738 | test_loss=0.1876
+Epoch 090/170 | train_loss=0.1735 | test_loss=0.1867
+Epoch 100/170 | train_loss=0.1731 | test_loss=0.1869
+Epoch 110/170 | train_loss=0.1739 | test_loss=0.1863
+Epoch 120/170 | train_loss=0.1735 | test_loss=0.1864
+Epoch 130/170 | train_loss=0.1731 | test_loss=0.1868
+Epoch 140/170 | train_loss=0.1732 | test_loss=0.1868
+Epoch 150/170 | train_loss=0.1738 | test_loss=0.1863
+Epoch 160/170 | train_loss=0.1732 | test_loss=0.1861
+Epoch 170/170 | train_loss=0.1724 | test_loss=0.1859
 Refreshing per-skill thresholds from the new checkpoint...
 Refreshing SBERT artifact prerequisite: model\eval_sbert.py
 
