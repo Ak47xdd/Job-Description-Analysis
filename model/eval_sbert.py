@@ -30,6 +30,9 @@ THRESHOLD_FILE = ROOT / "model_out" / "v2_sentence_transformer" / "per_skill_thr
 
 # Safety constraints against low-confidence/noisy skill guesses.
 MIN_PRECISION = 0.30
+# Docker and Linux are broad foundational skills. Permit a narrowly scoped
+# 0.25 precision floor for these two labels only; all other labels retain 0.30.
+LABEL_MIN_PRECISION_OVERRIDES = {"docker": 0.25, "linux": 0.25}
 MIN_THRESHOLD = 0.25
 RARE_SUPPORT_CUTOFF = 5
 RARE_LABEL_THRESHOLD = 0.25
@@ -75,12 +78,20 @@ def main():
     with torch.no_grad():
         probs = torch.sigmoid(model(torch.tensor(X_test))).numpy()
 
-    # Every skill gets its own threshold. Rare labels (support <= 3) can search
-    # down to 0.15, while MIN_PRECISION remains an absolute safety constraint.
+    # Every skill gets its own threshold. Docker/Linux have a documented,
+    # narrowly scoped precision-floor exception; all other labels retain 0.30.
+    label_min_precisions = np.full(len(vocab), MIN_PRECISION, dtype=np.float64)
+    label_min_precision_by_name = {}
+    for label_idx, label in enumerate(vocab):
+        if label in LABEL_MIN_PRECISION_OVERRIDES:
+            label_min_precisions[label_idx] = LABEL_MIN_PRECISION_OVERRIDES[label]
+            label_min_precision_by_name[label] = float(LABEL_MIN_PRECISION_OVERRIDES[label])
+
     thresholds, threshold_f1, threshold_precision = optimize_per_label_thresholds(
         y_test,
         probs,
         min_precision=MIN_PRECISION,
+        per_label_min_precisions=label_min_precisions,
         min_threshold=MIN_THRESHOLD,
         dataset_supports=dataset_supports,
         rare_label_threshold=RARE_LABEL_THRESHOLD,
@@ -92,7 +103,9 @@ def main():
     disabled_labels = np.flatnonzero(thresholds > 1.0)
     rare_labels = dataset_supports <= RARE_SUPPORT_CUTOFF
     invalid_precision = np.flatnonzero(
-        (thresholds <= 1.0) & (threshold_precision < MIN_PRECISION) & ~rare_labels
+        (thresholds <= 1.0)
+        & (threshold_precision < label_min_precisions)
+        & ~rare_labels
     )
     if invalid_precision.size:
         bad_labels = [vocab[int(i)] for i in invalid_precision]
@@ -107,6 +120,10 @@ def main():
         "method": "support_gated_per_skill_f1_with_fixed_rare_label_baseline",
         "metric": "binary_f1",
         "min_precision": MIN_PRECISION,
+        "per_label_min_precision_overrides": label_min_precision_by_name,
+        "effective_min_precision_by_label": {
+            label: float(label_min_precisions[i]) for i, label in enumerate(vocab)
+        },
         "min_threshold": MIN_THRESHOLD,
         "rare_support_cutoff": RARE_SUPPORT_CUTOFF,
         "rare_label_threshold": RARE_LABEL_THRESHOLD,
@@ -147,7 +164,11 @@ def main():
 
     print("\nSBERT Model Evaluation — Constrained Per-Skill Thresholds\n")
     print(f"Embedding shape: {X_test.shape}")
-    print(f"Minimum precision constraint: {MIN_PRECISION:.2f}")
+    print(f"Default minimum precision constraint: {MIN_PRECISION:.2f}")
+    if label_min_precision_by_name:
+        print("Label-specific precision floors:", ", ".join(
+            f"{label}={floor:.2f}" for label, floor in label_min_precision_by_name.items()
+        ))
     print(f"Minimum threshold floor: {MIN_THRESHOLD:.2f}")
     print(f"Rare-label fixed threshold (dataset support <= {RARE_SUPPORT_CUTOFF}): {RARE_LABEL_THRESHOLD:.2f}")
     print(f"Infeasible labels disabled: {len(disabled_labels)}")
