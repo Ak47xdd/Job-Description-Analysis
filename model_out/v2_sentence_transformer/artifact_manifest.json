@@ -1,7 +1,7 @@
 {
   "format": 1,
-  "classifier_pt_sha256": "09638abc2794ee8f52048c6688c2b01d35beaa115fd0ce6eed5c14df4d83cf36",
-  "classifier_npz_sha256": "4535fbe3930c1cf6fa3db76c309dedbc35ef6d37aa7aa7ac1b609ff72a7a10d1",
-  "thresholds_sha256": "61cb2dd67ebb81f1a838301a89bcd79537de69d8f69cf5d689f5fe5e3bf1e3b6",
-  "label_vocab_sha256": "dec324ca3c8b0b0fc411548884ad4db58669e3db19b2b2ca0456eec4c0d3a80e"
+  "classifier_pt_sha256": "84b3c37119588df10cf2301eb258772035ac8b64c04a5a73a378e32e9a3cf416",
+  "classifier_npz_sha256": "b5999a19388803ed4642a2ddf6cc0774016b5b574ee5861d33c60359e346f786",
+  "thresholds_sha256": "75a3e180079405450c4ccffbed405937f8525cd0893fe8e524345d7817a63fcc",
+  "label_vocab_sha256": "ac2c9f9a46ab72b3b8bca34d21eb32e0c17b22da023a20a5fa025ff65c97ab94"
 }
