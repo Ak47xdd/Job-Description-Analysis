@@ -2,7 +2,7 @@
 sym_map.py - All synonyms for the TF-IDF Vectorizer
 """
 
-TAXONOMY_VERSION = "v6-aggressive-parent-taxonomy"
+TAXONOMY_VERSION = "v7-duplicate-fragmentation"
 
 SYNONYM_MAP = {
     # docker 
@@ -462,6 +462,20 @@ CANONICAL_LABEL_MAP = {
     "vue.js": "vue",
     "nextjs": "next.js",
     "argocd": "argo cd",
+
+    # Software/product aliases: preserve the best-supported canonical label.
+    "photoshop": "adobe photoshop",
+
+    # REST Assured spelling variants.
+    "restassured": "rest assured",
+
+    # STAAD.Pro product-name variants.
+    "staad pro": "staad",
+    "staad.pro": "staad",
+    "staadpro": "staad",
+
+    # UI/UX competency wording variants.
+    "ui/ux design": "ui/ux",
 
 }
  
