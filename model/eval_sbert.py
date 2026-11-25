@@ -20,7 +20,7 @@ sys.path.insert(0, str(ROOT / "model"))
 
 from model_sbert import SBERTSkillClassifier
 from thresholds import optimize_per_label_thresholds
-from model.label_display import display_label
+from label_display import display_label
 
 PREP_DIR = ROOT / "model" / "prep"
 EMBED_DIR = PREP_DIR / "v2_sentence_transformer"
