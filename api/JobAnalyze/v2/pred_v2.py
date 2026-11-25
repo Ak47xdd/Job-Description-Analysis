@@ -23,6 +23,8 @@ from .token_override import (
     select_regex_fallback_labels,
 )
 
+from model.label_display import display_label
+
 try:
     from model.prep.sym_map import canonicalize_skill_text
 except ImportError:
@@ -735,4 +737,4 @@ def JobAnalyze_v2_SBERT_batch(job_descs, role="", job_type="", top_k=50):
         gc.collect()
         _record_memory("after_inference_batch")
 
-    return results
+    # Format labels only at the API boundary; all model keys, thresholds and\n    # deterministic matching remain lowercase canonical identifiers.\n    return [[(display_label(skill), score) for skill, score in row] for row in results]\n
