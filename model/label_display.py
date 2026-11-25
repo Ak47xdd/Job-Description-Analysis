@@ -84,7 +84,7 @@ _WORD_OVERRIDES = {
 
 def display_label(label: str) -> str:
     """Return a readable title-cased label while preserving common acronyms."""
-    value = re.sub(r"\\s+", " ", str(label or "").strip())
+    value = " ".join(str(label or "").strip().split())
     if not value:
         return value
     exact = _WORD_OVERRIDES.get(value.casefold())
@@ -95,4 +95,4 @@ def display_label(label: str) -> str:
         return _WORD_OVERRIDES.get(token.casefold(), token[:1].upper() + token[1:].lower())
 
     # Keep separators while formatting each human-readable word.
-    return re.sub(r"[^\\s/+-]+", lambda match: format_token(match.group(0)), value)
+    return re.sub(r"[^ /+-]+", lambda match: format_token(match.group(0)), value)
