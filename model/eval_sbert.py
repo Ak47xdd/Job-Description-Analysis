@@ -20,6 +20,7 @@ sys.path.insert(0, str(ROOT / "model"))
 
 from model_sbert import SBERTSkillClassifier
 from thresholds import optimize_per_label_thresholds
+from model.label_display import display_label
 
 PREP_DIR = ROOT / "model" / "prep"
 EMBED_DIR = PREP_DIR / "v2_sentence_transformer"
@@ -173,7 +174,7 @@ def main():
     print(f"Rare-label fixed threshold (dataset support <= {RARE_SUPPORT_CUTOFF}): {RARE_LABEL_THRESHOLD:.2f}")
     print(f"Infeasible labels disabled: {len(disabled_labels)}")
     if disabled_labels.size:
-        print("Disabled labels:", ", ".join(vocab[int(i)] for i in disabled_labels))
+        print("Disabled labels:", ", ".join(display_label(vocab[int(i)]) for i in disabled_labels))
     print(f"Global 0.65 threshold: Micro-F1={global_micro:.3f} | Macro-F1={global_macro:.3f}")
     print(f"Constrained per-skill: Micro-F1={micro:.3f} | Macro-F1={macro:.3f}")
     print(f"Thresholds saved to: {THRESHOLD_FILE}")
@@ -181,7 +182,7 @@ def main():
     print(f"{'label':25s}{'threshold':12s}{'support':10s}{'precision':12s}{'recall':10s}{'f1':6s}")
     for lbl, threshold, p, r, f, s in zip(vocab, thresholds, precision, recall, f1, support):
         if s > 0:
-            print(f"{lbl:25s}{threshold:<12.4f}{int(s):<10d}{p:<12.2f}{r:<10.2f}{f:.2f}")
+            print(f"{display_label(lbl):25s}{threshold:<12.4f}{int(s):<10d}{p:<12.2f}{r:<10.2f}{f:.2f}")
 
     print(f"\nMicro-F1: {micro:.3f} | Macro-F1: {macro:.3f}")
     print(f"Hamming Loss: {hamming_loss(y_test, preds):.4f}")
