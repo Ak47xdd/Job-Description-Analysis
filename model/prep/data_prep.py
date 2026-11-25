@@ -37,6 +37,15 @@ V2_DIR = OUT_DIR / "v2"
 # A six-example floor removes labels too sparse for stable supervised learning.
 MIN_LABEL_FREQUENCY = 6
 
+# Standalone umbrella words are not useful skill predictions. Keep specific
+# labels such as "web development", "software testing" and "programming
+# languages"; filter only the vague one-word buckets.
+GENERIC_LABELS = {
+    "web", "programming", "software", "technology", "computer",
+    "technical", "tools", "frameworks", "platforms", "systems",
+    "applications", "internet", "digital", "it",
+}
+
 SKILLS_FIX = {
     "tesnorflow/pytorch": "tensorflow/pytorch",
     "numpyhugging face": "numpy",
@@ -102,7 +111,10 @@ def main() -> None:
     df["skill_list"] = df["tech_skills"].apply(normalizer)
 
     freq = Counter(s for lst in df["skill_list"] for s in lst)
-    vocab = sorted([s for s, count in freq.items() if count >= MIN_LABEL_FREQUENCY])
+    vocab = sorted([
+        s for s, count in freq.items()
+        if count >= MIN_LABEL_FREQUENCY and s.strip().casefold() not in GENERIC_LABELS
+    ])
     if not vocab:
         raise ValueError("No v2 labels survived the minimum frequency filter.")
 
@@ -207,6 +219,7 @@ def main() -> None:
         "num_rows": int(len(df)),
         "num_labels": int(len(vocab)),
         "min_label_frequency": MIN_LABEL_FREQUENCY,
+        "excluded_generic_labels": sorted(GENERIC_LABELS),
         "label_vocab_sha256": hashlib.sha256(
             json.dumps(vocab, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
         ).hexdigest(),
