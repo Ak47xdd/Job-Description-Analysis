@@ -3,18 +3,18 @@
   "max_seq_length": 128,
   "text_preprocessing_version": "jd-focus-v1",
   "input_dim": 384,
-  "num_labels": 981,
+  "num_labels": 976,
   "label_vocab_path": "model/prep/v2/label_vocab_v2.json",
-  "label_vocab_sha256": "ac2c9f9a46ab72b3b8bca34d21eb32e0c17b22da023a20a5fa025ff65c97ab94",
+  "label_vocab_sha256": "78debb5af23241be5932d826faaa5f4e56155d24d1d43efebdaeed7f8a074f95",
   "hidden_dim": 128,
   "dropout": 0.3,
   "batch_size": 32,
   "epochs": 170,
-  "best_test_loss": 0.1866525208703686,
+  "best_test_loss": 0.18032764120014635,
   "loss": "BCEWithLogitsLoss",
   "positive_class_weighting": "sqrt((negative_count + 1) / (positive_count + 1))",
   "positive_class_weight_min": 1.0,
   "positive_class_weight_max": 20.0,
-  "classifier_pt_sha256": "84b3c37119588df10cf2301eb258772035ac8b64c04a5a73a378e32e9a3cf416",
-  "classifier_npz_sha256": "b5999a19388803ed4642a2ddf6cc0774016b5b574ee5861d33c60359e346f786"
+  "classifier_pt_sha256": "b5e81eb12332f0d407659046bcf1f74dff1ba3de82bfde00f3c586b07a260a62",
+  "classifier_npz_sha256": "2280e2f3c775eb4f0a820a3b4b6a6a28e3972e21f7a9c0707ca70bd44e858332"
 }
