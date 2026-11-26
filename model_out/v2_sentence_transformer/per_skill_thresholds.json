@@ -204,7 +204,6 @@
     "competitor analysis": 0.3,
     "compliance": 0.3,
     "compute": 0.3,
-    "computer": 0.3,
     "computer vision": 0.3,
     "conditional access": 0.3,
     "configuration": 0.3,
@@ -302,7 +301,6 @@
     "dfx": 0.3,
     "dhcp": 0.3,
     "diary studies": 0.3,
-    "digital": 0.3,
     "digital forensics": 0.3,
     "digital marketing": 0.3,
     "digital operations": 0.3,
@@ -681,7 +679,6 @@
     "product management": 0.3,
     "product strategy": 0.3,
     "production operations": 0.3,
-    "programming": 0.3,
     "project management": 0.3,
     "project planning": 0.3,
     "prometheus": 0.3,
@@ -835,7 +832,6 @@
     "social media": 0.3,
     "social media marketing": 0.3,
     "social media platforms": 0.3,
-    "software": 0.3,
     "software architecture": 0.3,
     "software development": 0.3,
     "software engineering": 0.3,
@@ -962,7 +958,6 @@
     "vulnerability management": 0.3,
     "waf": 0.3,
     "wcag": 0.3,
-    "web": 0.3,
     "web analytics": 0.3,
     "web applications": 0.3,
     "web development": 0.3,
@@ -1191,7 +1186,6 @@
     "competitor analysis": 20,
     "compliance": 60,
     "compute": 12,
-    "computer": 6,
     "computer vision": 24,
     "conditional access": 9,
     "configuration": 10,
@@ -1289,7 +1283,6 @@
     "dfx": 6,
     "dhcp": 10,
     "diary studies": 6,
-    "digital": 6,
     "digital forensics": 18,
     "digital marketing": 12,
     "digital operations": 6,
@@ -1668,7 +1661,6 @@
     "product management": 8,
     "product strategy": 9,
     "production operations": 6,
-    "programming": 7,
     "project management": 50,
     "project planning": 12,
     "prometheus": 100,
@@ -1822,7 +1814,6 @@
     "social media": 30,
     "social media marketing": 8,
     "social media platforms": 7,
-    "software": 9,
     "software architecture": 19,
     "software development": 10,
     "software engineering": 10,
@@ -1949,7 +1940,6 @@
     "vulnerability management": 59,
     "waf": 10,
     "wcag": 10,
-    "web": 16,
     "web analytics": 12,
     "web applications": 7,
     "web development": 7,
@@ -1981,8 +1971,10 @@
     ".net",
     "2d drawings",
     "3d cad",
+    "3d modeling",
     "3d printing",
     "8d",
+    "a/b testing",
     "access control",
     "access controls",
     "access management",
@@ -1998,8 +1990,8 @@
     "adobe lightroom",
     "adobe premiere pro",
     "adobe xd",
+    "aeo",
     "agentic ai",
-    "agile",
     "ai governance",
     "ai search",
     "ai security",
@@ -2010,15 +2002,16 @@
     "air export",
     "airflow",
     "alerting",
+    "aml",
     "amplitude",
     "analysis",
     "analytical skills",
     "analytics platforms",
-    "anaplan",
+    "android sdk",
     "angular",
-    "ansible",
     "ansys",
     "anthropic",
+    "api design",
     "api integrations",
     "api security",
     "api testing",
@@ -2027,6 +2020,7 @@
     "applicant tracking systems",
     "application insights",
     "application modernization",
+    "application security",
     "appsec",
     "architecture",
     "architecture tools",
@@ -2048,10 +2042,12 @@
     "audit trails",
     "aurora",
     "auth",
+    "authentication",
     "authorization",
     "automation scripts",
     "aws rds",
     "aws s3",
+    "aws sqs",
     "azure ad",
     "azure functions",
     "azure key vault",
@@ -2061,9 +2057,9 @@
     "backend",
     "backend development",
     "backlink acquisition",
+    "backlink building",
     "backlink strategy",
     "backup",
-    "bash",
     "bazel",
     "bdd",
     "benchmarking",
@@ -2084,6 +2080,7 @@
     "budgeting",
     "business requirements gathering",
     "c",
+    "cad software",
     "canonical tags",
     "canva",
     "capacity planning",
@@ -2093,12 +2090,13 @@
     "certification",
     "cfd",
     "change management",
-    "chat",
     "chatgpt",
+    "ci",
     "ci pipelines",
     "ci/cd pipelines",
     "cia",
     "circleci",
+    "cissp",
     "clari",
     "claude code",
     "clickhouse",
@@ -2110,12 +2108,12 @@
     "cloud migration",
     "cloud networking",
     "cloud security",
+    "cloud security tools",
     "cloud services",
     "cloud technologies",
     "cloud-based solutions",
     "cloud-native platform",
     "cloudflare",
-    "cloudformation",
     "cloudfront",
     "cloudwatch",
     "cms",
@@ -2129,9 +2127,9 @@
     "communication",
     "competition analysis",
     "competitive analysis",
+    "competitor analysis",
     "compliance",
     "compute",
-    "computer",
     "computer vision",
     "conditional access",
     "configuration",
@@ -2145,14 +2143,16 @@
     "content creation",
     "content management systems",
     "content marketing",
+    "content optimization",
     "content strategy",
     "content writing",
     "contextual inquiries",
+    "control testing",
     "controls",
     "conversational ai",
     "conversion optimization",
     "copywriting",
-    "coreldraw",
+    "core web vitals",
     "cost management",
     "cost optimization",
     "coupa",
@@ -2196,6 +2196,7 @@
     "databases",
     "databricks data intelligence platform",
     "dbt",
+    "debugging",
     "delta lake",
     "deployment",
     "design documentation",
@@ -2211,7 +2212,6 @@
     "dfx",
     "dhcp",
     "diary studies",
-    "digital",
     "digital forensics",
     "digital marketing",
     "digital operations",
@@ -2220,11 +2220,11 @@
     "distributed tracing",
     "django",
     "dns",
-    "docker",
     "docs",
     "documentation",
     "documentation tools",
     "doe",
+    "domain monitoring",
     "dynamodb",
     "ecs",
     "edge functions",
@@ -2233,10 +2233,13 @@
     "ehr",
     "elasticsearch",
     "email",
+    "email marketing",
+    "email protection tooling",
     "embedded linux",
     "encryption",
     "end-to-end testing",
     "endpoint security",
+    "endpoint tooling",
     "english",
     "entra id",
     "erp",
@@ -2265,7 +2268,6 @@
     "flink",
     "fluid dynamics",
     "flux",
-    "forecasting",
     "fraud detection",
     "fraud detection tools",
     "freight management",
@@ -2273,19 +2275,23 @@
     "frontend development",
     "full-stack",
     "functional testing",
+    "gd&t",
     "gem",
     "generative engine optimization",
     "geo",
+    "geolocation",
     "gint",
     "gis",
-    "git",
     "github copilot",
     "github discussions",
     "github issues",
     "gmail",
+    "google ads",
     "google business profile",
     "google gemini",
+    "google keyword planner",
     "google my business",
+    "google tag manager",
     "google trends",
     "governance",
     "gps",
@@ -2304,6 +2310,7 @@
     "heat exchangers",
     "hex",
     "high availability",
+    "highly available systems",
     "hipaa",
     "hotjar",
     "hris",
@@ -2320,13 +2327,11 @@
     "iac",
     "idea",
     "identity",
-    "identity and access management",
     "identity management",
     "ids",
     "illustrator",
     "image optimization",
     "incident management",
-    "indesign",
     "indexing",
     "inference",
     "infiniband",
@@ -2342,6 +2347,7 @@
     "integrations",
     "internal audit",
     "internal controls",
+    "internal linking",
     "interviews",
     "intune",
     "inventory audit",
@@ -2352,13 +2358,12 @@
     "ips",
     "ironclad",
     "iso",
+    "iso 27001",
     "iso 9001",
     "istio",
     "it audit",
     "it audit methodologies",
-    "it governance",
     "itil",
-    "javascript",
     "jmeter",
     "journey maps",
     "json",
@@ -2386,13 +2391,14 @@
     "logistics management software",
     "logistics software",
     "logs",
+    "looker studio",
     "lpile",
     "lucidchart",
     "machining",
-    "macos",
     "magento",
     "mailchimp",
     "manual testing",
+    "manufacturing processes",
     "markdown",
     "market analysis",
     "market research",
@@ -2408,11 +2414,11 @@
     "meta",
     "meta ads",
     "meta descriptions",
+    "meta tags",
     "metadata",
     "metrics",
     "mfa",
     "microsoft clarity",
-    "microsoft copilot",
     "microsoft defender",
     "microsoft entra id",
     "microsoft outlook",
@@ -2423,7 +2429,6 @@
     "mitre att&ck",
     "mixpanel",
     "mlflow",
-    "mlops",
     "mobile",
     "mobile testing",
     "models",
@@ -2438,13 +2443,15 @@
     "new relic",
     "next.js",
     "nist csf",
-    "nlp",
     "notion",
     "npm",
     "nps",
+    "numpy",
     "nx",
+    "oauth",
     "oauth 2.0",
     "oci",
+    "oidc",
     "okta",
     "on-call rotation",
     "on-premise infrastructure",
@@ -2495,6 +2502,7 @@
     "power automate",
     "power bi",
     "powershell",
+    "ppc",
     "premiere pro",
     "presentation",
     "pre\u2011sales",
@@ -2510,7 +2518,6 @@
     "product management",
     "product strategy",
     "production operations",
-    "programming",
     "project management",
     "project planning",
     "prometheus",
@@ -2533,6 +2540,7 @@
     "quantitative research",
     "query optimization",
     "quickbooks",
+    "rabbitmq",
     "rank math",
     "rapid prototyping",
     "rbac",
@@ -2559,6 +2567,7 @@
     "research synthesis",
     "responsive design",
     "rest assured",
+    "restful apis",
     "retool",
     "revit",
     "risk analysis",
@@ -2571,7 +2580,6 @@
     "ruby",
     "ruby on rails",
     "rust",
-    "saas",
     "safe",
     "salesforce.com",
     "saml",
@@ -2584,8 +2592,10 @@
     "scalability",
     "scalable architecture",
     "scalable services",
+    "scalable systems",
     "scheduling",
     "schema",
+    "schema markup",
     "scim",
     "scripting",
     "scrum",
@@ -2619,25 +2629,25 @@
     "servicenow",
     "sharepoint",
     "sheet metal",
+    "sheet metal design",
     "shell",
     "shipping",
     "shipping documentation",
     "shopify",
     "siemens nx",
+    "simulation",
     "site speed optimization",
     "six sigma",
     "sketch",
     "slack",
     "slope/w",
-    "smo",
     "snmp",
     "sns",
     "soap",
-    "soc",
+    "soc 2",
     "social media",
     "social media marketing",
     "social media platforms",
-    "software",
     "software architecture",
     "software development",
     "software engineering",
@@ -2695,6 +2705,7 @@
     "thermal management",
     "thermodynamics",
     "threat detection",
+    "threat hunting",
     "threat modeling",
     "tiktok",
     "time series",
@@ -2708,10 +2719,10 @@
     "transportation",
     "troubleshooting",
     "twitter",
-    "typescript",
     "typography",
     "uart",
     "uat",
+    "ubersuggest",
     "ubuntu",
     "ui/ux",
     "uml",
@@ -2743,9 +2754,9 @@
     "vpn",
     "vue",
     "vulnerability assessment",
+    "vulnerability management",
     "waf",
     "wcag",
-    "web",
     "web applications",
     "web development",
     "webflow",
@@ -2787,10 +2798,10 @@
       "status": "disabled"
     },
     "3d modeling": {
-      "threshold": 0.28315574,
-      "best_f1": 0.46153846,
-      "precision_at_threshold": 0.3,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "3d printing": {
       "threshold": 1.0,
@@ -2805,10 +2816,10 @@
       "status": "disabled"
     },
     "a/b testing": {
-      "threshold": 0.42480427,
-      "best_f1": 0.13333333,
-      "precision_at_threshold": 1.0,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "access control": {
       "threshold": 1.0,
@@ -2883,15 +2894,15 @@
       "status": "disabled"
     },
     "adobe illustrator": {
-      "threshold": 0.42927307,
-      "best_f1": 0.57142857,
-      "precision_at_threshold": 0.75,
+      "threshold": 0.54769099,
+      "best_f1": 0.52173913,
+      "precision_at_threshold": 0.85714286,
       "status": "active"
     },
     "adobe indesign": {
       "threshold": 0.4,
-      "best_f1": 0.28571429,
-      "precision_at_threshold": 1.0,
+      "best_f1": 0.44444444,
+      "precision_at_threshold": 0.66666667,
       "status": "active"
     },
     "adobe lightroom": {
@@ -2901,9 +2912,9 @@
       "status": "disabled"
     },
     "adobe photoshop": {
-      "threshold": 0.38624465,
-      "best_f1": 0.55813953,
-      "precision_at_threshold": 0.6,
+      "threshold": 0.46977708,
+      "best_f1": 0.5106383,
+      "precision_at_threshold": 0.46153846,
       "status": "active"
     },
     "adobe premiere pro": {
@@ -2919,10 +2930,10 @@
       "status": "disabled"
     },
     "aeo": {
-      "threshold": 0.42074919,
-      "best_f1": 0.28571429,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "agentic ai": {
       "threshold": 1.0,
@@ -2931,19 +2942,19 @@
       "status": "disabled"
     },
     "agents": {
-      "threshold": 0.36954209,
-      "best_f1": 0.49180328,
-      "precision_at_threshold": 0.41666667,
+      "threshold": 0.41627544,
+      "best_f1": 0.54545455,
+      "precision_at_threshold": 0.5,
       "status": "active"
     },
     "agile": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.40643993,
+      "best_f1": 0.13333333,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "agile development": {
-      "threshold": 0.44041356,
+      "threshold": 0.31918603,
       "best_f1": 0.66666667,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -2991,9 +3002,9 @@
       "status": "disabled"
     },
     "ai/ml": {
-      "threshold": 0.37015727,
-      "best_f1": 0.70665417,
-      "precision_at_threshold": 0.60610932,
+      "threshold": 0.40403426,
+      "best_f1": 0.6919519,
+      "precision_at_threshold": 0.57361963,
       "status": "active"
     },
     "air export": {
@@ -3015,10 +3026,10 @@
       "status": "disabled"
     },
     "aml": {
-      "threshold": 0.25571164,
-      "best_f1": 0.5,
-      "precision_at_threshold": 1.0,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "amplitude": {
       "threshold": 1.0,
@@ -3045,31 +3056,31 @@
       "status": "disabled"
     },
     "anaplan": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.28945959,
+      "best_f1": 0.5,
+      "precision_at_threshold": 0.5,
+      "status": "active"
     },
     "android": {
-      "threshold": 0.42257383,
-      "best_f1": 0.22222222,
-      "precision_at_threshold": 0.33333333,
+      "threshold": 0.40302372,
+      "best_f1": 0.18181818,
+      "precision_at_threshold": 0.66666667,
       "status": "active"
     },
     "android jetpack": {
-      "threshold": 0.31363159,
+      "threshold": 0.29050922,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
     "android sdk": {
-      "threshold": 0.40930772,
-      "best_f1": 0.5,
-      "precision_at_threshold": 1.0,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "android studio": {
-      "threshold": 0.33561477,
+      "threshold": 0.27908072,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -3081,10 +3092,10 @@
       "status": "disabled"
     },
     "ansible": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.45401439,
+      "best_f1": 0.11764706,
+      "precision_at_threshold": 0.33333333,
+      "status": "active"
     },
     "ansys": {
       "threshold": 1.0,
@@ -3099,16 +3110,16 @@
       "status": "disabled"
     },
     "apache kafka": {
-      "threshold": 0.29693702,
+      "threshold": 0.25226477,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
     "api design": {
-      "threshold": 0.45,
-      "best_f1": 0.4,
-      "precision_at_threshold": 1.0,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "api integrations": {
       "threshold": 1.0,
@@ -3129,9 +3140,9 @@
       "status": "disabled"
     },
     "apis": {
-      "threshold": 0.36658677,
-      "best_f1": 0.34285714,
-      "precision_at_threshold": 0.3364486,
+      "threshold": 0.36074755,
+      "best_f1": 0.44274809,
+      "precision_at_threshold": 0.36477987,
       "status": "active"
     },
     "appium": {
@@ -3165,10 +3176,10 @@
       "status": "disabled"
     },
     "application security": {
-      "threshold": 0.25472558,
-      "best_f1": 0.33333333,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "appsec": {
       "threshold": 1.0,
@@ -3297,10 +3308,10 @@
       "status": "disabled"
     },
     "authentication": {
-      "threshold": 0.4,
-      "best_f1": 0.4,
-      "precision_at_threshold": 1.0,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "authorization": {
       "threshold": 1.0,
@@ -3309,21 +3320,21 @@
       "status": "disabled"
     },
     "autocad": {
-      "threshold": 0.56836474,
-      "best_f1": 0.58823529,
-      "precision_at_threshold": 0.71428571,
+      "threshold": 0.42327484,
+      "best_f1": 0.5,
+      "precision_at_threshold": 0.36363636,
       "status": "active"
     },
     "automated testing": {
-      "threshold": 0.40941837,
+      "threshold": 0.37914476,
       "best_f1": 0.5,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
     "automation": {
-      "threshold": 0.34924617,
-      "best_f1": 0.31372549,
-      "precision_at_threshold": 0.44444444,
+      "threshold": 0.35266766,
+      "best_f1": 0.17021277,
+      "precision_at_threshold": 0.36363636,
       "status": "active"
     },
     "automation scripts": {
@@ -3345,15 +3356,15 @@
       "status": "disabled"
     },
     "aws sqs": {
-      "threshold": 0.27351213,
-      "best_f1": 1.0,
-      "precision_at_threshold": 1.0,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "aws/azure": {
-      "threshold": 0.40029842,
-      "best_f1": 0.60324826,
-      "precision_at_threshold": 0.52,
+      "threshold": 0.48324013,
+      "best_f1": 0.62872629,
+      "precision_at_threshold": 0.61702128,
       "status": "active"
     },
     "azure ad": {
@@ -3411,10 +3422,10 @@
       "status": "disabled"
     },
     "backlink building": {
-      "threshold": 0.35311908,
-      "best_f1": 0.4,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "backlink strategy": {
       "threshold": 1.0,
@@ -3429,10 +3440,10 @@
       "status": "disabled"
     },
     "bash": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.51362473,
+      "best_f1": 0.14634146,
+      "precision_at_threshold": 0.3,
+      "status": "active"
     },
     "bazel": {
       "threshold": 1.0,
@@ -3489,7 +3500,7 @@
       "status": "disabled"
     },
     "bitrise": {
-      "threshold": 0.31550479,
+      "threshold": 0.31520307,
       "best_f1": 0.66666667,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -3549,8 +3560,8 @@
       "status": "disabled"
     },
     "build systems": {
-      "threshold": 0.33162078,
-      "best_f1": 0.66666667,
+      "threshold": 0.39345437,
+      "best_f1": 0.5,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
@@ -3567,34 +3578,34 @@
       "status": "disabled"
     },
     "c#": {
-      "threshold": 0.50793707,
-      "best_f1": 0.43478261,
+      "threshold": 0.41846877,
+      "best_f1": 0.28571429,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
     "c++": {
-      "threshold": 0.44568431,
-      "best_f1": 0.31111111,
-      "precision_at_threshold": 0.58333333,
+      "threshold": 0.33729383,
+      "best_f1": 0.3,
+      "precision_at_threshold": 0.375,
       "status": "active"
     },
     "c/c++": {
-      "threshold": 0.5,
-      "best_f1": 0.90909091,
+      "threshold": 0.4,
+      "best_f1": 0.8,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
     "cad": {
-      "threshold": 0.40662166,
-      "best_f1": 0.47619048,
-      "precision_at_threshold": 0.5,
+      "threshold": 0.50565517,
+      "best_f1": 0.66666667,
+      "precision_at_threshold": 0.64285714,
       "status": "active"
     },
     "cad software": {
-      "threshold": 0.29361984,
-      "best_f1": 0.5,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "canonical tags": {
       "threshold": 1.0,
@@ -3651,10 +3662,10 @@
       "status": "disabled"
     },
     "chat": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.25187004,
+      "best_f1": 1.0,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "chatgpt": {
       "threshold": 1.0,
@@ -3663,10 +3674,10 @@
       "status": "disabled"
     },
     "ci": {
-      "threshold": 0.33477291,
-      "best_f1": 0.5,
-      "precision_at_threshold": 1.0,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "ci pipelines": {
       "threshold": 1.0,
@@ -3675,9 +3686,9 @@
       "status": "disabled"
     },
     "ci/cd": {
-      "threshold": 0.40360579,
-      "best_f1": 0.48979592,
-      "precision_at_threshold": 0.4379562,
+      "threshold": 0.34741664,
+      "best_f1": 0.51410658,
+      "precision_at_threshold": 0.4079602,
       "status": "active"
     },
     "ci/cd pipelines": {
@@ -3699,22 +3710,22 @@
       "status": "disabled"
     },
     "cisa": {
-      "threshold": 0.45,
+      "threshold": 0.4,
       "best_f1": 0.57142857,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
     "cism": {
-      "threshold": 0.32493967,
+      "threshold": 0.25780848,
       "best_f1": 0.8,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
     "cissp": {
-      "threshold": 0.4,
-      "best_f1": 0.66666667,
-      "precision_at_threshold": 1.0,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "clari": {
       "threshold": 1.0,
@@ -3729,7 +3740,7 @@
       "status": "disabled"
     },
     "clean architecture": {
-      "threshold": 0.40355912,
+      "threshold": 0.35299751,
       "best_f1": 0.66666667,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -3759,9 +3770,9 @@
       "status": "disabled"
     },
     "cloud": {
-      "threshold": 0.38194668,
-      "best_f1": 0.31168831,
-      "precision_at_threshold": 0.30769231,
+      "threshold": 0.41805688,
+      "best_f1": 0.25,
+      "precision_at_threshold": 0.38888889,
       "status": "active"
     },
     "cloud architecture": {
@@ -3777,7 +3788,7 @@
       "status": "disabled"
     },
     "cloud messaging": {
-      "threshold": 0.34069619,
+      "threshold": 0.28008008,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -3801,10 +3812,10 @@
       "status": "disabled"
     },
     "cloud security tools": {
-      "threshold": 0.25524315,
-      "best_f1": 0.66666667,
-      "precision_at_threshold": 1.0,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "cloud services": {
       "threshold": 1.0,
@@ -3837,10 +3848,10 @@
       "status": "disabled"
     },
     "cloudformation": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.45484957,
+      "best_f1": 0.16666667,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "cloudfront": {
       "threshold": 1.0,
@@ -3867,7 +3878,7 @@
       "status": "disabled"
     },
     "code quality": {
-      "threshold": 0.33139044,
+      "threshold": 0.33529463,
       "best_f1": 0.66666667,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -3903,7 +3914,7 @@
       "status": "disabled"
     },
     "color theory": {
-      "threshold": 0.30017704,
+      "threshold": 0.27325398,
       "best_f1": 0.4,
       "precision_at_threshold": 0.33333333,
       "status": "active"
@@ -3933,10 +3944,10 @@
       "status": "disabled"
     },
     "competitor analysis": {
-      "threshold": 0.5,
-      "best_f1": 0.28571429,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "compliance": {
       "threshold": 1.0,
@@ -3945,12 +3956,6 @@
       "status": "disabled"
     },
     "compute": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
-    "computer": {
       "threshold": 1.0,
       "best_f1": 0.0,
       "precision_at_threshold": 0.0,
@@ -4035,10 +4040,10 @@
       "status": "disabled"
     },
     "content optimization": {
-      "threshold": 0.4,
-      "best_f1": 0.44444444,
-      "precision_at_threshold": 0.4,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "content strategy": {
       "threshold": 1.0,
@@ -4059,10 +4064,10 @@
       "status": "disabled"
     },
     "control testing": {
-      "threshold": 0.26125672,
-      "best_f1": 0.66666667,
-      "precision_at_threshold": 0.5,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "controls": {
       "threshold": 1.0,
@@ -4089,19 +4094,19 @@
       "status": "disabled"
     },
     "core web vitals": {
-      "threshold": 0.45772609,
-      "best_f1": 0.25,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
-    },
-    "coreldraw": {
       "threshold": 1.0,
       "best_f1": 0.0,
       "precision_at_threshold": 0.0,
       "status": "disabled"
     },
+    "coreldraw": {
+      "threshold": 0.45,
+      "best_f1": 0.22222222,
+      "precision_at_threshold": 0.33333333,
+      "status": "active"
+    },
     "coroutines": {
-      "threshold": 0.34923297,
+      "threshold": 0.31233144,
       "best_f1": 0.66666667,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -4137,13 +4142,13 @@
       "status": "disabled"
     },
     "crash analytics": {
-      "threshold": 0.31699908,
+      "threshold": 0.27687991,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
     "crashlytics": {
-      "threshold": 0.37633443,
+      "threshold": 0.29705939,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -4161,7 +4166,7 @@
       "status": "disabled"
     },
     "crisc": {
-      "threshold": 0.42069629,
+      "threshold": 0.33245689,
       "best_f1": 0.8,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -4257,9 +4262,9 @@
       "status": "disabled"
     },
     "cybersecurity": {
-      "threshold": 0.33782449,
-      "best_f1": 0.43636364,
-      "precision_at_threshold": 0.5,
+      "threshold": 0.36533821,
+      "best_f1": 0.43333333,
+      "precision_at_threshold": 0.41935484,
       "status": "active"
     },
     "cypress": {
@@ -4269,13 +4274,13 @@
       "status": "disabled"
     },
     "dagger": {
-      "threshold": 0.30332518,
+      "threshold": 0.28735149,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
     "dart": {
-      "threshold": 0.31678426,
+      "threshold": 0.29363909,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -4311,15 +4316,15 @@
       "status": "disabled"
     },
     "data analytics": {
-      "threshold": 0.39971277,
-      "best_f1": 0.19672131,
-      "precision_at_threshold": 0.375,
+      "threshold": 0.41826758,
+      "best_f1": 0.13114754,
+      "precision_at_threshold": 0.33333333,
       "status": "active"
     },
     "data engineering": {
-      "threshold": 0.35784426,
-      "best_f1": 0.22222222,
-      "precision_at_threshold": 0.3125,
+      "threshold": 0.3854849,
+      "best_f1": 0.11111111,
+      "precision_at_threshold": 0.5,
       "status": "active"
     },
     "data governance": {
@@ -4407,9 +4412,9 @@
       "status": "disabled"
     },
     "datadog": {
-      "threshold": 0.44585317,
-      "best_f1": 0.04255319,
-      "precision_at_threshold": 1.0,
+      "threshold": 0.49848184,
+      "best_f1": 0.04081633,
+      "precision_at_threshold": 0.33333333,
       "status": "active"
     },
     "dbt": {
@@ -4419,15 +4424,15 @@
       "status": "disabled"
     },
     "debugging": {
-      "threshold": 0.31517634,
-      "best_f1": 0.66666667,
-      "precision_at_threshold": 1.0,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "deep learning": {
-      "threshold": 0.36095268,
-      "best_f1": 0.67857143,
-      "precision_at_threshold": 0.55882353,
+      "threshold": 0.3149958,
+      "best_f1": 0.61538462,
+      "precision_at_threshold": 0.47619048,
       "status": "active"
     },
     "delta lake": {
@@ -4461,7 +4466,7 @@
       "status": "disabled"
     },
     "design system": {
-      "threshold": 0.32022849,
+      "threshold": 0.30387786,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -4485,7 +4490,7 @@
       "status": "disabled"
     },
     "developer tooling": {
-      "threshold": 0.3559345,
+      "threshold": 0.3219738,
       "best_f1": 0.5,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -4509,9 +4514,9 @@
       "status": "disabled"
     },
     "devsecops": {
-      "threshold": 0.56419694,
-      "best_f1": 0.05555556,
-      "precision_at_threshold": 0.33333333,
+      "threshold": 0.44434774,
+      "best_f1": 0.25531915,
+      "precision_at_threshold": 0.42857143,
       "status": "active"
     },
     "dfm": {
@@ -4533,12 +4538,6 @@
       "status": "disabled"
     },
     "diary studies": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
-    "digital": {
       "threshold": 1.0,
       "best_f1": 0.0,
       "precision_at_threshold": 0.0,
@@ -4575,9 +4574,9 @@
       "status": "disabled"
     },
     "distributed systems": {
-      "threshold": 0.6152069,
-      "best_f1": 0.28571429,
-      "precision_at_threshold": 0.75,
+      "threshold": 0.40542707,
+      "best_f1": 0.30769231,
+      "precision_at_threshold": 0.44444444,
       "status": "active"
     },
     "distributed tracing": {
@@ -4599,10 +4598,10 @@
       "status": "disabled"
     },
     "docker": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.46520653,
+      "best_f1": 0.21621622,
+      "precision_at_threshold": 0.4,
+      "status": "active"
     },
     "docs": {
       "threshold": 1.0,
@@ -4629,16 +4628,16 @@
       "status": "disabled"
     },
     "domain driven development": {
-      "threshold": 0.30772305,
+      "threshold": 0.25614047,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
     "domain monitoring": {
-      "threshold": 0.25524312,
-      "best_f1": 0.66666667,
-      "precision_at_threshold": 1.0,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "dynamodb": {
       "threshold": 1.0,
@@ -4683,7 +4682,7 @@
       "status": "disabled"
     },
     "elixir": {
-      "threshold": 0.30772302,
+      "threshold": 0.25614047,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -4695,16 +4694,16 @@
       "status": "disabled"
     },
     "email marketing": {
-      "threshold": 0.41812918,
-      "best_f1": 0.33333333,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "email protection tooling": {
-      "threshold": 0.25524312,
-      "best_f1": 0.66666667,
-      "precision_at_threshold": 1.0,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "embedded linux": {
       "threshold": 1.0,
@@ -4731,15 +4730,15 @@
       "status": "disabled"
     },
     "endpoint tooling": {
-      "threshold": 0.25524309,
-      "best_f1": 0.66666667,
-      "precision_at_threshold": 1.0,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "engineering drawings": {
-      "threshold": 0.42024255,
-      "best_f1": 0.66666667,
-      "precision_at_threshold": 0.5,
+      "threshold": 0.4396306,
+      "best_f1": 0.8,
+      "precision_at_threshold": 0.66666667,
       "status": "active"
     },
     "english": {
@@ -4767,7 +4766,7 @@
       "status": "disabled"
     },
     "espresso": {
-      "threshold": 0.35024002,
+      "threshold": 0.34825823,
       "best_f1": 0.66666667,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -4797,9 +4796,9 @@
       "status": "disabled"
     },
     "experimentation": {
-      "threshold": 0.31928027,
-      "best_f1": 0.24137931,
-      "precision_at_threshold": 0.31818182,
+      "threshold": 0.50601381,
+      "best_f1": 0.05405405,
+      "precision_at_threshold": 1.0,
       "status": "active"
     },
     "facebook": {
@@ -4845,9 +4844,9 @@
       "status": "disabled"
     },
     "figma": {
-      "threshold": 0.37718847,
-      "best_f1": 0.29787234,
-      "precision_at_threshold": 0.35,
+      "threshold": 0.3587476,
+      "best_f1": 0.26315789,
+      "precision_at_threshold": 0.38461538,
       "status": "active"
     },
     "financial analysis": {
@@ -4893,13 +4892,13 @@
       "status": "disabled"
     },
     "firebase": {
-      "threshold": 0.47914839,
+      "threshold": 0.38430396,
       "best_f1": 0.5,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
     "firestore": {
-      "threshold": 0.35970703,
+      "threshold": 0.30087593,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -4935,7 +4934,7 @@
       "status": "disabled"
     },
     "flutter": {
-      "threshold": 0.43768054,
+      "threshold": 0.40449592,
       "best_f1": 0.5,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -4947,10 +4946,10 @@
       "status": "disabled"
     },
     "forecasting": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.2863709,
+      "best_f1": 0.4,
+      "precision_at_threshold": 0.5,
+      "status": "active"
     },
     "fraud detection": {
       "threshold": 1.0,
@@ -4995,15 +4994,15 @@
       "status": "disabled"
     },
     "gd&t": {
-      "threshold": 0.45,
-      "best_f1": 0.375,
-      "precision_at_threshold": 0.3,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "gdpr": {
-      "threshold": 0.37282321,
-      "best_f1": 0.3125,
-      "precision_at_threshold": 0.71428571,
+      "threshold": 0.39044413,
+      "best_f1": 0.22857143,
+      "precision_at_threshold": 0.4,
       "status": "active"
     },
     "gem": {
@@ -5013,9 +5012,9 @@
       "status": "disabled"
     },
     "genai": {
-      "threshold": 0.38078418,
-      "best_f1": 0.4,
-      "precision_at_threshold": 0.37735849,
+      "threshold": 0.25831434,
+      "best_f1": 0.50434783,
+      "precision_at_threshold": 0.41428571,
       "status": "active"
     },
     "generative engine optimization": {
@@ -5031,10 +5030,10 @@
       "status": "disabled"
     },
     "geolocation": {
-      "threshold": 0.2692242,
-      "best_f1": 1.0,
-      "precision_at_threshold": 1.0,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "gint": {
       "threshold": 1.0,
@@ -5049,10 +5048,10 @@
       "status": "disabled"
     },
     "git": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.37789115,
+      "best_f1": 0.44444444,
+      "precision_at_threshold": 0.33064516,
+      "status": "active"
     },
     "github copilot": {
       "threshold": 1.0,
@@ -5073,7 +5072,7 @@
       "status": "disabled"
     },
     "github pipelines": {
-      "threshold": 0.33821902,
+      "threshold": 0.26033601,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -5085,21 +5084,21 @@
       "status": "disabled"
     },
     "go": {
-      "threshold": 0.3902072,
-      "best_f1": 0.37864078,
-      "precision_at_threshold": 0.31451613,
+      "threshold": 0.39340657,
+      "best_f1": 0.41752577,
+      "precision_at_threshold": 0.36160714,
       "status": "active"
     },
     "google ads": {
-      "threshold": 0.61900669,
-      "best_f1": 0.2,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "google analytics": {
-      "threshold": 0.5008409,
-      "best_f1": 0.73333333,
-      "precision_at_threshold": 0.81481481,
+      "threshold": 0.61508995,
+      "best_f1": 0.67924528,
+      "precision_at_threshold": 0.75,
       "status": "active"
     },
     "google business profile": {
@@ -5109,7 +5108,7 @@
       "status": "disabled"
     },
     "google cloud pub/sub": {
-      "threshold": 0.30772302,
+      "threshold": 0.2561405,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -5121,10 +5120,10 @@
       "status": "disabled"
     },
     "google keyword planner": {
-      "threshold": 0.41091794,
-      "best_f1": 0.33333333,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "google my business": {
       "threshold": 1.0,
@@ -5133,16 +5132,16 @@
       "status": "disabled"
     },
     "google play": {
-      "threshold": 0.31236345,
+      "threshold": 0.28211021,
       "best_f1": 0.66666667,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
     "google tag manager": {
-      "threshold": 0.40507209,
-      "best_f1": 0.33333333,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "google trends": {
       "threshold": 1.0,
@@ -5175,7 +5174,7 @@
       "status": "disabled"
     },
     "gradle": {
-      "threshold": 0.37571093,
+      "threshold": 0.34933624,
       "best_f1": 0.66666667,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -5193,14 +5192,14 @@
       "status": "disabled"
     },
     "graphql": {
-      "threshold": 0.40954545,
-      "best_f1": 0.25,
+      "threshold": 0.51732671,
+      "best_f1": 0.13333333,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
     "grc": {
-      "threshold": 0.50752962,
-      "best_f1": 0.14285714,
+      "threshold": 0.45931199,
+      "best_f1": 0.11764706,
       "precision_at_threshold": 0.5,
       "status": "active"
     },
@@ -5217,7 +5216,7 @@
       "status": "disabled"
     },
     "grpc": {
-      "threshold": 0.42984983,
+      "threshold": 0.3402935,
       "best_f1": 0.5,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -5271,7 +5270,7 @@
       "status": "disabled"
     },
     "hexagonal architecture": {
-      "threshold": 0.30772299,
+      "threshold": 0.25614047,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -5283,10 +5282,10 @@
       "status": "disabled"
     },
     "highly available systems": {
-      "threshold": 0.26215392,
-      "best_f1": 0.66666667,
-      "precision_at_threshold": 0.5,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "hipaa": {
       "threshold": 1.0,
@@ -5313,9 +5312,9 @@
       "status": "disabled"
     },
     "html": {
-      "threshold": 0.4612844,
-      "best_f1": 0.4,
-      "precision_at_threshold": 0.4,
+      "threshold": 0.37012592,
+      "best_f1": 0.35294118,
+      "precision_at_threshold": 0.34615385,
       "status": "active"
     },
     "html/css": {
@@ -5391,10 +5390,10 @@
       "status": "disabled"
     },
     "identity and access management": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.59891909,
+      "best_f1": 0.07407407,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "identity management": {
       "threshold": 1.0,
@@ -5427,16 +5426,16 @@
       "status": "disabled"
     },
     "incident response": {
-      "threshold": 0.35798106,
-      "best_f1": 0.35294118,
-      "precision_at_threshold": 0.30508475,
+      "threshold": 0.28667083,
+      "best_f1": 0.41830065,
+      "precision_at_threshold": 0.32653061,
       "status": "active"
     },
     "indesign": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.4,
+      "best_f1": 0.4,
+      "precision_at_threshold": 0.5,
+      "status": "active"
     },
     "indexing": {
       "threshold": 1.0,
@@ -5457,9 +5456,9 @@
       "status": "disabled"
     },
     "information security": {
-      "threshold": 0.44619039,
-      "best_f1": 0.52631579,
-      "precision_at_threshold": 0.76923077,
+      "threshold": 0.40387398,
+      "best_f1": 0.5,
+      "precision_at_threshold": 0.56521739,
       "status": "active"
     },
     "infrastructure": {
@@ -5535,10 +5534,10 @@
       "status": "disabled"
     },
     "internal linking": {
-      "threshold": 0.39213604,
-      "best_f1": 0.33333333,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "interviews": {
       "threshold": 1.0,
@@ -5577,8 +5576,8 @@
       "status": "disabled"
     },
     "ios": {
-      "threshold": 0.60813367,
-      "best_f1": 0.11111111,
+      "threshold": 0.60557276,
+      "best_f1": 0.14285714,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
@@ -5607,10 +5606,10 @@
       "status": "disabled"
     },
     "iso 27001": {
-      "threshold": 0.41047245,
-      "best_f1": 0.26086957,
-      "precision_at_threshold": 0.42857143,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "iso 9001": {
       "threshold": 1.0,
@@ -5637,13 +5636,13 @@
       "status": "disabled"
     },
     "it governance": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.26121223,
+      "best_f1": 0.5,
+      "precision_at_threshold": 0.33333333,
+      "status": "active"
     },
     "itgc": {
-      "threshold": 0.34258693,
+      "threshold": 0.36388898,
       "best_f1": 0.5,
       "precision_at_threshold": 0.5,
       "status": "active"
@@ -5655,25 +5654,25 @@
       "status": "disabled"
     },
     "java": {
-      "threshold": 0.49765652,
-      "best_f1": 0.24742268,
-      "precision_at_threshold": 0.4137931,
+      "threshold": 0.33309606,
+      "best_f1": 0.34117647,
+      "precision_at_threshold": 0.30526316,
       "status": "active"
     },
     "javascript": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.42640787,
+      "best_f1": 0.03174603,
+      "precision_at_threshold": 0.5,
+      "status": "active"
     },
     "jetpack compose": {
-      "threshold": 0.37568164,
+      "threshold": 0.31654409,
       "best_f1": 0.66666667,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
     "jira": {
-      "threshold": 0.45010188,
+      "threshold": 0.48359895,
       "best_f1": 0.1,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -5697,15 +5696,15 @@
       "status": "disabled"
     },
     "junit": {
-      "threshold": 0.2760933,
+      "threshold": 0.27823859,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
     "kafka": {
-      "threshold": 0.39482066,
-      "best_f1": 0.44444444,
-      "precision_at_threshold": 0.44444444,
+      "threshold": 0.39168429,
+      "best_f1": 0.47826087,
+      "precision_at_threshold": 0.52380952,
       "status": "active"
     },
     "kanban": {
@@ -5721,8 +5720,8 @@
       "status": "disabled"
     },
     "keyword research": {
-      "threshold": 0.5966298,
-      "best_f1": 0.76470588,
+      "threshold": 0.52684486,
+      "best_f1": 0.72222222,
       "precision_at_threshold": 0.68421053,
       "status": "active"
     },
@@ -5733,9 +5732,9 @@
       "status": "disabled"
     },
     "kotlin": {
-      "threshold": 0.43779868,
-      "best_f1": 0.38461538,
-      "precision_at_threshold": 0.45454545,
+      "threshold": 0.6109525,
+      "best_f1": 0.10526316,
+      "precision_at_threshold": 1.0,
       "status": "active"
     },
     "kubeflow": {
@@ -5745,9 +5744,9 @@
       "status": "disabled"
     },
     "kubernetes": {
-      "threshold": 0.38814771,
-      "best_f1": 0.48945148,
-      "precision_at_threshold": 0.41134752,
+      "threshold": 0.34334654,
+      "best_f1": 0.56617647,
+      "precision_at_threshold": 0.44,
       "status": "active"
     },
     "kyc": {
@@ -5769,15 +5768,15 @@
       "status": "disabled"
     },
     "langchain": {
-      "threshold": 0.38458607,
-      "best_f1": 0.58823529,
-      "precision_at_threshold": 0.48387097,
+      "threshold": 0.38335183,
+      "best_f1": 0.61818182,
+      "precision_at_threshold": 0.5,
       "status": "active"
     },
     "langgraph": {
-      "threshold": 0.40012315,
-      "best_f1": 0.43243243,
-      "precision_at_threshold": 0.4,
+      "threshold": 0.43806875,
+      "best_f1": 0.48648649,
+      "precision_at_threshold": 0.47368421,
       "status": "active"
     },
     "layout design": {
@@ -5799,9 +5798,9 @@
       "status": "disabled"
     },
     "link building": {
-      "threshold": 0.56733483,
-      "best_f1": 0.36363636,
-      "precision_at_threshold": 0.5,
+      "threshold": 0.4189097,
+      "best_f1": 0.46153846,
+      "precision_at_threshold": 0.31578947,
       "status": "active"
     },
     "linkedin": {
@@ -5829,15 +5828,15 @@
       "status": "disabled"
     },
     "linux": {
-      "threshold": 0.32521111,
-      "best_f1": 0.38139535,
-      "precision_at_threshold": 0.27702703,
+      "threshold": 0.30399045,
+      "best_f1": 0.39823009,
+      "precision_at_threshold": 0.28301887,
       "status": "active"
     },
     "llms": {
-      "threshold": 0.41986245,
-      "best_f1": 0.68181818,
-      "precision_at_threshold": 0.65217391,
+      "threshold": 0.3974846,
+      "best_f1": 0.65934066,
+      "precision_at_threshold": 0.625,
       "status": "active"
     },
     "load balancers": {
@@ -5901,16 +5900,16 @@
       "status": "disabled"
     },
     "looker": {
-      "threshold": 0.32665581,
-      "best_f1": 0.33333333,
-      "precision_at_threshold": 0.31818182,
+      "threshold": 0.32670656,
+      "best_f1": 0.25,
+      "precision_at_threshold": 0.33333333,
       "status": "active"
     },
     "looker studio": {
-      "threshold": 0.404847,
-      "best_f1": 0.33333333,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "lpile": {
       "threshold": 1.0,
@@ -5931,10 +5930,10 @@
       "status": "disabled"
     },
     "macos": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.4,
+      "best_f1": 0.28571429,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "magento": {
       "threshold": 1.0,
@@ -5955,10 +5954,10 @@
       "status": "disabled"
     },
     "manufacturing processes": {
-      "threshold": 0.36397481,
-      "best_f1": 0.57142857,
-      "precision_at_threshold": 0.4,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "markdown": {
       "threshold": 1.0,
@@ -6021,8 +6020,8 @@
       "status": "disabled"
     },
     "mechanical design": {
-      "threshold": 0.58503473,
-      "best_f1": 0.33333333,
+      "threshold": 0.55353069,
+      "best_f1": 0.25,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
@@ -6057,10 +6056,10 @@
       "status": "disabled"
     },
     "meta tags": {
-      "threshold": 0.40021557,
-      "best_f1": 0.33333333,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "metadata": {
       "threshold": 1.0,
@@ -6081,9 +6080,9 @@
       "status": "disabled"
     },
     "microservices": {
-      "threshold": 0.36526206,
-      "best_f1": 0.33333333,
-      "precision_at_threshold": 0.40625,
+      "threshold": 0.36859265,
+      "best_f1": 0.31034483,
+      "precision_at_threshold": 0.40909091,
       "status": "active"
     },
     "microsoft clarity": {
@@ -6093,10 +6092,10 @@
       "status": "disabled"
     },
     "microsoft copilot": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.25298917,
+      "best_f1": 0.5,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "microsoft defender": {
       "threshold": 1.0,
@@ -6159,10 +6158,10 @@
       "status": "disabled"
     },
     "mlops": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.40729359,
+      "best_f1": 0.11764706,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "mobile": {
       "threshold": 1.0,
@@ -6171,13 +6170,13 @@
       "status": "disabled"
     },
     "mobile development": {
-      "threshold": 0.41670755,
+      "threshold": 0.40822279,
       "best_f1": 0.5,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
     "mobile security": {
-      "threshold": 0.3737238,
+      "threshold": 0.32216555,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -6195,15 +6194,15 @@
       "status": "disabled"
     },
     "mongodb": {
-      "threshold": 0.4712826,
-      "best_f1": 0.19047619,
-      "precision_at_threshold": 0.4,
+      "threshold": 0.4177275,
+      "best_f1": 0.34782609,
+      "precision_at_threshold": 0.5,
       "status": "active"
     },
     "mongodb atlas": {
-      "threshold": 0.55582088,
-      "best_f1": 0.53333333,
-      "precision_at_threshold": 0.8,
+      "threshold": 0.40201461,
+      "best_f1": 0.42857143,
+      "precision_at_threshold": 0.75,
       "status": "active"
     },
     "motion graphics": {
@@ -6225,13 +6224,13 @@
       "status": "disabled"
     },
     "mvp": {
-      "threshold": 0.34168816,
+      "threshold": 0.32260466,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
     "mvvm": {
-      "threshold": 0.48585588,
+      "threshold": 0.39622694,
       "best_f1": 0.5,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -6267,9 +6266,9 @@
       "status": "disabled"
     },
     "networking": {
-      "threshold": 0.38937679,
-      "best_f1": 0.42253521,
-      "precision_at_threshold": 0.36,
+      "threshold": 0.38421601,
+      "best_f1": 0.38418079,
+      "precision_at_threshold": 0.36956522,
       "status": "active"
     },
     "new relic": {
@@ -6285,9 +6284,9 @@
       "status": "disabled"
     },
     "nist": {
-      "threshold": 0.46746665,
+      "threshold": 0.42979628,
       "best_f1": 0.25,
-      "precision_at_threshold": 0.66666667,
+      "precision_at_threshold": 0.375,
       "status": "active"
     },
     "nist csf": {
@@ -6297,15 +6296,15 @@
       "status": "disabled"
     },
     "nlp": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.42666936,
+      "best_f1": 0.51162791,
+      "precision_at_threshold": 0.52380952,
+      "status": "active"
     },
     "node.js": {
-      "threshold": 0.41771498,
-      "best_f1": 0.5,
-      "precision_at_threshold": 0.72727273,
+      "threshold": 0.40660357,
+      "best_f1": 0.4,
+      "precision_at_threshold": 0.83333333,
       "status": "active"
     },
     "notion": {
@@ -6327,10 +6326,10 @@
       "status": "disabled"
     },
     "numpy": {
-      "threshold": 0.4,
-      "best_f1": 0.36363636,
-      "precision_at_threshold": 0.5,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "nx": {
       "threshold": 1.0,
@@ -6339,10 +6338,10 @@
       "status": "disabled"
     },
     "oauth": {
-      "threshold": 0.32382578,
-      "best_f1": 0.5,
-      "precision_at_threshold": 1.0,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "oauth 2.0": {
       "threshold": 1.0,
@@ -6351,15 +6350,15 @@
       "status": "disabled"
     },
     "objective-c": {
-      "threshold": 0.39280918,
+      "threshold": 0.42307431,
       "best_f1": 0.66666667,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
     "observability": {
-      "threshold": 0.49741262,
-      "best_f1": 0.39393939,
-      "precision_at_threshold": 0.46428571,
+      "threshold": 0.35581473,
+      "best_f1": 0.35555556,
+      "precision_at_threshold": 0.36363636,
       "status": "active"
     },
     "oci": {
@@ -6369,22 +6368,22 @@
       "status": "disabled"
     },
     "off-page optimization": {
-      "threshold": 0.5,
+      "threshold": 0.4997386,
       "best_f1": 0.28571429,
       "precision_at_threshold": 0.33333333,
       "status": "active"
     },
     "office productivity": {
-      "threshold": 0.405018,
-      "best_f1": 0.28571429,
-      "precision_at_threshold": 0.36,
+      "threshold": 0.41523224,
+      "best_f1": 0.3015873,
+      "precision_at_threshold": 0.38,
       "status": "active"
     },
     "oidc": {
-      "threshold": 0.4,
-      "best_f1": 0.28571429,
-      "precision_at_threshold": 1.0,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "okta": {
       "threshold": 1.0,
@@ -6399,8 +6398,8 @@
       "status": "disabled"
     },
     "on-page optimization": {
-      "threshold": 0.5,
-      "best_f1": 0.28571429,
+      "threshold": 0.45,
+      "best_f1": 0.4,
       "precision_at_threshold": 0.33333333,
       "status": "active"
     },
@@ -6423,7 +6422,7 @@
       "status": "disabled"
     },
     "oop": {
-      "threshold": 0.28632802,
+      "threshold": 0.34320098,
       "best_f1": 0.66666667,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -6573,14 +6572,14 @@
       "status": "disabled"
     },
     "performance monitoring": {
-      "threshold": 0.25468224,
+      "threshold": 0.25481293,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
     "performance optimization": {
       "threshold": 0.4,
-      "best_f1": 0.22222222,
+      "best_f1": 0.2,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
@@ -6717,10 +6716,10 @@
       "status": "disabled"
     },
     "ppc": {
-      "threshold": 0.38320187,
-      "best_f1": 0.33333333,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "premiere pro": {
       "threshold": 1.0,
@@ -6812,12 +6811,6 @@
       "precision_at_threshold": 0.0,
       "status": "disabled"
     },
-    "programming": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
     "project management": {
       "threshold": 1.0,
       "best_f1": 0.0,
@@ -6837,9 +6830,9 @@
       "status": "disabled"
     },
     "prompt engineering": {
-      "threshold": 0.41129386,
-      "best_f1": 0.44444444,
-      "precision_at_threshold": 0.42857143,
+      "threshold": 0.40161383,
+      "best_f1": 0.37037037,
+      "precision_at_threshold": 0.35714286,
       "status": "active"
     },
     "proofreading": {
@@ -6885,8 +6878,8 @@
       "status": "disabled"
     },
     "push notifications": {
-      "threshold": 0.42311496,
-      "best_f1": 0.5,
+      "threshold": 0.39437577,
+      "best_f1": 0.66666667,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
@@ -6909,9 +6902,9 @@
       "status": "disabled"
     },
     "python": {
-      "threshold": 0.31355685,
-      "best_f1": 0.76977401,
-      "precision_at_threshold": 0.62571757,
+      "threshold": 0.35799718,
+      "best_f1": 0.76607774,
+      "precision_at_threshold": 0.62084765,
       "status": "active"
     },
     "pytorch": {
@@ -6969,21 +6962,21 @@
       "status": "disabled"
     },
     "r": {
-      "threshold": 0.35549226,
-      "best_f1": 0.13793103,
-      "precision_at_threshold": 0.36363636,
+      "threshold": 0.35785255,
+      "best_f1": 0.10909091,
+      "precision_at_threshold": 0.375,
       "status": "active"
     },
     "rabbitmq": {
-      "threshold": 0.4,
-      "best_f1": 0.28571429,
-      "precision_at_threshold": 1.0,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "rag": {
-      "threshold": 0.40483877,
-      "best_f1": 0.59574468,
-      "precision_at_threshold": 0.51851852,
+      "threshold": 0.403826,
+      "best_f1": 0.56603774,
+      "precision_at_threshold": 0.46875,
       "status": "active"
     },
     "rank math": {
@@ -7029,9 +7022,9 @@
       "status": "disabled"
     },
     "react": {
-      "threshold": 0.42406029,
-      "best_f1": 0.19047619,
-      "precision_at_threshold": 0.36363636,
+      "threshold": 0.37291655,
+      "best_f1": 0.19512195,
+      "precision_at_threshold": 0.4,
       "status": "active"
     },
     "real-time systems": {
@@ -7149,10 +7142,10 @@
       "status": "disabled"
     },
     "restful apis": {
-      "threshold": 0.45,
-      "best_f1": 0.28571429,
-      "precision_at_threshold": 1.0,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "retool": {
       "threshold": 1.0,
@@ -7161,8 +7154,8 @@
       "status": "disabled"
     },
     "retrofit": {
-      "threshold": 0.2676979,
-      "best_f1": 0.5,
+      "threshold": 0.274771,
+      "best_f1": 0.66666667,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
@@ -7179,15 +7172,15 @@
       "status": "disabled"
     },
     "risk assessment": {
-      "threshold": 0.27501985,
-      "best_f1": 0.34615385,
-      "precision_at_threshold": 0.31034483,
+      "threshold": 0.54331666,
+      "best_f1": 0.21052632,
+      "precision_at_threshold": 0.66666667,
       "status": "active"
     },
     "risk management": {
-      "threshold": 0.40124139,
-      "best_f1": 0.32,
-      "precision_at_threshold": 0.33333333,
+      "threshold": 0.41664389,
+      "best_f1": 0.35294118,
+      "precision_at_threshold": 0.42857143,
       "status": "active"
     },
     "rls": {
@@ -7209,7 +7202,7 @@
       "status": "disabled"
     },
     "room": {
-      "threshold": 0.30061927,
+      "threshold": 0.27014956,
       "best_f1": 0.66666667,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -7245,7 +7238,7 @@
       "status": "disabled"
     },
     "runbooks": {
-      "threshold": 0.25544739,
+      "threshold": 0.26883975,
       "best_f1": 0.66666667,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -7257,10 +7250,10 @@
       "status": "disabled"
     },
     "saas": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.4105432,
+      "best_f1": 0.14285714,
+      "precision_at_threshold": 1.0,
+      "status": "active"
     },
     "safe": {
       "threshold": 1.0,
@@ -7269,9 +7262,9 @@
       "status": "disabled"
     },
     "salesforce": {
-      "threshold": 0.38667449,
-      "best_f1": 0.22857143,
-      "precision_at_threshold": 0.30769231,
+      "threshold": 0.47246689,
+      "best_f1": 0.07407407,
+      "precision_at_threshold": 0.5,
       "status": "active"
     },
     "salesforce.com": {
@@ -7341,10 +7334,10 @@
       "status": "disabled"
     },
     "scalable systems": {
-      "threshold": 0.4,
-      "best_f1": 0.66666667,
-      "precision_at_threshold": 0.6,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "scheduling": {
       "threshold": 1.0,
@@ -7359,15 +7352,15 @@
       "status": "disabled"
     },
     "schema markup": {
-      "threshold": 0.53215307,
-      "best_f1": 0.28571429,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "scikit-learn": {
-      "threshold": 0.41546661,
-      "best_f1": 0.5,
-      "precision_at_threshold": 0.8,
+      "threshold": 0.4027673,
+      "best_f1": 0.28571429,
+      "precision_at_threshold": 0.66666667,
       "status": "active"
     },
     "scim": {
@@ -7389,7 +7382,7 @@
       "status": "disabled"
     },
     "sdk": {
-      "threshold": 0.25469193,
+      "threshold": 0.30035627,
       "best_f1": 0.66666667,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -7413,7 +7406,7 @@
       "status": "disabled"
     },
     "secure coding": {
-      "threshold": 0.31000465,
+      "threshold": 0.28874421,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -7425,9 +7418,9 @@
       "status": "disabled"
     },
     "security": {
-      "threshold": 0.40844539,
-      "best_f1": 0.63485477,
-      "precision_at_threshold": 0.58846154,
+      "threshold": 0.35429874,
+      "best_f1": 0.64716636,
+      "precision_at_threshold": 0.55660377,
       "status": "active"
     },
     "security analysis": {
@@ -7491,9 +7484,9 @@
       "status": "disabled"
     },
     "security operations": {
-      "threshold": 0.42984918,
-      "best_f1": 0.34482759,
-      "precision_at_threshold": 0.38461538,
+      "threshold": 0.34691429,
+      "best_f1": 0.41860465,
+      "precision_at_threshold": 0.39130435,
       "status": "active"
     },
     "security platform": {
@@ -7557,9 +7550,9 @@
       "status": "disabled"
     },
     "seo": {
-      "threshold": 0.43308729,
-      "best_f1": 0.79487179,
-      "precision_at_threshold": 0.83783784,
+      "threshold": 0.46246234,
+      "best_f1": 0.77333333,
+      "precision_at_threshold": 0.82857143,
       "status": "active"
     },
     "serverless": {
@@ -7599,10 +7592,10 @@
       "status": "disabled"
     },
     "sheet metal design": {
-      "threshold": 0.29532111,
-      "best_f1": 0.5,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "shell": {
       "threshold": 1.0,
@@ -7629,9 +7622,9 @@
       "status": "disabled"
     },
     "siem": {
-      "threshold": 0.37680656,
-      "best_f1": 0.5,
-      "precision_at_threshold": 0.44444444,
+      "threshold": 0.37428394,
+      "best_f1": 0.43137255,
+      "precision_at_threshold": 0.37931034,
       "status": "active"
     },
     "siemens nx": {
@@ -7641,10 +7634,10 @@
       "status": "disabled"
     },
     "simulation": {
-      "threshold": 0.4,
-      "best_f1": 0.28571429,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "site speed optimization": {
       "threshold": 1.0,
@@ -7677,10 +7670,10 @@
       "status": "disabled"
     },
     "smo": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.35895336,
+      "best_f1": 0.5,
+      "precision_at_threshold": 0.5,
+      "status": "active"
     },
     "snmp": {
       "threshold": 1.0,
@@ -7701,22 +7694,22 @@
       "status": "disabled"
     },
     "soar": {
-      "threshold": 0.44185078,
-      "best_f1": 0.30769231,
-      "precision_at_threshold": 0.66666667,
+      "threshold": 0.40916547,
+      "best_f1": 0.125,
+      "precision_at_threshold": 0.5,
       "status": "active"
     },
     "soc": {
+      "threshold": 0.31018537,
+      "best_f1": 0.66666667,
+      "precision_at_threshold": 1.0,
+      "status": "active"
+    },
+    "soc 2": {
       "threshold": 1.0,
       "best_f1": 0.0,
       "precision_at_threshold": 0.0,
       "status": "disabled"
-    },
-    "soc 2": {
-      "threshold": 0.42667925,
-      "best_f1": 0.13333333,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
     },
     "social media": {
       "threshold": 1.0,
@@ -7731,12 +7724,6 @@
       "status": "disabled"
     },
     "social media platforms": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
-    "software": {
       "threshold": 1.0,
       "best_f1": 0.0,
       "precision_at_threshold": 0.0,
@@ -7767,9 +7754,9 @@
       "status": "disabled"
     },
     "solidworks": {
-      "threshold": 0.49601385,
-      "best_f1": 0.55555556,
-      "precision_at_threshold": 0.625,
+      "threshold": 0.40724024,
+      "best_f1": 0.48484848,
+      "precision_at_threshold": 0.44444444,
       "status": "active"
     },
     "sox": {
@@ -7815,9 +7802,9 @@
       "status": "disabled"
     },
     "sql": {
-      "threshold": 0.4019461,
-      "best_f1": 0.73316708,
-      "precision_at_threshold": 0.61851332,
+      "threshold": 0.44902334,
+      "best_f1": 0.71898734,
+      "precision_at_threshold": 0.59915612,
       "status": "active"
     },
     "sql server": {
@@ -7827,7 +7814,7 @@
       "status": "disabled"
     },
     "sqlite": {
-      "threshold": 0.32986945,
+      "threshold": 0.30026606,
       "best_f1": 0.66666667,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -7851,9 +7838,9 @@
       "status": "disabled"
     },
     "staad": {
-      "threshold": 0.5,
-      "best_f1": 0.28571429,
-      "precision_at_threshold": 0.33333333,
+      "threshold": 0.5999999,
+      "best_f1": 0.33333333,
+      "precision_at_threshold": 0.5,
       "status": "active"
     },
     "stakeholder communication": {
@@ -7881,9 +7868,9 @@
       "status": "disabled"
     },
     "statistics": {
-      "threshold": 0.44922334,
-      "best_f1": 0.74618585,
-      "precision_at_threshold": 0.71164021,
+      "threshold": 0.44172552,
+      "best_f1": 0.7079646,
+      "precision_at_threshold": 0.625,
       "status": "active"
     },
     "storage": {
@@ -7953,13 +7940,13 @@
       "status": "disabled"
     },
     "swift": {
-      "threshold": 0.60160774,
+      "threshold": 0.62681073,
       "best_f1": 0.22222222,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
     "swiftui": {
-      "threshold": 0.4318127,
+      "threshold": 0.42567387,
       "best_f1": 0.66666667,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -7989,9 +7976,9 @@
       "status": "disabled"
     },
     "tableau": {
-      "threshold": 0.39290515,
-      "best_f1": 0.27027027,
-      "precision_at_threshold": 0.625,
+      "threshold": 0.467967,
+      "best_f1": 0.1875,
+      "precision_at_threshold": 1.0,
       "status": "active"
     },
     "tally": {
@@ -8007,7 +7994,7 @@
       "status": "disabled"
     },
     "tdd": {
-      "threshold": 0.40817502,
+      "threshold": 0.37017336,
       "best_f1": 0.66666667,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -8079,9 +8066,9 @@
       "status": "disabled"
     },
     "terraform": {
-      "threshold": 0.37961322,
-      "best_f1": 0.47798742,
-      "precision_at_threshold": 0.38,
+      "threshold": 0.39716384,
+      "best_f1": 0.48863636,
+      "precision_at_threshold": 0.37068966,
       "status": "active"
     },
     "test automation": {
@@ -8145,14 +8132,14 @@
       "status": "disabled"
     },
     "threat hunting": {
-      "threshold": 0.4,
-      "best_f1": 0.16666667,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "threat intelligence": {
-      "threshold": 0.25939754,
-      "best_f1": 0.5,
+      "threshold": 0.30052185,
+      "best_f1": 0.66666667,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
@@ -8235,10 +8222,10 @@
       "status": "disabled"
     },
     "typescript": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
+      "threshold": 0.43083575,
+      "best_f1": 0.12698413,
+      "precision_at_threshold": 0.30769231,
+      "status": "active"
     },
     "typography": {
       "threshold": 1.0,
@@ -8259,10 +8246,10 @@
       "status": "disabled"
     },
     "ubersuggest": {
-      "threshold": 0.34896153,
-      "best_f1": 0.4,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "ubuntu": {
       "threshold": 1.0,
@@ -8271,14 +8258,14 @@
       "status": "disabled"
     },
     "ui": {
-      "threshold": 0.38829038,
-      "best_f1": 0.66666667,
+      "threshold": 0.37215224,
+      "best_f1": 0.5,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
     "ui testing": {
-      "threshold": 0.30990976,
-      "best_f1": 0.5,
+      "threshold": 0.26616874,
+      "best_f1": 0.66666667,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
@@ -8289,7 +8276,7 @@
       "status": "disabled"
     },
     "uikit": {
-      "threshold": 0.33135346,
+      "threshold": 0.31622604,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -8301,7 +8288,7 @@
       "status": "disabled"
     },
     "unit testing": {
-      "threshold": 0.45,
+      "threshold": 0.4,
       "best_f1": 0.4,
       "precision_at_threshold": 1.0,
       "status": "active"
@@ -8403,9 +8390,9 @@
       "status": "disabled"
     },
     "vectordb": {
-      "threshold": 0.40970314,
-      "best_f1": 0.27272727,
-      "precision_at_threshold": 0.42857143,
+      "threshold": 0.40321192,
+      "best_f1": 0.55555556,
+      "precision_at_threshold": 0.47619048,
       "status": "active"
     },
     "vendor coordination": {
@@ -8481,10 +8468,10 @@
       "status": "disabled"
     },
     "vulnerability management": {
-      "threshold": 0.48819137,
-      "best_f1": 0.13333333,
-      "precision_at_threshold": 0.33333333,
-      "status": "active"
+      "threshold": 1.0,
+      "best_f1": 0.0,
+      "precision_at_threshold": 0.0,
+      "status": "disabled"
     },
     "waf": {
       "threshold": 1.0,
@@ -8498,16 +8485,10 @@
       "precision_at_threshold": 0.0,
       "status": "disabled"
     },
-    "web": {
-      "threshold": 1.0,
-      "best_f1": 0.0,
-      "precision_at_threshold": 0.0,
-      "status": "disabled"
-    },
     "web analytics": {
-      "threshold": 0.256955,
+      "threshold": 0.45292556,
       "best_f1": 0.66666667,
-      "precision_at_threshold": 0.5,
+      "precision_at_threshold": 1.0,
       "status": "active"
     },
     "web applications": {
@@ -8535,8 +8516,8 @@
       "status": "disabled"
     },
     "welding": {
-      "threshold": 0.32442909,
-      "best_f1": 0.66666667,
+      "threshold": 0.33269599,
+      "best_f1": 0.5,
       "precision_at_threshold": 0.5,
       "status": "active"
     },
@@ -8565,9 +8546,9 @@
       "status": "disabled"
     },
     "wordpress": {
-      "threshold": 0.44499737,
-      "best_f1": 0.51851852,
-      "precision_at_threshold": 0.4375,
+      "threshold": 0.44880477,
+      "best_f1": 0.4516129,
+      "precision_at_threshold": 0.35,
       "status": "active"
     },
     "workday": {
@@ -8595,19 +8576,19 @@
       "status": "disabled"
     },
     "xamarin": {
-      "threshold": 0.29058239,
+      "threshold": 0.25641933,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
     "xcode": {
-      "threshold": 0.33522764,
+      "threshold": 0.26699033,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
     },
     "xctest": {
-      "threshold": 0.32314727,
+      "threshold": 0.30134201,
       "best_f1": 1.0,
       "precision_at_threshold": 1.0,
       "status": "active"
