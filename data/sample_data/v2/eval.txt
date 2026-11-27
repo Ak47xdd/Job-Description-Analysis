@@ -1,1031 +1,1027 @@
 SBERT training run started. Full output is being saved to: C:\Portfolio-Projects\Job-Description-Analysis\data\sample_data\v2\eval.txt
 Cleaned training dataset is current: 4,349 rows (raw source: 4,349 rows)
-Loss: class-weighted BCEWithLogitsLoss (sqrt inverse prevalence, pos_weight range=1.00-20.00, mean=16.76)
+Loss: class-weighted BCEWithLogitsLoss (sqrt inverse prevalence, pos_weight range=1.00-20.00, mean=16.72)
 SBERT input dimension: 384
-Labels: 981 | Train: 3478 | Test: 871
-Epoch 001/170 | train_loss=0.3668 | test_loss=0.2332
-Epoch 010/170 | train_loss=0.2035 | test_loss=0.2144
-Epoch 020/170 | train_loss=0.1918 | test_loss=0.2039
-Epoch 030/170 | train_loss=0.1829 | test_loss=0.1960
-Epoch 040/170 | train_loss=0.1791 | test_loss=0.1928
-Epoch 050/170 | train_loss=0.1772 | test_loss=0.1905
-Epoch 060/170 | train_loss=0.1762 | test_loss=0.1889
-Epoch 070/170 | train_loss=0.1747 | test_loss=0.1885
-Epoch 080/170 | train_loss=0.1744 | test_loss=0.1878
-Epoch 090/170 | train_loss=0.1737 | test_loss=0.1879
-Epoch 100/170 | train_loss=0.1740 | test_loss=0.1878
-Epoch 110/170 | train_loss=0.1741 | test_loss=0.1872
-Epoch 120/170 | train_loss=0.1735 | test_loss=0.1875
-Epoch 130/170 | train_loss=0.1740 | test_loss=0.1877
-Epoch 140/170 | train_loss=0.1735 | test_loss=0.1872
-Epoch 150/170 | train_loss=0.1732 | test_loss=0.1867
-Epoch 160/170 | train_loss=0.1735 | test_loss=0.1875
-Epoch 170/170 | train_loss=0.1730 | test_loss=0.1871
+Labels: 976 | Train: 3475 | Test: 874
+Epoch 001/170 | train_loss=0.3635 | test_loss=0.2277
+Epoch 010/170 | train_loss=0.2026 | test_loss=0.2076
+Epoch 020/170 | train_loss=0.1927 | test_loss=0.1987
+Epoch 030/170 | train_loss=0.1846 | test_loss=0.1900
+Epoch 040/170 | train_loss=0.1786 | test_loss=0.1860
+Epoch 050/170 | train_loss=0.1766 | test_loss=0.1838
+Epoch 060/170 | train_loss=0.1766 | test_loss=0.1825
+Epoch 070/170 | train_loss=0.1745 | test_loss=0.1821
+Epoch 080/170 | train_loss=0.1743 | test_loss=0.1817
+Epoch 090/170 | train_loss=0.1743 | test_loss=0.1816
+Epoch 100/170 | train_loss=0.1734 | test_loss=0.1809
+Epoch 110/170 | train_loss=0.1733 | test_loss=0.1809
+Epoch 120/170 | train_loss=0.1728 | test_loss=0.1809
+Epoch 130/170 | train_loss=0.1724 | test_loss=0.1807
+Epoch 140/170 | train_loss=0.1721 | test_loss=0.1807
+Epoch 150/170 | train_loss=0.1733 | test_loss=0.1806
+Epoch 160/170 | train_loss=0.1728 | test_loss=0.1806
+Epoch 170/170 | train_loss=0.1731 | test_loss=0.1807
 Refreshing per-skill thresholds from the new checkpoint...
 Refreshing SBERT artifact prerequisite: model\eval_sbert.py
 
 SBERT Model Evaluation � Constrained Per-Skill Thresholds
 
-Embedding shape: (871, 384)
+Embedding shape: (874, 384)
 Default minimum precision constraint: 0.30
 Label-specific precision floors: docker=0.25, linux=0.25
 Minimum threshold floor: 0.25
 Rare-label fixed threshold (dataset support <= 5): 0.25
-Infeasible labels disabled: 787
-Disabled labels: .net, 2d drawings, 3d cad, 3d printing, 8d, access control, access controls, access management, accessibility, accounting, accounting principles, active directory, additive manufacturing, adobe, adobe after effects, adobe analytics, adobe creative suite, adobe lightroom, adobe premiere pro, adobe xd, agentic ai, agile, ai governance, ai search, ai security, ai tooling, ai-assisted development, ai-assisted workflows, ai-powered tools, air export, airflow, alerting, amplitude, analysis, analytical skills, analytics platforms, anaplan, angular, ansible, ansys, anthropic, api integrations, api security, api testing, appium, applicant tracking system, applicant tracking systems, application insights, application modernization, appsec, architecture, architecture tools, argo cd, arm templates, asana, ashby, assembled, assembly, atlas, ats, attribution, audit, audit management software, audit methodologies, audit processes, audit reporting, audit software, audit trails, aurora, auth, authorization, automation scripts, aws rds, aws s3, azure ad, azure functions, azure key vault, azure monitor, azure networking, azure storage, backend, backend development, backlink acquisition, backlink strategy, backup, bash, bazel, bdd, benchmarking, bicep, big data, bigquery, billing, billing systems, bim, ble, blender, blockchain, bloomberg, bom, branding, budget management, budget tracking, budgeting, business requirements gathering, c, canonical tags, canva, capacity planning, capcut, catia, cdn, certification, cfd, change management, chat, chatgpt, ci pipelines, ci/cd pipelines, cia, circleci, clari, claude code, clickhouse, clickup, client communication, client libraries, cloud architecture, cloud functions, cloud migration, cloud networking, cloud security, cloud services, cloud technologies, cloud-based solutions, cloud-native platform, cloudflare, cloudformation, cloudfront, cloudwatch, cms, cobit, code review, code reviews, codex, coding, collaboration, command line, communication, competition analysis, competitive analysis, compliance, compute, computer, computer vision, conditional access, configuration, configuration management, confluence, construction management, container orchestration, container platforms, container security, containers, content creation, content management systems, content marketing, content strategy, content writing, contextual inquiries, controls, conversational ai, conversion optimization, copywriting, coreldraw, cost management, cost optimization, coupa, cpa, cpq, crawlability, creo, crm, cro, crossplane, cross?functional collaboration, crowdstrike, crypto, cryptography, csat, css, cucumber, cuda, cursor, customer service, customer success, customer support, cypress, dashboard, dashboarding, dast, data, data analysis tools, data governance, data integration, data loss prevention, data modeling, data models, data protection, data quality, data science, data security, data transformation, data visualization, database, databases, databricks data intelligence platform, dbt, delta lake, deployment, design documentation, design for manufacturability, design reviews, design systems, design thinking, detection engineering, devops, devops monitoring, devops transformation, dfm, dfx, dhcp, diary studies, digital, digital forensics, digital marketing, digital operations, digital transformation, disaster recovery, distributed tracing, django, dns, docker, docs, documentation, documentation tools, doe, dynamodb, ecs, edge functions, editing, edr, ehr, elasticsearch, email, embedded linux, encryption, end-to-end testing, endpoint security, english, entra id, erp, erp systems, etabs, ethernet, event hub, event-driven architecture, facebook, facebook ads, fastapi, fea, federated identity, fedramp, field studies, financial analysis, financial modeling, financial reporting, financial statement analysis, fine-tuning, finops, fintech, firewall, firewalls, firmware, flink, fluid dynamics, flux, forecasting, fraud detection, fraud detection tools, freight management, frontend, frontend development, full-stack, functional testing, gem, generative engine optimization, geo, gint, gis, git, github copilot, github discussions, github issues, gmail, google business profile, google gemini, google my business, google trends, governance, gps, gpu, grading, grafana, graphic design, greenhouse, groovy, gst, guardrails, hadoop, hardware, hardware integration, headings, heat exchangers, hex, high availability, hipaa, hotjar, hris, hrms, html/css, https, hubspot, hugging face, hvac, hybrid cloud, hyper-v, i2c, iaas, iac, idea, identity, identity and access management, identity management, ids, illustrator, image optimization, incident management, indesign, indexing, inference, infiniband, infrastructure, infrastructure as code, infrastructure automation, infrastructure-as-code, injection molding, instagram, instagram ads, integration, integration testing, integrations, internal audit, internal controls, interviews, intune, inventory audit, inventory management, invision, invoicing, iot, ips, ironclad, iso, iso 9001, istio, it audit, it audit methodologies, it governance, itil, javascript, jmeter, journey maps, json, kanban, kernel, kibana, kubeflow, kyc, lakehouse, landing page optimization, layout design, leadership, linear, linkedin, linkedin ads, linkedin recruiter, linkerd, load balancers, load balancing, log analysis, log analytics, logging, logistics, logistics coordination, logistics management software, logistics software, logs, lpile, lucidchart, machining, macos, magento, mailchimp, manual testing, markdown, market analysis, market research, marketing automation, marketo, mat 3d, material selection, matlab, maze, mcp, mechatronics, medallia, meta, meta ads, meta descriptions, metadata, metrics, mfa, microsoft clarity, microsoft copilot, microsoft defender, microsoft entra id, microsoft outlook, microsoft sentinel, microsoft teams, migration, miro, mitre att&ck, mixpanel, mlflow, mlops, mobile, mobile testing, models, motion graphics, ms project, multi-cloud, n8n, nccl, nessus, netsuite, network security, new relic, next.js, nist csf, nlp, notion, npm, nps, nx, oauth 2.0, oci, okta, on-call rotation, on-premise infrastructure, onboarding, onshape, open source, openai, openid connect, opensearch, openshift, openstack, opentelemetry, operating systems, operations, oracle fusion, outreach, owasp top 10, paas, pagerduty, pandas, partner integrations, patch management, payment processing, payroll, pci dss, penetration testing, performance, performance marketing, performance testing, performance tuning, perplexity, persona creation, personas, pfmea, php, pivot tables, pl/sql, platform, platform engineering, plaxis, playwright, plm, policy design, policy development, postgresql, postman, power apps, power automate, power bi, powershell, premiere pro, presentation, pre?sales, privacy, problem solving, process analysis, process automation, process improvement, process optimization, procurement, product analytics, product development, product management, product strategy, production operations, programming, project management, project planning, prometheus, proofreading, protopie, prototype development, prototyping, pub/sub, pulumi, puppet, pypi, pyspark, pytest, pytorch, qradar, qualitative research, quality assurance, quality engineering, qualtrics, quantitative research, query optimization, quickbooks, rank math, rapid prototyping, rbac, rcc, rcdc, rdbms, rds, real-time systems, realtime, record keeping, recruitment software, redis, redshift, regression testing, regulatory compliance, relational databases, release management, reliability, reliability testing, replication, reporting tools, requirements management, research, research synthesis, responsive design, rest assured, retool, revit, risk analysis, rls, robotics, robots.txt, root cause analysis, route optimization, routing, ruby, ruby on rails, rust, saas, safe, salesforce.com, saml, sap, sap ariba, sap mm, sap s/4hana, sast, scala, scalability, scalable architecture, scalable services, scheduling, schema, scim, scripting, scrum, sdlc, search, secrets management, secure coding practices, security analysis, security architecture, security assessments, security automation, security best practices, security controls, security engineering, security frameworks, security incident response, security monitoring, security platform, security policies, security testing, security tooling, security+, segmentation, selenium, sem, sensors, sentinelone, serverless, service mesh, service-oriented architecture, servicenow, sharepoint, sheet metal, shell, shipping, shipping documentation, shopify, siemens nx, site speed optimization, six sigma, sketch, slack, slope/w, smo, snmp, sns, soap, soc, social media, social media marketing, social media platforms, software, software architecture, software development, software engineering, software tools, sox, spark, splunk, spring, spring boot, sprinklr, spss, sql server, sqs, sre, sso, stakeholder communication, stakeholder management, statistical analysis, statistical tools, storage, storytelling, strategic planning, structural analysis, structural design, structured data, subscription management, supplier management, supply chain, supply chain management, surveys, switching, system architecture, system design, system testing, tally, tcp/ip, teamcenter, teamcity, teams, technical documentation, technical support, technical writing, technical writing tools, telemetry, telephone, temporal, tensorflow, test automation, test automation frameworks, test strategy, testing, testrail, thermal analysis, thermal design, thermal management, thermodynamics, threat detection, threat modeling, tiktok, time series, tls, tolerance analysis, tooling, traces, tracing, training, transaction monitoring, transportation, troubleshooting, twitter, typescript, typography, uart, uat, ubuntu, ui/ux, uml, unity, unity catalog, unix, us gaap, usability testing, user interviews, user manuals, user research, user stories, usertesting, ux, ux audits, ux design, ux research, vba, vector search, vendor coordination, vendor management, vessel operations, video editing, virtualization, vllm, vlookup, vmware, vpc, vpn, vue, vulnerability assessment, waf, wcag, web, web applications, web development, webflow, webpack, windows, windows server, wireframes, wms, workday, workflow automation, writing, x, xdr, xml, youtube, zapier, zendesk, zero trust, zoom
-Global 0.65 threshold: Micro-F1=0.212 | Macro-F1=0.007
-Constrained per-skill: Micro-F1=0.449 | Macro-F1=0.104
+Infeasible labels disabled: 808
+Disabled labels: .NET, 2d Drawings, 3d Cad, 3d Modeling, 3d Printing, 8d, A/B Testing, Access Control, Access Controls, Access Management, Accessibility, Accounting, Accounting Principles, Active Directory, Additive Manufacturing, Adobe, Adobe After Effects, Adobe Analytics, Adobe Creative Suite, Adobe Lightroom, Adobe Premiere Pro, Adobe Xd, Aeo, Agentic AI, AI Governance, AI Search, AI Security, AI Tooling, AI-Assisted Development, AI-Assisted Workflows, AI-Powered Tools, Air Export, Airflow, Alerting, Aml, Amplitude, Analysis, Analytical Skills, Analytics Platforms, Android SDK, Angular, Ansys, Anthropic, API Design, API Integrations, API Security, API Testing, Appium, Applicant Tracking System, Applicant Tracking Systems, Application Insights, Application Modernization, Application Security, Appsec, Architecture, Architecture Tools, Argo CD, Arm Templates, Asana, Ashby, Assembled, Assembly, Atlas, Ats, Attribution, Audit, Audit Management Software, Audit Methodologies, Audit Processes, Audit Reporting, Audit Software, Audit Trails, Aurora, Auth, Authentication, Authorization, Automation Scripts, AWS Rds, AWS S3, AWS Sqs, Azure Ad, Azure Functions, Azure Key Vault, Azure Monitor, Azure Networking, Azure Storage, Backend, Backend Development, Backlink Acquisition, Backlink Building, Backlink Strategy, Backup, Bazel, Bdd, Benchmarking, Bicep, Big Data, Bigquery, Billing, Billing Systems, Bim, Ble, Blender, Blockchain, Bloomberg, Bom, Branding, Budget Management, Budget Tracking, Budgeting, Business Requirements Gathering, C, Cad Software, Canonical Tags, Canva, Capacity Planning, Capcut, Catia, Cdn, Certification, Cfd, Change Management, Chatgpt, CI, CI Pipelines, CI/CD Pipelines, Cia, Circleci, Cissp, Clari, Claude Code, Clickhouse, Clickup, Client Communication, Client Libraries, Cloud Architecture, Cloud Functions, Cloud Migration, Cloud Networking, Cloud Security, Cloud Security Tools, Cloud Services, Cloud Technologies, Cloud-Based Solutions, Cloud-Native Platform, Cloudflare, Cloudfront, Cloudwatch, Cms, Cobit, Code Review, Code Reviews, Codex, Coding, Collaboration, Command Line, Communication, Competition Analysis, Competitive Analysis, Competitor Analysis, Compliance, Compute, Computer Vision, Conditional Access, Configuration, Configuration Management, Confluence, Construction Management, Container Orchestration, Container Platforms, Container Security, Containers, Content Creation, Content Management Systems, Content Marketing, Content Optimization, Content Strategy, Content Writing, Contextual Inquiries, Control Testing, Controls, Conversational AI, Conversion Optimization, Copywriting, Core Web Vitals, Cost Management, Cost Optimization, Coupa, Cpa, Cpq, Crawlability, Creo, CRM, Cro, Crossplane, Cross?functional Collaboration, Crowdstrike, Crypto, Cryptography, Csat, CSS, Cucumber, Cuda, Cursor, Customer Service, Customer Success, Customer Support, Cypress, Dashboard, Dashboarding, Dast, Data, Data Analysis Tools, Data Governance, Data Integration, Data Loss Prevention, Data Modeling, Data Models, Data Protection, Data Quality, Data Science, Data Security, Data Transformation, Data Visualization, Database, Databases, Databricks Data Intelligence Platform, Dbt, Debugging, Delta Lake, Deployment, Design Documentation, Design For Manufacturability, Design Reviews, Design Systems, Design Thinking, Detection Engineering, Devops, Devops Monitoring, Devops Transformation, Dfm, Dfx, Dhcp, Diary Studies, Digital Forensics, Digital Marketing, Digital Operations, Digital Transformation, Disaster Recovery, Distributed Tracing, Django, Dns, Docs, Documentation, Documentation Tools, Doe, Domain Monitoring, Dynamodb, Ecs, Edge Functions, Editing, Edr, Ehr, Elasticsearch, Email, Email Marketing, Email Protection Tooling, Embedded Linux, Encryption, End-To-End Testing, Endpoint Security, Endpoint Tooling, English, Entra Id, Erp, Erp Systems, Etabs, Ethernet, Event Hub, Event-Driven Architecture, Facebook, Facebook Ads, FastAPI, Fea, Federated Identity, Fedramp, Field Studies, Financial Analysis, Financial Modeling, Financial Reporting, Financial Statement Analysis, Fine-Tuning, Finops, Fintech, Firewall, Firewalls, Firmware, Flink, Fluid Dynamics, Flux, Fraud Detection, Fraud Detection Tools, Freight Management, Frontend, Frontend Development, Full-Stack, Functional Testing, Gd&t, Gem, Generative Engine Optimization, Geo, Geolocation, Gint, Gis, GitHub Copilot, GitHub Discussions, GitHub Issues, Gmail, Google Ads, Google Business Profile, Google Gemini, Google Keyword Planner, Google My Business, Google Tag Manager, Google Trends, Governance, Gps, Gpu, Grading, Grafana, Graphic Design, Greenhouse, Groovy, Gst, Guardrails, Hadoop, Hardware, Hardware Integration, Headings, Heat Exchangers, Hex, High Availability, Highly Available Systems, Hipaa, Hotjar, Hris, Hrms, HTML/CSS, Https, Hubspot, Hugging Face, Hvac, Hybrid Cloud, Hyper-V, I2c, Iaas, Iac, Idea, Identity, Identity Management, Ids, Illustrator, Image Optimization, Incident Management, Indexing, Inference, Infiniband, Infrastructure, Infrastructure As Code, Infrastructure Automation, Infrastructure-As-Code, Injection Molding, Instagram, Instagram Ads, Integration, Integration Testing, Integrations, Internal Audit, Internal Controls, Internal Linking, Interviews, Intune, Inventory Audit, Inventory Management, Invision, Invoicing, Iot, Ips, Ironclad, Iso, Iso 27001, Iso 9001, Istio, It Audit, It Audit Methodologies, Itil, Jmeter, Journey Maps, JSON, Kanban, Kernel, Kibana, Kubeflow, Kyc, Lakehouse, Landing Page Optimization, Layout Design, Leadership, Linear, Linkedin, Linkedin Ads, Linkedin Recruiter, Linkerd, Load Balancers, Load Balancing, Log Analysis, Log Analytics, Logging, Logistics, Logistics Coordination, Logistics Management Software, Logistics Software, Logs, Looker Studio, Lpile, Lucidchart, Machining, Magento, Mailchimp, Manual Testing, Manufacturing Processes, Markdown, Market Analysis, Market Research, Marketing Automation, Marketo, Mat 3d, Material Selection, Matlab, Maze, MCP, Mechatronics, Medallia, Meta, Meta Ads, Meta Descriptions, Meta Tags, Metadata, Metrics, Mfa, Microsoft Clarity, Microsoft Defender, Microsoft Entra Id, Microsoft Outlook, Microsoft Sentinel, Microsoft Teams, Migration, Miro, Mitre Att&ck, Mixpanel, Mlflow, Mobile, Mobile Testing, Models, Motion Graphics, Ms Project, Multi-Cloud, N8n, Nccl, Nessus, Netsuite, Network Security, New Relic, Next.js, Nist Csf, Notion, Npm, Nps, Numpy, Nx, OAuth, OAuth 2.0, Oci, Oidc, Okta, On-Call Rotation, On-Premise Infrastructure, Onboarding, Onshape, Open Source, OpenAI, Openid Connect, Opensearch, Openshift, Openstack, Opentelemetry, Operating Systems, Operations, Oracle Fusion, Outreach, Owasp Top 10, Paas, Pagerduty, Pandas, Partner Integrations, Patch Management, Payment Processing, Payroll, Pci Dss, Penetration Testing, Performance, Performance Marketing, Performance Testing, Performance Tuning, Perplexity, Persona Creation, Personas, Pfmea, Php, Pivot Tables, Pl/SQL, Platform, Platform Engineering, Plaxis, Playwright, Plm, Policy Design, Policy Development, PostgreSQL, Postman, Power Apps, Power Automate, Power BI, Powershell, Ppc, Premiere Pro, Presentation, Pre?sales, Privacy, Problem Solving, Process Analysis, Process Automation, Process Improvement, Process Optimization, Procurement, Product Analytics, Product Development, Product Management, Product Strategy, Production Operations, Project Management, Project Planning, Prometheus, Proofreading, Protopie, Prototype Development, Prototyping, Pub/Sub, Pulumi, Puppet, Pypi, Pyspark, Pytest, PyTorch, Qradar, Qualitative Research, Quality Assurance, Quality Engineering, Qualtrics, Quantitative Research, Query Optimization, Quickbooks, Rabbitmq, Rank Math, Rapid Prototyping, Rbac, Rcc, Rcdc, Rdbms, Rds, Real-Time Systems, Realtime, Record Keeping, Recruitment Software, Redis, Redshift, Regression Testing, Regulatory Compliance, Relational Databases, Release Management, Reliability, Reliability Testing, Replication, Reporting Tools, Requirements Management, Research, Research Synthesis, Responsive Design, REST Assured, Restful APIs, Retool, Revit, Risk Analysis, Rls, Robotics, Robots.txt, Root Cause Analysis, Route Optimization, Routing, Ruby, Ruby On Rails, Rust, Safe, Salesforce.com, Saml, Sap, Sap Ariba, Sap Mm, Sap S/4hana, Sast, Scala, Scalability, Scalable Architecture, Scalable Services, Scalable Systems, Scheduling, Schema, Schema Markup, Scim, Scripting, Scrum, Sdlc, Search, Secrets Management, Secure Coding Practices, Security Analysis, Security Architecture, Security Assessments, Security Automation, Security Best Practices, Security Controls, Security Engineering, Security Frameworks, Security Incident Response, Security Monitoring, Security Platform, Security Policies, Security Testing, Security Tooling, Security+, Segmentation, Selenium, Sem, Sensors, Sentinelone, Serverless, Service Mesh, Service-Oriented Architecture, Servicenow, Sharepoint, Sheet Metal, Sheet Metal Design, Shell, Shipping, Shipping Documentation, Shopify, Siemens Nx, Simulation, Site Speed Optimization, Six Sigma, Sketch, Slack, Slope/W, Snmp, Sns, Soap, Soc 2, Social Media, Social Media Marketing, Social Media Platforms, Software Architecture, Software Development, Software Engineering, Software Tools, Sox, Spark, Splunk, Spring, Spring Boot, Sprinklr, Spss, SQL Server, Sqs, Sre, Sso, Stakeholder Communication, Stakeholder Management, Statistical Analysis, Statistical Tools, Storage, Storytelling, Strategic Planning, Structural Analysis, Structural Design, Structured Data, Subscription Management, Supplier Management, Supply Chain, Supply Chain Management, Surveys, Switching, System Architecture, System Design, System Testing, Tally, Tcp/Ip, Teamcenter, Teamcity, Teams, Technical Documentation, Technical Support, Technical Writing, Technical Writing Tools, Telemetry, Telephone, Temporal, TensorFlow, Test Automation, Test Automation Frameworks, Test Strategy, Testing, Testrail, Thermal Analysis, Thermal Design, Thermal Management, Thermodynamics, Threat Detection, Threat Hunting, Threat Modeling, Tiktok, Time Series, Tls, Tolerance Analysis, Tooling, Traces, Tracing, Training, Transaction Monitoring, Transportation, Troubleshooting, Twitter, Typography, Uart, Uat, Ubersuggest, Ubuntu, UI/UX, Uml, Unity, Unity Catalog, Unix, Us Gaap, Usability Testing, User Interviews, User Manuals, User Research, User Stories, Usertesting, UX, UX Audits, UX Design, UX Research, Vba, Vector Search, Vendor Coordination, Vendor Management, Vessel Operations, Video Editing, Virtualization, Vllm, Vlookup, Vmware, Vpc, Vpn, Vue, Vulnerability Assessment, Vulnerability Management, Waf, Wcag, Web Applications, Web Development, Webflow, Webpack, Windows, Windows Server, Wireframes, Wms, Workday, Workflow Automation, Writing, X, Xdr, XML, Youtube, Zapier, Zendesk, Zero Trust, Zoom
+Global 0.65 threshold: Micro-F1=0.236 | Macro-F1=0.006
+Constrained per-skill: Micro-F1=0.456 | Macro-F1=0.089
 Thresholds saved to: C:\Portfolio-Projects\Job-Description-Analysis\model_out\v2_sentence_transformer\per_skill_thresholds.json
 
 label                    threshold   support   precision   recall    f1    
-.net                     1.0000      7         0.00        0.00      0.00
-2d drawings              1.0000      1         0.00        0.00      0.00
-3d cad                   1.0000      2         0.00        0.00      0.00
-3d modeling              0.2832      3         0.30        1.00      0.46
-3d printing              1.0000      3         0.00        0.00      0.00
-8d                       1.0000      3         0.00        0.00      0.00
-a/b testing              0.4248      14        1.00        0.07      0.13
-access control           1.0000      2         0.00        0.00      0.00
-access controls          1.0000      1         0.00        0.00      0.00
-access management        1.0000      1         0.00        0.00      0.00
-accessibility            1.0000      4         0.00        0.00      0.00
-accounting               1.0000      2         0.00        0.00      0.00
-accounting principles    1.0000      1         0.00        0.00      0.00
-active directory         1.0000      3         0.00        0.00      0.00
-additive manufacturing   1.0000      1         0.00        0.00      0.00
-adobe                    1.0000      3         0.00        0.00      0.00
-adobe after effects      1.0000      8         0.00        0.00      0.00
-adobe analytics          1.0000      2         0.00        0.00      0.00
-adobe creative suite     1.0000      6         0.00        0.00      0.00
-adobe illustrator        0.4293      13        0.75        0.46      0.57
-adobe indesign           0.4000      6         1.00        0.17      0.29
-adobe lightroom          1.0000      1         0.00        0.00      0.00
-adobe photoshop          0.3862      23        0.60        0.52      0.56
-adobe premiere pro       1.0000      4         0.00        0.00      0.00
-adobe xd                 1.0000      3         0.00        0.00      0.00
-aeo                      0.4207      4         0.33        0.25      0.29
-agentic ai               1.0000      1         0.00        0.00      0.00
-agents                   0.3695      25        0.42        0.60      0.49
-agile                    1.0000      14        0.00        0.00      0.00
-agile development        0.4404      2         1.00        0.50      0.67
-ai governance            1.0000      2         0.00        0.00      0.00
-ai search                1.0000      2         0.00        0.00      0.00
-ai security              1.0000      2         0.00        0.00      0.00
-ai tooling               1.0000      3         0.00        0.00      0.00
-ai-assisted development  1.0000      3         0.00        0.00      0.00
-ai-assisted workflows    1.0000      1         0.00        0.00      0.00
-ai-powered tools         1.0000      1         0.00        0.00      0.00
-ai/ml                    0.3702      445       0.61        0.85      0.71
-air export               1.0000      1         0.00        0.00      0.00
-airflow                  1.0000      10        0.00        0.00      0.00
-alerting                 1.0000      7         0.00        0.00      0.00
-aml                      0.2557      3         1.00        0.33      0.50
-amplitude                1.0000      2         0.00        0.00      0.00
-analysis                 1.0000      2         0.00        0.00      0.00
-analytical skills        1.0000      5         0.00        0.00      0.00
-analytics platforms      1.0000      2         0.00        0.00      0.00
-anaplan                  1.0000      2         0.00        0.00      0.00
-android                  0.4226      18        0.33        0.17      0.22
-android jetpack          0.3136      1         1.00        1.00      1.00
-android sdk              0.4093      3         1.00        0.33      0.50
-android studio           0.3356      1         1.00        1.00      1.00
-angular                  1.0000      4         0.00        0.00      0.00
-ansible                  1.0000      23        0.00        0.00      0.00
-ansys                    1.0000      3         0.00        0.00      0.00
-anthropic                1.0000      1         0.00        0.00      0.00
-apache kafka             0.2969      1         1.00        1.00      1.00
-api design               0.4500      4         1.00        0.25      0.40
-api integrations         1.0000      3         0.00        0.00      0.00
-api security             1.0000      2         0.00        0.00      0.00
-api testing              1.0000      5         0.00        0.00      0.00
-apis                     0.3666      103       0.34        0.35      0.34
-appium                   1.0000      8         0.00        0.00      0.00
-applicant tracking system1.0000      1         0.00        0.00      0.00
-applicant tracking systems1.0000      3         0.00        0.00      0.00
-application insights     1.0000      1         0.00        0.00      0.00
-application modernization1.0000      2         0.00        0.00      0.00
-application security     0.2547      3         0.33        0.33      0.33
-appsec                   1.0000      1         0.00        0.00      0.00
-architecture             1.0000      2         0.00        0.00      0.00
-architecture tools       1.0000      1         0.00        0.00      0.00
-argo cd                  1.0000      9         0.00        0.00      0.00
-arm templates            1.0000      2         0.00        0.00      0.00
-asana                    1.0000      1         0.00        0.00      0.00
-ashby                    1.0000      2         0.00        0.00      0.00
-assembled                1.0000      1         0.00        0.00      0.00
-assembly                 1.0000      1         0.00        0.00      0.00
-atlas                    1.0000      1         0.00        0.00      0.00
-ats                      1.0000      1         0.00        0.00      0.00
-attribution              1.0000      2         0.00        0.00      0.00
-audit                    1.0000      8         0.00        0.00      0.00
-audit management software1.0000      1         0.00        0.00      0.00
-audit methodologies      1.0000      1         0.00        0.00      0.00
-audit processes          1.0000      1         0.00        0.00      0.00
-audit reporting          1.0000      3         0.00        0.00      0.00
-audit software           1.0000      3         0.00        0.00      0.00
-audit trails             1.0000      2         0.00        0.00      0.00
-aurora                   1.0000      1         0.00        0.00      0.00
-auth                     1.0000      1         0.00        0.00      0.00
-authentication           0.4000      4         1.00        0.25      0.40
-authorization            1.0000      2         0.00        0.00      0.00
-autocad                  0.5684      10        0.71        0.50      0.59
-automated testing        0.4094      3         1.00        0.33      0.50
-automation               0.3492      33        0.44        0.24      0.31
-automation scripts       1.0000      1         0.00        0.00      0.00
-aws rds                  1.0000      2         0.00        0.00      0.00
-aws s3                   1.0000      2         0.00        0.00      0.00
-aws sqs                  0.2735      1         1.00        1.00      1.00
-aws/azure                0.4003      181       0.52        0.72      0.60
-azure ad                 1.0000      2         0.00        0.00      0.00
-azure functions          1.0000      2         0.00        0.00      0.00
-azure key vault          1.0000      2         0.00        0.00      0.00
-azure monitor            1.0000      3         0.00        0.00      0.00
-azure networking         1.0000      1         0.00        0.00      0.00
-azure storage            1.0000      2         0.00        0.00      0.00
-backend                  1.0000      10        0.00        0.00      0.00
-backend development      1.0000      4         0.00        0.00      0.00
-backlink acquisition     1.0000      1         0.00        0.00      0.00
-backlink building        0.3531      2         0.33        0.50      0.40
-backlink strategy        1.0000      1         0.00        0.00      0.00
-backup                   1.0000      3         0.00        0.00      0.00
-bash                     1.0000      33        0.00        0.00      0.00
-bazel                    1.0000      1         0.00        0.00      0.00
-bdd                      1.0000      2         0.00        0.00      0.00
-benchmarking             1.0000      2         0.00        0.00      0.00
-bicep                    1.0000      3         0.00        0.00      0.00
-big data                 1.0000      3         0.00        0.00      0.00
-bigquery                 1.0000      11        0.00        0.00      0.00
-billing                  1.0000      6         0.00        0.00      0.00
-billing systems          1.0000      1         0.00        0.00      0.00
-bim                      1.0000      2         0.00        0.00      0.00
-bitrise                  0.3155      2         1.00        0.50      0.67
-ble                      1.0000      1         0.00        0.00      0.00
-blender                  1.0000      2         0.00        0.00      0.00
-blockchain               1.0000      4         0.00        0.00      0.00
-bloomberg                1.0000      1         0.00        0.00      0.00
-bom                      1.0000      1         0.00        0.00      0.00
-branding                 1.0000      3         0.00        0.00      0.00
-budget management        1.0000      2         0.00        0.00      0.00
-budget tracking          1.0000      1         0.00        0.00      0.00
-budgeting                1.0000      3         0.00        0.00      0.00
-build systems            0.3316      2         1.00        0.50      0.67
-business requirements gathering1.0000      2         0.00        0.00      0.00
-c                        1.0000      5         0.00        0.00      0.00
-c#                       0.5079      18        1.00        0.28      0.43
-c++                      0.4457      33        0.58        0.21      0.31
-c/c++                    0.5000      6         1.00        0.83      0.91
-cad                      0.4066      11        0.50        0.45      0.48
-cad software             0.2936      1         0.33        1.00      0.50
-canonical tags           1.0000      1         0.00        0.00      0.00
-canva                    1.0000      12        0.00        0.00      0.00
-capacity planning        1.0000      4         0.00        0.00      0.00
-capcut                   1.0000      4         0.00        0.00      0.00
-catia                    1.0000      2         0.00        0.00      0.00
-cdn                      1.0000      2         0.00        0.00      0.00
-certification            1.0000      1         0.00        0.00      0.00
-cfd                      1.0000      1         0.00        0.00      0.00
-change management        1.0000      4         0.00        0.00      0.00
-chat                     1.0000      2         0.00        0.00      0.00
-chatgpt                  1.0000      10        0.00        0.00      0.00
-ci                       0.3348      3         1.00        0.33      0.50
-ci pipelines             1.0000      2         0.00        0.00      0.00
-ci/cd                    0.4036      108       0.44        0.56      0.49
-ci/cd pipelines          1.0000      7         0.00        0.00      0.00
-cia                      1.0000      1         0.00        0.00      0.00
-circleci                 1.0000      3         0.00        0.00      0.00
-cisa                     0.4500      5         1.00        0.40      0.57
-cism                     0.3249      3         1.00        0.67      0.80
-cissp                    0.4000      4         1.00        0.50      0.67
-clari                    1.0000      1         0.00        0.00      0.00
-claude code              1.0000      6         0.00        0.00      0.00
-clean architecture       0.4036      2         1.00        0.50      0.67
-clickhouse               1.0000      2         0.00        0.00      0.00
-clickup                  1.0000      2         0.00        0.00      0.00
-client communication     1.0000      2         0.00        0.00      0.00
-client libraries         1.0000      1         0.00        0.00      0.00
-cloud                    0.3819      38        0.31        0.32      0.31
-cloud architecture       1.0000      2         0.00        0.00      0.00
-cloud functions          1.0000      1         0.00        0.00      0.00
-cloud messaging          0.3407      1         1.00        1.00      1.00
-cloud migration          1.0000      3         0.00        0.00      0.00
-cloud networking         1.0000      1         0.00        0.00      0.00
-cloud security           1.0000      6         0.00        0.00      0.00
-cloud security tools     0.2552      2         1.00        0.50      0.67
-cloud services           1.0000      4         0.00        0.00      0.00
-cloud technologies       1.0000      2         0.00        0.00      0.00
-cloud-based solutions    1.0000      4         0.00        0.00      0.00
-cloud-native platform    1.0000      1         0.00        0.00      0.00
-cloudflare               1.0000      3         0.00        0.00      0.00
-cloudformation           1.0000      16        0.00        0.00      0.00
-cloudfront               1.0000      1         0.00        0.00      0.00
-cloudwatch               1.0000      8         0.00        0.00      0.00
-cms                      1.0000      3         0.00        0.00      0.00
-cobit                    1.0000      1         0.00        0.00      0.00
-code quality             0.3314      2         1.00        0.50      0.67
-code review              1.0000      3         0.00        0.00      0.00
-code reviews             1.0000      2         0.00        0.00      0.00
-codex                    1.0000      2         0.00        0.00      0.00
-coding                   1.0000      2         0.00        0.00      0.00
-collaboration            1.0000      2         0.00        0.00      0.00
-color theory             0.3002      2         0.33        0.50      0.40
-command line             1.0000      2         0.00        0.00      0.00
-communication            1.0000      12        0.00        0.00      0.00
-competition analysis     1.0000      3         0.00        0.00      0.00
-competitive analysis     1.0000      2         0.00        0.00      0.00
-competitor analysis      0.5000      4         0.33        0.25      0.29
-compliance               1.0000      12        0.00        0.00      0.00
-compute                  1.0000      2         0.00        0.00      0.00
-computer                 1.0000      1         0.00        0.00      0.00
-computer vision          1.0000      5         0.00        0.00      0.00
-conditional access       1.0000      2         0.00        0.00      0.00
-configuration            1.0000      4         0.00        0.00      0.00
-configuration management 1.0000      2         0.00        0.00      0.00
-confluence               1.0000      11        0.00        0.00      0.00
-construction management  1.0000      1         0.00        0.00      0.00
-container orchestration  1.0000      2         0.00        0.00      0.00
-container platforms      1.0000      1         0.00        0.00      0.00
-container security       1.0000      1         0.00        0.00      0.00
-containers               1.0000      5         0.00        0.00      0.00
-content creation         1.0000      4         0.00        0.00      0.00
-content management systems1.0000      3         0.00        0.00      0.00
-content marketing        1.0000      3         0.00        0.00      0.00
-content optimization     0.4000      4         0.40        0.50      0.44
-content strategy         1.0000      3         0.00        0.00      0.00
-content writing          1.0000      3         0.00        0.00      0.00
-contextual inquiries     1.0000      1         0.00        0.00      0.00
-control testing          0.2613      1         0.50        1.00      0.67
-controls                 1.0000      1         0.00        0.00      0.00
-conversational ai        1.0000      2         0.00        0.00      0.00
-conversion optimization  1.0000      2         0.00        0.00      0.00
-copywriting              1.0000      3         0.00        0.00      0.00
-core web vitals          0.4577      5         0.33        0.20      0.25
-coreldraw                1.0000      6         0.00        0.00      0.00
-coroutines               0.3492      2         1.00        0.50      0.67
-cost management          1.0000      1         0.00        0.00      0.00
-cost optimization        1.0000      4         0.00        0.00      0.00
-coupa                    1.0000      3         0.00        0.00      0.00
-cpa                      1.0000      1         0.00        0.00      0.00
-cpq                      1.0000      2         0.00        0.00      0.00
-crash analytics          0.3170      1         1.00        1.00      1.00
-crashlytics              0.3763      1         1.00        1.00      1.00
-creo                     1.0000      2         0.00        0.00      0.00
-crisc                    0.4207      3         1.00        0.67      0.80
-crm                      1.0000      9         0.00        0.00      0.00
-cro                      1.0000      2         0.00        0.00      0.00
-crossplane               1.0000      1         0.00        0.00      0.00
-cross?functional collaboration1.0000      1         0.00        0.00      0.00
-crowdstrike              1.0000      1         0.00        0.00      0.00
-crypto                   1.0000      1         0.00        0.00      0.00
-cryptography             1.0000      1         0.00        0.00      0.00
-csat                     1.0000      2         0.00        0.00      0.00
-css                      1.0000      17        0.00        0.00      0.00
-cucumber                 1.0000      2         0.00        0.00      0.00
-cuda                     1.0000      2         0.00        0.00      0.00
-cursor                   1.0000      5         0.00        0.00      0.00
-customer service         1.0000      2         0.00        0.00      0.00
-customer success         1.0000      2         0.00        0.00      0.00
-customer support         1.0000      2         0.00        0.00      0.00
-cybersecurity            0.3378      31        0.50        0.39      0.44
-cypress                  1.0000      7         0.00        0.00      0.00
-dagger                   0.3033      1         1.00        1.00      1.00
-dart                     0.3168      1         1.00        1.00      1.00
-dashboard                1.0000      4         0.00        0.00      0.00
-dashboarding             1.0000      1         0.00        0.00      0.00
-dast                     1.0000      1         0.00        0.00      0.00
-data                     1.0000      3         0.00        0.00      0.00
-data analysis tools      1.0000      2         0.00        0.00      0.00
-data analytics           0.3997      45        0.38        0.13      0.20
-data engineering         0.3578      29        0.31        0.17      0.22
-data governance          1.0000      3         0.00        0.00      0.00
-data integration         1.0000      2         0.00        0.00      0.00
-data loss prevention     1.0000      2         0.00        0.00      0.00
-data modeling            1.0000      11        0.00        0.00      0.00
-data models              1.0000      1         0.00        0.00      0.00
-data protection          1.0000      3         0.00        0.00      0.00
-data quality             1.0000      2         0.00        0.00      0.00
-data science             1.0000      5         0.00        0.00      0.00
-data security            1.0000      2         0.00        0.00      0.00
-data transformation      1.0000      1         0.00        0.00      0.00
-data visualization       1.0000      8         0.00        0.00      0.00
-database                 1.0000      2         0.00        0.00      0.00
-databases                1.0000      10        0.00        0.00      0.00
-databricks data intelligence platform1.0000      2         0.00        0.00      0.00
-datadog                  0.4459      46        1.00        0.02      0.04
-dbt                      1.0000      6         0.00        0.00      0.00
-debugging                0.3152      2         1.00        0.50      0.67
-deep learning            0.3610      22        0.56        0.86      0.68
-delta lake               1.0000      4         0.00        0.00      0.00
-deployment               1.0000      2         0.00        0.00      0.00
-design documentation     1.0000      1         0.00        0.00      0.00
-design for manufacturability1.0000      1         0.00        0.00      0.00
-design reviews           1.0000      1         0.00        0.00      0.00
-design system            0.3202      1         1.00        1.00      1.00
-design systems           1.0000      3         0.00        0.00      0.00
-design thinking          1.0000      2         0.00        0.00      0.00
-detection engineering    1.0000      2         0.00        0.00      0.00
-developer tooling        0.3559      3         1.00        0.33      0.50
-devops                   1.0000      12        0.00        0.00      0.00
-devops monitoring        1.0000      1         0.00        0.00      0.00
-devops transformation    1.0000      2         0.00        0.00      0.00
-devsecops                0.5642      33        0.33        0.03      0.06
-dfm                      1.0000      3         0.00        0.00      0.00
-dfx                      1.0000      2         0.00        0.00      0.00
-dhcp                     1.0000      3         0.00        0.00      0.00
-diary studies            1.0000      2         0.00        0.00      0.00
-digital                  1.0000      2         0.00        0.00      0.00
-digital forensics        1.0000      4         0.00        0.00      0.00
-digital marketing        1.0000      2         0.00        0.00      0.00
-digital operations       1.0000      1         0.00        0.00      0.00
-digital transformation   1.0000      2         0.00        0.00      0.00
-disaster recovery        1.0000      5         0.00        0.00      0.00
-distributed systems      0.6152      17        0.75        0.18      0.29
-distributed tracing      1.0000      1         0.00        0.00      0.00
-django                   1.0000      3         0.00        0.00      0.00
-dns                      1.0000      6         0.00        0.00      0.00
-docker                   1.0000      57        0.00        0.00      0.00
-docs                     1.0000      1         0.00        0.00      0.00
-documentation            1.0000      6         0.00        0.00      0.00
-documentation tools      1.0000      3         0.00        0.00      0.00
-doe                      1.0000      1         0.00        0.00      0.00
-domain driven development0.3077      1         1.00        1.00      1.00
-domain monitoring        0.2552      2         1.00        0.50      0.67
-dynamodb                 1.0000      3         0.00        0.00      0.00
-ecs                      1.0000      3         0.00        0.00      0.00
-edge functions           1.0000      1         0.00        0.00      0.00
-editing                  1.0000      2         0.00        0.00      0.00
-edr                      1.0000      7         0.00        0.00      0.00
-ehr                      1.0000      1         0.00        0.00      0.00
-elasticsearch            1.0000      8         0.00        0.00      0.00
-elixir                   0.3077      1         1.00        1.00      1.00
-email                    1.0000      4         0.00        0.00      0.00
-email marketing          0.4181      3         0.33        0.33      0.33
-email protection tooling 0.2552      2         1.00        0.50      0.67
-embedded linux           1.0000      2         0.00        0.00      0.00
-encryption               1.0000      3         0.00        0.00      0.00
-end-to-end testing       1.0000      3         0.00        0.00      0.00
-endpoint security        1.0000      1         0.00        0.00      0.00
-endpoint tooling         0.2552      2         1.00        0.50      0.67
-engineering drawings     0.4202      2         0.50        1.00      0.67
-english                  1.0000      4         0.00        0.00      0.00
-entra id                 1.0000      3         0.00        0.00      0.00
-erp                      1.0000      7         0.00        0.00      0.00
-erp systems              1.0000      2         0.00        0.00      0.00
-espresso                 0.3502      2         1.00        0.50      0.67
-etabs                    1.0000      1         0.00        0.00      0.00
-ethernet                 1.0000      1         0.00        0.00      0.00
-event hub                1.0000      1         0.00        0.00      0.00
-event-driven architecture1.0000      1         0.00        0.00      0.00
-experimentation          0.3193      36        0.32        0.19      0.24
-facebook                 1.0000      4         0.00        0.00      0.00
-facebook ads             1.0000      3         0.00        0.00      0.00
-fastapi                  1.0000      2         0.00        0.00      0.00
-fea                      1.0000      3         0.00        0.00      0.00
-federated identity       1.0000      1         0.00        0.00      0.00
-fedramp                  1.0000      3         0.00        0.00      0.00
-field studies            1.0000      2         0.00        0.00      0.00
-figma                    0.3772      27        0.35        0.26      0.30
-financial analysis       1.0000      3         0.00        0.00      0.00
-financial modeling       1.0000      6         0.00        0.00      0.00
-financial reporting      1.0000      2         0.00        0.00      0.00
-financial statement analysis1.0000      1         0.00        0.00      0.00
-fine-tuning              1.0000      1         0.00        0.00      0.00
-finops                   1.0000      3         0.00        0.00      0.00
-fintech                  1.0000      2         0.00        0.00      0.00
-firebase                 0.4791      3         1.00        0.33      0.50
-firestore                0.3597      1         1.00        1.00      1.00
-firewall                 1.0000      2         0.00        0.00      0.00
-firewalls                1.0000      9         0.00        0.00      0.00
-firmware                 1.0000      2         0.00        0.00      0.00
-flink                    1.0000      1         0.00        0.00      0.00
-fluid dynamics           1.0000      1         0.00        0.00      0.00
-flutter                  0.4377      3         1.00        0.33      0.50
-flux                     1.0000      3         0.00        0.00      0.00
-forecasting              1.0000      4         0.00        0.00      0.00
-fraud detection          1.0000      2         0.00        0.00      0.00
-fraud detection tools    1.0000      2         0.00        0.00      0.00
-freight management       1.0000      2         0.00        0.00      0.00
-frontend                 1.0000      5         0.00        0.00      0.00
-frontend development     1.0000      2         0.00        0.00      0.00
-full-stack               1.0000      4         0.00        0.00      0.00
-functional testing       1.0000      2         0.00        0.00      0.00
-gd&t                     0.4500      6         0.30        0.50      0.38
-gdpr                     0.3728      25        0.71        0.20      0.31
-gem                      1.0000      2         0.00        0.00      0.00
-genai                    0.3808      47        0.38        0.43      0.40
-generative engine optimization1.0000      1         0.00        0.00      0.00
-geo                      1.0000      3         0.00        0.00      0.00
-geolocation              0.2692      1         1.00        1.00      1.00
-gint                     1.0000      1         0.00        0.00      0.00
-gis                      1.0000      3         0.00        0.00      0.00
-git                      1.0000      121       0.00        0.00      0.00
-github copilot           1.0000      4         0.00        0.00      0.00
-github discussions       1.0000      2         0.00        0.00      0.00
-github issues            1.0000      2         0.00        0.00      0.00
-github pipelines         0.3382      1         1.00        1.00      1.00
-gmail                    1.0000      2         0.00        0.00      0.00
-go                       0.3902      164       0.31        0.48      0.38
-google ads               0.6190      7         0.33        0.14      0.20
-google analytics         0.5008      33        0.81        0.67      0.73
-google business profile  1.0000      1         0.00        0.00      0.00
-google cloud pub/sub     0.3077      1         1.00        1.00      1.00
-google gemini            1.0000      1         0.00        0.00      0.00
-google keyword planner   0.4109      3         0.33        0.33      0.33
-google my business       1.0000      2         0.00        0.00      0.00
-google play              0.3124      2         1.00        0.50      0.67
-google tag manager       0.4051      3         0.33        0.33      0.33
-google trends            1.0000      2         0.00        0.00      0.00
-governance               1.0000      6         0.00        0.00      0.00
-gps                      1.0000      2         0.00        0.00      0.00
-gpu                      1.0000      6         0.00        0.00      0.00
-grading                  1.0000      1         0.00        0.00      0.00
-gradle                   0.3757      2         1.00        0.50      0.67
-grafana                  1.0000      26        0.00        0.00      0.00
-graphic design           1.0000      3         0.00        0.00      0.00
-graphql                  0.4095      14        1.00        0.14      0.25
-grc                      0.5075      12        0.50        0.08      0.14
-greenhouse               1.0000      4         0.00        0.00      0.00
-groovy                   1.0000      2         0.00        0.00      0.00
-grpc                     0.4298      3         1.00        0.33      0.50
-gst                      1.0000      1         0.00        0.00      0.00
-guardrails               1.0000      1         0.00        0.00      0.00
-hadoop                   1.0000      6         0.00        0.00      0.00
-hardware                 1.0000      2         0.00        0.00      0.00
-hardware integration     1.0000      2         0.00        0.00      0.00
-headings                 1.0000      1         0.00        0.00      0.00
-heat exchangers          1.0000      1         0.00        0.00      0.00
-hex                      1.0000      4         0.00        0.00      0.00
-hexagonal architecture   0.3077      1         1.00        1.00      1.00
-high availability        1.0000      5         0.00        0.00      0.00
-highly available systems 0.2622      2         0.50        1.00      0.67
-hipaa                    1.0000      3         0.00        0.00      0.00
-hotjar                   1.0000      2         0.00        0.00      0.00
-hris                     1.0000      1         0.00        0.00      0.00
-hrms                     1.0000      2         0.00        0.00      0.00
-html                     0.4613      20        0.40        0.40      0.40
-html/css                 1.0000      2         0.00        0.00      0.00
-https                    1.0000      3         0.00        0.00      0.00
-hubspot                  1.0000      6         0.00        0.00      0.00
-hugging face             1.0000      3         0.00        0.00      0.00
-hvac                     1.0000      2         0.00        0.00      0.00
-hybrid cloud             1.0000      1         0.00        0.00      0.00
-hyper-v                  1.0000      2         0.00        0.00      0.00
-i2c                      1.0000      2         0.00        0.00      0.00
-iaas                     1.0000      1         0.00        0.00      0.00
-iac                      1.0000      6         0.00        0.00      0.00
-idea                     1.0000      1         0.00        0.00      0.00
-identity                 1.0000      2         0.00        0.00      0.00
-identity and access management1.0000      26        0.00        0.00      0.00
-identity management      1.0000      4         0.00        0.00      0.00
-ids                      1.0000      5         0.00        0.00      0.00
-illustrator              1.0000      7         0.00        0.00      0.00
-image optimization       1.0000      1         0.00        0.00      0.00
-incident management      1.0000      4         0.00        0.00      0.00
-incident response        0.3580      43        0.31        0.42      0.35
-indesign                 1.0000      7         0.00        0.00      0.00
-indexing                 1.0000      3         0.00        0.00      0.00
-inference                1.0000      2         0.00        0.00      0.00
-infiniband               1.0000      1         0.00        0.00      0.00
-information security     0.4462      25        0.77        0.40      0.53
-infrastructure           1.0000      6         0.00        0.00      0.00
-infrastructure as code   1.0000      12        0.00        0.00      0.00
-infrastructure automation1.0000      2         0.00        0.00      0.00
-infrastructure-as-code   1.0000      3         0.00        0.00      0.00
-injection molding        1.0000      4         0.00        0.00      0.00
-instagram                1.0000      4         0.00        0.00      0.00
-instagram ads            1.0000      1         0.00        0.00      0.00
-integration              1.0000      3         0.00        0.00      0.00
-integration testing      1.0000      5         0.00        0.00      0.00
-integrations             1.0000      4         0.00        0.00      0.00
-internal audit           1.0000      2         0.00        0.00      0.00
-internal controls        1.0000      2         0.00        0.00      0.00
-internal linking         0.3921      3         0.33        0.33      0.33
-interviews               1.0000      4         0.00        0.00      0.00
-intune                   1.0000      2         0.00        0.00      0.00
-inventory audit          1.0000      1         0.00        0.00      0.00
-inventory management     1.0000      5         0.00        0.00      0.00
-invision                 1.0000      1         0.00        0.00      0.00
-invoicing                1.0000      3         0.00        0.00      0.00
-ios                      0.6081      17        1.00        0.06      0.11
-iot                      1.0000      6         0.00        0.00      0.00
-ips                      1.0000      2         0.00        0.00      0.00
-ironclad                 1.0000      1         0.00        0.00      0.00
-iso                      1.0000      2         0.00        0.00      0.00
-iso 27001                0.4105      16        0.43        0.19      0.26
-iso 9001                 1.0000      1         0.00        0.00      0.00
-istio                    1.0000      5         0.00        0.00      0.00
-it audit                 1.0000      2         0.00        0.00      0.00
-it audit methodologies   1.0000      1         0.00        0.00      0.00
-it governance            1.0000      1         0.00        0.00      0.00
-itgc                     0.3426      2         0.50        0.50      0.50
-itil                     1.0000      2         0.00        0.00      0.00
-java                     0.4977      68        0.41        0.18      0.25
-javascript               1.0000      58        0.00        0.00      0.00
-jetpack compose          0.3757      2         1.00        0.50      0.67
-jira                     0.4501      19        1.00        0.05      0.10
-jmeter                   1.0000      2         0.00        0.00      0.00
-journey maps             1.0000      1         0.00        0.00      0.00
-json                     1.0000      6         0.00        0.00      0.00
-junit                    0.2761      1         1.00        1.00      1.00
-kafka                    0.3948      27        0.44        0.44      0.44
-kanban                   1.0000      4         0.00        0.00      0.00
-kernel                   1.0000      2         0.00        0.00      0.00
-keyword research         0.5966      15        0.68        0.87      0.76
-kibana                   1.0000      4         0.00        0.00      0.00
-kotlin                   0.4378      15        0.45        0.33      0.38
-kubeflow                 1.0000      1         0.00        0.00      0.00
-kubernetes               0.3881      96        0.41        0.60      0.49
-kyc                      1.0000      1         0.00        0.00      0.00
-lakehouse                1.0000      2         0.00        0.00      0.00
-landing page optimization1.0000      2         0.00        0.00      0.00
-langchain                0.3846      20        0.48        0.75      0.59
-langgraph                0.4001      17        0.40        0.47      0.43
-layout design            1.0000      2         0.00        0.00      0.00
-leadership               1.0000      3         0.00        0.00      0.00
-linear                   1.0000      3         0.00        0.00      0.00
-link building            0.5673      7         0.50        0.29      0.36
-linkedin                 1.0000      6         0.00        0.00      0.00
-linkedin ads             1.0000      2         0.00        0.00      0.00
-linkedin recruiter       1.0000      3         0.00        0.00      0.00
-linkerd                  1.0000      2         0.00        0.00      0.00
-linux                    0.3252      67        0.28        0.61      0.38
-llms                     0.4199      42        0.65        0.71      0.68
-load balancers           1.0000      1         0.00        0.00      0.00
-load balancing           1.0000      2         0.00        0.00      0.00
-log analysis             1.0000      4         0.00        0.00      0.00
-log analytics            1.0000      2         0.00        0.00      0.00
-logging                  1.0000      5         0.00        0.00      0.00
-logistics                1.0000      3         0.00        0.00      0.00
-logistics coordination   1.0000      1         0.00        0.00      0.00
-logistics management software1.0000      1         0.00        0.00      0.00
-logistics software       1.0000      3         0.00        0.00      0.00
-logs                     1.0000      3         0.00        0.00      0.00
-looker                   0.3267      20        0.32        0.35      0.33
-looker studio            0.4048      3         0.33        0.33      0.33
-lpile                    1.0000      1         0.00        0.00      0.00
-lucidchart               1.0000      1         0.00        0.00      0.00
-machining                1.0000      4         0.00        0.00      0.00
-macos                    1.0000      8         0.00        0.00      0.00
-magento                  1.0000      1         0.00        0.00      0.00
-mailchimp                1.0000      1         0.00        0.00      0.00
-manual testing           1.0000      2         0.00        0.00      0.00
-manufacturing processes  0.3640      2         0.40        1.00      0.57
-markdown                 1.0000      1         0.00        0.00      0.00
-market analysis          1.0000      1         0.00        0.00      0.00
-market research          1.0000      1         0.00        0.00      0.00
-marketing automation     1.0000      2         0.00        0.00      0.00
-marketo                  1.0000      4         0.00        0.00      0.00
-mat 3d                   1.0000      1         0.00        0.00      0.00
-material selection       1.0000      2         0.00        0.00      0.00
-matlab                   1.0000      2         0.00        0.00      0.00
-maze                     1.0000      2         0.00        0.00      0.00
-mcp                      1.0000      5         0.00        0.00      0.00
-mechanical design        0.5850      5         1.00        0.20      0.33
-mechatronics             1.0000      2         0.00        0.00      0.00
-medallia                 1.0000      1         0.00        0.00      0.00
-meta                     1.0000      3         0.00        0.00      0.00
-meta ads                 1.0000      4         0.00        0.00      0.00
-meta descriptions        1.0000      1         0.00        0.00      0.00
-meta tags                0.4002      3         0.33        0.33      0.33
-metadata                 1.0000      1         0.00        0.00      0.00
-metrics                  1.0000      4         0.00        0.00      0.00
-mfa                      1.0000      2         0.00        0.00      0.00
-microservices            0.3653      46        0.41        0.28      0.33
-microsoft clarity        1.0000      2         0.00        0.00      0.00
-microsoft copilot        1.0000      4         0.00        0.00      0.00
-microsoft defender       1.0000      1         0.00        0.00      0.00
-microsoft entra id       1.0000      2         0.00        0.00      0.00
-microsoft outlook        1.0000      2         0.00        0.00      0.00
-microsoft sentinel       1.0000      2         0.00        0.00      0.00
-microsoft teams          1.0000      2         0.00        0.00      0.00
-migration                1.0000      1         0.00        0.00      0.00
-miro                     1.0000      2         0.00        0.00      0.00
-mitre att&ck             1.0000      1         0.00        0.00      0.00
-mixpanel                 1.0000      2         0.00        0.00      0.00
-mlflow                   1.0000      7         0.00        0.00      0.00
-mlops                    1.0000      16        0.00        0.00      0.00
-mobile                   1.0000      5         0.00        0.00      0.00
-mobile development       0.4167      3         1.00        0.33      0.50
-mobile security          0.3737      1         1.00        1.00      1.00
-mobile testing           1.0000      2         0.00        0.00      0.00
-models                   1.0000      1         0.00        0.00      0.00
-mongodb                  0.4713      16        0.40        0.12      0.19
-mongodb atlas            0.5558      10        0.80        0.40      0.53
-motion graphics          1.0000      3         0.00        0.00      0.00
-ms project               1.0000      3         0.00        0.00      0.00
-multi-cloud              1.0000      4         0.00        0.00      0.00
-mvp                      0.3417      1         1.00        1.00      1.00
-mvvm                     0.4859      3         1.00        0.33      0.50
-n8n                      1.0000      5         0.00        0.00      0.00
-nccl                     1.0000      1         0.00        0.00      0.00
-nessus                   1.0000      1         0.00        0.00      0.00
-netsuite                 1.0000      6         0.00        0.00      0.00
-network security         1.0000      5         0.00        0.00      0.00
-networking               0.3894      88        0.36        0.51      0.42
-new relic                1.0000      11        0.00        0.00      0.00
-next.js                  1.0000      6         0.00        0.00      0.00
-nist                     0.4675      13        0.67        0.15      0.25
-nist csf                 1.0000      2         0.00        0.00      0.00
-nlp                      1.0000      17        0.00        0.00      0.00
-node.js                  0.4177      21        0.73        0.38      0.50
-notion                   1.0000      2         0.00        0.00      0.00
-npm                      1.0000      2         0.00        0.00      0.00
-nps                      1.0000      2         0.00        0.00      0.00
-numpy                    0.4000      7         0.50        0.29      0.36
-nx                       1.0000      3         0.00        0.00      0.00
-oauth                    0.3238      3         1.00        0.33      0.50
-oauth 2.0                1.0000      4         0.00        0.00      0.00
-objective-c              0.3928      2         1.00        0.50      0.67
-observability            0.4974      38        0.46        0.34      0.39
-oci                      1.0000      2         0.00        0.00      0.00
-off-page optimization    0.5000      4         0.33        0.25      0.29
-office productivity      0.4050      76        0.36        0.24      0.29
-oidc                     0.4000      6         1.00        0.17      0.29
-okta                     1.0000      4         0.00        0.00      0.00
-on-call rotation         1.0000      2         0.00        0.00      0.00
-on-page optimization     0.5000      4         0.33        0.25      0.29
-on-premise infrastructure1.0000      1         0.00        0.00      0.00
-onboarding               1.0000      1         0.00        0.00      0.00
-onshape                  1.0000      2         0.00        0.00      0.00
-oop                      0.2863      2         1.00        0.50      0.67
-open source              1.0000      2         0.00        0.00      0.00
-openai                   1.0000      10        0.00        0.00      0.00
-openid connect           1.0000      3         0.00        0.00      0.00
-opensearch               1.0000      2         0.00        0.00      0.00
-openshift                1.0000      2         0.00        0.00      0.00
-openstack                1.0000      3         0.00        0.00      0.00
-opentelemetry            1.0000      4         0.00        0.00      0.00
-operating systems        1.0000      1         0.00        0.00      0.00
-operations               1.0000      2         0.00        0.00      0.00
-oracle fusion            1.0000      2         0.00        0.00      0.00
-outreach                 1.0000      2         0.00        0.00      0.00
-owasp top 10             1.0000      1         0.00        0.00      0.00
-paas                     1.0000      2         0.00        0.00      0.00
-pagerduty                1.0000      1         0.00        0.00      0.00
-pandas                   1.0000      13        0.00        0.00      0.00
-partner integrations     1.0000      1         0.00        0.00      0.00
-patch management         1.0000      1         0.00        0.00      0.00
-payment processing       1.0000      2         0.00        0.00      0.00
-payments                 0.4500      5         1.00        0.20      0.33
-payroll                  1.0000      2         0.00        0.00      0.00
-pci dss                  1.0000      5         0.00        0.00      0.00
-penetration testing      1.0000      4         0.00        0.00      0.00
-performance              1.0000      2         0.00        0.00      0.00
-performance marketing    1.0000      1         0.00        0.00      0.00
-performance monitoring   0.2547      1         1.00        1.00      1.00
-performance optimization 0.4000      8         1.00        0.12      0.22
-performance testing      1.0000      2         0.00        0.00      0.00
-performance tuning       1.0000      5         0.00        0.00      0.00
-perplexity               1.0000      2         0.00        0.00      0.00
-persona creation         1.0000      2         0.00        0.00      0.00
-personas                 1.0000      2         0.00        0.00      0.00
-pfmea                    1.0000      1         0.00        0.00      0.00
-php                      1.0000      2         0.00        0.00      0.00
-pivot tables             1.0000      2         0.00        0.00      0.00
-pl/sql                   1.0000      2         0.00        0.00      0.00
-platform                 1.0000      2         0.00        0.00      0.00
-platform engineering     1.0000      4         0.00        0.00      0.00
-plaxis                   1.0000      1         0.00        0.00      0.00
-playwright               1.0000      8         0.00        0.00      0.00
-plm                      1.0000      2         0.00        0.00      0.00
-policy design            1.0000      1         0.00        0.00      0.00
-policy development       1.0000      1         0.00        0.00      0.00
-postgresql               1.0000      5         0.00        0.00      0.00
-postman                  1.0000      6         0.00        0.00      0.00
-power apps               1.0000      2         0.00        0.00      0.00
-power automate           1.0000      2         0.00        0.00      0.00
-power bi                 1.0000      26        0.00        0.00      0.00
-powershell               1.0000      9         0.00        0.00      0.00
-ppc                      0.3832      3         0.33        0.33      0.33
-premiere pro             1.0000      4         0.00        0.00      0.00
-presentation             1.0000      2         0.00        0.00      0.00
-pre?sales                1.0000      1         0.00        0.00      0.00
-privacy                  1.0000      3         0.00        0.00      0.00
-problem solving          1.0000      3         0.00        0.00      0.00
-process analysis         1.0000      2         0.00        0.00      0.00
-process automation       1.0000      4         0.00        0.00      0.00
-process improvement      1.0000      3         0.00        0.00      0.00
-process optimization     1.0000      2         0.00        0.00      0.00
-procurement              1.0000      2         0.00        0.00      0.00
-product analytics        1.0000      4         0.00        0.00      0.00
-product development      1.0000      2         0.00        0.00      0.00
-product management       1.0000      2         0.00        0.00      0.00
-product strategy         1.0000      3         0.00        0.00      0.00
-production operations    1.0000      1         0.00        0.00      0.00
-programming              1.0000      1         0.00        0.00      0.00
-project management       1.0000      11        0.00        0.00      0.00
-project planning         1.0000      2         0.00        0.00      0.00
-prometheus               1.0000      20        0.00        0.00      0.00
-prompt engineering       0.4113      13        0.43        0.46      0.44
-proofreading             1.0000      2         0.00        0.00      0.00
-protopie                 1.0000      1         0.00        0.00      0.00
-prototype development    1.0000      1         0.00        0.00      0.00
-prototyping              1.0000      5         0.00        0.00      0.00
-pub/sub                  1.0000      1         0.00        0.00      0.00
-pulumi                   1.0000      4         0.00        0.00      0.00
-puppet                   1.0000      2         0.00        0.00      0.00
-push notifications       0.4231      3         1.00        0.33      0.50
-pypi                     1.0000      2         0.00        0.00      0.00
-pyspark                  1.0000      2         0.00        0.00      0.00
-pytest                   1.0000      2         0.00        0.00      0.00
-python                   0.3136      545       0.63        1.00      0.77
-pytorch                  1.0000      6         0.00        0.00      0.00
-qradar                   1.0000      1         0.00        0.00      0.00
-qualitative research     1.0000      6         0.00        0.00      0.00
-quality assurance        1.0000      4         0.00        0.00      0.00
-quality engineering      1.0000      1         0.00        0.00      0.00
-qualtrics                1.0000      2         0.00        0.00      0.00
-quantitative research    1.0000      6         0.00        0.00      0.00
-query optimization       1.0000      3         0.00        0.00      0.00
-quickbooks               1.0000      2         0.00        0.00      0.00
-r                        0.3555      47        0.36        0.09      0.14
-rabbitmq                 0.4000      6         1.00        0.17      0.29
-rag                      0.4048      20        0.52        0.70      0.60
-rank math                1.0000      1         0.00        0.00      0.00
-rapid prototyping        1.0000      1         0.00        0.00      0.00
-rbac                     1.0000      4         0.00        0.00      0.00
-rcc                      1.0000      1         0.00        0.00      0.00
-rcdc                     1.0000      1         0.00        0.00      0.00
-rdbms                    1.0000      2         0.00        0.00      0.00
-rds                      1.0000      12        0.00        0.00      0.00
-react                    0.4241      31        0.36        0.13      0.19
-real-time systems        1.0000      1         0.00        0.00      0.00
-realtime                 1.0000      1         0.00        0.00      0.00
-record keeping           1.0000      2         0.00        0.00      0.00
-recruitment software     1.0000      2         0.00        0.00      0.00
-redis                    1.0000      16        0.00        0.00      0.00
-redshift                 1.0000      1         0.00        0.00      0.00
-regression testing       1.0000      3         0.00        0.00      0.00
-regulatory compliance    1.0000      4         0.00        0.00      0.00
-relational databases     1.0000      1         0.00        0.00      0.00
-release management       1.0000      3         0.00        0.00      0.00
-reliability              1.0000      4         0.00        0.00      0.00
-reliability testing      1.0000      3         0.00        0.00      0.00
-replication              1.0000      2         0.00        0.00      0.00
-reporting tools          1.0000      3         0.00        0.00      0.00
-requirements management  1.0000      2         0.00        0.00      0.00
-research                 1.0000      5         0.00        0.00      0.00
-research synthesis       1.0000      1         0.00        0.00      0.00
-responsive design        1.0000      2         0.00        0.00      0.00
-rest assured             1.0000      4         0.00        0.00      0.00
-restful apis             0.4500      6         1.00        0.17      0.29
-retool                   1.0000      1         0.00        0.00      0.00
-retrofit                 0.2677      3         1.00        0.33      0.50
-revit                    1.0000      3         0.00        0.00      0.00
-risk analysis            1.0000      2         0.00        0.00      0.00
-risk assessment          0.2750      23        0.31        0.39      0.35
-risk management          0.4012      13        0.33        0.31      0.32
-rls                      1.0000      1         0.00        0.00      0.00
-robotics                 1.0000      2         0.00        0.00      0.00
-room                     0.3006      2         1.00        0.50      0.67
-root cause analysis      1.0000      6         0.00        0.00      0.00
-route optimization       1.0000      1         0.00        0.00      0.00
-routing                  1.0000      3         0.00        0.00      0.00
-ruby                     1.0000      7         0.00        0.00      0.00
-ruby on rails            1.0000      1         0.00        0.00      0.00
-runbooks                 0.2554      2         1.00        0.50      0.67
-rust                     1.0000      8         0.00        0.00      0.00
-saas                     1.0000      13        0.00        0.00      0.00
-safe                     1.0000      2         0.00        0.00      0.00
-salesforce               0.3867      22        0.31        0.18      0.23
-salesforce.com           1.0000      1         0.00        0.00      0.00
-saml                     1.0000      4         0.00        0.00      0.00
-sap                      1.0000      9         0.00        0.00      0.00
-sap ariba                1.0000      1         0.00        0.00      0.00
-sap mm                   1.0000      2         0.00        0.00      0.00
-sap s/4hana              1.0000      1         0.00        0.00      0.00
-sast                     1.0000      2         0.00        0.00      0.00
-scala                    1.0000      12        0.00        0.00      0.00
-scalability              1.0000      2         0.00        0.00      0.00
-scalable architecture    1.0000      3         0.00        0.00      0.00
-scalable services        1.0000      1         0.00        0.00      0.00
-scalable systems         0.4000      4         0.60        0.75      0.67
-scheduling               1.0000      2         0.00        0.00      0.00
-schema                   1.0000      1         0.00        0.00      0.00
-schema markup            0.5322      4         0.33        0.25      0.29
-scikit-learn             0.4155      11        0.80        0.36      0.50
-scim                     1.0000      3         0.00        0.00      0.00
-scripting                1.0000      6         0.00        0.00      0.00
-scrum                    1.0000      9         0.00        0.00      0.00
-sdk                      0.2547      2         1.00        0.50      0.67
-sdlc                     1.0000      3         0.00        0.00      0.00
-search                   1.0000      4         0.00        0.00      0.00
-secrets management       1.0000      3         0.00        0.00      0.00
-secure coding            0.3100      1         1.00        1.00      1.00
-secure coding practices  1.0000      1         0.00        0.00      0.00
-security                 0.4084      222       0.59        0.69      0.63
-security analysis        1.0000      1         0.00        0.00      0.00
-security architecture    1.0000      2         0.00        0.00      0.00
-security assessments     1.0000      1         0.00        0.00      0.00
-security automation      1.0000      2         0.00        0.00      0.00
-security best practices  1.0000      2         0.00        0.00      0.00
-security controls        1.0000      3         0.00        0.00      0.00
-security engineering     1.0000      1         0.00        0.00      0.00
-security frameworks      1.0000      1         0.00        0.00      0.00
-security incident response1.0000      1         0.00        0.00      0.00
-security monitoring      1.0000      4         0.00        0.00      0.00
-security operations      0.4298      16        0.38        0.31      0.34
-security platform        1.0000      2         0.00        0.00      0.00
-security policies        1.0000      1         0.00        0.00      0.00
-security testing         1.0000      2         0.00        0.00      0.00
-security tooling         1.0000      2         0.00        0.00      0.00
-security+                1.0000      2         0.00        0.00      0.00
-segmentation             1.0000      2         0.00        0.00      0.00
-selenium                 1.0000      7         0.00        0.00      0.00
-sem                      1.0000      3         0.00        0.00      0.00
-sensors                  1.0000      3         0.00        0.00      0.00
-sentinelone              1.0000      1         0.00        0.00      0.00
-seo                      0.4331      41        0.84        0.76      0.79
-serverless               1.0000      16        0.00        0.00      0.00
-service mesh             1.0000      2         0.00        0.00      0.00
-service-oriented architecture1.0000      1         0.00        0.00      0.00
-servicenow               1.0000      5         0.00        0.00      0.00
-sharepoint               1.0000      6         0.00        0.00      0.00
-sheet metal              1.0000      2         0.00        0.00      0.00
-sheet metal design       0.2953      2         0.33        1.00      0.50
-shell                    1.0000      2         0.00        0.00      0.00
-shipping                 1.0000      3         0.00        0.00      0.00
-shipping documentation   1.0000      1         0.00        0.00      0.00
-shopify                  1.0000      4         0.00        0.00      0.00
-siem                     0.3768      21        0.44        0.57      0.50
-siemens nx               1.0000      1         0.00        0.00      0.00
-simulation               0.4000      4         0.33        0.25      0.29
-site speed optimization  1.0000      2         0.00        0.00      0.00
-six sigma                1.0000      2         0.00        0.00      0.00
-sketch                   1.0000      4         0.00        0.00      0.00
-slack                    1.0000      8         0.00        0.00      0.00
-slope/w                  1.0000      1         0.00        0.00      0.00
-smo                      1.0000      2         0.00        0.00      0.00
-snmp                     1.0000      2         0.00        0.00      0.00
-sns                      1.0000      1         0.00        0.00      0.00
-soap                     1.0000      2         0.00        0.00      0.00
-soar                     0.4419      10        0.67        0.20      0.31
-soc                      1.0000      2         0.00        0.00      0.00
-soc 2                    0.4267      12        0.33        0.08      0.13
-social media             1.0000      6         0.00        0.00      0.00
-social media marketing   1.0000      2         0.00        0.00      0.00
-social media platforms   1.0000      1         0.00        0.00      0.00
-software                 1.0000      2         0.00        0.00      0.00
-software architecture    1.0000      4         0.00        0.00      0.00
-software development     1.0000      2         0.00        0.00      0.00
-software engineering     1.0000      2         0.00        0.00      0.00
-software tools           1.0000      1         0.00        0.00      0.00
-solidworks               0.4960      10        0.62        0.50      0.56
-sox                      1.0000      4         0.00        0.00      0.00
-spark                    1.0000      31        0.00        0.00      0.00
-splunk                   1.0000      19        0.00        0.00      0.00
-spring                   1.0000      1         0.00        0.00      0.00
-spring boot              1.0000      2         0.00        0.00      0.00
-sprinklr                 1.0000      2         0.00        0.00      0.00
-spss                     1.0000      2         0.00        0.00      0.00
-sql                      0.4019      490       0.62        0.90      0.73
-sql server               1.0000      10        0.00        0.00      0.00
-sqlite                   0.3299      2         1.00        0.50      0.67
-sqs                      1.0000      1         0.00        0.00      0.00
-sre                      1.0000      5         0.00        0.00      0.00
-sso                      1.0000      5         0.00        0.00      0.00
-staad                    0.5000      4         0.33        0.25      0.29
-stakeholder communication1.0000      2         0.00        0.00      0.00
-stakeholder management   1.0000      6         0.00        0.00      0.00
-statistical analysis     1.0000      3         0.00        0.00      0.00
-statistical tools        1.0000      1         0.00        0.00      0.00
-statistics               0.4492      343       0.71        0.78      0.75
-storage                  1.0000      5         0.00        0.00      0.00
-storytelling             1.0000      2         0.00        0.00      0.00
-strategic planning       1.0000      1         0.00        0.00      0.00
-structural analysis      1.0000      4         0.00        0.00      0.00
-structural design        1.0000      1         0.00        0.00      0.00
-structured data          1.0000      4         0.00        0.00      0.00
-subscription management  1.0000      3         0.00        0.00      0.00
-supplier management      1.0000      1         0.00        0.00      0.00
-supply chain             1.0000      2         0.00        0.00      0.00
-supply chain management  1.0000      2         0.00        0.00      0.00
-surveys                  1.0000      3         0.00        0.00      0.00
-swift                    0.6016      8         1.00        0.12      0.22
-swiftui                  0.4318      2         1.00        0.50      0.67
-switching                1.0000      1         0.00        0.00      0.00
-system architecture      1.0000      2         0.00        0.00      0.00
-system design            1.0000      3         0.00        0.00      0.00
-system testing           1.0000      2         0.00        0.00      0.00
-tableau                  0.3929      29        0.62        0.17      0.27
-tally                    1.0000      2         0.00        0.00      0.00
-tcp/ip                   1.0000      6         0.00        0.00      0.00
-tdd                      0.4082      2         1.00        0.50      0.67
-teamcenter               1.0000      2         0.00        0.00      0.00
-teamcity                 1.0000      4         0.00        0.00      0.00
-teams                    1.0000      2         0.00        0.00      0.00
-technical documentation  1.0000      4         0.00        0.00      0.00
-technical support        1.0000      2         0.00        0.00      0.00
-technical writing        1.0000      3         0.00        0.00      0.00
-technical writing tools  1.0000      1         0.00        0.00      0.00
-telemetry                1.0000      5         0.00        0.00      0.00
-telephone                1.0000      1         0.00        0.00      0.00
-temporal                 1.0000      3         0.00        0.00      0.00
-tensorflow               1.0000      6         0.00        0.00      0.00
-terraform                0.3796      59        0.38        0.64      0.48
-test automation          1.0000      6         0.00        0.00      0.00
-test automation frameworks1.0000      2         0.00        0.00      0.00
-test strategy            1.0000      1         0.00        0.00      0.00
-testing                  1.0000      9         0.00        0.00      0.00
-testrail                 1.0000      2         0.00        0.00      0.00
-thermal analysis         1.0000      2         0.00        0.00      0.00
-thermal design           1.0000      1         0.00        0.00      0.00
-thermal management       1.0000      1         0.00        0.00      0.00
-thermodynamics           1.0000      1         0.00        0.00      0.00
-threat detection         1.0000      2         0.00        0.00      0.00
-threat hunting           0.4000      9         0.33        0.11      0.17
-threat intelligence      0.2594      3         1.00        0.33      0.50
-threat modeling          1.0000      4         0.00        0.00      0.00
-tiktok                   1.0000      3         0.00        0.00      0.00
-time series              1.0000      2         0.00        0.00      0.00
-tls                      1.0000      1         0.00        0.00      0.00
-tolerance analysis       1.0000      3         0.00        0.00      0.00
-tooling                  1.0000      2         0.00        0.00      0.00
-traces                   1.0000      2         0.00        0.00      0.00
-tracing                  1.0000      2         0.00        0.00      0.00
-training                 1.0000      2         0.00        0.00      0.00
-transaction monitoring   1.0000      2         0.00        0.00      0.00
-transportation           1.0000      1         0.00        0.00      0.00
-troubleshooting          1.0000      3         0.00        0.00      0.00
-twitter                  1.0000      1         0.00        0.00      0.00
-typescript               1.0000      50        0.00        0.00      0.00
-typography               1.0000      3         0.00        0.00      0.00
-uart                     1.0000      2         0.00        0.00      0.00
-uat                      1.0000      1         0.00        0.00      0.00
-ubersuggest              0.3490      2         0.33        0.50      0.40
-ubuntu                   1.0000      11        0.00        0.00      0.00
-ui                       0.3883      2         1.00        0.50      0.67
-ui testing               0.3099      3         1.00        0.33      0.50
-ui/ux                    1.0000      4         0.00        0.00      0.00
-uikit                    0.3314      1         1.00        1.00      1.00
-uml                      1.0000      4         0.00        0.00      0.00
-unit testing             0.4500      4         1.00        0.25      0.40
-unity                    1.0000      2         0.00        0.00      0.00
-unity catalog            1.0000      2         0.00        0.00      0.00
-unix                     1.0000      2         0.00        0.00      0.00
-us gaap                  1.0000      2         0.00        0.00      0.00
-usability testing        1.0000      8         0.00        0.00      0.00
-user interviews          1.0000      3         0.00        0.00      0.00
-user manuals             1.0000      1         0.00        0.00      0.00
-user research            1.0000      6         0.00        0.00      0.00
-user stories             1.0000      3         0.00        0.00      0.00
-usertesting              1.0000      2         0.00        0.00      0.00
-ux                       1.0000      3         0.00        0.00      0.00
-ux audits                1.0000      1         0.00        0.00      0.00
-ux design                1.0000      1         0.00        0.00      0.00
-ux research              1.0000      2         0.00        0.00      0.00
-vba                      1.0000      4         0.00        0.00      0.00
-vector search            1.0000      1         0.00        0.00      0.00
-vectordb                 0.4097      15        0.43        0.20      0.27
-vendor coordination      1.0000      1         0.00        0.00      0.00
-vendor management        1.0000      3         0.00        0.00      0.00
-vessel operations        1.0000      1         0.00        0.00      0.00
-video editing            1.0000      5         0.00        0.00      0.00
-virtualization           1.0000      2         0.00        0.00      0.00
-vllm                     1.0000      1         0.00        0.00      0.00
-vlookup                  1.0000      1         0.00        0.00      0.00
-vmware                   1.0000      4         0.00        0.00      0.00
-vpc                      1.0000      10        0.00        0.00      0.00
-vpn                      1.0000      3         0.00        0.00      0.00
-vue                      1.0000      2         0.00        0.00      0.00
-vulnerability assessment 1.0000      1         0.00        0.00      0.00
-vulnerability management 0.4882      12        0.33        0.08      0.13
-waf                      1.0000      2         0.00        0.00      0.00
-wcag                     1.0000      2         0.00        0.00      0.00
-web                      1.0000      6         0.00        0.00      0.00
-web analytics            0.2570      2         0.50        1.00      0.67
-web applications         1.0000      1         0.00        0.00      0.00
-web development          1.0000      1         0.00        0.00      0.00
-webflow                  1.0000      2         0.00        0.00      0.00
-webpack                  1.0000      1         0.00        0.00      0.00
-welding                  0.3244      2         0.50        1.00      0.67
-windows                  1.0000      10        0.00        0.00      0.00
-windows server           1.0000      4         0.00        0.00      0.00
-wireframes               1.0000      3         0.00        0.00      0.00
-wms                      1.0000      3         0.00        0.00      0.00
-wordpress                0.4450      11        0.44        0.64      0.52
-workday                  1.0000      8         0.00        0.00      0.00
-workflow automation      1.0000      5         0.00        0.00      0.00
-writing                  1.0000      1         0.00        0.00      0.00
-x                        1.0000      2         0.00        0.00      0.00
-xamarin                  0.2906      1         1.00        1.00      1.00
-xcode                    0.3352      1         1.00        1.00      1.00
-xctest                   0.3231      1         1.00        1.00      1.00
-xdr                      1.0000      6         0.00        0.00      0.00
-xml                      1.0000      4         0.00        0.00      0.00
-youtube                  1.0000      3         0.00        0.00      0.00
-zapier                   1.0000      4         0.00        0.00      0.00
-zendesk                  1.0000      7         0.00        0.00      0.00
-zero trust               1.0000      2         0.00        0.00      0.00
-zoom                     1.0000      2         0.00        0.00      0.00
+.NET                     1.0000      7         0.00        0.00      0.00
+2d Drawings              1.0000      1         0.00        0.00      0.00
+3d Cad                   1.0000      2         0.00        0.00      0.00
+3d Modeling              1.0000      3         0.00        0.00      0.00
+3d Printing              1.0000      3         0.00        0.00      0.00
+8d                       1.0000      2         0.00        0.00      0.00
+A/B Testing              1.0000      14        0.00        0.00      0.00
+Access Control           1.0000      2         0.00        0.00      0.00
+Access Controls          1.0000      1         0.00        0.00      0.00
+Access Management        1.0000      1         0.00        0.00      0.00
+Accessibility            1.0000      4         0.00        0.00      0.00
+Accounting               1.0000      2         0.00        0.00      0.00
+Accounting Principles    1.0000      1         0.00        0.00      0.00
+Active Directory         1.0000      3         0.00        0.00      0.00
+Additive Manufacturing   1.0000      1         0.00        0.00      0.00
+Adobe                    1.0000      2         0.00        0.00      0.00
+Adobe After Effects      1.0000      8         0.00        0.00      0.00
+Adobe Analytics          1.0000      2         0.00        0.00      0.00
+Adobe Creative Suite     1.0000      6         0.00        0.00      0.00
+Adobe Illustrator        0.5477      16        0.86        0.38      0.52
+Adobe Indesign           0.4000      6         0.67        0.33      0.44
+Adobe Lightroom          1.0000      1         0.00        0.00      0.00
+Adobe Photoshop          0.4698      21        0.46        0.57      0.51
+Adobe Premiere Pro       1.0000      4         0.00        0.00      0.00
+Adobe Xd                 1.0000      3         0.00        0.00      0.00
+Aeo                      1.0000      4         0.00        0.00      0.00
+Agentic AI               1.0000      1         0.00        0.00      0.00
+Agents                   0.4163      25        0.50        0.60      0.55
+Agile                    0.4064      14        1.00        0.07      0.13
+Agile Development        0.3192      2         1.00        0.50      0.67
+AI Governance            1.0000      2         0.00        0.00      0.00
+AI Search                1.0000      1         0.00        0.00      0.00
+AI Security              1.0000      2         0.00        0.00      0.00
+AI Tooling               1.0000      2         0.00        0.00      0.00
+AI-Assisted Development  1.0000      2         0.00        0.00      0.00
+AI-Assisted Workflows    1.0000      1         0.00        0.00      0.00
+AI-Powered Tools         1.0000      1         0.00        0.00      0.00
+AI/ML                    0.4040      429       0.57        0.87      0.69
+Air Export               1.0000      1         0.00        0.00      0.00
+Airflow                  1.0000      10        0.00        0.00      0.00
+Alerting                 1.0000      7         0.00        0.00      0.00
+Aml                      1.0000      3         0.00        0.00      0.00
+Amplitude                1.0000      1         0.00        0.00      0.00
+Analysis                 1.0000      2         0.00        0.00      0.00
+Analytical Skills        1.0000      4         0.00        0.00      0.00
+Analytics Platforms      1.0000      1         0.00        0.00      0.00
+Anaplan                  0.2895      2         0.50        0.50      0.50
+Android                  0.4030      19        0.67        0.11      0.18
+Android Jetpack          0.2905      1         1.00        1.00      1.00
+Android SDK              1.0000      4         0.00        0.00      0.00
+Android Studio           0.2791      1         1.00        1.00      1.00
+Angular                  1.0000      4         0.00        0.00      0.00
+Ansible                  0.4540      28        0.33        0.07      0.12
+Ansys                    1.0000      4         0.00        0.00      0.00
+Anthropic                1.0000      1         0.00        0.00      0.00
+Apache Kafka             0.2523      1         1.00        1.00      1.00
+API Design               1.0000      4         0.00        0.00      0.00
+API Integrations         1.0000      1         0.00        0.00      0.00
+API Security             1.0000      1         0.00        0.00      0.00
+API Testing              1.0000      6         0.00        0.00      0.00
+APIs                     0.3607      103       0.36        0.56      0.44
+Appium                   1.0000      5         0.00        0.00      0.00
+Applicant Tracking System1.0000      1         0.00        0.00      0.00
+Applicant Tracking Systems1.0000      2         0.00        0.00      0.00
+Application Insights     1.0000      1         0.00        0.00      0.00
+Application Modernization1.0000      2         0.00        0.00      0.00
+Application Security     1.0000      3         0.00        0.00      0.00
+Appsec                   1.0000      1         0.00        0.00      0.00
+Architecture             1.0000      1         0.00        0.00      0.00
+Architecture Tools       1.0000      1         0.00        0.00      0.00
+Argo CD                  1.0000      9         0.00        0.00      0.00
+Arm Templates            1.0000      3         0.00        0.00      0.00
+Asana                    1.0000      1         0.00        0.00      0.00
+Ashby                    1.0000      2         0.00        0.00      0.00
+Assembled                1.0000      1         0.00        0.00      0.00
+Assembly                 1.0000      1         0.00        0.00      0.00
+Atlas                    1.0000      1         0.00        0.00      0.00
+Ats                      1.0000      1         0.00        0.00      0.00
+Attribution              1.0000      2         0.00        0.00      0.00
+Audit                    1.0000      7         0.00        0.00      0.00
+Audit Management Software1.0000      1         0.00        0.00      0.00
+Audit Methodologies      1.0000      1         0.00        0.00      0.00
+Audit Processes          1.0000      1         0.00        0.00      0.00
+Audit Reporting          1.0000      3         0.00        0.00      0.00
+Audit Software           1.0000      3         0.00        0.00      0.00
+Audit Trails             1.0000      2         0.00        0.00      0.00
+Aurora                   1.0000      2         0.00        0.00      0.00
+Auth                     1.0000      1         0.00        0.00      0.00
+Authentication           1.0000      4         0.00        0.00      0.00
+Authorization            1.0000      2         0.00        0.00      0.00
+Autocad                  0.4233      10        0.36        0.80      0.50
+Automated Testing        0.3791      3         1.00        0.33      0.50
+Automation               0.3527      36        0.36        0.11      0.17
+Automation Scripts       1.0000      1         0.00        0.00      0.00
+AWS Rds                  1.0000      2         0.00        0.00      0.00
+AWS S3                   1.0000      2         0.00        0.00      0.00
+AWS Sqs                  1.0000      1         0.00        0.00      0.00
+AWS/Azure                0.4832      181       0.62        0.64      0.63
+Azure Ad                 1.0000      2         0.00        0.00      0.00
+Azure Functions          1.0000      2         0.00        0.00      0.00
+Azure Key Vault          1.0000      2         0.00        0.00      0.00
+Azure Monitor            1.0000      3         0.00        0.00      0.00
+Azure Networking         1.0000      1         0.00        0.00      0.00
+Azure Storage            1.0000      2         0.00        0.00      0.00
+Backend                  1.0000      7         0.00        0.00      0.00
+Backend Development      1.0000      3         0.00        0.00      0.00
+Backlink Acquisition     1.0000      2         0.00        0.00      0.00
+Backlink Building        1.0000      2         0.00        0.00      0.00
+Backlink Strategy        1.0000      1         0.00        0.00      0.00
+Backup                   1.0000      3         0.00        0.00      0.00
+Bash                     0.5136      31        0.30        0.10      0.15
+Bazel                    1.0000      1         0.00        0.00      0.00
+Bdd                      1.0000      1         0.00        0.00      0.00
+Benchmarking             1.0000      1         0.00        0.00      0.00
+Bicep                    1.0000      2         0.00        0.00      0.00
+Big Data                 1.0000      3         0.00        0.00      0.00
+Bigquery                 1.0000      10        0.00        0.00      0.00
+Billing                  1.0000      5         0.00        0.00      0.00
+Billing Systems          1.0000      1         0.00        0.00      0.00
+Bim                      1.0000      1         0.00        0.00      0.00
+Bitrise                  0.3152      2         1.00        0.50      0.67
+Ble                      1.0000      2         0.00        0.00      0.00
+Blender                  1.0000      2         0.00        0.00      0.00
+Blockchain               1.0000      2         0.00        0.00      0.00
+Bloomberg                1.0000      1         0.00        0.00      0.00
+Bom                      1.0000      1         0.00        0.00      0.00
+Branding                 1.0000      4         0.00        0.00      0.00
+Budget Management        1.0000      3         0.00        0.00      0.00
+Budget Tracking          1.0000      1         0.00        0.00      0.00
+Budgeting                1.0000      3         0.00        0.00      0.00
+Build Systems            0.3935      3         1.00        0.33      0.50
+Business Requirements Gathering1.0000      1         0.00        0.00      0.00
+C                        1.0000      5         0.00        0.00      0.00
+C#                       0.4185      18        1.00        0.17      0.29
+C++                      0.3373      36        0.38        0.25      0.30
+C/C++                    0.4000      6         1.00        0.67      0.80
+Cad                      0.5057      13        0.64        0.69      0.67
+Cad Software             1.0000      1         0.00        0.00      0.00
+Canonical Tags           1.0000      1         0.00        0.00      0.00
+Canva                    1.0000      12        0.00        0.00      0.00
+Capacity Planning        1.0000      4         0.00        0.00      0.00
+Capcut                   1.0000      4         0.00        0.00      0.00
+Catia                    1.0000      2         0.00        0.00      0.00
+Cdn                      1.0000      2         0.00        0.00      0.00
+Certification            1.0000      1         0.00        0.00      0.00
+Cfd                      1.0000      1         0.00        0.00      0.00
+Change Management        1.0000      5         0.00        0.00      0.00
+Chat                     0.2519      1         1.00        1.00      1.00
+Chatgpt                  1.0000      10        0.00        0.00      0.00
+CI                       1.0000      4         0.00        0.00      0.00
+CI Pipelines             1.0000      1         0.00        0.00      0.00
+CI/CD                    0.3474      118       0.41        0.69      0.51
+CI/CD Pipelines          1.0000      10        0.00        0.00      0.00
+Cia                      1.0000      1         0.00        0.00      0.00
+Circleci                 1.0000      3         0.00        0.00      0.00
+Cisa                     0.4000      5         1.00        0.40      0.57
+Cism                     0.2578      3         1.00        0.67      0.80
+Cissp                    1.0000      4         0.00        0.00      0.00
+Clari                    1.0000      1         0.00        0.00      0.00
+Claude Code              1.0000      5         0.00        0.00      0.00
+Clean Architecture       0.3530      2         1.00        0.50      0.67
+Clickhouse               1.0000      2         0.00        0.00      0.00
+Clickup                  1.0000      1         0.00        0.00      0.00
+Client Communication     1.0000      2         0.00        0.00      0.00
+Client Libraries         1.0000      1         0.00        0.00      0.00
+Cloud                    0.4181      38        0.39        0.18      0.25
+Cloud Architecture       1.0000      2         0.00        0.00      0.00
+Cloud Functions          1.0000      1         0.00        0.00      0.00
+Cloud Messaging          0.2801      1         1.00        1.00      1.00
+Cloud Migration          1.0000      3         0.00        0.00      0.00
+Cloud Networking         1.0000      1         0.00        0.00      0.00
+Cloud Security           1.0000      6         0.00        0.00      0.00
+Cloud Security Tools     1.0000      2         0.00        0.00      0.00
+Cloud Services           1.0000      4         0.00        0.00      0.00
+Cloud Technologies       1.0000      2         0.00        0.00      0.00
+Cloud-Based Solutions    1.0000      2         0.00        0.00      0.00
+Cloud-Native Platform    1.0000      1         0.00        0.00      0.00
+Cloudflare               1.0000      2         0.00        0.00      0.00
+Cloudformation           0.4548      11        1.00        0.09      0.17
+Cloudfront               1.0000      1         0.00        0.00      0.00
+Cloudwatch               1.0000      7         0.00        0.00      0.00
+Cms                      1.0000      5         0.00        0.00      0.00
+Cobit                    1.0000      1         0.00        0.00      0.00
+Code Quality             0.3353      2         1.00        0.50      0.67
+Code Review              1.0000      3         0.00        0.00      0.00
+Code Reviews             1.0000      2         0.00        0.00      0.00
+Codex                    1.0000      3         0.00        0.00      0.00
+Coding                   1.0000      2         0.00        0.00      0.00
+Collaboration            1.0000      2         0.00        0.00      0.00
+Color Theory             0.2733      2         0.33        0.50      0.40
+Command Line             1.0000      1         0.00        0.00      0.00
+Communication            1.0000      11        0.00        0.00      0.00
+Competition Analysis     1.0000      2         0.00        0.00      0.00
+Competitive Analysis     1.0000      1         0.00        0.00      0.00
+Competitor Analysis      1.0000      4         0.00        0.00      0.00
+Compliance               1.0000      15        0.00        0.00      0.00
+Compute                  1.0000      3         0.00        0.00      0.00
+Computer Vision          1.0000      5         0.00        0.00      0.00
+Conditional Access       1.0000      2         0.00        0.00      0.00
+Configuration            1.0000      2         0.00        0.00      0.00
+Configuration Management 1.0000      2         0.00        0.00      0.00
+Confluence               1.0000      7         0.00        0.00      0.00
+Construction Management  1.0000      1         0.00        0.00      0.00
+Container Orchestration  1.0000      2         0.00        0.00      0.00
+Container Platforms      1.0000      1         0.00        0.00      0.00
+Container Security       1.0000      1         0.00        0.00      0.00
+Containers               1.0000      5         0.00        0.00      0.00
+Content Creation         1.0000      4         0.00        0.00      0.00
+Content Management Systems1.0000      3         0.00        0.00      0.00
+Content Marketing        1.0000      3         0.00        0.00      0.00
+Content Optimization     1.0000      5         0.00        0.00      0.00
+Content Strategy         1.0000      3         0.00        0.00      0.00
+Content Writing          1.0000      3         0.00        0.00      0.00
+Contextual Inquiries     1.0000      1         0.00        0.00      0.00
+Control Testing          1.0000      1         0.00        0.00      0.00
+Controls                 1.0000      1         0.00        0.00      0.00
+Conversational AI        1.0000      2         0.00        0.00      0.00
+Conversion Optimization  1.0000      1         0.00        0.00      0.00
+Copywriting              1.0000      2         0.00        0.00      0.00
+Core Web Vitals          1.0000      7         0.00        0.00      0.00
+Coreldraw                0.4500      6         0.33        0.17      0.22
+Coroutines               0.3123      2         1.00        0.50      0.67
+Cost Management          1.0000      1         0.00        0.00      0.00
+Cost Optimization        1.0000      4         0.00        0.00      0.00
+Coupa                    1.0000      3         0.00        0.00      0.00
+Cpa                      1.0000      1         0.00        0.00      0.00
+Cpq                      1.0000      2         0.00        0.00      0.00
+Crash Analytics          0.2769      1         1.00        1.00      1.00
+Crashlytics              0.2971      1         1.00        1.00      1.00
+Crawlability             1.0000      1         0.00        0.00      0.00
+Creo                     1.0000      3         0.00        0.00      0.00
+Crisc                    0.3325      3         1.00        0.67      0.80
+CRM                      1.0000      9         0.00        0.00      0.00
+Cro                      1.0000      2         0.00        0.00      0.00
+Crossplane               1.0000      1         0.00        0.00      0.00
+Cross?functional Collaboration1.0000      1         0.00        0.00      0.00
+Crowdstrike              1.0000      1         0.00        0.00      0.00
+Crypto                   1.0000      1         0.00        0.00      0.00
+Cryptography             1.0000      1         0.00        0.00      0.00
+Csat                     1.0000      2         0.00        0.00      0.00
+CSS                      1.0000      21        0.00        0.00      0.00
+Cucumber                 1.0000      2         0.00        0.00      0.00
+Cuda                     1.0000      2         0.00        0.00      0.00
+Cursor                   1.0000      4         0.00        0.00      0.00
+Customer Service         1.0000      2         0.00        0.00      0.00
+Customer Success         1.0000      2         0.00        0.00      0.00
+Customer Support         1.0000      2         0.00        0.00      0.00
+Cybersecurity            0.3653      29        0.42        0.45      0.43
+Cypress                  1.0000      6         0.00        0.00      0.00
+Dagger                   0.2874      1         1.00        1.00      1.00
+Dart                     0.2936      1         1.00        1.00      1.00
+Dashboard                1.0000      2         0.00        0.00      0.00
+Dashboarding             1.0000      1         0.00        0.00      0.00
+Dast                     1.0000      1         0.00        0.00      0.00
+Data                     1.0000      3         0.00        0.00      0.00
+Data Analysis Tools      1.0000      2         0.00        0.00      0.00
+Data Analytics           0.4183      49        0.33        0.08      0.13
+Data Engineering         0.3855      32        0.50        0.06      0.11
+Data Governance          1.0000      2         0.00        0.00      0.00
+Data Integration         1.0000      2         0.00        0.00      0.00
+Data Loss Prevention     1.0000      2         0.00        0.00      0.00
+Data Modeling            1.0000      8         0.00        0.00      0.00
+Data Models              1.0000      1         0.00        0.00      0.00
+Data Protection          1.0000      4         0.00        0.00      0.00
+Data Quality             1.0000      2         0.00        0.00      0.00
+Data Science             1.0000      5         0.00        0.00      0.00
+Data Security            1.0000      2         0.00        0.00      0.00
+Data Transformation      1.0000      1         0.00        0.00      0.00
+Data Visualization       1.0000      7         0.00        0.00      0.00
+Database                 1.0000      2         0.00        0.00      0.00
+Databases                1.0000      10        0.00        0.00      0.00
+Databricks Data Intelligence Platform1.0000      2         0.00        0.00      0.00
+Datadog                  0.4985      46        0.33        0.02      0.04
+Dbt                      1.0000      6         0.00        0.00      0.00
+Debugging                1.0000      2         0.00        0.00      0.00
+Deep Learning            0.3150      23        0.48        0.87      0.62
+Delta Lake               1.0000      4         0.00        0.00      0.00
+Deployment               1.0000      2         0.00        0.00      0.00
+Design Documentation     1.0000      1         0.00        0.00      0.00
+Design For Manufacturability1.0000      1         0.00        0.00      0.00
+Design Reviews           1.0000      1         0.00        0.00      0.00
+Design System            0.3039      1         1.00        1.00      1.00
+Design Systems           1.0000      4         0.00        0.00      0.00
+Design Thinking          1.0000      2         0.00        0.00      0.00
+Detection Engineering    1.0000      2         0.00        0.00      0.00
+Developer Tooling        0.3220      3         1.00        0.33      0.50
+Devops                   1.0000      12        0.00        0.00      0.00
+Devops Monitoring        1.0000      1         0.00        0.00      0.00
+Devops Transformation    1.0000      2         0.00        0.00      0.00
+Devsecops                0.4443      33        0.43        0.18      0.26
+Dfm                      1.0000      4         0.00        0.00      0.00
+Dfx                      1.0000      1         0.00        0.00      0.00
+Dhcp                     1.0000      2         0.00        0.00      0.00
+Diary Studies            1.0000      1         0.00        0.00      0.00
+Digital Forensics        1.0000      5         0.00        0.00      0.00
+Digital Marketing        1.0000      2         0.00        0.00      0.00
+Digital Operations       1.0000      1         0.00        0.00      0.00
+Digital Transformation   1.0000      2         0.00        0.00      0.00
+Disaster Recovery        1.0000      5         0.00        0.00      0.00
+Distributed Systems      0.4054      17        0.44        0.24      0.31
+Distributed Tracing      1.0000      1         0.00        0.00      0.00
+Django                   1.0000      3         0.00        0.00      0.00
+Dns                      1.0000      6         0.00        0.00      0.00
+Docker                   0.4652      54        0.40        0.15      0.22
+Docs                     1.0000      1         0.00        0.00      0.00
+Documentation            1.0000      5         0.00        0.00      0.00
+Documentation Tools      1.0000      3         0.00        0.00      0.00
+Doe                      1.0000      1         0.00        0.00      0.00
+Domain Driven Development0.2561      1         1.00        1.00      1.00
+Domain Monitoring        1.0000      2         0.00        0.00      0.00
+Dynamodb                 1.0000      2         0.00        0.00      0.00
+Ecs                      1.0000      3         0.00        0.00      0.00
+Edge Functions           1.0000      1         0.00        0.00      0.00
+Editing                  1.0000      2         0.00        0.00      0.00
+Edr                      1.0000      10        0.00        0.00      0.00
+Ehr                      1.0000      1         0.00        0.00      0.00
+Elasticsearch            1.0000      10        0.00        0.00      0.00
+Elixir                   0.2561      1         1.00        1.00      1.00
+Email                    1.0000      3         0.00        0.00      0.00
+Email Marketing          1.0000      3         0.00        0.00      0.00
+Email Protection Tooling 1.0000      2         0.00        0.00      0.00
+Embedded Linux           1.0000      2         0.00        0.00      0.00
+Encryption               1.0000      2         0.00        0.00      0.00
+End-To-End Testing       1.0000      2         0.00        0.00      0.00
+Endpoint Security        1.0000      1         0.00        0.00      0.00
+Endpoint Tooling         1.0000      2         0.00        0.00      0.00
+Engineering Drawings     0.4396      2         0.67        1.00      0.80
+English                  1.0000      4         0.00        0.00      0.00
+Entra Id                 1.0000      2         0.00        0.00      0.00
+Erp                      1.0000      7         0.00        0.00      0.00
+Erp Systems              1.0000      2         0.00        0.00      0.00
+Espresso                 0.3483      2         1.00        0.50      0.67
+Etabs                    1.0000      1         0.00        0.00      0.00
+Ethernet                 1.0000      1         0.00        0.00      0.00
+Event Hub                1.0000      1         0.00        0.00      0.00
+Event-Driven Architecture1.0000      1         0.00        0.00      0.00
+Experimentation          0.5060      36        1.00        0.03      0.05
+Facebook                 1.0000      4         0.00        0.00      0.00
+Facebook Ads             1.0000      2         0.00        0.00      0.00
+FastAPI                  1.0000      3         0.00        0.00      0.00
+Fea                      1.0000      6         0.00        0.00      0.00
+Federated Identity       1.0000      1         0.00        0.00      0.00
+Fedramp                  1.0000      3         0.00        0.00      0.00
+Field Studies            1.0000      2         0.00        0.00      0.00
+Figma                    0.3587      25        0.38        0.20      0.26
+Financial Analysis       1.0000      3         0.00        0.00      0.00
+Financial Modeling       1.0000      6         0.00        0.00      0.00
+Financial Reporting      1.0000      2         0.00        0.00      0.00
+Financial Statement Analysis1.0000      3         0.00        0.00      0.00
+Fine-Tuning              1.0000      1         0.00        0.00      0.00
+Finops                   1.0000      3         0.00        0.00      0.00
+Fintech                  1.0000      2         0.00        0.00      0.00
+Firebase                 0.3843      3         1.00        0.33      0.50
+Firestore                0.3009      1         1.00        1.00      1.00
+Firewall                 1.0000      1         0.00        0.00      0.00
+Firewalls                1.0000      9         0.00        0.00      0.00
+Firmware                 1.0000      3         0.00        0.00      0.00
+Flink                    1.0000      1         0.00        0.00      0.00
+Fluid Dynamics           1.0000      1         0.00        0.00      0.00
+Flutter                  0.4045      3         1.00        0.33      0.50
+Flux                     1.0000      3         0.00        0.00      0.00
+Forecasting              0.2864      3         0.50        0.33      0.40
+Fraud Detection          1.0000      2         0.00        0.00      0.00
+Fraud Detection Tools    1.0000      2         0.00        0.00      0.00
+Freight Management       1.0000      2         0.00        0.00      0.00
+Frontend                 1.0000      2         0.00        0.00      0.00
+Frontend Development     1.0000      2         0.00        0.00      0.00
+Full-Stack               1.0000      4         0.00        0.00      0.00
+Functional Testing       1.0000      3         0.00        0.00      0.00
+Gd&t                     1.0000      7         0.00        0.00      0.00
+Gdpr                     0.3904      25        0.40        0.16      0.23
+Gem                      1.0000      2         0.00        0.00      0.00
+GenAI                    0.2583      45        0.41        0.64      0.50
+Generative Engine Optimization1.0000      1         0.00        0.00      0.00
+Geo                      1.0000      3         0.00        0.00      0.00
+Geolocation              1.0000      1         0.00        0.00      0.00
+Gint                     1.0000      1         0.00        0.00      0.00
+Gis                      1.0000      2         0.00        0.00      0.00
+Git                      0.3779      121       0.33        0.68      0.44
+GitHub Copilot           1.0000      4         0.00        0.00      0.00
+GitHub Discussions       1.0000      1         0.00        0.00      0.00
+GitHub Issues            1.0000      1         0.00        0.00      0.00
+GitHub Pipelines         0.2603      1         1.00        1.00      1.00
+Gmail                    1.0000      2         0.00        0.00      0.00
+Go                       0.3934      164       0.36        0.49      0.42
+Google Ads               1.0000      7         0.00        0.00      0.00
+Google Analytics         0.6151      29        0.75        0.62      0.68
+Google Business Profile  1.0000      1         0.00        0.00      0.00
+Google Cloud Pub/Sub     0.2561      1         1.00        1.00      1.00
+Google Gemini            1.0000      1         0.00        0.00      0.00
+Google Keyword Planner   1.0000      3         0.00        0.00      0.00
+Google My Business       1.0000      2         0.00        0.00      0.00
+Google Play              0.2821      2         1.00        0.50      0.67
+Google Tag Manager       1.0000      3         0.00        0.00      0.00
+Google Trends            1.0000      2         0.00        0.00      0.00
+Governance               1.0000      4         0.00        0.00      0.00
+Gps                      1.0000      2         0.00        0.00      0.00
+Gpu                      1.0000      6         0.00        0.00      0.00
+Grading                  1.0000      1         0.00        0.00      0.00
+Gradle                   0.3493      2         1.00        0.50      0.67
+Grafana                  1.0000      26        0.00        0.00      0.00
+Graphic Design           1.0000      3         0.00        0.00      0.00
+Graphql                  0.5173      14        1.00        0.07      0.13
+Grc                      0.4593      15        0.50        0.07      0.12
+Greenhouse               1.0000      3         0.00        0.00      0.00
+Groovy                   1.0000      1         0.00        0.00      0.00
+Grpc                     0.3403      3         1.00        0.33      0.50
+Gst                      1.0000      1         0.00        0.00      0.00
+Guardrails               1.0000      3         0.00        0.00      0.00
+Hadoop                   1.0000      6         0.00        0.00      0.00
+Hardware                 1.0000      3         0.00        0.00      0.00
+Hardware Integration     1.0000      2         0.00        0.00      0.00
+Headings                 1.0000      1         0.00        0.00      0.00
+Heat Exchangers          1.0000      1         0.00        0.00      0.00
+Hex                      1.0000      4         0.00        0.00      0.00
+Hexagonal Architecture   0.2561      1         1.00        1.00      1.00
+High Availability        1.0000      5         0.00        0.00      0.00
+Highly Available Systems 1.0000      2         0.00        0.00      0.00
+Hipaa                    1.0000      3         0.00        0.00      0.00
+Hotjar                   1.0000      2         0.00        0.00      0.00
+Hris                     1.0000      1         0.00        0.00      0.00
+Hrms                     1.0000      2         0.00        0.00      0.00
+HTML                     0.3701      25        0.35        0.36      0.35
+HTML/CSS                 1.0000      2         0.00        0.00      0.00
+Https                    1.0000      2         0.00        0.00      0.00
+Hubspot                  1.0000      6         0.00        0.00      0.00
+Hugging Face             1.0000      3         0.00        0.00      0.00
+Hvac                     1.0000      2         0.00        0.00      0.00
+Hybrid Cloud             1.0000      1         0.00        0.00      0.00
+Hyper-V                  1.0000      1         0.00        0.00      0.00
+I2c                      1.0000      1         0.00        0.00      0.00
+Iaas                     1.0000      1         0.00        0.00      0.00
+Iac                      1.0000      8         0.00        0.00      0.00
+Idea                     1.0000      1         0.00        0.00      0.00
+Identity                 1.0000      2         0.00        0.00      0.00
+Identity And Access Management0.5989      26        1.00        0.04      0.07
+Identity Management      1.0000      3         0.00        0.00      0.00
+Ids                      1.0000      4         0.00        0.00      0.00
+Illustrator              1.0000      6         0.00        0.00      0.00
+Image Optimization       1.0000      1         0.00        0.00      0.00
+Incident Management      1.0000      4         0.00        0.00      0.00
+Incident Response        0.2867      55        0.33        0.58      0.42
+Indesign                 0.4000      6         0.50        0.33      0.40
+Indexing                 1.0000      3         0.00        0.00      0.00
+Inference                1.0000      2         0.00        0.00      0.00
+Infiniband               1.0000      1         0.00        0.00      0.00
+Information Security     0.4039      29        0.57        0.45      0.50
+Infrastructure           1.0000      6         0.00        0.00      0.00
+Infrastructure As Code   1.0000      13        0.00        0.00      0.00
+Infrastructure Automation1.0000      2         0.00        0.00      0.00
+Infrastructure-As-Code   1.0000      3         0.00        0.00      0.00
+Injection Molding        1.0000      2         0.00        0.00      0.00
+Instagram                1.0000      4         0.00        0.00      0.00
+Instagram Ads            1.0000      1         0.00        0.00      0.00
+Integration              1.0000      3         0.00        0.00      0.00
+Integration Testing      1.0000      5         0.00        0.00      0.00
+Integrations             1.0000      4         0.00        0.00      0.00
+Internal Audit           1.0000      2         0.00        0.00      0.00
+Internal Controls        1.0000      3         0.00        0.00      0.00
+Internal Linking         1.0000      4         0.00        0.00      0.00
+Interviews               1.0000      3         0.00        0.00      0.00
+Intune                   1.0000      2         0.00        0.00      0.00
+Inventory Audit          1.0000      1         0.00        0.00      0.00
+Inventory Management     1.0000      5         0.00        0.00      0.00
+Invision                 1.0000      1         0.00        0.00      0.00
+Invoicing                1.0000      3         0.00        0.00      0.00
+Ios                      0.6056      13        1.00        0.08      0.14
+Iot                      1.0000      6         0.00        0.00      0.00
+Ips                      1.0000      2         0.00        0.00      0.00
+Ironclad                 1.0000      1         0.00        0.00      0.00
+Iso                      1.0000      2         0.00        0.00      0.00
+Iso 27001                1.0000      18        0.00        0.00      0.00
+Iso 9001                 1.0000      1         0.00        0.00      0.00
+Istio                    1.0000      5         0.00        0.00      0.00
+It Audit                 1.0000      2         0.00        0.00      0.00
+It Audit Methodologies   1.0000      1         0.00        0.00      0.00
+It Governance            0.2612      1         0.33        1.00      0.50
+Itgc                     0.3639      2         0.50        0.50      0.50
+Itil                     1.0000      2         0.00        0.00      0.00
+Java                     0.3331      75        0.31        0.39      0.34
+JavaScript               0.4264      61        0.50        0.02      0.03
+Jetpack Compose          0.3165      2         1.00        0.50      0.67
+Jira                     0.4836      19        1.00        0.05      0.10
+Jmeter                   1.0000      2         0.00        0.00      0.00
+Journey Maps             1.0000      1         0.00        0.00      0.00
+JSON                     1.0000      4         0.00        0.00      0.00
+Junit                    0.2782      1         1.00        1.00      1.00
+Kafka                    0.3917      25        0.52        0.44      0.48
+Kanban                   1.0000      2         0.00        0.00      0.00
+Kernel                   1.0000      1         0.00        0.00      0.00
+Keyword Research         0.5268      17        0.68        0.76      0.72
+Kibana                   1.0000      3         0.00        0.00      0.00
+Kotlin                   0.6110      18        1.00        0.06      0.11
+Kubeflow                 1.0000      1         0.00        0.00      0.00
+Kubernetes               0.3433      97        0.44        0.79      0.57
+Kyc                      1.0000      1         0.00        0.00      0.00
+Lakehouse                1.0000      2         0.00        0.00      0.00
+Landing Page Optimization1.0000      1         0.00        0.00      0.00
+LangChain                0.3834      21        0.50        0.81      0.62
+LangGraph                0.4381      18        0.47        0.50      0.49
+Layout Design            1.0000      2         0.00        0.00      0.00
+Leadership               1.0000      2         0.00        0.00      0.00
+Linear                   1.0000      2         0.00        0.00      0.00
+Link Building            0.4189      7         0.32        0.86      0.46
+Linkedin                 1.0000      6         0.00        0.00      0.00
+Linkedin Ads             1.0000      3         0.00        0.00      0.00
+Linkedin Recruiter       1.0000      3         0.00        0.00      0.00
+Linkerd                  1.0000      2         0.00        0.00      0.00
+Linux                    0.3040      67        0.28        0.67      0.40
+LLMs                     0.3975      43        0.62        0.70      0.66
+Load Balancers           1.0000      2         0.00        0.00      0.00
+Load Balancing           1.0000      2         0.00        0.00      0.00
+Log Analysis             1.0000      3         0.00        0.00      0.00
+Log Analytics            1.0000      3         0.00        0.00      0.00
+Logging                  1.0000      4         0.00        0.00      0.00
+Logistics                1.0000      3         0.00        0.00      0.00
+Logistics Coordination   1.0000      1         0.00        0.00      0.00
+Logistics Management Software1.0000      1         0.00        0.00      0.00
+Logistics Software       1.0000      5         0.00        0.00      0.00
+Logs                     1.0000      2         0.00        0.00      0.00
+Looker                   0.3267      20        0.33        0.20      0.25
+Looker Studio            1.0000      3         0.00        0.00      0.00
+Lpile                    1.0000      1         0.00        0.00      0.00
+Lucidchart               1.0000      1         0.00        0.00      0.00
+Machining                1.0000      3         0.00        0.00      0.00
+Macos                    0.4000      6         1.00        0.17      0.29
+Magento                  1.0000      1         0.00        0.00      0.00
+Mailchimp                1.0000      2         0.00        0.00      0.00
+Manual Testing           1.0000      2         0.00        0.00      0.00
+Manufacturing Processes  1.0000      2         0.00        0.00      0.00
+Markdown                 1.0000      1         0.00        0.00      0.00
+Market Analysis          1.0000      1         0.00        0.00      0.00
+Market Research          1.0000      1         0.00        0.00      0.00
+Marketing Automation     1.0000      2         0.00        0.00      0.00
+Marketo                  1.0000      4         0.00        0.00      0.00
+Mat 3d                   1.0000      1         0.00        0.00      0.00
+Material Selection       1.0000      2         0.00        0.00      0.00
+Matlab                   1.0000      2         0.00        0.00      0.00
+Maze                     1.0000      2         0.00        0.00      0.00
+MCP                      1.0000      5         0.00        0.00      0.00
+Mechanical Design        0.5535      7         1.00        0.14      0.25
+Mechatronics             1.0000      1         0.00        0.00      0.00
+Medallia                 1.0000      2         0.00        0.00      0.00
+Meta                     1.0000      3         0.00        0.00      0.00
+Meta Ads                 1.0000      4         0.00        0.00      0.00
+Meta Descriptions        1.0000      1         0.00        0.00      0.00
+Meta Tags                1.0000      3         0.00        0.00      0.00
+Metadata                 1.0000      1         0.00        0.00      0.00
+Metrics                  1.0000      4         0.00        0.00      0.00
+Mfa                      1.0000      2         0.00        0.00      0.00
+Microservices            0.3686      36        0.41        0.25      0.31
+Microsoft Clarity        1.0000      2         0.00        0.00      0.00
+Microsoft Copilot        0.2530      3         1.00        0.33      0.50
+Microsoft Defender       1.0000      1         0.00        0.00      0.00
+Microsoft Entra Id       1.0000      3         0.00        0.00      0.00
+Microsoft Outlook        1.0000      4         0.00        0.00      0.00
+Microsoft Sentinel       1.0000      2         0.00        0.00      0.00
+Microsoft Teams          1.0000      2         0.00        0.00      0.00
+Migration                1.0000      3         0.00        0.00      0.00
+Miro                     1.0000      2         0.00        0.00      0.00
+Mitre Att&ck             1.0000      1         0.00        0.00      0.00
+Mixpanel                 1.0000      2         0.00        0.00      0.00
+Mlflow                   1.0000      7         0.00        0.00      0.00
+Mlops                    0.4073      16        1.00        0.06      0.12
+Mobile                   1.0000      4         0.00        0.00      0.00
+Mobile Development       0.4082      3         1.00        0.33      0.50
+Mobile Security          0.3222      1         1.00        1.00      1.00
+Mobile Testing           1.0000      2         0.00        0.00      0.00
+Models                   1.0000      2         0.00        0.00      0.00
+MongoDB                  0.4177      15        0.50        0.27      0.35
+MongoDB Atlas            0.4020      10        0.75        0.30      0.43
+Motion Graphics          1.0000      3         0.00        0.00      0.00
+Ms Project               1.0000      1         0.00        0.00      0.00
+Multi-Cloud              1.0000      3         0.00        0.00      0.00
+Mvp                      0.3226      1         1.00        1.00      1.00
+Mvvm                     0.3962      3         1.00        0.33      0.50
+N8n                      1.0000      5         0.00        0.00      0.00
+Nccl                     1.0000      1         0.00        0.00      0.00
+Nessus                   1.0000      1         0.00        0.00      0.00
+Netsuite                 1.0000      8         0.00        0.00      0.00
+Network Security         1.0000      6         0.00        0.00      0.00
+Networking               0.3842      85        0.37        0.40      0.38
+New Relic                1.0000      7         0.00        0.00      0.00
+Next.js                  1.0000      6         0.00        0.00      0.00
+Nist                     0.4298      16        0.38        0.19      0.25
+Nist Csf                 1.0000      2         0.00        0.00      0.00
+NLP                      0.4267      22        0.52        0.50      0.51
+Node.js                  0.4066      19        0.83        0.26      0.40
+Notion                   1.0000      2         0.00        0.00      0.00
+Npm                      1.0000      2         0.00        0.00      0.00
+Nps                      1.0000      2         0.00        0.00      0.00
+Numpy                    1.0000      7         0.00        0.00      0.00
+Nx                       1.0000      3         0.00        0.00      0.00
+OAuth                    1.0000      3         0.00        0.00      0.00
+OAuth 2.0                1.0000      3         0.00        0.00      0.00
+Objective-C              0.4231      2         1.00        0.50      0.67
+Observability            0.3558      46        0.36        0.35      0.36
+Oci                      1.0000      2         0.00        0.00      0.00
+Off-Page Optimization    0.4997      4         0.33        0.25      0.29
+Office Productivity      0.4152      76        0.38        0.25      0.30
+Oidc                     1.0000      5         0.00        0.00      0.00
+Okta                     1.0000      4         0.00        0.00      0.00
+On-Call Rotation         1.0000      2         0.00        0.00      0.00
+On-Page Optimization     0.4500      4         0.33        0.50      0.40
+On-Premise Infrastructure1.0000      1         0.00        0.00      0.00
+Onboarding               1.0000      1         0.00        0.00      0.00
+Onshape                  1.0000      2         0.00        0.00      0.00
+Oop                      0.3432      2         1.00        0.50      0.67
+Open Source              1.0000      2         0.00        0.00      0.00
+OpenAI                   1.0000      10        0.00        0.00      0.00
+Openid Connect           1.0000      2         0.00        0.00      0.00
+Opensearch               1.0000      2         0.00        0.00      0.00
+Openshift                1.0000      1         0.00        0.00      0.00
+Openstack                1.0000      4         0.00        0.00      0.00
+Opentelemetry            1.0000      3         0.00        0.00      0.00
+Operating Systems        1.0000      2         0.00        0.00      0.00
+Operations               1.0000      2         0.00        0.00      0.00
+Oracle Fusion            1.0000      1         0.00        0.00      0.00
+Outreach                 1.0000      2         0.00        0.00      0.00
+Owasp Top 10             1.0000      1         0.00        0.00      0.00
+Paas                     1.0000      2         0.00        0.00      0.00
+Pagerduty                1.0000      1         0.00        0.00      0.00
+Pandas                   1.0000      12        0.00        0.00      0.00
+Partner Integrations     1.0000      1         0.00        0.00      0.00
+Patch Management         1.0000      1         0.00        0.00      0.00
+Payment Processing       1.0000      2         0.00        0.00      0.00
+Payments                 0.4500      5         1.00        0.20      0.33
+Payroll                  1.0000      2         0.00        0.00      0.00
+Pci Dss                  1.0000      5         0.00        0.00      0.00
+Penetration Testing      1.0000      4         0.00        0.00      0.00
+Performance              1.0000      2         0.00        0.00      0.00
+Performance Marketing    1.0000      1         0.00        0.00      0.00
+Performance Monitoring   0.2548      1         1.00        1.00      1.00
+Performance Optimization 0.4000      9         1.00        0.11      0.20
+Performance Testing      1.0000      3         0.00        0.00      0.00
+Performance Tuning       1.0000      7         0.00        0.00      0.00
+Perplexity               1.0000      2         0.00        0.00      0.00
+Persona Creation         1.0000      1         0.00        0.00      0.00
+Personas                 1.0000      2         0.00        0.00      0.00
+Pfmea                    1.0000      1         0.00        0.00      0.00
+Php                      1.0000      2         0.00        0.00      0.00
+Pivot Tables             1.0000      2         0.00        0.00      0.00
+Pl/SQL                   1.0000      2         0.00        0.00      0.00
+Platform                 1.0000      3         0.00        0.00      0.00
+Platform Engineering     1.0000      3         0.00        0.00      0.00
+Plaxis                   1.0000      1         0.00        0.00      0.00
+Playwright               1.0000      6         0.00        0.00      0.00
+Plm                      1.0000      2         0.00        0.00      0.00
+Policy Design            1.0000      1         0.00        0.00      0.00
+Policy Development       1.0000      1         0.00        0.00      0.00
+PostgreSQL               1.0000      4         0.00        0.00      0.00
+Postman                  1.0000      6         0.00        0.00      0.00
+Power Apps               1.0000      2         0.00        0.00      0.00
+Power Automate           1.0000      2         0.00        0.00      0.00
+Power BI                 1.0000      26        0.00        0.00      0.00
+Powershell               1.0000      9         0.00        0.00      0.00
+Ppc                      1.0000      2         0.00        0.00      0.00
+Premiere Pro             1.0000      4         0.00        0.00      0.00
+Presentation             1.0000      2         0.00        0.00      0.00
+Pre?sales                1.0000      1         0.00        0.00      0.00
+Privacy                  1.0000      3         0.00        0.00      0.00
+Problem Solving          1.0000      3         0.00        0.00      0.00
+Process Analysis         1.0000      2         0.00        0.00      0.00
+Process Automation       1.0000      3         0.00        0.00      0.00
+Process Improvement      1.0000      3         0.00        0.00      0.00
+Process Optimization     1.0000      1         0.00        0.00      0.00
+Procurement              1.0000      3         0.00        0.00      0.00
+Product Analytics        1.0000      2         0.00        0.00      0.00
+Product Development      1.0000      1         0.00        0.00      0.00
+Product Management       1.0000      2         0.00        0.00      0.00
+Product Strategy         1.0000      2         0.00        0.00      0.00
+Production Operations    1.0000      1         0.00        0.00      0.00
+Project Management       1.0000      10        0.00        0.00      0.00
+Project Planning         1.0000      2         0.00        0.00      0.00
+Prometheus               1.0000      20        0.00        0.00      0.00
+Prompt Engineering       0.4016      13        0.36        0.38      0.37
+Proofreading             1.0000      2         0.00        0.00      0.00
+Protopie                 1.0000      1         0.00        0.00      0.00
+Prototype Development    1.0000      1         0.00        0.00      0.00
+Prototyping              1.0000      6         0.00        0.00      0.00
+Pub/Sub                  1.0000      1         0.00        0.00      0.00
+Pulumi                   1.0000      5         0.00        0.00      0.00
+Puppet                   1.0000      3         0.00        0.00      0.00
+Push Notifications       0.3944      2         1.00        0.50      0.67
+Pypi                     1.0000      2         0.00        0.00      0.00
+Pyspark                  1.0000      2         0.00        0.00      0.00
+Pytest                   1.0000      2         0.00        0.00      0.00
+Python                   0.3580      542       0.62        1.00      0.77
+PyTorch                  1.0000      8         0.00        0.00      0.00
+Qradar                   1.0000      1         0.00        0.00      0.00
+Qualitative Research     1.0000      7         0.00        0.00      0.00
+Quality Assurance        1.0000      2         0.00        0.00      0.00
+Quality Engineering      1.0000      1         0.00        0.00      0.00
+Qualtrics                1.0000      4         0.00        0.00      0.00
+Quantitative Research    1.0000      7         0.00        0.00      0.00
+Query Optimization       1.0000      3         0.00        0.00      0.00
+Quickbooks               1.0000      2         0.00        0.00      0.00
+R                        0.3579      47        0.38        0.06      0.11
+Rabbitmq                 1.0000      5         0.00        0.00      0.00
+Rag                      0.4038      21        0.47        0.71      0.57
+Rank Math                1.0000      1         0.00        0.00      0.00
+Rapid Prototyping        1.0000      1         0.00        0.00      0.00
+Rbac                     1.0000      3         0.00        0.00      0.00
+Rcc                      1.0000      1         0.00        0.00      0.00
+Rcdc                     1.0000      1         0.00        0.00      0.00
+Rdbms                    1.0000      3         0.00        0.00      0.00
+Rds                      1.0000      15        0.00        0.00      0.00
+React                    0.3729      31        0.40        0.13      0.20
+Real-Time Systems        1.0000      1         0.00        0.00      0.00
+Realtime                 1.0000      1         0.00        0.00      0.00
+Record Keeping           1.0000      2         0.00        0.00      0.00
+Recruitment Software     1.0000      2         0.00        0.00      0.00
+Redis                    1.0000      14        0.00        0.00      0.00
+Redshift                 1.0000      1         0.00        0.00      0.00
+Regression Testing       1.0000      3         0.00        0.00      0.00
+Regulatory Compliance    1.0000      3         0.00        0.00      0.00
+Relational Databases     1.0000      2         0.00        0.00      0.00
+Release Management       1.0000      2         0.00        0.00      0.00
+Reliability              1.0000      4         0.00        0.00      0.00
+Reliability Testing      1.0000      2         0.00        0.00      0.00
+Replication              1.0000      3         0.00        0.00      0.00
+Reporting Tools          1.0000      3         0.00        0.00      0.00
+Requirements Management  1.0000      1         0.00        0.00      0.00
+Research                 1.0000      7         0.00        0.00      0.00
+Research Synthesis       1.0000      1         0.00        0.00      0.00
+Responsive Design        1.0000      2         0.00        0.00      0.00
+REST Assured             1.0000      3         0.00        0.00      0.00
+Restful APIs             1.0000      5         0.00        0.00      0.00
+Retool                   1.0000      1         0.00        0.00      0.00
+Retrofit                 0.2748      2         1.00        0.50      0.67
+Revit                    1.0000      1         0.00        0.00      0.00
+Risk Analysis            1.0000      2         0.00        0.00      0.00
+Risk Assessment          0.5433      16        0.67        0.12      0.21
+Risk Management          0.4166      10        0.43        0.30      0.35
+Rls                      1.0000      1         0.00        0.00      0.00
+Robotics                 1.0000      2         0.00        0.00      0.00
+Robots.txt               1.0000      1         0.00        0.00      0.00
+Room                     0.2701      2         1.00        0.50      0.67
+Root Cause Analysis      1.0000      6         0.00        0.00      0.00
+Route Optimization       1.0000      1         0.00        0.00      0.00
+Routing                  1.0000      3         0.00        0.00      0.00
+Ruby                     1.0000      7         0.00        0.00      0.00
+Ruby On Rails            1.0000      1         0.00        0.00      0.00
+Runbooks                 0.2688      2         1.00        0.50      0.67
+Rust                     1.0000      8         0.00        0.00      0.00
+Saas                     0.4105      13        1.00        0.08      0.14
+Safe                     1.0000      1         0.00        0.00      0.00
+Salesforce               0.4725      25        0.50        0.04      0.07
+Salesforce.com           1.0000      2         0.00        0.00      0.00
+Saml                     1.0000      4         0.00        0.00      0.00
+Sap                      1.0000      11        0.00        0.00      0.00
+Sap Ariba                1.0000      1         0.00        0.00      0.00
+Sap Mm                   1.0000      2         0.00        0.00      0.00
+Sap S/4hana              1.0000      1         0.00        0.00      0.00
+Sast                     1.0000      2         0.00        0.00      0.00
+Scala                    1.0000      12        0.00        0.00      0.00
+Scalability              1.0000      2         0.00        0.00      0.00
+Scalable Architecture    1.0000      3         0.00        0.00      0.00
+Scalable Services        1.0000      1         0.00        0.00      0.00
+Scalable Systems         1.0000      4         0.00        0.00      0.00
+Scheduling               1.0000      3         0.00        0.00      0.00
+Schema                   1.0000      1         0.00        0.00      0.00
+Schema Markup            1.0000      4         0.00        0.00      0.00
+Scikit-Learn             0.4028      11        0.67        0.18      0.29
+Scim                     1.0000      4         0.00        0.00      0.00
+Scripting                1.0000      6         0.00        0.00      0.00
+Scrum                    1.0000      8         0.00        0.00      0.00
+SDK                      0.3004      2         1.00        0.50      0.67
+Sdlc                     1.0000      3         0.00        0.00      0.00
+Search                   1.0000      4         0.00        0.00      0.00
+Secrets Management       1.0000      3         0.00        0.00      0.00
+Secure Coding            0.2887      1         1.00        1.00      1.00
+Secure Coding Practices  1.0000      1         0.00        0.00      0.00
+Security                 0.3543      229       0.56        0.77      0.65
+Security Analysis        1.0000      1         0.00        0.00      0.00
+Security Architecture    1.0000      2         0.00        0.00      0.00
+Security Assessments     1.0000      2         0.00        0.00      0.00
+Security Automation      1.0000      2         0.00        0.00      0.00
+Security Best Practices  1.0000      2         0.00        0.00      0.00
+Security Controls        1.0000      3         0.00        0.00      0.00
+Security Engineering     1.0000      1         0.00        0.00      0.00
+Security Frameworks      1.0000      1         0.00        0.00      0.00
+Security Incident Response1.0000      1         0.00        0.00      0.00
+Security Monitoring      1.0000      4         0.00        0.00      0.00
+Security Operations      0.3469      20        0.39        0.45      0.42
+Security Platform        1.0000      2         0.00        0.00      0.00
+Security Policies        1.0000      1         0.00        0.00      0.00
+Security Testing         1.0000      1         0.00        0.00      0.00
+Security Tooling         1.0000      2         0.00        0.00      0.00
+Security+                1.0000      1         0.00        0.00      0.00
+Segmentation             1.0000      1         0.00        0.00      0.00
+Selenium                 1.0000      8         0.00        0.00      0.00
+Sem                      1.0000      3         0.00        0.00      0.00
+Sensors                  1.0000      2         0.00        0.00      0.00
+Sentinelone              1.0000      1         0.00        0.00      0.00
+SEO                      0.4625      40        0.83        0.72      0.77
+Serverless               1.0000      14        0.00        0.00      0.00
+Service Mesh             1.0000      2         0.00        0.00      0.00
+Service-Oriented Architecture1.0000      1         0.00        0.00      0.00
+Servicenow               1.0000      5         0.00        0.00      0.00
+Sharepoint               1.0000      3         0.00        0.00      0.00
+Sheet Metal              1.0000      2         0.00        0.00      0.00
+Sheet Metal Design       1.0000      2         0.00        0.00      0.00
+Shell                    1.0000      2         0.00        0.00      0.00
+Shipping                 1.0000      2         0.00        0.00      0.00
+Shipping Documentation   1.0000      1         0.00        0.00      0.00
+Shopify                  1.0000      4         0.00        0.00      0.00
+Siem                     0.3743      22        0.38        0.50      0.43
+Siemens Nx               1.0000      2         0.00        0.00      0.00
+Simulation               1.0000      7         0.00        0.00      0.00
+Site Speed Optimization  1.0000      1         0.00        0.00      0.00
+Six Sigma                1.0000      2         0.00        0.00      0.00
+Sketch                   1.0000      4         0.00        0.00      0.00
+Slack                    1.0000      8         0.00        0.00      0.00
+Slope/W                  1.0000      1         0.00        0.00      0.00
+Smo                      0.3590      2         0.50        0.50      0.50
+Snmp                     1.0000      2         0.00        0.00      0.00
+Sns                      1.0000      1         0.00        0.00      0.00
+Soap                     1.0000      2         0.00        0.00      0.00
+Soar                     0.4092      14        0.50        0.07      0.12
+Soc                      0.3102      2         1.00        0.50      0.67
+Soc 2                    1.0000      11        0.00        0.00      0.00
+Social Media             1.0000      6         0.00        0.00      0.00
+Social Media Marketing   1.0000      2         0.00        0.00      0.00
+Social Media Platforms   1.0000      1         0.00        0.00      0.00
+Software Architecture    1.0000      4         0.00        0.00      0.00
+Software Development     1.0000      2         0.00        0.00      0.00
+Software Engineering     1.0000      2         0.00        0.00      0.00
+Software Tools           1.0000      1         0.00        0.00      0.00
+Solidworks               0.4072      15        0.44        0.53      0.48
+Sox                      1.0000      4         0.00        0.00      0.00
+Spark                    1.0000      31        0.00        0.00      0.00
+Splunk                   1.0000      15        0.00        0.00      0.00
+Spring                   1.0000      1         0.00        0.00      0.00
+Spring Boot              1.0000      2         0.00        0.00      0.00
+Sprinklr                 1.0000      2         0.00        0.00      0.00
+Spss                     1.0000      2         0.00        0.00      0.00
+SQL                      0.4490      474       0.60        0.90      0.72
+SQL Server               1.0000      10        0.00        0.00      0.00
+Sqlite                   0.3003      2         1.00        0.50      0.67
+Sqs                      1.0000      1         0.00        0.00      0.00
+Sre                      1.0000      5         0.00        0.00      0.00
+Sso                      1.0000      6         0.00        0.00      0.00
+Staad                    0.6000      4         0.50        0.25      0.33
+Stakeholder Communication1.0000      2         0.00        0.00      0.00
+Stakeholder Management   1.0000      5         0.00        0.00      0.00
+Statistical Analysis     1.0000      3         0.00        0.00      0.00
+Statistical Tools        1.0000      1         0.00        0.00      0.00
+Statistics               0.4417      343       0.62        0.82      0.71
+Storage                  1.0000      5         0.00        0.00      0.00
+Storytelling             1.0000      2         0.00        0.00      0.00
+Strategic Planning       1.0000      1         0.00        0.00      0.00
+Structural Analysis      1.0000      4         0.00        0.00      0.00
+Structural Design        1.0000      1         0.00        0.00      0.00
+Structured Data          1.0000      3         0.00        0.00      0.00
+Subscription Management  1.0000      1         0.00        0.00      0.00
+Supplier Management      1.0000      1         0.00        0.00      0.00
+Supply Chain             1.0000      2         0.00        0.00      0.00
+Supply Chain Management  1.0000      2         0.00        0.00      0.00
+Surveys                  1.0000      2         0.00        0.00      0.00
+Swift                    0.6268      8         1.00        0.12      0.22
+Swiftui                  0.4257      2         1.00        0.50      0.67
+Switching                1.0000      1         0.00        0.00      0.00
+System Architecture      1.0000      2         0.00        0.00      0.00
+System Design            1.0000      3         0.00        0.00      0.00
+System Testing           1.0000      1         0.00        0.00      0.00
+Tableau                  0.4680      29        1.00        0.10      0.19
+Tally                    1.0000      2         0.00        0.00      0.00
+Tcp/Ip                   1.0000      4         0.00        0.00      0.00
+Tdd                      0.3702      2         1.00        0.50      0.67
+Teamcenter               1.0000      2         0.00        0.00      0.00
+Teamcity                 1.0000      2         0.00        0.00      0.00
+Teams                    1.0000      1         0.00        0.00      0.00
+Technical Documentation  1.0000      3         0.00        0.00      0.00
+Technical Support        1.0000      2         0.00        0.00      0.00
+Technical Writing        1.0000      3         0.00        0.00      0.00
+Technical Writing Tools  1.0000      1         0.00        0.00      0.00
+Telemetry                1.0000      5         0.00        0.00      0.00
+Temporal                 1.0000      2         0.00        0.00      0.00
+TensorFlow               1.0000      9         0.00        0.00      0.00
+Terraform                0.3972      60        0.37        0.72      0.49
+Test Automation          1.0000      4         0.00        0.00      0.00
+Test Automation Frameworks1.0000      2         0.00        0.00      0.00
+Test Strategy            1.0000      1         0.00        0.00      0.00
+Testing                  1.0000      5         0.00        0.00      0.00
+Testrail                 1.0000      2         0.00        0.00      0.00
+Thermal Analysis         1.0000      2         0.00        0.00      0.00
+Thermal Design           1.0000      1         0.00        0.00      0.00
+Thermal Management       1.0000      1         0.00        0.00      0.00
+Thermodynamics           1.0000      1         0.00        0.00      0.00
+Threat Detection         1.0000      2         0.00        0.00      0.00
+Threat Hunting           1.0000      10        0.00        0.00      0.00
+Threat Intelligence      0.3005      2         1.00        0.50      0.67
+Threat Modeling          1.0000      4         0.00        0.00      0.00
+Tiktok                   1.0000      3         0.00        0.00      0.00
+Time Series              1.0000      2         0.00        0.00      0.00
+Tls                      1.0000      1         0.00        0.00      0.00
+Tolerance Analysis       1.0000      2         0.00        0.00      0.00
+Tooling                  1.0000      2         0.00        0.00      0.00
+Traces                   1.0000      2         0.00        0.00      0.00
+Tracing                  1.0000      2         0.00        0.00      0.00
+Training                 1.0000      2         0.00        0.00      0.00
+Transaction Monitoring   1.0000      2         0.00        0.00      0.00
+Transportation           1.0000      1         0.00        0.00      0.00
+Troubleshooting          1.0000      3         0.00        0.00      0.00
+Twitter                  1.0000      1         0.00        0.00      0.00
+TypeScript               0.4308      50        0.31        0.08      0.13
+Typography               1.0000      3         0.00        0.00      0.00
+Uart                     1.0000      1         0.00        0.00      0.00
+Uat                      1.0000      1         0.00        0.00      0.00
+Ubersuggest              1.0000      2         0.00        0.00      0.00
+Ubuntu                   1.0000      10        0.00        0.00      0.00
+UI                       0.3722      3         1.00        0.33      0.50
+UI Testing               0.2662      2         1.00        0.50      0.67
+UI/UX                    1.0000      5         0.00        0.00      0.00
+Uikit                    0.3162      1         1.00        1.00      1.00
+Uml                      1.0000      2         0.00        0.00      0.00
+Unit Testing             0.4000      4         1.00        0.25      0.40
+Unity                    1.0000      2         0.00        0.00      0.00
+Unity Catalog            1.0000      2         0.00        0.00      0.00
+Unix                     1.0000      2         0.00        0.00      0.00
+Us Gaap                  1.0000      2         0.00        0.00      0.00
+Usability Testing        1.0000      10        0.00        0.00      0.00
+User Interviews          1.0000      3         0.00        0.00      0.00
+User Manuals             1.0000      1         0.00        0.00      0.00
+User Research            1.0000      4         0.00        0.00      0.00
+User Stories             1.0000      2         0.00        0.00      0.00
+Usertesting              1.0000      2         0.00        0.00      0.00
+UX                       1.0000      2         0.00        0.00      0.00
+UX Audits                1.0000      1         0.00        0.00      0.00
+UX Design                1.0000      1         0.00        0.00      0.00
+UX Research              1.0000      2         0.00        0.00      0.00
+Vba                      1.0000      4         0.00        0.00      0.00
+Vector Search            1.0000      1         0.00        0.00      0.00
+Vector DB                0.4032      15        0.48        0.67      0.56
+Vendor Coordination      1.0000      1         0.00        0.00      0.00
+Vendor Management        1.0000      2         0.00        0.00      0.00
+Vessel Operations        1.0000      1         0.00        0.00      0.00
+Video Editing            1.0000      7         0.00        0.00      0.00
+Virtualization           1.0000      2         0.00        0.00      0.00
+Vllm                     1.0000      1         0.00        0.00      0.00
+Vlookup                  1.0000      1         0.00        0.00      0.00
+Vmware                   1.0000      6         0.00        0.00      0.00
+Vpc                      1.0000      8         0.00        0.00      0.00
+Vpn                      1.0000      2         0.00        0.00      0.00
+Vue                      1.0000      2         0.00        0.00      0.00
+Vulnerability Assessment 1.0000      1         0.00        0.00      0.00
+Vulnerability Management 1.0000      10        0.00        0.00      0.00
+Waf                      1.0000      2         0.00        0.00      0.00
+Wcag                     1.0000      2         0.00        0.00      0.00
+Web Analytics            0.4529      2         1.00        0.50      0.67
+Web Applications         1.0000      1         0.00        0.00      0.00
+Web Development          1.0000      1         0.00        0.00      0.00
+Webflow                  1.0000      2         0.00        0.00      0.00
+Webpack                  1.0000      1         0.00        0.00      0.00
+Welding                  0.3327      2         0.50        0.50      0.50
+Windows                  1.0000      7         0.00        0.00      0.00
+Windows Server           1.0000      3         0.00        0.00      0.00
+Wireframes               1.0000      2         0.00        0.00      0.00
+Wms                      1.0000      3         0.00        0.00      0.00
+WordPress                0.4488      11        0.35        0.64      0.45
+Workday                  1.0000      7         0.00        0.00      0.00
+Workflow Automation      1.0000      4         0.00        0.00      0.00
+Writing                  1.0000      1         0.00        0.00      0.00
+X                        1.0000      2         0.00        0.00      0.00
+Xamarin                  0.2564      1         1.00        1.00      1.00
+Xcode                    0.2670      1         1.00        1.00      1.00
+Xctest                   0.3013      1         1.00        1.00      1.00
+Xdr                      1.0000      5         0.00        0.00      0.00
+XML                      1.0000      4         0.00        0.00      0.00
+Youtube                  1.0000      3         0.00        0.00      0.00
+Zapier                   1.0000      2         0.00        0.00      0.00
+Zendesk                  1.0000      5         0.00        0.00      0.00
+Zero Trust               1.0000      1         0.00        0.00      0.00
+Zoom                     1.0000      2         0.00        0.00      0.00
 
-Micro-F1: 0.449 | Macro-F1: 0.104
-Hamming Loss: 0.0084
-Jaccard Micro: 0.289
-Jaccard Macro: 0.080
-Precision@3: 0.614 | Precision@5: 0.526
+Micro-F1: 0.456 | Macro-F1: 0.089
+Hamming Loss: 0.0086
+Jaccard Micro: 0.295
+Jaccard Macro: 0.070
+Precision@3: 0.597 | Precision@5: 0.522
 
 === BASELINE ===
-Baseline Micro-F1: 0.328
+Baseline Micro-F1: 0.324
 Baseline Macro-F1: 0.003
 
 VERDICT
@@ -1034,7 +1030,7 @@ SBERT meaningfully beats the naive baseline.
 Refreshing the Render-safe NumPy classifier artifact...
 Refreshing SBERT artifact prerequisite: model\export_sbert_classifier_numpy.py
 Wrote C:\Portfolio-Projects\Job-Description-Analysis\model_out\v2_sentence_transformer\skill_classifier_sbert_v2.npz
-Validated classifier: input=384, hidden=128, labels=981
-Synchronized C:\Portfolio-Projects\Job-Description-Analysis\model_out\v2_sentence_transformer\model_config.json: labels=981, input_dim=384, hidden_dim=128
+Validated classifier: input=384, hidden=128, labels=976
+Synchronized C:\Portfolio-Projects\Job-Description-Analysis\model_out\v2_sentence_transformer\model_config.json: labels=976, input_dim=384, hidden_dim=128
 Saved synchronized SBERT artifacts to C:\Portfolio-Projects\Job-Description-Analysis\model_out\v2_sentence_transformer
-Final artifact dimensions: input=384, labels=981
+Final artifact dimensions: input=384, labels=976
