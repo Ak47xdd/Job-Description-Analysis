@@ -42,8 +42,8 @@ MIN_LABEL_FREQUENCY = 6
 # languages"; filter only the vague one-word buckets.
 GENERIC_LABELS = {
     "web", "programming", "software", "technology", "computer",
-    "technical", "tools", "frameworks", "platforms", "systems",
-    "applications", "internet", "digital", "it",
+    "technical", "tools", "frameworks", "systems",
+    "applications", "internet", "digital", "it", "search",
 }
 
 SKILLS_FIX = {
