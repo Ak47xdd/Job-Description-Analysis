@@ -2,7 +2,7 @@
 sym_map.py - All synonyms for the TF-IDF Vectorizer
 """
 
-TAXONOMY_VERSION = "v7-duplicate-fragmentation"
+TAXONOMY_VERSION = "v8-umbrella-labels-display"
 
 SYNONYM_MAP = {
     # docker 
@@ -476,6 +476,32 @@ CANONICAL_LABEL_MAP = {
 
     # UI/UX competency wording variants.
     "ui/ux design": "ui/ux",
+
+    # Remove noisy fragments by pooling them into existing parent competencies.
+    # These aliases are applied to the source labels before support counting.
+    "porstgresql": "sql",
+    "postgresql": "sql",
+    "postgres": "sql",
+    "pgvector": "sql",
+    "database": "databases",
+    "db": "databases",
+    "models": "ai/ml",
+    "model": "ai/ml",
+    "deployment": "devops",
+    "deployments": "devops",
+    "model deployment": "mlops",
+    "model deployment pipelines": "mlops",
+    "platform": "platform engineering",
+    "platforms": "platform engineering",
+    "fastapi": "backend",
+    "flask": "backend",
+    "django": "backend",
+    "express": "backend",
+    "express.js": "backend",
+    "spring boot": "backend",
+    "search engine": "ai search",
+    "search engines": "ai search",
+    "information retrieval": "ai search",
 
 }
  
