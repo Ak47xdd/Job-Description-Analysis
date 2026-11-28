@@ -19,7 +19,7 @@ SYNONYM_MAP = {
     'pull request':             'github',
 
     # ci/cd 
-    'infrastructure-as-code':   'ci/cd',
+    'infrastructure-as-code':   'platform engineering',
     'continuous integration':   'ci/cd',
     'continuous deployment':    'ci/cd',
     'continuous delivery':      'ci/cd',
