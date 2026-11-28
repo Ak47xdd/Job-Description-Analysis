@@ -2,7 +2,7 @@
 sym_map.py - All synonyms for the TF-IDF Vectorizer
 """
 
-TAXONOMY_VERSION = "v8-umbrella-labels-display"
+TAXONOMY_VERSION = "v9-clean-umbrella-labels"
 
 SYNONYM_MAP = {
     # docker 
@@ -502,6 +502,67 @@ CANONICAL_LABEL_MAP = {
     "search engine": "ai search",
     "search engines": "ai search",
     "information retrieval": "ai search",
+
+    # Clean-up of noisy / overly granular labels. Pool these into existing
+    # parent competencies so they do not consume separate classifier outputs.
+    # Infrastructure-as-code and automation belong under Platform Engineering.
+    "infrastructure-as-code": "platform engineering",
+    "infrastructure as code": "platform engineering",
+    "infrastructure automation": "platform engineering",
+    "iac": "platform engineering",
+
+    # AI search / retrieval / vector-search terminology shares the existing
+    # Vector DB umbrella label.
+    "ai search": "vectordb",
+    "vector search": "vectordb",
+    "vector retrieval": "vectordb",
+    "information retrieval": "vectordb",
+    "search engine": "vectordb",
+    "search engines": "vectordb",
+    "azure ai search": "vectordb",
+    "vector database": "vectordb",
+    "vector databases": "vectordb",
+    "vector store": "vectordb",
+    "embedding store": "vectordb",
+
+    # Code review is a software-engineering practice, not a standalone skill.
+    "code review": "software engineering",
+    "code reviews": "software engineering",
+    "code quality": "software engineering",
+
+    # Security specializations are pooled into the existing Security label.
+    "ai security": "security",
+    "api security": "security",
+    "application security": "security",
+    "cloud security": "security",
+    "cloud security tools": "security",
+    "container security": "security",
+    "cybersecurity": "security",
+    "data security": "security",
+    "endpoint security": "security",
+    "information security": "security",
+    "mobile security": "security",
+    "network security": "security",
+    "security analysis": "security",
+    "security architecture": "security",
+    "security assessments": "security",
+    "security automation": "security",
+    "security best practices": "security",
+    "security controls": "security",
+    "security engineering": "security",
+    "security frameworks": "security",
+    "security incident response": "security",
+    "security monitoring": "security",
+    "security operations": "security",
+    "security platform": "security",
+    "security policies": "security",
+    "security testing": "security",
+    "security tooling": "security",
+
+    # CI/CD and DevOps variants use the existing CI/CD / DevOps labels.
+    "ci/cd pipelines": "ci/cd",
+    "github pipelines": "ci/cd",
+    "devops monitoring": "devops",
 
 }
  
